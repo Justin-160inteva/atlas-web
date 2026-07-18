@@ -10,6 +10,15 @@ on:
       - 'atlas-analysis-import.js'
       - 'sw.js'
       - '.github/workflows/performance-static-check.yml'
+  pull_request:
+    paths:
+      - 'performance-092.js'
+      - 'performance-092.css'
+      - 'atlas-hd-map.js'
+      - 'atlas-hd-runtime.js'
+      - 'atlas-analysis-import.js'
+      - 'sw.js'
+      - '.github/workflows/performance-static-check.yml'
   workflow_dispatch:
 
 permissions:
