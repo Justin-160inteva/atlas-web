@@ -1,0 +1,200 @@
+/* Atlas Alpha 0.9.3.0 — original Sengoku-inspired typography system.
+   Uses local/open-font fallback families only. No Ubisoft font files are bundled. */
+
+@font-face{
+  font-family:"Atlas Kage Display";
+  src:local("Source Han Serif SC Heavy"),local("Source Han Serif SC SemiBold"),local("Noto Serif CJK SC SemiBold"),local("Noto Serif SC SemiBold"),local("Songti SC Bold");
+  font-style:normal;
+  font-weight:600 900;
+  font-display:swap;
+}
+
+@font-face{
+  font-family:"Atlas UI Sans";
+  src:local("Source Han Sans SC"),local("Noto Sans CJK SC"),local("Noto Sans SC"),local("PingFang SC"),local("Microsoft YaHei UI");
+  font-style:normal;
+  font-weight:300 900;
+  font-display:swap;
+}
+
+:root{
+  --font-display:"Atlas Kage Display","Source Han Serif SC","Noto Serif CJK SC","Noto Serif SC","Songti SC","STSong",serif;
+  --font-ui:"Atlas UI Sans","Source Han Sans SC","Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+  --font-data:ui-monospace,"SFMono-Regular",Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+  --atlas-display-tracking:.045em;
+  --atlas-ui-tracking:.012em;
+  --atlas-title-shadow:0 1px 0 rgba(255,255,255,.055),0 5px 18px rgba(0,0,0,.2);
+}
+
+html{
+  font-family:var(--font-ui);
+  font-kerning:normal;
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+body,
+button,
+input,
+select,
+textarea{
+  font-family:var(--font-ui);
+  font-feature-settings:"kern" 1,"palt" 1;
+  letter-spacing:var(--atlas-ui-tracking);
+}
+
+button,
+input,
+select,
+textarea,
+.result-item,
+.category-chip,
+.nav-item,
+.rail-button,
+.sheet-description,
+.route-list,
+.region-progress,
+.public-source-card,
+.analysis-import-card,
+.evidence-source,
+.evidence-building-row{
+  font-family:var(--font-ui);
+}
+
+h1,
+h2,
+h3,
+.brand-copy b,
+.sheet-title h2,
+.panel header h2,
+.evidence-panel header h2,
+.evidence-section-title>b,
+.analysis-import-head>b,
+.public-source-card h3,
+.future-block>b,
+.route-empty>b{
+  font-family:var(--font-display);
+  font-optical-sizing:auto;
+  font-weight:760;
+  font-stretch:condensed;
+  font-feature-settings:"kern" 1,"palt" 1;
+  letter-spacing:var(--atlas-display-tracking);
+  line-height:1.08;
+  text-wrap:balance;
+  text-shadow:var(--atlas-title-shadow);
+}
+
+.brand-copy b{
+  display:inline-block;
+  font-weight:850;
+  letter-spacing:.16em;
+  transform:scaleX(.93);
+  transform-origin:left center;
+}
+
+.brand-copy small,
+.panel header small,
+.evidence-panel header small,
+.evidence-section-title small,
+.search-meta,
+.public-source-meta,
+.sheet-title p,
+.route-stop small,
+.region-progress small{
+  font-family:var(--font-ui);
+  font-weight:620;
+  letter-spacing:.09em;
+}
+
+.status-pill b,
+.route-stat b,
+.overall-progress b,
+#visibleCount,
+#zoomLabel,
+#filterCount,
+#routeStops,
+#routeDistance,
+#routeTime,
+#overallPercent,
+#overallDone,
+#overallTotal,
+#evidenceSources,
+#evidenceFrames,
+#evidenceBuildings,
+#evidenceCoverage,
+.analysis-import-metrics,
+.version,
+.coordinates,
+kbd{
+  font-family:var(--font-data);
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1,"zero" 1;
+  letter-spacing:0;
+}
+
+.sheet-title h2,
+.panel header h2,
+.evidence-panel header h2{
+  position:relative;
+  padding-left:.58em;
+}
+
+.sheet-title h2::before,
+.panel header h2::before,
+.evidence-panel header h2::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.08em;
+  bottom:.08em;
+  width:2px;
+  border-radius:999px;
+  background:linear-gradient(180deg,rgba(232,55,68,.98),rgba(149,25,36,.35));
+  box-shadow:0 0 12px rgba(215,45,58,.22);
+}
+
+.category-chip b,
+.result-copy b,
+.route-stop-copy b,
+.region-progress b{
+  font-weight:680;
+  letter-spacing:.018em;
+}
+
+input::placeholder,
+textarea::placeholder{
+  font-family:var(--font-ui);
+  letter-spacing:.025em;
+}
+
+@media (max-width:820px){
+  :root{
+    --atlas-display-tracking:.025em;
+    --atlas-ui-tracking:.006em;
+  }
+
+  .brand-copy b{
+    letter-spacing:.11em;
+    transform:scaleX(.95);
+  }
+
+  h1,h2,h3,
+  .brand-copy b,
+  .sheet-title h2,
+  .panel header h2,
+  .evidence-panel header h2{
+    text-shadow:0 1px 0 rgba(255,255,255,.04),0 3px 10px rgba(0,0,0,.16);
+  }
+}
+
+@media (prefers-contrast:more){
+  h1,h2,h3,
+  .brand-copy b,
+  .sheet-title h2,
+  .panel header h2,
+  .evidence-panel header h2{
+    text-shadow:none;
+  }
+}
