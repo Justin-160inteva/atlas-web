@@ -3,14 +3,14 @@
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "authorizationId": "auth-dada-20260718",
-  "updatedAt": "2026-07-18T23:19:27.921726Z",
+  "updatedAt": "2026-07-18T23:54:43.134587Z",
   "complete": false,
   "summary": {
     "total": 23,
-    "imported": 7,
+    "imported": 13,
     "failed": 0,
     "unresolved": 0,
-    "remaining": 16,
+    "remaining": 10,
     "attemptedThisRun": 6,
     "newlyImportedThisRun": 6
   },
@@ -172,10 +172,31 @@
       "externalSourceId": "bili-dada-acshadows-07",
       "sequence": 7,
       "title": "〖刺客信条影 新手攻略〗07 武形试炼（解锁技能）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9707%20%E6%AD%A6%E5%BD%A2%E8%AF%95%E7%82%BC%EF%BC%88%E8%A7%A3%E9%94%81%E6%8A%80%E8%83%BD%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "url": "https://www.bilibili.com/video/BV1GYoXYnEs9/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-07.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-07",
+        "sequence": 7,
+        "startedAt": "2026-07-18T23:20:24.775860Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV1GYoXYnEs9/",
+          "bvid": "BV1GYoXYnEs9",
+          "title": "【刺客信条影 新手攻略】07 武形试炼（解锁技能）",
+          "author": "不再犹豫的达达猪",
+          "duration": "3:5",
+          "score": 260.0,
+          "source": "bilibili-search-api",
+          "query": "〖刺客信条影 新手攻略〗07 武形试炼（解锁技能）"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-07.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-18T23:23:24.661010Z"
+      }
     },
     {
       "externalSourceId": "bili-dada-acshadows-08",
@@ -211,46 +232,151 @@
       "externalSourceId": "bili-dada-acshadows-09",
       "sequence": 9,
       "title": "〖刺客信条影 新手攻略〗09 开局配装（奈绪江 短刀飞跃流）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9709%20%E5%BC%80%E5%B1%80%E9%85%8D%E8%A3%85%EF%BC%88%E5%A5%88%E7%BB%AA%E6%B1%9F%20%E7%9F%AD%E5%88%80%E9%A3%9E%E8%B7%83%E6%B5%81%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "url": "https://www.bilibili.com/video/BV1A5P9z7EGM/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-09.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-09",
+        "sequence": 9,
+        "startedAt": "2026-07-18T23:23:27.661800Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV1A5P9z7EGM/",
+          "bvid": "BV1A5P9z7EGM",
+          "title": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
+          "author": "不再犹豫的达达猪",
+          "duration": "12:42",
+          "score": 260.0,
+          "source": "bilibili-search-api",
+          "query": "〖刺客信条影 新手攻略〗09 开局配装（奈绪江 短刀飞跃流）"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-09.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-18T23:23:52.117281Z"
+      }
     },
     {
       "externalSourceId": "bili-dada-acshadows-10",
       "sequence": 10,
       "title": "〖刺客信条影 新手攻略〗10 弥助配装（丹心居合流）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9710%20%E5%BC%A5%E5%8A%A9%E9%85%8D%E8%A3%85%EF%BC%88%E4%B8%B9%E5%BF%83%E5%B1%85%E5%90%88%E6%B5%81%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "url": "https://www.bilibili.com/video/BV15XPRzgEX3/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-10.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-10",
+        "sequence": 10,
+        "startedAt": "2026-07-18T23:23:55.118010Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV15XPRzgEX3/",
+          "bvid": "BV15XPRzgEX3",
+          "title": "【刺客信条影 新手攻略】10 弥助配装（丹心居合流）",
+          "author": "不再犹豫的达达猪",
+          "duration": "6:6",
+          "score": 260.0,
+          "source": "bilibili-search-api",
+          "query": "〖刺客信条影 新手攻略〗10 弥助配装（丹心居合流）"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-10.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-18T23:38:03.653819Z"
+      }
     },
     {
       "externalSourceId": "bili-dada-acshadows-11",
       "sequence": 11,
       "title": "〖刺客信条影 新手攻略〗11 穿甲饰品（龙吟 锦鲤之力）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9711%20%E7%A9%BF%E7%94%B2%E9%A5%B0%E5%93%81%EF%BC%88%E9%BE%99%E5%90%9F%20%E9%94%A6%E9%B2%A4%E4%B9%8B%E5%8A%9B%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "url": "https://www.bilibili.com/video/BV15zwwzHE98/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-11.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-11",
+        "sequence": 11,
+        "startedAt": "2026-07-18T23:38:06.654654Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV15zwwzHE98/",
+          "bvid": "BV15zwwzHE98",
+          "title": "【刺客信条影 新手攻略】11 穿甲饰品（龙吟 锦鲤之力）",
+          "author": "不再犹豫的达达猪",
+          "duration": "5:12",
+          "score": 260.0,
+          "source": "bilibili-search-api",
+          "query": "〖刺客信条影 新手攻略〗11 穿甲饰品（龙吟 锦鲤之力）"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-11.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-18T23:45:30.817264Z"
+      }
     },
     {
       "externalSourceId": "bili-dada-acshadows-12",
       "sequence": 12,
       "title": "〖刺客信条影 新手攻略〗12 饕餮之刃（250%伤害）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9712%20%E9%A5%95%E9%A4%AE%E4%B9%8B%E5%88%83%EF%BC%88250%25%E4%BC%A4%E5%AE%B3%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "url": "https://www.bilibili.com/video/BV197cjebEXW/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-12.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-12",
+        "sequence": 12,
+        "startedAt": "2026-07-18T23:45:33.818018Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV197cjebEXW/",
+          "bvid": "BV197cjebEXW",
+          "title": "【对马岛之魂 新手攻略】12 解救铁匠",
+          "author": "不再犹豫的达达猪",
+          "duration": "4:58",
+          "score": 205.429,
+          "source": "bilibili-search-api",
+          "query": "不再犹豫的达达猪 刺客信条影 新手攻略 12"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-12.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-18T23:50:39.306681Z"
+      }
     },
     {
       "externalSourceId": "bili-dada-acshadows-13",
       "sequence": 13,
       "title": "〖刺客信条影 新手攻略〗13 中期配装（弥助）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9713%20%E4%B8%AD%E6%9C%9F%E9%85%8D%E8%A3%85%EF%BC%88%E5%BC%A5%E5%8A%A9%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "url": "https://www.bilibili.com/video/BV1yEcDzKEZS/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-13.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-13",
+        "sequence": 13,
+        "startedAt": "2026-07-18T23:50:42.307452Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV1yEcDzKEZS/",
+          "bvid": "BV1yEcDzKEZS",
+          "title": "【刺客信条影 新手攻略】13 中期配装（弥助）",
+          "author": "不再犹豫的达达猪",
+          "duration": "4:45",
+          "score": 260.0,
+          "source": "bilibili-search-api",
+          "query": "〖刺客信条影 新手攻略〗13 中期配装（弥助）"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-13.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-18T23:54:40.133373Z"
+      }
     },
     {
       "externalSourceId": "bili-dada-acshadows-14",
