@@ -2,38 +2,45 @@
   'use strict';
 
   const coarse=matchMedia('(pointer:coarse)').matches||/iPad|iPhone|iPod|Android/i.test(navigator.userAgent);
+  const memory=Number(navigator.deviceMemory||8);
+  const cores=Number(navigator.hardwareConcurrency||8);
+  const lowPower=memory<=4||cores<=4;
   const TILE_SOURCE=512;
   const GRID=4096/TILE_SOURCE;
-  const OUTPUT_SIZE=coarse?768:1024;
-  const MAX_CACHE=coarse?7:16;
-  const HD_THRESHOLD=coarse?2.15:1.85;
+  const OUTPUT_SIZE=coarse?(lowPower?576:704):(lowPower?768:896);
+  const MAX_CACHE=coarse?6:(lowPower?9:12);
+  const HD_THRESHOLD=coarse?2.3:2;
   const PRELOAD_MARGIN=coarse?0:1;
-  const SHARPEN_AMOUNT=coarse?.10:.17;
+  const SHARPEN_AMOUNT=!coarse&&!lowPower?.06:0;
   const cache=new Map();
   const queue=[];
   const queued=new Set();
   let workerPending=false;
   let generationPaused=false;
+  let visibleCount=-1;
 
   const now=()=>performance.now();
+  const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
   const interactionActive=()=>Boolean(
     document.documentElement.classList.contains('atlas-button-zooming')||
+    window.AtlasPerf092?.interacting||
     window.AtlasMobilePerf?.interacting||
     window.AtlasDesktopPerf?.interacting||
     state.drag||state.pointers?.size
   );
+  const performanceMode=()=>Number(window.AtlasPerf092?.qualityLevel||0)>=2;
 
   function key(x,y){return `${x}:${y}`}
   function clampByte(value){return value<0?0:value>255?255:value}
 
   function sharpen(canvas){
+    if(SHARPEN_AMOUNT<=0)return;
     const context=canvas.getContext('2d',{willReadFrequently:true});
     let image;
     try{image=context.getImageData(0,0,canvas.width,canvas.height)}catch(_){return}
     const data=image.data;
     const source=new Uint8ClampedArray(data);
     const row=canvas.width*4;
-    const amount=SHARPEN_AMOUNT;
     for(let y=1;y<canvas.height-1;y++){
       let index=y*row+4;
       const end=y*row+(canvas.width-1)*4;
@@ -41,7 +48,7 @@
         for(let channel=0;channel<3;channel++){
           const i=index+channel;
           const lap=4*source[i]-source[i-4]-source[i+4]-source[i-row]-source[i+row];
-          data[i]=clampByte(source[i]+lap*amount);
+          data[i]=clampByte(source[i]+lap*SHARPEN_AMOUNT);
         }
       }
     }
@@ -49,16 +56,16 @@
   }
 
   function generateTile(tileX,tileY){
-    if(!state.imageReady||interactionActive()||document.hidden)return false;
-    const canvas=document.createElement('canvas');
-    canvas.width=OUTPUT_SIZE;
-    canvas.height=OUTPUT_SIZE;
-    const context=canvas.getContext('2d',{alpha:false,willReadFrequently:true});
+    if(!state.imageReady||interactionActive()||performanceMode()||document.hidden)return false;
+    const tileCanvas=typeof OffscreenCanvas==='function'?new OffscreenCanvas(OUTPUT_SIZE,OUTPUT_SIZE):document.createElement('canvas');
+    tileCanvas.width=OUTPUT_SIZE;
+    tileCanvas.height=OUTPUT_SIZE;
+    const context=tileCanvas.getContext('2d',{alpha:false,willReadFrequently:SHARPEN_AMOUNT>0});
     context.imageSmoothingEnabled=true;
     context.imageSmoothingQuality='high';
     context.fillStyle='#11110f';
     context.fillRect(0,0,OUTPUT_SIZE,OUTPUT_SIZE);
-    context.filter='contrast(1.055) saturate(1.025) brightness(1.01)';
+    context.filter='contrast(1.045) saturate(1.02) brightness(1.008)';
     context.drawImage(
       state.image,
       tileX*TILE_SOURCE,
@@ -71,8 +78,8 @@
       OUTPUT_SIZE
     );
     context.filter='none';
-    sharpen(canvas);
-    cache.set(key(tileX,tileY),{canvas,lastUsed:now(),readyAt:now()});
+    sharpen(tileCanvas);
+    cache.set(key(tileX,tileY),{canvas:tileCanvas,lastUsed:now(),readyAt:now()});
     trimCache();
     scheduleDraw();
     return true;
@@ -89,10 +96,10 @@
 
   function processQueue(deadline){
     workerPending=false;
-    if(generationPaused||interactionActive()||document.hidden)return;
+    if(generationPaused||interactionActive()||performanceMode()||document.hidden)return;
     let generated=0;
     while(queue.length){
-      if(deadline&&generated>0&&deadline.timeRemaining()<5)break;
+      if(deadline&&generated>0&&deadline.timeRemaining()<6)break;
       const item=queue.shift();
       queued.delete(item.key);
       if(cache.has(item.key))continue;
@@ -103,12 +110,12 @@
   }
 
   function scheduleWorker(){
-    if(workerPending||generationPaused||interactionActive()||!queue.length)return;
+    if(workerPending||generationPaused||interactionActive()||performanceMode()||!queue.length||document.hidden)return;
     workerPending=true;
     if('requestIdleCallback'in window){
-      requestIdleCallback(processQueue,{timeout:550});
+      requestIdleCallback(processQueue);
     }else{
-      setTimeout(()=>processQueue(null),48);
+      setTimeout(()=>processQueue(null),80);
     }
   }
 
@@ -137,7 +144,7 @@
   }
 
   function prepareVisible(){
-    if(!state.imageReady)return;
+    if(!state.imageReady||interactionActive()||performanceMode())return;
     const relative=state.scale/fitScale();
     if(relative<HD_THRESHOLD)return;
     const range=visibleRange(PRELOAD_MARGIN);
@@ -151,8 +158,32 @@
     scheduleWorker();
   }
 
-  function drawVisible(context){
+  function drawBaseMap(context){
     if(!state.imageReady)return;
+    const scale=state.scale;
+    const sourceX=clamp((-state.offsetX)/scale,0,4096);
+    const sourceY=clamp((-state.offsetY)/scale,0,4096);
+    const sourceRight=clamp((innerWidth-state.offsetX)/scale,0,4096);
+    const sourceBottom=clamp((innerHeight-state.offsetY)/scale,0,4096);
+    const sourceWidth=sourceRight-sourceX;
+    const sourceHeight=sourceBottom-sourceY;
+    if(sourceWidth<=0||sourceHeight<=0)return;
+    const screenX=state.offsetX+sourceX*scale;
+    const screenY=state.offsetY+sourceY*scale;
+    context.save();
+    context.globalAlpha=.92;
+    context.imageSmoothingEnabled=true;
+    context.imageSmoothingQuality=interactionActive()?'low':'high';
+    context.drawImage(
+      state.image,
+      sourceX,sourceY,sourceWidth,sourceHeight,
+      screenX,screenY,sourceWidth*scale,sourceHeight*scale
+    );
+    context.restore();
+  }
+
+  function drawVisible(context){
+    if(!state.imageReady||interactionActive()||performanceMode())return;
     const relative=state.scale/fitScale();
     if(relative<HD_THRESHOLD)return;
     const range=visibleRange(0);
@@ -178,39 +209,34 @@
     prepareVisible();
   }
 
-  const previousDraw=draw;
   draw=function(){
     ctx.fillStyle='#070707';
     ctx.fillRect(0,0,innerWidth,innerHeight);
-    if(state.imageReady){
-      ctx.save();
-      ctx.globalAlpha=.92;
-      ctx.imageSmoothingEnabled=true;
-      ctx.imageSmoothingQuality='high';
-      ctx.drawImage(state.image,state.offsetX,state.offsetY,4096*state.scale,4096*state.scale);
-      ctx.restore();
-      drawVisible(ctx);
-    }
+    drawBaseMap(ctx);
+    drawVisible(ctx);
     drawRoute();
     const list=visibleLocations();
     const relative=state.scale/fitScale();
     state.markers=buildMarkers(list);
     for(const marker of state.markers)drawMarker(marker,relative);
-    el('visibleCount').textContent=list.length;
+    if(list.length!==visibleCount){
+      visibleCount=list.length;
+      el('visibleCount').textContent=String(visibleCount);
+    }
   };
 
   const pause=()=>{generationPaused=true};
   const resume=()=>{
     generationPaused=false;
     clearTimeout(resume._timer);
-    resume._timer=setTimeout(()=>{prepareVisible();scheduleDraw()},90);
+    resume._timer=setTimeout(()=>{prepareVisible();scheduleDraw()},110);
   };
   mapCanvas.addEventListener('pointerdown',pause,{capture:true,passive:true});
   mapCanvas.addEventListener('pointerup',resume,{capture:true,passive:true});
   mapCanvas.addEventListener('pointercancel',resume,{capture:true,passive:true});
-  mapCanvas.addEventListener('wheel',()=>{pause();clearTimeout(resume._wheel);resume._wheel=setTimeout(resume,150)},{capture:true,passive:true});
+  mapCanvas.addEventListener('wheel',()=>{pause();clearTimeout(resume._wheel);resume._wheel=setTimeout(resume,170)},{capture:true,passive:true});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();else resume()});
 
   window.AtlasHDMap={cache,queue,prepareVisible,threshold:HD_THRESHOLD,outputSize:OUTPUT_SIZE};
-  setTimeout(()=>{prepareVisible();scheduleDraw()},500);
+  setTimeout(()=>{prepareVisible();scheduleDraw()},560);
 })();
