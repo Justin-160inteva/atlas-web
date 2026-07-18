@@ -2,14 +2,14 @@
   "schemaVersion": 2,
   "jobId": "dada-temples-36-v1",
   "status": "failed",
-  "generatedAt": "2026-07-18T22:28:29.585037Z",
+  "generatedAt": "2026-07-18T22:33:42.008395Z",
   "stage": "download",
-  "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError('Unable to download segment 0: TypeError(\\\"\\\\'Response\\\\' object does not support the context manager protocol\\\")')\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
+  "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download segment 0: RequestException('Failed to perform, curl: (18) end of response with 21290515 bytes missing. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
   "attempts": [
     {
       "strategy": "bilibili-public-api",
       "success": false,
-      "diagnostic": "RuntimeError('Unable to download segment 0: TypeError(\"\\'Response\\' object does not support the context manager protocol\")')"
+      "diagnostic": "RuntimeError(\"Unable to download segment 0: RequestException('Failed to perform, curl: (18) end of response with 21290515 bytes missing. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')\")"
     },
     {
       "strategy": "dash-720",
