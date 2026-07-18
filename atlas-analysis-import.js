@@ -1,10 +1,26 @@
 (() => {
   'use strict';
 
-  const VERSION='0.9.1.4';
+  const VERSION='0.9.2.0';
   let analysisIndex={items:[]};
   const $=selector=>document.querySelector(selector);
   const escapeHtml=value=>String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+
+  function loadPerformanceLayer(){
+    if(!document.querySelector('link[data-atlas-performance="0.9.2.0"]')){
+      const link=document.createElement('link');
+      link.rel='stylesheet';
+      link.href=`performance-092.css?v=${VERSION}`;
+      link.dataset.atlasPerformance=VERSION;
+      document.head.appendChild(link);
+    }
+    if(!document.querySelector('script[data-atlas-performance="0.9.2.0"]')){
+      const script=document.createElement('script');
+      script.src=`performance-092.js?v=${VERSION}`;
+      script.dataset.atlasPerformance=VERSION;
+      document.body.appendChild(script);
+    }
+  }
 
   function installStyles(){
     if($('#analysisImportStyles'))return;
@@ -38,7 +54,7 @@
     const section=document.createElement('section');
     section.className='evidence-section analysis-import-registry';
     section.id='analysisImportRegistry';
-    section.innerHTML=`<div class="evidence-section-title"><b>自动分析导入 0.9.1.4</b><small id="analysisImportCount">0 条已导入</small></div><div id="analysisImportList"></div>`;
+    section.innerHTML=`<div class="evidence-section-title"><b>自动分析导入 ${VERSION}</b><small id="analysisImportCount">0 条已导入</small></div><div id="analysisImportList"></div>`;
     anchor.insertAdjacentElement('afterend',section);
     return section;
   }
@@ -94,7 +110,7 @@
     renderRegistry();
     annotateCards();
     const brand=document.querySelector('.brand-copy small');
-    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.1.4";
+    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.2.0";
   }
 
   async function start(){
@@ -116,5 +132,6 @@
     window.AtlasAnalysisImport={index:()=>analysisIndex,render:apply,version:VERSION};
   }
 
+  loadPerformanceLayer();
   start();
 })();
