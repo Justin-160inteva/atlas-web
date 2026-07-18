@@ -1,0 +1,91 @@
+name: Scan Dada authorized author catalog
+
+on:
+  push:
+    paths:
+      - 'data/batch-analysis/dada-author-catalog.json'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: scan-dada-author-catalog
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install analysis dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Scan next authorized catalog batch
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: python tools/scan_author_catalog.py data/batch-analysis/dada-author-catalog.json
+
+      - name: Remove transient media
+        if: always()
+        run: |
+          find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
+          find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' \) -delete
+
+      - name: Read batch state
+        id: state
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          status = json.load(open('data/batch-analysis/dada-author-catalog-status.json', encoding='utf-8'))
+          summary = status['summary']
+          print(f"complete={'true' if status['complete'] else 'false'}")
+          print(f"remaining={summary['remaining']}")
+          print(f"progress={summary['newlyImportedThisRun']}")
+          print(f"imported={summary['imported']}")
+          PY
+
+      - name: Commit results and catalog state
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- data/analysis-results data/analysis-jobs data/analysis-index.json data/dada-ac-shadows-catalog.json data/batch-analysis)" ]; then
+            echo 'No catalog analysis changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/analysis-results data/analysis-jobs data/analysis-index.json data/dada-ac-shadows-catalog.json data/batch-analysis
+          git commit -m "Scan authorized Dada catalog: ${{ steps.state.outputs.imported }}/23 imported"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Continue immediately while progress is being made
+        if: steps.state.outputs.complete != 'true' && steps.state.outputs.progress != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run scan-dada-author-catalog.yml --ref main
+
+      - name: Report current batch status
+        run: |
+          echo "Imported: ${{ steps.state.outputs.imported }}/23"
+          echo "Remaining: ${{ steps.state.outputs.remaining }}"
+          echo "Complete: ${{ steps.state.outputs.complete }}"
