@@ -82,7 +82,7 @@ jobs:
       - name: Commit analysis result
         shell: bash
         run: |
-          if git diff --quiet -- data/analysis-results; then
+          if [ -z "$(git status --porcelain -- data/analysis-results)" ]; then
             echo 'No analysis result changed.'
           else
             git config user.name 'github-actions[bot]'
