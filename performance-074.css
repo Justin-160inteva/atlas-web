@@ -1,0 +1,35 @@
+@media (pointer:fine){
+  .atlas-desktop-performance #mapCanvas{
+    will-change:contents;
+    cursor:grab;
+  }
+  .atlas-desktop-performance #mapCanvas:active{cursor:grabbing}
+
+  .atlas-desktop-performance .glass{
+    -webkit-backdrop-filter:blur(14px) saturate(118%);
+    backdrop-filter:blur(14px) saturate(118%);
+  }
+
+  .atlas-desktop-interacting .glass{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:rgba(18,16,15,.92)!important;
+  }
+
+  .atlas-desktop-interacting .vignette{opacity:.5}
+  .atlas-desktop-interacting .pulse,
+  .atlas-desktop-interacting .route-badge,
+  .atlas-desktop-interacting .status-pill,
+  .atlas-desktop-interacting .sheet,
+  .atlas-desktop-interacting .panel{
+    animation:none!important;
+    transition:none!important;
+  }
+}
+
+@media (min-width:1600px) and (pointer:fine){
+  .atlas-desktop-performance .glass{
+    -webkit-backdrop-filter:blur(12px) saturate(114%);
+    backdrop-filter:blur(12px) saturate(114%);
+  }
+}
