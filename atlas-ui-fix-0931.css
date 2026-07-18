@@ -1,0 +1,102 @@
+/* Atlas Alpha 0.9.3.1 — navigation and selection feedback */
+
+.bottom-nav .nav-item,
+.quick-rail .rail-button{
+  position:relative;
+  isolation:isolate;
+  transition:transform .16s ease,color .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+
+.bottom-nav .nav-item span,
+.quick-rail .rail-button .rail-icon{
+  transition:transform .16s ease,filter .16s ease,opacity .16s ease;
+  transform-origin:center;
+}
+
+.bottom-nav .nav-item::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:5px;
+  width:0;
+  height:3px;
+  border-radius:999px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,#f1d492,#d94855);
+  box-shadow:0 0 10px rgba(221,72,84,.32);
+  opacity:0;
+  transition:width .18s ease,opacity .18s ease;
+}
+
+.bottom-nav .nav-item.active{
+  color:#fff8eb;
+  border-color:rgba(235,198,127,.34);
+  background:linear-gradient(145deg,rgba(168,35,48,.78),rgba(91,18,25,.78));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 9px 22px rgba(105,18,27,.28);
+  transform:translateY(-1px);
+}
+
+.bottom-nav .nav-item.active::after{
+  width:22px;
+  opacity:1;
+}
+
+.bottom-nav .nav-item.active span{
+  transform:translateY(-1px) scale(1.12);
+  filter:drop-shadow(0 2px 5px rgba(0,0,0,.28));
+}
+
+.bottom-nav .nav-item:active,
+.quick-rail .rail-button:active{
+  transform:scale(.96);
+}
+
+.quick-rail .rail-button::after{
+  content:"";
+  position:absolute;
+  right:-3px;
+  top:50%;
+  width:3px;
+  height:0;
+  border-radius:999px;
+  transform:translateY(-50%);
+  background:linear-gradient(180deg,#f2d79d,#df4856);
+  box-shadow:0 0 10px rgba(223,72,86,.32);
+  opacity:0;
+  transition:height .18s ease,opacity .18s ease;
+}
+
+.quick-rail .rail-button.active{
+  border:1px solid rgba(239,205,139,.3);
+  background:linear-gradient(145deg,rgba(198,49,62,.94),rgba(103,18,27,.9));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 9px 22px rgba(101,18,26,.3);
+}
+
+.quick-rail .rail-button.active::after{
+  height:25px;
+  opacity:1;
+}
+
+.quick-rail .rail-button.active .rail-icon{
+  transform:scale(1.1);
+  filter:drop-shadow(0 2px 5px rgba(0,0,0,.25));
+}
+
+.panel[aria-hidden="false"]{
+  content-visibility:visible!important;
+}
+
+.panel.open{
+  visibility:visible;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .bottom-nav .nav-item,
+  .bottom-nav .nav-item span,
+  .bottom-nav .nav-item::after,
+  .quick-rail .rail-button,
+  .quick-rail .rail-button .rail-icon,
+  .quick-rail .rail-button::after{
+    transition:none!important;
+  }
+}
