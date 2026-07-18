@@ -1,0 +1,37 @@
+name: Performance static check
+
+on:
+  push:
+    paths:
+      - 'performance-092.js'
+      - 'performance-092.css'
+      - 'atlas-hd-map.js'
+      - 'atlas-hd-runtime.js'
+      - 'atlas-analysis-import.js'
+      - 'sw.js'
+      - '.github/workflows/performance-static-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse JavaScript
+        run: |
+          node --check performance-092.js
+          node --check atlas-hd-map.js
+          node --check atlas-hd-runtime.js
+          node --check atlas-analysis-import.js
+          node --check sw.js
+      - name: Verify performance assets are cached
+        run: |
+          grep -q "performance-092.js" sw.js
+          grep -q "performance-092.css" sw.js
+          grep -q "0.9.2.0" atlas-analysis-import.js
