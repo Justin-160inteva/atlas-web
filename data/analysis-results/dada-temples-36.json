@@ -2,10 +2,15 @@
   "schemaVersion": 2,
   "jobId": "dada-temples-36-v1",
   "status": "failed",
-  "generatedAt": "2026-07-18T22:26:08.506007Z",
+  "generatedAt": "2026-07-18T22:28:29.585037Z",
   "stage": "download",
-  "error": "[{\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"WARNING: \\\"-f best\\\" selects the best pre-merged format which is often not the best option.\\n         To let yt-dlp download and merge the best available formats, simply do not pass any format selection.\\n         If you know what you are doing and want only the best pre-merged format, use \\\"-f b\\\" instead to suppress this warning\\nERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
+  "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError('Unable to download segment 0: TypeError(\\\"\\\\'Response\\\\' object does not support the context manager protocol\\\")')\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
   "attempts": [
+    {
+      "strategy": "bilibili-public-api",
+      "success": false,
+      "diagnostic": "RuntimeError('Unable to download segment 0: TypeError(\"\\'Response\\' object does not support the context manager protocol\")')"
+    },
     {
       "strategy": "dash-720",
       "success": false,
@@ -24,7 +29,7 @@
     {
       "strategy": "best-public",
       "success": false,
-      "diagnostic": "WARNING: \"-f best\" selects the best pre-merged format which is often not the best option.\n         To let yt-dlp download and merge the best available formats, simply do not pass any format selection.\n         If you know what you are doing and want only the best pre-merged format, use \"-f b\" instead to suppress this warning\nERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
+      "diagnostic": "ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
     }
   ],
   "source": {
