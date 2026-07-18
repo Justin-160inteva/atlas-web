@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'data/analysis-jobs/*.json'
+  pull_request:
+    paths:
+      - 'data/analysis-jobs/*.json'
   workflow_dispatch:
     inputs:
       job_file:
@@ -15,7 +18,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: authorized-video-analysis
+  group: authorized-video-analysis-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -23,10 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Check out repository
+      - name: Check out writable source branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -46,6 +50,9 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             JOB_FILE='${{ inputs.job_file }}'
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin "${{ github.base_ref }}" --depth=1
+            JOB_FILE=$(git diff --name-only "origin/${{ github.base_ref }}"...HEAD | grep '^data/analysis-jobs/.*\.json$' | head -n 1)
           else
             JOB_FILE=$(git diff-tree --no-commit-id --name-only -r "${{ github.sha }}" | grep '^data/analysis-jobs/.*\.json$' | head -n 1)
           fi
@@ -77,4 +84,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/analysis-results
           git commit -m 'Add authorized video analysis result'
-          git push
+          TARGET_BRANCH='${{ github.event.pull_request.head.ref || github.ref_name }}'
+          git push origin "HEAD:${TARGET_BRANCH}"
