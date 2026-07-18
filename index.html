@@ -10,16 +10,16 @@
   <link rel="apple-touch-icon" href="icon-180.png" />
   <title>Atlas · 刺客信条：影</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles.css?v=0.5.0" />
-  <link rel="stylesheet" href="alpha03.css?v=0.5.0" />
-  <link rel="stylesheet" href="route.css?v=0.5.0" />
+  <link rel="stylesheet" href="styles.css?v=0.6.0" />
+  <link rel="stylesheet" href="alpha03.css?v=0.6.0" />
+  <link rel="stylesheet" href="route.css?v=0.6.0" />
 </head>
 <body>
   <main class="app-shell" aria-label="Atlas 互动地图">
     <canvas id="mapCanvas" aria-label="刺客信条影互动地图"></canvas>
     <div class="vignette" aria-hidden="true"></div>
     <header class="top-bar glass">
-      <button class="brand" id="brandBtn" aria-label="重置地图视图"><span class="brand-mark">A</span><span class="brand-copy"><b>ATLAS</b><small>ASSASSIN'S CREED SHADOWS · ALPHA 0.5</small></span></button>
+      <button class="brand" id="brandBtn" aria-label="重置地图视图"><span class="brand-mark">A</span><span class="brand-copy"><b>ATLAS</b><small>ASSASSIN'S CREED SHADOWS · ALPHA 0.6</small></span></button>
       <button class="search-trigger" id="searchTrigger" aria-label="搜索地点"><span class="icon">⌕</span><span id="searchLabel">搜索地点、区域或类别</span><kbd>⌘ K</kbd></button>
       <div class="top-actions"><button class="icon-button" id="locateBtn" aria-label="回到地图中心">⌖</button><button class="profile-button" aria-label="用户资料">影</button></div>
     </header>
@@ -27,7 +27,7 @@
       <button class="rail-button active" data-mode="all"><span>◉</span><small>全部</small></button><button class="rail-button" data-mode="locations"><span>城</span><small>地点</small></button><button class="rail-button" data-mode="collectibles"><span>宝</span><small>收集</small></button><button class="rail-button" data-mode="activities"><span>任</span><small>活动</small></button><button class="rail-button" data-mode="favorites"><span>◇</span><small>收藏</small></button>
     </aside>
     <div class="map-controls glass" aria-label="地图控制"><button id="zoomIn" aria-label="放大">＋</button><button id="zoomOut" aria-label="缩小">－</button><button id="resetView" aria-label="重置视图">↺</button></div>
-    <section class="status-pill glass" aria-live="polite"><span class="pulse"></span><b id="visibleCount">0</b><span>个发现</span><i></i><span id="zoomLabel">×1.0</span></section>
+    <section class="status-pill glass" aria-live="polite"><span class="pulse"></span><b id="visibleCount">0</b><span>个发现</span><i></i><span id="zoomLabel">×1.00</span></section>
     <nav class="bottom-nav glass" aria-label="主导航"><button class="nav-item active" data-panel="map"><span>⌘</span><small>地图</small></button><button class="nav-item" data-panel="filter"><span>☷</span><small>筛选</small></button><button class="nav-item" data-panel="route"><span>⌁</span><small>路线</small></button><button class="nav-item" data-panel="progress"><span>◔</span><small>进度</small></button><button class="nav-item" data-panel="favorites"><span>◇</span><small>收藏</small></button></nav>
     <section class="sheet" id="detailSheet" aria-hidden="true"><button class="sheet-handle" id="sheetHandle" aria-label="切换详情高度"></button><div class="sheet-levels" aria-label="详情卡高度"><button data-level="peek" class="active"></button><button data-level="mid"></button><button data-level="full"></button></div><div class="sheet-body" id="detailContent"></div></section>
     <section class="panel glass" id="filterPanel" aria-hidden="true"><header><div><small>探索筛选</small><h2>选择要显示的发现</h2></div><button class="close-panel">×</button></header><div class="filter-summary"><span id="filterCount">44</span><small>可用类别</small><button id="toggleAll">全部隐藏</button></div><div class="category-grid" id="categoryGrid"></div></section>
@@ -39,6 +39,6 @@
   </main>
   <script src="atlas-icons.js?v=1.0.0"></script>
   <script src="route-engine.js?v=1.0.0"></script>
-  <script src="app.js?v=0.5.0" defer></script>
+  <script src="app.js?v=0.6.0" defer></script>
 </body>
 </html>
