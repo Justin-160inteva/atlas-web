@@ -1,0 +1,19 @@
+@media (pointer:coarse){
+  .atlas-mobile-performance .glass{
+    -webkit-backdrop-filter:blur(10px) saturate(115%);
+    backdrop-filter:blur(10px) saturate(115%);
+  }
+  .atlas-interacting .glass{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:rgba(18,16,15,.9)!important;
+  }
+  .atlas-interacting .vignette{opacity:.45}
+  .atlas-interacting .pulse,
+  .atlas-interacting .route-badge,
+  .atlas-interacting .status-pill{animation:none!important}
+  #mapCanvas{touch-action:none;will-change:contents}
+}
+@media (max-width:820px){
+  .glass{-webkit-backdrop-filter:blur(8px) saturate(110%);backdrop-filter:blur(8px) saturate(110%)}
+}
