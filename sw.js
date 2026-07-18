@@ -1,4 +1,4 @@
-const CACHE='atlas-alpha-05-pages-v1';
+const CACHE='atlas-alpha-06-pages-v1';
 const ASSETS=['./','./index.html','./styles.css','./alpha03.css','./route.css','./atlas-icons.js','./route-engine.js','./app.js','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png','./assets/world-map-4096.webp','./data/locations.json','./data/categories.json','./data/regions.json'];
 self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)))});
 self.addEventListener('activate',event=>{event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))),self.clients.claim()]))});
