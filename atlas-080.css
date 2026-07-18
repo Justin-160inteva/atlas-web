@@ -6,9 +6,14 @@
   color:rgba(255,247,234,.9);
   line-height:0;
 }
+.quick-rail .rail-button .rail-icon::before{
+  content:none!important;
+  display:none!important;
+}
 .quick-rail .rail-button .rail-icon svg{
   width:24px;
   height:24px;
+  display:block;
   fill:none;
   stroke:currentColor;
   stroke-width:1.75;
@@ -18,7 +23,7 @@
 }
 .quick-rail .rail-button.active .rail-icon{
   color:#fff8ec;
-  filter:drop-shadow(0 2px 5px rgba(255,255,255,.16));
+  filter:drop-shadow(0 1px 2px rgba(255,255,255,.09));
 }
 .quick-rail .rail-button:not(.active) .rail-icon{
   color:rgba(255,244,229,.72);
