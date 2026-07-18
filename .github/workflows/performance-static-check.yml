@@ -1,4 +1,4 @@
-name: Performance and typography static check
+name: Performance typography and UI static check
 
 on:
   push:
@@ -6,6 +6,8 @@ on:
       - 'performance-092.js'
       - 'performance-092.css'
       - 'atlas-typography-093.css'
+      - 'atlas-ui-fix-0931.js'
+      - 'atlas-ui-fix-0931.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
@@ -17,6 +19,8 @@ on:
       - 'performance-092.js'
       - 'performance-092.css'
       - 'atlas-typography-093.css'
+      - 'atlas-ui-fix-0931.js'
+      - 'atlas-ui-fix-0931.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
@@ -39,17 +43,23 @@ jobs:
       - name: Parse JavaScript
         run: |
           node --check performance-092.js
+          node --check atlas-ui-fix-0931.js
           node --check atlas-hd-map.js
           node --check atlas-hd-runtime.js
           node --check atlas-analysis-import.js
           node --check sw.js
-      - name: Parse typography CSS
-        run: npx --yes postcss-cli@11.0.1 atlas-typography-093.css --output /tmp/atlas-typography-093.css
+      - name: Parse CSS
+        run: |
+          npx --yes postcss-cli@11.0.1 atlas-typography-093.css --output /tmp/atlas-typography-093.css
+          npx --yes postcss-cli@11.0.1 atlas-ui-fix-0931.css --output /tmp/atlas-ui-fix-0931.css
       - name: Verify runtime assets and policy
         run: |
           grep -q "performance-092.js" sw.js
           grep -q "performance-092.css" sw.js
           grep -q "atlas-typography-093.css" sw.js
-          grep -q "atlas-typography-093.css" atlas-analysis-import.js
-          grep -q "0.9.3.0" atlas-analysis-import.js
+          grep -q "atlas-ui-fix-0931.js" sw.js
+          grep -q "atlas-ui-fix-0931.css" sw.js
+          grep -q "atlas-ui-fix-0931.js" atlas-analysis-import.js
+          grep -q "atlas-ui-fix-0931.css" atlas-analysis-import.js
+          grep -q "0.9.3.1" atlas-analysis-import.js
           grep -q "does not bundle, extract, redistribute" FONT-LICENSES.md
