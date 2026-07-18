@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  // Static CI validation marker; no runtime behavior change.
 
   const VERSION='0.9.2.0';
   const root=document.documentElement;
