@@ -51,13 +51,17 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             JOB_FILE='${{ inputs.job_file }}'
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
-            git fetch origin "${{ github.base_ref }}" --depth=1
-            JOB_FILE=$(git diff --name-only "origin/${{ github.base_ref }}"...HEAD | grep '^data/analysis-jobs/.*\.json$' | head -n 1)
+            git fetch origin "${{ github.base_ref }}"
+            JOB_FILE=$(git diff --name-only "origin/${{ github.base_ref }}" HEAD | grep '^data/analysis-jobs/.*\.json$' | head -n 1 || true)
+            if [ -z "$JOB_FILE" ]; then
+              JOB_FILE=$(git log --format= --name-only "origin/${{ github.base_ref }}"..HEAD -- 'data/analysis-jobs/*.json' | grep '^data/analysis-jobs/.*\.json$' | head -n 1 || true)
+            fi
           else
-            JOB_FILE=$(git diff-tree --no-commit-id --name-only -r "${{ github.sha }}" | grep '^data/analysis-jobs/.*\.json$' | head -n 1)
+            JOB_FILE=$(git diff-tree --no-commit-id --name-only -r "${{ github.sha }}" | grep '^data/analysis-jobs/.*\.json$' | head -n 1 || true)
           fi
           if [ -z "$JOB_FILE" ] || [ ! -f "$JOB_FILE" ]; then
             echo "No valid job file found" >&2
+            git status --short
             exit 1
           fi
           echo "job_file=$JOB_FILE" >> "$GITHUB_OUTPUT"
