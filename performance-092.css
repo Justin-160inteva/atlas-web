@@ -1,0 +1,57 @@
+.atlas-performance-092 #mapCanvas{
+  contain:strict;
+  touch-action:none;
+}
+
+.atlas-performance-092 .panel,
+.atlas-performance-092 .sheet,
+.atlas-performance-092 .evidence-panel,
+.atlas-performance-092 .search-modal{
+  contain:layout paint style;
+}
+
+.atlas-performance-092 .panel[aria-hidden="true"],
+.atlas-performance-092 .sheet[aria-hidden="true"],
+.atlas-performance-092 .evidence-panel[aria-hidden="true"],
+.atlas-performance-092 .search-overlay[aria-hidden="true"]{
+  content-visibility:hidden;
+}
+
+.atlas-performance-interacting .glass{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  background:rgba(18,16,15,.94)!important;
+}
+
+.atlas-performance-interacting .vignette{
+  opacity:.42;
+  transition:none!important;
+}
+
+.atlas-performance-interacting .pulse,
+.atlas-performance-interacting .route-badge,
+.atlas-performance-interacting .status-pill,
+.atlas-performance-interacting .sheet,
+.atlas-performance-interacting .panel,
+.atlas-performance-interacting .evidence-panel{
+  animation:none!important;
+  transition:none!important;
+}
+
+.atlas-quality-performance .glass{
+  -webkit-backdrop-filter:blur(6px) saturate(106%);
+  backdrop-filter:blur(6px) saturate(106%);
+}
+
+.atlas-quality-performance .vignette{opacity:.52}
+
+@media (prefers-reduced-motion:reduce){
+  .atlas-performance-092 *,
+  .atlas-performance-092 *::before,
+  .atlas-performance-092 *::after{
+    scroll-behavior:auto!important;
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+}
