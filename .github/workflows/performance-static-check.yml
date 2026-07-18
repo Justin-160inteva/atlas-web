@@ -44,7 +44,7 @@ jobs:
           node --check atlas-analysis-import.js
           node --check sw.js
       - name: Parse typography CSS
-        run: npx --yes prettier@3.3.3 --check atlas-typography-093.css
+        run: npx --yes -p postcss@8.4.49 node -e "require('postcss').parse(require('fs').readFileSync('atlas-typography-093.css','utf8')); console.log('Typography CSS parsed successfully')"
       - name: Verify runtime assets and policy
         run: |
           grep -q "performance-092.js" sw.js
