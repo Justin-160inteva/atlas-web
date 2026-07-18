@@ -3,11 +3,14 @@
   const hd=window.AtlasHDMap;
   if(!hd||!hd.cache)return;
   const nativeSet=hd.cache.set.bind(hd.cache);
+  let settleTimer=0;
   hd.cache.set=function(...args){
     const result=nativeSet(...args);
-    [0,40,90,160,240].forEach(delay=>setTimeout(()=>{
+    if(typeof scheduleDraw==='function')scheduleDraw();
+    clearTimeout(settleTimer);
+    settleTimer=setTimeout(()=>{
       if(typeof scheduleDraw==='function')scheduleDraw();
-    },delay));
+    },180);
     return result;
   };
 })();
