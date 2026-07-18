@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "jobId": "dada-temples-36-v1",
+  "status": "failed",
+  "generatedAt": "2026-07-18T22:26:08.506007Z",
+  "stage": "download",
+  "error": "[{\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"WARNING: \\\"-f best\\\" selects the best pre-merged format which is often not the best option.\\n         To let yt-dlp download and merge the best available formats, simply do not pass any format selection.\\n         If you know what you are doing and want only the best pre-merged format, use \\\"-f b\\\" instead to suppress this warning\\nERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
+  "attempts": [
+    {
+      "strategy": "dash-720",
+      "success": false,
+      "diagnostic": "ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
+    },
+    {
+      "strategy": "impersonated-480",
+      "success": false,
+      "diagnostic": "ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
+    },
+    {
+      "strategy": "multi-flv",
+      "success": false,
+      "diagnostic": "ERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
+    },
+    {
+      "strategy": "best-public",
+      "success": false,
+      "diagnostic": "WARNING: \"-f best\" selects the best pre-merged format which is often not the best option.\n         To let yt-dlp download and merge the best available formats, simply do not pass any format selection.\n         If you know what you are doing and want only the best pre-merged format, use \"-f b\" instead to suppress this warning\nERROR: [BiliBili] 19EXYYWEdv: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
+    }
+  ],
+  "source": {
+    "author": "不再犹豫的达达猪",
+    "title": "〖刺客信条影 新手攻略〗03 寺庙全收集（36个位置）",
+    "url": "https://www.bilibili.com/video/BV19EXYYWEdv/",
+    "platform": "哔哩哔哩",
+    "authorizationId": "auth-dada-20260718",
+    "externalSourceId": "bili-dada-acshadows-03"
+  },
+  "media": {
+    "videoRetained": false,
+    "framePixelsRetained": false
+  },
+  "privacy": "Only diagnostics are committed. No original media or frame pixels are retained."
+}
