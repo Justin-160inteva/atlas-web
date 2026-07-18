@@ -71,7 +71,7 @@ jobs:
       - name: Download and analyze authorized source
         env:
           PYTHONUNBUFFERED: '1'
-        run: python tools/analyze_authorized_video_v2.py '${{ steps.job.outputs.job_file }}'
+        run: python tools/analyze_authorized_video_v3.py '${{ steps.job.outputs.job_file }}'
 
       - name: Remove any transient media
         if: always()
