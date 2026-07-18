@@ -16,7 +16,7 @@ import tempfile
 from datetime import datetime, timezone
 from typing import Any
 
-from tools import analyze_authorized_video as base
+import analyze_authorized_video as base
 
 
 def utc_now() -> str:
