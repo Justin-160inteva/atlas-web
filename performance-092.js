@@ -10,6 +10,7 @@
   const memory=Number(navigator.deviceMemory||8);
   const cores=Number(navigator.hardwareConcurrency||8);
   const lowPower=memory<=4||cores<=4;
+  const showHud=new URLSearchParams(location.search).has('perf');
   const qualityNames=['high','balanced','performance'];
   const recentGaps=[];
   const metrics={
@@ -35,6 +36,8 @@
   let resizeTimer=0;
   let eligibleKey='';
   let eligibleCache=[];
+  let hud=null;
+  let lastHudUpdate=0;
 
   function interactionActive(){
     return Boolean(
@@ -48,6 +51,12 @@
   function updateQualityClasses(){
     qualityNames.forEach(name=>root.classList.toggle(`atlas-quality-${name}`,metrics.quality===name));
     root.classList.toggle('atlas-performance-interacting',metrics.interacting);
+  }
+
+  function updateHud(now){
+    if(!hud||now-lastHudUpdate<220)return;
+    lastHudUpdate=now;
+    hud.textContent=`${metrics.estimatedFps} FPS · ${metrics.lastDrawMs.toFixed(1)} ms · DPR ${metrics.dpr.toFixed(2)} · ${metrics.quality}`;
   }
 
   function targetDpr(){
@@ -118,6 +127,7 @@
       }
     }
     lastFrameAt=now;
+    updateHud(now);
   }
 
   scheduleDraw=function(){
@@ -163,6 +173,21 @@
     }catch(_){/* optional performance telemetry */}
   }
 
+  function installHud(){
+    if(!showHud)return;
+    hud=document.createElement('div');
+    hud.id='atlasPerformanceHud';
+    hud.setAttribute('aria-live','off');
+    Object.assign(hud.style,{
+      position:'fixed',left:'max(10px, env(safe-area-inset-left))',bottom:'max(78px, calc(env(safe-area-inset-bottom) + 68px))',
+      zIndex:'9999',padding:'7px 9px',border:'1px solid rgba(255,255,255,.16)',borderRadius:'10px',
+      background:'rgba(8,8,8,.82)',backdropFilter:'blur(8px)',color:'#f4ead8',font:'600 10px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace',
+      pointerEvents:'none',boxShadow:'0 6px 20px rgba(0,0,0,.24)'
+    });
+    document.body.appendChild(hud);
+    updateHud(performance.now()+300);
+  }
+
   addEventListener('resize',()=>{
     clearTimeout(resizeTimer);
     resizeTimer=setTimeout(()=>applyCanvasScale(true),180);
@@ -206,5 +231,6 @@
   root.classList.add('atlas-performance-092');
   updateQualityClasses();
   observeLongFrames();
+  installHud();
   setTimeout(()=>applyCanvasScale(true),520);
 })();
