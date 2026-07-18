@@ -1,22 +1,31 @@
 {
-  "version": "0.9.1.2",
+  "version": "0.9.1.3",
   "updatedAt": "2026-07-18",
-  "privacy": "授权聊天截图不存放在公开仓库；仓库仅保存授权文字、范围和本地凭证文件的校验摘要。",
+  "privacy": "授权聊天截图不存放在公开仓库；仓库仅保存授权文字、范围、凭证文件校验摘要和项目方提供的范围确认。",
   "records": [
     {
       "id": "auth-dada-20260718",
       "status": "active",
+      "authorizationType": "author_level",
       "author": "不再犹豫的达达猪",
       "platform": "哔哩哔哩",
-      "grantText": "同意Atlas项目按上述范围使用我的视频素材",
+      "game": "刺客信条：影",
+      "grantText": "同意 Atlas 项目按此前约定范围使用我账号内现有全部《刺客信条：影》相关视频，并允许项目方从公开视频页面下载，仅用于本地分析。",
+      "scopeConfirmation": "项目方于2026-07-18确认：授权同时覆盖作者现有及未来发布的全部《刺客信条：影》相关视频。",
       "recordedAt": "2026-07-18",
-      "sourceIds": [
-        "bili-dada-kuji",
-        "bili-dada-temples",
-        "bili-dada-skills"
-      ],
+      "authorLevel": true,
+      "matchingRule": {
+        "authorMustEqual": "不再犹豫的达达猪",
+        "platformMustEqual": "哔哩哔哩",
+        "titleMustContainAny": ["刺客信条影", "刺客信条：影", "AC Shadows"],
+        "appliesToExisting": true,
+        "appliesToFuture": true
+      },
+      "sourceIds": ["bili-dada-kuji", "bili-dada-temples", "bili-dada-skills"],
+      "catalogIds": ["dada-ac-shadows-catalog"],
       "scope": {
         "localDownloadAndAnalysis": true,
+        "downloadFromPublicVideoPage": true,
         "computerVisionAnalysis": true,
         "privateLowResolutionKeyframes": true,
         "original2DVectorReconstruction": true,
@@ -25,7 +34,8 @@
         "attributionRequired": true,
         "nonCommercial": true,
         "noAdvertising": true,
-        "futureVideosAutomaticallyIncluded": false
+        "allExistingVideosIncluded": true,
+        "futureVideosAutomaticallyIncluded": true
       },
       "attribution": {
         "authorName": "不再犹豫的达达猪",
@@ -35,12 +45,26 @@
       "proof": {
         "storage": "private-user-held",
         "publicScreenshot": false,
-        "fileSha256": "4d522f5b9dd7f43a6948551eca6304bf7df22fd008eab700ab03d57178a896a9",
-        "imageWidth": 1536,
-        "imageHeight": 1416,
+        "fileSha256": "cf127a48dd69a20c7682cd280eb8d5c41788abe0fbb5051c06cf633affc94ec1",
+        "imageWidth": 1473,
+        "imageHeight": 1251,
         "receivedByProjectAt": "2026-07-18"
       },
-      "notes": "授权范围依据项目方发送的六项用途说明；仅覆盖本记录列出的当前资料条目。"
+      "proofHistory": [
+        {
+          "fileSha256": "4d522f5b9dd7f43a6948551eca6304bf7df22fd008eab700ab03d57178a896a9",
+          "imageWidth": 1536,
+          "imageHeight": 1416,
+          "purpose": "初始单条/当前资料范围授权"
+        },
+        {
+          "fileSha256": "cf127a48dd69a20c7682cd280eb8d5c41788abe0fbb5051c06cf633affc94ec1",
+          "imageWidth": 1473,
+          "imageHeight": 1251,
+          "purpose": "作者级现有全部视频及公开页面下载许可"
+        }
+      ],
+      "notes": "作者级授权用于匹配作者账号内《刺客信条：影》相关视频；新条目加入目录时自动继承授权，但仍需核实标题和原始链接。"
     }
   ]
 }
