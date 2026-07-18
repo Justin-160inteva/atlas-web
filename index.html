@@ -10,15 +10,16 @@
   <link rel="apple-touch-icon" href="icon-180.png" />
   <title>Atlas · 刺客信条：影</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles.css?v=0.4.0" />
-  <link rel="stylesheet" href="alpha03.css?v=0.4.0" />
+  <link rel="stylesheet" href="styles.css?v=0.5.0" />
+  <link rel="stylesheet" href="alpha03.css?v=0.5.0" />
+  <link rel="stylesheet" href="route.css?v=0.5.0" />
 </head>
 <body>
   <main class="app-shell" aria-label="Atlas 互动地图">
     <canvas id="mapCanvas" aria-label="刺客信条影互动地图"></canvas>
     <div class="vignette" aria-hidden="true"></div>
     <header class="top-bar glass">
-      <button class="brand" id="brandBtn" aria-label="重置地图视图"><span class="brand-mark">A</span><span class="brand-copy"><b>ATLAS</b><small>ASSASSIN'S CREED SHADOWS · ALPHA 0.4</small></span></button>
+      <button class="brand" id="brandBtn" aria-label="重置地图视图"><span class="brand-mark">A</span><span class="brand-copy"><b>ATLAS</b><small>ASSASSIN'S CREED SHADOWS · ALPHA 0.5</small></span></button>
       <button class="search-trigger" id="searchTrigger" aria-label="搜索地点"><span class="icon">⌕</span><span id="searchLabel">搜索地点、区域或类别</span><kbd>⌘ K</kbd></button>
       <div class="top-actions"><button class="icon-button" id="locateBtn" aria-label="回到地图中心">⌖</button><button class="profile-button" aria-label="用户资料">影</button></div>
     </header>
@@ -27,14 +28,17 @@
     </aside>
     <div class="map-controls glass" aria-label="地图控制"><button id="zoomIn" aria-label="放大">＋</button><button id="zoomOut" aria-label="缩小">－</button><button id="resetView" aria-label="重置视图">↺</button></div>
     <section class="status-pill glass" aria-live="polite"><span class="pulse"></span><b id="visibleCount">0</b><span>个发现</span><i></i><span id="zoomLabel">×1.0</span></section>
-    <nav class="bottom-nav glass" aria-label="主导航"><button class="nav-item active" data-panel="map"><span>⌘</span><small>地图</small></button><button class="nav-item" data-panel="filter"><span>☷</span><small>筛选</small></button><button class="nav-item" data-panel="progress"><span>◔</span><small>进度</small></button><button class="nav-item" data-panel="favorites"><span>◇</span><small>收藏</small></button><button class="nav-item" data-panel="settings"><span>···</span><small>更多</small></button></nav>
+    <nav class="bottom-nav glass" aria-label="主导航"><button class="nav-item active" data-panel="map"><span>⌘</span><small>地图</small></button><button class="nav-item" data-panel="filter"><span>☷</span><small>筛选</small></button><button class="nav-item" data-panel="route"><span>⌁</span><small>路线</small></button><button class="nav-item" data-panel="progress"><span>◔</span><small>进度</small></button><button class="nav-item" data-panel="favorites"><span>◇</span><small>收藏</small></button></nav>
     <section class="sheet" id="detailSheet" aria-hidden="true"><button class="sheet-handle" id="sheetHandle" aria-label="切换详情高度"></button><div class="sheet-levels" aria-label="详情卡高度"><button data-level="peek" class="active"></button><button data-level="mid"></button><button data-level="full"></button></div><div class="sheet-body" id="detailContent"></div></section>
     <section class="panel glass" id="filterPanel" aria-hidden="true"><header><div><small>探索筛选</small><h2>选择要显示的发现</h2></div><button class="close-panel">×</button></header><div class="filter-summary"><span id="filterCount">44</span><small>可用类别</small><button id="toggleAll">全部隐藏</button></div><div class="category-grid" id="categoryGrid"></div></section>
+    <section class="panel glass route-panel" id="routePanel" aria-hidden="true"><header><div><small>ATLAS ROUTE ENGINE</small><h2>路线规划</h2></div><button class="close-route">×</button></header><div class="route-summary"><div class="route-stat"><b id="routeStops">0</b><small>路线点</small></div><div class="route-stat"><b id="routeDistance">0</b><small>地图距离</small></div><div class="route-stat"><b id="routeTime">0 分钟</b><small>预计时间</small></div></div><div class="route-actions"><button class="primary" id="optimizeRoute">优化顺序</button><button id="focusRoute">查看全程</button><button id="clearRoute">清除</button></div><div class="route-list" id="routeList"></div></section>
     <section class="panel glass progress-panel" id="progressPanel" aria-hidden="true"><header><div><small>探索进度</small><h2>区域完成情况</h2></div><button class="close-progress">×</button></header><div class="overall-progress"><div><b id="overallPercent">0%</b><small>总体发现</small></div><div class="progress-track"><i id="overallBar"></i></div><p><span id="overallDone">0</span> / <span id="overallTotal">0</span> 个发现</p></div><div class="region-progress-list" id="regionProgressList"></div></section>
     <section class="search-overlay" id="searchOverlay" aria-hidden="true"><div class="search-modal glass"><div class="search-input-row"><span>⌕</span><input id="searchInput" autocomplete="off" placeholder="搜索地点，例如 Mibuno Castle"/><button id="closeSearch">取消</button></div><div class="search-meta"><span>结果</span><b id="resultCount">0</b></div><div class="search-results" id="searchResults"></div></div></section>
+    <div class="route-badge" id="routeBadge"><span id="routeBadgeText">路线未建立</span><button id="openRouteBadge">查看</button></div>
     <div class="toast" id="toast" role="status"></div>
   </main>
   <script src="atlas-icons.js?v=1.0.0"></script>
-  <script src="app.js?v=0.4.0" defer></script>
+  <script src="route-engine.js?v=1.0.0"></script>
+  <script src="app.js?v=0.5.0" defer></script>
 </body>
 </html>
