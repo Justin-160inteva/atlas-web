@@ -1,11 +1,12 @@
 (() => {
   'use strict';
 
-  const VERSION='0.9.1.2';
+  const VERSION='0.9.1.3';
   const STATE_KEY='atlas-public-source-state-v1';
   const PROJECT_KEY='atlas-evidence-project-v1';
   let library=null;
   let authorizations={records:[]};
+  let authorCatalog={items:[],catalogStatus:{}};
   let sourceState=loadState();
   let pendingIntakeItem=null;
 
@@ -18,8 +19,20 @@
 
   function saveState(){localStorage.setItem(STATE_KEY,JSON.stringify(sourceState))}
 
+  function recordMatchesItem(record,item){
+    if(record.status!=='active')return false;
+    if((record.sourceIds||[]).includes(item.id))return true;
+    if(!record.authorLevel)return false;
+    const rule=record.matchingRule||{};
+    if((rule.authorMustEqual||record.author)&&item.author!==(rule.authorMustEqual||record.author))return false;
+    if((rule.platformMustEqual||record.platform)&&item.platform!==(rule.platformMustEqual||record.platform))return false;
+    const titleNeedles=rule.titleMustContainAny||[];
+    if(titleNeedles.length&&!titleNeedles.some(needle=>String(item.title||'').includes(needle)))return false;
+    return true;
+  }
+
   function officialAuthorization(item){
-    return (authorizations.records||[]).find(record=>record.status==='active'&&(record.sourceIds||[]).includes(item.id))||null;
+    return (authorizations.records||[]).find(record=>recordMatchesItem(record,item))||null;
   }
 
   function notify(message){
@@ -54,6 +67,14 @@
     return({uncontacted:'未联系',contacted:'已联系',authorized:'已授权',rejected:'未授权'})[status]||status;
   }
 
+  function mergeCatalog(){
+    if(!library)return;
+    const base=(library.items||[]).filter(item=>item.author!=='不再犹豫的达达猪');
+    const existing=new Set(base.map(item=>item.id));
+    const additions=(authorCatalog.items||[]).filter(item=>!existing.has(item.id));
+    library.items=[...base,...additions];
+  }
+
   function installSection(){
     if($('#publicSourceLibrary'))return true;
     const scroll=$('#evidencePanel .evidence-scroll');
@@ -62,14 +83,14 @@
     section.className='evidence-section public-library-section';
     section.id='publicSourceLibrary';
     section.innerHTML=`
-      <div class="evidence-section-title"><b>公开资料库 0.9.1.2</b><small id="publicLibraryCount">正在载入</small></div>
+      <div class="evidence-section-title"><b>公开资料库 0.9.1.3</b><small id="publicLibraryCount">正在载入</small></div>
       <div class="public-library-disclaimer" id="publicLibraryDisclaimer">公开可访问不等于允许下载或重新上传。未取得明确授权前，Atlas只保存外部链接和联系线索。</div>
       <div class="public-library-toolbar">
-        <input id="publicLibrarySearch" type="search" placeholder="搜索作者、标题或用途" autocomplete="off">
+        <input id="publicLibrarySearch" type="search" placeholder="搜索作者、标题、用途或编号" autocomplete="off">
         <select id="publicLibraryRegion" aria-label="筛选地区"><option value="">全部地区</option></select>
         <select id="publicLibraryStatus" aria-label="筛选状态"><option value="">全部状态</option><option value="permission_required">需作者授权</option><option value="reference_only">仅外链参考</option><option value="contacted">我已联系</option><option value="authorized">已获得授权</option></select>
       </div>
-      <div class="public-library-summary"><span>按价值排序，正式授权来自项目授权登记</span><b id="publicLibrarySummary">0 条</b></div>
+      <div class="public-library-summary"><span>作者级授权会自动覆盖符合规则的新旧视频</span><b id="publicLibrarySummary">0 条</b></div>
       <div class="public-source-list" id="publicSourceList"></div>`;
     const firstSection=scroll.querySelector('.evidence-section');
     if(firstSection?.nextSibling)scroll.insertBefore(section,firstSection.nextSibling);else scroll.appendChild(section);
@@ -87,7 +108,7 @@
     section.className='evidence-section authorization-registry';
     section.id='authorizationRegistry';
     section.innerHTML=`
-      <div class="evidence-section-title"><b>授权素材接入 0.9.1.2</b><small id="authorizationCount">0 条有效授权</small></div>
+      <div class="evidence-section-title"><b>授权素材接入 0.9.1.3</b><small id="authorizationCount">0 条有效授权</small></div>
       <div id="authorizationRecordList"></div>
       <input id="authorizedVideoInput" type="file" accept="video/*" hidden>`;
     librarySection.insertAdjacentElement('afterend',section);
@@ -113,6 +134,7 @@
       .authorization-proof{display:block;margin-top:7px;color:rgba(255,255,255,.48);font-size:7px;word-break:break-all}
       .public-source-actions button.authorized-intake{background:rgba(75,190,126,.18);border-color:rgba(95,205,139,.34);color:#a8e7c0}
       .public-source-license.authorized{background:rgba(75,190,126,.18);color:#a8e7c0;border-color:rgba(95,205,139,.34)}
+      .public-source-meta .utility-high{color:#a8e7c0}.public-source-meta .utility-pending{color:#ffd27d}
     `;
     document.head.appendChild(style);
   }
@@ -127,7 +149,7 @@
 
   function matches(item,query,region,statusFilter){
     const effectiveStatus=statusFor(item);
-    const haystack=[item.title,item.author,item.platform,item.type,item.quality,item.value,item.contact,...(item.coverage||[])].join(' ').toLowerCase();
+    const haystack=[item.sequence,item.title,item.author,item.platform,item.type,item.quality,item.value,item.contact,item.mapUtility,...(item.coverage||[])].join(' ').toLowerCase();
     if(query&&!haystack.includes(query))return false;
     if(region&&!(item.coverage||[]).includes(region)&&!(item.coverage||[]).includes('全部地区'))return false;
     if(statusFilter==='contacted'&&effectiveStatus!=='contacted')return false;
@@ -140,17 +162,21 @@
   function cardHtml(item){
     const localStatus=statusFor(item);
     const authorization=officialAuthorization(item);
-    const effectiveLabel=authorization?'已获得作者授权':localStatus==='authorized'?'已获得作者授权':item.licenseLabel;
+    const effectiveLabel=authorization?(authorization.authorLevel?'作者级授权':'已获得作者授权'):localStatus==='authorized'?'已获得作者授权':item.licenseLabel;
     const badgeClass=localStatus==='authorized'?'authorized':item.license;
     const coverage=(item.coverage||[]).slice(0,5);
     const extra=(item.coverage||[]).length-coverage.length;
+    const utility=item.mapUtility?`<span class="${item.mapUtility==='高'||item.mapUtility==='最高'?'utility-high':item.mapUtility==='待核实'?'utility-pending':''}">地图价值 ${escapeHtml(item.mapUtility)}</span>`:'';
+    const sequence=Number.isFinite(item.sequence)?`<span>第${item.sequence}期</span>`:'';
+    const duration=item.duration?`<span>${escapeHtml(item.duration)}</span>`:'';
+    const urlLabel=item.exactUrlVerified===false?'检索原视频':'打开原资料';
     return `<article class="public-source-card ${localStatus}" data-public-source="${escapeHtml(item.id)}">
       <div class="public-source-head"><div><b>${escapeHtml(item.title)}</b><small>${escapeHtml(item.author)} · ${escapeHtml(item.platform)} · ${escapeHtml(item.type)}</small></div><span class="public-source-license ${badgeClass}">${escapeHtml(effectiveLabel)}</span></div>
       <p class="public-source-value">${escapeHtml(item.value)}</p>
-      <div class="public-source-meta"><span>${escapeHtml(item.quality)}</span>${item.episodes?`<span>${item.episodes}期</span>`:''}${coverage.map(region=>`<span>${escapeHtml(region)}</span>`).join('')}${extra>0?`<span>+${extra}</span>`:''}<span>${statusLabel(localStatus)}</span></div>
-      <div class="public-source-contact">联系：${escapeHtml(item.contact)}<br>${escapeHtml(authorization?'授权凭证已由项目方留存；聊天截图不公开。':item.notes||'')}</div>
+      <div class="public-source-meta"><span>${escapeHtml(item.quality)}</span>${sequence}${duration}${utility}${item.episodes?`<span>${item.episodes}期</span>`:''}${coverage.map(region=>`<span>${escapeHtml(region)}</span>`).join('')}${extra>0?`<span>+${extra}</span>`:''}<span>${statusLabel(localStatus)}</span></div>
+      <div class="public-source-contact">联系：${escapeHtml(item.contact)}<br>${escapeHtml(authorization?'作者级授权凭证已留存；现有及未来符合规则的视频均继承授权。':item.notes||'')}</div>
       <div class="public-source-actions">
-        <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">打开原资料</a>
+        <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${urlLabel}</a>
         ${authorization?'<button data-public-action="intake" class="authorized-intake">导入已授权视频</button>':'<button data-public-action="copy" class="primary">复制授权申请</button>'}
         ${authorization?'':`<button data-public-action="contacted">${localStatus==='contacted'?'取消已联系':'标记已联系'}</button><button data-public-action="authorized" class="${localStatus==='authorized'?'authorized':''}">${localStatus==='authorized'?'取消已授权':'标记已授权'}</button>`}
       </div>
@@ -185,12 +211,15 @@
     if(count)count.textContent=`${records.length} 条有效授权`;
     const list=$('#authorizationRecordList');
     if(!list)return;
-    list.innerHTML=records.length?records.map(record=>`
-      <article class="authorization-record">
-        <div class="authorization-record-head"><b>${escapeHtml(record.author)}</b><span>有效授权</span></div>
-        <p>${escapeHtml(record.grantText)}<br>覆盖当前资料条目 ${record.sourceIds?.length||0} 条；允许本地分析、私有低清关键帧和原创二维重建，不允许公开分发完整视频。</p>
+    list.innerHTML=records.length?records.map(record=>{
+      const scope=record.scope||{};
+      const coverage=record.authorLevel&&scope.futureVideosAutomaticallyIncluded?'作者级：现有及未来视频':'指定资料条目';
+      return `<article class="authorization-record">
+        <div class="authorization-record-head"><b>${escapeHtml(record.author)}</b><span>${escapeHtml(coverage)}</span></div>
+        <p>${escapeHtml(record.grantText)}<br>${escapeHtml(record.scopeConfirmation||'')}<br>允许本地分析、私有低清关键帧和原创二维重建，不允许公开分发完整视频。</p>
         <small class="authorization-proof">凭证 SHA-256：${escapeHtml(record.proof?.fileSha256||'未记录')}</small>
-      </article>`).join(''):'<div class="public-source-empty">暂无正式授权记录。</div>';
+      </article>`;
+    }).join(''):'<div class="public-source-empty">暂无正式授权记录。</div>';
   }
 
   async function importAuthorizedVideo(item,file){
@@ -206,6 +235,7 @@
     const source=(data.sources||[]).filter(entry=>!before.has(entry.id)).at(-1);
     if(!source){notify('扫描未生成素材记录，请检查视频格式');return;}
     source.authorizationId=authorization.id;
+    source.authorizationType=authorization.authorizationType||'source_level';
     source.externalSourceId=item.id;
     source.author=item.author;
     source.originalTitle=item.title;
@@ -237,35 +267,40 @@
     const query=($('#publicLibrarySearch')?.value||'').trim().toLowerCase();
     const region=$('#publicLibraryRegion')?.value||'';
     const statusFilter=$('#publicLibraryStatus')?.value||'';
-    const items=[...library.items].sort((a,b)=>(b.priority||0)-(a.priority||0)).filter(item=>matches(item,query,region,statusFilter));
+    const items=[...library.items].sort((a,b)=>(b.priority||0)-(a.priority||0)||(a.sequence||999)-(b.sequence||999)).filter(item=>matches(item,query,region,statusFilter));
     const list=$('#publicSourceList');
     if(list)list.innerHTML=items.length?items.map(cardHtml).join(''):'<div class="public-source-empty">没有符合当前筛选条件的资料。</div>';
-    const count=$('#publicLibraryCount');if(count)count.textContent=`${library.items.length} 条已核实入口`;
+    const count=$('#publicLibraryCount');if(count)count.textContent=`${library.items.length} 条资料入口`;
     const authorized=library.items.filter(item=>statusFor(item)==='authorized').length;
-    const contacted=library.items.filter(item=>statusFor(item)==='contacted').length;
-    const summary=$('#publicLibrarySummary');if(summary)summary.textContent=`显示 ${items.length} · 已联系 ${contacted} · 已授权 ${authorized}`;
+    const catalogStatus=authorCatalog.catalogStatus||{};
+    const pending=(catalogStatus.pendingTitleVerification||[]).length;
+    const summary=$('#publicLibrarySummary');if(summary)summary.textContent=`显示 ${items.length} · 已授权 ${authorized} · 待核实标题 ${pending}`;
     const disclaimer=$('#publicLibraryDisclaimer');if(disclaimer)disclaimer.textContent=library.disclaimer;
     bindCards(items);
     renderAuthorizationRegistry();
     const brand=document.querySelector('.brand-copy small');
-    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.1.2";
+    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.1.3";
   }
 
   async function start(){
     try{
-      [library,authorizations]=await Promise.all([
+      [library,authorizations,authorCatalog]=await Promise.all([
         fetch(`data/public-source-library.json?v=${VERSION}`).then(response=>{if(!response.ok)throw new Error(`资料库 HTTP ${response.status}`);return response.json();}),
-        fetch(`data/authorizations.json?v=${VERSION}`).then(response=>{if(!response.ok)throw new Error(`授权库 HTTP ${response.status}`);return response.json();})
+        fetch(`data/authorizations.json?v=${VERSION}`).then(response=>{if(!response.ok)throw new Error(`授权库 HTTP ${response.status}`);return response.json();}),
+        fetch(`data/dada-ac-shadows-catalog.json?v=${VERSION}`).then(response=>{if(!response.ok)throw new Error(`作者目录 HTTP ${response.status}`);return response.json();})
       ]);
+      mergeCatalog();
     }catch(error){
       library=library||{regions:[],items:[],disclaimer:`资料库载入失败：${error.message}`};
       authorizations=authorizations||{records:[]};
+      authorCatalog=authorCatalog||{items:[],catalogStatus:{}};
+      mergeCatalog();
     }
     const wait=()=>{if(!installSection())return setTimeout(wait,120);render();};
     wait();
     const panel=$('#evidencePanel');
     if(panel)new MutationObserver(()=>render()).observe(panel,{attributes:true,attributeFilter:['class']});
-    window.AtlasPublicLibrary={items:()=>library.items,state:()=>sourceState,authorizations:()=>authorizations.records,render,version:VERSION};
+    window.AtlasPublicLibrary={items:()=>library.items,state:()=>sourceState,authorizations:()=>authorizations.records,authorCatalog:()=>authorCatalog,render,version:VERSION};
   }
 
   start();
