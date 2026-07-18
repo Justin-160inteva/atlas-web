@@ -45,3 +45,5 @@ Before any font binary is added later, the repository must record:
 5. modifications and new family name;
 6. web-embedding and redistribution permission;
 7. generated subset ranges and build process.
+
+Validation: Alpha 0.9.3.0 typography policy and runtime asset checks.
