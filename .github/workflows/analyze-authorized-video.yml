@@ -73,22 +73,25 @@ jobs:
           PYTHONUNBUFFERED: '1'
         run: python tools/analyze_authorized_video_v4.py '${{ steps.job.outputs.job_file }}'
 
+      - name: Update analysis import index
+        run: python tools/update_analysis_index.py '${{ steps.job.outputs.output_file }}'
+
       - name: Remove any transient media
         if: always()
         run: |
           find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
           find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' \) -delete
 
-      - name: Commit analysis result
+      - name: Commit analysis result and import index
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- data/analysis-results)" ]; then
+          if [ -z "$(git status --porcelain -- data/analysis-results data/analysis-index.json)" ]; then
             echo 'No analysis result changed.'
           else
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add data/analysis-results
-            git commit -m 'Add authorized video analysis result'
+            git add data/analysis-results data/analysis-index.json
+            git commit -m 'Import authorized video analysis result'
             TARGET_BRANCH='${{ github.event.pull_request.head.ref || github.ref_name }}'
             git push origin "HEAD:${TARGET_BRANCH}"
           fi
