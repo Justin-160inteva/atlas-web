@@ -6,8 +6,12 @@ on:
     paths-ignore:
       - 'data/conflict-reports/**'
       - 'CONFLICT-REPORT.md'
+      - 'data/runtime-progress/**'
+      - 'data/batch-analysis/scan-system-health.json'
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '23 */6 * * *'
 
 permissions:
   contents: write
@@ -48,12 +52,17 @@ jobs:
       - name: Run static conflict reasoner
         run: python tools/atlas_conflict_reasoner_v3.py
 
+      - name: Enforce static project contract
+        run: python tools/enforce_project_contract.py --phase static
+
       - name: Install Playwright Chromium
+        if: github.event_name != 'schedule'
         run: |
           npm install --no-save playwright@1.52.0
           npx playwright install --with-deps chromium
 
       - name: Start local Atlas server
+        if: github.event_name != 'schedule'
         run: |
           python -m http.server 4173 > /tmp/atlas-server.log 2>&1 &
           echo $! > /tmp/atlas-server.pid
@@ -62,9 +71,14 @@ jobs:
           exit 1
 
       - name: Run browser conflict matrix
+        if: github.event_name != 'schedule'
         env:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/browser_conflict_smoke.mjs
+
+      - name: Enforce browser evidence contract
+        if: github.event_name != 'schedule'
+        run: python tools/enforce_project_contract.py --phase browser
 
       - name: Upload conflict reports
         if: always()
