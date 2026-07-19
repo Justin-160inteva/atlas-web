@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "id": "eleven-shancheng-pilot-scan-v2",
+  "schemaVersion": 3,
+  "id": "eleven-shancheng-pilot-scan-v3",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
@@ -15,6 +15,20 @@
   "perItemTimeoutSeconds": 5400,
   "pilotRegion": "山城",
   "processingOrder": "shortest-first-within-one-region",
+  "preferPublicApi": true,
+  "downloadBackoffSeconds": 60,
+  "forceTranscodeFallback": false,
+  "maxAttemptsPerItem": 3,
+  "staleRunningAfterSeconds": 7200,
+  "recoveryPolicy": {
+    "enabled": true,
+    "maxAttemptsPerItem": 3,
+    "automaticallyRetryKnownTransientFailures": true,
+    "blockUnknownOrIdentityFailures": true,
+    "neverModifySourceCodeAutomatically": true,
+    "neverBroadenAuthorization": true,
+    "neverRetainOriginalMedia": true
+  },
   "retention": {
     "originalVideo": false,
     "framePixels": false,
