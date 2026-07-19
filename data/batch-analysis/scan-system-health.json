@@ -1,11 +1,11 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-07-19T21:02:30.535590Z",
-  "status": "fail",
+  "schemaVersion": 3,
+  "generatedAt": "2026-07-19T21:04:15.062613Z",
+  "status": "pass",
   "summary": {
-    "total": 33,
-    "passed": 25,
-    "failed": 8
+    "total": 42,
+    "passed": 42,
+    "failed": 0
   },
   "dictionaryVersion": "2026.07.19.3",
   "checks": [
@@ -35,24 +35,59 @@
       "detail": "layers=['analysis', 'heartbeat', 'http-client', 'identity', 'media', 'network', 'orchestration', 'progress-publish', 'runner', 'safety', 'source-download', 'source-metadata']"
     },
     {
-      "name": "heartbeat_60_seconds",
-      "passed": false,
-      "detail": "60-second worker heartbeat"
+      "name": "fast_412_cooldown",
+      "passed": true,
+      "detail": "412 cooldown <=45s"
     },
     {
-      "name": "telemetry_60_seconds",
-      "passed": false,
-      "detail": "60-second download telemetry"
+      "name": "bounded_429_cooldown",
+      "passed": true,
+      "detail": "429 cooldown <=120s"
     },
     {
-      "name": "v10_adapter",
-      "passed": false,
-      "detail": "curl response compatibility"
+      "name": "heartbeat_30_seconds",
+      "passed": true,
+      "detail": "30-second worker heartbeat"
+    },
+    {
+      "name": "telemetry_30_seconds",
+      "passed": true,
+      "detail": "30-second download telemetry"
+    },
+    {
+      "name": "v12_adapter",
+      "passed": true,
+      "detail": "v12 analyzer selected"
+    },
+    {
+      "name": "adaptive_ranges",
+      "passed": true,
+      "detail": "bounded HTTP range transfer"
+    },
+    {
+      "name": "no_rate_limit",
+      "passed": true,
+      "detail": "no artificial bandwidth cap"
+    },
+    {
+      "name": "range_workers",
+      "passed": true,
+      "detail": "bounded parallel workers"
+    },
+    {
+      "name": "range_resume",
+      "passed": true,
+      "detail": "range resume and single-stream fallback"
+    },
+    {
+      "name": "balanced_sampling",
+      "passed": true,
+      "detail": "catalog-aware sample profiles"
     },
     {
       "name": "bounded_queue",
       "passed": true,
-      "detail": "one active item and at most three queued"
+      "detail": "one item per run"
     },
     {
       "name": "retention",
@@ -62,32 +97,37 @@
     {
       "name": "monitor_poll",
       "passed": true,
-      "detail": "single 10-second controller"
+      "detail": "10s core, 5s raw, 1s projection"
     },
     {
       "name": "monitor_thresholds",
       "passed": true,
-      "detail": "60/150/180-second thresholds"
+      "detail": "30/75/150-second monitor thresholds"
     },
     {
       "name": "monitor_versions",
       "passed": true,
-      "detail": "unified monitor version"
+      "detail": "realtime bridge version coherent"
     },
     {
-      "name": "monitor_schema",
+      "name": "monitor_authoritative_api",
       "passed": true,
-      "detail": "runtime schema and monotonic guards"
+      "detail": "bounded authoritative API calibration"
     },
     {
-      "name": "monitor_completion_priority",
+      "name": "monitor_projection",
       "passed": true,
-      "detail": "core reads cannot remain permanently syncing"
+      "detail": "clearly labelled short projection"
+    },
+    {
+      "name": "monitor_recovery_retention",
+      "passed": true,
+      "detail": "recovery does not zero last measured telemetry"
     },
     {
       "name": "monitor_cache",
-      "passed": false,
-      "detail": "cache generation v7 contains only unified controller"
+      "passed": true,
+      "detail": "cache generation v10"
     },
     {
       "name": "publisher_conflict_logic",
@@ -95,9 +135,19 @@
       "detail": "fresh-SHA conflict retry"
     },
     {
+      "name": "telemetry_preservation",
+      "passed": true,
+      "detail": "same-item metrics preserved across stages"
+    },
+    {
       "name": "same_job_recovery",
       "passed": true,
       "detail": "same-job diagnosis"
+    },
+    {
+      "name": "v12_recovery_normalization",
+      "passed": true,
+      "detail": "retries remain on v12"
     },
     {
       "name": "generic_region",
@@ -115,19 +165,19 @@
       "detail": "HTTP Error 412: Precondition Failed"
     },
     {
-      "name": "match_curl-response-context-manager",
+      "name": "match_curl-transport",
       "passed": true,
-      "detail": "Response object does not support the context manager protocol"
+      "detail": "curl: (18) end of response with bytes missing"
     },
     {
-      "name": "match_ffmpeg-invalid-data",
+      "name": "match_range-not-supported",
       "passed": true,
-      "detail": "Invalid data found when processing input"
+      "detail": "range request was not honored"
     },
     {
-      "name": "match_runner-disk-space",
+      "name": "match_download-truncated",
       "passed": true,
-      "detail": "No space left on device"
+      "detail": "content-length mismatch after resumed transfer"
     },
     {
       "name": "match_github-contents-conflict",
@@ -141,28 +191,23 @@
     },
     {
       "name": "action_412",
-      "passed": false,
-      "detail": "backoff and API fallback"
+      "passed": true,
+      "detail": "fast public API plus adaptive ranges"
     },
     {
-      "name": "action_context",
-      "passed": false,
-      "detail": "v10 compatibility action"
+      "name": "action_range_fallback",
+      "passed": true,
+      "detail": "single-stream fallback"
     },
     {
       "name": "action_media",
       "passed": true,
-      "detail": "transcode fallback action"
+      "detail": "transcode fallback"
     },
     {
       "name": "action_timeout",
-      "passed": false,
-      "detail": "timeout recovery action"
-    },
-    {
-      "name": "action_memory",
-      "passed": false,
-      "detail": "memory recovery action"
+      "passed": true,
+      "detail": "timeout quality/speed recovery"
     },
     {
       "name": "publisher_409_simulation",
