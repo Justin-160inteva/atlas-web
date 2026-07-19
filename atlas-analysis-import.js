@@ -1,12 +1,12 @@
 (() => {
   'use strict';
 
-  const VERSION='0.9.3.4';
+  const VERSION='0.9.3.6';
   const TYPOGRAPHY_VERSION='0.9.3.0';
   const PERFORMANCE_VERSION='0.9.2.0';
   const UI_FIX_VERSION='0.9.3.1';
   const SMART_ROUTE_VERSION='0.9.3.2';
-  const LIQUID_NAV_VERSION='0.9.3.4';
+  const LIQUID_NAV_VERSION='0.9.3.6';
   let analysisIndex={items:[]};
   const $=selector=>document.querySelector(selector);
   const escapeHtml=value=>String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
@@ -169,7 +169,7 @@
     renderRegistry();
     annotateCards();
     const brand=document.querySelector('.brand-copy small');
-    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.4";
+    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.6";
   }
 
   async function start(){

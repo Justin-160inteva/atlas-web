@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION='0.9.3.5';
+  const VERSION='0.9.3.6';
   const root=document.documentElement;
   const groups=[];
   let frame=0;
@@ -14,8 +14,8 @@
 
   function stampVersion(){
     const brand=document.querySelector('.brand-copy small');
-    if(brand&&brand.textContent!=="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.5"){
-      brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.5";
+    if(brand&&brand.textContent!=="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.6"){
+      brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.6";
     }
   }
 
@@ -151,4 +151,4 @@
   }
 })();
 
-// Validation trigger: Alpha 0.9.3.5 restores the base liquid layer before refinements.
+// Validation trigger: Alpha 0.9.3.6 restores the base liquid layer before refinements.
