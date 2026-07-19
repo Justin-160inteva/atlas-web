@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-19T18:41:40.219465Z",
-  "status": "fail",
+  "generatedAt": "2026-07-19T18:46:55.775581Z",
+  "status": "pass",
   "summary": {
     "total": 33,
-    "passed": 31,
-    "failed": 2
+    "passed": 33,
+    "failed": 0
   },
   "dictionaryVersion": "2026.07.19.1",
   "checks": [
@@ -71,8 +71,8 @@
     },
     {
       "name": "monitor_version",
-      "passed": false,
-      "detail": "monitor stack uses v0.3.1"
+      "passed": true,
+      "detail": "deployed monitor component versions match HTML asset pins"
     },
     {
       "name": "monitor_schema_guard",
@@ -81,8 +81,8 @@
     },
     {
       "name": "monitor_cache_generation",
-      "passed": false,
-      "detail": "service worker cache generation updated"
+      "passed": true,
+      "detail": "service worker cache generation matches deployed monitor"
     },
     {
       "name": "publisher_conflict_retry",
