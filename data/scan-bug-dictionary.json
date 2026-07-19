@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "version": "2026.07.19.1",
+  "project": "Atlas authorized video scan pipeline",
+  "scope": "Extensible dictionary of project-observed and primary-source failure signatures for source retrieval, media processing, analysis, GitHub Actions, progress publishing, queue state, authorization, and privacy.",
+  "defaultPolicy": {
+    "maxAttemptsPerItem": 3,
+    "diagnoseImmediately": true,
+    "retryOnlyWhenSafe": true,
+    "neverModifySourceCodeAutomatically": true,
+    "neverBroadenAuthorization": true,
+    "neverRetainOriginalMedia": true,
+    "neverIgnoreIdentityMismatch": true
+  },
+  "sources": {
+    "githubContents": "https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28",
+    "githubConcurrency": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
+    "ytDlpKnownIssues": "https://github.com/yt-dlp/yt-dlp/issues/3766",
+    "ytDlpBilibiliExtractor": "https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/extractor/bilibili.py",
+    "curlCffi": "https://github.com/lexiforest/curl_cffi",
+    "ffmpegErrors": "https://ffmpeg.org/doxygen/0.10/group__lavu__error.html"
+  },
+  "entries": [
+    {"id":"bilibili-http-412","layer":"source-download","retryable":true,"autoAction":"increase_backoff_and_retry_public_api","cooldownSeconds":240,"patterns":["http error 412","status code 412","precondition failed"],"diagnosis":"Request precondition rejection; prefer the verified public API path and bounded cooldown."},
+    {"id":"bilibili-http-403","layer":"source-download","retryable":true,"autoAction":"increase_backoff_and_retry_public_api","cooldownSeconds":180,"patterns":["http error 403","status code 403","403 forbidden"],"diagnosis":"Media request rejected; refresh metadata and use approved fallback URLs."},
+    {"id":"bilibili-http-429","layer":"source-download","retryable":true,"autoAction":"wait_then_retry","cooldownSeconds":600,"patterns":["http error 429","too many requests","rate limit"],"diagnosis":"Request rate limit reached; wait before a bounded retry."},
+    {"id":"bilibili-no-formats","layer":"source-metadata","retryable":true,"autoAction":"refresh_source_metadata_and_retry","cooldownSeconds":60,"patterns":["no video formats found","requested format is not available","no formats found"],"diagnosis":"Extractor returned no usable format; refresh page, CID, and play metadata."},
+    {"id":"bilibili-initial-state","layer":"source-metadata","retryable":true,"autoAction":"switch_to_public_api","cooldownSeconds":60,"patterns":["unable to extract initial state","unable to extract play info","playurl api returned no"],"diagnosis":"Page extraction changed or returned incomplete state; use verified API metadata."},
+    {"id":"multipart-page-identity","layer":"identity","retryable":false,"autoAction":"human_review_required","cooldownSeconds":0,"patterns":["exceeds multipart page count","cid mismatch","page identity mismatch","returned no pages"],"diagnosis":"BVID, page, CID, or title identity is inconsistent."},
+    {"id":"curl-response-context-manager","layer":"http-client","retryable":true,"autoAction":"use_v10_response_compatibility_adapter","cooldownSeconds":0,"patterns":["does not support the context manager protocol"],"diagnosis":"The HTTP response object requires explicit closing; use analyzer v10."},
+    {"id":"curl-transport","layer":"http-client","retryable":true,"autoAction":"retry_same_strategy","cooldownSeconds":60,"patterns":["ssl_connect","curl: (35)","http/2 stream","curl: (92)","tls handshake"],"diagnosis":"Temporary TLS or HTTP stream failure."},
+    {"id":"network-timeout-reset","layer":"network","retryable":true,"autoAction":"retry_same_strategy","cooldownSeconds":30,"patterns":["read timed out","connect timeout","operation timed out","connection reset","incomplete read","broken pipe"],"diagnosis":"The network transfer ended before completion."},
+    {"id":"download-truncated","layer":"source-download","retryable":true,"autoAction":"retry_same_strategy","cooldownSeconds":15,"patterns":["unexpectedly small","content-length mismatch","download produced no usable file","premature eof"],"diagnosis":"The downloaded object is incomplete; remove the partial file and restart."},
+    {"id":"ffmpeg-invalid-data","layer":"media","retryable":true,"autoAction":"enable_transcode_fallback_and_retry","cooldownSeconds":0,"patterns":["invalid data found when processing input","averror_invaliddata","header missing","moov atom not found","ffmpeg remux failed"],"diagnosis":"Container or stream data cannot be remuxed directly; normalize by transcoding."},
+    {"id":"opencv-open-failure","layer":"analysis","retryable":true,"autoAction":"enable_transcode_fallback_and_retry","cooldownSeconds":0,"patterns":["videocapture failed","could not open video","failed to open media","duration is zero"],"diagnosis":"OpenCV cannot decode or seek the prepared media."},
+    {"id":"analysis-timeout","layer":"analysis","retryable":true,"autoAction":"extend_timeout_reduce_samples_and_retry","cooldownSeconds":0,"patterns":["timeout after","timeoutexpired","process timed out"],"diagnosis":"Analysis exceeded the per-item time budget."},
+    {"id":"analysis-memory","layer":"analysis","retryable":true,"autoAction":"reduce_memory_pressure_and_retry","cooldownSeconds":0,"patterns":["memoryerror","out of memory","exit code 137","killed process"],"diagnosis":"The runner exhausted memory."},
+    {"id":"runner-disk-space","layer":"runner","retryable":true,"autoAction":"cleanup_then_retry","cooldownSeconds":0,"patterns":["no space left on device","disk quota exceeded","errno 28"],"diagnosis":"Temporary storage is full."},
+    {"id":"github-contents-conflict","layer":"progress-publish","retryable":true,"autoAction":"retry_progress_publish_with_fresh_sha","cooldownSeconds":1,"patterns":["http error 409","409 conflict","does not match","sha does not match"],"diagnosis":"Another status write updated the same file; refetch the current SHA and retry."},
+    {"id":"workflow-stale-lease","layer":"orchestration","retryable":true,"autoAction":"reset_stale_lease_and_retry","cooldownSeconds":0,"patterns":["stale running lease","workflow was cancelled","active item has no heartbeat","heartbeat stale"],"diagnosis":"A workflow ended without releasing its queue lease."},
+    {"id":"schema-authorization-privacy","layer":"safety","retryable":false,"autoAction":"human_review_required","cooldownSeconds":0,"patterns":["jsondecodeerror","keyerror","assertionerror","authorization failed","permission scope","retention violation","frame pixels retained","original video retained"],"diagnosis":"A schema, authorization, identity, or privacy invariant failed; stop automatic processing."}
+  ]
+}
