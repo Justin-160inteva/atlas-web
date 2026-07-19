@@ -75,11 +75,12 @@ jobs:
           grep -q "atlas-ui-fix-0931.js" sw.js
           grep -q "atlas-ui-fix-0931.css" sw.js
           grep -q "atlas-smart-route-0932.css" sw.js
+          grep -q "atlas-liquid-nav-0933.css" sw.js
           grep -q "atlas-liquid-nav-0934.js" sw.js
           grep -q "atlas-liquid-nav-0934.css" sw.js
-          grep -q "atlas-liquid-nav-0934.js" atlas-analysis-import.js
-          grep -q "atlas-liquid-nav-0934.css" atlas-analysis-import.js
-          grep -q "0.9.3.4" atlas-analysis-import.js
+          grep -q "atlas-liquid-nav-0933.css" atlas-liquid-nav-0934.css
+          grep -q "0.9.3.5" atlas-liquid-nav-0934.js
+          grep -q "atlas-alpha-0935" sw.js
           grep -q "does not bundle, extract, redistribute" FONT-LICENSES.md
 
-# Validation trigger: Alpha 0.9.3.4 smoother integrated left rail navigation.
+# Validation trigger: Alpha 0.9.3.5 restores the base liquid layer before vertical refinements.
