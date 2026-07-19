@@ -1,8 +1,9 @@
 (() => {
   'use strict';
-  const VERSION=window.AtlasRelease?.version||'0.9.4.2';
+  const VERSION=window.AtlasRelease?.version||'0.9.4.3';
   const root=document.documentElement;
   const groups=[];
+  const panelSelectors=['#filterPanel','#routePanel','#progressPanel'];
   let frame=0;
 
   root.classList.toggle('atlas-standalone',Boolean(window.matchMedia?.('(display-mode: standalone)').matches||window.navigator.standalone));
@@ -29,6 +30,39 @@
     if(group.width!==next.width){group.width=next.width;i.style.setProperty('--liquid-w',`${next.width}px`)}if(group.height!==next.height){group.height=next.height;i.style.setProperty('--liquid-h',`${next.height}px`)}
     if(!i.classList.contains('is-ready'))requestAnimationFrame(()=>i.classList.add('is-ready'));
   }
+  function panelOpen(panel){return panel.classList.contains('open')&&panel.getAttribute('aria-hidden')!=='true'}
+  function syncPanelInteractivity(){
+    let openCount=0;
+    panelSelectors.forEach(selector=>{
+      const panel=document.querySelector(selector);if(!panel)return;
+      const open=panelOpen(panel);openCount+=open?1:0;
+      panel.toggleAttribute('inert',!open);
+      if(!open&&panel.getAttribute('aria-hidden')!=='true')panel.setAttribute('aria-hidden','true');
+    });
+    const rail=document.querySelector('.quick-rail');
+    if(rail){rail.removeAttribute('inert');rail.style.removeProperty('pointer-events');rail.setAttribute('aria-disabled','false')}
+    root.classList.toggle('atlas-panel-open',openCount>0);
+    schedule();
+  }
+  function installPanelGuard(){
+    panelSelectors.forEach(selector=>{
+      const panel=document.querySelector(selector);if(!panel)return;
+      new MutationObserver(syncPanelInteractivity).observe(panel,{attributes:true,attributeFilter:['class','aria-hidden','inert']});
+    });
+    const bottom=document.querySelector('.bottom-nav');
+    bottom?.addEventListener('click',event=>{
+      const button=event.target.closest('.nav-item');if(!button)return;
+      queueMicrotask(()=>{
+        if(button.dataset.panel==='map'){
+          panelSelectors.forEach(selector=>{const panel=document.querySelector(selector);if(!panel)return;panel.classList.remove('open');panel.setAttribute('aria-hidden','true')});
+        }
+        syncPanelInteractivity();
+      });
+    });
+    addEventListener('pageshow',syncPanelInteractivity,{passive:true});
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncPanelInteractivity()},{passive:true});
+    syncPanelInteractivity();
+  }
   function installGroup(selector,name){
     const container=document.querySelector(selector);if(!container)return;
     container.querySelector('.atlas-liquid-selection')?.remove();const indicator=document.createElement('span');indicator.className=`atlas-liquid-selection atlas-liquid-selection-${name}`;indicator.setAttribute('aria-hidden','true');container.prepend(indicator);
@@ -42,6 +76,6 @@
     document.querySelectorAll('script[data-atlas-controls]').forEach(node=>{if(node.dataset.atlasControls!==VERSION)node.remove()});
     if(!document.querySelector(`script[data-atlas-controls="${VERSION}"]`)){const script=document.createElement('script');script.src=`atlas-controls-0938.js?v=${VERSION}`;script.defer=true;script.dataset.atlasControls=VERSION;document.body.appendChild(script)}
   }
-  function init(){installGroup('.bottom-nav','horizontal');installGroup('.quick-rail','vertical');root.dataset.atlasLiquidNav=VERSION;addEventListener('resize',schedule,{passive:true});addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});document.fonts?.ready?.then(schedule,()=>{});setTimeout(schedule,120);loadControls()}
+  function init(){installGroup('.bottom-nav','horizontal');installGroup('.quick-rail','vertical');installPanelGuard();root.dataset.atlasLiquidNav=VERSION;addEventListener('resize',schedule,{passive:true});addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});document.fonts?.ready?.then(schedule,()=>{});setTimeout(schedule,120);loadControls();window.AtlasLiquidNavigation={version:VERSION,refresh:schedule,syncPanelInteractivity}}
   document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init,{once:true}):init();
 })();
