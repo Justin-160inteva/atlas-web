@@ -32,25 +32,20 @@ for key,token in required: check(f'{key} contains {token}',token in files[key])
 for key,token in [('js','ASSASSIN\'S CREED SHADOWS · ALPHA 0.9.3.7'),('sw','atlas-alpha-0937-pages-v1')]:
     check(f'{key} excludes old {token}',token not in files[key])
 
-# icon visual system: 10 required control icons use one 24x24 system
 for name in ['map','filter','route','progress','favorite','all','locations','collectibles','activities','locate','settings','evidence','database','performance','heart']:
     check('icon '+name,f'{name}:' in files['js'])
 
-# settings and developer-mode behaviour
 check('settings replaces evidence button',"getElementById('evidenceStudioBtn')" in files['js'])
 check('evidence remains available',"getElementById('evidencePanel')" in files['js'])
 check('developer mode persisted',"atlas.developerMode" in files['js'])
 check('performance route exists',"?perf=1&v=0938" in files['js'])
 check('settings capture prevents old click',"stopImmediatePropagation" in files['js'])
-
-# favourite animation is finite and compositor-only
 check('heart transform animation','transform:' in files['css'] and 'opacity:' in files['css'])
 check('heart no infinite animation','infinite' not in files['css'])
 check('burst cleanup','setTimeout(()=>burst.remove()' in files['js'])
 check('badge cleanup','setTimeout(()=>badge.remove()' in files['js'])
 check('single active burst','activeBurst?.remove()' in files['js'])
 
-# 420 deterministic viewport/icon alignment checks
 widths=[320,360,375,390,414,480,600,720,768,820]
 safe=[0,4,12]
 icons=[20,22,24,26,28,30,32]
@@ -70,3 +65,5 @@ while len(results)<500:
     i+=1
 if len(results)!=500: raise AssertionError(f'Expected 500 checks, got {len(results)}')
 print(f'Alpha 0.9.3.8 controls gate passed: {len(results)} checks')
+
+# Validation trigger: unified controls, settings and favourite feedback.
