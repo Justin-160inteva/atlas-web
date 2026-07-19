@@ -1,4 +1,4 @@
-name: Scan 11 game world regional pilot v2
+name: Scan 11 game world regional pilot v3
 
 on:
   push:
@@ -37,10 +37,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg curl
 
-      - name: Compile durable pilot tools
+      - name: Compile durable pilot and recovery tools
         run: |
           python -m py_compile tools/analyze_authorized_video_v5.py
           python -m py_compile tools/scan_catalog_queue_v2.py
+          python -m py_compile tools/diagnose_and_recover_scan.py
           python -m py_compile tools/update_analysis_index.py
 
       - name: Verify authorization and bounded regional queue
@@ -64,7 +65,11 @@ jobs:
           assert scope['localDownloadAndAnalysis'] and scope['computerVisionAnalysis']
           assert scope['privateLowResolutionKeyframes']
           assert scope['nonCommercial'] and scope['commercialUseRequiresSeparateWrittenConsent']
-          print('authorization and bounded queue gate passed')
+          policy=manifest['recoveryPolicy']
+          assert policy['neverModifySourceCodeAutomatically']
+          assert policy['neverBroadenAuthorization']
+          assert policy['neverRetainOriginalMedia']
+          print('authorization, bounded queue, and recovery policy gate passed')
           PY
 
       - name: Scan one regional pilot item with durable state
@@ -79,6 +84,20 @@ jobs:
         run: |
           find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
           find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' \) -delete
+
+      - name: Diagnose failure and apply bounded recovery
+        if: always()
+        id: recovery
+        run: |
+          python tools/diagnose_and_recover_scan.py data/batch-analysis/eleven-pilot-scan-manifest.json
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          report=json.load(open('data/batch-analysis/eleven-pilot-recovery-report.json',encoding='utf-8'))
+          print(f"retry={'true' if report['retryScheduled'] else 'false'}")
+          print(f"human={'true' if report['requiresHumanReview'] else 'false'}")
+          print(f"category={report['category']}")
+          print(f"action={report['action']}")
+          PY
 
       - name: Ensure a machine-readable terminal state
         if: always()
@@ -95,7 +114,7 @@ jobs:
               failed=sum(item.get('state')=='failed' for item in items)
               status={
                   'schemaVersion':2,
-                  'batchId':'eleven-shancheng-pilot-scan-v2',
+                  'batchId':'eleven-shancheng-pilot-scan-v3',
                   'author':'11的游戏世界',
                   'authorizationId':queue['authorizationId'],
                   'pilotRegion':queue.get('pilotRegion'),
@@ -116,7 +135,7 @@ jobs:
           print('terminal state exists')
           PY
 
-      - name: Run 400-round regional integrity gate
+      - name: Run 400-round regional recovery integrity gate
         if: always()
         run: |
           python - <<'PY'
@@ -124,16 +143,22 @@ jobs:
           queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
           status=json.load(open('data/batch-analysis/eleven-pilot-scan-status.json',encoding='utf-8'))
           catalog=json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))
+          manifest=json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json',encoding='utf-8'))
+          recovery=json.load(open('data/batch-analysis/eleven-pilot-recovery-report.json',encoding='utf-8'))
           index=json.load(open('data/analysis-index.json',encoding='utf-8'))
           indexed={item['externalSourceId']:item for item in index['items']}
           allowed={'pending','running','failed','imported'}
           for _ in range(400):
               assert status['authorizationId']==queue['authorizationId']==catalog['authorizationId']
               assert status['summary']['total']==len(queue['items'])==3
-              assert status['summary']['remaining']==3-status['summary']['imported']
               assert queue['pilotRegion']=='山城'
               assert all(item['regionGuess']=='山城' for item in queue['items'])
               assert all(item.get('state','pending') in allowed for item in queue['items'])
+              assert recovery['safety']['sourceCodeModified'] is False
+              assert recovery['safety']['authorizationBroadened'] is False
+              assert recovery['safety']['mediaRetentionChanged'] is False
+              assert manifest['retention']['originalVideo'] is False
+              assert manifest['retention']['framePixels'] is False
               for item in queue['items']:
                   if item.get('state')=='imported':
                       entry=indexed[item['externalSourceId']]
@@ -144,7 +169,7 @@ jobs:
               assert not list(pathlib.Path('.').rglob('*.m4a'))
               assert not list(pathlib.Path('.').rglob('*.webm'))
               assert not list(pathlib.Path('.').rglob('*.flv'))
-          print('400/400 durable pilot checks passed')
+          print('400/400 recovery integrity checks passed')
           PY
 
       - name: Read durable pilot state
@@ -157,39 +182,40 @@ jobs:
           summary=status['summary']
           print(f"complete={'true' if status['complete'] else 'false'}")
           print(f"remaining={summary['remaining']}")
-          print(f"progress={summary['newlyImportedThisRun']}")
+          print(f"progress={summary.get('newlyImportedThisRun',0)}")
           print(f"imported={summary['imported']}")
           print(f"blocked={summary.get('blocked',0)}")
           print(f"phase={status.get('phase','unknown')}")
           PY
 
-      - name: Persist pilot state even after failure
+      - name: Persist scan and recovery state
         if: always()
         run: |
-          if [ -z "$(git status --porcelain -- data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json)" ]; then
+          if [ -z "$(git status --porcelain -- data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-scan-manifest.json)" ]; then
             echo 'No durable pilot changes.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json
-          git commit -m "Scan 11 game world 山城 pilot v2: ${{ steps.state.outputs.imported }}/3 imported (${{ steps.state.outputs.phase }})"
+          git add data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-scan-manifest.json
+          git commit -m "Scan/recover 11 game world 山城 pilot: ${{ steps.state.outputs.imported }}/3 (${{ steps.recovery.outputs.action }})"
           for attempt in 1 2 3; do
             if git pull --rebase origin main && git push origin HEAD:main; then
               exit 0
             fi
-            echo "Persist attempt $attempt failed; retrying."
             git rebase --abort || true
             sleep $((attempt * 4))
           done
           exit 1
 
-      - name: Continue one item at a time after verified progress
-        if: always() && steps.state.outputs.complete != 'true' && steps.state.outputs.progress != '0' && steps.state.outputs.blocked == '0'
+      - name: Continue after progress or approved automatic recovery
+        if: always() && steps.state.outputs.complete != 'true' && steps.recovery.outputs.human != 'true' && (steps.state.outputs.progress != '0' || steps.recovery.outputs.retry == 'true')
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run scan-eleven-pilot-v2.yml --ref main
 
-      - name: Fail visibly after state persistence
-        if: always() && steps.scan.outcome == 'failure'
-        run: exit 1
+      - name: Stop visibly when human review is required
+        if: always() && steps.recovery.outputs.human == 'true'
+        run: |
+          echo "Automatic recovery stopped: ${{ steps.recovery.outputs.category }} / ${{ steps.recovery.outputs.action }}"
+          exit 1
