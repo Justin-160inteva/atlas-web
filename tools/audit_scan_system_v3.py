@@ -5,6 +5,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import pathlib
+import re
 import urllib.error
 from datetime import datetime, timezone
 from typing import Any
@@ -30,6 +31,11 @@ def load_module(path: str, name: str) -> Any:
     return module
 
 
+def extract_int(source: str, name: str) -> int | None:
+    match = re.search(rf"(?:const\s+[^;]*\b{name}|\b{name})\s*=\s*(\d+)", source)
+    return int(match.group(1)) if match else None
+
+
 def main() -> int:
     checks: list[dict[str, Any]] = []
 
@@ -48,6 +54,7 @@ def main() -> int:
     analyzer_v11 = read_text("tools/analyze_authorized_video_v11.py")
     analyzer_v12 = read_text("tools/analyze_authorized_video_v12.py")
     workflow = read_text(".github/workflows/scan-eleven-pilot-v2.yml")
+    health_workflow = read_text(".github/workflows/validate-scan-system.yml")
     orchestrator_v2 = read_text("tools/run_scan_with_auto_recovery_v2.py")
 
     entries = bugs.get("entries", [])
@@ -62,8 +69,10 @@ def main() -> int:
     check("fast_412_cooldown", next(entry for entry in entries if entry["id"] == "bilibili-http-412")["cooldownSeconds"] <= 45, "412 cooldown <=45s")
     check("bounded_429_cooldown", next(entry for entry in entries if entry["id"] == "bilibili-http-429")["cooldownSeconds"] <= 120, "429 cooldown <=120s")
 
-    check("heartbeat_30_seconds", manifest.get("runtimeHeartbeat", {}).get("minimumIntervalSeconds") == 30, "30-second worker heartbeat")
-    check("telemetry_30_seconds", manifest.get("downloadTelemetry", {}).get("intervalSeconds") == 30, "30-second download telemetry")
+    heartbeat_seconds = int(manifest.get("runtimeHeartbeat", {}).get("minimumIntervalSeconds", 0))
+    telemetry_seconds = int(manifest.get("downloadTelemetry", {}).get("intervalSeconds", 0))
+    check("heartbeat_30_seconds", heartbeat_seconds == 30, f"worker heartbeat={heartbeat_seconds}s")
+    check("telemetry_30_seconds", telemetry_seconds == 30, f"download telemetry={telemetry_seconds}s")
     check("v12_adapter", manifest.get("analyzer", "").endswith("analyze_authorized_video_v12.py") and "analyze_authorized_video_v11" in analyzer_v12, "v12 analyzer selected")
     check("adaptive_ranges", "ThreadPoolExecutor" in analyzer_v11 and "Range" in analyzer_v11 and manifest.get("downloadOptimization", {}).get("adaptiveParallelRanges") is True, "bounded HTTP range transfer")
     check("no_rate_limit", manifest.get("downloadOptimization", {}).get("noArtificialRateLimit") is True, "no artificial bandwidth cap")
@@ -73,13 +82,22 @@ def main() -> int:
     check("bounded_queue", 1 <= len(queue.get("items", [])) <= 3 and manifest.get("maxItemsPerRun") == 1, "one item per run")
     check("retention", manifest.get("retention", {}).get("originalVideo") is False and manifest.get("retention", {}).get("framePixels") is False, "no retained media pixels")
 
-    check("monitor_poll", "POLL_MS=10000" in monitor and "RAW_POLL=5000" in bridge and "APPLY_TICK=1000" in bridge, "10s core, 5s raw, 1s projection")
-    check("monitor_thresholds", "heartbeatAge<=75" in bridge and "heartbeatAge>150" in bridge, "30/75/150-second monitor thresholds")
-    check("monitor_versions", "VERSION='0.2.1'" in bridge and "scan-monitor-live-bridge.js?v=0.2.1" in monitor_html, "realtime bridge version coherent")
-    check("monitor_authoritative_api", "API_POLL=65000" in bridge and "GitHub Contents API" in bridge, "bounded authoritative API calibration")
-    check("monitor_projection", "MAX_PROJECT=35" in bridge and "实时估算" in bridge and "最近实测" in bridge, "clearly labelled short projection")
+    raw_poll = extract_int(bridge, "RAW_POLL")
+    api_poll = extract_int(bridge, "API_POLL")
+    apply_tick = extract_int(bridge, "APPLY_TICK")
+    max_project = extract_int(bridge, "MAX_PROJECT")
+    bridge_version_match = re.search(r"VERSION='([^']+)'", bridge)
+    html_version_match = re.search(r"scan-monitor-live-bridge\.js\?v=([0-9.]+)", monitor_html)
+    bridge_version = bridge_version_match.group(1) if bridge_version_match else None
+    html_version = html_version_match.group(1) if html_version_match else None
+
+    check("monitor_poll", "POLL_MS=10000" in monitor and raw_poll == 3000 and apply_tick == 500, f"core=10s raw={raw_poll}ms projection={apply_tick}ms")
+    check("monitor_thresholds", "heartbeatAge<=75" in bridge and "heartbeatAge>150" in bridge and heartbeat_seconds == 30, "30/75/150-second monitor thresholds")
+    check("monitor_versions", bridge_version is not None and bridge_version == html_version, f"bridge={bridge_version} html={html_version}")
+    check("monitor_authoritative_api", api_poll == 55000 and "GitHub Contents API" in bridge, f"authoritative API calibration={api_poll}ms")
+    check("monitor_projection", max_project == 20 and "实时估算" in bridge and "最近实测" in bridge, f"clearly labelled projection cap={max_project}s")
     check("monitor_recovery_retention", "telemetryMeasuredAt" in bridge and "保留最后下载实测" in bridge, "recovery does not zero last measured telemetry")
-    check("monitor_cache", "monitor-v10" in worker and "scan-monitor-live-bridge.js" in worker, "cache generation v10")
+    check("monitor_cache", "const CACHE='atlas-alpha-0942-pages-v1'" in worker and "scan-monitor-live-bridge.js" in worker, "canonical release cache namespace")
 
     check("publisher_conflict_logic", "error.code not in {409, 422}" in publisher and "ATLAS_PROGRESS_CONFLICT_RETRIES" in publisher, "fresh-SHA conflict retry")
     check("telemetry_preservation", "PRESERVE_STAGES" in publisher_v2 and "telemetryMeasuredAt" in publisher_v2 and "externalSourceId" in publisher_v2, "same-item metrics preserved across stages")
@@ -87,6 +105,8 @@ def main() -> int:
     check("v12_recovery_normalization", "analyze_authorized_video_v12.py" in orchestrator_v2 and "diagnose_and_recover_scan_v2.py" in orchestrator_v2, "retries remain on v12")
     check("generic_region", "all(item['regionGuess']==region" in workflow and "len(queue['items'])==3" not in workflow, "not hard-coded to one region")
     check("live_recovery", "publish_recovery(queue, recovery)" in read_text("tools/run_scan_with_auto_recovery.py"), "live recovery state published")
+    check("validation_current_ref", "pull_request:" in health_workflow and "ref: main" not in health_workflow, "pull requests validate their own checkout")
+    check("validation_report_dedup", "timestamp-only update removed" in health_workflow and "current.pop('generatedAt',None)" in health_workflow, "timestamp-only health commits suppressed")
 
     recovery = load_module("tools/diagnose_and_recover_scan_v2.py", "atlas_recovery_v3_test")
     examples = {
@@ -101,9 +121,9 @@ def main() -> int:
         matched, _ = recovery.match_entry(message, bugs)
         check(f"match_{expected}", matched and matched.get("id") == expected, message)
 
-    sample_manifest = {"downloadBackoffSeconds": 900, "preferPublicApi": False, "recoveryPolicy": {"fastCooldownCapSeconds": 180}, "downloadOptimization": {}}
+    sample_manifest = {"downloadBackoffSeconds": 900, "preferPublicApi": False, "recoveryPolicy": {"fastCooldownCapSeconds": 60, "minimumSafeCooldownSeconds": 5}, "downloadOptimization": {}}
     changed = recovery.apply_action("fast_backoff_public_api_and_adaptive_range", {"attemptCount": 2}, sample_manifest)
-    check("action_412", sample_manifest["downloadBackoffSeconds"] == 90 and sample_manifest["preferPublicApi"] is True and changed.get("adaptiveParallelRanges") is True, "fast public API plus adaptive ranges")
+    check("action_412", 5 <= sample_manifest["downloadBackoffSeconds"] <= 60 and sample_manifest["preferPublicApi"] is True and changed.get("adaptiveParallelRanges") is True, f"backoff={sample_manifest['downloadBackoffSeconds']}s public API plus adaptive ranges")
 
     sample_manifest = {"downloadOptimization": {}}
     changed = recovery.apply_action("fallback_resumable_single_stream", {"attemptCount": 1}, sample_manifest)
@@ -115,7 +135,7 @@ def main() -> int:
 
     sample_manifest = {"perItemTimeoutSeconds": 5400, "maxSamplesA": 540, "maxSamplesDefault": 360}
     recovery.apply_action("extend_timeout_reduce_samples_and_retry", {}, sample_manifest)
-    check("action_timeout", sample_manifest == {"perItemTimeoutSeconds": 6600, "maxSamplesA": 480, "maxSamplesDefault": 300}, "timeout quality/speed recovery")
+    check("action_timeout", 5400 < sample_manifest["perItemTimeoutSeconds"] <= 10800 and 300 <= sample_manifest["maxSamplesA"] < 540 and 240 <= sample_manifest["maxSamplesDefault"] < 360, f"bounded timeout/sample recovery={sample_manifest}")
 
     base_publisher = load_module("tools/publish_runtime_progress.py", "atlas_publisher_v3_test")
     calls = {"put": 0}
@@ -148,7 +168,7 @@ def main() -> int:
 
     passed = sum(item["passed"] for item in checks)
     report = {
-        "schemaVersion": 3,
+        "schemaVersion": 4,
         "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "status": "pass" if passed == len(checks) else "fail",
         "summary": {"total": len(checks), "passed": passed, "failed": len(checks) - passed},

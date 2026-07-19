@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const VERSION='0.3.0';
+  const VERSION='0.3.1';
   const REPO='Justin-160inteva/atlas-web';
   const PATH='data/runtime-progress/eleven-pilot-progress.json';
   const RAW=`https://raw.githubusercontent.com/${REPO}/main/${PATH}`;
@@ -42,7 +42,7 @@
       $('downloadDetail').textContent=current.stage==='download'?`${estimated?'实时估算':'实时实测'} · 最近实测 ${mb(actual)} · 总进度 ${ratio.toFixed(1)}%`:`保留最后下载实测 ${mb(actual)}；当前阶段：${current.stage}`;
     }
     const heartbeatAge=seconds(current.updatedAt),notice=$('freshnessNotice');
-    if(notice){if(heartbeatAge<=45){notice.dataset.level='live';notice.textContent=`20秒心跳链路正常；当前任务状态更新于${age(current.updatedAt)}。`;}else if(heartbeatAge>120){notice.dataset.level='danger';notice.textContent='任务已超过120秒没有新心跳，自动调查与恢复链应当接管。';}else{notice.dataset.level='warn';notice.textContent=`心跳延迟：最后更新于${age(current.updatedAt)}，正在继续核对权威状态。`;}}
+    if(notice){if(heartbeatAge<=75){notice.dataset.level='live';notice.textContent=`30秒心跳链路正常；当前任务状态更新于${age(current.updatedAt)}。`;}else if(heartbeatAge>150){notice.dataset.level='danger';notice.textContent='任务已超过150秒没有新心跳，自动调查与恢复链应当接管。';}else{notice.dataset.level='warn';notice.textContent=`心跳延迟：最后更新于${age(current.updatedAt)}，正在继续核对权威状态。`;}}
     $('activeDetail').textContent=`本期 ${Number(current.progressPercent||0).toFixed(1)}% · ${current.message||current.stage}`;
     $('heartbeatAge').textContent=age(current.updatedAt);$('dataOrigin').textContent=`数据源：${current.__origin} · 心跳 #${current.heartbeatSequence||'—'}`;
   }

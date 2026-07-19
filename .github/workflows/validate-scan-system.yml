@@ -24,13 +24,32 @@ on:
       - '.github/workflows/scan-eleven-pilot-v2.yml'
       - '.github/workflows/validate-scan-monitor.yml'
       - '.github/workflows/validate-scan-system.yml'
+  pull_request:
+    paths:
+      - 'data/scan-bug-dictionary.json'
+      - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
+      - 'tools/publish_runtime_progress.py'
+      - 'tools/publish_runtime_progress_v2.py'
+      - 'tools/analyze_authorized_video_v11.py'
+      - 'tools/analyze_authorized_video_v12.py'
+      - 'tools/diagnose_and_recover_scan_v2.py'
+      - 'tools/run_scan_with_auto_recovery.py'
+      - 'tools/run_scan_with_auto_recovery_v2.py'
+      - 'tools/audit_scan_system_v3.py'
+      - 'scan-monitor.html'
+      - 'scan-monitor.js'
+      - 'scan-monitor-live-bridge.js'
+      - 'sw.js'
+      - '.github/workflows/scan-eleven-pilot-v2.yml'
+      - '.github/workflows/validate-scan-monitor.yml'
+      - '.github/workflows/validate-scan-system.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: validate-scan-system-health
+  group: validate-scan-system-health-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -40,7 +59,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -70,13 +88,40 @@ jobs:
         continue-on-error: true
         run: python tools/audit_scan_system_v3.py
 
-      - name: Publish health report even when checks fail
+      - name: Upload health report
         if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-system-health-${{ github.sha }}
+          path: data/batch-analysis/scan-system-health.json
+          if-no-files-found: error
+
+      - name: Remove timestamp-only report changes
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          python - <<'PY'
+          import json, pathlib, subprocess
+          path='data/batch-analysis/scan-system-health.json'
+          current=json.loads(pathlib.Path(path).read_text(encoding='utf-8'))
+          try:
+              previous=json.loads(subprocess.check_output(['git','show',f'HEAD:{path}'],text=True))
+          except Exception:
+              previous={}
+          current.pop('generatedAt',None)
+          previous.pop('generatedAt',None)
+          if current==previous:
+              subprocess.run(['git','checkout','--',path],check=True)
+              print('semantic report unchanged; timestamp-only update removed')
+          else:
+              print('semantic report changed; persistence allowed')
+          PY
+
+      - name: Persist semantic health report changes
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           REPORT='data/batch-analysis/scan-system-health.json'
-          test -f "$REPORT"
           if [ -z "$(git status --porcelain -- "$REPORT")" ]; then
-            echo 'Health report unchanged.'
+            echo 'Health report semantics unchanged.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
@@ -101,7 +146,8 @@ jobs:
               'publisher_409_simulation','same_job_recovery','live_recovery',
               'repository_media_clean','action_412','action_range_fallback',
               'action_media','action_timeout','v12_adapter','adaptive_ranges',
-              'no_rate_limit','balanced_sampling','telemetry_preservation','bounded_queue'
+              'no_rate_limit','balanced_sampling','telemetry_preservation','bounded_queue',
+              'validation_current_ref','validation_report_dedup'
           }
           checks={item['name']:item for item in report['checks']}
           assert report['summary']['total']>=35, report['summary']
