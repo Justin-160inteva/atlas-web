@@ -1,0 +1,231 @@
+name: Resolve and reprocess Dada sequence 14
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/resolve_dada_sequence14.py'
+      - '.github/workflows/dada-sequence-14-resolution.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-sequence-14-end-to-end
+  cancel-in-progress: false
+
+jobs:
+  resolve-and-reprocess:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out requested revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile isolated resolver and reusable reprocessor
+        id: compile
+        run: |
+          python -m py_compile \
+            tools/resolve_dada_sequence06.py \
+            tools/resolve_dada_sequence14.py \
+            tools/reprocess_verified_dada_item.py \
+            tools/reprocess_verified_dada_item_v2.py
+
+      - name: Resolve, verify, and stage sequence 14
+        id: resolve
+        run: python tools/resolve_dada_sequence14.py --apply --require-resolved
+
+      - name: Run 400-round exact-resolution gate
+        id: resolution_gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          for _ in range(400):
+              report = json.loads(Path('data/batch-analysis/dada-sequence-14-resolution.json').read_text(encoding='utf-8'))
+              assert report['status'] == 'resolved'
+              assert report['acceptedCount'] == 1
+              assert report['mediaDownloaded'] is False
+              resolved = report['resolved']
+              assert resolved['accepted'] is True
+              assert all(resolved['checks'].values())
+              assert resolved['bvid'] != 'BV1A5P9z7EGM'
+              assert resolved['sequence'] == 14
+              assert 412 <= resolved['durationSeconds'] <= 416
+
+              manifest = json.loads(Path('data/reprocess/dada-seq14.json').read_text(encoding='utf-8'))
+              assert manifest['verifiedBvid'] == resolved['bvid']
+              assert manifest['verifiedUrl'].endswith(f"/{resolved['bvid']}/")
+              assert manifest['replaceWrongBvid'] == 'BV1A5P9z7EGM'
+              assert manifest['replaceJobId'] == 'dada-14-v1'
+              assert manifest['expectedRemainingSequences'] == [20]
+
+              queue = json.loads(Path('data/analysis-jobs/dada-quality-reprocess.json').read_text(encoding='utf-8'))
+              queue_item = next(item for item in queue['items'] if int(item['sequence']) == 14)
+              assert queue_item['safeToDownloadNow'] is True
+              assert queue_item['requiresExactUrlVerification'] is False
+              assert queue_item['action'] == 'reprocess_verified_video'
+              assert queue_item['exactBvid'] == resolved['bvid']
+              assert queue.get('readyForReprocessSequences') == [14]
+              for other in queue['items']:
+                  if int(other['sequence']) != 14:
+                      assert other.get('safeToDownloadNow') is False
+
+              catalog = json.loads(Path('data/dada-ac-shadows-catalog.json').read_text(encoding='utf-8'))
+              catalog_item = next(item for item in catalog['items'] if int(item['sequence']) == 14)
+              assert catalog_item['resolvedBvid'] == resolved['bvid']
+              assert catalog_item['exactUrlVerified'] is True
+              assert catalog_item['analysisQualityStatus'] == 'stale-wrong-source-pending-reprocess'
+
+              status = json.loads(Path('data/batch-analysis/dada-author-catalog-status.json').read_text(encoding='utf-8'))
+              status_item = next(item for item in status['items'] if int(item['sequence']) == 14)
+              assert status_item['verifiedResolution']['bvid'] == resolved['bvid']
+              assert status_item['resultStale'] is True
+              assert 'BV1A5P9z7EGM' in status_item['staleReason']
+          PY
+
+      - name: Run 400-round reprocess preflight
+        id: preflight
+        run: python tools/reprocess_verified_dada_item_v2.py data/reprocess/dada-seq14.json --validate-only --self-check-rounds 400
+
+      - name: Install transient analysis dependencies
+        id: install_deps
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download and analyze only verified sequence 14
+        id: analyze
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: python tools/reprocess_verified_dada_item_v2.py data/reprocess/dada-seq14.json --self-check-rounds 400
+
+      - name: Remove all transient media
+        id: cleanup
+        if: always()
+        run: |
+          find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
+          find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' \) -delete
+
+      - name: Rebuild Dada quality report and remaining queue
+        id: audit
+        run: python tools/audit_dada_catalog.py
+
+      - name: Run 400-round post-audit transition gate
+        id: transition
+        run: python tools/reprocess_verified_dada_item_v2.py data/reprocess/dada-seq14.json --verify-transition --self-check-rounds 400
+
+      - name: Upload exact-resolution and replacement evidence
+        id: evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-sequence-14-end-to-end-${{ github.sha }}
+          path: |
+            data/reprocess/dada-seq14.json
+            data/batch-analysis/dada-sequence-14-resolution.json
+            data/analysis-results/dada-14.json
+            data/batch-analysis/dada-seq14-reprocess-status.json
+            data/dada-ac-shadows-catalog.json
+            data/batch-analysis/dada-author-catalog-status.json
+            data/batch-analysis/dada-catalog-quality-audit.json
+            data/analysis-jobs/dada-quality-reprocess.json
+          if-no-files-found: warn
+
+      - name: Persist verified sequence 14 replacement
+        id: persist
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/reprocess/dada-seq14.json \
+            data/batch-analysis/dada-sequence-14-resolution.json \
+            data/analysis-jobs/dada-14.json \
+            data/analysis-results/dada-14.json \
+            data/analysis-index.json \
+            data/dada-ac-shadows-catalog.json \
+            data/batch-analysis/dada-author-catalog-status.json \
+            data/batch-analysis/dada-seq14-reprocess-status.json \
+            data/batch-analysis/dada-catalog-quality-audit.json \
+            data/analysis-jobs/dada-quality-reprocess.json
+          if git diff --cached --quiet; then
+            echo 'No sequence 14 replacement changes.'
+            exit 0
+          fi
+          git commit -m 'Resolve and reprocess Dada sequence 14 [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Persist observable workflow outcome
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
+          RESOLVE_OUTCOME: ${{ steps.resolve.outcome }}
+          RESOLUTION_GATE_OUTCOME: ${{ steps.resolution_gate.outcome }}
+          PREFLIGHT_OUTCOME: ${{ steps.preflight.outcome }}
+          INSTALL_OUTCOME: ${{ steps.install_deps.outcome }}
+          ANALYZE_OUTCOME: ${{ steps.analyze.outcome }}
+          CLEANUP_OUTCOME: ${{ steps.cleanup.outcome }}
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+          TRANSITION_OUTCOME: ${{ steps.transition.outcome }}
+          EVIDENCE_OUTCOME: ${{ steps.evidence.outcome }}
+          PERSIST_OUTCOME: ${{ steps.persist.outcome }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          steps = {
+              'compile': os.environ.get('COMPILE_OUTCOME') or 'not-run',
+              'resolve': os.environ.get('RESOLVE_OUTCOME') or 'not-run',
+              'resolutionGate': os.environ.get('RESOLUTION_GATE_OUTCOME') or 'not-run',
+              'preflight': os.environ.get('PREFLIGHT_OUTCOME') or 'not-run',
+              'installDependencies': os.environ.get('INSTALL_OUTCOME') or 'not-run',
+              'downloadAndAnalyze': os.environ.get('ANALYZE_OUTCOME') or 'not-run',
+              'cleanup': os.environ.get('CLEANUP_OUTCOME') or 'not-run',
+              'audit': os.environ.get('AUDIT_OUTCOME') or 'not-run',
+              'transitionGate': os.environ.get('TRANSITION_OUTCOME') or 'not-run',
+              'uploadEvidence': os.environ.get('EVIDENCE_OUTCOME') or 'not-run',
+              'persistReplacement': os.environ.get('PERSIST_OUTCOME') or 'not-run',
+          }
+          failed = next((name for name, outcome in steps.items() if outcome in {'failure', 'cancelled'}), None)
+          payload = {
+              'schemaVersion': 1,
+              'sequence': 14,
+              'workflow': 'dada-sequence-14-resolution.yml',
+              'runId': os.environ.get('GITHUB_RUN_ID'),
+              'runAttempt': os.environ.get('GITHUB_RUN_ATTEMPT'),
+              'triggerSha': os.environ.get('GITHUB_SHA'),
+              'event': os.environ.get('GITHUB_EVENT_NAME'),
+              'status': os.environ.get('JOB_STATUS') or 'unknown',
+              'failedStage': failed,
+              'steps': steps,
+              'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+          }
+          path = Path('data/batch-analysis/dada-seq14-workflow-state.json')
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/batch-analysis/dada-seq14-workflow-state.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Record Dada sequence 14 workflow outcome [skip ci]'
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
