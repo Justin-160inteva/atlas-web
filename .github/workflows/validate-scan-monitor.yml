@@ -43,7 +43,7 @@ jobs:
       - name: Validate monitor contracts and privacy boundaries
         run: |
           python - <<'PY'
-          import json, pathlib
+          import json, pathlib, re
           index=pathlib.Path('index.html').read_text(encoding='utf-8')
           settings=pathlib.Path('atlas-settings.js').read_text(encoding='utf-8')
           monitor_html=pathlib.Path('scan-monitor.html').read_text(encoding='utf-8')
@@ -71,7 +71,11 @@ jobs:
           assert 'ATLAS_PROGRESS_CONFLICT_RETRIES' in publisher
           assert './scan-monitor.html' in worker and './scan-monitor-health.js' in worker
           assert 'monitor-v5' in worker
-          assert progress['externalSourceId'].endswith(('-p020','-p021','-p022'))
+          assert progress['author']=='11的游戏世界'
+          assert progress['authorizationId']=='auth-eleven-game-world-20260719'
+          match=re.fullmatch(r'bili-eleven-acshadows-BV1FdQ9YdEcN-p(\d{3})',progress['externalSourceId'])
+          assert match and 1<=int(match.group(1))<=80
+          assert int(progress['page'])==int(match.group(1))
           assert progress['privacy']
           serialized=json.dumps(progress,ensure_ascii=False).lower()
           for forbidden in ('cookie=', 'set-cookie', '.mp4', '.flv', 'cdnurl', 'authorization: bearer'):
@@ -80,5 +84,5 @@ jobs:
           for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
               media.extend(pathlib.Path('.').rglob(pattern))
           assert not media, media
-          print('embedded scan monitor health v0.3.2 validation passed')
+          print('embedded scan monitor chronological production validation passed')
           PY
