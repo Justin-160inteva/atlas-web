@@ -1,0 +1,86 @@
+name: Validate scan system health
+
+on:
+  push:
+    paths:
+      - 'data/scan-bug-dictionary.json'
+      - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
+      - 'tools/publish_runtime_progress.py'
+      - 'tools/analyze_authorized_video_v10.py'
+      - 'tools/diagnose_and_recover_scan_v2.py'
+      - 'tools/run_scan_with_auto_recovery.py'
+      - 'tools/audit_scan_system.py'
+      - 'scan-monitor.html'
+      - 'scan-monitor.js'
+      - 'scan-monitor-download.js'
+      - 'scan-monitor-health.js'
+      - 'sw.js'
+      - '.github/workflows/scan-eleven-pilot-v2.yml'
+      - '.github/workflows/validate-scan-system.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: validate-scan-system-health
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile Python pipeline
+        run: |
+          python -m py_compile tools/publish_runtime_progress.py
+          python -m py_compile tools/analyze_authorized_video_v10.py
+          python -m py_compile tools/diagnose_and_recover_scan_v2.py
+          python -m py_compile tools/run_scan_with_auto_recovery.py
+          python -m py_compile tools/audit_scan_system.py
+
+      - name: Validate JavaScript monitor
+        run: |
+          node --check scan-monitor.js
+          node --check scan-monitor-download.js
+          node --check scan-monitor-health.js
+          node --check sw.js
+
+      - name: Run systemic audit and simulated bug matches
+        run: python tools/audit_scan_system.py
+
+      - name: Validate health report
+        run: |
+          python - <<'PY'
+          import json
+          report=json.load(open('data/batch-analysis/scan-system-health.json',encoding='utf-8'))
+          assert report['status']=='pass', report
+          assert report['summary']['failed']==0, report['summary']
+          assert report['summary']['total']>=24, report['summary']
+          print(f"scan system health: {report['summary']['passed']}/{report['summary']['total']} passed")
+          PY
+
+      - name: Publish health report
+        run: |
+          if git diff --quiet -- data/batch-analysis/scan-system-health.json; then
+            echo 'Health report unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/batch-analysis/scan-system-health.json
+          git commit -m 'Update scan system health report [skip ci]'
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          exit 1
