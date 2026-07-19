@@ -22,8 +22,10 @@
 .settings-live{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.045);font-size:8px;color:var(--muted)}
 .settings-live i{width:7px;height:7px;border-radius:50%;background:#777;box-shadow:0 0 0 3px rgba(255,255,255,.04)}
 .settings-live[data-state="running"] i{background:#53c985;box-shadow:0 0 0 3px rgba(83,201,133,.13)}
+.settings-live[data-state="queued"] i{background:#69a8e8;box-shadow:0 0 0 3px rgba(105,168,232,.13)}
 .settings-live[data-state="recovery"] i{background:#e1b458;box-shadow:0 0 0 3px rgba(225,180,88,.13)}
 .settings-live[data-state="blocked"] i{background:#e35b65;box-shadow:0 0 0 3px rgba(227,91,101,.13)}
+.settings-live[data-state="complete"] i{background:#8fc0f0;box-shadow:0 0 0 3px rgba(143,192,240,.13)}
 .settings-about{padding:12px 13px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.025)}
 .settings-about p{margin:0;color:var(--muted);font-size:9px;line-height:1.7}.settings-about b{color:var(--text)}
 .monitor-overlay{position:absolute;z-index:48;inset:0;display:flex;flex-direction:column;background:#0b0b0c;opacity:0;pointer-events:none;transform:translateY(16px);transition:.2s ease}
