@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-19T15:25:44.933425Z",
-  "updatedAt": "2026-07-19T17:38:30Z",
-  "status": "queued",
+  "updatedAt": "2026-07-19T17:44:18.735060Z",
+  "status": "complete",
   "pilotRegion": "山城",
   "strategy": "Process the same coherent 山城 collection group from shortest to longest; P20 now requires the curl-compatible v10 analyzer and strict 60-second download telemetry.",
   "items": [
@@ -67,11 +67,14 @@
       "mapUtility": "最高",
       "priority": 100,
       "durationSeconds": 5104,
-      "state": "pending",
-      "attemptCount": 0,
+      "state": "imported",
+      "attemptCount": 1,
       "lastCodeFailureAt": "2026-07-19T17:32:13.431122Z",
       "lastCodeFailure": "curl_cffi Response lacked context-manager support in analyzer v9",
-      "requiredAnalyzer": "tools/analyze_authorized_video_v10.py"
+      "requiredAnalyzer": "tools/analyze_authorized_video_v10.py",
+      "lastStartedAt": "2026-07-19T17:42:39.267247Z",
+      "resultPath": "data/analysis-results/eleven-p020.json",
+      "lastFinishedAt": "2026-07-19T17:44:18.732023Z"
     }
   ]
 }
