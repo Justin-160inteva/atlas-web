@@ -19,7 +19,7 @@ const browser = await chromium.launch({ headless: true });
 const results = [];
 let failed = false;
 
-for (const profile of profiles) {
+for (const [profileIndex, profile] of profiles.entries()) {
   const context = await browser.newContext({
     viewport: profile.viewport,
     isMobile: profile.isMobile,
@@ -68,6 +68,31 @@ for (const profile of profiles) {
     });
     for (const [group, entries] of Object.entries(iconState)) entries.forEach((entry, index) => {check(`${group} icon ${index + 1} single svg`, entry.svg === manifest.invariants.navigationSvgPerButton, JSON.stringify(entry));check(`${group} icon ${index + 1} no legacy text`, entry.text === 0, JSON.stringify(entry));});
 
+    const navigationGeometry = await page.evaluate(() => {
+      const read = selector => {
+        const node=document.querySelector(selector),rect=node.getBoundingClientRect(),style=getComputedStyle(node);
+        const matrix=new DOMMatrixReadOnly(style.transform==='none'?'matrix(1,0,0,1,0,0)':style.transform);
+        return {left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom,width:rect.width,height:rect.height,background:style.backgroundImage,borderTop:Number.parseFloat(style.borderTopWidth)||0,radiusTopLeft:Number.parseFloat(style.borderTopLeftRadius)||0,radiusBottomLeft:Number.parseFloat(style.borderBottomLeftRadius)||0,pointerEvents:style.pointerEvents,transformX:matrix.e};
+      };
+      return {bottom:read('.bottom-nav'),rail:read('.quick-rail'),viewport:{width:innerWidth,height:innerHeight}};
+    });
+    const minInset=Number(manifest.invariants.navigationMinimumVisibleInsetPixels||4);
+    check('bottom fully visible left', navigationGeometry.bottom.left >= minInset-.75, JSON.stringify(navigationGeometry.bottom));
+    check('bottom fully visible right', navigationGeometry.bottom.right <= navigationGeometry.viewport.width-minInset+.75, JSON.stringify(navigationGeometry.bottom));
+    check('bottom fully visible lower edge', navigationGeometry.bottom.bottom <= navigationGeometry.viewport.height-minInset+.75, JSON.stringify(navigationGeometry.bottom));
+    check('bottom horizontally centered', Math.abs((navigationGeometry.bottom.left+navigationGeometry.bottom.right)/2-navigationGeometry.viewport.width/2) <= 1.5, JSON.stringify(navigationGeometry.bottom));
+    check('bottom has no horizontal translation drift', Math.abs(navigationGeometry.bottom.transformX) <= .5, String(navigationGeometry.bottom.transformX));
+    check('bottom complete rounded medium', navigationGeometry.bottom.radiusTopLeft >= 18 && navigationGeometry.bottom.radiusBottomLeft >= 18, JSON.stringify(navigationGeometry.bottom));
+    check('bottom visible border', navigationGeometry.bottom.borderTop >= .75, JSON.stringify(navigationGeometry.bottom));
+    check('bottom material background', navigationGeometry.bottom.background !== 'none', navigationGeometry.bottom.background);
+    check('rail fully visible left', navigationGeometry.rail.left >= minInset-.75, JSON.stringify(navigationGeometry.rail));
+    check('rail fully visible right', navigationGeometry.rail.right <= navigationGeometry.viewport.width-minInset+.75, JSON.stringify(navigationGeometry.rail));
+    check('rail fully visible top', navigationGeometry.rail.top >= 0, JSON.stringify(navigationGeometry.rail));
+    check('rail fully visible bottom', navigationGeometry.rail.bottom <= navigationGeometry.viewport.height+.75, JSON.stringify(navigationGeometry.rail));
+    check('rail complete rounded medium', navigationGeometry.rail.radiusTopLeft >= 18 && navigationGeometry.rail.radiusBottomLeft >= 18, JSON.stringify(navigationGeometry.rail));
+    check('rail visible border', navigationGeometry.rail.borderTop >= .75, JSON.stringify(navigationGeometry.rail));
+    check('rail material background', navigationGeometry.rail.background !== 'none', navigationGeometry.rail.background);
+
     const panelMap = { filter: '#filterPanel', route: '#routePanel', progress: '#progressPanel' };
     for (const panel of ['map', 'filter', 'route', 'progress', 'favorites']) {
       await page.locator(`.bottom-nav .nav-item[data-panel="${panel}"]`).click();await page.waitForTimeout(260);
@@ -80,6 +105,22 @@ for (const profile of profiles) {
       await page.locator(`.quick-rail .rail-button[data-mode="${mode}"]`).click();await page.waitForTimeout(220);
       check(`rail ${mode} active`, await page.locator(`.quick-rail .rail-button[data-mode="${mode}"].active`).count() === 1);
       check(`rail ${mode} single active`, await page.locator('.quick-rail .rail-button.active').count() === 1);
+    }
+
+    const returnCases=[['filter','locations','#filterPanel'],['route','collectibles','#routePanel'],['progress','activities','#progressPanel']];
+    for (const [panel,mode,selector] of returnCases) {
+      await page.locator(`.bottom-nav .nav-item[data-panel="${panel}"]`).click();await page.waitForTimeout(90);
+      await page.locator('.bottom-nav .nav-item[data-panel="map"]').click();await page.waitForTimeout(90);
+      await page.locator(`.quick-rail .rail-button[data-mode="${mode}"]`).click();await page.waitForTimeout(90);
+      check(`${panel} return keeps rail ${mode} interactive`, await page.locator(`.quick-rail .rail-button[data-mode="${mode}"].active`).count() === 1);
+      check(`${panel} closed panel inert`, await page.locator(selector).evaluate(node => node.hasAttribute('inert') && getComputedStyle(node).pointerEvents === 'none' && node.getAttribute('aria-hidden') === 'true'));
+    }
+    const navigationInteraction = await page.evaluate(() => ({rail:getComputedStyle(document.querySelector('.quick-rail')).pointerEvents,closed:[...document.querySelectorAll('#filterPanel,#routePanel,#progressPanel')].every(node=>node.hasAttribute('inert')&&getComputedStyle(node).pointerEvents==='none')}));
+    check('map return leaves only rail interactive', navigationInteraction.rail !== 'none' && navigationInteraction.closed, JSON.stringify(navigationInteraction));
+
+    if(profileIndex===0){
+      check('bottom maximum width contract', navigationGeometry.bottom.width <= 431, String(navigationGeometry.bottom.width));
+      check('navigation guard release contract', await page.evaluate(version => window.AtlasLiquidNavigation?.version === version, manifest.version));
     }
 
     await page.locator('#evidenceStudioBtn').click();await page.waitForTimeout(120);
@@ -95,7 +136,7 @@ for (const profile of profiles) {
 
     const registrations = await page.evaluate(async () => 'serviceWorker' in navigator ? (await navigator.serviceWorker.getRegistrations()).map(item => item.active?.scriptURL || item.installing?.scriptURL || '') : []);
     check('service worker registration count', registrations.length <= 1, registrations.join('\n'));
-    if (registrations.length) check('service worker release URL', registrations[0].includes(`v=${manifest.version}`), registrations[0]);
+    check('service worker release URL', !registrations.length || registrations[0].includes(`v=${manifest.version}`), registrations.join('\n'));
 
     if (profile.userAgent===ipadUA) check('ipad class enabled', await page.locator('html.atlas-ipad').count() === 1);else check('ipad class not forced', await page.locator('html.atlas-ipad').count() === 0);
     check('no runtime errors', errors.length === 0, errors.join('\n'));
@@ -108,8 +149,9 @@ for (const profile of profiles) {
 await browser.close();
 await fs.mkdir(new URL('../data/conflict-reports/', import.meta.url), { recursive: true });
 const totalChecks = results.reduce((sum, result) => sum + result.checks.length, 0);
-await fs.writeFile(new URL('../data/conflict-reports/browser-matrix.json', import.meta.url), JSON.stringify({schemaVersion: 1,release: manifest.version,generatedAt: new Date().toISOString(),passed: !failed,totalChecks,profiles: results}, null, 2) + '\n');
+await fs.writeFile(new URL('../data/conflict-reports/browser-matrix.json', import.meta.url), JSON.stringify({schemaVersion: 2,release: manifest.version,generatedAt: new Date().toISOString(),passed: !failed,totalChecks,profiles: results}, null, 2) + '\n');
 for (const result of results) {const passed = result.checks.filter(check => check.passed).length;console.log(`${result.profile}: ${passed}/${result.checks.length} checks; errors=${result.errors.length}`);}
 console.log(`Browser matrix total checks: ${totalChecks}`);
-if (totalChecks < 200 || totalChecks > 500) {console.error(`Expected 200-500 independent browser checks, got ${totalChecks}`);process.exit(3);}
+const required=Number(manifest.invariants.requiredBrowserMatrixChecks||500);
+if (totalChecks !== required) {console.error(`Expected exactly ${required} independent browser checks, got ${totalChecks}`);process.exit(3);}
 if (failed) process.exit(2);
