@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T19:17:48.840291Z",
-  "status": "fail",
+  "generatedAt": "2026-07-19T19:18:39.142730Z",
+  "status": "pass",
   "summary": {
     "total": 33,
-    "passed": 31,
-    "failed": 2
+    "passed": 33,
+    "failed": 0
   },
   "dictionaryVersion": "2026.07.19.1",
   "checks": [
@@ -62,32 +62,32 @@
     {
       "name": "monitor_poll",
       "passed": true,
-      "detail": "10-second page checks"
+      "detail": "10-second page and coherence checks"
     },
     {
       "name": "monitor_thresholds",
       "passed": true,
-      "detail": "60/150/180-second thresholds"
+      "detail": "60/75/150/180-second bounded thresholds"
     },
     {
       "name": "monitor_versions",
-      "passed": false,
-      "detail": "monitor core and health versions"
+      "passed": true,
+      "detail": "coherent monitor component versions"
     },
     {
       "name": "monitor_schema",
       "passed": true,
-      "detail": "runtime and status schema guards"
+      "detail": "runtime schema guards across monitor channels"
     },
     {
       "name": "monitor_completion_priority",
       "passed": true,
-      "detail": "completion overrides stale runtime"
+      "detail": "one freshness writer with coherent queue overlay"
     },
     {
       "name": "monitor_cache",
-      "passed": false,
-      "detail": "cache generation v5"
+      "passed": true,
+      "detail": "cache generation v6 includes coherent assets"
     },
     {
       "name": "publisher_conflict_logic",
