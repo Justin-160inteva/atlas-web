@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const VERSION=window.AtlasRelease?.version||'0.9.4.3';
+  const VERSION=window.AtlasRelease?.version||'0.9.4.4';
   const root=document.documentElement;
   let lastMapPoint={x:innerWidth/2,y:innerHeight/2};
   let activeBurst=null;
