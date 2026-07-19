@@ -1,0 +1,26 @@
+name: Restart stalled 11 game world pilot
+
+on:
+  push:
+    paths:
+      - 'data/batch-analysis/eleven-pilot-restart.json'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: scan-eleven-regional-pilot
+  cancel-in-progress: true
+
+jobs:
+  restart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel stale generation and dispatch latest scanner
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo 'Replacing the stale pre-telemetry run with the latest v9 analyzer.'
+          gh workflow run scan-eleven-pilot-v2.yml --repo "${{ github.repository }}" --ref main
