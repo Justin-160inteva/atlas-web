@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 11,
+  "schemaVersion": 12,
   "id": "eleven-production-p004-p006-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
@@ -9,7 +9,7 @@
   "analyzer": "tools/analyze_authorized_video_v12.py",
   "outputPrefix": "eleven",
   "maxItemsPerRun": 1,
-  "maxSamplesA": 540,
+  "maxSamplesA": 480,
   "maxSamplesDefault": 360,
   "minimumIntervalSeconds": 3.0,
   "perItemTimeoutSeconds": 5400,
@@ -17,24 +17,24 @@
   "processingOrder": "chronological-preserve-episode-order",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "preferPublicApi": true,
-  "downloadBackoffSeconds": 45,
+  "downloadBackoffSeconds": 20,
   "forceTranscodeFallback": false,
   "maxAttemptsPerItem": 3,
-  "staleRunningAfterSeconds": 900,
+  "staleRunningAfterSeconds": 600,
   "runtimeHeartbeat": {
     "enabled": true,
     "publishDownloadStageImmediately": true,
     "publishTerminalAnalyzerState": true,
     "preserveLastMeasuredDownloadTelemetry": true,
-    "minimumIntervalSeconds": 30,
+    "minimumIntervalSeconds": 20,
     "independentTicker": true,
     "continuesDuringNetworkStall": true,
     "publicSanitizedProgressOnly": true
   },
   "downloadTelemetry": {
     "enabled": true,
-    "intervalSeconds": 30,
-    "speedMode": "rolling-60-second-window",
+    "intervalSeconds": 20,
+    "speedMode": "rolling-30-second-window",
     "fields": [
       "downloadedBytes", "totalBytes", "speedBytesPerSecond",
       "averageSpeedBytesPerSecond", "segmentIndex", "segmentCount",
@@ -47,13 +47,14 @@
   "downloadOptimization": {
     "noArtificialRateLimit": true,
     "adaptiveParallelRanges": true,
-    "maxRangeWorkers": 4,
-    "parallelRangeThresholdBytes": 25165824,
-    "chunkSizeBytes": 4194304,
+    "maxRangeWorkers": 6,
+    "parallelRangeThresholdBytes": 16777216,
+    "chunkSizeBytes": 2097152,
     "rangeRetries": 3,
-    "heartbeatSeconds": 30,
-    "speedWindowSeconds": 60,
-    "fallbackToResumableSingleStream": true
+    "heartbeatSeconds": 20,
+    "speedWindowSeconds": 30,
+    "fallbackToResumableSingleStream": true,
+    "preferBackupUrlOnRepeated412": true
   },
   "analysisOptimization": {
     "policy": "catalog-aware-quality-speed-balance",
@@ -62,7 +63,8 @@
     "classBBalancedSamples": 300,
     "classCFastReviewSamples": 180,
     "descriptorResolution": "320x180",
-    "preserveNumericDescriptorSchema": true
+    "preserveNumericDescriptorSchema": true,
+    "qualityFloor": "retain route, scene-change, color, edge, motion and perceptual-hash descriptors"
   },
   "compatibilityFixes": {
     "curlCffiResponseContextManager": true,
@@ -74,7 +76,8 @@
     "enabled": true,
     "maxAttemptsPerItem": 3,
     "automaticallyRetryKnownTransientFailures": true,
-    "fastCooldownCapSeconds": 180,
+    "fastCooldownCapSeconds": 60,
+    "minimumSafeCooldownSeconds": 5,
     "blockUnknownOrIdentityFailures": true,
     "neverModifySourceCodeAutomatically": true,
     "neverBroadenAuthorization": true,
