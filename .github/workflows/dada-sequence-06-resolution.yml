@@ -1,0 +1,97 @@
+name: Dada sequence 06 exact resolution
+
+on:
+  pull_request:
+    paths:
+      - 'tools/resolve_dada_sequence06.py'
+      - '.github/workflows/dada-sequence-06-resolution.yml'
+      - 'data/dada-ac-shadows-catalog.json'
+      - 'data/batch-analysis/dada-author-catalog-status.json'
+      - 'data/analysis-jobs/dada-quality-reprocess.json'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/resolve_dada_sequence06.py'
+      - '.github/workflows/dada-sequence-06-resolution.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-sequence-06-resolution-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile resolver
+        run: python -m py_compile tools/resolve_dada_sequence06.py
+
+      - name: Resolve and stage sequence 06
+        run: python tools/resolve_dada_sequence06.py --apply --require-resolved
+
+      - name: Verify four-factor resolution and queue isolation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report=json.loads(Path('data/batch-analysis/dada-sequence-06-resolution.json').read_text())
+          assert report['status']=='resolved'
+          assert report['acceptedCount']==1
+          assert report['mediaDownloaded'] is False
+          resolved=report['resolved']
+          assert resolved['accepted'] is True
+          assert all(resolved['checks'].values())
+          assert resolved['bvid']!='BV1eeZ7YdEDs'
+
+          queue=json.loads(Path('data/analysis-jobs/dada-quality-reprocess.json').read_text())
+          item=next(item for item in queue['items'] if int(item['sequence'])==6)
+          assert item['safeToDownloadNow'] is True
+          assert item['requiresExactUrlVerification'] is False
+          assert item['action']=='reprocess_verified_video'
+          assert item['exactBvid']==resolved['bvid']
+          assert queue['automaticDownloadEnabled'] is False
+          for other in queue['items']:
+              if int(other['sequence'])!=6:
+                  assert other.get('safeToDownloadNow') is False
+
+          catalog=json.loads(Path('data/dada-ac-shadows-catalog.json').read_text())
+          catalog_item=next(item for item in catalog['items'] if int(item['sequence'])==6)
+          assert catalog_item['resolvedBvid']==resolved['bvid']
+          assert catalog_item['exactUrlVerified'] is True
+          assert catalog_item['analysisQualityStatus']=='stale-wrong-source-pending-reprocess'
+
+          status=json.loads(Path('data/batch-analysis/dada-author-catalog-status.json').read_text())
+          status_item=next(item for item in status['items'] if int(item['sequence'])==6)
+          assert status_item['verifiedResolution']['bvid']==resolved['bvid']
+          assert status_item['resultStale'] is True
+          PY
+
+      - name: Upload exact-resolution evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-sequence-06-resolution-${{ github.sha }}
+          path: |
+            data/batch-analysis/dada-sequence-06-resolution.json
+            data/dada-ac-shadows-catalog.json
+            data/batch-analysis/dada-author-catalog-status.json
+            data/analysis-jobs/dada-quality-reprocess.json
+
+      - name: Persist verified resolution on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/batch-analysis/dada-sequence-06-resolution.json data/dada-ac-shadows-catalog.json data/batch-analysis/dada-author-catalog-status.json data/analysis-jobs/dada-quality-reprocess.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Verify Dada sequence 06 exact source [skip ci]'
+          git push
