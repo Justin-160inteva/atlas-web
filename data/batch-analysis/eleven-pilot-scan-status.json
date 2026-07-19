@@ -4,18 +4,18 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P01-P03",
-  "updatedAt": "2026-07-19T19:10:49.906053Z",
+  "updatedAt": "2026-07-19T19:28:13.181336Z",
   "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 3,
-    "imported": 1,
+    "imported": 2,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 2,
+    "remaining": 1,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -35,11 +35,11 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p002",
       "sequence": 2,
       "page": 2,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 3,
+      "lastStartedAt": "2026-07-19T19:27:49.739729Z",
+      "lastFinishedAt": "2026-07-19T19:28:13.175886Z",
+      "resultPath": "data/analysis-results/eleven-p002.json",
       "error": null
     },
     {
@@ -56,18 +56,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p001",
-      "sequence": 1,
-      "page": 1,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P01 第1期：战火纷飞",
-      "startedAt": "2026-07-19T19:05:35.857189Z",
-      "attemptCount": 2,
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p002",
+      "sequence": 2,
+      "page": 2,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P02 第2期：怨灵武士（井户义广）",
+      "startedAt": "2026-07-19T19:27:49.739729Z",
+      "attemptCount": 3,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p001.json status=analyzed\n\n",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p002.json status=analyzed\n\n",
       "analysisStatus": "analyzed",
       "indexReturnCode": 0,
       "completed": true,
-      "finishedAt": "2026-07-19T19:10:49.900460Z"
+      "finishedAt": "2026-07-19T19:28:13.175886Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."

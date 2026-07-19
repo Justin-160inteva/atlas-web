@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-19T19:10:49.914808Z",
+  "generatedAt": "2026-07-19T19:28:13.189503Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "finalState": "scan_completed_or_progressed",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-19T18:57:20.460738Z",
-      "finishedAt": "2026-07-19T19:01:34.840468Z",
+      "startedAt": "2026-07-19T19:11:32.252576Z",
+      "finishedAt": "2026-07-19T19:17:47.283916Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
-      "imported": 0,
+      "imported": 1,
       "failed": 1,
       "running": 0,
-      "scannerOutput": "{\"total\": 3, \"imported\": 0, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 3}\n\n",
+      "scannerOutput": "{\"total\": 3, \"imported\": 1, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 2}\n\n",
       "diagnosisReturnCode": 0,
       "dictionaryEntryId": "bilibili-http-412",
       "action": "increase_backoff_and_retry_public_api",
@@ -23,14 +23,30 @@
     },
     {
       "cycle": 2,
-      "startedAt": "2026-07-19T19:05:35.811135Z",
-      "finishedAt": "2026-07-19T19:10:49.914760Z",
+      "startedAt": "2026-07-19T19:21:48.306932Z",
+      "finishedAt": "2026-07-19T19:23:48.778463Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
       "imported": 1,
+      "failed": 1,
+      "running": 0,
+      "scannerOutput": "{\"total\": 3, \"imported\": 1, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 2}\n\n",
+      "diagnosisReturnCode": 0,
+      "dictionaryEntryId": "bilibili-http-412",
+      "action": "increase_backoff_and_retry_public_api",
+      "retryScheduled": true,
+      "requiresHumanReview": false
+    },
+    {
+      "cycle": 3,
+      "startedAt": "2026-07-19T19:27:49.697658Z",
+      "finishedAt": "2026-07-19T19:28:13.189459Z",
+      "scannerReturnCode": 0,
+      "scannerTimeoutSeconds": 5700,
+      "imported": 2,
       "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 3, \"imported\": 1, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 2}\n\n"
+      "scannerOutput": "{\"total\": 3, \"imported\": 2, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 1}\n\n"
     }
   ],
   "safety": {

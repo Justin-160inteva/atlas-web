@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T19:01:34.873232Z",
+  "generatedAt": "2026-07-19T19:23:48.809067Z",
   "dictionaryVersion": "2026.07.19.1",
   "dictionaryEntryId": "bilibili-http-412",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
-  "activeExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p001",
+  "activeExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p002",
   "category": "source-download",
   "matchedSignature": "precondition failed",
   "diagnosis": "Request precondition rejection; prefer the verified public API path and bounded cooldown.",
@@ -12,13 +12,13 @@
   "retryScheduled": true,
   "retryDelaySeconds": 240,
   "requiresHumanReview": false,
-  "attemptCount": 1,
+  "attemptCount": 2,
   "maxAttempts": 3,
   "changedRuntimeSettings": {
-    "downloadBackoffSeconds": 480,
+    "downloadBackoffSeconds": 900,
     "preferPublicApi": true
   },
-  "errorExcerpt": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 1 media part 0: RequestException('Failed to perform, curl: (18) end of response with 62544800 bytes missing. See [url-redacted] first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
+  "errorExcerpt": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 2 media part 0: RequestException('Failed to perform, curl: (18) end of response with 61460929 bytes missing. See [url-redacted] first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
   "safety": {
     "sourceCodeModified": false,
     "authorizationBroadened": false,
