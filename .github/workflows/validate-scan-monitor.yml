@@ -1,0 +1,64 @@
+name: Validate embedded scan monitor
+
+on:
+  push:
+    paths:
+      - 'index.html'
+      - 'atlas-settings.css'
+      - 'atlas-settings.js'
+      - 'scan-monitor.html'
+      - 'scan-monitor.css'
+      - 'scan-monitor.js'
+      - 'sw.js'
+      - 'tools/publish_runtime_progress.py'
+      - 'tools/analyze_authorized_video.py'
+      - 'data/runtime-progress/eleven-pilot-progress.json'
+      - '.github/workflows/validate-scan-monitor.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JavaScript syntax
+        run: |
+          node --check atlas-settings.js
+          node --check scan-monitor.js
+          node --check sw.js
+
+      - name: Validate Python heartbeat pipeline
+        run: |
+          python -m py_compile tools/publish_runtime_progress.py
+          python -m py_compile tools/analyze_authorized_video.py
+
+      - name: Validate monitor contracts and privacy boundaries
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          index=pathlib.Path('index.html').read_text(encoding='utf-8')
+          settings=pathlib.Path('atlas-settings.js').read_text(encoding='utf-8')
+          monitor=pathlib.Path('scan-monitor.html').read_text(encoding='utf-8')
+          worker=pathlib.Path('sw.js').read_text(encoding='utf-8')
+          progress=json.loads(pathlib.Path('data/runtime-progress/eleven-pilot-progress.json').read_text(encoding='utf-8'))
+          assert 'atlas-settings.css' in index and 'atlas-settings.js' in index
+          assert index.index('atlas-settings.js') < index.index('atlas-evidence-studio.js')
+          assert 'openScanMonitor' in settings and 'openEvidenceLab' in settings
+          assert 'scan-monitor.html?embedded=1' in settings
+          assert 'statusBadge' in monitor and 'queueList' in monitor and 'recoveryPanel' in monitor
+          assert './scan-monitor.html' in worker and './scan-monitor.js' in worker and './scan-monitor.css' in worker
+          assert progress['externalSourceId'].endswith('-p022')
+          assert progress['privacy']
+          serialized=json.dumps(progress,ensure_ascii=False).lower()
+          for forbidden in ('cookie=', 'set-cookie', '.mp4', '.flv', 'cdnurl', 'authorization: bearer'):
+              assert forbidden not in serialized
+          media=[]
+          for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
+              media.extend(pathlib.Path('.').rglob(pattern))
+          assert not media, media
+          print('embedded scan monitor validation passed')
+          PY
