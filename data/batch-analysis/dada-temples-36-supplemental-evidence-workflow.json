@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "status": "failure",
-  "failedStage": "download",
+  "status": "success",
+  "failedStage": null,
   "steps": {
     "compile": "success",
     "dependencies": "success",
-    "download": "failure",
-    "extract": "skipped",
-    "gate": "skipped",
-    "upload": "skipped",
-    "finalize": "skipped",
-    "persist": "skipped",
+    "download": "success",
+    "extract": "success",
+    "gate": "success",
+    "upload": "success",
+    "finalize": "success",
+    "persist": "success",
     "cleanup": "success"
   },
-  "runId": "29688158170",
-  "triggerSha": "6f3257665da20a94c932841fa2467118d4290b6c",
-  "artifactId": "",
-  "artifactUrl": "",
-  "downloadStrategy": "",
-  "recordedAt": "2026-07-19T13:04:21.404364Z"
+  "runId": "29688269412",
+  "triggerSha": "e7d3137ef1bdfef357ee7bab8f272fb06ae44531",
+  "artifactId": "8442792453",
+  "artifactUrl": "https://github.com/Justin-160inteva/atlas-web/actions/runs/29688269412/artifacts/8442792453",
+  "downloadStrategy": "bilibili-public-api",
+  "recordedAt": "2026-07-19T13:10:45.786203Z"
 }
