@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "restartId": "eleven-shancheng-p020-minute-telemetry-20260719-01",
+  "requestedAt": "2026-07-19T17:31:37Z",
+  "reason": "Replace the pre-telemetry P20 run after more than 27 minutes without a task heartbeat.",
+  "targetPage": 20,
+  "requiredAnalyzer": "tools/analyze_authorized_video_v9.py",
+  "heartbeatIntervalSeconds": 60,
+  "downloadTelemetry": [
+    "downloadedBytes",
+    "totalBytes",
+    "speedBytesPerSecond",
+    "segmentIndex",
+    "segmentCount",
+    "etaSeconds"
+  ],
+  "preserveCompletedItems": [22, 21],
+  "mediaRetention": false
+}
