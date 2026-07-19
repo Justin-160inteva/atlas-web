@@ -1,0 +1,214 @@
+name: Extract transient Dada temple evidence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/extract_dada_temple_evidence.py'
+      - '.github/workflows/dada-temples-transient-evidence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-temples-transient-evidence
+  cancel-in-progress: true
+
+jobs:
+  extract-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile evidence extractor
+        id: compile
+        run: python -m py_compile tools/extract_dada_temple_evidence.py
+
+      - name: Install transient dependencies
+        id: dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download authorized sequence 03 transiently
+        id: download
+        run: |
+          rm -rf /tmp/dada-temples-36-evidence /tmp/dada-temples-36-video
+          mkdir -p /tmp/dada-temples-36-evidence /tmp/dada-temples-36-video
+          python -m yt_dlp \
+            --no-playlist \
+            --impersonate chrome \
+            --merge-output-format mp4 \
+            -f 'bv*+ba/b' \
+            -o '/tmp/dada-temples-36-video/source.%(ext)s' \
+            'https://www.bilibili.com/video/BV19EXYYWEdv/'
+          VIDEO_PATH="$(find /tmp/dada-temples-36-video -maxdepth 1 -type f \( -name '*.mp4' -o -name '*.mkv' -o -name '*.webm' -o -name '*.flv' \) | head -n 1)"
+          test -n "$VIDEO_PATH"
+          echo "video_path=$VIDEO_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Extract 108 evidence frames and contact sheets
+        id: extract
+        env:
+          VIDEO_PATH: ${{ steps.download.outputs.video_path }}
+          ARTIFACT_NAME: dada-temples-36-transient-evidence-${{ github.run_id }}
+        run: |
+          python tools/extract_dada_temple_evidence.py \
+            --video "$VIDEO_PATH" \
+            --output-dir /tmp/dada-temples-36-evidence \
+            --artifact-name "$ARTIFACT_NAME" \
+            --run-id '${{ github.run_id }}'
+
+      - name: Run evidence package gate
+        id: gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          manifest = json.loads(Path('data/geospatial/dada-temples-36-evidence-manifest.json').read_text(encoding='utf-8'))
+          output = Path('/tmp/dada-temples-36-evidence')
+          frames = manifest['extraction']['frames']
+          sheets = manifest['extraction']['contactSheets']
+          assert manifest['status'] == 'artifact-upload-pending'
+          assert manifest['source']['bvid'] == 'BV19EXYYWEdv'
+          assert abs(manifest['source']['downloadedDurationSeconds'] - 259.799) <= 3
+          assert len(frames) == 108
+          assert len(sheets) == 12
+          assert sorted({row['slot'] for row in frames}) == list(range(1, 37))
+          assert all(sum(1 for row in frames if row['slot'] == slot) == 3 for slot in range(1, 37))
+          assert all((output / row['filename']).is_file() for row in frames)
+          assert all((output / row['filename']).is_file() for row in sheets)
+          assert manifest['privacy']['repositoryContainsPixels'] is False
+          assert manifest['privacy']['artifactContainsTransientPixels'] is True
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          PY
+
+      - name: Upload one-day transient evidence artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-temples-36-transient-evidence-${{ github.run_id }}
+          path: /tmp/dada-temples-36-evidence
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
+
+      - name: Finalize non-pixel evidence manifest
+        id: finalize
+        env:
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+          ARTIFACT_DIGEST: ${{ steps.upload.outputs.artifact-digest }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          path = Path('data/geospatial/dada-temples-36-evidence-manifest.json')
+          value = json.loads(path.read_text(encoding='utf-8'))
+          value['status'] = 'artifact-uploaded-awaiting-visual-review'
+          value['uploadedAt'] = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+          value['artifactId'] = os.environ.get('ARTIFACT_ID')
+          value['artifactUrl'] = os.environ.get('ARTIFACT_URL')
+          value['artifactDigest'] = os.environ.get('ARTIFACT_DIGEST')
+          path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Persist non-pixel evidence manifest
+        id: persist
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/geospatial/dada-temples-36-evidence-manifest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Record transient Dada temple evidence package [skip ci]'
+          for attempt in 1 2 3 4; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Delete local video and frame pixels
+        id: cleanup
+        if: always()
+        run: |
+          rm -rf /tmp/dada-temples-36-video /tmp/dada-temples-36-evidence
+          test ! -e /tmp/dada-temples-36-video
+          test ! -e /tmp/dada-temples-36-evidence
+          find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' -o -name '*.jpg' \) -not -path './assets/*' -delete
+
+      - name: Record transient evidence workflow outcome
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
+          DEPENDENCIES_OUTCOME: ${{ steps.dependencies.outcome }}
+          DOWNLOAD_OUTCOME: ${{ steps.download.outcome }}
+          EXTRACT_OUTCOME: ${{ steps.extract.outcome }}
+          GATE_OUTCOME: ${{ steps.gate.outcome }}
+          UPLOAD_OUTCOME: ${{ steps.upload.outcome }}
+          FINALIZE_OUTCOME: ${{ steps.finalize.outcome }}
+          PERSIST_OUTCOME: ${{ steps.persist.outcome }}
+          CLEANUP_OUTCOME: ${{ steps.cleanup.outcome }}
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          steps = {
+              'compile': os.environ.get('COMPILE_OUTCOME') or 'not-run',
+              'dependencies': os.environ.get('DEPENDENCIES_OUTCOME') or 'not-run',
+              'download': os.environ.get('DOWNLOAD_OUTCOME') or 'not-run',
+              'extract': os.environ.get('EXTRACT_OUTCOME') or 'not-run',
+              'gate': os.environ.get('GATE_OUTCOME') or 'not-run',
+              'upload': os.environ.get('UPLOAD_OUTCOME') or 'not-run',
+              'finalize': os.environ.get('FINALIZE_OUTCOME') or 'not-run',
+              'persist': os.environ.get('PERSIST_OUTCOME') or 'not-run',
+              'cleanup': os.environ.get('CLEANUP_OUTCOME') or 'not-run',
+          }
+          failed = next((name for name, value in steps.items() if value in {'failure', 'cancelled'}), None)
+          payload = {
+              'schemaVersion': 1,
+              'status': os.environ.get('JOB_STATUS') or 'unknown',
+              'failedStage': failed,
+              'steps': steps,
+              'runId': os.environ.get('GITHUB_RUN_ID'),
+              'triggerSha': os.environ.get('GITHUB_SHA'),
+              'artifactId': os.environ.get('ARTIFACT_ID'),
+              'artifactUrl': os.environ.get('ARTIFACT_URL'),
+              'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+          }
+          Path('/tmp/dada-temples-36-evidence-workflow.json').write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data/batch-analysis
+            cp /tmp/dada-temples-36-evidence-workflow.json data/batch-analysis/dada-temples-36-evidence-workflow.json
+            git add data/batch-analysis/dada-temples-36-evidence-workflow.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Record transient Dada temple evidence outcome [skip ci]'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
