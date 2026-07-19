@@ -1,23 +1,30 @@
 {
   "schemaVersion": 2,
-  "batchId": "eleven-shancheng-pilot-scan-v4",
+  "batchId": "eleven-shancheng-pilot-scan-v7",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "山城",
-  "updatedAt": "2026-07-19T16:59:59.910455Z",
-  "phase": "progress",
-  "activeItem": null,
+  "updatedAt": "2026-07-19T17:32:05.392697Z",
+  "phase": "running",
+  "activeItem": {
+    "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p020",
+    "sequence": 20,
+    "page": 20,
+    "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P20 第20期：山城（收集1）",
+    "startedAt": "2026-07-19T17:32:05.392272Z",
+    "attemptCount": 1
+  },
   "complete": false,
   "summary": {
     "total": 3,
     "imported": 2,
-    "running": 0,
+    "running": 1,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
     "remaining": 1,
     "attemptedThisRun": 1,
-    "newlyImportedThisRun": 1
+    "newlyImportedThisRun": 0
   },
   "items": [
     {
@@ -46,29 +53,14 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p020",
       "sequence": 20,
       "page": 20,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
+      "state": "running",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-19T17:32:05.392272Z",
       "lastFinishedAt": null,
       "resultPath": null,
       "error": null
     }
   ],
-  "events": [
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p021",
-      "sequence": 21,
-      "page": 21,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P21 第21期：山城（收集2）",
-      "startedAt": "2026-07-19T16:48:35.217225Z",
-      "attemptCount": 2,
-      "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p021.json status=analyzed\n\n",
-      "analysisStatus": "analyzed",
-      "indexReturnCode": 0,
-      "completed": true,
-      "finishedAt": "2026-07-19T16:59:59.905140Z"
-    }
-  ],
+  "events": [],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
 }
