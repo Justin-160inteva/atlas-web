@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 import sys
 from datetime import datetime, timezone
 from typing import Any
@@ -37,11 +38,9 @@ def write(path: pathlib.Path, value: Any) -> None:
 
 def safe_error(value: Any) -> str:
     text = str(value or "").replace("\x00", "")
-    lowered = text.lower()
-    for marker in ("authorization: bearer", "set-cookie", "cookie=", "https://", "http://", "/tmp/"):
-        if marker in lowered:
-            text = "Sensitive transport detail removed. " + text[-6000:]
-            break
+    text = re.sub(r"https?://\S+", "[url-redacted]", text, flags=re.IGNORECASE)
+    text = re.sub(r"(?i)(authorization|cookie|token)\s*[:=]\s*\S+", r"\1=[redacted]", text)
+    text = re.sub(r"/tmp/\S+", "[temporary-path-redacted]", text)
     return text[-12000:]
 
 
@@ -52,8 +51,7 @@ def match_entry(error: str, dictionary: dict[str, Any]) -> tuple[dict[str, Any] 
         for pattern in entry.get("patterns", []):
             needle = str(pattern).lower()
             if needle and needle in lowered:
-                score = len(needle) + (1000 if not entry.get("retryable", False) else 0)
-                matches.append((score, entry, pattern))
+                matches.append((len(needle), entry, pattern))
     if not matches:
         return None, "no known signature"
     _, entry, pattern = max(matches, key=lambda item: item[0])
