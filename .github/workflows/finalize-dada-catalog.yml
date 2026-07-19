@@ -1,0 +1,130 @@
+name: Finalize Dada catalog integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/finalize_dada_catalog.py'
+      - '.github/workflows/finalize-dada-catalog.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finalize-dada-catalog-integrity
+  cancel-in-progress: true
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile final integrity tool
+        id: compile
+        run: python -m py_compile tools/finalize_dada_catalog.py
+
+      - name: Rebuild summaries and final integrity evidence
+        id: finalize
+        run: python tools/finalize_dada_catalog.py --apply --fail-on-error
+
+      - name: Run 400-round final catalog gate
+        id: gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          for _ in range(400):
+              report = json.loads(Path('data/batch-analysis/dada-final-integrity.json').read_text(encoding='utf-8'))
+              catalog = json.loads(Path('data/dada-ac-shadows-catalog.json').read_text(encoding='utf-8'))
+              status = json.loads(Path('data/batch-analysis/dada-author-catalog-status.json').read_text(encoding='utf-8'))
+              queue = json.loads(Path('data/analysis-jobs/dada-quality-reprocess.json').read_text(encoding='utf-8'))
+              audit = json.loads(Path('data/batch-analysis/dada-catalog-quality-audit.json').read_text(encoding='utf-8'))
+
+              assert report['status'] == 'pass'
+              assert report['summary']['catalogItems'] == 23
+              assert report['summary']['failed'] == 0
+              assert report['summary']['namedSequences'] == list(range(1, 24))
+              assert report['summary']['exactUrlSequences'] == list(range(1, 24))
+              assert report['summary']['importedSequences'] == list(range(1, 24))
+              assert report['summary']['duplicateBvidGroups'] == []
+              assert catalog['catalogStatus']['confirmedNumberedEntries'] == 23
+              assert catalog['catalogStatus']['namedEntries'] == 23
+              assert catalog['catalogStatus']['pendingTitleVerification'] == []
+              assert catalog['catalogStatus']['exactVideoUrlsVerified'] == list(range(1, 24))
+              assert catalog['catalogStatus']['analysisImported'] == 23
+              assert catalog['catalogStatus']['analysisRemaining'] == 0
+              assert catalog['catalogStatus']['analysisComplete'] is True
+              assert catalog['catalogStatus']['integrityVerifiedAt']
+              assert status['complete'] is True
+              assert status['summary']['total'] == 23
+              assert status['summary']['imported'] == 23
+              assert status['summary']['remaining'] == 0
+              assert queue['sequences'] == []
+              assert queue['items'] == []
+              assert audit['qualityComplete'] is True
+              assert audit['summary']['critical'] == 0
+          PY
+
+      - name: Persist final Dada integrity state
+        id: persist
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/dada-ac-shadows-catalog.json
+          git add data/batch-analysis/dada-author-catalog-status.json
+          git add data/batch-analysis/dada-final-integrity.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Finalize Dada catalog integrity [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Record finalization outcome
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
+          FINALIZE_OUTCOME: ${{ steps.finalize.outcome }}
+          GATE_OUTCOME: ${{ steps.gate.outcome }}
+          PERSIST_OUTCOME: ${{ steps.persist.outcome }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          steps = {
+              'compile': os.environ.get('COMPILE_OUTCOME') or 'not-run',
+              'finalize': os.environ.get('FINALIZE_OUTCOME') or 'not-run',
+              'gate': os.environ.get('GATE_OUTCOME') or 'not-run',
+              'persist': os.environ.get('PERSIST_OUTCOME') or 'not-run',
+          }
+          failed = next((name for name, value in steps.items() if value in {'failure', 'cancelled'}), None)
+          payload = {
+              'schemaVersion': 1,
+              'status': os.environ.get('JOB_STATUS') or 'unknown',
+              'failedStage': failed,
+              'steps': steps,
+              'runId': os.environ.get('GITHUB_RUN_ID'),
+              'triggerSha': os.environ.get('GITHUB_SHA'),
+              'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+          }
+          Path('data/batch-analysis/dada-finalization-state.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/batch-analysis/dada-finalization-state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Record Dada finalization outcome [skip ci]'
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
