@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 1,
-  "version": "0.9.4.2",
-  "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.2",
-  "cacheNamespace": "atlas-alpha-0942-pages-v1",
+  "schemaVersion": 2,
+  "version": "0.9.4.3",
+  "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.3",
+  "cacheNamespace": "atlas-alpha-0943-pages-v1",
   "entrypoint": "index.html",
   "releaseOwner": "atlas-bootstrap.js",
   "serviceWorker": "sw.js",
@@ -31,5 +31,19 @@
     "allowMultipleFetchOverrides": false,
     "requireIpadCompositorPath": true,
     "requireServiceWorkerUpgradeSimulation": true
+  },
+  "qualityBudget": {
+    "maxCritical": 0,
+    "maxHigh": 0,
+    "maxWarnings": 25,
+    "maxRiskScore": 50,
+    "policy": "ratchet-only: existing debt may decrease but must never increase"
+  },
+  "verification": {
+    "browserChecksMin": 200,
+    "browserChecksMax": 500,
+    "requirePublicDeployment": true,
+    "requirePhysicalIpad": true,
+    "rejectPaddedAssertionCounts": true
   }
 }
