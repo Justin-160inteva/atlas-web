@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION='0.9.3.6';
+  const VERSION='0.9.3.7';
   const root=document.documentElement;
   const groups=[];
   let frame=0;
@@ -14,8 +14,8 @@
 
   function stampVersion(){
     const brand=document.querySelector('.brand-copy small');
-    if(brand&&brand.textContent!=="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.6"){
-      brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.6";
+    if(brand&&brand.textContent!=="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.7"){
+      brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.7";
     }
   }
 
@@ -47,6 +47,49 @@
     };
   }
 
+  function animateVertical(group,next){
+    const {indicator}=group;
+    const target=`translate3d(${next.x}px,${next.y}px,0)`;
+
+    indicator.style.setProperty('--liquid-x',`${next.x}px`);
+    indicator.style.setProperty('--liquid-y',`${next.y}px`);
+    indicator.style.setProperty('--liquid-w',`${next.width}px`);
+    indicator.style.setProperty('--liquid-h',`${next.height}px`);
+
+    if(!group.ready||matchMedia('(prefers-reduced-motion: reduce)').matches){
+      group.animation?.cancel();
+      indicator.style.transform=target;
+      group.x=next.x;
+      group.y=next.y;
+      group.ready=true;
+      requestAnimationFrame(()=>indicator.classList.add('is-ready'));
+      return;
+    }
+
+    if(group.x===next.x&&group.y===next.y)return;
+
+    const computed=getComputedStyle(indicator).transform;
+    group.animation?.cancel();
+    group.animation=indicator.animate(
+      [
+        {transform:computed==='none'?`translate3d(${group.x}px,${group.y}px,0)`:computed},
+        {transform:target}
+      ],
+      {
+        duration:210,
+        easing:'cubic-bezier(.22,.82,.2,1)',
+        fill:'forwards'
+      }
+    );
+    group.animation.onfinish=()=>{
+      indicator.style.transform=target;
+      group.animation?.cancel();
+      group.animation=null;
+    };
+    group.x=next.x;
+    group.y=next.y;
+  }
+
   function placeIndicator(group){
     const {container,indicator}=group;
     const active=container.querySelector('button.active');
@@ -58,6 +101,11 @@
     const containerRect=container.getBoundingClientRect();
     const activeRect=active.getBoundingClientRect();
     const next=geometry(group,containerRect,activeRect);
+
+    if(group.name==='vertical'){
+      animateVertical(group,next);
+      return;
+    }
 
     indicator.style.setProperty('--liquid-x',`${next.x}px`);
     indicator.style.setProperty('--liquid-y',`${next.y}px`);
@@ -91,13 +139,13 @@
     indicator.setAttribute('aria-hidden','true');
     container.prepend(indicator);
 
-    const group={container,indicator,name,width:-1,height:-1};
+    const group={container,indicator,name,width:-1,height:-1,x:0,y:0,ready:false,animation:null};
     groups.push(group);
 
     container.addEventListener('pointerdown',event=>{
       const button=event.target.closest('button');
       if(!button||!container.contains(button))return;
-      indicator.classList.add('is-pressed');
+      if(name!=='vertical')indicator.classList.add('is-pressed');
     },{passive:true});
 
     container.addEventListener('pointerup',()=>{
@@ -150,5 +198,3 @@
     init();
   }
 })();
-
-// Validation trigger: Alpha 0.9.3.6 restores the base liquid layer before refinements.
