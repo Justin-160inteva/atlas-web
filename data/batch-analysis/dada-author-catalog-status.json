@@ -3,7 +3,7 @@
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "authorizationId": "auth-dada-20260718",
-  "updatedAt": "2026-07-19T08:34:13.030741Z",
+  "updatedAt": "2026-07-19T08:58:35.432332Z",
   "complete": true,
   "summary": {
     "total": 23,
@@ -11,8 +11,8 @@
     "failed": 0,
     "unresolved": 0,
     "remaining": 0,
-    "attemptedThisRun": 0,
-    "newlyImportedThisRun": 0
+    "attemptedThisRun": 1,
+    "newlyImportedThisRun": 1
   },
   "items": [
     {
@@ -144,28 +144,35 @@
       "title": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）",
       "url": "https://www.bilibili.com/video/BV13ioXYEE8d/",
       "state": "imported",
-      "attemptCount": 1,
+      "attemptCount": 2,
       "resultPath": "data/analysis-results/dada-06.json",
       "lastAttempt": {
         "externalSourceId": "bili-dada-acshadows-06",
         "sequence": 6,
-        "startedAt": "2026-07-18T23:15:35.490921Z",
+        "startedAt": "2026-07-19T08:55:53.570623Z",
         "resolution": {
-          "url": "https://www.bilibili.com/video/BV1eeZ7YdEDs/",
-          "bvid": "BV1eeZ7YdEDs",
-          "title": "【刺客信条影 新手攻略】05 骑射试炼（解锁技能）",
+          "url": "https://www.bilibili.com/video/BV13ioXYEE8d/",
+          "bvid": "BV13ioXYEE8d",
+          "title": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）",
           "author": "不再犹豫的达达猪",
-          "duration": "2:51",
-          "score": 197.895,
-          "source": "bilibili-search-api",
-          "query": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）"
+          "score": 1000,
+          "source": "verified-catalog-source"
         },
         "analyzerReturnCode": 0,
         "analyzerOutput": "analysis result written: data/analysis-results/dada-06.json status=analyzed\n\n",
         "analysisStatus": "analyzed",
         "indexReturnCode": 0,
         "completed": true,
-        "finishedAt": "2026-07-18T23:19:09.655453Z"
+        "resultChecks": {
+          "statusAnalyzed": true,
+          "authorExact": true,
+          "titleExact": true,
+          "bvidExact": true,
+          "durationWithinTolerance": true,
+          "originalVideoDeleted": true,
+          "framePixelsDeleted": true
+        },
+        "finishedAt": "2026-07-19T08:58:35.432332Z"
       },
       "verifiedResolution": {
         "bvid": "BV13ioXYEE8d",

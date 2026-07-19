@@ -1,24 +1,22 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T08:12:44.162832+00:00",
+  "generatedAt": "2026-07-19T08:58:35.516860+00:00",
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "pipelineComplete": true,
   "qualityComplete": false,
   "summary": {
     "catalogItems": 23,
-    "critical": 13,
-    "warnings": 6,
-    "affectedCount": 8,
-    "canonicalRetainedCount": 3,
+    "critical": 10,
+    "warnings": 5,
+    "affectedCount": 6,
+    "canonicalRetainedCount": 2,
     "canonicalRetainedSequences": [
-      5,
       9,
       22
     ],
-    "resolutionRequiredCount": 5,
+    "resolutionRequiredCount": 4,
     "resolutionRequiredSequences": [
-      6,
       8,
       12,
       14,
@@ -28,9 +26,8 @@
     "identityRequiredSequences": [
       20
     ],
-    "queueCount": 5,
+    "queueCount": 4,
     "queueSequences": [
-      6,
       8,
       12,
       14,
@@ -62,54 +59,9 @@
       "strongCandidates": [
         22
       ]
-    },
-    {
-      "type": "BVID",
-      "value": "BV1eeZ7YdEDs",
-      "sequences": [
-        5,
-        6
-      ],
-      "canonicalSequence": 5,
-      "strongCandidates": [
-        5
-      ]
     }
   ],
   "findings": [
-    {
-      "severity": "critical",
-      "code": "SEQUENCE_MISMATCH",
-      "sequence": 6,
-      "message": "Expected video 06, resolved title indicates 05",
-      "evidence": {
-        "expectedTitle": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）",
-        "resolvedTitle": "【刺客信条影 新手攻略】05 骑射试炼（解锁技能）",
-        "bvid": "BV1eeZ7YdEDs"
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "TITLE_TOPIC_MISMATCH",
-      "sequence": 6,
-      "message": "Resolved title topic differs from catalog title",
-      "evidence": {
-        "expectedTitle": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）",
-        "resolvedTitle": "【刺客信条影 新手攻略】05 骑射试炼（解锁技能）",
-        "overlap": 0.0,
-        "bvid": "BV1eeZ7YdEDs"
-      }
-    },
-    {
-      "severity": "warning",
-      "code": "LOW_MATCH_SCORE",
-      "sequence": 6,
-      "message": "Match score is only 197.895",
-      "evidence": {
-        "score": 197.895,
-        "bvid": "BV1eeZ7YdEDs"
-      }
-    },
     {
       "severity": "critical",
       "code": "SEQUENCE_MISMATCH",
@@ -320,38 +272,6 @@
           22
         ],
         "canonicalSequence": 22
-      }
-    },
-    {
-      "severity": "info",
-      "code": "DUPLICATE_CANONICAL_RETAINED",
-      "sequence": 5,
-      "message": "BVID duplicate group [5, 6] has canonical sequence 05; keep it and resolve the others",
-      "evidence": {
-        "duplicateType": "BVID",
-        "duplicateValue": "BV1eeZ7YdEDs",
-        "sequences": [
-          5,
-          6
-        ],
-        "canonicalSequence": 5,
-        "suspectSequences": [
-          6
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID_MISASSIGNED",
-      "sequence": 6,
-      "message": "BVID belongs to canonical sequence 05, not sequence 06",
-      "evidence": {
-        "duplicateValue": "BV1eeZ7YdEDs",
-        "sequences": [
-          5,
-          6
-        ],
-        "canonicalSequence": 5
       }
     }
   ]

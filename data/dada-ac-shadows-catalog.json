@@ -23,7 +23,7 @@
     "analysisImported": 23,
     "analysisRemaining": 0,
     "analysisComplete": true,
-    "analysisUpdatedAt": "2026-07-19T08:34:13.030741Z"
+    "analysisUpdatedAt": "2026-07-19T08:58:35.432332Z"
   },
   "futureInclusionRule": {
     "enabled": true,
@@ -231,14 +231,29 @@
       "resolvedTitle": "【刺客信条影 新手攻略】06 秘道试炼（解锁技能）",
       "analysisStatus": "imported",
       "analysisResultPath": "data/analysis-results/dada-06.json",
-      "analysisUpdatedAt": "2026-07-18T23:19:09.655443Z",
-      "analysisQualityStatus": "stale-wrong-source-pending-reprocess",
+      "analysisUpdatedAt": "2026-07-19T08:58:35.432332Z",
+      "analysisQualityStatus": "verified-correct-source",
       "resolutionEvidence": {
         "method": "author-collection-plus-video-view",
         "authorMid": 3493082095946091,
         "collectionId": 5059842,
         "durationSeconds": 107,
         "verifiedAt": "2026-07-19T08:37:58.050306+00:00"
+      },
+      "analysisVerification": {
+        "verifiedBvid": "BV13ioXYEE8d",
+        "verifiedAt": "2026-07-19T08:58:35.432332Z",
+        "resultChecks": {
+          "statusAnalyzed": true,
+          "authorExact": true,
+          "titleExact": true,
+          "bvidExact": true,
+          "durationWithinTolerance": true,
+          "originalVideoDeleted": true,
+          "framePixelsDeleted": true
+        },
+        "replacesJobId": "dada-06-v1",
+        "replacementJobId": "dada-06-v2-correct-source"
       }
     },
     {

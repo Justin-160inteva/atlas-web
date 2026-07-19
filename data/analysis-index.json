@@ -1,42 +1,7 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-19T00:28:38.730038Z",
+  "updatedAt": "2026-07-19T08:58:35.426442Z",
   "items": [
-    {
-      "id": "analysis-dada-06-v1",
-      "jobId": "dada-06-v1",
-      "externalSourceId": "bili-dada-acshadows-06",
-      "authorizationId": "auth-dada-20260718",
-      "author": "不再犹豫的达达猪",
-      "title": "【刺客信条影 新手攻略】05 骑射试炼（解锁技能）",
-      "status": "imported",
-      "resultPath": "data/analysis-results/dada-06.json",
-      "resultSha256": "28b4cf03f9a866e808fe9b92c3deefc2918d9d04b289f48b2b690bbdf0385eee",
-      "generatedAt": "2026-07-18T23:19:09.580526Z",
-      "media": {
-        "durationSeconds": 170.866,
-        "width": 1280,
-        "height": 720,
-        "fps": 30.0,
-        "videoRetained": false,
-        "framePixelsRetained": false
-      },
-      "scan": {
-        "sampled": 171,
-        "kept": 49,
-        "blurred": 0,
-        "duplicates": 122,
-        "keepRatio": 0.28655
-      },
-      "pipeline": {
-        "sourceDownloaded": true,
-        "numericDescriptorsGenerated": true,
-        "resultCommitted": true,
-        "libraryImported": true,
-        "geospatialAnchoringCompleted": false
-      },
-      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
-    },
     {
       "id": "analysis-dada-05-v1",
       "jobId": "dada-05-v1",
@@ -761,6 +726,41 @@
         "blurred": 0,
         "duplicates": 186,
         "keepRatio": 0.287356
+      },
+      "pipeline": {
+        "sourceDownloaded": true,
+        "numericDescriptorsGenerated": true,
+        "resultCommitted": true,
+        "libraryImported": true,
+        "geospatialAnchoringCompleted": false
+      },
+      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
+    },
+    {
+      "id": "analysis-dada-06-v2-correct-source",
+      "jobId": "dada-06-v2-correct-source",
+      "externalSourceId": "bili-dada-acshadows-06",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）",
+      "status": "imported",
+      "resultPath": "data/analysis-results/dada-06.json",
+      "resultSha256": "81645cd6375f95f12902c391cab00e8e917302efbfdd53a635351a3e27f32f05",
+      "generatedAt": "2026-07-19T08:58:35.358905Z",
+      "media": {
+        "durationSeconds": 106.266,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 107,
+        "kept": 18,
+        "blurred": 0,
+        "duplicates": 89,
+        "keepRatio": 0.168224
       },
       "pipeline": {
         "sourceDownloaded": true,
