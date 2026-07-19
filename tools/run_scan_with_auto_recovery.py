@@ -3,6 +3,7 @@
 
 A failure is diagnosed in the same GitHub Actions job. Safe deterministic failures are
 retried after their prescribed cooldown; unsafe or unknown failures stop for review.
+Recovery decisions are published immediately as sanitized runtime progress.
 """
 from __future__ import annotations
 
@@ -14,6 +15,8 @@ import sys
 import time
 from datetime import datetime, timezone
 from typing import Any
+
+from publish_runtime_progress import emit as emit_runtime_progress
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 REPORT_PATH = ROOT / "data/batch-analysis/eleven-pilot-orchestration-report.json"
@@ -47,6 +50,41 @@ def safe_output(value: str) -> str:
 
 def run(command: list[str], timeout: int) -> subprocess.CompletedProcess[str]:
     return subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+
+
+def recovery_job(queue: dict[str, Any], recovery: dict[str, Any]) -> dict[str, Any]:
+    external_id = recovery.get("activeExternalSourceId")
+    item = next((entry for entry in queue.get("items", []) if entry.get("externalSourceId") == external_id), None)
+    if not item:
+        return {}
+    page = int(item.get("page") or item.get("sequence") or 0)
+    return load(ROOT / f"data/analysis-jobs/eleven-p{page:03d}.json", {})
+
+
+def publish_recovery(queue: dict[str, Any], recovery: dict[str, Any], *, terminal: bool = False) -> None:
+    job = recovery_job(queue, recovery)
+    if not job:
+        return
+    action = str(recovery.get("action") or "none")
+    entry = str(recovery.get("dictionaryEntryId") or recovery.get("category") or "unknown")
+    delay = max(0, int(recovery.get("retryDelaySeconds") or 0))
+    if terminal:
+        state = "blocked"
+        message = f"自动调查完成：{entry}；该问题不允许自动修复，已停止并等待人工检查"
+    else:
+        state = "recovery"
+        suffix = f"，{delay}秒安全冷却后重试" if delay else "，立即重新尝试"
+        message = f"自动调查完成：{entry}；执行 {action}{suffix}"
+    emit_runtime_progress(
+        job,
+        stage="recovery",
+        progress_percent=2,
+        message=message,
+        sampled_frames=0,
+        target_frames=int(job.get("maxSamples") or 1),
+        state=state,
+        force=True,
+    )
 
 
 def main() -> int:
@@ -90,6 +128,7 @@ def main() -> int:
 
         diagnosis = run([sys.executable, "tools/diagnose_and_recover_scan_v2.py", manifest_arg], 180)
         recovery = load(RECOVERY_PATH, {})
+        queue = load(queue_path, queue)
         cycle_report["diagnosisReturnCode"] = diagnosis.returncode
         cycle_report["dictionaryEntryId"] = recovery.get("dictionaryEntryId")
         cycle_report["action"] = recovery.get("action")
@@ -98,9 +137,11 @@ def main() -> int:
         cycles.append(cycle_report)
 
         if not recovery.get("retryScheduled"):
+            publish_recovery(queue, recovery, terminal=True)
             final_state = "human_review_required" if recovery.get("requiresHumanReview") else "unrecoverable"
             break
 
+        publish_recovery(queue, recovery)
         delay = min(900, max(0, int(recovery.get("retryDelaySeconds") or 0)))
         if delay:
             print(f"safe recovery cooldown: {delay} seconds", flush=True)
