@@ -4,20 +4,20 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P07-P11",
-  "updatedAt": "2026-07-19T22:07:36.335319Z",
-  "phase": "retryable_failure",
+  "updatedAt": "2026-07-19T23:03:17.216457Z",
+  "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 5,
-    "imported": 2,
+    "imported": 3,
     "running": 0,
-    "failed": 1,
+    "failed": 0,
     "blocked": 0,
-    "retryableFailed": 1,
-    "remaining": 3,
+    "retryableFailed": 0,
+    "remaining": 2,
     "attemptedThisRun": 1,
-    "newlyImportedThisRun": 0
+    "newlyImportedThisRun": 1
   },
   "items": [
     {
@@ -46,12 +46,12 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p009",
       "sequence": 9,
       "page": 9,
-      "state": "failed",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-19T22:02:40.510781Z",
-      "lastFinishedAt": "2026-07-19T22:07:36.329140Z",
-      "resultPath": null,
-      "error": "RuntimeError('OpenCV could not open the downloaded video')"
+      "state": "imported",
+      "attemptCount": 2,
+      "lastStartedAt": "2026-07-19T23:01:40.870677Z",
+      "lastFinishedAt": "2026-07-19T23:03:17.210653Z",
+      "resultPath": "data/analysis-results/eleven-p009.json",
+      "error": null
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p010",
@@ -82,15 +82,14 @@
       "sequence": 9,
       "page": 9,
       "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P09 第9期：浩劫前夕（九字真言）",
-      "startedAt": "2026-07-19T22:02:40.510781Z",
-      "attemptCount": 1,
+      "startedAt": "2026-07-19T23:01:40.870677Z",
+      "attemptCount": 2,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p009.json status=failed\n\n",
-      "analysisStatus": "failed",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p009.json status=analyzed\n\n[h264 @ 0x5619affb3d40] Invalid NAL unit size (839091015 > 1096).\n[h264 @ 0x5619affb3d40] missing picture in access unit with size 1100\n[h264 @ 0x5619b0091140] Invalid NAL unit size (839091015 > 1096).\n[h264 @ 0x5619b0091140] Error splitting the input into NAL units.\n[h264 @ 0x5619affb3d40] Invalid NAL unit size (-1958508173 > 671).\n[h264 @ 0x5619affb3d40] missing picture in access unit with size 675\n[h264 @ 0x5619b003b100] Invalid NAL unit size (-1958508173 > 671).\n[h264 @ 0x5619b003b100] Error splitting the input into NAL units.\n[h264 @ 0x5619affb3d40] Invalid NAL unit size (-1598391917 > 1031).\n[h264 @ 0x5619affb3d40] missing picture in access unit with size 1035\n[h264 @ 0x5619b005c200] Invalid NAL unit size (-1598391917 > 1031).\n[h264 @ 0x5619b005c200] Error splitting the input into NAL units.\n[h264 @ 0x5619affb3d40] Invalid NAL unit size (-279987650 > 1698).\n[h264 @ 0x5619affb3d40] missing picture in access unit with size 1702\n[h264 @ 0x5619b049e540] Invalid NAL unit size (-279987650 > 1698).\n[h264 @ 0x5619b049e540] Error splitting the input into NAL units.\n[h264 @ 0x5619affb3d40] Invalid NAL unit size (320993707 > 40).\n[h264 @ 0x5619affb3d40] missing picture in access unit with size 44\n[h264 @ 0x5619b0091140] Invalid NAL unit size (320993707 > 40).\n[h264 @ 0x5619b0091140] Error splitting the input into NAL units.\n",
+      "analysisStatus": "analyzed",
       "indexReturnCode": 0,
-      "completed": false,
-      "error": "RuntimeError('OpenCV could not open the downloaded video')",
-      "finishedAt": "2026-07-19T22:07:36.329140Z"
+      "completed": true,
+      "finishedAt": "2026-07-19T23:03:17.210653Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
