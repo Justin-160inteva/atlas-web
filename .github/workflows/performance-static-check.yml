@@ -1,4 +1,4 @@
-name: Performance typography and UI static check
+name: Performance typography UI and route static check
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
       - 'atlas-typography-093.css'
       - 'atlas-ui-fix-0931.js'
       - 'atlas-ui-fix-0931.css'
+      - 'atlas-smart-route-0932.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
@@ -21,6 +22,7 @@ on:
       - 'atlas-typography-093.css'
       - 'atlas-ui-fix-0931.js'
       - 'atlas-ui-fix-0931.css'
+      - 'atlas-smart-route-0932.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
@@ -52,6 +54,7 @@ jobs:
         run: |
           npx --yes postcss-cli@11.0.1 atlas-typography-093.css --output /tmp/atlas-typography-093.css
           npx --yes postcss-cli@11.0.1 atlas-ui-fix-0931.css --output /tmp/atlas-ui-fix-0931.css
+          npx --yes postcss-cli@11.0.1 atlas-smart-route-0932.css --output /tmp/atlas-smart-route-0932.css
       - name: Verify runtime assets and policy
         run: |
           grep -q "performance-092.js" sw.js
@@ -59,7 +62,9 @@ jobs:
           grep -q "atlas-typography-093.css" sw.js
           grep -q "atlas-ui-fix-0931.js" sw.js
           grep -q "atlas-ui-fix-0931.css" sw.js
+          grep -q "atlas-smart-route-0932.css" sw.js
           grep -q "atlas-ui-fix-0931.js" atlas-analysis-import.js
           grep -q "atlas-ui-fix-0931.css" atlas-analysis-import.js
-          grep -q "0.9.3.1" atlas-analysis-import.js
+          grep -q "atlas-smart-route-0932.css" atlas-analysis-import.js
+          grep -q "0.9.3.2" atlas-analysis-import.js
           grep -q "does not bundle, extract, redistribute" FONT-LICENSES.md
