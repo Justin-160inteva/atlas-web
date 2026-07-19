@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-19T18:53:30Z",
-  "updatedAt": "2026-07-19T18:53:30Z",
-  "status": "queued",
+  "updatedAt": "2026-07-19T19:10:49.903721Z",
+  "status": "progress",
   "pilotRegion": "顺序批次 P01-P03",
   "strategy": "正式生产从P01开始，严格保留原合集顺序；本批只包含P01-P03，每次仅处理一期，完成后自动进入下一期。",
   "items": [
@@ -23,8 +23,13 @@
       "mapUtility": "中高",
       "priority": 74,
       "durationSeconds": 1378,
-      "state": "pending",
-      "attemptCount": 0
+      "state": "imported",
+      "attemptCount": 2,
+      "lastStartedAt": "2026-07-19T19:05:35.857189Z",
+      "lastFinishedAt": "2026-07-19T19:10:49.900460Z",
+      "lastRecoveryAt": "2026-07-19T19:01:34.873214Z",
+      "lastRecoveryAction": "increase_backoff_and_retry_public_api",
+      "resultPath": "data/analysis-results/eleven-p001.json"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p002",

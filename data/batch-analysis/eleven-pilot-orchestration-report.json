@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-19T19:10:49.914808Z",
+  "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
+  "dictionary": "data/scan-bug-dictionary.json",
+  "finalState": "scan_completed_or_progressed",
+  "cycles": [
+    {
+      "cycle": 1,
+      "startedAt": "2026-07-19T18:57:20.460738Z",
+      "finishedAt": "2026-07-19T19:01:34.840468Z",
+      "scannerReturnCode": 0,
+      "scannerTimeoutSeconds": 5700,
+      "imported": 0,
+      "failed": 1,
+      "running": 0,
+      "scannerOutput": "{\"total\": 3, \"imported\": 0, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 3}\n\n",
+      "diagnosisReturnCode": 0,
+      "dictionaryEntryId": "bilibili-http-412",
+      "action": "increase_backoff_and_retry_public_api",
+      "retryScheduled": true,
+      "requiresHumanReview": false
+    },
+    {
+      "cycle": 2,
+      "startedAt": "2026-07-19T19:05:35.811135Z",
+      "finishedAt": "2026-07-19T19:10:49.914760Z",
+      "scannerReturnCode": 0,
+      "scannerTimeoutSeconds": 5700,
+      "imported": 1,
+      "failed": 0,
+      "running": 0,
+      "scannerOutput": "{\"total\": 3, \"imported\": 1, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 2}\n\n"
+    }
+  ],
+  "safety": {
+    "maximumCycles": 3,
+    "sourceCodeModifiedAutomatically": false,
+    "authorizationBroadened": false,
+    "mediaRetentionChanged": false,
+    "queueScopeExpanded": false
+  }
+}

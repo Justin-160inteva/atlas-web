@@ -4,31 +4,31 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P01-P03",
-  "updatedAt": "2026-07-19T18:53:30Z",
-  "phase": "queued",
+  "updatedAt": "2026-07-19T19:10:49.906053Z",
+  "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 3,
-    "imported": 0,
+    "imported": 1,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 3,
-    "attemptedThisRun": 0,
-    "newlyImportedThisRun": 0
+    "remaining": 2,
+    "attemptedThisRun": 1,
+    "newlyImportedThisRun": 1
   },
   "items": [
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p001",
       "sequence": 1,
       "page": 1,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 2,
+      "lastStartedAt": "2026-07-19T19:05:35.857189Z",
+      "lastFinishedAt": "2026-07-19T19:10:49.900460Z",
+      "resultPath": "data/analysis-results/eleven-p001.json",
       "error": null
     },
     {
@@ -54,6 +54,21 @@
       "error": null
     }
   ],
-  "events": [],
+  "events": [
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p001",
+      "sequence": 1,
+      "page": 1,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P01 第1期：战火纷飞",
+      "startedAt": "2026-07-19T19:05:35.857189Z",
+      "attemptCount": 2,
+      "analyzerReturnCode": 0,
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p001.json status=analyzed\n\n",
+      "analysisStatus": "analyzed",
+      "indexReturnCode": 0,
+      "completed": true,
+      "finishedAt": "2026-07-19T19:10:49.900460Z"
+    }
+  ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
 }
