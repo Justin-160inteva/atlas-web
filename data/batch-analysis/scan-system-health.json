@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-19T18:30:57.375338Z",
+  "status": "pass",
+  "summary": {
+    "total": 25,
+    "passed": 25,
+    "failed": 0
+  },
+  "dictionaryVersion": "2026.07.19.1",
+  "checks": [
+    {
+      "name": "bug_dictionary_size",
+      "passed": true,
+      "detail": "18 entries"
+    },
+    {
+      "name": "bug_dictionary_unique_ids",
+      "passed": true,
+      "detail": "all IDs unique"
+    },
+    {
+      "name": "bug_dictionary_patterns",
+      "passed": true,
+      "detail": "all entries have signatures"
+    },
+    {
+      "name": "bug_dictionary_actions",
+      "passed": true,
+      "detail": "all entries have actions"
+    },
+    {
+      "name": "bug_dictionary_layer_coverage",
+      "passed": true,
+      "detail": "layers=['analysis', 'http-client', 'identity', 'media', 'network', 'orchestration', 'progress-publish', 'runner', 'safety', 'source-download', 'source-metadata']"
+    },
+    {
+      "name": "minute_heartbeat_manifest",
+      "passed": true,
+      "detail": "manifest heartbeat is 60 seconds"
+    },
+    {
+      "name": "download_telemetry_manifest",
+      "passed": true,
+      "detail": "download telemetry is 60 seconds"
+    },
+    {
+      "name": "v10_compatibility_adapter",
+      "passed": true,
+      "detail": "explicit response closing adapter enabled"
+    },
+    {
+      "name": "bounded_queue",
+      "passed": true,
+      "detail": "one item per run, at most three queued"
+    },
+    {
+      "name": "retention_policy",
+      "passed": true,
+      "detail": "media and frame pixels are not retained"
+    },
+    {
+      "name": "monitor_fast_poll",
+      "passed": true,
+      "detail": "monitor reads every 10 seconds"
+    },
+    {
+      "name": "monitor_heartbeat_window",
+      "passed": true,
+      "detail": "minute heartbeat has bounded health thresholds"
+    },
+    {
+      "name": "monitor_version",
+      "passed": true,
+      "detail": "health guard uses v0.3.1"
+    },
+    {
+      "name": "monitor_schema_guard",
+      "passed": true,
+      "detail": "malformed runtime payloads are rejected"
+    },
+    {
+      "name": "monitor_cache_generation",
+      "passed": true,
+      "detail": "service worker cache generation updated"
+    },
+    {
+      "name": "publisher_conflict_retry",
+      "passed": true,
+      "detail": "GitHub content conflicts refetch SHA and retry"
+    },
+    {
+      "name": "workflow_immediate_recovery",
+      "passed": true,
+      "detail": "failure investigation occurs inside the same job"
+    },
+    {
+      "name": "workflow_generic_region",
+      "passed": true,
+      "detail": "workflow is not hard-coded to one region or exactly three items"
+    },
+    {
+      "name": "dictionary_sample_bilibili-http-412",
+      "passed": true,
+      "detail": "HTTP Error 412: Precondition Failed"
+    },
+    {
+      "name": "dictionary_sample_curl-response-context-manager",
+      "passed": true,
+      "detail": "Response object does not support the context manager protocol"
+    },
+    {
+      "name": "dictionary_sample_ffmpeg-invalid-data",
+      "passed": true,
+      "detail": "Invalid data found when processing input"
+    },
+    {
+      "name": "dictionary_sample_runner-disk-space",
+      "passed": true,
+      "detail": "No space left on device"
+    },
+    {
+      "name": "dictionary_sample_github-contents-conflict",
+      "passed": true,
+      "detail": "409 Conflict sha does not match"
+    },
+    {
+      "name": "dictionary_sample_multipart-page-identity",
+      "passed": true,
+      "detail": "CID mismatch"
+    },
+    {
+      "name": "repository_media_clean",
+      "passed": true,
+      "detail": "media files=0"
+    }
+  ]
+}
