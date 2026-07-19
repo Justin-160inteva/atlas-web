@@ -72,9 +72,17 @@ def main() -> int:
 
     record(checks, "monitor_fast_poll", "FAST_POLL_MS=10000" in monitor and "CHECK_MS=10000" in monitor_health, "monitor reads every 10 seconds")
     record(checks, "monitor_heartbeat_window", "RUNTIME_FRESH_MS=150000" in monitor and "RUNNING_STALE_MS=180000" in monitor and "EXPECTED_HEARTBEAT_SECONDS=60" in monitor_health, "minute heartbeat has bounded health thresholds")
-    record(checks, "monitor_version", "VERSION='0.3.1'" in monitor and "VERSION='0.3.1'" in monitor_health and "scan-monitor.js?v=0.3.1" in monitor_html, "monitor stack uses v0.3.1")
+    record(
+        checks,
+        "monitor_version",
+        "VERSION='0.3.1'" in monitor
+        and "VERSION='0.3.2'" in monitor_health
+        and "scan-monitor.js?v=0.3.1" in monitor_html
+        and "scan-monitor-health.js?v=0.3.2" in monitor_html,
+        "deployed monitor component versions match HTML asset pins",
+    )
     record(checks, "monitor_schema_guard", "validRuntime" in monitor and "invalid runtime schema" in monitor_health and "schemaVersion>=2" in monitor_health, "malformed runtime payloads are rejected")
-    record(checks, "monitor_cache_generation", "monitor-v4" in worker and "scan-monitor-health.js" in worker, "service worker cache generation updated")
+    record(checks, "monitor_cache_generation", "monitor-v5" in worker and "scan-monitor-health.js" in worker, "service worker cache generation matches deployed monitor")
 
     record(checks, "publisher_conflict_retry", "error.code not in {409, 422}" in publisher_text and "ATLAS_PROGRESS_CONFLICT_RETRIES" in publisher_text, "GitHub content conflicts refetch SHA and retry")
     record(checks, "workflow_immediate_recovery", "run_scan_with_auto_recovery.py" in workflow and "diagnose_and_recover_scan_v2.py" in workflow, "failure investigation occurs inside the same job")
@@ -88,7 +96,7 @@ def main() -> int:
         "Invalid data found when processing input": "ffmpeg-invalid-data",
         "No space left on device": "runner-disk-space",
         "409 Conflict sha does not match": "github-contents-conflict",
-        "CID mismatch": "multipart-page-identity"
+        "CID mismatch": "multipart-page-identity",
     }
     for message, expected in sample_expectations.items():
         chosen, _ = recovery.match_entry(message, bugs)
@@ -155,7 +163,7 @@ def main() -> int:
         "status": "pass" if passed == len(checks) else "fail",
         "summary": {"total": len(checks), "passed": passed, "failed": len(checks) - passed},
         "dictionaryVersion": bugs.get("version"),
-        "checks": checks
+        "checks": checks,
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
