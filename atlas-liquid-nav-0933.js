@@ -93,7 +93,7 @@
     root.dataset.atlasLiquidNav=VERSION;
     addEventListener('resize',schedule,{passive:true});
     addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});
-    document.fonts?.ready?.then(schedule).catch(()=>{});
+    document.fonts?.ready?.then(schedule,()=>{});
     setTimeout(schedule,120);
   }
 
