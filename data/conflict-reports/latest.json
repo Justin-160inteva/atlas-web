@@ -1,14 +1,14 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-19T09:45:55.902459+00:00",
+  "generatedAt": "2026-07-19T09:58:26.741927+00:00",
   "release": "0.9.4.2",
-  "status": "review",
-  "riskScore": 66,
+  "status": "pass",
+  "riskScore": 50,
   "summary": {
     "critical": 0,
-    "high": 2,
+    "high": 0,
     "warning": 25,
-    "total": 27
+    "total": 25
   },
   "resourceGraph": {
     "app.js": [
@@ -143,24 +143,6 @@
       }
     },
     {
-      "severity": "high",
-      "code": "CSS_CASCADE_CONFLICT",
-      "message": ".bottom-nav .nav-item::after has multiple content definitions",
-      "files": [
-        "atlas-ipad-nav-0940.css",
-        "atlas-liquid-nav-0933.css",
-        "atlas-ui-fix-0931.css"
-      ],
-      "evidence": {
-        "selector": ".bottom-nav .nav-item::after",
-        "property": "content",
-        "values": [
-          "\"\"",
-          "none!important"
-        ]
-      }
-    },
-    {
       "severity": "warning",
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".bottom-nav .nav-item.active has multiple transform definitions",
@@ -227,24 +209,6 @@
           "none!important",
           "scale(.96)",
           "scale(.97)!important"
-        ]
-      }
-    },
-    {
-      "severity": "high",
-      "code": "CSS_CASCADE_CONFLICT",
-      "message": ".quick-rail .rail-button::after has multiple content definitions",
-      "files": [
-        "atlas-ipad-nav-0940.css",
-        "atlas-liquid-nav-0933.css",
-        "atlas-ui-fix-0931.css"
-      ],
-      "evidence": {
-        "selector": ".quick-rail .rail-button::after",
-        "property": "content",
-        "values": [
-          "\"\"",
-          "none!important"
         ]
       }
     },

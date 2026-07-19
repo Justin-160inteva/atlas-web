@@ -1,9 +1,9 @@
 # Atlas Conflict Report
 
 - Release: **0.9.4.2**
-- Status: **review**
-- Risk score: **66/100**
-- Findings: 27 (0 critical, 2 high, 25 warning)
+- Status: **pass**
+- Risk score: **50/100**
+- Findings: 25 (0 critical, 0 high, 25 warning)
 
 ## WARNING · SW_REGISTRATION_DELEGATED
 
@@ -35,12 +35,6 @@ Files: `atlas-liquid-nav-0933.css`, `atlas-ui-fix-0931.css`
 
 Files: `atlas-liquid-nav-0933.css`, `atlas-liquid-nav-0934.css`, `atlas-ui-fix-0931.css`
 
-## HIGH · CSS_CASCADE_CONFLICT
-
-.bottom-nav .nav-item::after has multiple content definitions
-
-Files: `atlas-ipad-nav-0940.css`, `atlas-liquid-nav-0933.css`, `atlas-ui-fix-0931.css`
-
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .bottom-nav .nav-item.active has multiple transform definitions
@@ -64,12 +58,6 @@ Files: `atlas-liquid-nav-0933.css`, `atlas-ui-fix-0931.css`
 .quick-rail .rail-button:active has multiple transform definitions
 
 Files: `atlas-liquid-nav-0933.css`, `atlas-liquid-nav-0934.css`, `atlas-ui-fix-0931.css`
-
-## HIGH · CSS_CASCADE_CONFLICT
-
-.quick-rail .rail-button::after has multiple content definitions
-
-Files: `atlas-ipad-nav-0940.css`, `atlas-liquid-nav-0933.css`, `atlas-ui-fix-0931.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
