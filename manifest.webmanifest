@@ -1,15 +1,17 @@
 {
+  "id": "./",
   "name": "Atlas · 刺客信条：影互动地图",
   "short_name": "Atlas",
   "description": "刺客信条：影 iPad 优先互动地图",
-  "start_url": "./",
+  "start_url": "./?source=pwa",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
   "background_color": "#11100f",
   "theme_color": "#11100f",
   "orientation": "any",
   "icons": [
-    {"src":"icon-192.png","sizes":"192x192","type":"image/png"},
-    {"src":"icon-512.png","sizes":"512x512","type":"image/png"}
+    {"src":"icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
   ]
 }
