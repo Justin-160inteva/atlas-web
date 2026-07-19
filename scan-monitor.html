@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#0b0b0c" />
   <title>Atlas · 扫描与导入进度</title>
-  <link rel="stylesheet" href="scan-monitor.css?v=0.2.0" />
+  <link rel="stylesheet" href="scan-monitor.css?v=0.3.0" />
 </head>
 <body>
   <main class="monitor-shell">
@@ -25,6 +25,21 @@
         <div class="stat"><b id="attemptCount">0 / 3</b><small>当前尝试次数</small></div>
         <div class="stat"><b id="heartbeatAge">—</b><small>任务数据更新时间</small></div>
       </div>
+    </section>
+
+    <section class="card download-telemetry" id="downloadTelemetry" data-active="false">
+      <div class="card-title"><b>实时下载遥测</b><small>任务端每60秒公开一次</small></div>
+      <div class="telemetry-grid">
+        <div class="telemetry-stat"><b id="downloadedAmount">—</b><small>已下载 / 总大小</small></div>
+        <div class="telemetry-stat"><b id="downloadSpeed">—</b><small>实时平均速度</small></div>
+        <div class="telemetry-stat"><b id="downloadSegment">—</b><small>当前分片 / 总分片</small></div>
+        <div class="telemetry-stat"><b id="downloadEta">—</b><small>预计剩余时间</small></div>
+      </div>
+      <div class="telemetry-label"><span>总下载进度</span></div>
+      <div class="telemetry-track"><i id="downloadBar"></i></div>
+      <div class="telemetry-label"><span>当前分片进度</span></div>
+      <div class="telemetry-track segment"><i id="segmentBar"></i></div>
+      <p id="downloadDetail">等待下载遥测</p>
     </section>
 
     <div class="grid">
@@ -48,8 +63,9 @@
       </section>
     </div>
 
-    <p class="footer">“页面同步时间”代表监控刚刚联网核对；“任务数据更新时间”代表 GitHub Actions 最后一次真正写入任务状态。两者不会再混为同一个时间。</p>
+    <p class="footer">页面每10秒读取一次；下载器在下载期间每60秒至少写入一次脱敏心跳，展示MB、速度、分片和预计剩余时间。</p>
   </main>
-  <script src="scan-monitor.js?v=0.2.0" defer></script>
+  <script src="scan-monitor.js?v=0.3.0" defer></script>
+  <script src="scan-monitor-download.js?v=0.3.0" defer></script>
 </body>
 </html>
