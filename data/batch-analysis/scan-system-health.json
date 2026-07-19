@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-07-19T18:55:59.501199Z",
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-19T18:56:11.213825Z",
   "status": "pass",
   "summary": {
     "total": 33,
@@ -10,164 +10,164 @@
   "dictionaryVersion": "2026.07.19.1",
   "checks": [
     {
-      "name": "dictionary_size",
+      "name": "bug_dictionary_size",
       "passed": true,
       "detail": "18 entries"
     },
     {
-      "name": "dictionary_unique",
+      "name": "bug_dictionary_unique_ids",
       "passed": true,
-      "detail": "unique IDs"
+      "detail": "all IDs unique"
     },
     {
-      "name": "dictionary_patterns",
+      "name": "bug_dictionary_patterns",
       "passed": true,
-      "detail": "all signatures present"
+      "detail": "all entries have signatures"
     },
     {
-      "name": "dictionary_actions",
+      "name": "bug_dictionary_actions",
       "passed": true,
-      "detail": "all actions present"
+      "detail": "all entries have actions"
     },
     {
-      "name": "dictionary_layers",
+      "name": "bug_dictionary_layer_coverage",
       "passed": true,
       "detail": "layers=['analysis', 'http-client', 'identity', 'media', 'network', 'orchestration', 'progress-publish', 'runner', 'safety', 'source-download', 'source-metadata']"
     },
     {
-      "name": "heartbeat_60_seconds",
+      "name": "minute_heartbeat_manifest",
       "passed": true,
-      "detail": "60-second worker heartbeat"
+      "detail": "manifest heartbeat is 60 seconds"
     },
     {
-      "name": "telemetry_60_seconds",
+      "name": "download_telemetry_manifest",
       "passed": true,
-      "detail": "60-second download telemetry"
+      "detail": "download telemetry is 60 seconds"
     },
     {
-      "name": "v10_adapter",
+      "name": "v10_compatibility_adapter",
       "passed": true,
-      "detail": "curl response compatibility"
+      "detail": "explicit response closing adapter enabled"
     },
     {
       "name": "bounded_queue",
       "passed": true,
-      "detail": "one active item and at most three queued"
+      "detail": "one item per run, at most three queued"
     },
     {
-      "name": "retention",
+      "name": "retention_policy",
       "passed": true,
-      "detail": "no retained media pixels"
+      "detail": "media and frame pixels are not retained"
     },
     {
-      "name": "monitor_poll",
+      "name": "monitor_fast_poll",
       "passed": true,
-      "detail": "10-second page checks"
+      "detail": "monitor reads every 10 seconds"
     },
     {
-      "name": "monitor_thresholds",
+      "name": "monitor_heartbeat_window",
       "passed": true,
-      "detail": "60/150/180-second thresholds"
+      "detail": "minute heartbeat has bounded health thresholds"
     },
     {
-      "name": "monitor_versions",
+      "name": "monitor_version",
       "passed": true,
-      "detail": "monitor core and health versions"
+      "detail": "deployed monitor component versions match HTML asset pins"
     },
     {
-      "name": "monitor_schema",
+      "name": "monitor_schema_guard",
       "passed": true,
-      "detail": "runtime and status schema guards"
+      "detail": "malformed runtime payloads are rejected"
     },
     {
-      "name": "monitor_completion_priority",
+      "name": "monitor_cache_generation",
       "passed": true,
-      "detail": "completion overrides stale runtime"
+      "detail": "service worker cache generation matches deployed monitor"
     },
     {
-      "name": "monitor_cache",
+      "name": "publisher_conflict_retry",
       "passed": true,
-      "detail": "cache generation v5"
+      "detail": "GitHub content conflicts refetch SHA and retry"
     },
     {
-      "name": "publisher_conflict_logic",
+      "name": "workflow_immediate_recovery",
       "passed": true,
-      "detail": "fresh-SHA conflict retry"
+      "detail": "failure investigation occurs inside the same job"
     },
     {
-      "name": "same_job_recovery",
+      "name": "workflow_generic_region",
       "passed": true,
-      "detail": "same-job diagnosis"
+      "detail": "workflow is not hard-coded to one region or exactly three items"
     },
     {
-      "name": "generic_region",
+      "name": "live_recovery_status",
       "passed": true,
-      "detail": "not hard-coded to one region"
+      "detail": "diagnosis and retry decisions are published immediately"
     },
     {
-      "name": "live_recovery",
-      "passed": true,
-      "detail": "live recovery state published"
-    },
-    {
-      "name": "match_bilibili-http-412",
+      "name": "dictionary_sample_bilibili-http-412",
       "passed": true,
       "detail": "HTTP Error 412: Precondition Failed"
     },
     {
-      "name": "match_curl-response-context-manager",
+      "name": "dictionary_sample_curl-response-context-manager",
       "passed": true,
       "detail": "Response object does not support the context manager protocol"
     },
     {
-      "name": "match_ffmpeg-invalid-data",
+      "name": "dictionary_sample_ffmpeg-invalid-data",
       "passed": true,
       "detail": "Invalid data found when processing input"
     },
     {
-      "name": "match_runner-disk-space",
+      "name": "dictionary_sample_runner-disk-space",
       "passed": true,
       "detail": "No space left on device"
     },
     {
-      "name": "match_github-contents-conflict",
+      "name": "dictionary_sample_github-contents-conflict",
       "passed": true,
       "detail": "409 Conflict sha does not match"
     },
     {
-      "name": "match_multipart-page-identity",
+      "name": "dictionary_sample_multipart-page-identity",
       "passed": true,
       "detail": "CID mismatch"
     },
     {
-      "name": "action_412",
+      "name": "recovery_action_412",
       "passed": true,
-      "detail": "backoff and API fallback"
+      "detail": "backoff doubled and public API preferred"
     },
     {
-      "name": "action_context",
+      "name": "recovery_action_context_adapter",
       "passed": true,
-      "detail": "v10 compatibility action"
+      "detail": "v10 adapter selected"
     },
     {
-      "name": "action_media",
+      "name": "recovery_action_transcode",
       "passed": true,
-      "detail": "transcode fallback action"
+      "detail": "transcode fallback enabled"
     },
     {
-      "name": "action_timeout",
+      "name": "recovery_action_timeout",
       "passed": true,
-      "detail": "timeout recovery action"
+      "detail": "timeout extended and sample pressure reduced"
     },
     {
-      "name": "action_memory",
+      "name": "recovery_action_memory",
       "passed": true,
-      "detail": "memory recovery action"
+      "detail": "memory pressure reduced"
     },
     {
-      "name": "publisher_409_simulation",
+      "name": "diagnostic_redaction",
       "passed": true,
-      "detail": "first conflict recovered on second write"
+      "detail": "credentials, URLs, and temporary paths redacted"
+    },
+    {
+      "name": "publisher_conflict_simulation",
+      "passed": true,
+      "detail": "first 409 conflict recovered on second PUT"
     },
     {
       "name": "repository_media_clean",
