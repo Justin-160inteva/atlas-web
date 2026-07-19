@@ -13,6 +13,7 @@
     "quickRailNavigation": "atlas-liquid-nav-0934.js",
     "navigationInteractionGuard": "atlas-liquid-nav-0934.js",
     "controlIcons": "atlas-controls-0938.js",
+    "settingsPanel": "atlas-settings.js",
     "locationDataRecovery": "atlas-data-guard-0939.js",
     "favorites": "app.js",
     "mapViewport": "app.js"
@@ -23,6 +24,7 @@
     "atlas-liquid-nav-0934.js",
     "atlas-controls-0938.js",
     "atlas-ipad-nav-0940.js",
+    "atlas-settings.js",
     "atlas-data-guard-0939.js"
   ],
   "invariants": {
@@ -30,6 +32,7 @@
     "navigationSvgPerButton": 1,
     "navigationMinimumVisibleInsetPixels": 4,
     "closedPanelsMustBeInert": true,
+    "singleSettingsController": true,
     "requiredBrowserMatrixChecks": 500,
     "allowLegacyVersionWriters": false,
     "allowMultipleFetchOverrides": false,
