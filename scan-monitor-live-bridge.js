@@ -1,48 +1,52 @@
 (() => {
   'use strict';
-  const VERSION='0.1.0';
+  const VERSION='0.2.0';
   const REPO='Justin-160inteva/atlas-web';
   const PATH='data/runtime-progress/eleven-pilot-progress.json';
   const RAW=`https://raw.githubusercontent.com/${REPO}/main/${PATH}`;
   const API=`https://api.github.com/repos/${REPO}/contents/${PATH}?ref=main`;
-  const RAW_POLL=10000;
-  const API_POLL=55000;
-  const APPLY_TICK=3000;
-  let accepted=null, rawTimer=0, apiTimer=0, applyTimer=0;
+  const RAW_POLL=5000,API_POLL=65000,APPLY_TICK=1000,MAX_PROJECT=35;
+  let accepted=null,lastDownload=null,rawTimer=0,apiTimer=0,applyTimer=0;
   const $=id=>document.getElementById(id);
   const valid=v=>v&&Number(v.schemaVersion)>=2&&typeof v.state==='string'&&Number.isFinite(Date.parse(v.updatedAt||''));
-  const newer=(a,b)=>{
-    if(!valid(a))return b;if(!valid(b))return a;
-    if(a.externalSourceId!==b.externalSourceId)return Date.parse(a.updatedAt)>=Date.parse(b.updatedAt)?a:b;
-    const ah=Number(a.heartbeatSequence||0),bh=Number(b.heartbeatSequence||0);
-    return ah!==bh?(ah>bh?a:b):(Date.parse(a.updatedAt)>=Date.parse(b.updatedAt)?a:b);
-  };
+  const measured=v=>valid(v)&&Number(v.totalBytes||0)>0;
+  const newer=(a,b)=>{if(!valid(a))return b;if(!valid(b))return a;const at=Date.parse(a.updatedAt),bt=Date.parse(b.updatedAt);if(a.externalSourceId!==b.externalSourceId)return at>=bt?a:b;const ah=Number(a.heartbeatSequence||0),bh=Number(b.heartbeatSequence||0);return ah!==bh?(ah>bh?a:b):(at>=bt?a:b);};
   const decode=s=>new TextDecoder().decode(Uint8Array.from(atob(String(s||'').replace(/\s+/g,'')),c=>c.charCodeAt(0)));
-  const json=async url=>{const r=await fetch(`${url}${url.includes('?')?'&':'?'}live=${Date.now()}`,{cache:'no-store',headers:{Accept:'application/json'}});if(!r.ok)throw new Error(String(r.status));return r.json();};
-  const mb=n=>`${(Number(n||0)/1048576).toFixed(1)} MB`;
-  const speed=n=>`${(Number(n||0)/1048576).toFixed(2)} MB/s`;
+  const fetchJson=async url=>{const r=await fetch(`${url}${url.includes('?')?'&':'?'}live=${Date.now()}`,{cache:'no-store',headers:{Accept:'application/json'}});if(!r.ok)throw new Error(String(r.status));return r.json();};
+  const mib=n=>Number(n||0)/1048576;
+  const mb=n=>`${mib(n).toFixed(1)} MB`;
+  const speed=n=>`${mib(n).toFixed(2)} MB/s`;
+  const seconds=v=>Math.max(0,(Date.now()-Date.parse(v||0))/1000);
+  const age=v=>{const s=Math.round(seconds(v));return s<60?`${s}秒前`:`${Math.floor(s/60)}分钟前`;};
   const eta=n=>{const s=Math.max(0,Number(n)||0);if(!s)return '—';return s<60?`${Math.ceil(s)}秒`:`${Math.ceil(s/60)}分钟`;};
-  const age=v=>{const s=Math.max(0,Math.round((Date.now()-Date.parse(v))/1000));return s<60?`${s}秒前`:`${Math.floor(s/60)}分钟前`;};
-  function accept(candidate,origin){const chosen=newer(candidate,accepted);if(chosen===candidate&&valid(candidate)){accepted=candidate;accepted.__origin=origin;}apply();}
-  async function pollRaw(){try{accept(await json(RAW),'GitHub Raw');}catch(_){}}
-  async function pollApi(){try{const p=await json(API);accept(JSON.parse(decode(p.content)),'GitHub Contents API');}catch(_){}}
+  function accept(candidate,origin){const chosen=newer(candidate,accepted);if(chosen===candidate&&valid(candidate)){accepted={...candidate,__origin:origin};if(measured(candidate))lastDownload={...candidate,__origin:origin};}apply();}
+  async function pollRaw(){try{accept(await fetchJson(RAW),'GitHub Raw');}catch(_){}}
+  async function pollApi(){try{const p=await fetchJson(API);accept(JSON.parse(decode(p.content)),'GitHub Contents API');}catch(_){}}
   function apply(){
-    const d=accepted;if(!valid(d))return;
-    const downloaded=Number(d.downloadedBytes||0),total=Number(d.totalBytes||0),ratio=total?Math.min(100,downloaded/total*100):0;
-    const sd=Number(d.segmentDownloadedBytes||0),st=Number(d.segmentTotalBytes||0),sr=st?Math.min(100,sd/st*100):0;
-    if($('downloadedAmount'))$('downloadedAmount').textContent=total?`${mb(downloaded)} / ${mb(total)}`:mb(downloaded);
-    if($('downloadSpeed'))$('downloadSpeed').textContent=`${speed(d.speedBytesPerSecond)} · 平均 ${speed(d.averageSpeedBytesPerSecond)}`;
-    if($('downloadSegment'))$('downloadSegment').textContent=d.segmentCount?`${d.segmentIndex||0} / ${d.segmentCount}`:'—';
-    if($('downloadEta'))$('downloadEta').textContent=eta(d.etaSeconds);
-    if($('downloadBar'))$('downloadBar').style.width=`${ratio}%`;
-    if($('segmentBar'))$('segmentBar').style.width=`${sr}%`;
-    if($('downloadHeartbeatMeta'))$('downloadHeartbeatMeta').textContent=`实时心跳 #${d.heartbeatSequence||'—'} · ${age(d.updatedAt)} · ${d.__origin}`;
-    if($('downloadDetail'))$('downloadDetail').textContent=d.stage==='download'?`${downloaded?'下载正常':'等待首字节'} · 总进度 ${ratio.toFixed(1)}% · 当前分片 ${sr.toFixed(1)}%`:`当前阶段：${d.stage}`;
-    if($('activeDetail'))$('activeDetail').textContent=`本期 ${(d.stage==='download'&&total?ratio:Number(d.progressPercent||0)).toFixed(1)}% · ${d.message||d.stage}`;
-    if($('heartbeatAge'))$('heartbeatAge').textContent=age(d.updatedAt);
-    if($('dataOrigin'))$('dataOrigin').textContent=`数据源：${d.__origin} · 心跳 #${d.heartbeatSequence||'—'}`;
-    const row=[...document.querySelectorAll('.queue-item')].find(x=>x.querySelector('.queue-page')?.textContent.trim()===`P${d.page}`);
-    if(row){const s=row.querySelector('.queue-state');if(s){s.className=`queue-state ${d.state}`;s.textContent=d.state==='running'?'运行中':d.state==='recovery'?'自动恢复':d.state;}}
+    const current=accepted;if(!valid(current))return;
+    const telemetry=measured(current)?current:(lastDownload?.externalSourceId===current.externalSourceId?lastDownload:null);
+    if(telemetry){
+      const total=Number(telemetry.totalBytes||0),actual=Number(telemetry.downloadedBytes||0);
+      const rate=Math.max(0,Number(telemetry.speedBytesPerSecond||telemetry.averageSpeedBytesPerSecond||0));
+      const elapsed=Math.min(MAX_PROJECT,seconds(telemetry.updatedAt));
+      const estimated=current.stage==='download'&&elapsed>1&&elapsed<MAX_PROJECT&&rate>0;
+      const shown=Math.min(total,actual+(estimated?rate*elapsed:0));
+      const ratio=total?shown/total*100:0;
+      const st=Number(telemetry.segmentTotalBytes||0),sd=Number(telemetry.segmentDownloadedBytes||0);
+      const shownSegment=Math.min(st,sd+Math.max(0,shown-actual));
+      const segmentRatio=st?shownSegment/st*100:0;
+      $('downloadedAmount').textContent=`${estimated?'≈ ':''}${mb(shown)} / ${mb(total)}`;
+      $('downloadSpeed').textContent=`${speed(telemetry.speedBytesPerSecond)} · 平均 ${speed(telemetry.averageSpeedBytesPerSecond)}`;
+      $('downloadSegment').textContent=telemetry.segmentCount?`${telemetry.segmentIndex||0} / ${telemetry.segmentCount}`:'—';
+      $('downloadEta').textContent=current.stage==='download'?eta((total-shown)/Math.max(1,rate)):'—';
+      $('downloadBar').style.width=`${Math.min(100,ratio)}%`;
+      $('segmentBar').style.width=`${Math.min(100,segmentRatio)}%`;
+      $('downloadHeartbeatMeta').textContent=`实测心跳 #${telemetry.heartbeatSequence||'—'} · ${age(telemetry.updatedAt)} · ${telemetry.__origin}`;
+      $('downloadDetail').textContent=current.stage==='download'?`${estimated?'实时估算':'实时实测'} · 最近实测 ${mb(actual)} · 总进度 ${ratio.toFixed(1)}%`:`保留最后下载实测 ${mb(actual)}；当前阶段：${current.stage}`;
+    }
+    $('activeDetail').textContent=`本期 ${Number(current.progressPercent||0).toFixed(1)}% · ${current.message||current.stage}`;
+    $('heartbeatAge').textContent=age(current.updatedAt);
+    $('dataOrigin').textContent=`数据源：${current.__origin} · 心跳 #${current.heartbeatSequence||'—'}`;
   }
   function start(){pollRaw();pollApi();rawTimer=setInterval(pollRaw,RAW_POLL);apiTimer=setInterval(pollApi,API_POLL);applyTimer=setInterval(apply,APPLY_TICK);}
   addEventListener('pagehide',()=>{clearInterval(rawTimer);clearInterval(apiTimer);clearInterval(applyTimer);},{once:true});
