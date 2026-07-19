@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "version": "0.9.4.2",
+  "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.2",
+  "cacheNamespace": "atlas-alpha-0942-pages-v1",
+  "entrypoint": "index.html",
+  "releaseOwner": "atlas-bootstrap.js",
+  "serviceWorker": "sw.js",
+  "runtimeOwners": {
+    "releaseVersion": "atlas-bootstrap.js",
+    "serviceWorkerRegistration": "atlas-bootstrap.js",
+    "bottomNavigation": "atlas-liquid-nav-0934.js",
+    "quickRailNavigation": "atlas-liquid-nav-0934.js",
+    "controlIcons": "atlas-controls-0938.js",
+    "locationDataRecovery": "atlas-data-guard-0939.js",
+    "favorites": "app.js",
+    "mapViewport": "app.js"
+  },
+  "releaseAssets": [
+    "atlas-bootstrap.js",
+    "atlas-analysis-import.js",
+    "atlas-liquid-nav-0934.js",
+    "atlas-controls-0938.js",
+    "atlas-ipad-nav-0940.js",
+    "atlas-data-guard-0939.js"
+  ],
+  "invariants": {
+    "minimumLocationCount": 3000,
+    "navigationSvgPerButton": 1,
+    "allowLegacyVersionWriters": false,
+    "allowMultipleFetchOverrides": false,
+    "requireIpadCompositorPath": true,
+    "requireServiceWorkerUpgradeSimulation": true
+  }
+}

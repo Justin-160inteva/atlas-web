@@ -104,4 +104,4 @@
   }
 })();
 
-// Validation trigger: Alpha 0.9.3.3 liquid navigation.
+// Validation trigger: liquid navigation module v0.9.3.3.

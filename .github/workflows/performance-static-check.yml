@@ -1,55 +1,17 @@
-name: Performance typography UI route and controls check
+name: Performance and UI syntax check
 
 on:
   push:
     paths:
-      - 'performance-092.js'
-      - 'performance-092.css'
-      - 'atlas-typography-093.css'
-      - 'atlas-ui-fix-0931.js'
-      - 'atlas-ui-fix-0931.css'
-      - 'atlas-smart-route-0932.css'
-      - 'atlas-liquid-nav-0933.js'
-      - 'atlas-liquid-nav-0933.css'
-      - 'atlas-liquid-nav-0934.js'
-      - 'atlas-liquid-nav-0934.css'
-      - 'atlas-nav-layout-0937.css'
-      - 'atlas-controls-0938.js'
-      - 'atlas-controls-0938.css'
-      - 'atlas-ipad-nav-0940.js'
-      - 'atlas-ipad-nav-0940.css'
-      - 'atlas-hd-map.js'
-      - 'atlas-hd-runtime.js'
-      - 'atlas-analysis-import.js'
-      - 'tools/verify_controls_0938.py'
-      - 'tools/validate_release_0940.py'
-      - 'FONT-LICENSES.md'
-      - 'sw.js'
+      - '*.js'
+      - '*.css'
+      - 'tools/*.py'
       - '.github/workflows/performance-static-check.yml'
   pull_request:
     paths:
-      - 'performance-092.js'
-      - 'performance-092.css'
-      - 'atlas-typography-093.css'
-      - 'atlas-ui-fix-0931.js'
-      - 'atlas-ui-fix-0931.css'
-      - 'atlas-smart-route-0932.css'
-      - 'atlas-liquid-nav-0933.js'
-      - 'atlas-liquid-nav-0933.css'
-      - 'atlas-liquid-nav-0934.js'
-      - 'atlas-liquid-nav-0934.css'
-      - 'atlas-nav-layout-0937.css'
-      - 'atlas-controls-0938.js'
-      - 'atlas-controls-0938.css'
-      - 'atlas-ipad-nav-0940.js'
-      - 'atlas-ipad-nav-0940.css'
-      - 'atlas-hd-map.js'
-      - 'atlas-hd-runtime.js'
-      - 'atlas-analysis-import.js'
-      - 'tools/verify_controls_0938.py'
-      - 'tools/validate_release_0940.py'
-      - 'FONT-LICENSES.md'
-      - 'sw.js'
+      - '*.js'
+      - '*.css'
+      - 'tools/*.py'
       - '.github/workflows/performance-static-check.yml'
   workflow_dispatch:
 
@@ -69,33 +31,18 @@ jobs:
           python-version: '3.12'
       - name: Parse JavaScript
         run: |
-          node --check performance-092.js
-          node --check atlas-ui-fix-0931.js
-          node --check atlas-liquid-nav-0933.js
-          node --check atlas-liquid-nav-0934.js
-          node --check atlas-controls-0938.js
-          node --check atlas-ipad-nav-0940.js
-          node --check atlas-hd-map.js
-          node --check atlas-hd-runtime.js
-          node --check atlas-analysis-import.js
-          node --check sw.js
-      - name: Parse CSS
+          for file in *.js tools/*.mjs; do
+            [ -f "$file" ] || continue
+            node --check "$file"
+          done
+      - name: Compile Python tools
+        run: python -m compileall -q tools
+      - name: Parse critical CSS
         run: |
-          npx --yes postcss-cli@11.0.1 atlas-typography-093.css --output /tmp/atlas-typography-093.css
-          npx --yes postcss-cli@11.0.1 atlas-ui-fix-0931.css --output /tmp/atlas-ui-fix-0931.css
-          npx --yes postcss-cli@11.0.1 atlas-smart-route-0932.css --output /tmp/atlas-smart-route-0932.css
-          npx --yes postcss-cli@11.0.1 atlas-liquid-nav-0933.css --output /tmp/atlas-liquid-nav-0933.css
-          npx --yes postcss-cli@11.0.1 atlas-liquid-nav-0934.css --output /tmp/atlas-liquid-nav-0934.css
-          npx --yes postcss-cli@11.0.1 atlas-nav-layout-0937.css --output /tmp/atlas-nav-layout-0937.css
-          npx --yes postcss-cli@11.0.1 atlas-controls-0938.css --output /tmp/atlas-controls-0938.css
-          npx --yes postcss-cli@11.0.1 atlas-ipad-nav-0940.css --output /tmp/atlas-ipad-nav-0940.css
-      - name: Run 500-check release gate
-        run: python tools/validate_release_0940.py
-      - name: Verify runtime assets and policy
-        run: |
-          grep -q "atlas-ipad-nav-0940.css" sw.js
-          grep -q "atlas-ipad-nav-0940.js" sw.js
-          grep -q "atlas-data-guard-0939.js" sw.js
-          grep -q "atlas-alpha-0940" sw.js
-          grep -q "0.9.4.0" atlas-controls-0938.js
-          grep -q "does not bundle, extract, redistribute" FONT-LICENSES.md
+          for file in atlas-typography-093.css atlas-ui-fix-0931.css atlas-smart-route-0932.css atlas-liquid-nav-0933.css atlas-liquid-nav-0934.css atlas-nav-layout-0937.css atlas-controls-0938.css atlas-ipad-nav-0940.css; do
+            npx --yes postcss-cli@11.0.1 "$file" --output "/tmp/$file"
+          done
+      - name: Verify release manifest drift
+        run: python tools/sync_release_manifest.py
+      - name: Point to canonical release gate
+        run: echo 'Semantic conflicts and browser matrices are enforced by atlas-conflict-reasoner.yml.'

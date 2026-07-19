@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const VERSION='0.9.4.0';
+  const VERSION=window.AtlasRelease?.version||'0.9.4.2';
   const root=document.documentElement;
   let lastMapPoint={x:innerWidth/2,y:innerHeight/2};
   let activeBurst=null;
@@ -24,7 +24,6 @@
     heart:svg('<path d="M12 20s-7-4.1-7-9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 7 3.5C19 15.9 12 20 12 20Z"/>','currentColor')
   };
 
-  function stamp(){const e=document.querySelector('.brand-copy small');if(e)e.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.0"}
   function replaceIcons(){
     const nav={map:'map',filter:'filter',route:'route',progress:'progress',favorites:'favorite'};
     document.querySelectorAll('.bottom-nav .nav-item').forEach(b=>{const s=b.querySelector(':scope>span');if(s)s.innerHTML=icons[nav[b.dataset.panel]]||icons.map});
@@ -44,15 +43,16 @@
     overlay.querySelector('#atlasDeveloperToggle').onclick=()=>{const on=!root.classList.contains('atlas-developer-enabled');root.classList.toggle('atlas-developer-enabled',on);overlay.querySelector('.atlas-toggle').classList.toggle('on',on);localStorage.setItem('atlas.developerMode',on?'1':'0')};
     overlay.querySelector('#atlasOpenEvidence').onclick=()=>{close();document.getElementById('evidencePanel')?.classList.add('open');document.getElementById('evidencePanel')?.setAttribute('aria-hidden','false')};
     overlay.querySelector('#atlasDatabaseStatus').onclick=()=>{close();document.getElementById('evidencePanel')?.classList.add('open');document.getElementById('evidencePanel')?.setAttribute('aria-hidden','false');setTimeout(()=>document.getElementById('analysisImportRegistry')?.scrollIntoView({block:'start'}),80)};
-    overlay.querySelector('#atlasPerformanceStatus').onclick=()=>{close();location.href=location.pathname+'?perf=1&v=0940'};overlay.querySelector('#atlasResetView').onclick=()=>{document.getElementById('resetView')?.click();close()};
+    overlay.querySelector('#atlasPerformanceStatus').onclick=()=>{close();location.href=location.pathname+`?perf=1&v=${VERSION.replace(/\D/g,'')}`};overlay.querySelector('#atlasResetView').onclick=()=>{document.getElementById('resetView')?.click();close()};
   }
   function rememberPoint(){document.getElementById('mapCanvas')?.addEventListener('pointerup',e=>{lastMapPoint={x:e.clientX,y:e.clientY}},{capture:true,passive:true})}
   function burst(point){activeBurst?.remove();const host=document.querySelector('.app-shell');if(!host)return;const burst=document.createElement('span');burst.className='atlas-heart-burst';burst.style.left=`${point.x}px`;burst.style.top=`${point.y}px`;const values=[[-26,-52,-12,13,0],[-8,-68,8,15,70],[16,-57,14,12,130],[30,-45,-6,10,190]];for(const [x,y,r,size,delay] of values){const p=document.createElement('span');p.className='atlas-heart-particle';p.style.setProperty('--heart-x',`${x}px`);p.style.setProperty('--heart-y',`${y}px`);p.style.setProperty('--heart-rotate',`${r}deg`);p.style.setProperty('--heart-size',`${size}px`);p.style.setProperty('--heart-delay',`${delay}ms`);p.innerHTML=icons.heart;burst.appendChild(p)}const badge=document.createElement('span');badge.className='atlas-favourite-badge';badge.style.left=`${point.x+15}px`;badge.style.top=`${point.y-15}px`;badge.innerHTML=icons.heart;host.append(burst,badge);activeBurst=burst;setTimeout(()=>burst.remove(),1300);setTimeout(()=>badge.remove(),1150)}
-  function wrapFavourite(){let attempts=0;const timer=setInterval(()=>{attempts++;const original=window.toggleFavorite;if(typeof original!=='function'||original.__atlas0938){if(attempts>40)clearInterval(timer);return}const wrapped=id=>{const before=new Set(JSON.parse(localStorage.getItem('atlas.favorites')||'[]'));original(id);const after=new Set(JSON.parse(localStorage.getItem('atlas.favorites')||'[]'));if(!before.has(id)&&after.has(id))burst(lastMapPoint)};wrapped.__atlas0938=true;window.toggleFavorite=wrapped;clearInterval(timer)},100)}
+  function wrapFavourite(){let attempts=0;const timer=setInterval(()=>{attempts++;const original=window.toggleFavorite;if(typeof original!=='function'||original.__atlasFavoriteWrapped||original.__atlas0938){if(attempts>40)clearInterval(timer);return}const wrapped=id=>{const before=new Set(JSON.parse(localStorage.getItem('atlas.favorites')||'[]'));original(id);const after=new Set(JSON.parse(localStorage.getItem('atlas.favorites')||'[]'));if(!before.has(id)&&after.has(id))burst(lastMapPoint)};wrapped.__atlasFavoriteWrapped=true;window.toggleFavorite=wrapped;clearInterval(timer)},100)}
   function loadIPadLayer(){
-    if(!document.querySelector('link[data-atlas-ipad-nav]')){const link=document.createElement('link');link.rel='stylesheet';link.href='atlas-ipad-nav-0940.css?v=0.9.4.0';link.dataset.atlasIpadNav='1';document.head.appendChild(link)}
-    if(!document.querySelector('script[data-atlas-ipad-nav]')){const script=document.createElement('script');script.src='atlas-ipad-nav-0940.js?v=0.9.4.0';script.defer=true;script.dataset.atlasIpadNav='1';document.body.appendChild(script)}
+    document.querySelectorAll('link[data-atlas-ipad-nav],script[data-atlas-ipad-nav]').forEach(node=>{if(node.dataset.atlasIpadNav!==VERSION)node.remove()});
+    if(!document.querySelector(`link[data-atlas-ipad-nav="${VERSION}"]`)){const link=document.createElement('link');link.rel='stylesheet';link.href=`atlas-ipad-nav-0940.css?v=${VERSION}`;link.dataset.atlasIpadNav=VERSION;document.head.appendChild(link)}
+    if(!document.querySelector(`script[data-atlas-ipad-nav="${VERSION}"]`)){const script=document.createElement('script');script.src=`atlas-ipad-nav-0940.js?v=${VERSION}`;script.defer=true;script.dataset.atlasIpadNav=VERSION;document.body.appendChild(script)}
   }
-  function init(){replaceIcons();installSettings();rememberPoint();wrapFavourite();stamp();loadIPadLayer();root.dataset.atlasControls=VERSION}
+  function init(){replaceIcons();installSettings();rememberPoint();wrapFavourite();loadIPadLayer();root.dataset.atlasControls=VERSION}
   document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init,{once:true}):init();
 })();

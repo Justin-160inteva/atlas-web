@@ -6,8 +6,22 @@ const regions={'AWAJI':'淡路','HARIMA':'播磨','IGA':'伊贺','IZUMI SETTSU':
 const reverse={};Object.entries(categories).forEach(([en,zh])=>{reverse[zh]=en});Object.entries(regions).forEach(([en,zh])=>{reverse[zh]=en});
 window.AtlasI18n={category:name=>categories[name]||name,region:name=>regions[String(name||'').toUpperCase()]||name,english:name=>reverse[name]||name,categories,regions};
 if(window.AtlasIcons){const nativeType=AtlasIcons.type.bind(AtlasIcons);AtlasIcons.type=name=>nativeType(reverse[name]||name)}
-const nativeFetch=window.fetch.bind(window);
-window.fetch=async function(input,init){const response=await nativeFetch(input,init);const url=typeof input==='string'?input:(input&&input.url)||'';if(!/data\/(categories|regions)\.json(?:\?|$)/.test(url))return response;const data=await response.clone().json();if(url.includes('categories.json'))data.forEach(item=>{item.title_en=item.title;item.title=categories[item.title]||item.title});else data.forEach(item=>{item.title_en=item.title;item.title=regions[String(item.title).toUpperCase()]||item.title});return new Response(JSON.stringify(data),{status:response.status,statusText:response.statusText,headers:{'Content-Type':'application/json'}})};
+function localizeMetadata(item,path){
+  if(!item||typeof item!=='object')return item;
+  if(path==='data/categories.json'){
+    const original=String(item.title_en||item.title||'');
+    item.title_en=original;
+    item.title=categories[original]||item.title;
+  }else if(path==='data/regions.json'){
+    const original=String(item.title_en||item.title||'');
+    item.title_en=original;
+    item.title=regions[original.toUpperCase()]||item.title;
+  }
+  return item;
+}
+localizeMetadata.atlasPaths=['data/categories.json','data/regions.json'];
+window.AtlasDataTransforms=window.AtlasDataTransforms||[];
+if(!window.AtlasDataTransforms.includes(localizeMetadata))window.AtlasDataTransforms.push(localizeMetadata);
 function translateSearch(value){let out=value;for(const [en,zh] of [...Object.entries(categories),...Object.entries(regions)]){out=out.replace(new RegExp(en.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'ig'),zh)}return out}
 document.addEventListener('DOMContentLoaded',()=>{const input=document.getElementById('searchInput');if(!input)return;input.addEventListener('input',e=>{const translated=translateSearch(e.target.value);if(translated!==e.target.value)e.target.value=translated},true)});
 })();

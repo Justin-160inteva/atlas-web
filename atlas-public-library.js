@@ -278,8 +278,6 @@
     const disclaimer=$('#publicLibraryDisclaimer');if(disclaimer)disclaimer.textContent=library.disclaimer;
     bindCards(items);
     renderAuthorizationRegistry();
-    const brand=document.querySelector('.brand-copy small');
-    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.1.3";
   }
 
   async function start(){
