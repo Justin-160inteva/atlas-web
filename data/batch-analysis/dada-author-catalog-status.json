@@ -3,16 +3,16 @@
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "authorizationId": "auth-dada-20260718",
-  "updatedAt": "2026-07-19T00:16:40.555237Z",
-  "complete": false,
+  "updatedAt": "2026-07-19T00:28:41.737130Z",
+  "complete": true,
   "summary": {
     "total": 23,
-    "imported": 19,
+    "imported": 23,
     "failed": 0,
     "unresolved": 0,
-    "remaining": 4,
-    "attemptedThisRun": 6,
-    "newlyImportedThisRun": 6
+    "remaining": 0,
+    "attemptedThisRun": 4,
+    "newlyImportedThisRun": 4
   },
   "items": [
     {
@@ -559,38 +559,122 @@
     {
       "externalSourceId": "bili-dada-acshadows-20",
       "sequence": 20,
-      "title": "〖刺客信条影 新手攻略〗20（标题待核实）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9720%EF%BC%88%E6%A0%87%E9%A2%98%E5%BE%85%E6%A0%B8%E5%AE%9E%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "title": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+      "url": "https://www.bilibili.com/video/BV1Ub7N6zEKa/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-20.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-20",
+        "sequence": 20,
+        "startedAt": "2026-07-19T00:17:21.389907Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV1Ub7N6zEKa/",
+          "bvid": "BV1Ub7N6zEKa",
+          "title": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+          "author": "不再犹豫的达达猪",
+          "duration": "1:56",
+          "score": 160.0,
+          "source": "bilibili-search-api",
+          "query": "不再犹豫的达达猪 刺客信条影 新手攻略 20"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-20.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-19T00:20:01.409519Z"
+      }
     },
     {
       "externalSourceId": "bili-dada-acshadows-21",
       "sequence": 21,
       "title": "〖刺客信条影 新手攻略〗21 短刀飞跃流（奈绪江配装）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9721%20%E7%9F%AD%E5%88%80%E9%A3%9E%E8%B7%83%E6%B5%81%EF%BC%88%E5%A5%88%E7%BB%AA%E6%B1%9F%E9%85%8D%E8%A3%85%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "url": "https://www.bilibili.com/video/BV1tNj86uEBH/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-21.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-21",
+        "sequence": 21,
+        "startedAt": "2026-07-19T00:20:04.410513Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV1tNj86uEBH/",
+          "bvid": "BV1tNj86uEBH",
+          "title": "【刺客信条影 新手攻略】21 短刀飞跃流（奈绪江配装）",
+          "author": "不再犹豫的达达猪",
+          "duration": "2:21",
+          "score": 260.0,
+          "source": "bilibili-search-api",
+          "query": "〖刺客信条影 新手攻略〗21 短刀飞跃流（奈绪江配装）"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-21.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-19T00:24:36.551422Z"
+      }
     },
     {
       "externalSourceId": "bili-dada-acshadows-22",
       "sequence": 22,
-      "title": "〖刺客信条影 新手攻略〗22（标题待核实）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9722%EF%BC%88%E6%A0%87%E9%A2%98%E5%BE%85%E6%A0%B8%E5%AE%9E%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "title": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+      "url": "https://www.bilibili.com/video/BV1Ub7N6zEKa/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-22.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-22",
+        "sequence": 22,
+        "startedAt": "2026-07-19T00:24:39.552724Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV1Ub7N6zEKa/",
+          "bvid": "BV1Ub7N6zEKa",
+          "title": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+          "author": "不再犹豫的达达猪",
+          "duration": "1:56",
+          "score": 215.0,
+          "source": "bilibili-search-api",
+          "query": "不再犹豫的达达猪 刺客信条影 新手攻略 22"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-22.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-19T00:24:51.519168Z"
+      }
     },
     {
       "externalSourceId": "bili-dada-acshadows-23",
       "sequence": 23,
       "title": "〖刺客信条影 新手攻略〗23 巨浪武士刀（最强配装）",
-      "url": "https://search.bilibili.com/all?keyword=%E3%80%96%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E5%BD%B1%20%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5%E3%80%9723%20%E5%B7%A8%E6%B5%AA%E6%AD%A6%E5%A3%AB%E5%88%80%EF%BC%88%E6%9C%80%E5%BC%BA%E9%85%8D%E8%A3%85%EF%BC%89",
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": null
+      "url": "https://www.bilibili.com/video/BV1B5j26TEbK/",
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/dada-23.json",
+      "lastAttempt": {
+        "externalSourceId": "bili-dada-acshadows-23",
+        "sequence": 23,
+        "startedAt": "2026-07-19T00:24:54.520294Z",
+        "resolution": {
+          "url": "https://www.bilibili.com/video/BV1B5j26TEbK/",
+          "bvid": "BV1B5j26TEbK",
+          "title": "【刺客信条影 新手攻略】23 巨浪武士刀（最强配装）",
+          "author": "不再犹豫的达达猪",
+          "duration": "2:37",
+          "score": 260.0,
+          "source": "bilibili-search-api",
+          "query": "〖刺客信条影 新手攻略〗23 巨浪武士刀（最强配装）"
+        },
+        "analyzerReturnCode": 0,
+        "analyzerOutput": "analysis result written: data/analysis-results/dada-23.json status=analyzed\n\n",
+        "analysisStatus": "analyzed",
+        "indexReturnCode": 0,
+        "completed": true,
+        "finishedAt": "2026-07-19T00:28:38.735295Z"
+      }
     }
   ],
   "privacy": "Original videos and frame pixels are deleted after each transient analysis."
