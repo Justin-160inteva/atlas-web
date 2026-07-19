@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T20:30:12.421782Z",
-  "status": "pass",
+  "generatedAt": "2026-07-19T20:30:54.517968Z",
+  "status": "fail",
   "summary": {
     "total": 33,
-    "passed": 33,
-    "failed": 0
+    "passed": 32,
+    "failed": 1
   },
   "dictionaryVersion": "2026.07.19.2",
   "checks": [
@@ -86,7 +86,7 @@
     },
     {
       "name": "monitor_cache",
-      "passed": true,
+      "passed": false,
       "detail": "cache generation v7 contains only unified controller"
     },
     {
