@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const VERSION='0.2.0';
+  const VERSION='0.2.1';
   const REPO='Justin-160inteva/atlas-web';
   const PATH='data/runtime-progress/eleven-pilot-progress.json';
   const RAW=`https://raw.githubusercontent.com/${REPO}/main/${PATH}`;
@@ -27,8 +27,9 @@
     const telemetry=measured(current)?current:(lastDownload?.externalSourceId===current.externalSourceId?lastDownload:null);
     if(telemetry){
       const total=Number(telemetry.totalBytes||0),actual=Number(telemetry.downloadedBytes||0);
+      const measuredAt=telemetry.telemetryMeasuredAt||telemetry.updatedAt;
       const rate=Math.max(0,Number(telemetry.speedBytesPerSecond||telemetry.averageSpeedBytesPerSecond||0));
-      const elapsed=Math.min(MAX_PROJECT,seconds(telemetry.updatedAt));
+      const elapsed=Math.min(MAX_PROJECT,seconds(measuredAt));
       const estimated=current.stage==='download'&&elapsed>1&&elapsed<MAX_PROJECT&&rate>0;
       const shown=Math.min(total,actual+(estimated?rate*elapsed:0));
       const ratio=total?shown/total*100:0;
@@ -41,8 +42,14 @@
       $('downloadEta').textContent=current.stage==='download'?eta((total-shown)/Math.max(1,rate)):'—';
       $('downloadBar').style.width=`${Math.min(100,ratio)}%`;
       $('segmentBar').style.width=`${Math.min(100,segmentRatio)}%`;
-      $('downloadHeartbeatMeta').textContent=`实测心跳 #${telemetry.heartbeatSequence||'—'} · ${age(telemetry.updatedAt)} · ${telemetry.__origin}`;
+      $('downloadHeartbeatMeta').textContent=`实测心跳 #${telemetry.heartbeatSequence||'—'} · ${age(measuredAt)} · ${telemetry.__origin}`;
       $('downloadDetail').textContent=current.stage==='download'?`${estimated?'实时估算':'实时实测'} · 最近实测 ${mb(actual)} · 总进度 ${ratio.toFixed(1)}%`:`保留最后下载实测 ${mb(actual)}；当前阶段：${current.stage}`;
+    }
+    const heartbeatAge=seconds(current.updatedAt),notice=$('freshnessNotice');
+    if(notice){
+      if(heartbeatAge<=75){notice.dataset.level='live';notice.textContent=`30秒心跳链路正常；当前任务状态更新于${age(current.updatedAt)}。`;}
+      else if(heartbeatAge>150){notice.dataset.level='danger';notice.textContent=`任务已超过150秒没有新心跳，自动调查与恢复链应当接管。`;}
+      else{notice.dataset.level='warn';notice.textContent=`心跳延迟：最后更新于${age(current.updatedAt)}，正在继续核对权威状态。`;}
     }
     $('activeDetail').textContent=`本期 ${Number(current.progressPercent||0).toFixed(1)}% · ${current.message||current.stage}`;
     $('heartbeatAge').textContent=age(current.updatedAt);
