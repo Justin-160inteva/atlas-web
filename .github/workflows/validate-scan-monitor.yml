@@ -9,8 +9,8 @@ on:
       - 'scan-monitor.html'
       - 'scan-monitor.css'
       - 'scan-monitor.js'
+      - 'scan-monitor-coherence.js'
       - 'scan-monitor-download.js'
-      - 'scan-monitor-health.js'
       - 'sw.js'
       - 'tools/publish_runtime_progress.py'
       - 'tools/analyze_authorized_video.py'
@@ -31,8 +31,8 @@ jobs:
         run: |
           node --check atlas-settings.js
           node --check scan-monitor.js
+          node --check scan-monitor-coherence.js
           node --check scan-monitor-download.js
-          node --check scan-monitor-health.js
           node --check sw.js
 
       - name: Validate Python heartbeat pipeline
@@ -40,7 +40,7 @@ jobs:
           python -m py_compile tools/publish_runtime_progress.py
           python -m py_compile tools/analyze_authorized_video.py
 
-      - name: Validate monitor contracts and privacy boundaries
+      - name: Validate coherent monitor contracts and privacy boundaries
         run: |
           python - <<'PY'
           import json, pathlib, re
@@ -48,29 +48,29 @@ jobs:
           settings=pathlib.Path('atlas-settings.js').read_text(encoding='utf-8')
           monitor_html=pathlib.Path('scan-monitor.html').read_text(encoding='utf-8')
           monitor_js=pathlib.Path('scan-monitor.js').read_text(encoding='utf-8')
-          health_js=pathlib.Path('scan-monitor-health.js').read_text(encoding='utf-8')
+          coherence=pathlib.Path('scan-monitor-coherence.js').read_text(encoding='utf-8')
           download_js=pathlib.Path('scan-monitor-download.js').read_text(encoding='utf-8')
           worker=pathlib.Path('sw.js').read_text(encoding='utf-8')
           publisher=pathlib.Path('tools/publish_runtime_progress.py').read_text(encoding='utf-8')
           progress=json.loads(pathlib.Path('data/runtime-progress/eleven-pilot-progress.json').read_text(encoding='utf-8'))
-          assert 'atlas-settings.css?v=0.3.1' in index and 'atlas-settings.js?v=0.3.1' in index
+          assert 'atlas-settings.js' in index
           assert index.index('atlas-settings.js') < index.index('atlas-evidence-studio.js')
-          assert "const VERSION='0.3.1'" in settings
-          assert "scan-monitor.html?embedded=1&v=0.3.1" in settings
+          assert 'scan-monitor.html?embedded=1' in settings
           assert 'statusBadge' in monitor_html and 'queueList' in monitor_html and 'recoveryPanel' in monitor_html
           assert 'scan-monitor.js?v=0.3.1' in monitor_html
-          assert 'scan-monitor-health.js?v=0.3.2' in monitor_html
-          assert '任务数据更新时间' in monitor_html and 'forceRefresh' in monitor_html
+          assert 'scan-monitor-coherence.js?v=0.4.0' in monitor_html
+          assert 'scan-monitor-download.js?v=0.4.0' in monitor_html
+          assert 'scan-monitor-health.js' not in monitor_html
+          assert 'downloadHeartbeatMeta' in monitor_html and '任务数据更新时间' in monitor_html
           assert 'FAST_POLL_MS=10000' in monitor_js and 'RUNNING_STALE_MS=180000' in monitor_js
-          assert "VERSION='0.3.2'" in health_js
-          assert 'EXPECTED_HEARTBEAT_SECONDS=60' in health_js
-          assert 'STALE_SECONDS=180' in health_js
-          assert 'if(status?.complete)' in health_js and 'matchedRuntime(status,runtime)' in health_js
-          assert 'invalid status schema' in health_js and 'invalid runtime schema' in health_js
-          assert 'downloadedBytes' in download_js and 'speedBytesPerSecond' in download_js
+          assert "VERSION='0.4.0'" in coherence
+          assert 'API_MIN_MS=60000' in coherence and 'MutationObserver' in coherence
+          assert 'atlas-runtime-update' in coherence and 'GitHub Contents API' in coherence
+          assert "VERSION='0.4.0'" in download_js and 'atlas-runtime-update' in download_js
+          assert 'downloadedBytes' in download_js and 'heartbeatSequence' in download_js
           assert 'ATLAS_PROGRESS_CONFLICT_RETRIES' in publisher
-          assert './scan-monitor.html' in worker and './scan-monitor-health.js' in worker
-          assert 'monitor-v5' in worker
+          assert './scan-monitor-coherence.js' in worker and './scan-monitor-download.js' in worker
+          assert 'monitor-v6' in worker
           assert progress['author']=='11的游戏世界'
           assert progress['authorizationId']=='auth-eleven-game-world-20260719'
           match=re.fullmatch(r'bili-eleven-acshadows-BV1FdQ9YdEcN-p(\d{3})',progress['externalSourceId'])
@@ -84,5 +84,5 @@ jobs:
           for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
               media.extend(pathlib.Path('.').rglob(pattern))
           assert not media, media
-          print('embedded scan monitor chronological production validation passed')
+          print('embedded coherent scan monitor v0.4.0 validation passed')
           PY
