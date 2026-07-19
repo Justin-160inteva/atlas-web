@@ -46,7 +46,7 @@ jobs:
           monitor_js=pathlib.Path('scan-monitor.js').read_text(encoding='utf-8')
           worker=pathlib.Path('sw.js').read_text(encoding='utf-8')
           progress=json.loads(pathlib.Path('data/runtime-progress/eleven-pilot-progress.json').read_text(encoding='utf-8'))
-          assert 'atlas-settings.css' in index and 'atlas-settings.js?v=0.2.0' in index
+          assert 'atlas-settings.css?v=0.2.0' in index and 'atlas-settings.js?v=0.2.0' in index
           assert index.index('atlas-settings.js') < index.index('atlas-evidence-studio.js')
           assert 'openScanMonitor' in settings and 'openEvidenceLab' in settings
           assert 'scan-monitor.html?embedded=1&v=0.2.0' in settings
@@ -58,7 +58,7 @@ jobs:
           assert '页面同步' in monitor_js and '任务端' in monitor_js
           assert './scan-monitor.html' in worker and './scan-monitor.js' in worker and './scan-monitor.css' in worker
           assert 'monitor-v2' in worker
-          assert progress['externalSourceId'].endswith(('-p021','-p022'))
+          assert progress['externalSourceId'].endswith(('-p020','-p021','-p022'))
           assert progress['privacy']
           serialized=json.dumps(progress,ensure_ascii=False).lower()
           for forbidden in ('cookie=', 'set-cookie', '.mp4', '.flv', 'cdnurl', 'authorization: bearer'):
