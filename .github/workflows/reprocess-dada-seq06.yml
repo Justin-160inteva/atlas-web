@@ -1,0 +1,109 @@
+name: Reprocess Dada sequence 06
+
+on:
+  pull_request:
+    paths:
+      - 'tools/reprocess_verified_dada_item.py'
+      - 'data/reprocess/dada-seq06.json'
+      - '.github/workflows/reprocess-dada-seq06.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/reprocess_verified_dada_item.py'
+      - 'data/reprocess/dada-seq06.json'
+      - '.github/workflows/reprocess-dada-seq06.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reprocess-dada-seq06
+  cancel-in-progress: false
+
+jobs:
+  reprocess:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out requested revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and verify isolated request
+        run: |
+          python -m py_compile tools/reprocess_verified_dada_item.py
+          python tools/reprocess_verified_dada_item.py data/reprocess/dada-seq06.json --validate-only
+
+      - name: Install transient analysis dependencies
+        if: github.event_name != 'pull_request'
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Reprocess verified sequence 06 only
+        if: github.event_name != 'pull_request'
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: python tools/reprocess_verified_dada_item.py data/reprocess/dada-seq06.json
+
+      - name: Remove all transient media
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
+          find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' \) -delete
+
+      - name: Rebuild Dada quality report and remaining safe queue
+        if: github.event_name != 'pull_request'
+        run: python tools/audit_dada_catalog.py
+
+      - name: Verify replacement result and queue transition
+        if: github.event_name != 'pull_request'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('data/analysis-results/dada-06.json').read_text(encoding='utf-8'))
+          report = json.loads(Path('data/batch-analysis/dada-seq06-reprocess-status.json').read_text(encoding='utf-8'))
+          queue = json.loads(Path('data/analysis-jobs/dada-quality-reprocess.json').read_text(encoding='utf-8'))
+          catalog = json.loads(Path('data/dada-ac-shadows-catalog.json').read_text(encoding='utf-8'))
+          item = next(x for x in catalog['items'] if x['sequence'] == 6)
+          assert result['status'] == 'analyzed'
+          assert result['source']['url'].endswith('/BV13ioXYEE8d/')
+          assert abs(result['media']['durationSeconds'] - 107) <= 3
+          assert result['media']['videoRetained'] is False
+          assert result['media']['framePixelsRetained'] is False
+          assert report['status'] == 'complete'
+          assert item['analysisQualityStatus'] == 'verified-correct-source'
+          assert 6 not in queue['sequences']
+          assert set(queue['sequences']) == {8, 12, 14, 20}
+          PY
+
+      - name: Commit verified replacement analysis
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/analysis-jobs/dada-06.json \
+            data/analysis-results/dada-06.json \
+            data/analysis-index.json \
+            data/dada-ac-shadows-catalog.json \
+            data/batch-analysis/dada-author-catalog-status.json \
+            data/batch-analysis/dada-seq06-reprocess-status.json \
+            data/batch-analysis/dada-catalog-quality-audit.json \
+            data/analysis-jobs/dada-quality-reprocess.json
+          if git diff --cached --quiet; then
+            echo 'No sequence 06 replacement changes.'
+            exit 0
+          fi
+          git commit -m 'Reprocess Dada sequence 06 from verified source [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
