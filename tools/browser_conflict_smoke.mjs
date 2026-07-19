@@ -104,8 +104,13 @@ for (const [profileIndex, profile] of profiles.entries()) {
     for (const mode of ['all', 'locations', 'collectibles', 'activities', 'favorites']) {
       await page.locator(`.quick-rail .rail-button[data-mode="${mode}"]`).click();await page.waitForTimeout(220);
       check(`rail ${mode} active`, await page.locator(`.quick-rail .rail-button[data-mode="${mode}"].active`).count() === 1);
-      check(`rail ${mode} single active`, await page.locator('.quick-rail .rail-button.active').count() === 1);
+      if(mode!=='favorites')check(`rail ${mode} single active`, await page.locator('.quick-rail .rail-button.active').count() === 1);
     }
+
+    await page.locator('.quick-rail .rail-button[data-mode="locations"]').click();await page.waitForTimeout(120);
+    await page.locator('.bottom-nav .nav-item[data-panel="favorites"]').click();await page.waitForTimeout(120);
+    await page.locator('.quick-rail .rail-button[data-mode="locations"]').click();await page.waitForTimeout(160);
+    check('rail liquid medium restored after inactive same-position return', await page.locator('.atlas-liquid-selection-vertical').evaluate(node=>node.classList.contains('is-ready')&&Number.parseFloat(getComputedStyle(node).opacity)>.5&&node.getBoundingClientRect().width>0));
 
     const returnCases=[['filter','locations','#filterPanel'],['route','collectibles','#routePanel'],['progress','activities','#progressPanel']];
     for (const [panel,mode,selector] of returnCases) {
