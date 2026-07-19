@@ -1,0 +1,213 @@
+name: Extract supplemental Dada temple evidence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/extract_dada_temple_supplemental_evidence.py'
+      - '.github/workflows/dada-temples-supplemental-evidence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-temples-supplemental-evidence
+  cancel-in-progress: true
+
+jobs:
+  extract-supplemental-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile supplemental extractor
+        id: compile
+        run: python -m py_compile tools/extract_dada_temple_supplemental_evidence.py
+
+      - name: Install transient dependencies
+        id: dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download authorized sequence 03 with resilient fallbacks
+        id: download
+        run: |
+          rm -rf /tmp/dada-temples-supplemental /tmp/dada-temples-supplemental-video
+          mkdir -p /tmp/dada-temples-supplemental /tmp/dada-temples-supplemental-video
+          python - <<'PY'
+          import os, sys
+          from pathlib import Path
+          sys.path.insert(0, 'tools')
+          import analyze_authorized_video_v2 as downloader
+          path, attempts = downloader.download_with_fallbacks(
+              'https://www.bilibili.com/video/BV19EXYYWEdv/',
+              Path('/tmp/dada-temples-supplemental-video'),
+          )
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'video_path={path}\n')
+              handle.write(f'download_strategy={next(row["strategy"] for row in attempts if row["success"])}\n')
+          print(attempts)
+          PY
+
+      - name: Extract dense unresolved-position evidence
+        id: extract
+        env:
+          VIDEO_PATH: ${{ steps.download.outputs.video_path }}
+          ARTIFACT_NAME: dada-temples-36-supplemental-evidence-${{ github.run_id }}
+        run: |
+          python tools/extract_dada_temple_supplemental_evidence.py \
+            --video "$VIDEO_PATH" \
+            --output-dir /tmp/dada-temples-supplemental \
+            --artifact-name "$ARTIFACT_NAME" \
+            --run-id '${{ github.run_id }}'
+
+      - name: Run supplemental package gate
+        id: gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          manifest = json.loads(Path('data/geospatial/dada-temples-36-supplemental-evidence-manifest.json').read_text(encoding='utf-8'))
+          output = Path('/tmp/dada-temples-supplemental')
+          frames = manifest['extraction']['frames']
+          sheets = manifest['extraction']['contactSheets']
+          assert manifest['status'] == 'artifact-upload-pending'
+          assert manifest['source']['bvid'] == 'BV19EXYYWEdv'
+          assert abs(manifest['source']['downloadedDurationSeconds'] - 259.799) <= 3
+          assert manifest['extraction']['intervalSeconds'] == .5
+          assert len(frames) == 100
+          assert len(sheets) == 4
+          assert sorted({tuple(row['videoPositions']) for row in manifest['windows']}) == [(2,), (4, 5), (10,), (30,)]
+          assert all((output / row['filename']).is_file() for row in frames)
+          assert all((output / row['filename']).is_file() for row in sheets)
+          assert manifest['privacy']['repositoryContainsPixels'] is False
+          assert manifest['privacy']['artifactContainsTransientPixels'] is True
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          PY
+
+      - name: Upload one-day supplemental evidence artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-temples-36-supplemental-evidence-${{ github.run_id }}
+          path: /tmp/dada-temples-supplemental
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
+
+      - name: Finalize non-pixel supplemental manifest
+        id: finalize
+        env:
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+          ARTIFACT_DIGEST: ${{ steps.upload.outputs.artifact-digest }}
+          DOWNLOAD_STRATEGY: ${{ steps.download.outputs.download_strategy }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          path = Path('data/geospatial/dada-temples-36-supplemental-evidence-manifest.json')
+          value = json.loads(path.read_text(encoding='utf-8'))
+          value['status'] = 'artifact-uploaded-awaiting-visual-review'
+          value['uploadedAt'] = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+          value['artifactId'] = os.environ.get('ARTIFACT_ID')
+          value['artifactUrl'] = os.environ.get('ARTIFACT_URL')
+          value['artifactDigest'] = os.environ.get('ARTIFACT_DIGEST')
+          value['downloadStrategy'] = os.environ.get('DOWNLOAD_STRATEGY')
+          path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Persist supplemental manifest
+        id: persist
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/geospatial/dada-temples-36-supplemental-evidence-manifest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Record supplemental Dada temple evidence package [skip ci]'
+          for attempt in 1 2 3 4; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Delete transient video and evidence pixels
+        id: cleanup
+        if: always()
+        run: |
+          rm -rf /tmp/dada-temples-supplemental-video /tmp/dada-temples-supplemental
+          test ! -e /tmp/dada-temples-supplemental-video
+          test ! -e /tmp/dada-temples-supplemental
+
+      - name: Record supplemental evidence workflow outcome
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
+          DEPENDENCIES_OUTCOME: ${{ steps.dependencies.outcome }}
+          DOWNLOAD_OUTCOME: ${{ steps.download.outcome }}
+          EXTRACT_OUTCOME: ${{ steps.extract.outcome }}
+          GATE_OUTCOME: ${{ steps.gate.outcome }}
+          UPLOAD_OUTCOME: ${{ steps.upload.outcome }}
+          FINALIZE_OUTCOME: ${{ steps.finalize.outcome }}
+          PERSIST_OUTCOME: ${{ steps.persist.outcome }}
+          CLEANUP_OUTCOME: ${{ steps.cleanup.outcome }}
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+          DOWNLOAD_STRATEGY: ${{ steps.download.outputs.download_strategy }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          steps = {name: os.environ.get(key) or 'not-run' for name, key in {
+              'compile':'COMPILE_OUTCOME', 'dependencies':'DEPENDENCIES_OUTCOME', 'download':'DOWNLOAD_OUTCOME',
+              'extract':'EXTRACT_OUTCOME', 'gate':'GATE_OUTCOME', 'upload':'UPLOAD_OUTCOME',
+              'finalize':'FINALIZE_OUTCOME', 'persist':'PERSIST_OUTCOME', 'cleanup':'CLEANUP_OUTCOME',
+          }.items()}
+          failed = next((name for name, value in steps.items() if value in {'failure', 'cancelled'}), None)
+          payload = {
+              'schemaVersion': 1,
+              'status': os.environ.get('JOB_STATUS') or 'unknown',
+              'failedStage': failed,
+              'steps': steps,
+              'runId': os.environ.get('GITHUB_RUN_ID'),
+              'triggerSha': os.environ.get('GITHUB_SHA'),
+              'artifactId': os.environ.get('ARTIFACT_ID'),
+              'artifactUrl': os.environ.get('ARTIFACT_URL'),
+              'downloadStrategy': os.environ.get('DOWNLOAD_STRATEGY'),
+              'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+          }
+          Path('/tmp/dada-temples-supplemental-workflow.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data/batch-analysis
+            cp /tmp/dada-temples-supplemental-workflow.json data/batch-analysis/dada-temples-36-supplemental-evidence-workflow.json
+            git add data/batch-analysis/dada-temples-36-supplemental-evidence-workflow.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Record supplemental Dada temple evidence outcome [skip ci]'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
