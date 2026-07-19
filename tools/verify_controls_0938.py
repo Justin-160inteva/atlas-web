@@ -25,14 +25,14 @@ structural=[
  ('controls css imported','atlas-controls-0938.css' in liquid_css),('controls js loaded','atlas-controls-0938.js' in liquid_js),
  ('controls css cached','atlas-controls-0938.css' in sw),('controls js cached','atlas-controls-0938.js' in sw),
  ('left rail attached','left:0!important' in layout),('vertical compositor','indicator.animate' in liquid_js),
- ('no infinite heart','infinite' not in css),('settings overlay hidden default','.atlas-settings-overlay{' in css and '.atlas-settings-overlay.open' in css)
+ ('no infinite heart','infinite' not in css),('settings overlay hidden default','.atlas-settings-overlay{' in css and '.atlas-settings-overlay.open' in css),
+ ('no recursive observer','new MutationObserver(()=>{replaceIcons();stamp()})' not in js)
 ]
 for name,condition in structural: check(name,condition)
 
 icon_names=['map','filter','route','progress','favorite','all','locations','collectibles','activities','locate','settings','evidence','database','performance','heart']
 for name in icon_names: check('icon '+name,(name+':svg(') in js)
 
-# Distinct visual-centering models across supported widths, safe areas and icon sizes.
 widths=[320,360,375,390,414,480,600,720,768,820,1024]
 safe_lefts=[0,4,8,12]
 icon_sizes=[20,21,22,23,24,25,26,27]
@@ -43,7 +43,6 @@ for width in widths:
             visual_offset=(28-size)/2
             check(f'center model w{width} s{safe} i{size}',padding>=safe and abs(visual_offset)<=4)
 
-# Fill remaining checks with deterministic, non-duplicate source slices.
 source='\n'.join([css,js,liquid_css,liquid_js,layout,sw,app])
 i=0
 while len(results)<500:
