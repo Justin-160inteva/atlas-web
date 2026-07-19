@@ -58,14 +58,15 @@ jobs:
           assert 'scan-monitor.html?embedded=1' in settings
           assert 'statusBadge' in monitor_html and 'queueList' in monitor_html and 'recoveryPanel' in monitor_html
           assert 'scan-monitor.js?v=0.3.1' in monitor_html
-          assert 'scan-monitor-coherence.js?v=0.4.0' in monitor_html
+          assert 'scan-monitor-coherence.js?v=0.4.1' in monitor_html
           assert 'scan-monitor-download.js?v=0.4.0' in monitor_html
           assert 'scan-monitor-health.js' not in monitor_html
           assert 'downloadHeartbeatMeta' in monitor_html and '任务数据更新时间' in monitor_html
           assert 'FAST_POLL_MS=10000' in monitor_js and 'RUNNING_STALE_MS=180000' in monitor_js
-          assert "VERSION='0.4.0'" in coherence
+          assert "VERSION='0.4.1'" in coherence
           assert 'API_MIN_MS=60000' in coherence and 'MutationObserver' in coherence
           assert 'atlas-runtime-update' in coherence and 'GitHub Contents API' in coherence
+          assert 'const setText=' in coherence and 'queueMicrotask' in coherence
           assert "VERSION='0.4.0'" in download_js and 'atlas-runtime-update' in download_js
           assert 'downloadedBytes' in download_js and 'heartbeatSequence' in download_js
           assert 'ATLAS_PROGRESS_CONFLICT_RETRIES' in publisher
@@ -84,5 +85,5 @@ jobs:
           for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
               media.extend(pathlib.Path('.').rglob(pattern))
           assert not media, media
-          print('embedded coherent scan monitor v0.4.0 validation passed')
+          print('embedded coherent scan monitor v0.4.1 validation passed')
           PY
