@@ -1,59 +1,18 @@
 {
-  "schemaVersion": 2,
-  "batchId": "eleven-shancheng-pilot-scan-v7",
+  "schemaVersion": 1,
+  "batchId": "eleven-shancheng-pilot-scan-v8",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
-  "pilotRegion": "山城",
-  "updatedAt": "2026-07-19T17:33:06.947498Z",
-  "phase": "blocked",
-  "activeItem": null,
+  "updatedAt": "2026-07-19T17:38:00.579566Z",
   "complete": false,
   "summary": {
     "total": 3,
     "imported": 2,
-    "running": 1,
     "failed": 0,
-    "blocked": 0,
-    "retryableFailed": 0,
     "remaining": 1,
     "attemptedThisRun": 0,
     "newlyImportedThisRun": 0
   },
-  "items": [
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p022",
-      "sequence": 22,
-      "page": 22,
-      "state": "imported",
-      "attemptCount": 2,
-      "lastStartedAt": "2026-07-19T16:29:46.893266Z",
-      "lastFinishedAt": "2026-07-19T16:31:25.771753Z",
-      "resultPath": "data/analysis-results/eleven-p022.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p021",
-      "sequence": 21,
-      "page": 21,
-      "state": "imported",
-      "attemptCount": 2,
-      "lastStartedAt": "2026-07-19T16:48:35.217225Z",
-      "lastFinishedAt": "2026-07-19T16:59:59.905140Z",
-      "resultPath": "data/analysis-results/eleven-p021.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p020",
-      "sequence": 20,
-      "page": 20,
-      "state": "running",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-19T17:32:05.392272Z",
-      "lastFinishedAt": null,
-      "resultPath": null,
-      "error": null
-    }
-  ],
   "events": [],
-  "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
+  "privacy": "Original video media and frame pixels are transient and deleted after analysis."
 }
