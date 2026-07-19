@@ -7,10 +7,18 @@
   const pathOf=input=>{
     try{return new URL(typeof input==='string'?input:input.url,location.href).pathname.replace(/^.*\/atlas-web\//,'').replace(/^\/+/, '')}catch{return String(input)}
   };
+  function appliesToPath(transform,path){
+    const paths=Array.isArray(transform?.atlasPaths)?transform.atlasPaths:null;
+    return !paths||paths.includes(path);
+  }
   function applyTransforms(value,path){
-    if(path!=='data/locations.json')return value;
     const transforms=Array.isArray(window.AtlasDataTransforms)?window.AtlasDataTransforms:[];
-    for(const item of value){for(const transform of transforms){try{transform(item)}catch(error){console.warn('[Atlas data transform failed]',error)}}}
+    for(const item of value){
+      for(const transform of transforms){
+        if(typeof transform!=='function'||!appliesToPath(transform,path))continue;
+        try{transform(item,path)}catch(error){console.warn('[Atlas data transform failed]',{path,error})}
+      }
+    }
     return value;
   }
   async function validJsonResponse(response,path){
