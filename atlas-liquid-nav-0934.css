@@ -1,21 +1,99 @@
-@import url("./atlas-liquid-nav-0933.css?v=0.9.3.3");
-@import url("./atlas-nav-layout-0937.css?v=0.9.3.7");
-@import url("./atlas-controls-0938.css?v=0.9.3.8");
+@import url("./atlas-liquid-nav-0933.css?v=0.9.4.3");
+@import url("./atlas-nav-layout-0937.css?v=0.9.4.3");
+@import url("./atlas-controls-0938.css?v=0.9.4.3");
 
-/* Atlas Alpha 0.9.3.8 — smoother integrated vertical liquid navigation */
+/* Atlas Alpha 0.9.4.3 — complete Apple-inspired frosted navigation media */
 :root{
   --atlas-liquid-horizontal-ease:cubic-bezier(.2,.82,.22,1.08);
   --atlas-liquid-vertical-ease:cubic-bezier(.22,.84,.26,1);
 }
-.atlas-liquid-selection-horizontal{transition:transform .44s var(--atlas-liquid-horizontal-ease),width .44s var(--atlas-liquid-horizontal-ease),height .44s var(--atlas-liquid-horizontal-ease),opacity .16s ease}
-.atlas-liquid-selection-vertical{border-color:rgba(255,255,255,.14);border-radius:16px;background:radial-gradient(circle at 28% 4%,rgba(255,255,255,.18),transparent 42%),radial-gradient(circle at 74% 100%,rgba(176,39,53,.16),transparent 52%),linear-gradient(150deg,rgba(255,255,255,.105),rgba(111,29,38,.14) 58%,rgba(255,255,255,.045));-webkit-backdrop-filter:blur(12px) saturate(142%) brightness(1.035);backdrop-filter:blur(12px) saturate(142%) brightness(1.035);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(92,15,23,.14),0 7px 18px rgba(45,8,13,.18);will-change:transform;transition:transform .31s var(--atlas-liquid-vertical-ease),opacity .12s ease}
-.atlas-liquid-selection-vertical::before{inset:2px 15% auto;height:34%;opacity:.46;filter:blur(3px)}
-.atlas-liquid-selection-vertical::after{left:17%;right:17%;bottom:-22%;height:45%;opacity:.58;filter:blur(7px)}
-.quick-rail .rail-button .rail-icon,.quick-rail .rail-button.active .rail-icon{display:grid;place-items:center;border:0!important;outline:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;filter:none;opacity:.72;transform:translateZ(0) scale(1);transition:opacity .18s ease,transform .24s var(--atlas-liquid-vertical-ease),color .18s ease}
-.quick-rail .rail-button.active .rail-icon{color:rgba(255,249,237,.96);opacity:.96;transform:translateZ(0) scale(1.045);filter:drop-shadow(0 2px 4px rgba(0,0,0,.22))}
-.quick-rail .rail-button small{opacity:.68;transform:translateZ(0);transition:opacity .18s ease,color .18s ease}
-.quick-rail .rail-button.active small{color:rgba(255,247,232,.94);opacity:.94}
+
+.atlas-liquid-selection-horizontal{
+  border-color:rgba(255,255,255,.16);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 28% 0%,rgba(255,255,255,.2),transparent 43%),
+    linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.045) 58%,rgba(15,15,16,.12));
+  -webkit-backdrop-filter:blur(12px) saturate(138%) brightness(1.03);
+  backdrop-filter:blur(12px) saturate(138%) brightness(1.03);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.23),
+    inset 0 -1px 0 rgba(255,255,255,.035),
+    0 6px 16px rgba(0,0,0,.16);
+  transition:transform .42s var(--atlas-liquid-horizontal-ease),width .42s var(--atlas-liquid-horizontal-ease),height .42s var(--atlas-liquid-horizontal-ease),opacity .16s ease;
+}
+
+.atlas-liquid-selection-vertical{
+  border-color:rgba(255,255,255,.17);
+  border-radius:17px;
+  background:
+    radial-gradient(circle at 28% 2%,rgba(255,255,255,.23),transparent 43%),
+    linear-gradient(150deg,rgba(255,255,255,.145),rgba(255,255,255,.052) 58%,rgba(15,15,16,.1));
+  -webkit-backdrop-filter:blur(12px) saturate(140%) brightness(1.035);
+  backdrop-filter:blur(12px) saturate(140%) brightness(1.035);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.24),
+    inset 0 -1px 0 rgba(255,255,255,.04),
+    0 7px 18px rgba(0,0,0,.17);
+  will-change:transform;
+  transition:transform .31s var(--atlas-liquid-vertical-ease),opacity .12s ease;
+}
+
+.atlas-liquid-selection-horizontal::before,
+.atlas-liquid-selection-vertical::before{
+  inset:2px 15% auto;
+  height:34%;
+  opacity:.42;
+  filter:blur(3px);
+}
+
+.atlas-liquid-selection-horizontal::after,
+.atlas-liquid-selection-vertical::after{
+  left:17%;
+  right:17%;
+  bottom:-22%;
+  height:45%;
+  background:rgba(255,255,255,.055);
+  opacity:.5;
+  filter:blur(7px);
+}
+
+.quick-rail .rail-button .rail-icon,
+.quick-rail .rail-button.active .rail-icon{
+  display:grid;
+  place-items:center;
+  border:0!important;
+  outline:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  filter:none;
+  opacity:.7;
+  transform:translateZ(0) scale(1);
+  transition:opacity .18s ease,transform .24s var(--atlas-liquid-vertical-ease),color .18s ease;
+}
+
+.quick-rail .rail-button.active .rail-icon{
+  color:rgba(255,252,246,.98);
+  opacity:1;
+  transform:translateZ(0) scale(1.055);
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));
+}
+
+.quick-rail .rail-button small{opacity:.66;transform:translateZ(0);transition:opacity .18s ease,color .18s ease}
+.quick-rail .rail-button.active small{color:rgba(255,250,242,.96);opacity:.96}
 .quick-rail .rail-button:active{transform:none!important}
 .atlas-liquid-selection-vertical.is-pressed{transform:translate3d(var(--liquid-x),var(--liquid-y),0) scale(.986);transition-duration:.09s}
-.atlas-quality-performance .atlas-liquid-selection-vertical{-webkit-backdrop-filter:blur(6px) saturate(124%);backdrop-filter:blur(6px) saturate(124%);box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 5px 14px rgba(30,5,9,.14)}
-@media (prefers-reduced-motion:reduce){.atlas-liquid-selection-vertical{transition:opacity .1s ease!important}}
+
+.atlas-quality-performance .atlas-liquid-selection-horizontal,
+.atlas-quality-performance .atlas-liquid-selection-vertical{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  background:linear-gradient(150deg,rgba(255,255,255,.14),rgba(255,255,255,.045) 58%,rgba(17,17,18,.12));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 5px 14px rgba(0,0,0,.14);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .atlas-liquid-selection-horizontal,
+  .atlas-liquid-selection-vertical{transition:opacity .1s ease!important}
+}
