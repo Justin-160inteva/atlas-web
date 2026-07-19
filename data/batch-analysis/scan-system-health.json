@@ -1,11 +1,11 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-19T21:05:02.135460Z",
-  "status": "pass",
+  "generatedAt": "2026-07-19T21:10:12.315095Z",
+  "status": "fail",
   "summary": {
     "total": 42,
-    "passed": 42,
-    "failed": 0
+    "passed": 39,
+    "failed": 3
   },
   "dictionaryVersion": "2026.07.19.3",
   "checks": [
@@ -46,12 +46,12 @@
     },
     {
       "name": "heartbeat_30_seconds",
-      "passed": true,
+      "passed": false,
       "detail": "30-second worker heartbeat"
     },
     {
       "name": "telemetry_30_seconds",
-      "passed": true,
+      "passed": false,
       "detail": "30-second download telemetry"
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "name": "range_workers",
-      "passed": true,
+      "passed": false,
       "detail": "bounded parallel workers"
     },
     {
