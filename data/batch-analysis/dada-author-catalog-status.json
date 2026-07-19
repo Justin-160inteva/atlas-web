@@ -3,14 +3,14 @@
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "authorizationId": "auth-dada-20260718",
-  "updatedAt": "2026-07-19T10:59:29.254165Z",
-  "complete": false,
+  "updatedAt": "2026-07-19T10:59:58.575066Z",
+  "complete": true,
   "summary": {
     "total": 23,
-    "imported": 22,
-    "failed": 2,
-    "unresolved": 2,
-    "remaining": 1,
+    "imported": 23,
+    "failed": 0,
+    "unresolved": 0,
+    "remaining": 0,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -78,7 +78,9 @@
       "url": "https://www.bilibili.com/video/BV19EXYYWEdv/",
       "state": "imported",
       "attemptCount": 0,
-      "resultPath": "data/analysis-results/dada-temples-36.json"
+      "resultPath": "data/analysis-results/dada-temples-36.json",
+      "qualityState": "verified-correct-source",
+      "resultStale": false
     },
     {
       "externalSourceId": "bili-dada-acshadows-04",
@@ -184,9 +186,8 @@
         "collectionId": 5059842,
         "verifiedAt": "2026-07-19T08:37:58.050306+00:00"
       },
-      "qualityState": "exact-url-verified-pending-reprocess",
-      "resultStale": true,
-      "staleReason": "Previous analysis used BV1eeZ7YdEDs (sequence 05)"
+      "qualityState": "verified-correct-source",
+      "resultStale": false
     },
     {
       "externalSourceId": "bili-dada-acshadows-07",

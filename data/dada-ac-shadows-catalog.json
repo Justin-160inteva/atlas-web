@@ -35,11 +35,11 @@
       23
     ],
     "lastPublicReview": "2026-07-18",
-    "analysisImported": 22,
-    "analysisRemaining": 1,
-    "analysisComplete": false,
-    "analysisUpdatedAt": "2026-07-19T10:59:29.254165Z",
-    "integrityVerifiedAt": null
+    "analysisImported": 23,
+    "analysisRemaining": 0,
+    "analysisComplete": true,
+    "analysisUpdatedAt": "2026-07-19T10:59:58.575066Z",
+    "integrityVerifiedAt": "2026-07-19T10:59:58.575066Z"
   },
   "futureInclusionRule": {
     "enabled": true,
@@ -151,7 +151,24 @@
       "notes": "允许从公开视频页面下载，仅用于本地计算机视觉分析；不得公开分发完整视频。",
       "mapUtility": "最高",
       "priority": 100,
-      "sourceSeries": "〖刺客信条影 新手攻略〗"
+      "sourceSeries": "〖刺客信条影 新手攻略〗",
+      "analysisStatus": "imported",
+      "analysisResultPath": "data/analysis-results/dada-temples-36.json",
+      "analysisUpdatedAt": "2026-07-18T22:38:17.892626Z",
+      "analysisQualityStatus": "verified-correct-source",
+      "analysisVerification": {
+        "verifiedBvid": "BV19EXYYWEdv",
+        "verifiedAt": "2026-07-19T10:59:58.486183Z",
+        "resultChecks": {
+          "statusAnalyzed": true,
+          "authorExact": true,
+          "titleExact": true,
+          "bvidExact": true,
+          "originalVideoDeleted": true,
+          "framePixelsDeleted": true
+        },
+        "canonicalResultPath": "data/analysis-results/dada-temples-36.json"
+      }
     },
     {
       "id": "bili-dada-acshadows-04",

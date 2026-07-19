@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-19T10:59:29.254165Z",
+  "generatedAt": "2026-07-19T10:59:58.575066Z",
   "applied": true,
-  "status": "fail",
+  "status": "pass",
   "summary": {
     "catalogItems": 23,
-    "checks": 317,
-    "passed": 315,
-    "failed": 2,
+    "checks": 327,
+    "passed": 327,
+    "failed": 0,
     "namedSequences": [
       1,
       2,
@@ -61,6 +61,7 @@
     "importedSequences": [
       1,
       2,
+      3,
       4,
       5,
       6,
@@ -84,24 +85,7 @@
     ],
     "duplicateBvidGroups": []
   },
-  "errors": [
-    {
-      "sequence": 3,
-      "code": "RESULT_EXISTS",
-      "passed": false,
-      "evidence": {
-        "resultPath": "data/analysis-results/dada-03.json"
-      }
-    },
-    {
-      "sequence": 6,
-      "code": "STATUS_NOT_STALE",
-      "passed": false,
-      "evidence": {
-        "resultStale": true
-      }
-    }
-  ],
+  "errors": [],
   "checks": [
     {
       "sequence": null,
@@ -445,9 +429,92 @@
     {
       "sequence": 3,
       "code": "RESULT_EXISTS",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "resultPath": "data/analysis-results/dada-03.json"
+        "resultPath": "data/analysis-results/dada-temples-36.json"
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗03 寺庙全收集（36个位置）",
+        "actual": "〖刺客信条影 新手攻略〗03 寺庙全收集（36个位置）"
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV19EXYYWEdv",
+        "actual": "BV19EXYYWEdv"
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 260,
+        "actual": 259.799
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "ede69dd310a4a53cf66fb75426bb70cd59892002773b9b0e3874857d2de5899b"
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": false
       }
     },
     {
@@ -793,9 +860,9 @@
     {
       "sequence": 6,
       "code": "STATUS_NOT_STALE",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "resultStale": true
+        "resultStale": false
       }
     },
     {
