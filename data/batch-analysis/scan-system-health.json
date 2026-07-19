@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T19:37:08.602513Z",
-  "status": "fail",
+  "generatedAt": "2026-07-19T19:39:27.488833Z",
+  "status": "pass",
   "summary": {
     "total": 33,
-    "passed": 29,
-    "failed": 4
+    "passed": 33,
+    "failed": 0
   },
   "dictionaryVersion": "2026.07.19.1",
   "checks": [
@@ -61,33 +61,33 @@
     },
     {
       "name": "monitor_poll",
-      "passed": false,
-      "detail": "10-second page and coherence checks"
+      "passed": true,
+      "detail": "single 10-second controller"
     },
     {
       "name": "monitor_thresholds",
-      "passed": false,
-      "detail": "60/75/150/180-second bounded thresholds"
+      "passed": true,
+      "detail": "60/150/180-second thresholds"
     },
     {
       "name": "monitor_versions",
-      "passed": false,
-      "detail": "coherent monitor component versions"
+      "passed": true,
+      "detail": "unified monitor version"
     },
     {
       "name": "monitor_schema",
       "passed": true,
-      "detail": "runtime schema guards across monitor channels"
+      "detail": "runtime schema and monotonic guards"
     },
     {
       "name": "monitor_completion_priority",
       "passed": true,
-      "detail": "one freshness writer with loop-safe coherent queue overlay"
+      "detail": "core reads cannot remain permanently syncing"
     },
     {
       "name": "monitor_cache",
-      "passed": false,
-      "detail": "cache generation v6 includes coherent assets"
+      "passed": true,
+      "detail": "cache generation v7 contains only unified controller"
     },
     {
       "name": "publisher_conflict_logic",
