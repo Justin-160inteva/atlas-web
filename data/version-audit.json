@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "project": "Atlas - Assassin's Creed Shadows Interactive Map",
+  "currentVersion": "0.9.3.5",
+  "lastAuditedVersion": "0.9.3.5",
+  "auditEveryPatchReleases": 3,
+  "nextScheduledAuditVersion": "0.9.3.8",
+  "stageGate": {
+    "id": "ultra-hd-original-map",
+    "title": "超高清自创地图成型",
+    "status": "pending",
+    "unlocksDeferredBacklog": true
+  },
+  "auditPolicy": {
+    "checkConversationRequests": true,
+    "checkAssistantCommitments": true,
+    "checkUnimplementedItems": true,
+    "checkPartialImplementations": true,
+    "checkRegressions": true,
+    "checkKnownBugs": true,
+    "checkTechnicalDebt": true,
+    "requireImplementationEvidence": true,
+    "requireAutomatedValidation": true,
+    "requireDeviceVerificationWhenApplicable": true
+  },
+  "currentHighPriority": [
+    "Finish all 23 authorised 达达猪 video scans and imports",
+    "Build and validate the ultra-high-definition original map",
+    "Maintain mobile and desktop 60 FPS performance targets",
+    "Prevent navigation and style dependency regressions",
+    "Device-verify Alpha 0.9.3.5 liquid navigation",
+    "Convert scanned evidence descriptors into map anchors"
+  ],
+  "knownDeferred": [
+    "Next creator intake after 达达猪 completion and explicit authorisation",
+    "Full evidence-based location anchoring after the ultra-HD map stage gate",
+    "Actual original Atlas display font assets beyond CSS aliases and fallbacks",
+    "Full completeness audit against 完整版 and 终极完整版 requirements"
+  ],
+  "auditHistory": [
+    {
+      "version": "0.9.3.5",
+      "date": "2026-07-19",
+      "type": "baseline",
+      "result": "Roadmap and recurring audit policy established",
+      "roadmap": "PROJECT-ROADMAP.md"
+    }
+  ]
+}
