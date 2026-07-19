@@ -28,10 +28,10 @@
     </section>
 
     <section class="card download-telemetry" id="downloadTelemetry" data-active="false">
-      <div class="card-title"><b>实时下载遥测</b><small>任务端每60秒公开一次</small></div>
+      <div class="card-title"><b>实时下载遥测</b><small id="downloadHeartbeatMeta">等待任务心跳</small></div>
       <div class="telemetry-grid">
         <div class="telemetry-stat"><b id="downloadedAmount">—</b><small>已下载 / 总大小</small></div>
-        <div class="telemetry-stat"><b id="downloadSpeed">—</b><small>实时平均速度</small></div>
+        <div class="telemetry-stat"><b id="downloadSpeed">—</b><small>滚动速度 / 平均速度</small></div>
         <div class="telemetry-stat"><b id="downloadSegment">—</b><small>当前分片 / 总分片</small></div>
         <div class="telemetry-stat"><b id="downloadEta">—</b><small>预计剩余时间</small></div>
       </div>
@@ -63,10 +63,10 @@
       </section>
     </div>
 
-    <p class="footer">页面每10秒读取一次；下载器在下载期间每60秒至少写入一次脱敏心跳。超过180秒无心跳会触发系统警报和自动调查。</p>
+    <p class="footer">页面每10秒核对一次，并拒绝倒退到旧心跳；任务端每60秒至少写入一次。原始文件异常陈旧时会使用GitHub Contents API二次校验，超过180秒无匹配心跳才判定为故障。</p>
   </main>
   <script src="scan-monitor.js?v=0.3.1" defer></script>
-  <script src="scan-monitor-download.js?v=0.3.0" defer></script>
-  <script src="scan-monitor-health.js?v=0.3.2" defer></script>
+  <script src="scan-monitor-coherence.js?v=0.4.0" defer></script>
+  <script src="scan-monitor-download.js?v=0.4.0" defer></script>
 </body>
 </html>
