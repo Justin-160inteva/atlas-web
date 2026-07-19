@@ -1,13 +1,11 @@
 (() => {
   'use strict';
-  const VERSION='0.9.4.1';
-  const VERSION_TEXT="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.1";
+  const VERSION=window.AtlasRelease?.version||'0.9.4.2';
   const root=document.documentElement;
   const groups=[];
   let frame=0;
 
   root.classList.toggle('atlas-standalone',Boolean(window.matchMedia?.('(display-mode: standalone)').matches||window.navigator.standalone));
-  function stampVersion(){const brand=document.querySelector('.brand-copy small');if(brand&&brand.textContent!==VERSION_TEXT)brand.textContent=VERSION_TEXT}
   function schedule(){if(frame)return;frame=requestAnimationFrame(()=>{frame=0;groups.forEach(placeIndicator)})}
   function geometry(group,containerRect,activeRect){
     if(group.name!=='vertical')return{x:activeRect.left-containerRect.left,y:activeRect.top-containerRect.top,width:activeRect.width,height:activeRect.height};
@@ -44,6 +42,6 @@
     document.querySelectorAll('script[data-atlas-controls]').forEach(node=>{if(node.dataset.atlasControls!==VERSION)node.remove()});
     if(!document.querySelector(`script[data-atlas-controls="${VERSION}"]`)){const script=document.createElement('script');script.src=`atlas-controls-0938.js?v=${VERSION}`;script.defer=true;script.dataset.atlasControls=VERSION;document.body.appendChild(script)}
   }
-  function init(){installGroup('.bottom-nav','horizontal');installGroup('.quick-rail','vertical');root.dataset.atlasLiquidNav=VERSION;stampVersion();const brand=document.querySelector('.brand-copy small');if(brand)new MutationObserver(stampVersion).observe(brand,{childList:true,characterData:true,subtree:true});addEventListener('resize',schedule,{passive:true});addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});document.fonts?.ready?.then(schedule,()=>{});setTimeout(schedule,120);loadControls()}
+  function init(){installGroup('.bottom-nav','horizontal');installGroup('.quick-rail','vertical');root.dataset.atlasLiquidNav=VERSION;addEventListener('resize',schedule,{passive:true});addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});document.fonts?.ready?.then(schedule,()=>{});setTimeout(schedule,120);loadControls()}
   document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init,{once:true}):init();
 })();
