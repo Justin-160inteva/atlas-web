@@ -47,7 +47,12 @@ def _safe_metrics(metrics: dict[str, Any] | None) -> dict[str, Any]:
         "segmentIndex": int,
         "segmentCount": int,
         "speedBytesPerSecond": float,
+        "averageSpeedBytesPerSecond": float,
         "etaSeconds": float,
+        "downloadElapsedSeconds": float,
+        "speedWindowSeconds": float,
+        "stalledSeconds": float,
+        "heartbeatSequence": int,
     }
     clean: dict[str, Any] = {}
     for key, caster in allowed.items():
@@ -68,7 +73,7 @@ def _payload(job: dict[str, Any], *, stage: str, progress_percent: float, messag
              metrics: dict[str, Any] | None = None) -> dict[str, Any]:
     batch = job.get("batch") or {}
     payload = {
-        "schemaVersion": 3,
+        "schemaVersion": 4,
         "author": job.get("author"),
         "authorizationId": job.get("authorizationId"),
         "pilotRegion": batch.get("regionGuess"),
@@ -112,7 +117,7 @@ def _github_request(url: str, token: str, *, method: str = "GET", body: dict[str
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {token}",
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "AtlasRuntimeProgress/1.1",
+            "User-Agent": "AtlasRuntimeProgress/1.2",
             "Content-Type": "application/json",
         },
     )
