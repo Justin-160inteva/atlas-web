@@ -50,34 +50,56 @@ jobs:
           import os
           from pathlib import Path
 
+          generic_owner = 'reprocess-dada-verified.yml'
           queue = json.loads(Path('data/analysis-jobs/dada-quality-reprocess.json').read_text(encoding='utf-8'))
           requested = os.environ.get('REQUESTED_MANIFEST', '').strip()
           if requested:
-              manifests = [Path(requested)]
+              candidates = [Path(requested)]
           else:
               ready = queue.get('readyForReprocessSequences') or [
                   item['sequence'] for item in queue.get('items', [])
                   if item.get('safeToDownloadNow') is True and item.get('resolutionStatus') == 'verified'
               ]
-              manifests = [Path(f'data/reprocess/dada-seq{int(sequence):02d}.json') for sequence in ready]
-          manifests = [path for path in manifests if path.is_file()]
+              candidates = [Path(f'data/reprocess/dada-seq{int(sequence):02d}.json') for sequence in ready]
+
+          manifests = []
+          delegated = []
+          for path in candidates:
+              if not path.is_file():
+                  continue
+              manifest = json.loads(path.read_text(encoding='utf-8'))
+              owner = str(manifest.get('workflowOwner') or generic_owner)
+              if owner == generic_owner:
+                  manifests.append((path, manifest))
+              else:
+                  delegated.append((path, owner))
+
           with Path(os.environ['GITHUB_OUTPUT']).open('a', encoding='utf-8') as output:
+              if requested and delegated:
+                  output.write('should_run=false\n')
+                  output.write(f'managed_by={delegated[0][1]}\n')
+                  raise SystemExit(0)
               if not manifests:
                   output.write('should_run=false\n')
                   raise SystemExit(0)
               if len(manifests) != 1:
-                  raise SystemExit(f'Expected at most one verified manifest, found: {[str(path) for path in manifests]}')
-              manifest = json.loads(manifests[0].read_text(encoding='utf-8'))
+                  raise SystemExit(f'Expected at most one generic verified manifest, found: {[str(path) for path, _ in manifests]}')
+              path, manifest = manifests[0]
               sequence = int(manifest['sequence'])
               output.write('should_run=true\n')
-              output.write(f'manifest={manifests[0].as_posix()}\n')
+              output.write(f'manifest={path.as_posix()}\n')
               output.write(f'sequence={sequence}\n')
               output.write(f'padded={sequence:02d}\n')
           PY
 
       - name: Report idle verified queue
         if: steps.select.outputs.should_run != 'true'
-        run: echo 'No verified Dada request is ready; workflow completed without downloading media.'
+        run: |
+          if [ -n "${{ steps.select.outputs.managed_by }}" ]; then
+            echo "Manifest is delegated to ${{ steps.select.outputs.managed_by }}; generic workflow will not download media."
+          else
+            echo 'No generic verified Dada request is ready; workflow completed without downloading media.'
+          fi
 
       - name: Compile and run 400-round preflight gate
         if: steps.select.outputs.should_run == 'true'
