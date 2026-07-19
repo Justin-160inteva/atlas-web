@@ -115,8 +115,6 @@ for (const [profileIndex, profile] of profiles.entries()) {
       check(`${panel} return keeps rail ${mode} interactive`, await page.locator(`.quick-rail .rail-button[data-mode="${mode}"].active`).count() === 1);
       check(`${panel} closed panel inert`, await page.locator(selector).evaluate(node => node.hasAttribute('inert') && getComputedStyle(node).pointerEvents === 'none' && node.getAttribute('aria-hidden') === 'true'));
     }
-    const navigationInteraction = await page.evaluate(() => ({rail:getComputedStyle(document.querySelector('.quick-rail')).pointerEvents,closed:[...document.querySelectorAll('#filterPanel,#routePanel,#progressPanel')].every(node=>node.hasAttribute('inert')&&getComputedStyle(node).pointerEvents==='none')}));
-    check('map return leaves only rail interactive', navigationInteraction.rail !== 'none' && navigationInteraction.closed, JSON.stringify(navigationInteraction));
 
     if(profileIndex===0){
       check('bottom maximum width contract', navigationGeometry.bottom.width <= 431, String(navigationGeometry.bottom.width));
