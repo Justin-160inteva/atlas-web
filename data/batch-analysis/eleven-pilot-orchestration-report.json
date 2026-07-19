@@ -1,20 +1,25 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-19T23:03:17.224293Z",
+  "generatedAt": "2026-07-19T23:11:43.824242Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
-  "finalState": "scan_completed_or_progressed",
+  "finalState": "human_review_required",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-19T23:01:40.826579Z",
-      "finishedAt": "2026-07-19T23:03:17.223902Z",
+      "startedAt": "2026-07-19T23:07:54.031290Z",
+      "finishedAt": "2026-07-19T23:11:41.328285Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
       "imported": 3,
-      "failed": 0,
+      "failed": 1,
       "running": 0,
-      "scannerOutput": "{\"total\": 5, \"imported\": 3, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 2}\n\n"
+      "scannerOutput": "{\"total\": 5, \"imported\": 3, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 2}\n\n",
+      "diagnosisReturnCode": 0,
+      "dictionaryEntryId": null,
+      "action": "human_review_required",
+      "retryScheduled": false,
+      "requiresHumanReview": true
     }
   ],
   "safety": {

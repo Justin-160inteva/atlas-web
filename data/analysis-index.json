@@ -1,6 +1,6 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-19T23:03:17.204077Z",
+  "updatedAt": "2026-07-19T23:11:41.313029Z",
   "items": [
     {
       "id": "analysis-eleven-p001-v2",
@@ -316,6 +316,45 @@
         "geospatialAnchoringCompleted": false
       },
       "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
+    },
+    {
+      "id": "analysis-eleven-p010-v2",
+      "jobId": "eleven-p010-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p010",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P10 第10期：藏蝶人",
+      "status": "failed",
+      "resultPath": "data/analysis-results/eleven-p010.json",
+      "resultSha256": "09a2f0d01023742600208a318cf097e5971d3e81acd34d24f66d43f60eece6f1",
+      "generatedAt": "2026-07-19T23:11:38.919988Z",
+      "media": {
+        "durationSeconds": null,
+        "width": null,
+        "height": null,
+        "fps": null,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 0,
+        "kept": 0,
+        "blurred": 0,
+        "duplicates": 0,
+        "keepRatio": 0
+      },
+      "pipeline": {
+        "sourceDownloaded": false,
+        "numericDescriptorsGenerated": false,
+        "resultCommitted": true,
+        "libraryImported": false,
+        "geospatialAnchoringCompleted": false
+      },
+      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。",
+      "failure": {
+        "stage": "analysis",
+        "error": "RuntimeError('OpenCV could not open the downloaded video')"
+      }
     },
     {
       "id": "analysis-eleven-p020-v2",
