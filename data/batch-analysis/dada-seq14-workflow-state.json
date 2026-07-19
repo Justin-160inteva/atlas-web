@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "sequence": 14,
+  "workflow": "dada-sequence-14-resolution.yml",
+  "runId": "29683633745",
+  "runAttempt": "1",
+  "triggerSha": "03309787c201d4cf6c5c622af11ada382060b8b6",
+  "event": "push",
+  "status": "success",
+  "failedStage": null,
+  "steps": {
+    "compile": "success",
+    "resolve": "success",
+    "resolutionGate": "success",
+    "preflight": "success",
+    "installDependencies": "success",
+    "downloadAndAnalyze": "success",
+    "cleanup": "success",
+    "audit": "success",
+    "transitionGate": "success",
+    "uploadEvidence": "success",
+    "persistReplacement": "success"
+  },
+  "recordedAt": "2026-07-19T10:45:57.544738Z"
+}
