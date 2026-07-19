@@ -1,12 +1,12 @@
 {
-  "schemaVersion": 10,
+  "schemaVersion": 11,
   "id": "eleven-production-p004-p006-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "statusOutput": "data/batch-analysis/eleven-pilot-scan-status.json",
-  "analyzer": "tools/analyze_authorized_video_v11.py",
+  "analyzer": "tools/analyze_authorized_video_v12.py",
   "outputPrefix": "eleven",
   "maxItemsPerRun": 1,
   "maxSamplesA": 540,
@@ -25,6 +25,7 @@
     "enabled": true,
     "publishDownloadStageImmediately": true,
     "publishTerminalAnalyzerState": true,
+    "preserveLastMeasuredDownloadTelemetry": true,
     "minimumIntervalSeconds": 30,
     "independentTicker": true,
     "continuesDuringNetworkStall": true,
@@ -39,7 +40,8 @@
       "averageSpeedBytesPerSecond", "segmentIndex", "segmentCount",
       "segmentDownloadedBytes", "segmentTotalBytes", "etaSeconds",
       "downloadElapsedSeconds", "speedWindowSeconds", "stalledSeconds",
-      "heartbeatSequence", "transferMode", "maxRangeWorkers"
+      "heartbeatSequence", "transferMode", "maxRangeWorkers",
+      "telemetryMeasuredAt", "telemetryPreserved"
     ]
   },
   "downloadOptimization": {
@@ -65,7 +67,8 @@
   "compatibilityFixes": {
     "curlCffiResponseContextManager": true,
     "adaptiveRangeResume": true,
-    "fixedBy": "tools/analyze_authorized_video_v11.py"
+    "preserveDownloadTelemetryAcrossStages": true,
+    "fixedBy": "tools/analyze_authorized_video_v12.py"
   },
   "recoveryPolicy": {
     "enabled": true,
