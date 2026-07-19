@@ -32,7 +32,9 @@ jobs:
 
       - name: Compile supplemental extractor
         id: compile
-        run: python -m py_compile tools/extract_dada_temple_supplemental_evidence.py
+        run: |
+          python -m py_compile tools/extract_dada_temple_supplemental_evidence.py
+          python -m py_compile tools/analyze_authorized_video_v2.py tools/analyze_authorized_video_v4.py
 
       - name: Install transient dependencies
         id: dependencies
@@ -42,24 +44,28 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      - name: Download authorized sequence 03 with resilient fallbacks
+      - name: Download authorized sequence 03 with proven resilient fallbacks
         id: download
         run: |
           rm -rf /tmp/dada-temples-supplemental /tmp/dada-temples-supplemental-video
           mkdir -p /tmp/dada-temples-supplemental /tmp/dada-temples-supplemental-video
-          python - <<'PY'
-          import os, sys
+          PYTHONPATH=tools python - <<'PY'
+          import json
+          import os
           from pathlib import Path
-          sys.path.insert(0, 'tools')
-          import analyze_authorized_video_v2 as downloader
-          path, attempts = downloader.download_with_fallbacks(
-              'https://www.bilibili.com/video/BV19EXYYWEdv/',
-              Path('/tmp/dada-temples-supplemental-video'),
-          )
+          import analyze_authorized_video_v4 as resilient
+
+          workdir = Path('/tmp/dada-temples-supplemental-video')
+          url = 'https://www.bilibili.com/video/BV19EXYYWEdv/'
+          video_path, attempts = resilient.runner.download_with_fallbacks(url, workdir)
+          diagnostic = workdir / 'download-attempts.json'
+          diagnostic.write_text(json.dumps(attempts, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          if not video_path.is_file() or video_path.stat().st_size < 1024:
+              raise RuntimeError('resilient downloader produced no usable video')
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
-              handle.write(f'video_path={path}\n')
-              handle.write(f'download_strategy={next(row["strategy"] for row in attempts if row["success"])}\n')
-          print(attempts)
+              handle.write(f'video_path={video_path.resolve()}\n')
+              handle.write(f'download_strategy={next(row["strategy"] for row in attempts if row.get("success"))}\n')
+          print(json.dumps({'videoPath': str(video_path), 'bytes': video_path.stat().st_size, 'attempts': attempts}, ensure_ascii=False))
           PY
 
       - name: Extract dense unresolved-position evidence
