@@ -4,20 +4,20 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P07-P11",
-  "updatedAt": "2026-07-19T22:01:55.286948Z",
-  "phase": "progress",
+  "updatedAt": "2026-07-19T22:07:36.335319Z",
+  "phase": "retryable_failure",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 5,
     "imported": 2,
     "running": 0,
-    "failed": 0,
+    "failed": 1,
     "blocked": 0,
-    "retryableFailed": 0,
+    "retryableFailed": 1,
     "remaining": 3,
     "attemptedThisRun": 1,
-    "newlyImportedThisRun": 1
+    "newlyImportedThisRun": 0
   },
   "items": [
     {
@@ -46,12 +46,12 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p009",
       "sequence": 9,
       "page": 9,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
+      "state": "failed",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-19T22:02:40.510781Z",
+      "lastFinishedAt": "2026-07-19T22:07:36.329140Z",
       "resultPath": null,
-      "error": null
+      "error": "RuntimeError('OpenCV could not open the downloaded video')"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p010",
@@ -78,18 +78,19 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p008",
-      "sequence": 8,
-      "page": 8,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P08 第8期：忠犬伸冤",
-      "startedAt": "2026-07-19T21:58:50.906452Z",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p009",
+      "sequence": 9,
+      "page": 9,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P09 第9期：浩劫前夕（九字真言）",
+      "startedAt": "2026-07-19T22:02:40.510781Z",
       "attemptCount": 1,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p008.json status=analyzed\n\n",
-      "analysisStatus": "analyzed",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p009.json status=failed\n\n",
+      "analysisStatus": "failed",
       "indexReturnCode": 0,
-      "completed": true,
-      "finishedAt": "2026-07-19T22:01:55.281304Z"
+      "completed": false,
+      "error": "RuntimeError('OpenCV could not open the downloaded video')",
+      "finishedAt": "2026-07-19T22:07:36.329140Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
