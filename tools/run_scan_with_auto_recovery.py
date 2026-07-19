@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 import subprocess
 import sys
 import time
@@ -36,6 +37,14 @@ def write(path: pathlib.Path, value: Any) -> None:
     temporary.replace(path)
 
 
+def safe_output(value: str) -> str:
+    text = str(value or "").replace("\x00", "")
+    text = re.sub(r"https?://\S+", "[url-redacted]", text, flags=re.IGNORECASE)
+    text = re.sub(r"(?i)(authorization|cookie|token)\s*[:=]\s*\S+", r"\1=[redacted]", text)
+    text = re.sub(r"/tmp/\S+", "[temporary-path-redacted]", text)
+    return text[-3000:]
+
+
 def run(command: list[str], timeout: int) -> subprocess.CompletedProcess[str]:
     return subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=timeout)
 
@@ -47,15 +56,17 @@ def main() -> int:
 
     manifest_arg = sys.argv[1]
     manifest_path = (ROOT / manifest_arg).resolve()
-    manifest = load(manifest_path)
-    queue_path = ROOT / manifest["queue"]
-    max_attempts = max(1, int(manifest.get("recoveryPolicy", {}).get("maxAttemptsPerItem", 3)))
+    initial_manifest = load(manifest_path)
+    queue_path = ROOT / initial_manifest["queue"]
+    max_attempts = max(1, int(initial_manifest.get("recoveryPolicy", {}).get("maxAttemptsPerItem", 3)))
     cycles: list[dict[str, Any]] = []
     final_state = "unknown"
 
     for cycle in range(1, max_attempts + 1):
+        manifest = load(manifest_path)
         started = now()
-        scanner = run([sys.executable, "tools/scan_catalog_queue_v2.py", manifest_arg], int(manifest.get("perItemTimeoutSeconds", 5400)) + 300)
+        timeout = int(manifest.get("perItemTimeoutSeconds", 5400)) + 300
+        scanner = run([sys.executable, "tools/scan_catalog_queue_v2.py", manifest_arg], timeout)
         queue = load(queue_path, {"items": []})
         failed = [item for item in queue.get("items", []) if item.get("state") == "failed"]
         imported = sum(item.get("state") == "imported" for item in queue.get("items", []))
@@ -65,10 +76,11 @@ def main() -> int:
             "startedAt": started,
             "finishedAt": now(),
             "scannerReturnCode": scanner.returncode,
+            "scannerTimeoutSeconds": timeout,
             "imported": imported,
             "failed": len(failed),
             "running": running,
-            "scannerOutput": (scanner.stdout + "\n" + scanner.stderr)[-3000:]
+            "scannerOutput": safe_output(scanner.stdout + "\n" + scanner.stderr)
         }
 
         if not failed:
