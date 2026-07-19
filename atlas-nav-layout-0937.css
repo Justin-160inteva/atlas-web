@@ -1,0 +1,80 @@
+/* Atlas Alpha 0.9.3.7 — 60 FPS left rail and edge layout */
+
+/* Attach the navigation rail to the physical left edge. */
+.quick-rail{
+  left:0!important;
+  padding-left:max(8px,env(safe-area-inset-left,0px));
+  border-left:0!important;
+  border-radius:0 22px 22px 0!important;
+  contain:layout paint style;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+
+/* The vertical selection is a composited visual layer. No quality-mode downgrade. */
+.atlas-liquid-selection-vertical,
+.atlas-quality-performance .atlas-liquid-selection-vertical{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  background:
+    radial-gradient(circle at 28% 4%,rgba(255,255,255,.2),transparent 42%),
+    radial-gradient(circle at 74% 100%,rgba(176,39,53,.18),transparent 52%),
+    linear-gradient(150deg,rgba(255,255,255,.12),rgba(111,29,38,.17) 58%,rgba(255,255,255,.05));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.2),
+    inset 0 -1px 0 rgba(92,15,23,.15),
+    0 7px 18px rgba(45,8,13,.18);
+  transition:opacity .12s ease!important;
+  will-change:transform;
+  transform:translate3d(var(--liquid-x),var(--liquid-y),0);
+  backface-visibility:hidden;
+  contain:paint;
+}
+
+.atlas-liquid-selection-vertical.is-pressed{
+  transition:opacity .12s ease!important;
+}
+
+.quick-rail .rail-button,
+.quick-rail .rail-button .rail-icon,
+.quick-rail .rail-button small{
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+
+/* Closed panels must leave no visible sliver, regardless of their width. */
+.panel:not(.open),
+.route-panel:not(.open),
+.progress-panel:not(.open){
+  transform:translate3d(calc(-100% - 40px),0,0)!important;
+  pointer-events:none;
+}
+
+.panel.open,
+.route-panel.open,
+.progress-panel.open{
+  transform:translate3d(0,0,0)!important;
+}
+
+/* Put discovery count and zoom in the true lower-left device safe area. */
+.status-pill{
+  left:max(8px,env(safe-area-inset-left,0px))!important;
+  bottom:max(8px,env(safe-area-inset-bottom,0px))!important;
+  transform:translateZ(0);
+}
+
+@media(max-width:720px){
+  .quick-rail{
+    left:0!important;
+    padding-left:max(6px,env(safe-area-inset-left,0px));
+    border-radius:0 20px 20px 0!important;
+  }
+  .status-pill{
+    left:max(6px,env(safe-area-inset-left,0px))!important;
+    bottom:max(6px,env(safe-area-inset-bottom,0px))!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .atlas-liquid-selection-vertical{transition:opacity .1s ease!important}
+}
