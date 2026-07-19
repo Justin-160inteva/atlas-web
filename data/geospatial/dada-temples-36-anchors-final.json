@@ -1,0 +1,1068 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-19T13:49:07.321782Z",
+  "stage": "final-geospatial-anchor-consolidation",
+  "status": "complete",
+  "source": {
+    "bvid": "BV19EXYYWEdv",
+    "title": "〖刺客信条影 新手攻略〗03 寺庙全收集（36个位置）",
+    "authorizationId": "auth-dada-20260718",
+    "analysisResultPath": "data/analysis-results/dada-temples-36.json",
+    "primaryEvidenceManifestPath": "data/geospatial/dada-temples-36-evidence-manifest.json",
+    "supplementalEvidenceManifestPath": "data/geospatial/dada-temples-36-supplemental-evidence-manifest.json",
+    "primaryArtifactId": "8441753687",
+    "supplementalArtifactId": "8442792453"
+  },
+  "counts": {
+    "videoPositions": 36,
+    "confirmed": 36,
+    "unresolved": 0,
+    "coordinatesWritten": 36,
+    "mapTempleCandidates": 38,
+    "unmatchedMapCandidates": 2
+  },
+  "policy": {
+    "minimumConfidence": 0.9,
+    "uniqueLocationAssignment": true,
+    "supplementalResolutions": [
+      2,
+      4,
+      5,
+      10,
+      30
+    ],
+    "repositoryContainsEvidencePixels": false,
+    "unmatchedCandidatesMustBeAwajiExpansion": true
+  },
+  "supplementalResolutions": [
+    {
+      "videoPosition": 2,
+      "observedLabelZh": "金刚峰寺",
+      "confidence": 0.99,
+      "resolutionMethod": "direct-popup",
+      "basis": "Supplemental frame at 30.000s directly shows 金刚峰寺, uniquely matching Kongobuji Temple.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-01-position-02-root-tower-018-30.000s.jpg",
+          "timeSeconds": 30.0,
+          "sha256": "e601f5c118bfdc78351ede0efa3c878d599e5e430a24a7e315f92630ba31b67d"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436455",
+      "title": "Kongobuji Temple",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.6460391324830552,
+        "y": 0.12899936596177894
+      },
+      "sourceLocationId": 436455
+    },
+    {
+      "videoPosition": 4,
+      "observedLabelZh": "慈尊院",
+      "confidence": 0.99,
+      "resolutionMethod": "direct-popup",
+      "basis": "Supplemental frame at 44.500s directly shows 慈尊院, uniquely matching Jison-in.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-02-positions-04-05-koyasan-saika-019-44.500s.jpg",
+          "timeSeconds": 44.5,
+          "sha256": "57b27060f41568a70e53cef62540b63d5ab9e34f3e34d287abc1c247b724743c"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436436",
+      "title": "Jison-in",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.5136262942272466,
+        "y": 0.12626085067470377
+      },
+      "sourceLocationId": 436436
+    },
+    {
+      "videoPosition": 5,
+      "observedLabelZh": "妙见神社附近西北侧寺庙",
+      "confidence": 0.94,
+      "resolutionMethod": "pairwise-spatial-sequence",
+      "basis": "The 49.000s-52.000s Kii map view shows the two position-05/06 temple markers around 妙见神社; the following 54.124s direct popup identifies the southeast marker as 道成寺 (position 06). The northwest marker is therefore the unique Saika Temple Grounds candidate for position 05.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-02-positions-04-05-koyasan-saika-028-49.000s.jpg",
+          "timeSeconds": 49.0,
+          "sha256": "08885cc45f953e7c0af8eb036a2c9c89a358ab75876122c099c0013b9caed0f0"
+        },
+        {
+          "manifest": "supplemental",
+          "filename": "window-02-positions-04-05-koyasan-saika-034-52.000s.jpg",
+          "timeSeconds": 52.0,
+          "sha256": "cc66399d054f2f9d42255da5139f69ccac8b2f62bb51a9677b22ca87d07ca223"
+        },
+        {
+          "manifest": "primary",
+          "filename": "slot-08-middle-54.124s.jpg",
+          "timeSeconds": 54.124,
+          "sha256": "0556c5e373e371975f79060a0524f378acf7d2a8a819dc7e0f5716467df58d1f"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436387",
+      "title": "Saika Temple Grounds",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.35266401688087,
+        "y": 0.0874796558963375
+      },
+      "sourceLocationId": 436387
+    },
+    {
+      "videoPosition": 10,
+      "observedLabelZh": "天王寺",
+      "confidence": 0.99,
+      "resolutionMethod": "direct-popup",
+      "basis": "Supplemental frame at 80.000s directly shows 天王寺, uniquely matching Tennoji Temple.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-03-position-10-tennoji-004-80.000s.jpg",
+          "timeSeconds": 80.0,
+          "sha256": "55febf2845cb551c393c6aa24ddfed575126fd094839474b0eb8465302c0a79e"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-434396",
+      "title": "Tennoji Temple",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.41326186880938465,
+        "y": 0.2600484327482181
+      },
+      "sourceLocationId": 434396
+    },
+    {
+      "videoPosition": 30,
+      "observedLabelZh": "三井寺",
+      "confidence": 0.99,
+      "resolutionMethod": "direct-popup",
+      "basis": "Supplemental frame at 216.500s directly shows 三井寺, uniquely matching Miidera.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-04-position-30-miidera-005-216.500s.jpg",
+          "timeSeconds": 216.5,
+          "sha256": "238455ac0a2bb16df4e996fd636b4e845854251abbc15272374b5f3cbdb1a48c"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435055",
+      "title": "Miidera",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.5808598285846504,
+        "y": 0.5613345251664825
+      },
+      "sourceLocationId": 435055
+    }
+  ],
+  "unmatchedMapCandidates": [
+    {
+      "locationId": "location-mapgenie-479951",
+      "title": "Kannoji Temple",
+      "regionId": "region-3304-awaji",
+      "regionTitle": "AWAJI",
+      "atlas": {
+        "x": 0.08472535385818782,
+        "y": 0.17231903927082123
+      },
+      "sourceLocationId": 479951,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-479947",
+      "title": "Myoshoji Temple",
+      "regionId": "region-3304-awaji",
+      "regionTitle": "AWAJI",
+      "atlas": {
+        "x": 0.13337738692920195,
+        "y": 0.21795705013952346
+      },
+      "sourceLocationId": 479947,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    }
+  ],
+  "anchors": [
+    {
+      "videoPosition": 1,
+      "observedLabelZh": "如意轮寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 如意轮寺 and matching Nyoirinji candidate in Yamato.",
+      "evidence": [
+        {
+          "filename": "slot-01-late-5.629s.jpg",
+          "timeSeconds": 5.629,
+          "sha256": "d1afa7af81ae3d15408efc1146317cee0ef19d604a7d8bfbeec27fff1c5b6634"
+        },
+        {
+          "filename": "slot-02-middle-10.825s.jpg",
+          "timeSeconds": 10.825,
+          "sha256": "440779a794c3dd389ae637c5649139b007a7fcb3c30589b4b03d70f2ad9b10de"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435786",
+      "title": "Nyoirinji Temple",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.8198902201841759,
+        "y": 0.2394874082869948
+      },
+      "sourceLocationId": 435786
+    },
+    {
+      "videoPosition": 2,
+      "observedLabelZh": "金刚峰寺",
+      "confidence": 0.99,
+      "resolutionMethod": "direct-popup",
+      "basis": "Supplemental frame at 30.000s directly shows 金刚峰寺, uniquely matching Kongobuji Temple.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-01-position-02-root-tower-018-30.000s.jpg",
+          "timeSeconds": 30.0,
+          "sha256": "e601f5c118bfdc78351ede0efa3c878d599e5e430a24a7e315f92630ba31b67d"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436455",
+      "title": "Kongobuji Temple",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.6460391324830552,
+        "y": 0.12899936596177894
+      },
+      "sourceLocationId": 436455
+    },
+    {
+      "videoPosition": 3,
+      "observedLabelZh": "高野山坛上伽蓝",
+      "confidence": 0.98,
+      "basis": "Direct popup text matches Koyasan Danjo Garan.",
+      "evidence": [
+        {
+          "filename": "slot-05-middle-32.475s.jpg",
+          "timeSeconds": 32.475,
+          "sha256": "23afacac0e2b1c9d632ad149bbd182e26f46e814ce5a2f81c53c0190b0f6d0c5"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436442",
+      "title": "Koyasan Danjo Garan",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.6219051911595341,
+        "y": 0.12017897845444545
+      },
+      "sourceLocationId": 436442
+    },
+    {
+      "videoPosition": 4,
+      "observedLabelZh": "慈尊院",
+      "confidence": 0.99,
+      "resolutionMethod": "direct-popup",
+      "basis": "Supplemental frame at 44.500s directly shows 慈尊院, uniquely matching Jison-in.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-02-positions-04-05-koyasan-saika-019-44.500s.jpg",
+          "timeSeconds": 44.5,
+          "sha256": "57b27060f41568a70e53cef62540b63d5ab9e34f3e34d287abc1c247b724743c"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436436",
+      "title": "Jison-in",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.5136262942272466,
+        "y": 0.12626085067470377
+      },
+      "sourceLocationId": 436436
+    },
+    {
+      "videoPosition": 5,
+      "observedLabelZh": "妙见神社附近西北侧寺庙",
+      "confidence": 0.94,
+      "resolutionMethod": "pairwise-spatial-sequence",
+      "basis": "The 49.000s-52.000s Kii map view shows the two position-05/06 temple markers around 妙见神社; the following 54.124s direct popup identifies the southeast marker as 道成寺 (position 06). The northwest marker is therefore the unique Saika Temple Grounds candidate for position 05.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-02-positions-04-05-koyasan-saika-028-49.000s.jpg",
+          "timeSeconds": 49.0,
+          "sha256": "08885cc45f953e7c0af8eb036a2c9c89a358ab75876122c099c0013b9caed0f0"
+        },
+        {
+          "manifest": "supplemental",
+          "filename": "window-02-positions-04-05-koyasan-saika-034-52.000s.jpg",
+          "timeSeconds": 52.0,
+          "sha256": "cc66399d054f2f9d42255da5139f69ccac8b2f62bb51a9677b22ca87d07ca223"
+        },
+        {
+          "manifest": "primary",
+          "filename": "slot-08-middle-54.124s.jpg",
+          "timeSeconds": 54.124,
+          "sha256": "0556c5e373e371975f79060a0524f378acf7d2a8a819dc7e0f5716467df58d1f"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436387",
+      "title": "Saika Temple Grounds",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.35266401688087,
+        "y": 0.0874796558963375
+      },
+      "sourceLocationId": 436387
+    },
+    {
+      "videoPosition": 6,
+      "observedLabelZh": "道成寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text matches Dojoji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-08-middle-54.124s.jpg",
+          "timeSeconds": 54.124,
+          "sha256": "0556c5e373e371975f79060a0524f378acf7d2a8a819dc7e0f5716467df58d1f"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437468",
+      "title": "Dojoji Temple",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.43493684909684427,
+        "y": 0.045493858770252665
+      },
+      "sourceLocationId": 437468
+    },
+    {
+      "videoPosition": 7,
+      "observedLabelZh": "愿泉寺",
+      "confidence": 0.98,
+      "basis": "Direct popup text matches Gansenji Temple transliteration and position.",
+      "evidence": [
+        {
+          "filename": "slot-10-middle-68.558s.jpg",
+          "timeSeconds": 68.558,
+          "sha256": "c3a851241044ed3e9dd29032b327ba83da57916cd5b4b5e1cbbc4363e63c84aa"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-434575",
+      "title": "Gansenji Temple",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.32905018890290694,
+        "y": 0.20318994873057825
+      },
+      "sourceLocationId": 434575
+    },
+    {
+      "videoPosition": 8,
+      "observedLabelZh": "根来寺",
+      "confidence": 0.94,
+      "basis": "Visible map label 根来寺 within the 07-08 group matches Negoroji Temple Grounds.",
+      "evidence": [
+        {
+          "filename": "slot-10-late-70.578s.jpg",
+          "timeSeconds": 70.578,
+          "sha256": "f88e7d2b447aadcae4847aabf43f092fa01f06c362725478aba6cecdc49357c8"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437327",
+      "title": "Negoroji Temple Grounds",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.44793750738488863,
+        "y": 0.17048022129208368
+      },
+      "sourceLocationId": 437327
+    },
+    {
+      "videoPosition": 9,
+      "observedLabelZh": "槙尾寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text matches Makinoodera Temple.",
+      "evidence": [
+        {
+          "filename": "slot-11-late-77.795s.jpg",
+          "timeSeconds": 77.795,
+          "sha256": "e0fc7bea3f0ad83728f037ef3a038673d70446da20892430a4d9063b588a46b5"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-434352",
+      "title": "Makinoodera Temple",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.4523928963629584,
+        "y": 0.22308044192946913
+      },
+      "sourceLocationId": 434352
+    },
+    {
+      "videoPosition": 10,
+      "observedLabelZh": "天王寺",
+      "confidence": 0.99,
+      "resolutionMethod": "direct-popup",
+      "basis": "Supplemental frame at 80.000s directly shows 天王寺, uniquely matching Tennoji Temple.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-03-position-10-tennoji-004-80.000s.jpg",
+          "timeSeconds": 80.0,
+          "sha256": "55febf2845cb551c393c6aa24ddfed575126fd094839474b0eb8465302c0a79e"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-434396",
+      "title": "Tennoji Temple",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.41326186880938465,
+        "y": 0.2600484327482181
+      },
+      "sourceLocationId": 434396
+    },
+    {
+      "videoPosition": 11,
+      "observedLabelZh": "东大寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text matches Todaiji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-13-middle-90.208s.jpg",
+          "timeSeconds": 90.208,
+          "sha256": "cde56cd06763544a070e1867866e9fb21b4d4a5f06d077b7e7563f3176825285"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437901",
+      "title": "Todaiji Temple",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.6773513413720571,
+        "y": 0.3974926760282593
+      },
+      "sourceLocationId": 437901
+    },
+    {
+      "videoPosition": 12,
+      "observedLabelZh": "兴福寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text matches Kofukuji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-13-late-92.228s.jpg",
+          "timeSeconds": 92.228,
+          "sha256": "1d59cd0b70692f59f6b06e80c2c3b9c233868f037de5405f0e97a6ca558960de"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437869",
+      "title": "Kofukuji Temple",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.6670603066017703,
+        "y": 0.36631999776198065
+      },
+      "sourceLocationId": 437869
+    },
+    {
+      "videoPosition": 13,
+      "observedLabelZh": "伊崎寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 伊崎寺 matches Isakiji Temple in Omi.",
+      "evidence": [
+        {
+          "filename": "slot-15-early-102.621s.jpg",
+          "timeSeconds": 102.621,
+          "sha256": "fd1bf91f631afbe7cbcf8f8261ad34750af47328585e4977d3a336ebff101a58"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435820",
+      "title": "Isakiji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.844885067686574,
+        "y": 0.7013996992738424
+      },
+      "sourceLocationId": 435820
+    },
+    {
+      "videoPosition": 14,
+      "observedLabelZh": "总见寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 总见寺 matches Sokenji Temple in Omi.",
+      "evidence": [
+        {
+          "filename": "slot-15-middle-104.642s.jpg",
+          "timeSeconds": 104.642,
+          "sha256": "1c6cffee07adad0241187db05b12b1bf9382c58920b2ed126cdd7c92514fc6cf"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436705",
+      "title": "Sokenji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.8248891896856565,
+        "y": 0.6376887026766942
+      },
+      "sourceLocationId": 436705
+    },
+    {
+      "videoPosition": 15,
+      "observedLabelZh": "宝严寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 宝严寺 matches Hogonji Temple in Omi.",
+      "evidence": [
+        {
+          "filename": "slot-16-late-113.878s.jpg",
+          "timeSeconds": 113.878,
+          "sha256": "9b8fedee3783d8fbf16e17e227dea3223819647bc5bbca94f7e6645224350015"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435908",
+      "title": "Hogonji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.8091070270583754,
+        "y": 0.8262108554791456
+      },
+      "sourceLocationId": 435908
+    },
+    {
+      "videoPosition": 16,
+      "observedLabelZh": "大吉寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 大吉寺 matches Daikichiji Temple in Omi.",
+      "evidence": [
+        {
+          "filename": "slot-17-middle-119.075s.jpg",
+          "timeSeconds": 119.075,
+          "sha256": "753d8eae1bfff8e4964fd216332b29257a839b490103e33b2d9dd5651b7cda2a"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435886",
+      "title": "Daikichiji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.9637426733723486,
+        "y": 0.8530512449651859
+      },
+      "sourceLocationId": 435886
+    },
+    {
+      "videoPosition": 17,
+      "observedLabelZh": "三之堂",
+      "confidence": 0.98,
+      "basis": "Direct popup text 三之堂 matches the Mitsunodo Hall temple candidate in Harima.",
+      "evidence": [
+        {
+          "filename": "slot-18-late-128.311s.jpg",
+          "timeSeconds": 128.311,
+          "sha256": "479eede148c02449a556bcca40fc3b9aea67bc760ea69dfa21ab2b98cd771d4f"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437649",
+      "title": "Mitsunodo Hall",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.08293388814483968,
+        "y": 0.4345237450128953
+      },
+      "sourceLocationId": 437649
+    },
+    {
+      "videoPosition": 18,
+      "observedLabelZh": "阿贺本德寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 阿贺本德寺 matches Aga Hontokuji Temple in Harima.",
+      "evidence": [
+        {
+          "filename": "slot-19-early-131.487s.jpg",
+          "timeSeconds": 131.487,
+          "sha256": "9a19b85d59a03116a8d090a04e6c45da36109164416e9000cc32e6125d2cc7cc"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437692",
+      "title": "Aga Hontokuji Temple",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.03242485991559547,
+        "y": 0.340236799904092
+      },
+      "sourceLocationId": 437692
+    },
+    {
+      "videoPosition": 19,
+      "observedLabelZh": "教海寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 教海寺 matches Kyokaiji Temple in Harima.",
+      "evidence": [
+        {
+          "filename": "slot-20-middle-140.725s.jpg",
+          "timeSeconds": 140.725,
+          "sha256": "9c55f709fad15d654fe123b492186b947cb11052ce9e6e4329bf22d103b0ad74"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437593",
+      "title": "Kyokaiji Temple",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.28614862179050804,
+        "y": 0.4429996162734424
+      },
+      "sourceLocationId": 437593
+    },
+    {
+      "videoPosition": 20,
+      "observedLabelZh": "丹生山妙养寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 丹生山妙养寺 matches Tanjosan Myoyoji Temple in Harima.",
+      "evidence": [
+        {
+          "filename": "slot-20-late-142.745s.jpg",
+          "timeSeconds": 142.745,
+          "sha256": "7483e0f70aa92c243fff3c4a7eb1165f3fb543ab9d7130b444064fee6e054265"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437563",
+      "title": "Tanjosan Myoyoji Temple",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.31494259495709565,
+        "y": 0.377046362874794
+      },
+      "sourceLocationId": 437563
+    },
+    {
+      "videoPosition": 21,
+      "observedLabelZh": "安稳寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 安稳寺 matches Annonji Temple in Tamba.",
+      "evidence": [
+        {
+          "filename": "slot-22-middle-155.157s.jpg",
+          "timeSeconds": 155.157,
+          "sha256": "cf198876bc07604468130ae8a313f8585fd5b9ffc59abb0deb1ff4cae3a85e09"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435078",
+      "title": "Annonji Temple",
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "atlas": {
+        "x": 0.1907882991022417,
+        "y": 0.5331024804986199
+      },
+      "sourceLocationId": 435078
+    },
+    {
+      "videoPosition": 22,
+      "observedLabelZh": "宗镜寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 宗镜寺 matches Sukyoji Temple in Tamba.",
+      "evidence": [
+        {
+          "filename": "slot-23-late-164.395s.jpg",
+          "timeSeconds": 164.395,
+          "sha256": "c8cacf4fe8b19a170f8c8fa2c1e249894cadbea57afc003b3c2953f9a6eb404b"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-438261",
+      "title": "Sukyoji Temple",
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "atlas": {
+        "x": 0.018727370004443758,
+        "y": 0.669736613924803
+      },
+      "sourceLocationId": 438261
+    },
+    {
+      "videoPosition": 23,
+      "observedLabelZh": "西福寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 西福寺 matches Saifukuji Temple in Wakasa.",
+      "evidence": [
+        {
+          "filename": "slot-25-early-174.787s.jpg",
+          "timeSeconds": 174.787,
+          "sha256": "4ea76f5315040c9fafc93e195bbd1025d803c69f5aa32d0b4d8ee622bf8cf123"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437090",
+      "title": "Saifukuji Temple",
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "atlas": {
+        "x": 0.47095051971997626,
+        "y": 0.9517743587991078
+      },
+      "sourceLocationId": 437090
+    },
+    {
+      "videoPosition": 24,
+      "observedLabelZh": "极乐寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 极乐寺 matches Gokurakuji Temple in Wakasa.",
+      "evidence": [
+        {
+          "filename": "slot-26-middle-184.024s.jpg",
+          "timeSeconds": 184.024,
+          "sha256": "2e1ba9c75f35d816ee8dfec0a398b5936d6dfe5106f2d9c2566271c0dead9749"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-438274",
+      "title": "Gokurakuji Temple",
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "atlas": {
+        "x": 0.4244034804476575,
+        "y": 0.712306882873084
+      },
+      "sourceLocationId": 438274
+    },
+    {
+      "videoPosition": 25,
+      "observedLabelZh": "鞍马塔",
+      "confidence": 0.96,
+      "basis": "Direct fast-travel popup 鞍马塔 matches the Kuramadera Temple candidate and map position.",
+      "evidence": [
+        {
+          "filename": "slot-25-late-178.828s.jpg",
+          "timeSeconds": 178.828,
+          "sha256": "586b16e1bde4b92d1f569e05f45f101c41e6c4a957aa063133c07ed5055ed9c1"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436354",
+      "title": "Kuramadera Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.3564152512960737,
+        "y": 0.6769113849392722
+      },
+      "sourceLocationId": 436354
+    },
+    {
+      "videoPosition": 26,
+      "observedLabelZh": "相国塔",
+      "confidence": 0.96,
+      "basis": "Direct popup 相国塔 matches the Shokokuji Temple candidate and its Kyoto position.",
+      "evidence": [
+        {
+          "filename": "slot-27-late-193.261s.jpg",
+          "timeSeconds": 193.261,
+          "sha256": "66daa0d91bab1ae6290eecdd7900cb7a59ce266083c51862a9bb8134189cd188"
+        },
+        {
+          "filename": "slot-28-late-200.478s.jpg",
+          "timeSeconds": 200.478,
+          "sha256": "dd9ed141ae6d36f3cffb1cc4c0fb8bdc485240c992e9253386a91ba8bac6da44"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-434811",
+      "title": "Shokokuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.408649905945848,
+        "y": 0.6102500869482436
+      },
+      "sourceLocationId": 434811
+    },
+    {
+      "videoPosition": 27,
+      "observedLabelZh": "银阁寺",
+      "confidence": 0.99,
+      "basis": "Direct popup 银阁寺 matches Ginkakuji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-28-middle-198.457s.jpg",
+          "timeSeconds": 198.457,
+          "sha256": "a7b967b26737d0529376e3b1e3df192f3ad98f3cc3e8142fed28653faabac762"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437937",
+      "title": "Ginkakuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.46018441580494396,
+        "y": 0.6115683513535592
+      },
+      "sourceLocationId": 437937
+    },
+    {
+      "videoPosition": 28,
+      "observedLabelZh": "金阁寺",
+      "confidence": 0.99,
+      "basis": "Direct popup 金阁寺 matches Kinkakuji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-29-early-203.654s.jpg",
+          "timeSeconds": 203.654,
+          "sha256": "57a7d27a359525cabdbc401fdd76d5a3cb5a8ca120f7b949be85f4648dd8c985"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436340",
+      "title": "Kinkakuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.36313407185415186,
+        "y": 0.6175440225077901
+      },
+      "sourceLocationId": 436340
+    },
+    {
+      "videoPosition": 29,
+      "observedLabelZh": "延历寺",
+      "confidence": 0.99,
+      "basis": "Direct popup 延历寺 matches Enryakuji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-30-middle-212.891s.jpg",
+          "timeSeconds": 212.891,
+          "sha256": "2f4e029e4201818d3c685b0aeede2f8732ba44b0005c87eeb8b68f9105be7b91"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436781",
+      "title": "Enryakuji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.5373994654141981,
+        "y": 0.6338666648834057
+      },
+      "sourceLocationId": 436781
+    },
+    {
+      "videoPosition": 30,
+      "observedLabelZh": "三井寺",
+      "confidence": 0.99,
+      "resolutionMethod": "direct-popup",
+      "basis": "Supplemental frame at 216.500s directly shows 三井寺, uniquely matching Miidera.",
+      "evidence": [
+        {
+          "manifest": "supplemental",
+          "filename": "window-04-position-30-miidera-005-216.500s.jpg",
+          "timeSeconds": 216.5,
+          "sha256": "238455ac0a2bb16df4e996fd636b4e845854251abbc15272374b5f3cbdb1a48c"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435055",
+      "title": "Miidera",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.5808598285846504,
+        "y": 0.5613345251664825
+      },
+      "sourceLocationId": 435055
+    },
+    {
+      "videoPosition": 31,
+      "observedLabelZh": "平等院",
+      "confidence": 0.99,
+      "basis": "Direct popup 平等院 matches Byodoin Temple.",
+      "evidence": [
+        {
+          "filename": "slot-32-middle-227.324s.jpg",
+          "timeSeconds": 227.324,
+          "sha256": "d277cd38eeb1498a1e1f317266b476c6de9f6d67c112dc73be5c5abbe86a9b63"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437840",
+      "title": "Byodoin Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.5240467794920997,
+        "y": 0.5049248996573004
+      },
+      "sourceLocationId": 437840
+    },
+    {
+      "videoPosition": 32,
+      "observedLabelZh": "清水寺",
+      "confidence": 0.99,
+      "basis": "Direct popup 清水寺 matches Kiyomizudera Temple.",
+      "evidence": [
+        {
+          "filename": "slot-33-late-236.561s.jpg",
+          "timeSeconds": 236.561,
+          "sha256": "a44fc4b29fab4155de0c8689be89f73576d0ec084ca5c6a3bfd01de07a8c966d"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435009",
+      "title": "Kiyomizudera Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.4800240114900417,
+        "y": 0.5556913055245005
+      },
+      "sourceLocationId": 435009
+    },
+    {
+      "videoPosition": 33,
+      "observedLabelZh": "东福寺",
+      "confidence": 0.98,
+      "basis": "Direct popup 东福寺 matches Tofukuji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-34-early-239.737s.jpg",
+          "timeSeconds": 239.737,
+          "sha256": "66303febee076d2e520520f36e5bcdb573160c2488bf41b8caa153547567df5e"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437825",
+      "title": "Tofukuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.4483269179591908,
+        "y": 0.5202207586926959
+      },
+      "sourceLocationId": 437825
+    },
+    {
+      "videoPosition": 34,
+      "observedLabelZh": "天龙寺",
+      "confidence": 0.99,
+      "basis": "Direct popup 天龙寺 matches Tenryuji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-35-late-250.994s.jpg",
+          "timeSeconds": 250.994,
+          "sha256": "8791f415d00e52f6756e3be8b48367a94a7636dd6b4c4ddfcde504e1e75e2edd"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437845",
+      "title": "Tenryuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.3629835853789299,
+        "y": 0.555912341033825
+      },
+      "sourceLocationId": 437845
+    },
+    {
+      "videoPosition": 35,
+      "observedLabelZh": "本能寺",
+      "confidence": 0.99,
+      "basis": "Direct popup 本能寺 matches Honnoji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-36-early-254.170s.jpg",
+          "timeSeconds": 254.17,
+          "sha256": "35b29d0165d7cbd5ca221b70b56b1046d9a2fbd9f452d402a73881252902c2da"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-434779",
+      "title": "Honnoji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.42290973541828836,
+        "y": 0.5543952769769042
+      },
+      "sourceLocationId": 434779
+    },
+    {
+      "videoPosition": 36,
+      "observedLabelZh": "东寺",
+      "confidence": 0.99,
+      "basis": "Direct popup 东寺 matches Toji Temple.",
+      "evidence": [
+        {
+          "filename": "slot-36-middle-256.190s.jpg",
+          "timeSeconds": 256.19,
+          "sha256": "a7b8cd59d6a097a76eab41c5b8f13f20c560dbe82b23b2796203ce410050e41b"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-434774",
+      "title": "Toji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.42107265828894136,
+        "y": 0.5316641587529491
+      },
+      "sourceLocationId": 434774
+    }
+  ]
+}
