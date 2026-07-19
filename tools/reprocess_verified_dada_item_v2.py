@@ -50,7 +50,11 @@ def resolve_manifest(value: str) -> pathlib.Path:
     return path
 
 
-def validate_manifest(path: pathlib.Path) -> tuple[dict[str, Any], int, pathlib.Path]:
+def validate_manifest(
+    path: pathlib.Path,
+    *,
+    require_stale_identity: bool = True,
+) -> tuple[dict[str, Any], int, pathlib.Path]:
     manifest = load(path)
     sequence = int(manifest.get("sequence") or 0)
     padded = f"{sequence:02d}"
@@ -75,14 +79,19 @@ def validate_manifest(path: pathlib.Path) -> tuple[dict[str, Any], int, pathlib.
     }
     require(all(checks.values()), "manifest preflight failed: " + json.dumps(checks, ensure_ascii=False))
 
-    stale_result = load(result_path)
-    stale_checks = {
-        "jobIdMatches": stale_result.get("jobId") == manifest.get("replaceJobId"),
-        "wrongBvidMatches": bvid_from((stale_result.get("source") or {}).get("url")) == manifest.get("replaceWrongBvid"),
-        "staleResultNotRetained": (stale_result.get("media") or {}).get("videoRetained") is False,
-        "staleFramesNotRetained": (stale_result.get("media") or {}).get("framePixelsRetained") is False,
-    }
-    require(all(stale_checks.values()), "stale-result identity failed: " + json.dumps(stale_checks, ensure_ascii=False))
+    # Before analysis, the existing result must be the exact stale result named
+    # by the manifest. After analysis, that file has intentionally been replaced
+    # by the verified result, so transition verification must not re-apply the
+    # stale identity assertions.
+    if require_stale_identity:
+        stale_result = load(result_path)
+        stale_checks = {
+            "jobIdMatches": stale_result.get("jobId") == manifest.get("replaceJobId"),
+            "wrongBvidMatches": bvid_from((stale_result.get("source") or {}).get("url")) == manifest.get("replaceWrongBvid"),
+            "staleResultNotRetained": (stale_result.get("media") or {}).get("videoRetained") is False,
+            "staleFramesNotRetained": (stale_result.get("media") or {}).get("framePixelsRetained") is False,
+        }
+        require(all(stale_checks.values()), "stale-result identity failed: " + json.dumps(stale_checks, ensure_ascii=False))
     return manifest, sequence, result_path
 
 
@@ -148,7 +157,10 @@ def main() -> int:
     sequence = 0
     result_path = ROOT
     for _ in range(args.self_check_rounds):
-        manifest, sequence, result_path = validate_manifest(manifest_path)
+        manifest, sequence, result_path = validate_manifest(
+            manifest_path,
+            require_stale_identity=not args.verify_transition,
+        )
     assert manifest is not None
 
     if args.verify_transition:
