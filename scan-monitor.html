@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#0b0b0c" />
   <title>Atlas · 扫描与导入进度</title>
-  <link rel="stylesheet" href="scan-monitor.css?v=0.1.0" />
+  <link rel="stylesheet" href="scan-monitor.css?v=0.2.0" />
 </head>
 <body>
   <main class="monitor-shell">
     <header class="monitor-head">
       <div><small>ATLAS DEVELOPER MONITOR</small><h1>扫描与导入进度</h1></div>
-      <div class="sync-meta"><b id="syncState">连接中</b><small id="lastSync">—</small></div>
+      <div class="sync-meta"><b id="syncState" data-state="syncing">连接中</b><small id="lastSync">—</small></div>
     </header>
 
     <section class="hero">
@@ -23,7 +23,7 @@
         <div class="stat"><b id="pilotProgress">0 / 3</b><small>山城试验导入</small></div>
         <div class="stat"><b id="catalogProgress">0 / 80</b><small>作者目录导入</small></div>
         <div class="stat"><b id="attemptCount">0 / 3</b><small>当前尝试次数</small></div>
-        <div class="stat"><b id="heartbeatAge">—</b><small>最后状态更新</small></div>
+        <div class="stat"><b id="heartbeatAge">—</b><small>任务数据更新时间</small></div>
       </div>
     </section>
 
@@ -35,7 +35,8 @@
       <section class="card">
         <div class="card-title"><b>当前处理阶段</b><small>真实事件状态</small></div>
         <div class="stage-list" id="stageList"></div>
-        <div class="warning" id="freshnessNotice">页面每15秒读取状态；GitHub Actions 运行状态每60秒同步一次。</div>
+        <div class="warning" id="freshnessNotice" data-level="info">正在核对 GitHub main 与任务心跳。</div>
+        <div class="poll-row"><span id="dataOrigin">数据源：连接中</span><span id="nextPoll">下次核对 —</span><button id="forceRefresh" type="button">立即核对</button></div>
       </section>
       <section class="card">
         <div class="card-title"><b>自动恢复</b><small id="recoveryCategory">未触发</small></div>
@@ -47,8 +48,8 @@
       </section>
     </div>
 
-    <p class="footer">只显示公开、脱敏的任务状态。不会展示授权截图、Cookie、原始媒体地址、视频文件或关键帧像素。</p>
+    <p class="footer">“页面同步时间”代表监控刚刚联网核对；“任务数据更新时间”代表 GitHub Actions 最后一次真正写入任务状态。两者不会再混为同一个时间。</p>
   </main>
-  <script src="scan-monitor.js?v=0.1.0" defer></script>
+  <script src="scan-monitor.js?v=0.2.0" defer></script>
 </body>
 </html>
