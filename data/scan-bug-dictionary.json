@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 1,
-  "version": "2026.07.19.1",
+  "schemaVersion": 2,
+  "version": "2026.07.19.2",
   "project": "Atlas authorized video scan pipeline",
-  "scope": "Extensible dictionary of project-observed and primary-source failure signatures for source retrieval, media processing, analysis, GitHub Actions, progress publishing, queue state, authorization, and privacy.",
+  "scope": "Extensible dictionary of project-observed and primary-source failure signatures for source retrieval, media processing, analysis, GitHub Actions, progress publishing, queue state, authorization, privacy, and runtime heartbeat supervision.",
   "defaultPolicy": {
     "maxAttemptsPerItem": 3,
     "diagnoseImmediately": true,
@@ -38,6 +38,11 @@
     {"id":"runner-disk-space","layer":"runner","retryable":true,"autoAction":"cleanup_then_retry","cooldownSeconds":0,"patterns":["no space left on device","disk quota exceeded","errno 28"],"diagnosis":"Temporary storage is full."},
     {"id":"github-contents-conflict","layer":"progress-publish","retryable":true,"autoAction":"retry_progress_publish_with_fresh_sha","cooldownSeconds":1,"patterns":["http error 409","409 conflict","does not match","sha does not match"],"diagnosis":"Another status write updated the same file; refetch the current SHA and retry."},
     {"id":"workflow-stale-lease","layer":"orchestration","retryable":true,"autoAction":"reset_stale_lease_and_retry","cooldownSeconds":0,"patterns":["stale running lease","workflow was cancelled","active item has no heartbeat","heartbeat stale"],"diagnosis":"A workflow ended without releasing its queue lease."},
+    {"id":"runtime-heartbeat-missing","layer":"heartbeat","retryable":true,"autoAction":"resume_pending_item","cooldownSeconds":0,"patterns":["heartbeat file missing","no valid heartbeat timestamp"],"diagnosis":"No valid runtime heartbeat exists while work remains."},
+    {"id":"runtime-heartbeat-soft-stale","layer":"heartbeat","retryable":true,"autoAction":"observe_and_recheck","cooldownSeconds":0,"patterns":["soft stale heartbeat","heartbeat age exceeds soft threshold"],"diagnosis":"Heartbeat is late but remains inside the hard recovery window."},
+    {"id":"runtime-heartbeat-hard-stale","layer":"heartbeat","retryable":true,"autoAction":"reset_lease_and_retry","cooldownSeconds":0,"patterns":["hard stale heartbeat","no heartbeat for 420 seconds"],"diagnosis":"Runtime progress stopped beyond the hard threshold; release one bounded lease and retry."},
+    {"id":"runtime-heartbeat-terminal-stale","layer":"heartbeat","retryable":false,"autoAction":"publish_terminal_projection","cooldownSeconds":0,"patterns":["terminal stale heartbeat","durable queue already confirms import"],"diagnosis":"A stale runtime file remains after durable completion; UI must prefer terminal queue state."},
+    {"id":"runtime-heartbeat-inactive-stale","layer":"heartbeat","retryable":true,"autoAction":"resume_pending_item","cooldownSeconds":0,"patterns":["inactive stale heartbeat","old queued heartbeat"],"diagnosis":"The last heartbeat is inactive and stale while a pending item remains."},
     {"id":"schema-authorization-privacy","layer":"safety","retryable":false,"autoAction":"human_review_required","cooldownSeconds":0,"patterns":["jsondecodeerror","keyerror","assertionerror","authorization failed","permission scope","retention violation","frame pixels retained","original video retained"],"diagnosis":"A schema, authorization, identity, or privacy invariant failed; stop automatic processing."}
   ]
 }
