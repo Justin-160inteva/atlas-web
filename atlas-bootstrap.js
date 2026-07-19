@@ -12,6 +12,11 @@
   document.documentElement.dataset.atlasRelease = release.version;
 
   let brandObserver = null;
+  let registrationPromise = null;
+  const nativeRegister = 'serviceWorker' in navigator
+    ? navigator.serviceWorker.register.bind(navigator.serviceWorker)
+    : null;
+
   function stampVersion() {
     const label = document.querySelector('.brand-copy small');
     if (label && label.textContent !== release.versionText) label.textContent = release.versionText;
@@ -39,10 +44,27 @@
     }
   }
 
+  function getReleaseRegistration() {
+    if (!nativeRegister) return Promise.resolve(null);
+    if (!registrationPromise) {
+      registrationPromise = nativeRegister(`sw.js?v=${encodeURIComponent(release.version)}`, { updateViaCache: 'none' });
+    }
+    return registrationPromise;
+  }
+
+  function installRegistrationDelegate() {
+    if (!nativeRegister) return;
+    navigator.serviceWorker.register = function registerAtlasServiceWorker(url, options) {
+      const target = String(url || '');
+      if (/^(?:\.\/)?sw\.js(?:\?|$)/.test(target)) return getReleaseRegistration();
+      return nativeRegister(url, options);
+    };
+  }
+
   async function registerServiceWorker() {
-    if (!('serviceWorker' in navigator)) return;
+    if (!nativeRegister) return;
     try {
-      const registration = await navigator.serviceWorker.register(`sw.js?v=${encodeURIComponent(release.version)}`, { updateViaCache: 'none' });
+      const registration = await getReleaseRegistration();
       await registration.update();
       if (registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' });
       navigator.serviceWorker.addEventListener('controllerchange', () => {
@@ -62,6 +84,7 @@
     registerServiceWorker();
   }
 
+  installRegistrationDelegate();
   document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', init, { once: true })
     : init();
