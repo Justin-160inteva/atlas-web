@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "eleven-shancheng-pilot-watchdog-v1",
+  "activatedAt": "2026-07-19T16:10:00Z",
+  "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
+  "workflow": "scan-eleven-pilot-v2.yml",
+  "staleAfterSeconds": 7200,
+  "reportOutput": "data/batch-analysis/eleven-pilot-watchdog-state.json",
+  "policy": {
+    "oneItemPerRun": true,
+    "maximumAttemptsPerItem": 3,
+    "neverModifySourceCodeAutomatically": true,
+    "neverBroadenAuthorization": true,
+    "neverRetainOriginalMedia": true,
+    "neverExpandQueueScope": true
+  }
+}
