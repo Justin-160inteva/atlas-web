@@ -1,0 +1,108 @@
+name: Supervise 11 game world runtime heartbeat
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+  push:
+    paths:
+      - 'data/batch-analysis/eleven-heartbeat-supervisor.json'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: supervise-eleven-runtime-heartbeat
+  cancel-in-progress: true
+
+jobs:
+  supervise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate supervisor and policy
+        run: |
+          python -m py_compile tools/supervise_runtime_heartbeat.py
+          python - <<'PY'
+          import json
+          config=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor.json',encoding='utf-8'))
+          manifest=json.load(open(config['manifest'],encoding='utf-8'))
+          policy=config['policy']
+          assert config['staleAfterSeconds']==180
+          assert config['hardStaleAfterSeconds']==420
+          assert manifest['maxItemsPerRun']==1
+          assert policy['oneItemPerRun']
+          assert policy['maximumAttemptsPerItem']==3
+          assert policy['runtimeOrConfigRepairsOnly']
+          assert policy['neverModifyExecutableSourceAutomatically']
+          assert policy['neverBroadenAuthorization']
+          assert policy['neverRetainOriginalMedia']
+          assert policy['neverExpandQueueScope']
+          print('heartbeat supervisor policy passed')
+          PY
+
+      - name: Inspect heartbeat and apply bounded dictionary repair
+        id: supervisor
+        run: |
+          python tools/supervise_runtime_heartbeat.py data/batch-analysis/eleven-heartbeat-supervisor.json
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          report=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor-state.json',encoding='utf-8'))
+          print(f"resume={'true' if report['resumeWorkflow'] else 'false'}")
+          print(f"decision={report['decision']}")
+          print(f"repair={report['repair']}")
+          PY
+
+      - name: Run heartbeat safety gate
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          report=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor-state.json',encoding='utf-8'))
+          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          dictionary=json.load(open('data/scan-bug-dictionary.json',encoding='utf-8'))
+          ids={entry['id'] for entry in dictionary['entries']}
+          assert len(queue['items'])<=3
+          assert report['dictionaryEntryId'] in ids or report['dictionaryEntryId'] in {'heartbeat-healthy','heartbeat-complete'}
+          assert report['safety']['sourceCodeModified'] is False
+          assert report['safety']['authorizationBroadened'] is False
+          assert report['safety']['queueScopeExpanded'] is False
+          assert report['safety']['mediaRetentionChanged'] is False
+          for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
+              assert not list(pathlib.Path('.').rglob(pattern))
+          print('heartbeat supervisor safety gate passed')
+          PY
+
+      - name: Persist supervisor diagnosis
+        run: |
+          TRACKED='data/batch-analysis/eleven-heartbeat-supervisor-state.json data/batch-analysis/eleven-pilot-scan-queue.json'
+          if [ -z "$(git status --porcelain -- $TRACKED)" ]; then
+            echo 'No supervisor changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add $TRACKED
+          git commit -m "Supervise runtime heartbeat: ${{ steps.supervisor.outputs.decision }}"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Resume one bounded item after hard heartbeat failure
+        if: steps.supervisor.outputs.resume == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run scan-eleven-pilot-v2.yml --ref main
