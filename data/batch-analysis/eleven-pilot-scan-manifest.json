@@ -1,12 +1,12 @@
 {
-  "schemaVersion": 7,
-  "id": "eleven-shancheng-pilot-scan-v7",
+  "schemaVersion": 8,
+  "id": "eleven-shancheng-pilot-scan-v8",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "statusOutput": "data/batch-analysis/eleven-pilot-scan-status.json",
-  "analyzer": "tools/analyze_authorized_video_v9.py",
+  "analyzer": "tools/analyze_authorized_video_v10.py",
   "outputPrefix": "eleven",
   "maxItemsPerRun": 1,
   "maxSamplesA": 540,
@@ -48,6 +48,10 @@
       "stalledSeconds",
       "heartbeatSequence"
     ]
+  },
+  "compatibilityFixes": {
+    "curlCffiResponseContextManager": true,
+    "fixedBy": "tools/analyze_authorized_video_v10.py"
   },
   "recoveryPolicy": {
     "enabled": true,
