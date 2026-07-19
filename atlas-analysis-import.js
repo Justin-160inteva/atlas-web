@@ -1,11 +1,12 @@
 (() => {
   'use strict';
 
-  const VERSION='0.9.3.2';
+  const VERSION='0.9.3.3';
   const TYPOGRAPHY_VERSION='0.9.3.0';
   const PERFORMANCE_VERSION='0.9.2.0';
   const UI_FIX_VERSION='0.9.3.1';
   const SMART_ROUTE_VERSION='0.9.3.2';
+  const LIQUID_NAV_VERSION='0.9.3.3';
   let analysisIndex={items:[]};
   const $=selector=>document.querySelector(selector);
   const escapeHtml=value=>String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
@@ -61,6 +62,23 @@
     link.dataset.atlasSmartRoute=SMART_ROUTE_VERSION;
     document.head.appendChild(link);
     document.documentElement.dataset.atlasSmartRoute=SMART_ROUTE_VERSION;
+  }
+
+  function loadLiquidNavigationLayer(){
+    if(!document.querySelector(`link[data-atlas-liquid-nav="${LIQUID_NAV_VERSION}"]`)){
+      const link=document.createElement('link');
+      link.rel='stylesheet';
+      link.href=`atlas-liquid-nav-0933.css?v=${LIQUID_NAV_VERSION}`;
+      link.dataset.atlasLiquidNav=LIQUID_NAV_VERSION;
+      document.head.appendChild(link);
+    }
+    if(!document.querySelector(`script[data-atlas-liquid-nav="${LIQUID_NAV_VERSION}"]`)){
+      const script=document.createElement('script');
+      script.src=`atlas-liquid-nav-0933.js?v=${LIQUID_NAV_VERSION}`;
+      script.dataset.atlasLiquidNav=LIQUID_NAV_VERSION;
+      script.defer=true;
+      document.body.appendChild(script);
+    }
   }
 
   function installStyles(){
@@ -151,7 +169,7 @@
     renderRegistry();
     annotateCards();
     const brand=document.querySelector('.brand-copy small');
-    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.2";
+    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.3";
   }
 
   async function start(){
@@ -177,5 +195,6 @@
   loadPerformanceLayer();
   loadUiFixLayer();
   loadSmartRouteLayer();
+  loadLiquidNavigationLayer();
   start();
 })();
