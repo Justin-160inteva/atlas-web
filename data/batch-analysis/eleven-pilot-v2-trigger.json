@@ -1,12 +1,14 @@
 {
-  "schemaVersion": 1,
-  "triggerId": "eleven-shancheng-pilot-v2-20260719-01",
-  "requestedAt": "2026-07-19T15:50:00Z",
+  "schemaVersion": 2,
+  "triggerId": "eleven-shancheng-pilot-v3-20260719-01",
+  "requestedAt": "2026-07-19T16:05:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "山城",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
-  "mode": "bounded-one-item-durable-state",
-  "startWithPage": 22
+  "mode": "bounded-one-item-diagnose-recover-continue",
+  "startWithPage": 22,
+  "automaticRecovery": true,
+  "humanReviewOnUnknownFailure": true
 }
