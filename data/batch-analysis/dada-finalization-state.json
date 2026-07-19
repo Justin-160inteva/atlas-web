@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "status": "failure",
-  "failedStage": "finalize",
+  "failedStage": "gate",
   "steps": {
     "compile": "success",
-    "finalize": "failure",
-    "gate": "skipped",
-    "persist": "skipped"
+    "finalize": "success",
+    "gate": "failure",
+    "persist": "success"
   },
-  "runId": "29684194458",
-  "triggerSha": "c0f1a1756b9a0a2f70c17034c80fd7e2a7be04ac",
-  "recordedAt": "2026-07-19T10:55:18.348372Z"
+  "runId": "29684321453",
+  "triggerSha": "121392a3f1309be5d321ccd5b70dec2fd2dbadcf",
+  "recordedAt": "2026-07-19T10:59:30.740963Z"
 }
