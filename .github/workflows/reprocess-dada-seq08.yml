@@ -3,13 +3,11 @@ name: Reprocess Dada sequence 08
 on:
   pull_request:
     paths:
-      - 'tools/reprocess_verified_dada_item.py'
       - 'data/reprocess/dada-seq08.json'
       - '.github/workflows/reprocess-dada-seq08.yml'
   push:
     branches: [main]
     paths:
-      - 'tools/reprocess_verified_dada_item.py'
       - 'data/reprocess/dada-seq08.json'
       - '.github/workflows/reprocess-dada-seq08.yml'
   workflow_dispatch:
