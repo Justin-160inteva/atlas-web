@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-19T18:30:57.375338Z",
-  "status": "pass",
+  "generatedAt": "2026-07-19T18:41:40.219465Z",
+  "status": "fail",
   "summary": {
-    "total": 25,
-    "passed": 25,
-    "failed": 0
+    "total": 33,
+    "passed": 31,
+    "failed": 2
   },
   "dictionaryVersion": "2026.07.19.1",
   "checks": [
@@ -71,8 +71,8 @@
     },
     {
       "name": "monitor_version",
-      "passed": true,
-      "detail": "health guard uses v0.3.1"
+      "passed": false,
+      "detail": "monitor stack uses v0.3.1"
     },
     {
       "name": "monitor_schema_guard",
@@ -81,7 +81,7 @@
     },
     {
       "name": "monitor_cache_generation",
-      "passed": true,
+      "passed": false,
       "detail": "service worker cache generation updated"
     },
     {
@@ -98,6 +98,11 @@
       "name": "workflow_generic_region",
       "passed": true,
       "detail": "workflow is not hard-coded to one region or exactly three items"
+    },
+    {
+      "name": "live_recovery_status",
+      "passed": true,
+      "detail": "diagnosis and retry decisions are published immediately"
     },
     {
       "name": "dictionary_sample_bilibili-http-412",
@@ -128,6 +133,41 @@
       "name": "dictionary_sample_multipart-page-identity",
       "passed": true,
       "detail": "CID mismatch"
+    },
+    {
+      "name": "recovery_action_412",
+      "passed": true,
+      "detail": "backoff doubled and public API preferred"
+    },
+    {
+      "name": "recovery_action_context_adapter",
+      "passed": true,
+      "detail": "v10 adapter selected"
+    },
+    {
+      "name": "recovery_action_transcode",
+      "passed": true,
+      "detail": "transcode fallback enabled"
+    },
+    {
+      "name": "recovery_action_timeout",
+      "passed": true,
+      "detail": "timeout extended and sample pressure reduced"
+    },
+    {
+      "name": "recovery_action_memory",
+      "passed": true,
+      "detail": "memory pressure reduced"
+    },
+    {
+      "name": "diagnostic_redaction",
+      "passed": true,
+      "detail": "credentials, URLs, and temporary paths redacted"
+    },
+    {
+      "name": "publisher_conflict_simulation",
+      "passed": true,
+      "detail": "first 409 conflict recovered on second PUT"
     },
     {
       "name": "repository_media_clean",
