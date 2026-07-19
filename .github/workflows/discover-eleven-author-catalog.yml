@@ -1,0 +1,114 @@
+name: Discover 11 game world authorized catalog
+
+on:
+  push:
+    paths:
+      - 'data/batch-analysis/eleven-author-discovery.json'
+  workflow_dispatch:
+  schedule:
+    - cron: '41 3 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: discover-eleven-author-catalog
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install discovery dependency
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install curl-cffi
+
+      - name: Compile discovery tool
+        run: python -m py_compile tools/discover_bilibili_author_catalog.py
+
+      - name: Verify project-level authorization gate
+        run: |
+          python - <<'PY'
+          import json
+          records=json.load(open('data/authorizations.json',encoding='utf-8'))['records']
+          record=next(item for item in records if item['id']=='auth-eleven-game-world-20260719')
+          scope=record['scope']
+          assert record['status']=='active'
+          assert record['author']=='11的游戏世界'
+          assert record['authorLevel'] and record['projectLevel'] and record['accountScope']
+          assert record['longTerm'] and record['nonExclusive']
+          assert scope['localDownloadAndAnalysis']
+          assert scope['downloadFromPublicVideoPage']
+          assert scope['computerVisionAnalysis']
+          assert scope['privateLowResolutionKeyframes']
+          assert scope['original2DVectorReconstruction']
+          assert scope['original3DReconstruction']
+          assert scope['publicDerivedMapPublication']
+          assert scope['nonCommercial']
+          assert scope['commercialUseRequiresSeparateWrittenConsent']
+          assert not scope['publicFullVideoRedistribution']
+          assert not scope['publicOriginalVideoDownload']
+          print('authorization gate passed')
+          PY
+
+      - name: Discover complete author catalog
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: python tools/discover_bilibili_author_catalog.py data/batch-analysis/eleven-author-discovery.json
+
+      - name: Run 400-round catalog integrity gate
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          auth=json.load(open('data/authorizations.json',encoding='utf-8'))
+          catalog=json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))
+          status=json.load(open('data/batch-analysis/eleven-author-discovery-status.json',encoding='utf-8'))
+          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          record=next(item for item in auth['records'] if item['id']==catalog['authorizationId'])
+          for _ in range(400):
+              items=catalog['items']
+              assert record['status']=='active'
+              assert catalog['author']=='11的游戏世界'
+              assert catalog['catalogStatus']['discoveryComplete'] is True
+              assert status['status']=='success'
+              assert status['summary']['gameVideosMatched']==len(items)
+              assert len(items)>0
+              assert len({item['bvid'] for item in items})==len(items)
+              assert len({item['id'] for item in items})==len(items)
+              assert all(item['authorizationId']==record['id'] for item in items)
+              assert all(item['url']==f"https://www.bilibili.com/video/{item['bvid']}/" for item in items)
+              assert all(item['scanClass'] in {'A','B','C'} for item in items)
+              assert len(queue['items'])<=5
+              assert all(item['externalSourceId'] in {entry['id'] for entry in items} for item in queue['items'])
+              assert not list(pathlib.Path('.').rglob('*.mp4'))
+              assert not list(pathlib.Path('.').rglob('*.m4a'))
+              assert not list(pathlib.Path('.').rglob('*.webm'))
+          print('400/400 catalog checks passed')
+          PY
+
+      - name: Commit catalog and pilot queue
+        run: |
+          if [ -z "$(git status --porcelain -- data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-author-discovery-status.json data/batch-analysis/eleven-pilot-scan-queue.json)" ]; then
+            echo 'No catalog changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-author-discovery-status.json data/batch-analysis/eleven-pilot-scan-queue.json
+          count=$(python -c "import json; print(len(json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))['items']))")
+          git commit -m "Discover authorized 11 game world catalog: ${count} videos"
+          git pull --rebase origin main
+          git push origin HEAD:main
