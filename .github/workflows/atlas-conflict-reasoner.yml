@@ -1,0 +1,86 @@
+name: Atlas conflict reasoner
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'data/conflict-reports/**'
+      - 'CONFLICT-REPORT.md'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atlas-conflict-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reason-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify release manifest synchronization
+        run: python tools/sync_release_manifest.py
+
+      - name: Parse release JavaScript
+        run: |
+          node --check atlas-bootstrap.js
+          node --check atlas-analysis-import.js
+          node --check atlas-liquid-nav-0934.js
+          node --check atlas-controls-0938.js
+          node --check atlas-ipad-nav-0940.js
+          node --check atlas-data-guard-0939.js
+          node --check location-names.js
+          node --check location-title-polish.js
+          node --check sw.js
+
+      - name: Run static conflict reasoner
+        run: python tools/atlas_conflict_reasoner.py
+
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.52.0
+          npx playwright install --with-deps chromium
+
+      - name: Start local Atlas server
+        run: |
+          python -m http.server 4173 > /tmp/atlas-server.log 2>&1 &
+          echo $! > /tmp/atlas-server.pid
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/atlas-server.log
+          exit 1
+
+      - name: Run browser conflict matrix
+        env:
+          ATLAS_URL: http://127.0.0.1:4173/
+        run: node tools/browser_conflict_smoke.mjs
+
+      - name: Upload conflict reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-conflict-reports-${{ github.sha }}
+          path: |
+            CONFLICT-REPORT.md
+            data/conflict-reports/*.json
+          if-no-files-found: warn
+
+      - name: Persist reports on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add CONFLICT-REPORT.md data/conflict-reports
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Update Atlas conflict reports [skip ci]'
+          git push
