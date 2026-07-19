@@ -1,6 +1,6 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-19T08:58:35.426442Z",
+  "updatedAt": "2026-07-19T09:35:08.299196Z",
   "items": [
     {
       "id": "analysis-dada-05-v1",
@@ -62,41 +62,6 @@
         "blurred": 0,
         "duplicates": 154,
         "keepRatio": 0.167568
-      },
-      "pipeline": {
-        "sourceDownloaded": true,
-        "numericDescriptorsGenerated": true,
-        "resultCommitted": true,
-        "libraryImported": true,
-        "geospatialAnchoringCompleted": false
-      },
-      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
-    },
-    {
-      "id": "analysis-dada-08-v1",
-      "jobId": "dada-08-v1",
-      "externalSourceId": "bili-dada-acshadows-08",
-      "authorizationId": "auth-dada-20260718",
-      "author": "不再犹豫的达达猪",
-      "title": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
-      "status": "imported",
-      "resultPath": "data/analysis-results/dada-08.json",
-      "resultSha256": "5472c8334d15118ab2b34e9a757779597952cd902fc39b8e4fe198b1c9d4d1d0",
-      "generatedAt": "2026-07-18T23:15:32.327205Z",
-      "media": {
-        "durationSeconds": 761.333,
-        "width": 1280,
-        "height": 720,
-        "fps": 30.0,
-        "videoRetained": false,
-        "framePixelsRetained": false
-      },
-      "scan": {
-        "sampled": 480,
-        "kept": 240,
-        "blurred": 0,
-        "duplicates": 240,
-        "keepRatio": 0.5
       },
       "pipeline": {
         "sourceDownloaded": true,
@@ -761,6 +726,41 @@
         "blurred": 0,
         "duplicates": 89,
         "keepRatio": 0.168224
+      },
+      "pipeline": {
+        "sourceDownloaded": true,
+        "numericDescriptorsGenerated": true,
+        "resultCommitted": true,
+        "libraryImported": true,
+        "geospatialAnchoringCompleted": false
+      },
+      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
+    },
+    {
+      "id": "analysis-dada-08-v2-correct-source",
+      "jobId": "dada-08-v2-correct-source",
+      "externalSourceId": "bili-dada-acshadows-08",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗08 古坟试炼（解锁技能）",
+      "status": "imported",
+      "resultPath": "data/analysis-results/dada-08.json",
+      "resultSha256": "9eab4dc2f444a0d7d79ccf8994c2e2fe6124260ae5e427ec047066770a4e0742",
+      "generatedAt": "2026-07-19T09:35:08.226547Z",
+      "media": {
+        "durationSeconds": 124.333,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 125,
+        "kept": 20,
+        "blurred": 0,
+        "duplicates": 105,
+        "keepRatio": 0.16
       },
       "pipeline": {
         "sourceDownloaded": true,

@@ -3,7 +3,7 @@
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "authorizationId": "auth-dada-20260718",
-  "updatedAt": "2026-07-19T08:58:35.432332Z",
+  "updatedAt": "2026-07-19T09:35:08.304592Z",
   "complete": true,
   "summary": {
     "total": 23,
@@ -224,28 +224,35 @@
       "title": "〖刺客信条影 新手攻略〗08 古坟试炼（解锁技能）",
       "url": "https://www.bilibili.com/video/BV1wXoXYqEr5/",
       "state": "imported",
-      "attemptCount": 1,
+      "attemptCount": 2,
       "resultPath": "data/analysis-results/dada-08.json",
       "lastAttempt": {
         "externalSourceId": "bili-dada-acshadows-08",
         "sequence": 8,
-        "startedAt": "2026-07-18T23:01:03.206891Z",
+        "startedAt": "2026-07-19T09:32:57.554858Z",
         "resolution": {
-          "url": "https://www.bilibili.com/video/BV1A5P9z7EGM/",
-          "bvid": "BV1A5P9z7EGM",
-          "title": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
+          "url": "https://www.bilibili.com/video/BV1wXoXYqEr5/",
+          "bvid": "BV1wXoXYqEr5",
+          "title": "〖刺客信条影 新手攻略〗08 古坟试炼（解锁技能）",
           "author": "不再犹豫的达达猪",
-          "duration": "12:42",
-          "score": 181.429,
-          "source": "bilibili-search-api",
-          "query": "不再犹豫的达达猪 刺客信条影 新手攻略 08"
+          "score": 1000,
+          "source": "verified-catalog-source"
         },
         "analyzerReturnCode": 0,
         "analyzerOutput": "analysis result written: data/analysis-results/dada-08.json status=analyzed\n\n",
         "analysisStatus": "analyzed",
         "indexReturnCode": 0,
         "completed": true,
-        "finishedAt": "2026-07-18T23:15:32.490203Z"
+        "resultChecks": {
+          "statusAnalyzed": true,
+          "authorExact": true,
+          "titleExact": true,
+          "bvidExact": true,
+          "durationWithinTolerance": true,
+          "originalVideoDeleted": true,
+          "framePixelsDeleted": true
+        },
+        "finishedAt": "2026-07-19T09:35:08.304592Z"
       },
       "verifiedResolution": {
         "bvid": "BV1wXoXYqEr5",
@@ -257,9 +264,8 @@
         "collectionId": 5059842,
         "verifiedAt": "2026-07-19T09:14:08.826469+00:00"
       },
-      "qualityState": "exact-url-verified-pending-reprocess",
-      "resultStale": true,
-      "staleReason": "Previous analysis used BV1A5P9z7EGM (sequence 05)"
+      "qualityState": "verified-correct-source",
+      "resultStale": false
     },
     {
       "externalSourceId": "bili-dada-acshadows-09",

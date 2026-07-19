@@ -1,23 +1,22 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T08:58:35.516860+00:00",
+  "generatedAt": "2026-07-19T09:35:08.399489+00:00",
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "pipelineComplete": true,
   "qualityComplete": false,
   "summary": {
     "catalogItems": 23,
-    "critical": 10,
-    "warnings": 5,
-    "affectedCount": 6,
+    "critical": 7,
+    "warnings": 4,
+    "affectedCount": 5,
     "canonicalRetainedCount": 2,
     "canonicalRetainedSequences": [
       9,
       22
     ],
-    "resolutionRequiredCount": 4,
+    "resolutionRequiredCount": 3,
     "resolutionRequiredSequences": [
-      8,
       12,
       14,
       20
@@ -26,9 +25,8 @@
     "identityRequiredSequences": [
       20
     ],
-    "queueCount": 4,
+    "queueCount": 3,
     "queueSequences": [
-      8,
       12,
       14,
       20
@@ -39,7 +37,6 @@
       "type": "BVID",
       "value": "BV1A5P9z7EGM",
       "sequences": [
-        8,
         9,
         14
       ],
@@ -62,39 +59,6 @@
     }
   ],
   "findings": [
-    {
-      "severity": "critical",
-      "code": "SEQUENCE_MISMATCH",
-      "sequence": 8,
-      "message": "Expected video 08, resolved title indicates 09",
-      "evidence": {
-        "expectedTitle": "〖刺客信条影 新手攻略〗08 古坟试炼（解锁技能）",
-        "resolvedTitle": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
-        "bvid": "BV1A5P9z7EGM"
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "TITLE_TOPIC_MISMATCH",
-      "sequence": 8,
-      "message": "Resolved title topic differs from catalog title",
-      "evidence": {
-        "expectedTitle": "〖刺客信条影 新手攻略〗08 古坟试炼（解锁技能）",
-        "resolvedTitle": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
-        "overlap": 0.0,
-        "bvid": "BV1A5P9z7EGM"
-      }
-    },
-    {
-      "severity": "warning",
-      "code": "LOW_MATCH_SCORE",
-      "sequence": 8,
-      "message": "Match score is only 181.429",
-      "evidence": {
-        "score": 181.429,
-        "bvid": "BV1A5P9z7EGM"
-      }
-    },
     {
       "severity": "critical",
       "code": "TITLE_TOPIC_MISMATCH",
@@ -196,35 +160,18 @@
       "severity": "info",
       "code": "DUPLICATE_CANONICAL_RETAINED",
       "sequence": 9,
-      "message": "BVID duplicate group [8, 9, 14] has canonical sequence 09; keep it and resolve the others",
+      "message": "BVID duplicate group [9, 14] has canonical sequence 09; keep it and resolve the others",
       "evidence": {
         "duplicateType": "BVID",
         "duplicateValue": "BV1A5P9z7EGM",
         "sequences": [
-          8,
           9,
           14
         ],
         "canonicalSequence": 9,
         "suspectSequences": [
-          8,
           14
         ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID_MISASSIGNED",
-      "sequence": 8,
-      "message": "BVID belongs to canonical sequence 09, not sequence 08",
-      "evidence": {
-        "duplicateValue": "BV1A5P9z7EGM",
-        "sequences": [
-          8,
-          9,
-          14
-        ],
-        "canonicalSequence": 9
       }
     },
     {
@@ -235,7 +182,6 @@
       "evidence": {
         "duplicateValue": "BV1A5P9z7EGM",
         "sequences": [
-          8,
           9,
           14
         ],
