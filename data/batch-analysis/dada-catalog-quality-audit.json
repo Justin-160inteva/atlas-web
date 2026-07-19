@@ -1,48 +1,33 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T10:33:55.200774+00:00",
+  "generatedAt": "2026-07-19T10:45:53.544221+00:00",
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "pipelineComplete": true,
   "qualityComplete": false,
   "summary": {
     "catalogItems": 23,
-    "critical": 6,
-    "warnings": 3,
-    "affectedCount": 4,
-    "canonicalRetainedCount": 2,
+    "critical": 3,
+    "warnings": 2,
+    "affectedCount": 2,
+    "canonicalRetainedCount": 1,
     "canonicalRetainedSequences": [
-      9,
       22
     ],
-    "resolutionRequiredCount": 2,
+    "resolutionRequiredCount": 1,
     "resolutionRequiredSequences": [
-      14,
       20
     ],
     "identityRequiredCount": 1,
     "identityRequiredSequences": [
       20
     ],
-    "queueCount": 2,
+    "queueCount": 1,
     "queueSequences": [
-      14,
       20
     ]
   },
   "duplicateGroups": [
-    {
-      "type": "BVID",
-      "value": "BV1A5P9z7EGM",
-      "sequences": [
-        9,
-        14
-      ],
-      "canonicalSequence": 9,
-      "strongCandidates": [
-        9
-      ]
-    },
     {
       "type": "BVID",
       "value": "BV1Ub7N6zEKa",
@@ -57,39 +42,6 @@
     }
   ],
   "findings": [
-    {
-      "severity": "critical",
-      "code": "SEQUENCE_MISMATCH",
-      "sequence": 14,
-      "message": "Expected video 14, resolved title indicates 09",
-      "evidence": {
-        "expectedTitle": "〖刺客信条影 新手攻略〗14 锁链出血流",
-        "resolvedTitle": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
-        "bvid": "BV1A5P9z7EGM"
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "TITLE_TOPIC_MISMATCH",
-      "sequence": 14,
-      "message": "Resolved title topic differs from catalog title",
-      "evidence": {
-        "expectedTitle": "〖刺客信条影 新手攻略〗14 锁链出血流",
-        "resolvedTitle": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
-        "overlap": 0.0,
-        "bvid": "BV1A5P9z7EGM"
-      }
-    },
-    {
-      "severity": "warning",
-      "code": "LOW_MATCH_SCORE",
-      "sequence": 14,
-      "message": "Match score is only 183.077",
-      "evidence": {
-        "score": 183.077,
-        "bvid": "BV1A5P9z7EGM"
-      }
-    },
     {
       "severity": "critical",
       "code": "CATALOG_IDENTITY_MISMATCH",
@@ -130,38 +82,6 @@
       "evidence": {
         "score": 215.0,
         "bvid": "BV1Ub7N6zEKa"
-      }
-    },
-    {
-      "severity": "info",
-      "code": "DUPLICATE_CANONICAL_RETAINED",
-      "sequence": 9,
-      "message": "BVID duplicate group [9, 14] has canonical sequence 09; keep it and resolve the others",
-      "evidence": {
-        "duplicateType": "BVID",
-        "duplicateValue": "BV1A5P9z7EGM",
-        "sequences": [
-          9,
-          14
-        ],
-        "canonicalSequence": 9,
-        "suspectSequences": [
-          14
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID_MISASSIGNED",
-      "sequence": 14,
-      "message": "BVID belongs to canonical sequence 09, not sequence 14",
-      "evidence": {
-        "duplicateValue": "BV1A5P9z7EGM",
-        "sequences": [
-          9,
-          14
-        ],
-        "canonicalSequence": 9
       }
     },
     {

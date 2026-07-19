@@ -3,7 +3,7 @@
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "authorizationId": "auth-dada-20260718",
-  "updatedAt": "2026-07-19T10:33:55.112272Z",
+  "updatedAt": "2026-07-19T10:45:53.452805Z",
   "complete": true,
   "summary": {
     "total": 23,
@@ -440,31 +440,50 @@
       "externalSourceId": "bili-dada-acshadows-14",
       "sequence": 14,
       "title": "〖刺客信条影 新手攻略〗14 锁链出血流",
-      "url": "https://www.bilibili.com/video/BV1A5P9z7EGM/",
+      "url": "https://www.bilibili.com/video/BV1G4wxzmEtR/",
       "state": "imported",
-      "attemptCount": 1,
+      "attemptCount": 2,
       "resultPath": "data/analysis-results/dada-14.json",
       "lastAttempt": {
         "externalSourceId": "bili-dada-acshadows-14",
         "sequence": 14,
-        "startedAt": "2026-07-18T23:55:31.849260Z",
+        "startedAt": "2026-07-19T10:37:14.307408Z",
         "resolution": {
-          "url": "https://www.bilibili.com/video/BV1A5P9z7EGM/",
-          "bvid": "BV1A5P9z7EGM",
-          "title": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
+          "url": "https://www.bilibili.com/video/BV1G4wxzmEtR/",
+          "bvid": "BV1G4wxzmEtR",
+          "title": "〖刺客信条影 新手攻略〗14 锁链出血流",
           "author": "不再犹豫的达达猪",
-          "duration": "12:42",
-          "score": 183.077,
-          "source": "bilibili-search-api",
-          "query": "不再犹豫的达达猪 刺客信条影 新手攻略 14"
+          "score": 1000,
+          "source": "verified-catalog-source"
         },
         "analyzerReturnCode": 0,
         "analyzerOutput": "analysis result written: data/analysis-results/dada-14.json status=analyzed\n\n",
         "analysisStatus": "analyzed",
         "indexReturnCode": 0,
         "completed": true,
-        "finishedAt": "2026-07-18T23:55:58.042783Z"
-      }
+        "resultChecks": {
+          "statusAnalyzed": true,
+          "authorExact": true,
+          "titleExact": true,
+          "bvidExact": true,
+          "durationWithinTolerance": true,
+          "originalVideoDeleted": true,
+          "framePixelsDeleted": true
+        },
+        "finishedAt": "2026-07-19T10:45:53.452805Z"
+      },
+      "verifiedResolution": {
+        "bvid": "BV1G4wxzmEtR",
+        "url": "https://www.bilibili.com/video/BV1G4wxzmEtR/",
+        "title": "【刺客信条影 新手攻略】14 锁链出血流",
+        "durationSeconds": 414,
+        "author": "不再犹豫的达达猪",
+        "authorMid": 3493082095946091,
+        "collectionId": 5059842,
+        "verifiedAt": "2026-07-19T10:36:31.515992+00:00"
+      },
+      "qualityState": "verified-correct-source",
+      "resultStale": false
     },
     {
       "externalSourceId": "bili-dada-acshadows-15",

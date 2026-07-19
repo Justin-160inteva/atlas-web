@@ -1,6 +1,6 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-19T10:33:55.106697Z",
+  "updatedAt": "2026-07-19T10:45:53.446687Z",
   "items": [
     {
       "id": "analysis-dada-05-v1",
@@ -83,41 +83,6 @@
       "resultPath": "data/analysis-results/dada-09.json",
       "resultSha256": "133cdc4077514e924b6d26c76e7e34c8a7950961287bb6a0b24ee8f96ba5b526",
       "generatedAt": "2026-07-18T23:23:51.939105Z",
-      "media": {
-        "durationSeconds": 761.333,
-        "width": 1280,
-        "height": 720,
-        "fps": 30.0,
-        "videoRetained": false,
-        "framePixelsRetained": false
-      },
-      "scan": {
-        "sampled": 240,
-        "kept": 151,
-        "blurred": 0,
-        "duplicates": 89,
-        "keepRatio": 0.629167
-      },
-      "pipeline": {
-        "sourceDownloaded": true,
-        "numericDescriptorsGenerated": true,
-        "resultCommitted": true,
-        "libraryImported": true,
-        "geospatialAnchoringCompleted": false
-      },
-      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
-    },
-    {
-      "id": "analysis-dada-14-v1",
-      "jobId": "dada-14-v1",
-      "externalSourceId": "bili-dada-acshadows-14",
-      "authorizationId": "auth-dada-20260718",
-      "author": "不再犹豫的达达猪",
-      "title": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
-      "status": "imported",
-      "resultPath": "data/analysis-results/dada-14.json",
-      "resultSha256": "121f973cfffe6b5cedb6fbb55960e1bce6d222c04102f767ceab4ad0b07eccd5",
-      "generatedAt": "2026-07-18T23:55:57.858919Z",
       "media": {
         "durationSeconds": 761.333,
         "width": 1280,
@@ -761,6 +726,41 @@
         "blurred": 0,
         "duplicates": 281,
         "keepRatio": 0.414583
+      },
+      "pipeline": {
+        "sourceDownloaded": true,
+        "numericDescriptorsGenerated": true,
+        "resultCommitted": true,
+        "libraryImported": true,
+        "geospatialAnchoringCompleted": false
+      },
+      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
+    },
+    {
+      "id": "analysis-dada-14-v2-correct-source",
+      "jobId": "dada-14-v2-correct-source",
+      "externalSourceId": "bili-dada-acshadows-14",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗14 锁链出血流",
+      "status": "imported",
+      "resultPath": "data/analysis-results/dada-14.json",
+      "resultSha256": "afab54afc803b3186db47b23c7325c6dab40b1700c363aaced2fbdb97f2c9794",
+      "generatedAt": "2026-07-19T10:45:53.311955Z",
+      "media": {
+        "durationSeconds": 413.766,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 414,
+        "kept": 192,
+        "blurred": 0,
+        "duplicates": 222,
+        "keepRatio": 0.463768
       },
       "pipeline": {
         "sourceDownloaded": true,
