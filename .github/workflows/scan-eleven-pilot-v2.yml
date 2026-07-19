@@ -1,4 +1,4 @@
-name: Scan 11 game world regional batch v5
+name: Scan 11 game world regional batch v6
 
 on:
   push:
@@ -46,12 +46,13 @@ jobs:
           python -m py_compile tools/analyze_authorized_video_v6.py
           python -m py_compile tools/analyze_authorized_video_v9.py
           python -m py_compile tools/analyze_authorized_video_v10.py
+          python -m py_compile tools/analyze_authorized_video_v11.py
           python -m py_compile tools/scan_catalog_queue_v2.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/update_analysis_index.py
 
-      - name: Verify authorization, regional queue, bug dictionary, and minute telemetry
+      - name: Verify authorization, adaptive transfer, bug dictionary, and telemetry
         run: |
           python - <<'PY'
           import json
@@ -71,16 +72,20 @@ jobs:
           assert scope['localDownloadAndAnalysis'] and scope['computerVisionAnalysis']
           assert scope['privateLowResolutionKeyframes']
           assert scope['nonCommercial'] and scope['commercialUseRequiresSeparateWrittenConsent']
-          assert manifest['analyzer'].endswith('analyze_authorized_video_v10.py')
+          assert manifest['analyzer'].endswith('analyze_authorized_video_v11.py')
           assert manifest['compatibilityFixes']['curlCffiResponseContextManager'] is True
-          assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==60
+          assert manifest['compatibilityFixes']['adaptiveRangeResume'] is True
+          assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==30
           assert manifest['runtimeHeartbeat']['independentTicker']
           assert manifest['runtimeHeartbeat']['continuesDuringNetworkStall']
-          assert manifest['downloadTelemetry']['intervalSeconds']==60
-          assert len(bugs['entries'])>=18
+          assert manifest['downloadTelemetry']['intervalSeconds']==30
+          assert manifest['downloadOptimization']['noArtificialRateLimit'] is True
+          assert manifest['downloadOptimization']['adaptiveParallelRanges'] is True
+          assert 2<=manifest['downloadOptimization']['maxRangeWorkers']<=4
+          assert len(bugs['entries'])>=20
           assert len({entry['id'] for entry in bugs['entries']})==len(bugs['entries'])
           assert all(entry['patterns'] for entry in bugs['entries'])
-          print(f'authorization, {region} queue, bug dictionary, and minute telemetry passed')
+          print(f'authorization, {region} queue, adaptive transfer, bug dictionary, and telemetry passed')
           PY
 
       - name: Scan one item with immediate bounded auto-recovery
@@ -93,7 +98,7 @@ jobs:
           ATLAS_PROGRESS_BRANCH: main
           ATLAS_PROGRESS_PATH: data/runtime-progress/eleven-pilot-progress.json
           ATLAS_PROGRESS_LOCAL_PATH: /tmp/atlas-runtime-progress.json
-          ATLAS_PROGRESS_MIN_INTERVAL_SECONDS: '60'
+          ATLAS_PROGRESS_MIN_INTERVAL_SECONDS: '30'
           ATLAS_PROGRESS_CONFLICT_RETRIES: '5'
         run: python tools/run_scan_with_auto_recovery.py data/batch-analysis/eleven-pilot-scan-manifest.json
 
@@ -140,8 +145,10 @@ jobs:
               assert 1<=len(queue['items'])<=3
               assert all(item['regionGuess']==queue['pilotRegion'] for item in queue['items'])
               assert all(item.get('state','pending') in allowed for item in queue['items'])
-              assert manifest['analyzer'].endswith('analyze_authorized_video_v10.py')
-              assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==60
+              assert manifest['analyzer'].endswith('analyze_authorized_video_v11.py')
+              assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==30
+              assert manifest['downloadOptimization']['noArtificialRateLimit'] is True
+              assert manifest['downloadOptimization']['adaptiveParallelRanges'] is True
               assert manifest['retention']['originalVideo'] is False
               assert manifest['retention']['framePixels'] is False
               assert bugs['defaultPolicy']['neverBroadenAuthorization'] is True
