@@ -1,0 +1,147 @@
+name: Build final Dada temple anchor set
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_dada_temple_anchor_final.py'
+      - '.github/workflows/dada-temples-anchor-final.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-temples-anchor-final
+  cancel-in-progress: true
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile final anchor builder
+        id: compile
+        run: python -m py_compile tools/build_dada_temple_anchor_final.py
+
+      - name: Build final 36-position anchor set
+        id: build
+        run: python tools/build_dada_temple_anchor_final.py
+
+      - name: Run 400-round final anchor integrity gate
+        id: gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          expected_resolved = [2, 4, 5, 10, 30]
+          expected_unmatched = {'location-mapgenie-479951', 'location-mapgenie-479947'}
+          for _ in range(400):
+              final = json.loads(Path('data/geospatial/dada-temples-36-anchors-final.json').read_text(encoding='utf-8'))
+              status = json.loads(Path('data/batch-analysis/dada-temples-36-anchor-final-status.json').read_text(encoding='utf-8'))
+              rows = final['anchors']
+              ids = [row['locationId'] for row in rows]
+              unmatched = final['unmatchedMapCandidates']
+              assert final['status'] == 'complete'
+              assert final['source']['bvid'] == 'BV19EXYYWEdv'
+              assert [row['videoPosition'] for row in rows] == list(range(1, 37))
+              assert len(rows) == 36
+              assert all(row['status'] == 'confirmed' for row in rows)
+              assert all(row['confidence'] >= .9 for row in rows)
+              assert all(set(row['atlas']) == {'x', 'y'} for row in rows)
+              assert len(ids) == len(set(ids)) == 36
+              assert {row['locationId'] for row in unmatched} == expected_unmatched
+              assert all(row['regionTitle'] == 'AWAJI' for row in unmatched)
+              assert final['counts'] == {
+                  'videoPositions': 36,
+                  'confirmed': 36,
+                  'unresolved': 0,
+                  'coordinatesWritten': 36,
+                  'mapTempleCandidates': 38,
+                  'unmatchedMapCandidates': 2,
+              }
+              assert final['policy']['supplementalResolutions'] == expected_resolved
+              assert final['policy']['repositoryContainsEvidencePixels'] is False
+              assert status['status'] == 'complete'
+              assert status['resolvedPositions'] == expected_resolved
+              assert status['counts'] == final['counts']
+              assert all(status['checks'].values())
+              assert not list(Path('data').rglob('*.jpg'))
+              assert not list(Path('data').rglob('*.png'))
+              assert not list(Path('data').rglob('*.mp4'))
+          PY
+
+      - name: Persist final anchor set
+        id: persist
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/geospatial/dada-temples-36-anchors-final.json
+          git add data/batch-analysis/dada-temples-36-anchor-final-status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Build final Dada temple geospatial anchors [skip ci]'
+          for attempt in 1 2 3 4; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Record final anchor workflow outcome
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          GATE_OUTCOME: ${{ steps.gate.outcome }}
+          PERSIST_OUTCOME: ${{ steps.persist.outcome }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          steps = {
+              'compile': os.environ.get('COMPILE_OUTCOME') or 'not-run',
+              'build': os.environ.get('BUILD_OUTCOME') or 'not-run',
+              'gate': os.environ.get('GATE_OUTCOME') or 'not-run',
+              'persist': os.environ.get('PERSIST_OUTCOME') or 'not-run',
+          }
+          failed = next((name for name, value in steps.items() if value in {'failure', 'cancelled'}), None)
+          payload = {
+              'schemaVersion': 1,
+              'status': os.environ.get('JOB_STATUS') or 'unknown',
+              'failedStage': failed,
+              'steps': steps,
+              'runId': os.environ.get('GITHUB_RUN_ID'),
+              'triggerSha': os.environ.get('GITHUB_SHA'),
+              'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+          }
+          Path('/tmp/dada-temples-anchor-final-workflow.json').write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data/batch-analysis
+            cp /tmp/dada-temples-anchor-final-workflow.json data/batch-analysis/dada-temples-36-anchor-final-workflow.json
+            git add data/batch-analysis/dada-temples-36-anchor-final-workflow.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Record final Dada temple anchor outcome [skip ci]'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
