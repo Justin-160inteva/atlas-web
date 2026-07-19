@@ -1,7 +1,8 @@
 (() => {
   'use strict';
 
-  const VERSION='0.3.1';
+  const VERSION='0.4.0';
+  const MONITOR_VERSION='0.4.0';
   const REPO='Justin-160inteva/atlas-web';
   const RAW_BASE=`https://raw.githubusercontent.com/${REPO}/main/`;
   const STATUS_PATH='data/batch-analysis/eleven-pilot-scan-status.json';
@@ -71,8 +72,8 @@
       <section class="monitor-overlay" id="scanMonitorOverlay" aria-hidden="true" aria-label="扫描与导入进度">
         <div class="monitor-toolbar">
           <button class="monitor-close" id="closeScanMonitor" aria-label="返回设置">‹</button>
-          <div class="monitor-toolbar-copy"><b>扫描与导入进度</b><small>11的游戏世界 · 区域扫描队列</small></div>
-          <button class="monitor-refresh" id="refreshScanMonitor" aria-label="立即核对 GitHub main">↻</button>
+          <div class="monitor-toolbar-copy"><b>扫描与导入进度</b><small>11的游戏世界 · 顺序生产队列</small></div>
+          <button class="monitor-refresh" id="refreshScanMonitor" aria-label="重新载入并立即核对 GitHub main">↻</button>
         </div>
         <iframe class="monitor-frame" id="scanMonitorFrame" title="Atlas 扫描与导入进度" loading="lazy"></iframe>
       </section>`);
@@ -83,9 +84,9 @@
     const summary=status?.summary||{};
     const runtimeState=String(runtime?.state||'').toLowerCase();
     if(status?.complete)return 'complete';
-    if(phase.includes('block')||summary.blocked>0)return 'blocked';
-    if(phase.includes('recover')||summary.retryableFailed>0||runtimeState==='failed')return 'recovery';
-    if(phase.includes('run')||summary.running>0||runtimeState==='running')return 'running';
+    if(runtimeState==='blocked'||phase.includes('block')||summary.blocked>0)return 'blocked';
+    if(['failed','recovery'].includes(runtimeState)||phase.includes('recover')||summary.retryableFailed>0)return 'recovery';
+    if(runtimeState==='running'||phase.includes('run')||summary.running>0)return 'running';
     if(runtimeState==='queued')return 'queued';
     return 'idle';
   }
@@ -101,15 +102,16 @@
       const imported=Number(summary.imported||0);
       const total=Number(summary.total||status.items?.length||0);
       const region=status.pilotRegion||'区域';
-      const active=status.activeItem?.page||status.items?.find(item=>item.state==='running')?.page||status.items?.find(item=>item.state==='pending')?.page;
-      const activeId=status.activeItem?.externalSourceId||status.items?.find(item=>item.state==='running')?.externalSourceId||status.items?.find(item=>item.state==='pending')?.externalSourceId;
+      const ids=new Set((status.items||[]).map(item=>item.externalSourceId));
       const runtimeTime=Date.parse(runtime?.updatedAt||'');
-      const runtimeFresh=runtime&&Number.isFinite(runtimeTime)&&(!runtime.externalSourceId||runtime.externalSourceId===activeId)&&Date.now()-runtimeTime<=RUNTIME_FRESH_MS?runtime:null;
+      const runtimeFresh=runtime&&Number.isFinite(runtimeTime)&&ids.has(runtime.externalSourceId)&&Date.now()-runtimeTime<=RUNTIME_FRESH_MS?runtime:null;
+      const active=runtimeFresh?.page||status.activeItem?.page||status.items?.find(item=>item.state==='running')?.page||status.items?.find(item=>item.state==='pending')?.page;
       const stateName=stateFrom(status,runtimeFresh);
       const updated=runtimeFresh?.updatedAt||status.updatedAt;
       const summaryNode=$('#scanMonitorSummary');
       const live=$('#scanMonitorLive');
-      if(summaryNode)summaryNode.textContent=`${region}批次 ${imported}/${total}${active?` · P${active}`:''} · 数据${ageLabel(updated)}`;
+      const heartbeat=runtimeFresh?.heartbeatSequence?` · 心跳 #${runtimeFresh.heartbeatSequence}`:'';
+      if(summaryNode)summaryNode.textContent=`${region} ${imported}/${total}${active?` · P${active}`:''}${heartbeat} · 数据${ageLabel(updated)}`;
       if(live){live.dataset.state=stateName;const text=live.querySelector('em');if(text)text.textContent=labelFor(stateName);}
     }catch(_){
       const summaryNode=$('#scanMonitorSummary');
@@ -131,19 +133,26 @@
     $('#settingsPanel')?.setAttribute('aria-hidden','true');
   }
 
-  function requestMonitorRefresh(){
+  function monitorUrl(force=false){
+    return `scan-monitor.html?embedded=1&v=${MONITOR_VERSION}${force?`&reload=${Date.now()}`:''}`;
+  }
+
+  function requestMonitorRefresh(forceReload=false){
     const frame=$('#scanMonitorFrame');
-    try{frame?.contentWindow?.postMessage({type:'atlas-monitor-refresh'},location.origin);}catch(_){/* iframe may still be loading */}
+    if(forceReload&&frame){frame.src=monitorUrl(true);}
+    else{
+      try{frame?.contentWindow?.postMessage({type:'atlas-monitor-refresh'},location.origin);}catch(_){/* iframe may still be loading */}
+    }
     refreshBadge();
   }
 
   function openMonitor(){
     const overlay=$('#scanMonitorOverlay');
     const frame=$('#scanMonitorFrame');
-    if(frame&&!frame.src)frame.src='scan-monitor.html?embedded=1&v=0.3.1';
+    if(frame&&(!frame.src||!frame.src.includes(`v=${MONITOR_VERSION}`)))frame.src=monitorUrl(false);
     overlay?.classList.add('open');
     overlay?.setAttribute('aria-hidden','false');
-    setTimeout(requestMonitorRefresh,120);
+    setTimeout(()=>requestMonitorRefresh(false),180);
   }
 
   function closeMonitor(){
@@ -170,7 +179,7 @@
     $('#openScanMonitor')?.addEventListener('click',openMonitor);
     $('#closeScanMonitor')?.addEventListener('click',closeMonitor);
     $('#openEvidenceLab')?.addEventListener('click',openEvidence);
-    $('#refreshScanMonitor')?.addEventListener('click',requestMonitorRefresh);
+    $('#refreshScanMonitor')?.addEventListener('click',()=>requestMonitorRefresh(true));
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshBadge();});
     document.addEventListener('keydown',event=>{
       if(event.key!=='Escape')return;
