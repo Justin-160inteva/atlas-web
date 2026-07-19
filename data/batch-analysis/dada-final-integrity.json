@@ -1,0 +1,2782 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-19T10:56:46.918373Z",
+  "applied": false,
+  "status": "fail",
+  "summary": {
+    "catalogItems": 23,
+    "checks": 317,
+    "passed": 315,
+    "failed": 2,
+    "namedSequences": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "exactUrlSequences": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "importedSequences": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "duplicateBvidGroups": []
+  },
+  "errors": [
+    {
+      "sequence": 3,
+      "code": "RESULT_EXISTS",
+      "passed": false,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-03.json"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "STATUS_NOT_STALE",
+      "passed": false,
+      "evidence": {
+        "resultStale": true
+      }
+    }
+  ],
+  "checks": [
+    {
+      "sequence": null,
+      "code": "SEQUENCE_SET_EXACT",
+      "passed": true,
+      "evidence": {
+        "actual": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ]
+      }
+    },
+    {
+      "sequence": null,
+      "code": "QUEUE_EMPTY",
+      "passed": true,
+      "evidence": {
+        "queue": []
+      }
+    },
+    {
+      "sequence": null,
+      "code": "QUALITY_AUDIT_COMPLETE",
+      "passed": true,
+      "evidence": {
+        "summary": {
+          "catalogItems": 23,
+          "critical": 0,
+          "warnings": 1,
+          "affectedCount": 0,
+          "canonicalRetainedCount": 0,
+          "canonicalRetainedSequences": [],
+          "resolutionRequiredCount": 0,
+          "resolutionRequiredSequences": [],
+          "identityRequiredCount": 0,
+          "identityRequiredSequences": [],
+          "queueCount": 0,
+          "queueSequences": []
+        }
+      }
+    },
+    {
+      "sequence": null,
+      "code": "QUALITY_AUDIT_NO_CRITICAL",
+      "passed": true,
+      "evidence": {
+        "summary": {
+          "catalogItems": 23,
+          "critical": 0,
+          "warnings": 1,
+          "affectedCount": 0,
+          "canonicalRetainedCount": 0,
+          "canonicalRetainedSequences": [],
+          "resolutionRequiredCount": 0,
+          "resolutionRequiredSequences": [],
+          "identityRequiredCount": 0,
+          "identityRequiredSequences": [],
+          "queueCount": 0,
+          "queueSequences": []
+        }
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗01 九字真言（22个位置）",
+        "parsedSequence": 1
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1vrXsYiE9W"
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-01.json"
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗01 九字真言（22个位置）",
+        "actual": "〖刺客信条影 新手攻略〗01 九字真言（22个位置）"
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1vrXsYiE9W",
+        "actual": "BV1vrXsYiE9W"
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 231,
+        "actual": 230.299
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "75a0c4a31c79874b456f5aea8c66eb0f6931dccb43d74aea124de6d298d0c483"
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 1,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
+        "parsedSequence": 2
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1aFXaYmEDZ"
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-02.json"
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
+        "actual": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）"
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1aFXaYmEDZ",
+        "actual": "BV1aFXaYmEDZ"
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 271,
+        "actual": 270.633
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "14a29ab65319ffaca0426f465fd855b41b9c7aaa8804fe809e6bef06a713969e"
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 2,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗03 寺庙全收集（36个位置）",
+        "parsedSequence": 3
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV19EXYYWEdv"
+      }
+    },
+    {
+      "sequence": 3,
+      "code": "RESULT_EXISTS",
+      "passed": false,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-03.json"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗04 技能点收集（109个技能点）",
+        "parsedSequence": 4
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1tuosYAESp"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-04.json"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗04 技能点收集（109个技能点）",
+        "actual": "〖刺客信条影 新手攻略〗04 技能点收集（109个技能点）"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1tuosYAESp",
+        "actual": "BV1tuosYAESp"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 261,
+        "actual": 260.933
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "c5a46cfd6da532961578e9a64737ee18cbd84c68ca3d959cf59dff8932d8aebd"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 4,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗05 骑射试炼（解锁技能）",
+        "parsedSequence": 5
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1eeZ7YdEDs"
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-05.json"
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗05 骑射试炼（解锁技能）",
+        "actual": "【刺客信条影 新手攻略】05 骑射试炼（解锁技能）"
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1eeZ7YdEDs",
+        "actual": "BV1eeZ7YdEDs"
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 171,
+        "actual": 170.866
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "03120cc9f7a933280d6f706154602df5ca0d7bf10b9aa69c23487f615278bbe3"
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 5,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）",
+        "parsedSequence": 6
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV13ioXYEE8d"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-06.json"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）",
+        "actual": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV13ioXYEE8d",
+        "actual": "BV13ioXYEE8d"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 107,
+        "actual": 106.266
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "519563ed1a2c4c0567a5a448f713d8a9f01ec813e6b905d1f6bef8bcc8692125"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 6,
+      "code": "STATUS_NOT_STALE",
+      "passed": false,
+      "evidence": {
+        "resultStale": true
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗07 武形试炼（解锁技能）",
+        "parsedSequence": 7
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1GYoXYnEs9"
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-07.json"
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗07 武形试炼（解锁技能）",
+        "actual": "【刺客信条影 新手攻略】07 武形试炼（解锁技能）"
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1GYoXYnEs9",
+        "actual": "BV1GYoXYnEs9"
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 185,
+        "actual": 184.799
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "f9f71c5f111f58dd8e56a1ef7e6ec8d43b2c8eb3ac9961169d36ded8ff772611"
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 7,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗08 古坟试炼（解锁技能）",
+        "parsedSequence": 8
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1wXoXYqEr5"
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-08.json"
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗08 古坟试炼（解锁技能）",
+        "actual": "〖刺客信条影 新手攻略〗08 古坟试炼（解锁技能）"
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1wXoXYqEr5",
+        "actual": "BV1wXoXYqEr5"
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 125,
+        "actual": 124.333
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "3dacdd883e6b5285ac8e757b70a726409b133a6b469088c481f45af870fbff88"
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 8,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": false
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗09 开局配装（奈绪江 短刀飞跃流）",
+        "parsedSequence": 9
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1A5P9z7EGM"
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-09.json"
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗09 开局配装（奈绪江 短刀飞跃流）",
+        "actual": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）"
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1A5P9z7EGM",
+        "actual": "BV1A5P9z7EGM"
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 762,
+        "actual": 761.333
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "46bd9d3d786cc9f45201e3a0d0504bba0e914ee4b2dabed6c8ad9d2f20c4a619"
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 9,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗10 弥助配装（丹心居合流）",
+        "parsedSequence": 10
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV15XPRzgEX3"
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-10.json"
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗10 弥助配装（丹心居合流）",
+        "actual": "【刺客信条影 新手攻略】10 弥助配装（丹心居合流）"
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV15XPRzgEX3",
+        "actual": "BV15XPRzgEX3"
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 366,
+        "actual": 364.999
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "4d153835cb091573323b650239764c1d99e7e2e9412e2f176e80188182c8799b"
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 10,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗11 穿甲饰品（龙吟 锦鲤之力）",
+        "parsedSequence": 11
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV15zwwzHE98"
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-11.json"
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗11 穿甲饰品（龙吟 锦鲤之力）",
+        "actual": "【刺客信条影 新手攻略】11 穿甲饰品（龙吟 锦鲤之力）"
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV15zwwzHE98",
+        "actual": "BV15zwwzHE98"
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 312,
+        "actual": 311.866
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "40da98f30e9498dc97745eb131f62ca63b0452315d519abd31c177fa38b61e08"
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 11,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗12 饕餮之刃（250%伤害）",
+        "parsedSequence": 12
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1kpcDzYE2U"
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-12.json"
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗12 饕餮之刃（250%伤害）",
+        "actual": "〖刺客信条影 新手攻略〗12 饕餮之刃（250%伤害）"
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1kpcDzYE2U",
+        "actual": "BV1kpcDzYE2U"
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 590,
+        "actual": 589.733
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "49678df2f6cada94241b2704eb71ac0e5de1f3370e83f584c5988dd0c44c2b95"
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 12,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": false
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗13 中期配装（弥助）",
+        "parsedSequence": 13
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1yEcDzKEZS"
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-13.json"
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗13 中期配装（弥助）",
+        "actual": "【刺客信条影 新手攻略】13 中期配装（弥助）"
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1yEcDzKEZS",
+        "actual": "BV1yEcDzKEZS"
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 285,
+        "actual": 284.433
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "322dee2c0dcb32f3de9649759c26c10a705e9d15308d3a7faaa4f0e9911c6bb0"
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 13,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗14 锁链出血流",
+        "parsedSequence": 14
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1G4wxzmEtR"
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-14.json"
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗14 锁链出血流",
+        "actual": "〖刺客信条影 新手攻略〗14 锁链出血流"
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1G4wxzmEtR",
+        "actual": "BV1G4wxzmEtR"
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 414,
+        "actual": 413.766
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "8e19127665981e18fa2c5c0fd29eab260868c0275e3a06e22bbe8c550e275438"
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 14,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": false
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗15 毕业配装（奈绪江 弥助）",
+        "parsedSequence": 15
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1jUwMzzEBK"
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-15.json"
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗15 毕业配装（奈绪江 弥助）",
+        "actual": "〖刺客信条影 新手攻略〗15 毕业配装（奈绪江 弥助）"
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1jUwMzzEBK",
+        "actual": "BV1jUwMzzEBK"
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 457,
+        "actual": 456.133
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "f9e5d163c7558f4138bc579d90fe9e9ed3e5cc8aa6fa76459440f9ebec7507ec"
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 15,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 黑潮〗16 秒杀全BOSS",
+        "parsedSequence": 16
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1u1LZ6QEaR"
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-16.json"
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 黑潮〗16 秒杀全BOSS",
+        "actual": "【刺客信条影 黑潮】16 秒杀全BOSS"
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1u1LZ6QEaR",
+        "actual": "BV1u1LZ6QEaR"
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 63,
+        "actual": 62.833
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "8b80a1fbbb1380cfe9193bb9b49cb789728dd750c272c7f9c105867557807ecf"
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 16,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗17 黑潮配装（模改领域10层）",
+        "parsedSequence": 17
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1Qkja6QEx8"
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-17.json"
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗17 黑潮配装（模改领域10层）",
+        "actual": "【刺客信条影 新手攻略】17 黑潮配装（模改领域10层）"
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1Qkja6QEx8",
+        "actual": "BV1Qkja6QEx8"
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 154,
+        "actual": 153.633
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "61e2fad2a2d64f9bef27837d7a2cfbbfb79227cbefd97c444a79ac9afb48eeaf"
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 17,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗18 王者之剑（弥助最强武器）",
+        "parsedSequence": 18
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1CbjB6REBv"
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-18.json"
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗18 王者之剑（弥助最强武器）",
+        "actual": "【刺客信条影 新手攻略】18 王者之剑（弥助最强武器）"
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1CbjB6REBv",
+        "actual": "BV1CbjB6REBv"
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 111,
+        "actual": 110.7
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "94f803e17bbdaec4a76cf6fd1c0dbb9946adddcfeeaeefbe5d6c8a9548f900af"
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 18,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗19 爆炸苦无（最强远程）",
+        "parsedSequence": 19
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1k5jE6YEDj"
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-19.json"
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗19 爆炸苦无（最强远程）",
+        "actual": "【刺客信条影 新手攻略】19 爆炸苦无（最强远程）"
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1k5jE6YEDj",
+        "actual": "BV1k5jE6YEDj"
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 175,
+        "actual": 174.167
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "a70eb5e024adb515bfd00a07d70971fbd50db4dfdf508d50daed393610d0b5c7"
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 19,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "【刺客信条影 新手攻略】20 锁链晕眩流（奈绪江配装）",
+        "parsedSequence": 20
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1Gqj867Eep"
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-20.json"
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "【刺客信条影 新手攻略】20 锁链晕眩流（奈绪江配装）",
+        "actual": "【刺客信条影 新手攻略】20 锁链晕眩流（奈绪江配装）"
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1Gqj867Eep",
+        "actual": "BV1Gqj867Eep"
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 135,
+        "actual": 134.733
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "d02443bf36928f2b48fa78ea4b87a7f0e99047e492c284111bc0473c4e848406"
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 20,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": false
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗21 短刀飞跃流（奈绪江配装）",
+        "parsedSequence": 21
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1tNj86uEBH"
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-21.json"
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗21 短刀飞跃流（奈绪江配装）",
+        "actual": "【刺客信条影 新手攻略】21 短刀飞跃流（奈绪江配装）"
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1tNj86uEBH",
+        "actual": "BV1tNj86uEBH"
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 141,
+        "actual": 140.767
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "d2bb3bb37eace0dc931699d2311abc09479b907094cfbbc816437e97b75bcbac"
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 21,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+        "parsedSequence": 22
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1Ub7N6zEKa"
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-22.json"
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+        "actual": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）"
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1Ub7N6zEKa",
+        "actual": "BV1Ub7N6zEKa"
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 116,
+        "actual": 115.3
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "af2dfd40597db8baf14087c25ba27f6340483b73a0f1e59752455824bedfcf40"
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 22,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "CATALOG_TITLE_SEQUENCE",
+      "passed": true,
+      "evidence": {
+        "title": "〖刺客信条影 新手攻略〗23 巨浪武士刀（最强配装）",
+        "parsedSequence": 23
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "CATALOG_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "CATALOG_BVID",
+      "passed": true,
+      "evidence": {
+        "bvid": "BV1B5j26TEbK"
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "RESULT_EXISTS",
+      "passed": true,
+      "evidence": {
+        "resultPath": "data/analysis-results/dada-23.json"
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "RESULT_ANALYZED",
+      "passed": true,
+      "evidence": {
+        "status": "analyzed"
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "RESULT_AUTHOR",
+      "passed": true,
+      "evidence": {
+        "author": "不再犹豫的达达猪"
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "RESULT_TITLE",
+      "passed": true,
+      "evidence": {
+        "expected": "〖刺客信条影 新手攻略〗23 巨浪武士刀（最强配装）",
+        "actual": "【刺客信条影 新手攻略】23 巨浪武士刀（最强配装）"
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "RESULT_BVID",
+      "passed": true,
+      "evidence": {
+        "expected": "BV1B5j26TEbK",
+        "actual": "BV1B5j26TEbK"
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "RESULT_DURATION",
+      "passed": true,
+      "evidence": {
+        "expected": 157,
+        "actual": 156.933
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "RESULT_SHA256",
+      "passed": true,
+      "evidence": {
+        "sha256": "631310b1de7ee2af54969dc3a87b0cdba4da1adf30efe16f80bb169db0c0f9d9"
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "VIDEO_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "FRAMES_NOT_RETAINED",
+      "passed": true,
+      "evidence": {
+        "value": false
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "STATUS_IMPORTED",
+      "passed": true,
+      "evidence": {
+        "state": "imported"
+      }
+    },
+    {
+      "sequence": 23,
+      "code": "STATUS_NOT_STALE",
+      "passed": true,
+      "evidence": {
+        "resultStale": null
+      }
+    },
+    {
+      "sequence": null,
+      "code": "NO_DUPLICATE_BVIDS",
+      "passed": true,
+      "evidence": {
+        "duplicateGroups": []
+      }
+    }
+  ]
+}
