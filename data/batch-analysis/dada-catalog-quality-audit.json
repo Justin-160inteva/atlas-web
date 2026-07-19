@@ -1,26 +1,81 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-07-19T08:02:35.825756+00:00",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-19T08:12:44.162832+00:00",
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "pipelineComplete": true,
   "qualityComplete": false,
   "summary": {
     "catalogItems": 23,
-    "critical": 22,
+    "critical": 13,
     "warnings": 6,
-    "reprocessCount": 8,
-    "reprocessSequences": [
+    "affectedCount": 8,
+    "canonicalRetainedCount": 3,
+    "canonicalRetainedSequences": [
       5,
+      9,
+      22
+    ],
+    "resolutionRequiredCount": 5,
+    "resolutionRequiredSequences": [
       6,
       8,
-      9,
       12,
       14,
-      20,
-      22
+      20
+    ],
+    "identityRequiredCount": 1,
+    "identityRequiredSequences": [
+      20
+    ],
+    "queueCount": 5,
+    "queueSequences": [
+      6,
+      8,
+      12,
+      14,
+      20
     ]
   },
+  "duplicateGroups": [
+    {
+      "type": "BVID",
+      "value": "BV1A5P9z7EGM",
+      "sequences": [
+        8,
+        9,
+        14
+      ],
+      "canonicalSequence": 9,
+      "strongCandidates": [
+        9
+      ]
+    },
+    {
+      "type": "BVID",
+      "value": "BV1Ub7N6zEKa",
+      "sequences": [
+        20,
+        22
+      ],
+      "canonicalSequence": 22,
+      "strongCandidates": [
+        22
+      ]
+    },
+    {
+      "type": "BVID",
+      "value": "BV1eeZ7YdEDs",
+      "sequences": [
+        5,
+        6
+      ],
+      "canonicalSequence": 5,
+      "strongCandidates": [
+        5
+      ]
+    }
+  ],
   "findings": [
     {
       "severity": "critical",
@@ -145,6 +200,17 @@
     },
     {
       "severity": "critical",
+      "code": "CATALOG_IDENTITY_MISMATCH",
+      "sequence": 20,
+      "message": "Catalog sequence is 20, but its expected title indicates 22",
+      "evidence": {
+        "expectedTitle": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+        "titleSequence": 22,
+        "bvid": "BV1Ub7N6zEKa"
+      }
+    },
+    {
+      "severity": "critical",
       "code": "SEQUENCE_MISMATCH",
       "sequence": 20,
       "message": "Expected video 20, resolved title indicates 22",
@@ -175,191 +241,117 @@
       }
     },
     {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID",
-      "sequence": 8,
-      "message": "BVID BV1A5P9z7EGM is assigned to multiple catalog entries [8, 9, 14]",
-      "evidence": {
-        "bvid": "BV1A5P9z7EGM",
-        "sequences": [
-          8,
-          9,
-          14
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID",
+      "severity": "info",
+      "code": "DUPLICATE_CANONICAL_RETAINED",
       "sequence": 9,
-      "message": "BVID BV1A5P9z7EGM is assigned to multiple catalog entries [8, 9, 14]",
+      "message": "BVID duplicate group [8, 9, 14] has canonical sequence 09; keep it and resolve the others",
       "evidence": {
-        "bvid": "BV1A5P9z7EGM",
+        "duplicateType": "BVID",
+        "duplicateValue": "BV1A5P9z7EGM",
         "sequences": [
           8,
           9,
+          14
+        ],
+        "canonicalSequence": 9,
+        "suspectSequences": [
+          8,
           14
         ]
       }
     },
     {
       "severity": "critical",
-      "code": "DUPLICATE_BVID",
-      "sequence": 14,
-      "message": "BVID BV1A5P9z7EGM is assigned to multiple catalog entries [8, 9, 14]",
-      "evidence": {
-        "bvid": "BV1A5P9z7EGM",
-        "sequences": [
-          8,
-          9,
-          14
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID",
-      "sequence": 20,
-      "message": "BVID BV1Ub7N6zEKa is assigned to multiple catalog entries [20, 22]",
-      "evidence": {
-        "bvid": "BV1Ub7N6zEKa",
-        "sequences": [
-          20,
-          22
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID",
-      "sequence": 22,
-      "message": "BVID BV1Ub7N6zEKa is assigned to multiple catalog entries [20, 22]",
-      "evidence": {
-        "bvid": "BV1Ub7N6zEKa",
-        "sequences": [
-          20,
-          22
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID",
-      "sequence": 5,
-      "message": "BVID BV1eeZ7YdEDs is assigned to multiple catalog entries [5, 6]",
-      "evidence": {
-        "bvid": "BV1eeZ7YdEDs",
-        "sequences": [
-          5,
-          6
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID",
-      "sequence": 6,
-      "message": "BVID BV1eeZ7YdEDs is assigned to multiple catalog entries [5, 6]",
-      "evidence": {
-        "bvid": "BV1eeZ7YdEDs",
-        "sequences": [
-          5,
-          6
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_URL",
+      "code": "DUPLICATE_BVID_MISASSIGNED",
       "sequence": 8,
-      "message": "URL is assigned to multiple catalog entries [8, 9, 14]",
+      "message": "BVID belongs to canonical sequence 09, not sequence 08",
       "evidence": {
-        "url": "https://www.bilibili.com/video/BV1A5P9z7EGM/",
+        "duplicateValue": "BV1A5P9z7EGM",
         "sequences": [
           8,
           9,
           14
-        ]
+        ],
+        "canonicalSequence": 9
       }
     },
     {
       "severity": "critical",
-      "code": "DUPLICATE_URL",
-      "sequence": 9,
-      "message": "URL is assigned to multiple catalog entries [8, 9, 14]",
-      "evidence": {
-        "url": "https://www.bilibili.com/video/BV1A5P9z7EGM/",
-        "sequences": [
-          8,
-          9,
-          14
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_URL",
+      "code": "DUPLICATE_BVID_MISASSIGNED",
       "sequence": 14,
-      "message": "URL is assigned to multiple catalog entries [8, 9, 14]",
+      "message": "BVID belongs to canonical sequence 09, not sequence 14",
       "evidence": {
-        "url": "https://www.bilibili.com/video/BV1A5P9z7EGM/",
+        "duplicateValue": "BV1A5P9z7EGM",
         "sequences": [
           8,
           9,
           14
-        ]
+        ],
+        "canonicalSequence": 9
       }
     },
     {
-      "severity": "critical",
-      "code": "DUPLICATE_URL",
-      "sequence": 20,
-      "message": "URL is assigned to multiple catalog entries [20, 22]",
-      "evidence": {
-        "url": "https://www.bilibili.com/video/BV1Ub7N6zEKa/",
-        "sequences": [
-          20,
-          22
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_URL",
+      "severity": "info",
+      "code": "DUPLICATE_CANONICAL_RETAINED",
       "sequence": 22,
-      "message": "URL is assigned to multiple catalog entries [20, 22]",
+      "message": "BVID duplicate group [20, 22] has canonical sequence 22; keep it and resolve the others",
       "evidence": {
-        "url": "https://www.bilibili.com/video/BV1Ub7N6zEKa/",
+        "duplicateType": "BVID",
+        "duplicateValue": "BV1Ub7N6zEKa",
         "sequences": [
           20,
           22
+        ],
+        "canonicalSequence": 22,
+        "suspectSequences": [
+          20
         ]
       }
     },
     {
       "severity": "critical",
-      "code": "DUPLICATE_URL",
+      "code": "DUPLICATE_BVID_MISASSIGNED",
+      "sequence": 20,
+      "message": "BVID belongs to canonical sequence 22, not sequence 20",
+      "evidence": {
+        "duplicateValue": "BV1Ub7N6zEKa",
+        "sequences": [
+          20,
+          22
+        ],
+        "canonicalSequence": 22
+      }
+    },
+    {
+      "severity": "info",
+      "code": "DUPLICATE_CANONICAL_RETAINED",
       "sequence": 5,
-      "message": "URL is assigned to multiple catalog entries [5, 6]",
+      "message": "BVID duplicate group [5, 6] has canonical sequence 05; keep it and resolve the others",
       "evidence": {
-        "url": "https://www.bilibili.com/video/BV1eeZ7YdEDs/",
+        "duplicateType": "BVID",
+        "duplicateValue": "BV1eeZ7YdEDs",
         "sequences": [
           5,
+          6
+        ],
+        "canonicalSequence": 5,
+        "suspectSequences": [
           6
         ]
       }
     },
     {
       "severity": "critical",
-      "code": "DUPLICATE_URL",
+      "code": "DUPLICATE_BVID_MISASSIGNED",
       "sequence": 6,
-      "message": "URL is assigned to multiple catalog entries [5, 6]",
+      "message": "BVID belongs to canonical sequence 05, not sequence 06",
       "evidence": {
-        "url": "https://www.bilibili.com/video/BV1eeZ7YdEDs/",
+        "duplicateValue": "BV1eeZ7YdEDs",
         "sequences": [
           5,
           6
-        ]
+        ],
+        "canonicalSequence": 5
       }
     }
   ]
