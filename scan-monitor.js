@@ -1,312 +1,240 @@
 (() => {
   'use strict';
-
-  const VERSION='0.3.1';
-  const FAST_POLL_MS=10000;
-  const SLOW_POLL_MS=60000;
-  const CLOCK_TICK_MS=1000;
-  const RUNTIME_FRESH_MS=150000;
-  const RUNNING_STALE_MS=180000;
+  const VERSION='0.5.0';
   const REPO='Justin-160inteva/atlas-web';
   const BRANCH='main';
-  const WORKFLOW='scan-eleven-pilot-v2.yml';
-  const RAW_BASE=`https://raw.githubusercontent.com/${REPO}/${BRANCH}/`;
+  const RAW=`https://raw.githubusercontent.com/${REPO}/${BRANCH}/`;
+  const API=`https://api.github.com/repos/${REPO}/contents/`;
+  const POLL_MS=10000;
+  const TIMEOUT_MS=7000;
+  const HEARTBEAT_EXPECTED=60;
+  const HEARTBEAT_WARN=150;
+  const HEARTBEAT_FAIL=180;
   const paths={
     status:'data/batch-analysis/eleven-pilot-scan-status.json',
     queue:'data/batch-analysis/eleven-pilot-scan-queue.json',
     catalog:'data/eleven-game-world-ac-shadows-catalog.json',
+    runtime:'data/runtime-progress/eleven-pilot-progress.json',
     recovery:'data/batch-analysis/eleven-pilot-recovery-report.json',
-    watchdog:'data/batch-analysis/eleven-pilot-watchdog-state.json',
-    runtime:'data/runtime-progress/eleven-pilot-progress.json'
+    watchdog:'data/batch-analysis/eleven-pilot-watchdog-state.json'
   };
-  let actions=null;
-  let actionsFetchedAt=0;
-  let fastTimer=0;
-  let clockTimer=0;
-  let slowFetchedAt=0;
-  let slowCache={catalog:null,recovery:null,watchdog:null};
-  let refreshing=false;
-  let lastSuccessfulSyncAt=0;
-  let nextPollAt=0;
-  let latestView=null;
-
+  const state={data:{},origin:{},lastSync:0,nextPoll:0,refreshing:false,timer:0,clock:0};
   const $=id=>document.getElementById(id);
-  const esc=value=>String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  const esc=value=>String(value??'').replace(/[&<>\'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  const validRuntime=v=>v&&Number(v.schemaVersion)>=2&&typeof v.state==='string'&&typeof v.stage==='string'&&Number.isFinite(Date.parse(v.updatedAt||''));
+  const ageSeconds=value=>{const t=Date.parse(value||'');return Number.isFinite(t)?Math.max(0,Math.round((Date.now()-t)/1000)):null;};
+  const ageLabel=value=>{const s=ageSeconds(value);if(s===null)return '—';if(s<5)return '刚刚';if(s<60)return `${s}秒前`;if(s<3600)return `${Math.floor(s/60)}分钟前`;return `${Math.floor(s/3600)}小时前`;};
+  const mb=value=>Number.isFinite(Number(value))?`${(Number(value)/1048576).toFixed(1)} MB`:'—';
+  const speed=value=>Number.isFinite(Number(value))?`${(Number(value)/1048576).toFixed(2)} MB/s`:'—';
+  const eta=value=>{const s=Math.max(0,Number(value)||0);if(!s)return '—';if(s<60)return `${Math.ceil(s)}秒`;if(s<3600)return `${Math.ceil(s/60)}分钟`;return `${Math.floor(s/3600)}小时 ${Math.ceil((s%3600)/60)}分钟`;};
+  const stateLabel=value=>({running:'运行中',queued:'排队中',recovery:'自动恢复',blocked:'需要人工检查',failed:'失败',complete:'批次完成',idle:'等待任务'})[value]||'等待任务';
+  const queueLabel=value=>({pending:'等待',queued:'排队',running:'运行中',recovery:'自动恢复',failed:'失败',imported:'已导入'})[value]||value||'等待';
 
-  async function fetchJson(url,timeoutMs=8000){
-    const controller=new AbortController();
-    const timeout=setTimeout(()=>controller.abort(),timeoutMs);
-    try{
-      const response=await fetch(`${url}${url.includes('?')?'&':'?'}t=${Date.now()}`,{cache:'no-store',signal:controller.signal,headers:{Accept:'application/json'}});
-      if(!response.ok)throw new Error(`${response.status}`);
-      return await response.json();
-    }finally{clearTimeout(timeout);}
+  function withTimeout(promise,ms=TIMEOUT_MS){
+    return Promise.race([promise,new Promise((_,reject)=>setTimeout(()=>reject(new Error('timeout')),ms))]);
   }
-
-  async function readFreshJson(path,optional=false){
-    const attempts=[
-      {origin:'GitHub main',url:`${RAW_BASE}${path}`},
-      {origin:'站点回退',url:path}
-    ];
-    let lastError=null;
-    for(const attempt of attempts){
-      try{return{data:await fetchJson(attempt.url),origin:attempt.origin,path,fetchedAt:Date.now()};}
-      catch(error){lastError=error;}
+  async function fetchJson(url){
+    const response=await withTimeout(fetch(`${url}${url.includes('?')?'&':'?'}t=${Date.now()}`,{cache:'no-store',headers:{Accept:'application/json'}}));
+    if(!response.ok)throw new Error(String(response.status));
+    return response.json();
+  }
+  function decodeBase64(content){
+    const binary=atob(String(content||'').replace(/\s+/g,''));
+    return new TextDecoder().decode(Uint8Array.from(binary,c=>c.charCodeAt(0)));
+  }
+  async function read(path,apiFallback=false){
+    const attempts=[['GitHub main',`${RAW}${path}`],['站点回退',path]];
+    for(const [origin,url] of attempts){
+      try{return{data:await fetchJson(url),origin};}catch(_){/* continue */}
     }
-    if(optional)return{data:null,origin:'不可用',path,fetchedAt:Date.now()};
-    throw lastError||new Error(`无法读取 ${path}`);
+    if(apiFallback){
+      try{
+        const payload=await fetchJson(`${API}${path}?ref=${BRANCH}`);
+        return{data:JSON.parse(decodeBase64(payload.content)),origin:'GitHub Contents API'};
+      }catch(_){/* unavailable */}
+    }
+    return{data:null,origin:'不可用'};
   }
-
-  async function readActions(force=false){
-    if(!force&&Date.now()-actionsFetchedAt<SLOW_POLL_MS&&actions)return actions;
-    actionsFetchedAt=Date.now();
-    try{
-      actions=await fetchJson(`https://api.github.com/repos/${REPO}/actions/workflows/${WORKFLOW}/runs?per_page=5`,10000);
-    }catch(_){actions=actions||null;}
-    return actions;
+  function runtimeNewer(a,b){
+    if(!validRuntime(a))return b;
+    if(!validRuntime(b))return a;
+    const at=Date.parse(a.updatedAt),bt=Date.parse(b.updatedAt);
+    if(a.externalSourceId!==b.externalSourceId)return at>=bt?a:b;
+    const ah=Number(a.heartbeatSequence||0),bh=Number(b.heartbeatSequence||0);
+    return ah!==bh?(ah>bh?a:b):(at>=bt?a:b);
   }
-
-  function secondsSince(value){
-    const time=Date.parse(value||'');
-    return Number.isFinite(time)?Math.max(0,Math.round((Date.now()-time)/1000)):null;
+  function itemsWithRuntime(queue,status,runtime){
+    const items=(queue?.items||status?.items||[]).map(item=>({...item}));
+    if(validRuntime(runtime)){
+      const item=items.find(entry=>entry.externalSourceId===runtime.externalSourceId);
+      if(item&&item.state!=='imported'){
+        item.state=runtime.state==='recovery'?'recovery':runtime.state;
+        item.livePercent=taskPercent(runtime);
+        item.heartbeatSequence=runtime.heartbeatSequence;
+      }
+    }
+    return items;
   }
-
-  function ageLabel(value){
-    const seconds=secondsSince(value);
-    if(seconds===null)return '—';
-    if(seconds<5)return '刚刚';
-    if(seconds<60)return `${seconds}秒前`;
-    if(seconds<3600)return `${Math.floor(seconds/60)}分钟前`;
-    if(seconds<86400)return `${Math.floor(seconds/3600)}小时前`;
-    return `${Math.floor(seconds/86400)}天前`;
+  function taskPercent(runtime){
+    const total=Number(runtime?.totalBytes||0),downloaded=Number(runtime?.downloadedBytes||0);
+    if(runtime?.stage==='download'&&total>0)return Math.min(100,downloaded/total*100);
+    return Math.min(100,Math.max(0,Number(runtime?.progressPercent||0)));
   }
-
-  function stateLabel(state){
-    return({running:'运行中',queued:'排队中',recovery:'自动恢复',blocked:'需要人工检查',complete:'批次完成',idle:'等待任务'})[state]||'等待任务';
+  function currentItem(items,runtime){
+    if(validRuntime(runtime))return items.find(i=>i.externalSourceId===runtime.externalSourceId)||null;
+    return items.find(i=>i.state==='running'||i.state==='recovery')||items.find(i=>i.state==='pending')||null;
   }
-
-  function queueStateLabel(state){
-    return({pending:'等待',queued:'排队',running:'运行中',failed:'失败',imported:'已导入'})[state]||state||'等待';
-  }
-
-  function latestRun(payload){
-    return payload?.workflow_runs?.find(run=>['in_progress','queued'].includes(run.status))||payload?.workflow_runs?.[0]||null;
-  }
-
-  function validRuntime(runtime){
-    return Boolean(runtime&&Number(runtime.schemaVersion)>=2&&typeof runtime.state==='string'&&typeof runtime.stage==='string'&&Number.isFinite(Date.parse(runtime.updatedAt||'')));
-  }
-
-  function deriveState(status,recovery,run,runtime){
-    const summary=status?.summary||{};
-    const phase=String(status?.phase||'').toLowerCase();
-    const runtimeState=String(runtime?.state||'').toLowerCase();
-    if(status?.complete)return 'complete';
-    if(recovery?.requiresHumanReview||summary.blocked>0||phase.includes('block'))return 'blocked';
-    if(runtimeState==='failed'||recovery?.retryScheduled||phase.includes('recover')||summary.retryableFailed>0)return 'recovery';
-    if(run?.status==='in_progress'||runtimeState==='running'||summary.running>0||phase.includes('run'))return 'running';
-    if(run?.status==='queued'||runtimeState==='queued')return 'queued';
+  function deriveState(status,items,runtime,recovery){
+    if(status?.complete||items.length&&items.every(i=>i.state==='imported'))return 'complete';
+    if(recovery?.requiresHumanReview||items.some(i=>i.state==='blocked'))return 'blocked';
+    if(runtime?.state==='recovery'||runtime?.state==='failed'||recovery?.retryScheduled)return 'recovery';
+    if(runtime?.state==='running'||items.some(i=>i.state==='running'))return 'running';
+    if(runtime?.state==='queued'||items.some(i=>i.state==='queued'||i.state==='pending'))return 'queued';
     return 'idle';
   }
-
-  function stagesFor(state,runtime){
-    const order=['queued','download','remux','analysis','index','cleanup','persist'];
-    const labels={queued:'任务排队',download:'临时下载',remux:'媒体转封装',analysis:'抽帧与数值分析',index:'写入分析索引',cleanup:'删除临时媒体',persist:'持久化状态'};
-    const aliases={downloading:'download',download:'download',remuxing:'remux',transcoding:'remux',analyzing:'analysis','frame-analysis':'analysis',indexing:'index',cleanup:'cleanup',persisting:'persist',complete:'persist',queued:'queued'};
-    let active=aliases[String(runtime?.stage||'').toLowerCase()]||'';
-    if(!active&&['running','recovery'].includes(state))active='download';
-    if(state==='queued')active='queued';
-    if(state==='complete')active='persist';
-    const activeIndex=order.indexOf(active);
-    return order.map((key,index)=>({key,label:labels[key],className:state==='complete'||activeIndex>=0&&index<activeIndex?'done':index===activeIndex?'active':''}));
-  }
-
-  function currentItem(status,queue){
-    const items=queue?.items||status?.items||[];
-    const activeId=status?.activeItem?.externalSourceId||queue?.activeExternalSourceId;
-    return items.find(item=>item.externalSourceId===activeId)||items.find(item=>item.state==='running')||items.find(item=>item.state==='pending')||items.find(item=>item.state==='failed')||null;
-  }
-
-  function runtimeForCurrent(runtime,current){
-    if(!validRuntime(runtime)||!current)return null;
-    if(runtime.externalSourceId&&runtime.externalSourceId!==current.externalSourceId)return null;
-    return runtime;
-  }
-
-  function usableRuntime(runtime,current){
-    const matched=runtimeForCurrent(runtime,current);
-    if(!matched)return null;
-    if(Date.now()-Date.parse(matched.updatedAt)>RUNTIME_FRESH_MS)return null;
-    return matched;
-  }
-
-  function renderQueue(queue,status){
-    const items=queue?.items||status?.items||[];
-    const region=queue?.pilotRegion||status?.pilotRegion||'当前区域';
+  function renderQueue(items,region){
     $('queueSummary').textContent=`${items.length} 个任务`;
     $('queueList').innerHTML=items.length?items.map(item=>{
-      const state=item.state||'pending';
       const title=item.partTitle||item.title||`第${item.sequence||item.page||'—'}期`;
-      const detail=[item.regionGuess||region,item.durationSeconds?`${Math.round(item.durationSeconds/60)}分钟`:null,item.attemptCount?`尝试 ${item.attemptCount}`:null,item.lastFinishedAt?`完成于 ${ageLabel(item.lastFinishedAt)}`:null].filter(Boolean).join(' · ');
-      return `<article class="queue-item"><span class="queue-page">P${esc(item.page||item.sequence||'—')}</span><span class="queue-copy"><b>${esc(title)}</b><small>${esc(detail)}</small></span><span class="queue-state ${esc(state)}">${esc(queueStateLabel(state))}</span></article>`;
+      const detail=[item.regionGuess||region,item.durationSeconds?`${Math.round(item.durationSeconds/60)}分钟`:null,item.attemptCount?`尝试 ${item.attemptCount}`:null,item.livePercent!=null?`本期 ${item.livePercent.toFixed(1)}%`:null,item.heartbeatSequence?`心跳 #${item.heartbeatSequence}`:null,item.lastFinishedAt?`完成于 ${ageLabel(item.lastFinishedAt)}`:null].filter(Boolean).join(' · ');
+      return `<article class="queue-item"><span class="queue-page">P${esc(item.page||item.sequence||'—')}</span><span class="queue-copy"><b>${esc(title)}</b><small>${esc(detail)}</small></span><span class="queue-state ${esc(item.state)}">${esc(queueLabel(item.state))}</span></article>`;
     }).join(''):'<div class="empty">队列为空。</div>';
   }
-
-  function renderRecovery(recovery){
-    if(!recovery){$('recoveryCategory').textContent='未触发';$('recoveryPanel').innerHTML='<div class="empty">当前没有恢复事件。</div>';return;}
-    $('recoveryCategory').textContent=recovery.dictionaryEntryId||recovery.category||'none';
-    const changed=Object.entries(recovery.changedRuntimeSettings||{}).map(([key,value])=>`${key}=${value}`).join(' · ')||'未调整运行参数';
-    const diagnosis=recovery.diagnosis?`<small>${esc(recovery.diagnosis)}</small>`:'';
-    $('recoveryPanel').innerHTML=`<div class="event"><b>${esc(recovery.action||'none')}</b><small>${recovery.retryScheduled?'已安排安全重试':'未安排重试'} · ${recovery.requiresHumanReview?'需要人工检查':'无需人工介入'}</small>${diagnosis}<small>${esc(changed)}</small></div>`;
+  function renderStages(mode,runtime){
+    const order=['queued','download','remux','analysis','index','cleanup','persist'];
+    const labels={queued:'任务排队',download:'临时下载',remux:'媒体转封装',analysis:'抽帧与数值分析',index:'写入分析索引',cleanup:'删除临时媒体',persist:'持久化状态'};
+    const alias={queued:'queued',download:'download',downloading:'download',remuxing:'remux',transcoding:'remux',analysis:'analysis','frame-analysis':'analysis',analyzing:'analysis',indexing:'index',cleanup:'cleanup',persisting:'persist',complete:'persist',recovery:'download'};
+    const active=mode==='complete'?'persist':alias[String(runtime?.stage||mode)]||'queued';
+    const activeIndex=order.indexOf(active);
+    $('stageList').innerHTML=order.map((key,index)=>`<div class="stage ${mode==='complete'||index<activeIndex?'done':index===activeIndex?'active':''}"><i></i><span>${labels[key]}</span></div>`).join('');
   }
-
-  function renderEvents(status,recovery,watchdog,run){
+  function renderTelemetry(runtime,previous){
+    const active=validRuntime(runtime)&&runtime.stage==='download';
+    $('downloadTelemetry').dataset.active=active?'true':'false';
+    if(!validRuntime(runtime)){
+      $('downloadHeartbeatMeta').textContent='等待任务心跳';
+      $('downloadDetail').textContent='当前没有可用下载遥测';
+      return;
+    }
+    const downloaded=Number(runtime.downloadedBytes||0),total=Number(runtime.totalBytes||0);
+    const segmentDownloaded=Number(runtime.segmentDownloadedBytes||0),segmentTotal=Number(runtime.segmentTotalBytes||0);
+    const ratio=total>0?Math.min(100,downloaded/total*100):0;
+    const segmentRatio=segmentTotal>0?Math.min(100,segmentDownloaded/segmentTotal*100):0;
+    const delta=previous?.externalSourceId===runtime.externalSourceId?Math.max(0,downloaded-Number(previous.downloadedBytes||0)):0;
+    $('downloadedAmount').textContent=total?`${mb(downloaded)} / ${mb(total)}`:mb(downloaded);
+    $('downloadSpeed').textContent=`${speed(runtime.speedBytesPerSecond)} · 平均 ${speed(runtime.averageSpeedBytesPerSecond)}`;
+    $('downloadSegment').textContent=runtime.segmentCount?`${runtime.segmentIndex||0} / ${runtime.segmentCount}`:'—';
+    $('downloadEta').textContent=eta(runtime.etaSeconds);
+    $('downloadBar').style.width=`${ratio}%`;
+    $('segmentBar').style.width=`${segmentRatio}%`;
+    $('downloadHeartbeatMeta').textContent=`心跳 #${runtime.heartbeatSequence||'—'} · ${ageLabel(runtime.updatedAt)}`;
+    $('downloadDetail').textContent=active?`${downloaded===0?'等待首字节':`下载正常${delta?` · 本次新增 ${mb(delta)}`:''}`} · 总进度 ${ratio.toFixed(1)}% · 当前分片 ${segmentRatio.toFixed(1)}%`:`下载阶段已结束，当前阶段：${runtime.stage}`;
+  }
+  function renderRecovery(recovery,current){
+    const relevant=recovery&&(!current||!recovery.activeExternalSourceId||recovery.activeExternalSourceId===current.externalSourceId)?recovery:null;
+    if(!relevant){$('recoveryCategory').textContent='未触发';$('recoveryPanel').innerHTML='<div class="empty">当前没有恢复事件。</div>';return;}
+    $('recoveryCategory').textContent=relevant.dictionaryEntryId||relevant.category||'unknown';
+    $('recoveryPanel').innerHTML=`<div class="event"><b>${esc(relevant.action||'none')}</b><small>${relevant.retryScheduled?'已安排安全重试':'未安排重试'} · ${relevant.requiresHumanReview?'需要人工检查':'无需人工介入'}</small><small>${esc(relevant.diagnosis||'')}</small></div>`;
+  }
+  function renderEvents(status,recovery,watchdog,runtime){
     const events=[];
-    if(run)events.push({title:`GitHub Actions：${run.status}${run.conclusion?` / ${run.conclusion}`:''}`,detail:`运行 #${run.run_number||'—'} · ${ageLabel(run.updated_at||run.created_at)}`});
-    if(recovery&&recovery.action!=='none')events.push({title:`自动恢复：${recovery.action}`,detail:`${recovery.dictionaryEntryId||recovery.category||'unknown'} · ${ageLabel(recovery.generatedAt)}`});
+    if(validRuntime(runtime))events.push({title:`P${runtime.page||'—'}：${stateLabel(runtime.state)}`,detail:`${runtime.message||runtime.stage} · ${ageLabel(runtime.updatedAt)}`});
+    if(recovery?.action&&recovery.action!=='none')events.push({title:`自动恢复：${recovery.action}`,detail:`${recovery.dictionaryEntryId||recovery.category||'unknown'} · ${ageLabel(recovery.generatedAt)}`});
     if(watchdog?.decision&&watchdog.decision!=='no_action')events.push({title:`看门狗：${watchdog.decision}`,detail:`${watchdog.reason||''} · ${ageLabel(watchdog.generatedAt)}`});
-    for(const event of [...(status?.events||[])].reverse().slice(0,3))events.push({title:event.completed?'扫描已完成':'扫描事件',detail:`P${event.page||event.sequence||'—'} · ${event.analysisStatus||event.error||'状态已更新'} · ${ageLabel(event.finishedAt||event.startedAt)}`});
-    $('eventList').innerHTML=events.length?events.slice(0,5).map(event=>`<div class="event"><b>${esc(event.title)}</b><small>${esc(event.detail)}</small></div>`).join(''):'<div class="empty">等待扫描事件。</div>';
+    for(const event of [...(status?.events||[])].reverse().slice(0,3))events.push({title:event.completed?'扫描已完成':'扫描事件',detail:`P${event.page||event.sequence||'—'} · ${event.analysisStatus||event.error||'状态更新'} · ${ageLabel(event.finishedAt||event.startedAt)}`});
+    $('eventList').innerHTML=events.length?events.slice(0,5).map(e=>`<div class="event"><b>${esc(e.title)}</b><small>${esc(e.detail)}</small></div>`).join(''):'<div class="empty">等待扫描事件。</div>';
   }
-
-  function describeFreshness(view){
-    const age=secondsSince(view.taskUpdatedAt);
-    const label=ageLabel(view.taskUpdatedAt);
-    if(view.state==='running'){
-      if(view.liveRuntime&&age!==null&&age<=RUNTIME_FRESH_MS/1000)return{level:'live',text:`页面联网正常；当前任务心跳更新于${label}。页面每10秒核对，任务端目标每60秒发布一次脱敏心跳。`};
-      if(age!==null&&age>RUNNING_STALE_MS/1000)return{level:'danger',text:`运行中的任务已经${label}没有新心跳，超过180秒故障阈值。系统将核对Actions状态、错误字典和队列租约；安全可恢复故障会在同一任务内重试。`};
-      return{level:'warn',text:'GitHub Actions 显示任务正在运行，但当前分P尚无有效新心跳。页面仍每10秒直接核对 GitHub main。'};
-    }
-    if(view.state==='queued')return{level:'info',text:'页面联网正常；任务仍在 GitHub Actions 队列。排队阶段没有下载字节心跳。'};
-    if(view.state==='recovery')return{level:'warn',text:`任务处于自动调查与恢复阶段，最后任务事件更新于${label}。只有错误字典中明确可安全恢复的问题才会重试。`};
-    if(view.state==='blocked')return{level:'danger',text:`任务已停止自动处理并等待人工检查。最后任务事件更新于${label}。`};
-    if(view.state==='complete')return{level:'live',text:`当前区域批次已完成。最后任务事件更新于${label}。`};
-    return{level:'info',text:`页面联网正常；任务端暂无新的运行事件。最后任务数据更新于${label}。`};
-  }
-
-  function tickClocks(){
-    if(lastSuccessfulSyncAt){
-      const next=Math.max(0,Math.ceil((nextPollAt-Date.now())/1000));
-      $('lastSync').textContent=`页面同步 ${ageLabel(new Date(lastSuccessfulSyncAt).toISOString())}`;
-      $('nextPoll').textContent=refreshing?'正在核对 GitHub main':`下次核对 ${next}秒`;
-    }
-    if(latestView){
-      $('heartbeatAge').textContent=ageLabel(latestView.taskUpdatedAt);
-      const freshness=describeFreshness(latestView);
-      $('freshnessNotice').dataset.level=freshness.level;
-      $('freshnessNotice').textContent=freshness.text;
-    }
-  }
-
-  function render(data){
-    const {statusEntry,queueEntry,catalogEntry,recoveryEntry,watchdogEntry,runtimeEntry,actionsPayload}=data;
-    const status=statusEntry.data;
-    const queue=queueEntry.data;
-    const catalog=catalogEntry.data;
-    const current=currentItem(status,queue);
-    const matchedRuntime=runtimeForCurrent(runtimeEntry.data,current);
-    const liveRuntime=usableRuntime(runtimeEntry.data,current);
-    const recoveryRaw=recoveryEntry.data;
-    const recovery=recoveryRaw&&current&&(!recoveryRaw.activeExternalSourceId||recoveryRaw.activeExternalSourceId===current.externalSourceId)?recoveryRaw:null;
-    const watchdog=watchdogEntry.data;
-    const run=latestRun(actionsPayload);
-    const summary=status?.summary||{};
-    const total=Number(summary.total||queue?.items?.length||0);
-    const imported=Number(summary.imported||queue?.items?.filter(item=>item.state==='imported').length||0);
-    const state=deriveState(status,recovery,run,liveRuntime);
-    const itemProgress=Number(liveRuntime?.progressPercent||0);
-    const progress=Math.max(0,Math.min(100,total?((imported+(itemProgress>0&&state==='running'?itemProgress/100:0))/total)*100:0));
+  function render(){
+    const status=state.data.status||{};
+    const queue=state.data.queue||{};
+    const catalog=state.data.catalog||{};
+    const runtime=state.data.runtime;
+    const recovery=state.data.recovery;
+    const watchdog=state.data.watchdog;
+    const region=queue.pilotRegion||status.pilotRegion||'当前批次';
+    const items=itemsWithRuntime(queue,status,runtime);
+    const current=currentItem(items,runtime);
+    const mode=deriveState(status,items,runtime,recovery);
+    const imported=items.filter(i=>i.state==='imported').length;
+    const total=items.length||Number(status?.summary?.total||0);
+    const percent=taskPercent(runtime);
+    const batchPercent=total?Math.min(100,(imported+(['running','recovery'].includes(mode)?percent/100:0))/total*100):0;
     const catalogTotal=Number(catalog?.catalogStatus?.matchedScanItems||catalog?.items?.length||80);
-    const catalogImported=Number(catalog?.catalogStatus?.analysisImported||catalog?.items?.filter(item=>item.analysisStatus==='imported').length||0);
-    const attempt=Number(current?.attemptCount||status?.activeItem?.attemptCount||recovery?.attemptCount||0);
-    const taskUpdatedAt=matchedRuntime?.updatedAt||status?.updatedAt||queue?.updatedAt||run?.updated_at||catalog?.updatedAt;
-    const origin=[statusEntry.origin,queueEntry.origin,runtimeEntry.origin].every(value=>value==='GitHub main')?'GitHub main':'混合回退';
-    const region=queue?.pilotRegion||status?.pilotRegion||'区域';
-
-    $('statusBadge').dataset.state=state;
-    $('statusBadge').querySelector('b').textContent=stateLabel(state);
-    $('heroPercent').textContent=`${Math.round(progress)}%`;
-    $('heroBar').style.width=`${progress}%`;
+    const catalogImported=Math.max(Number(catalog?.catalogStatus?.analysisImported||0),Array.isArray(catalog?.items)?catalog.items.filter(i=>i.analysisStatus==='imported').length:0,3+imported);
+    $('statusBadge').dataset.state=mode;
+    $('statusBadge').querySelector('b').textContent=stateLabel(mode);
+    $('heroPercent').textContent=`${Math.round(batchPercent)}%`;
+    $('heroBar').style.width=`${batchPercent}%`;
     $('pilotProgress').textContent=`${imported} / ${total}`;
     $('catalogProgress').textContent=`${catalogImported} / ${catalogTotal}`;
-    $('attemptCount').textContent=`${attempt} / ${recovery?.maxAttempts||3}`;
-    $('activeTitle').textContent=current?`P${current.page||current.sequence||'—'} · ${current.partTitle||current.title||'当前扫描任务'}`:state==='complete'?`${region}批次扫描已完成`:'当前没有活动扫描任务';
-    $('activeDetail').textContent=liveRuntime?.message||(
-      state==='running'?`GitHub Actions 正在执行${matchedRuntime?.stage?` · ${matchedRuntime.stage}`:''}`:
-      state==='queued'?'任务已经排队，等待 GitHub Actions 领取。':
-      state==='recovery'?`检测到可恢复故障：${recovery?.dictionaryEntryId||recovery?.category||'未知类别'}，系统正在按受限策略调查与重试。`:
-      state==='blocked'?`自动处理已暂停：${recovery?.dictionaryEntryId||recovery?.category||'需要人工检查'}。`:
-      state==='complete'?`${region}区域队列中的视频均已导入分析索引。`:'等待新的工作流事件。'
-    );
-    $('syncState').textContent='已连接';
-    $('syncState').dataset.state='connected';
-    $('dataOrigin').textContent=`数据源：${origin}`;
-    $('stageList').innerHTML=stagesFor(state,liveRuntime||matchedRuntime).map(stage=>`<div class="stage ${stage.className}"><i></i><span>${esc(stage.label)}</span></div>`).join('');
-    renderQueue(queue,status);renderRecovery(recovery);renderEvents(status,recovery,watchdog,run);
-
-    lastSuccessfulSyncAt=Date.now();
-    nextPollAt=lastSuccessfulSyncAt+FAST_POLL_MS;
-    latestView={state,current,liveRuntime,run,taskUpdatedAt};
-    tickClocks();
+    $('attemptCount').textContent=`${Number(current?.attemptCount||recovery?.attemptCount||0)} / ${Number(recovery?.maxAttempts||3)}`;
+    $('activeTitle').textContent=current?`P${current.page||current.sequence||'—'} · ${current.partTitle||current.title||'当前任务'}`:mode==='complete'?`${region}已完成`:'当前没有活动任务';
+    $('activeDetail').textContent=validRuntime(runtime)?`本期 ${percent.toFixed(1)}% · ${runtime.message||runtime.stage}`:mode==='queued'?'任务已排队，等待GitHub Actions领取。':'等待新的任务事件。';
+    const heartbeatAt=validRuntime(runtime)?runtime.updatedAt:status.updatedAt||queue.updatedAt;
+    $('heartbeatAge').textContent=ageLabel(heartbeatAt);
+    const heartbeatAge=ageSeconds(heartbeatAt);
+    const notice=$('freshnessNotice');
+    if(mode==='complete'){notice.dataset.level='live';notice.textContent=`当前批次已完成；最后任务事件更新于${ageLabel(heartbeatAt)}。`;}
+    else if(validRuntime(runtime)&&heartbeatAge!==null&&heartbeatAge<=HEARTBEAT_WARN){notice.dataset.level='live';notice.textContent=`实时链路正常：页面每10秒核对，任务心跳目标每${HEARTBEAT_EXPECTED}秒一次；当前心跳${ageLabel(heartbeatAt)}。`;}
+    else if(['running','recovery'].includes(mode)&&heartbeatAge>HEARTBEAT_FAIL){notice.dataset.level='danger';notice.textContent=`任务已超过${HEARTBEAT_FAIL}秒没有新心跳，自动调查链应当接管。`;}
+    else{notice.dataset.level='info';notice.textContent='页面已连接；正在等待新的任务心跳或队列状态。';}
+    renderQueue(items,region);
+    renderStages(mode,runtime);
+    renderTelemetry(runtime,state.previousRuntime);
+    renderRecovery(recovery,current);
+    renderEvents(status,recovery,watchdog,runtime);
+    const origins=[state.origin.status,state.origin.queue,state.origin.runtime].filter(Boolean);
+    $('dataOrigin').textContent=`数据源：${origins.length&&origins.every(v=>v===origins[0])?origins[0]:'混合实时源'}${runtime?.heartbeatSequence?` · 心跳 #${runtime.heartbeatSequence}`:''}`;
   }
-
-  async function refresh(force=false){
-    if(refreshing)return;
-    refreshing=true;
+  function updateClocks(){
+    if(state.lastSync){$('lastSync').textContent=`页面同步 ${ageLabel(new Date(state.lastSync).toISOString())}`;}
+    const remain=Math.max(0,Math.ceil((state.nextPoll-Date.now())/1000));
+    $('nextPoll').textContent=state.refreshing?'正在核对实时数据':`下次核对 ${remain}秒`;
+  }
+  async function refresh(){
+    if(state.refreshing)return;
+    state.refreshing=true;
     $('syncState').textContent='同步中';
     $('syncState').dataset.state='syncing';
-    tickClocks();
+    updateClocks();
     try{
-      const fastPromise=Promise.all([
-        readFreshJson(paths.status),
-        readFreshJson(paths.queue),
-        readFreshJson(paths.runtime,true)
-      ]);
-      const slowDue=force||!slowFetchedAt||Date.now()-slowFetchedAt>=SLOW_POLL_MS;
-      let slowPromise;
-      if(slowDue){
-        slowPromise=Promise.all([
-          readFreshJson(paths.catalog),
-          readFreshJson(paths.recovery,true),
-          readFreshJson(paths.watchdog,true),
-          readActions(force)
-        ]).then(([catalog,recovery,watchdog,actionsPayload])=>{
-          slowFetchedAt=Date.now();
-          slowCache={catalog,recovery,watchdog};
-          return{catalog,recovery,watchdog,actionsPayload};
-        });
-      }else{
-        slowPromise=Promise.resolve({...slowCache,actionsPayload:actions});
-      }
-      const [[statusEntry,queueEntry,runtimeEntry],slow]=await Promise.all([fastPromise,slowPromise]);
-      render({statusEntry,queueEntry,runtimeEntry,catalogEntry:slow.catalog,recoveryEntry:slow.recovery,watchdogEntry:slow.watchdog,actionsPayload:slow.actionsPayload});
+      const [status,queue,runtime]=await Promise.all([read(paths.status,true),read(paths.queue,true),read(paths.runtime,true)]);
+      if(status.data){state.data.status=status.data;state.origin.status=status.origin;}
+      if(queue.data){state.data.queue=queue.data;state.origin.queue=queue.origin;}
+      if(runtime.data){state.previousRuntime=state.data.runtime;state.data.runtime=runtimeNewer(runtime.data,state.data.runtime);state.origin.runtime=runtime.origin;}
+      render();
+      state.lastSync=Date.now();
+      $('syncState').textContent='已连接';
+      $('syncState').dataset.state='connected';
+      Promise.all([read(paths.catalog),read(paths.recovery),read(paths.watchdog)]).then(([catalog,recovery,watchdog])=>{
+        if(catalog.data){state.data.catalog=catalog.data;state.origin.catalog=catalog.origin;}
+        if(recovery.data){state.data.recovery=recovery.data;state.origin.recovery=recovery.origin;}
+        if(watchdog.data){state.data.watchdog=watchdog.data;state.origin.watchdog=watchdog.origin;}
+        render();
+      }).catch(()=>{});
     }catch(error){
-      $('syncState').textContent='连接失败';
+      $('syncState').textContent='连接异常';
       $('syncState').dataset.state='failed';
-      $('lastSync').textContent=`${error.name==='AbortError'?'请求超时':error.message||error}`;
       $('freshnessNotice').dataset.level='danger';
-      $('freshnessNotice').textContent='本轮联网核对失败。页面会保留最后一次成功状态，并在10秒后的下一轮自动重试。';
-      nextPollAt=Date.now()+FAST_POLL_MS;
+      $('freshnessNotice').textContent=`本轮核心状态读取失败：${error.message||error}。10秒后自动重试。`;
     }finally{
-      refreshing=false;
-      tickClocks();
+      state.refreshing=false;
+      state.nextPoll=Date.now()+POLL_MS;
+      updateClocks();
     }
   }
-
-  function schedule(){
-    clearInterval(fastTimer);
-    clearInterval(clockTimer);
-    nextPollAt=Date.now();
-    refresh(true);
-    fastTimer=setInterval(()=>refresh(false),FAST_POLL_MS);
-    clockTimer=setInterval(tickClocks,CLOCK_TICK_MS);
+  function start(){
+    clearInterval(state.timer);clearInterval(state.clock);
+    state.nextPoll=Date.now();
+    refresh();
+    state.timer=setInterval(refresh,POLL_MS);
+    state.clock=setInterval(updateClocks,1000);
   }
-
-  $('forceRefresh')?.addEventListener('click',()=>refresh(true));
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh(true);});
-  addEventListener('online',()=>refresh(true));
-  addEventListener('message',event=>{if(event.data?.type==='atlas-monitor-refresh')refresh(true);});
-  addEventListener('pagehide',()=>{clearInterval(fastTimer);clearInterval(clockTimer);},{once:true});
-  window.AtlasScanMonitor={refresh:()=>refresh(true),version:VERSION};
-  schedule();
+  $('forceRefresh')?.addEventListener('click',refresh);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
+  addEventListener('online',refresh);
+  addEventListener('message',event=>{if(event.data?.type==='atlas-monitor-refresh')refresh();});
+  addEventListener('pagehide',()=>{clearInterval(state.timer);clearInterval(state.clock);},{once:true});
+  window.AtlasScanMonitor={refresh,version:VERSION};
+  start();
 })();
