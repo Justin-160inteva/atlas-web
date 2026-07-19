@@ -102,6 +102,7 @@ def validate_inputs(manifest: dict[str, Any]) -> tuple[dict[str, Any], dict[str,
         "queueExactBvid": str(queue_item.get("exactBvid") or "") == expected_bvid,
         "queueResolutionVerified": queue_item.get("resolutionStatus") == "verified",
         "oldResultMarkedStale": catalog_item.get("analysisQualityStatus") == "stale-wrong-source-pending-reprocess",
+        "statusVerifiedBvid": str((status_item.get("verifiedResolution") or {}).get("bvid") or "") == expected_bvid,
     }
     if not all(checks.values()):
         raise RuntimeError("verified-source preconditions failed: " + json.dumps(checks, ensure_ascii=False))
@@ -200,7 +201,7 @@ def main() -> int:
         "verifiedBvid": expected_bvid,
         "verifiedAt": finished,
         "resultChecks": result_checks,
-        "replacesJobId": "dada-06-v1",
+        "replacesJobId": f"dada-{sequence:02d}-v1",
         "replacementJobId": result.get("jobId"),
     }
 
@@ -218,6 +219,9 @@ def main() -> int:
     status_item["state"] = "imported"
     status_item["attemptCount"] = int(status_item.get("attemptCount") or 0) + 1
     status_item["resultPath"] = result_path.relative_to(ROOT).as_posix()
+    status_item["qualityState"] = "verified-correct-source"
+    status_item["resultStale"] = False
+    status_item.pop("staleReason", None)
     status_item["lastAttempt"] = {
         "externalSourceId": catalog_item["id"],
         "sequence": sequence,
