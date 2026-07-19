@@ -1,24 +1,33 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "1.2",
   "project": "Atlas - Assassin's Creed Shadows Interactive Map",
-  "currentVersion": "0.9.3.5",
-  "lastAuditedVersion": "0.9.3.5",
+  "currentVersion": "0.9.4.2",
+  "lastAuditedVersion": "0.9.4.2",
   "auditEveryPatchReleases": 3,
-  "nextScheduledAuditVersion": "0.9.3.8",
+  "nextScheduledAuditVersion": "0.9.4.5",
   "stageGate": {
     "id": "ultra-hd-original-map",
     "title": "超高清自创地图成型",
     "status": "pending",
+    "firstCompletedAtVersion": null,
     "unlocksDeferredBacklog": true
   },
+  "releaseSource": {
+    "canonicalFile": "release-manifest.json",
+    "version": "0.9.4.2",
+    "owner": "atlas-bootstrap.js",
+    "cacheNamespace": "atlas-alpha-0942-pages-v1"
+  },
   "deploymentState": {
-    "status": "regressed",
+    "status": "repository-and-browser-matrix-verified-public-and-device-pending",
     "detectedAt": "2026-07-19",
-    "intendedVersion": "0.9.3.5",
-    "entryPageFallbackVersion": "0.9.1.4",
-    "serviceWorkerCacheVersion": "0.9.3.5",
+    "intendedVersion": "0.9.4.2",
+    "browserMatrixPassed": true,
+    "browserMatrixChecks": 372,
     "publicVerificationRequired": true,
-    "summary": "The default-branch entry page remains stamped and cache-busted as 0.9.1.4 and does not explicitly load the cumulative liquid-navigation patch layers, while the service worker and audit ledger claim 0.9.3.5."
+    "publicVerificationRecorded": false,
+    "physicalDeviceVerificationRecorded": false,
+    "summary": "The canonical 0.9.4.2 release and local browser matrix are coherent. Public GitHub Pages verification and physical iPad/desktop verification remain required for the optimization package."
   },
   "auditPolicy": {
     "checkConversationRequests": true,
@@ -32,36 +41,128 @@
     "requireAutomatedValidation": true,
     "requireDeviceVerificationWhenApplicable": true,
     "requirePublicDeploymentVerification": true,
-    "requireCrossFileVersionConsistency": true
+    "requireCrossFileVersionConsistency": true,
+    "minimumChecksByRisk": {
+      "low": 200,
+      "normal": 300,
+      "high": 500
+    }
   },
+  "deliveryOptimization": {
+    "branch": "optimization/fast-safe-atlas-0942",
+    "status": "implementation-ready-for-pr-validation",
+    "gates": [
+      "fast changed-file gate",
+      "200-500 check risk gate",
+      "public deployment and physical-device publish gate"
+    ],
+    "controls": [
+      "Pull requests validate their own ref",
+      "Timestamp-only generated-report commits are suppressed",
+      "Runtime component versions must match source, HTML, cache and validation",
+      "Behavioural boundary assertions are preferred over brittle duplicate literals",
+      "High-risk changes remain isolated until required checks pass"
+    ]
+  },
+  "completedEvidence": [
+    {
+      "id": "release-governance-0942",
+      "status": "complete",
+      "evidence": [
+        "release-manifest.json declares 0.9.4.2 and atlas-bootstrap.js ownership",
+        "CONFLICT-REPORT.md reports pass with zero critical and zero high findings",
+        "data/conflict-reports/browser-matrix.json reports 372 passing checks across six profiles"
+      ]
+    },
+    {
+      "id": "dada-authorized-catalog-23",
+      "status": "complete",
+      "evidence": [
+        "data/batch-analysis/dada-author-catalog-status.json reports complete=true",
+        "23 imported, 0 failed, 0 unresolved, 0 remaining"
+      ]
+    }
+  ],
   "currentHighPriority": [
-    "0.9.3.6: repair production index version and cumulative asset loading",
-    "0.9.3.6: verify the public GitHub Pages response after deployment",
-    "0.9.3.7: add a single release manifest and cross-file version checks",
-    "0.9.3.7: add regression tests for liquid-navigation base and refinements",
-    "0.9.3.8: perform the scheduled full audit and resume ultra-HD map work",
-    "Finish all 23 authorised 达达猪 video scans and imports",
-    "Convert scanned evidence descriptors into map anchors"
+    "0.9.4.3: merge monitor contract and scan-health workflow repairs after high-risk validation",
+    "0.9.4.3: verify public GitHub Pages and physical iPad/desktop behaviour",
+    "0.9.4.4: consolidate CSS cascade ownership and lower the conflict risk score",
+    "0.9.4.4: make generated reports artifact-first and commit semantic changes only",
+    "0.9.4.5: perform the scheduled full audit and resume ultra-HD map calibration work",
+    "Convert authorised derived evidence into map anchors after the map coordinate gate is stable"
   ],
   "knownDeferred": [
-    "Next creator intake after 达达猪 completion and explicit authorisation",
+    "Next creator intake after current authorised evidence integration and explicit authorisation",
     "Full evidence-based location anchoring after the ultra-HD map stage gate",
     "Actual original Atlas display font assets beyond CSS aliases and fallbacks",
     "Full completeness audit against 完整版 and 终极完整版 requirements"
   ],
+  "knownTechnicalDebt": [
+    {
+      "id": "css-cascade-warning-set-0942",
+      "severity": "medium",
+      "status": "open",
+      "evidence": "CONFLICT-REPORT.md reports 25 warnings and a 50/100 risk score, mainly duplicate transition, transform and backdrop-filter ownership."
+    },
+    {
+      "id": "public-device-evidence-gap-0942",
+      "severity": "medium",
+      "status": "open",
+      "evidence": "Repository and Chromium profile evidence exists, but current public deployment and physical-device evidence is not yet recorded."
+    }
+  ],
   "knownRegressions": [
     {
       "id": "deployment-version-source-mismatch-0935",
-      "status": "open",
+      "status": "resolved",
       "severity": "high",
-      "acceptedBehaviourAffected": "The public release should load and display the intended Alpha 0.9.3.5 cumulative liquid-navigation implementation.",
+      "acceptedBehaviourAffected": "The public release should load and display the intended cumulative release implementation.",
+      "resolvedAtVersion": "0.9.4.2",
       "evidence": [
-        "index.html visible version and primary asset query strings remain 0.9.1.4",
-        "index.html does not explicitly reference atlas-liquid-nav-0933/0934 CSS or JavaScript",
-        "atlas-liquid-nav-0934.js contains runtime 0.9.3.5 stamping but entry-page loading is unproven",
-        "sw.js cache name is atlas-alpha-0935-pages-v1"
+        "release-manifest.json is the canonical release source",
+        "atlas-bootstrap.js owns visible version and service-worker registration",
+        "browser matrix confirms one 0.9.4.2 cache version across release scripts"
+      ]
+    },
+    {
+      "id": "scan-monitor-contract-drift-0942",
+      "status": "repair-in-branch",
+      "severity": "high",
+      "acceptedBehaviourAffected": "Realtime monitor source, displayed timing, cache version and validation must describe the same bounded heartbeat and polling behaviour.",
+      "evidence": [
+        "Main scan health report is fail with 35 of 42 checks passing",
+        "Main bridge source, HTML cache query, footer copy and validation workflow use conflicting component versions and intervals",
+        "Optimization branch aligns bridge 0.3.1, HTML, service-worker monitor-v11 and validation expectations"
       ],
-      "requiredFixVersion": "0.9.3.6"
+      "requiredFixVersion": "0.9.4.3",
+      "closureRequirements": [
+        "Required CI checks pass",
+        "High-risk verification report is recorded",
+        "Public deployment is verified",
+        "Physical iPad and desktop verification is recorded where applicable"
+      ]
+    },
+    {
+      "id": "pr-validates-main-instead-of-head-0942",
+      "status": "repair-in-branch",
+      "severity": "high",
+      "acceptedBehaviourAffected": "A pull request must validate the proposed code rather than a forced checkout of main.",
+      "evidence": [
+        "Previous validate-scan-system workflow explicitly checked out ref: main",
+        "Optimization branch removes the forced ref and adds pull_request coverage plus validation_current_ref"
+      ],
+      "requiredFixVersion": "0.9.4.3"
+    },
+    {
+      "id": "timestamp-only-health-commit-noise-0942",
+      "status": "repair-in-branch",
+      "severity": "medium",
+      "acceptedBehaviourAffected": "Health automation should not generate repeated repository commits when only generatedAt changes.",
+      "evidence": [
+        "Recent main history contains repeated Update scan system health report [skip ci] commits",
+        "Optimization branch compares report semantics without generatedAt before persisting"
+      ],
+      "requiredFixVersion": "0.9.4.3"
     }
   ],
   "auditHistory": [
@@ -78,11 +179,21 @@
       "type": "early-regression-audit",
       "trigger": "accepted feature/version regression",
       "result": "Deployment version-source mismatch confirmed; release reclassified as regressed and unverified.",
+      "roadmap": "PROJECT-ROADMAP.md"
+    },
+    {
+      "version": "0.9.4.2",
+      "date": "2026-07-19",
+      "type": "full-minor-version-audit",
+      "trigger": "new minor version detected",
+      "previousAuditedVersion": "0.9.3.5",
+      "result": "Core 0.9.4.2 browser matrix passed, authorised Dada catalogue completed, and three workflow/runtime regressions were identified and repaired on an isolated optimization branch. Public deployment and physical-device closure evidence remain pending.",
       "nextThreeReleasePriorities": {
-        "0.9.3.6": "Repair production entry page, cumulative asset loading and public deployment verification.",
-        "0.9.3.7": "Create a single release manifest and automated cross-file/version regression checks.",
-        "0.9.3.8": "Run the next scheduled audit and continue ultra-HD original map work after deployment stability is proven."
+        "0.9.4.3": "Validate and deploy the fast-safe monitor and workflow baseline; close current regressions with public and device evidence.",
+        "0.9.4.4": "Reduce CSS/runtime ownership warnings and generated-report maintenance cost.",
+        "0.9.4.5": "Run the next scheduled full audit and resume ultra-HD map base and coordinate calibration work."
       },
+      "nextScheduledAuditVersion": "0.9.4.5",
       "roadmap": "PROJECT-ROADMAP.md"
     }
   ]
