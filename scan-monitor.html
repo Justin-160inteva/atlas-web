@@ -45,9 +45,9 @@
       <section class="card"><div class="card-title"><b>自动恢复</b><small id="recoveryCategory">未触发</small></div><div id="recoveryPanel"><div class="empty">当前没有恢复事件。</div></div></section>
       <section class="card"><div class="card-title"><b>最近事件</b><small>脱敏摘要</small></div><div id="eventList"><div class="empty">等待扫描事件。</div></div></section>
     </div>
-    <p class="footer">任务端每30秒发布实测心跳；页面每5秒读取Raw状态、每65秒用Contents API权威校准，并在实测心跳之间每秒显示明确标注的短期速度估算。进入恢复阶段时保留最后一次真实下载数据，不再清零遥测。</p>
+    <p class="footer">任务端每30秒发布实测心跳；页面每3秒读取 Raw 状态、每55秒用 Contents API 权威校准，并每0.5秒刷新明确标注的短期速度估算。进入恢复阶段时保留最后一次真实下载数据，不清零遥测。</p>
   </main>
   <script src="scan-monitor.js?v=0.5.0" defer></script>
-  <script src="scan-monitor-live-bridge.js?v=0.2.1" defer></script>
+  <script src="scan-monitor-live-bridge.js?v=0.3.1" defer></script>
 </body>
 </html>
