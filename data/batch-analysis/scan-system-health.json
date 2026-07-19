@@ -1,18 +1,18 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T19:40:06.980426Z",
+  "generatedAt": "2026-07-19T19:55:51.966396Z",
   "status": "pass",
   "summary": {
     "total": 33,
     "passed": 33,
     "failed": 0
   },
-  "dictionaryVersion": "2026.07.19.1",
+  "dictionaryVersion": "2026.07.19.2",
   "checks": [
     {
       "name": "dictionary_size",
       "passed": true,
-      "detail": "18 entries"
+      "detail": "23 entries"
     },
     {
       "name": "dictionary_unique",
@@ -32,7 +32,7 @@
     {
       "name": "dictionary_layers",
       "passed": true,
-      "detail": "layers=['analysis', 'http-client', 'identity', 'media', 'network', 'orchestration', 'progress-publish', 'runner', 'safety', 'source-download', 'source-metadata']"
+      "detail": "layers=['analysis', 'heartbeat', 'http-client', 'identity', 'media', 'network', 'orchestration', 'progress-publish', 'runner', 'safety', 'source-download', 'source-metadata']"
     },
     {
       "name": "heartbeat_60_seconds",
