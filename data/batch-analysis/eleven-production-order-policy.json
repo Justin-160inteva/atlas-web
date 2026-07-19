@@ -1,21 +1,25 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "mode": "chronological",
   "sequenceStart": 1,
   "sequenceEnd": 80,
   "skipAlreadyImported": true,
-  "alreadyImportedPilotPages": [20, 21, 22],
-  "nextPage": 1,
+  "alreadyImportedPilotPages": [1, 2, 3, 4, 5, 6, 20, 21, 22],
+  "nextPage": 7,
   "queueConstruction": {
-    "maxItemsPerRegionalBatch": 3,
+    "maxItemsPerRegionalBatch": 5,
     "maxItemsPerRun": 1,
     "preserveEpisodeOrder": true,
     "priorityOverrideEnabled": false,
     "identityVerificationRequired": true
   },
-  "reason": "The regional pilot deliberately sampled high-map-utility episodes to validate the pipeline. Full production now proceeds from P01 upward so progress is predictable, auditable, and easy to compare with the original series order.",
+  "lastCompletedBatch": {
+    "pages": [4, 5, 6],
+    "completedAt": "2026-07-19T21:39:00Z"
+  },
+  "reason": "The regional pilot deliberately sampled high-map-utility episodes to validate the pipeline. Full production proceeds from P01 upward in chronological batches. A batch may hold five verified episodes, but each workflow run analyzes only one episode and starts the next only after durable completion and validation.",
   "safety": {
     "neverRescanImportedUnlessExplicitlyRequested": true,
     "neverBroadenAuthorization": true,
