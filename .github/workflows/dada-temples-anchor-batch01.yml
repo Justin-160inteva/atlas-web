@@ -1,0 +1,131 @@
+name: Build Dada temple anchor batch 01
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_dada_temple_anchor_batch01.py'
+      - '.github/workflows/dada-temples-anchor-batch01.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-temples-anchor-batch01
+  cancel-in-progress: true
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile anchor builder
+        id: compile
+        run: python -m py_compile tools/build_dada_temple_anchor_batch01.py
+
+      - name: Build reviewed anchor batch
+        id: build
+        run: python tools/build_dada_temple_anchor_batch01.py
+
+      - name: Run 400-round anchor integrity gate
+        id: gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for _ in range(400):
+              anchors = json.loads(Path('data/geospatial/dada-temples-36-anchors-batch01.json').read_text(encoding='utf-8'))
+              status = json.loads(Path('data/batch-analysis/dada-temples-36-anchor-batch01-status.json').read_text(encoding='utf-8'))
+              rows = anchors['anchors']
+              confirmed = [row for row in rows if row['status'] == 'confirmed']
+              unresolved = [row for row in rows if row['status'] == 'unresolved']
+              assert anchors['status'] == 'complete'
+              assert anchors['source']['bvid'] == 'BV19EXYYWEdv'
+              assert [row['videoPosition'] for row in rows] == list(range(1, 13))
+              assert len(confirmed) == 8
+              assert len(unresolved) == 4
+              assert len({row['locationId'] for row in confirmed}) == 8
+              assert all(row['confidence'] >= .9 for row in confirmed)
+              assert all('atlas' in row and set(row['atlas']) == {'x', 'y'} for row in confirmed)
+              assert all('atlas' not in row and 'locationId' not in row for row in unresolved)
+              assert all(row['evidence'] and all(e['sha256'] for e in row['evidence']) for row in rows)
+              assert anchors['policy']['repositoryContainsFramePixels'] is False
+              assert status['status'] == 'complete'
+              assert all(status['checks'].values())
+              assert status['counts'] == anchors['counts']
+          PY
+
+      - name: Persist first reviewed anchor batch
+        id: persist
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/geospatial/dada-temples-36-anchors-batch01.json
+          git add data/batch-analysis/dada-temples-36-anchor-batch01-status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Build first reviewed Dada temple anchor batch [skip ci]'
+          for attempt in 1 2 3 4; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Record anchor batch workflow outcome
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          GATE_OUTCOME: ${{ steps.gate.outcome }}
+          PERSIST_OUTCOME: ${{ steps.persist.outcome }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          steps = {
+              'compile': os.environ.get('COMPILE_OUTCOME') or 'not-run',
+              'build': os.environ.get('BUILD_OUTCOME') or 'not-run',
+              'gate': os.environ.get('GATE_OUTCOME') or 'not-run',
+              'persist': os.environ.get('PERSIST_OUTCOME') or 'not-run',
+          }
+          failed = next((name for name, value in steps.items() if value in {'failure', 'cancelled'}), None)
+          payload = {
+              'schemaVersion': 1,
+              'status': os.environ.get('JOB_STATUS') or 'unknown',
+              'failedStage': failed,
+              'steps': steps,
+              'runId': os.environ.get('GITHUB_RUN_ID'),
+              'triggerSha': os.environ.get('GITHUB_SHA'),
+              'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+          }
+          Path('/tmp/dada-temples-anchor-batch01-workflow.json').write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data/batch-analysis
+            cp /tmp/dada-temples-anchor-batch01-workflow.json data/batch-analysis/dada-temples-36-anchor-batch01-workflow.json
+            git add data/batch-analysis/dada-temples-36-anchor-batch01-workflow.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Record Dada temple anchor batch 01 outcome [skip ci]'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
