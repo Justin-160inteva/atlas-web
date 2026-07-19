@@ -32,7 +32,7 @@ def direct_bilibili_download(url: str, workdir: pathlib.Path) -> pathlib.Path:
     page = pages[page_number - 1]
     cid = page["cid"]
     play = runner.api_get_json(
-        f"https://api.bilibili.com/x/player/playurl?bvid={bvid}&cid={cid}&qn=64&fnver=0&fnval=0&fourk=0"
+        f"https://api.bilibili.com/x/player/playurl?bvid={bvid}&cid={cid}&qn=32&fnver=0&fnval=0&fourk=0"
     )
     segments = play.get("durl") or []
     if not segments:
