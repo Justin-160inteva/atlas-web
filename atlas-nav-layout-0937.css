@@ -1,29 +1,71 @@
-/* Atlas Alpha 0.9.3.7 — 60 FPS left rail and edge layout */
+/* Atlas Alpha 0.9.4.3 — complete-edge navigation geometry and interaction safety */
+:root{
+  --atlas-nav-left-gap:max(8px,env(safe-area-inset-left,0px));
+  --atlas-nav-right-gap:max(8px,env(safe-area-inset-right,0px));
+  --atlas-nav-bottom-gap:max(5px,env(safe-area-inset-bottom,0px));
+  --atlas-bottom-nav-max-width:430px;
+}
 
-/* Attach the navigation rail to the physical left edge. */
+/* Keep the complete rail visible instead of embedding its left side into the viewport. */
 .quick-rail{
-  left:0!important;
-  padding-left:max(8px,env(safe-area-inset-left,0px));
-  border-left:0!important;
-  border-radius:0 22px 22px 0!important;
+  left:var(--atlas-nav-left-gap)!important;
+  padding:8px!important;
+  border:1px solid rgba(255,255,255,.17)!important;
+  border-radius:23px!important;
+  overflow:hidden;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.025) 34%,rgba(12,12,13,.66) 100%),
+    radial-gradient(circle at 24% 0%,rgba(255,255,255,.17),transparent 46%)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(148%) brightness(1.035)!important;
+  backdrop-filter:blur(22px) saturate(148%) brightness(1.035)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.2),
+    inset 0 -1px 0 rgba(255,255,255,.035),
+    0 14px 34px rgba(0,0,0,.26)!important;
   contain:layout paint style;
   transform:translateZ(0);
   backface-visibility:hidden;
+  pointer-events:auto!important;
 }
 
-/* The vertical selection is a composited visual layer. No quality-mode downgrade. */
+/* Use inset constraints rather than 50% + translateX so asymmetric safe areas cannot shift the bar. */
+.bottom-nav{
+  left:var(--atlas-nav-left-gap)!important;
+  right:var(--atlas-nav-right-gap)!important;
+  width:auto!important;
+  max-width:var(--atlas-bottom-nav-max-width)!important;
+  margin-inline:auto!important;
+  bottom:var(--atlas-nav-bottom-gap)!important;
+  transform:translateZ(0)!important;
+  border:1px solid rgba(255,255,255,.17)!important;
+  border-radius:24px!important;
+  overflow:hidden;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.024) 36%,rgba(12,12,13,.69) 100%),
+    radial-gradient(circle at 50% -18%,rgba(255,255,255,.2),transparent 52%)!important;
+  -webkit-backdrop-filter:blur(23px) saturate(150%) brightness(1.035)!important;
+  backdrop-filter:blur(23px) saturate(150%) brightness(1.035)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.2),
+    inset 0 -1px 0 rgba(255,255,255,.035),
+    0 12px 32px rgba(0,0,0,.25)!important;
+  contain:layout paint style;
+  backface-visibility:hidden;
+  pointer-events:auto!important;
+}
+
+/* The vertical selection is a composited visual layer. */
 .atlas-liquid-selection-vertical,
 .atlas-quality-performance .atlas-liquid-selection-vertical{
   -webkit-backdrop-filter:none!important;
   backdrop-filter:none!important;
   background:
-    radial-gradient(circle at 28% 4%,rgba(255,255,255,.2),transparent 42%),
-    radial-gradient(circle at 74% 100%,rgba(176,39,53,.18),transparent 52%),
-    linear-gradient(150deg,rgba(255,255,255,.12),rgba(111,29,38,.17) 58%,rgba(255,255,255,.05));
+    radial-gradient(circle at 26% 3%,rgba(255,255,255,.24),transparent 42%),
+    linear-gradient(150deg,rgba(255,255,255,.15),rgba(255,255,255,.055) 54%,rgba(27,25,25,.13));
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.2),
-    inset 0 -1px 0 rgba(92,15,23,.15),
-    0 7px 18px rgba(45,8,13,.18);
+    inset 0 1px 0 rgba(255,255,255,.25),
+    inset 0 -1px 0 rgba(255,255,255,.045),
+    0 7px 18px rgba(0,0,0,.18);
   transition:opacity .12s ease!important;
   will-change:transform;
   transform:translate3d(var(--liquid-x),var(--liquid-y),0);
@@ -31,9 +73,7 @@
   contain:paint;
 }
 
-.atlas-liquid-selection-vertical.is-pressed{
-  transition:opacity .12s ease!important;
-}
+.atlas-liquid-selection-vertical.is-pressed{transition:opacity .12s ease!important}
 
 .quick-rail .rail-button,
 .quick-rail .rail-button .rail-icon,
@@ -42,35 +82,45 @@
   transform:translateZ(0);
 }
 
-/* Closed panels must leave no visible sliver, regardless of their width. */
+/* Closed panels must be non-interactive, not merely translated off-screen. */
 .panel:not(.open),
 .route-panel:not(.open),
 .progress-panel:not(.open){
   transform:translate3d(calc(-100% - 40px),0,0)!important;
-  pointer-events:none;
+  pointer-events:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
 }
 
 .panel.open,
 .route-panel.open,
 .progress-panel.open{
   transform:translate3d(0,0,0)!important;
+  pointer-events:auto!important;
+  visibility:visible!important;
+  opacity:1!important;
 }
 
 /* Put discovery count and zoom in the true lower-left device safe area. */
 .status-pill{
-  left:max(8px,env(safe-area-inset-left,0px))!important;
+  left:var(--atlas-nav-left-gap)!important;
   bottom:max(8px,env(safe-area-inset-bottom,0px))!important;
   transform:translateZ(0);
 }
 
 @media(max-width:720px){
-  .quick-rail{
-    left:0!important;
-    padding-left:max(6px,env(safe-area-inset-left,0px));
-    border-radius:0 20px 20px 0!important;
+  :root{
+    --atlas-nav-left-gap:max(6px,env(safe-area-inset-left,0px));
+    --atlas-nav-right-gap:max(6px,env(safe-area-inset-right,0px));
+    --atlas-nav-bottom-gap:max(4px,env(safe-area-inset-bottom,0px));
   }
+  .quick-rail{
+    padding:7px!important;
+    border-radius:21px!important;
+  }
+  .bottom-nav{border-radius:22px!important}
   .status-pill{
-    left:max(6px,env(safe-area-inset-left,0px))!important;
+    left:var(--atlas-nav-left-gap)!important;
     bottom:max(6px,env(safe-area-inset-bottom,0px))!important;
   }
 }
