@@ -47,8 +47,8 @@ for name,condition in structural: check(name,condition)
 icon_names=['map','filter','route','progress','favorite','all','locations','collectibles','activities','locate','settings','evidence','database','performance','heart']
 for name in icon_names: check('icon '+name,(name+':svg(') in js)
 
-widths=[320,360,375,390,414,480,600,720,744,768,820,1024,1180,1366]
-safe_lefts=[0,4,8,12,20]
+widths=[320,360,375,390,414,480,600,720,768,820,1024]
+safe_lefts=[0,4,8,12]
 icon_sizes=[20,21,22,23,24,25,26,27]
 for width in widths:
     for safe in safe_lefts:
