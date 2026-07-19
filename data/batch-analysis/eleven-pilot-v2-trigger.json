@@ -1,17 +1,27 @@
 {
-  "schemaVersion": 4,
-  "triggerId": "eleven-shancheng-pilot-next-20260719-01",
-  "requestedAt": "2026-07-19T16:41:00Z",
+  "schemaVersion": 5,
+  "triggerId": "eleven-shancheng-p020-v10-minute-telemetry-20260719-01",
+  "requestedAt": "2026-07-19T17:41:36Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "山城",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
-  "mode": "bounded-one-item-with-progress",
-  "startWithPage": 21,
+  "mode": "bounded-one-item-live-download-telemetry",
+  "startWithPage": 20,
+  "requiredAnalyzer": "tools/analyze_authorized_video_v10.py",
+  "automaticRecovery": true,
   "runtimeHeartbeat": {
     "enabled": true,
-    "minimumIntervalSeconds": 90,
+    "minimumIntervalSeconds": 60,
+    "independentDuringNetworkStall": true,
     "publicSanitizedProgressOnly": true
-  }
+  },
+  "downloadTelemetry": {
+    "downloadedMegabytes": true,
+    "speedMegabytesPerSecond": true,
+    "segmentProgress": true,
+    "etaSeconds": true
+  },
+  "humanReviewOnUnknownFailure": true
 }
