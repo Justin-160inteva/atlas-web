@@ -20,6 +20,12 @@ from typing import Any
 import cv2
 import numpy as np
 
+try:
+    from publish_runtime_progress import emit as emit_runtime_progress
+except ImportError:  # direct imports outside tools/ keep analysis functional
+    def emit_runtime_progress(*_args: Any, **_kwargs: Any) -> dict[str, Any]:
+        return {}
+
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
@@ -128,6 +134,7 @@ def analyze(job: dict[str, Any], video_path: pathlib.Path) -> dict[str, Any]:
     width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH) or 0)
     height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT) or 0)
     duration = frame_count / fps if fps > 0 else float(job.get("durationHintSeconds") or 0)
+    job["durationHintSeconds"] = round(duration, 3)
     requested_interval = max(0.5, float(job.get("intervalSeconds", 1.0)))
     max_samples = max(1, int(job.get("maxSamples", 480)))
     effective_interval = max(requested_interval, duration / max_samples if duration else requested_interval)
@@ -140,6 +147,17 @@ def analyze(job: dict[str, Any], video_path: pathlib.Path) -> dict[str, Any]:
     previous: dict[str, Any] | None = None
     last_kept_time = -1e9
     time_value = 0.0
+
+    emit_runtime_progress(
+        job,
+        stage="analysis",
+        progress_percent=8,
+        message="媒体已就绪，开始抽帧与数值分析",
+        processed_seconds=0,
+        sampled_frames=0,
+        target_frames=max_samples,
+        force=True,
+    )
 
     while (duration <= 0 or time_value < duration) and sampled < max_samples:
         capture.set(cv2.CAP_PROP_POS_MSEC, time_value * 1000.0)
@@ -174,9 +192,32 @@ def analyze(job: dict[str, Any], video_path: pathlib.Path) -> dict[str, Any]:
             last_kept_time = time_value
             kept += 1
 
+        if sampled == 1 or sampled % 10 == 0:
+            ratio = sampled / max_samples if max_samples else 0
+            emit_runtime_progress(
+                job,
+                stage="analysis",
+                progress_percent=8 + ratio * 84,
+                message=f"正在分析视频画面：已采样 {sampled}/{max_samples} 帧",
+                processed_seconds=time_value,
+                sampled_frames=sampled,
+                target_frames=max_samples,
+            )
+
         time_value += effective_interval
 
     capture.release()
+
+    emit_runtime_progress(
+        job,
+        stage="indexing",
+        progress_percent=94,
+        message=f"数值分析完成：保留 {kept} 帧，正在生成结果索引",
+        processed_seconds=min(time_value, duration) if duration > 0 else time_value,
+        sampled_frames=sampled,
+        target_frames=max_samples,
+        force=True,
+    )
 
     clear_frames = sorted(descriptors, key=lambda item: item["sharpness"], reverse=True)[:30]
     report = {
@@ -236,10 +277,12 @@ def main() -> int:
     output.parent.mkdir(parents=True, exist_ok=True)
 
     with tempfile.TemporaryDirectory(prefix="atlas-authorized-") as directory:
+        emit_runtime_progress(job, stage="download", progress_percent=2, message="开始临时下载授权视频", force=True)
         video_path = download_video(job["url"], pathlib.Path(directory))
         report = analyze(job, video_path)
         output.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 
+    emit_runtime_progress(job, stage="persisting", progress_percent=98, message="分析结果已生成，等待写入任务状态", force=True)
     print(f"analysis complete: {output}")
     return 0
 
