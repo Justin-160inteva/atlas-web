@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T19:27:35.957657Z",
-  "status": "pass",
+  "generatedAt": "2026-07-19T19:35:56.874124Z",
+  "status": "fail",
   "summary": {
     "total": 33,
-    "passed": 33,
-    "failed": 0
+    "passed": 31,
+    "failed": 2
   },
   "dictionaryVersion": "2026.07.19.1",
   "checks": [
@@ -61,12 +61,12 @@
     },
     {
       "name": "monitor_poll",
-      "passed": true,
+      "passed": false,
       "detail": "10-second page and coherence checks"
     },
     {
       "name": "monitor_thresholds",
-      "passed": true,
+      "passed": false,
       "detail": "60/75/150/180-second bounded thresholds"
     },
     {
