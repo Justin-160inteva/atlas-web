@@ -3,6 +3,9 @@ name: Validate scan system health
 on:
   push:
     paths:
+      - 'index.html'
+      - 'atlas-settings.css'
+      - 'atlas-settings.js'
       - 'data/scan-bug-dictionary.json'
       - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
       - 'tools/publish_runtime_progress.py'
@@ -16,6 +19,7 @@ on:
       - 'scan-monitor-health.js'
       - 'sw.js'
       - '.github/workflows/scan-eleven-pilot-v2.yml'
+      - '.github/workflows/validate-scan-monitor.yml'
       - '.github/workflows/validate-scan-system.yml'
   workflow_dispatch:
 
@@ -49,6 +53,7 @@ jobs:
 
       - name: Validate JavaScript monitor
         run: |
+          node --check atlas-settings.js
           node --check scan-monitor.js
           node --check scan-monitor-download.js
           node --check scan-monitor-health.js
