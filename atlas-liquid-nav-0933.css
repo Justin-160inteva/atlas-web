@@ -1,0 +1,218 @@
+/* Atlas Alpha 0.9.3.3 — edge-attached header and liquid navigation selection */
+:root{
+  --atlas-topbar-height:72px;
+  --atlas-topbar-gap:14px;
+  --atlas-liquid-ease:cubic-bezier(.2,.82,.22,1.08);
+}
+
+.top-bar{
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  height:calc(var(--atlas-topbar-height) + env(safe-area-inset-top,0px));
+  padding:
+    calc(8px + env(safe-area-inset-top,0px))
+    max(18px,env(safe-area-inset-right,0px))
+    8px
+    max(18px,env(safe-area-inset-left,0px));
+  border-top:0;
+  border-left:0;
+  border-right:0;
+  border-radius:0 0 24px 24px;
+  background:
+    linear-gradient(180deg,rgba(31,29,27,.9),rgba(19,18,17,.76)),
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.08),transparent 52%);
+  -webkit-backdrop-filter:blur(28px) saturate(145%);
+  backdrop-filter:blur(28px) saturate(145%);
+  box-shadow:0 12px 34px rgba(0,0,0,.2),inset 0 -1px 0 rgba(255,255,255,.055);
+}
+
+.quick-rail,
+.map-controls{
+  top:calc(var(--atlas-topbar-height) + env(safe-area-inset-top,0px) + var(--atlas-topbar-gap))!important;
+}
+
+.bottom-nav,
+.quick-rail{
+  position:absolute;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    linear-gradient(145deg,rgba(38,35,32,.72),rgba(13,12,11,.6)),
+    radial-gradient(circle at 25% 0%,rgba(255,255,255,.11),transparent 46%);
+  border-color:rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(24px) saturate(138%);
+  backdrop-filter:blur(24px) saturate(138%);
+  box-shadow:0 16px 42px rgba(0,0,0,.27),inset 0 1px 0 rgba(255,255,255,.055);
+}
+
+.bottom-nav .nav-item::after,
+.quick-rail .rail-button::after{
+  content:none!important;
+  display:none!important;
+}
+
+.atlas-liquid-selection{
+  --liquid-x:0px;
+  --liquid-y:0px;
+  --liquid-w:0px;
+  --liquid-h:0px;
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:0;
+  width:var(--liquid-w);
+  height:var(--liquid-h);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:17px;
+  pointer-events:none;
+  opacity:0;
+  overflow:hidden;
+  transform:translate3d(var(--liquid-x),var(--liquid-y),0) scale(1);
+  transform-origin:center;
+  background:
+    radial-gradient(circle at 23% 5%,rgba(255,255,255,.28),transparent 38%),
+    radial-gradient(circle at 78% 100%,rgba(193,44,58,.23),transparent 47%),
+    linear-gradient(145deg,rgba(255,255,255,.16),rgba(121,31,40,.2) 55%,rgba(255,255,255,.075));
+  -webkit-backdrop-filter:blur(18px) saturate(158%) brightness(1.06);
+  backdrop-filter:blur(18px) saturate(158%) brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.28),
+    inset 0 -1px 0 rgba(105,16,24,.22),
+    0 8px 24px rgba(81,12,20,.25),
+    0 0 0 .5px rgba(232,193,124,.12);
+  will-change:transform,width,height;
+  transition:
+    transform .44s var(--atlas-liquid-ease),
+    width .44s var(--atlas-liquid-ease),
+    height .44s var(--atlas-liquid-ease),
+    opacity .16s ease;
+}
+
+.atlas-liquid-selection::before{
+  content:"";
+  position:absolute;
+  inset:1px 10% auto;
+  height:42%;
+  border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.2),transparent);
+  filter:blur(4px);
+  opacity:.72;
+}
+
+.atlas-liquid-selection::after{
+  content:"";
+  position:absolute;
+  left:12%;
+  right:12%;
+  bottom:-28%;
+  height:54%;
+  border-radius:50%;
+  background:rgba(191,37,50,.23);
+  filter:blur(9px);
+}
+
+.atlas-liquid-selection.is-ready{opacity:1}
+.atlas-liquid-selection.is-pressed{
+  transform:translate3d(var(--liquid-x),var(--liquid-y),0) scale(.965);
+  transition-duration:.11s;
+}
+
+.bottom-nav .nav-item,
+.quick-rail .rail-button{
+  position:relative;
+  z-index:1;
+  border:1px solid transparent!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:var(--muted);
+  transition:color .22s ease,transform .16s ease,filter .2s ease;
+}
+
+.bottom-nav .nav-item.active,
+.quick-rail .rail-button.active{
+  border-color:transparent!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#fff7e8;
+  transform:none;
+}
+
+.bottom-nav .nav-item span,
+.quick-rail .rail-button .rail-icon{
+  transition:transform .28s var(--atlas-liquid-ease),filter .22s ease;
+}
+
+.bottom-nav .nav-item.active span,
+.quick-rail .rail-button.active .rail-icon{
+  transform:translateY(-1px) scale(1.1);
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.3));
+}
+
+.bottom-nav .nav-item:active,
+.quick-rail .rail-button:active{
+  transform:scale(.97)!important;
+}
+
+.top-bar button,
+.map-controls button,
+.panel button,
+.sheet button,
+.search-overlay button{
+  -webkit-tap-highlight-color:transparent;
+}
+
+.top-bar button:not(.nav-item):not(.rail-button),
+.map-controls button,
+.panel button,
+.sheet button,
+.search-overlay button{
+  transition:transform .14s ease,filter .14s ease,background-color .18s ease,border-color .18s ease;
+}
+
+.top-bar button:not(.nav-item):not(.rail-button):active,
+.map-controls button:active,
+.panel button:active,
+.sheet button:active,
+.search-overlay button:active{
+  transform:scale(.97);
+  filter:brightness(1.08);
+}
+
+.atlas-quality-performance .atlas-liquid-selection{
+  -webkit-backdrop-filter:blur(8px) saturate(128%);
+  backdrop-filter:blur(8px) saturate(128%);
+}
+
+@media (orientation:portrait){
+  :root{--atlas-topbar-height:64px;--atlas-topbar-gap:12px}
+  .top-bar{border-radius:0 0 21px 21px}
+}
+
+@media (max-width:720px){
+  .top-bar{
+    padding-left:max(10px,env(safe-area-inset-left,0px));
+    padding-right:max(10px,env(safe-area-inset-right,0px));
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .atlas-liquid-selection{
+    transition:opacity .12s ease!important;
+  }
+  .bottom-nav .nav-item,
+  .quick-rail .rail-button,
+  .bottom-nav .nav-item span,
+  .quick-rail .rail-button .rail-icon{
+    transition:none!important;
+  }
+}
+
+@media (prefers-contrast:more){
+  .atlas-liquid-selection{
+    border-color:rgba(255,255,255,.5);
+    background:rgba(112,26,36,.86);
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
+}
