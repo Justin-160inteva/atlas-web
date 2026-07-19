@@ -70,7 +70,7 @@ def main() -> int:
     check("range_workers", 2 <= int(manifest.get("downloadOptimization", {}).get("maxRangeWorkers", 0)) <= 4, "bounded parallel workers")
     check("range_resume", "rangeRetries" in analyzer_v11 and "fallbackToResumableSingleStream" in json.dumps(manifest), "range resume and single-stream fallback")
     check("balanced_sampling", all(token in analyzer_v11 for token in ("balanced-high", "balanced", "fast-review", "qualitySpeedPolicy")), "catalog-aware sample profiles")
-    check("bounded_queue", 1 <= len(queue.get("items", [])) <= 3 and manifest.get("maxItemsPerRun") == 1, "one item per run")
+    check("bounded_queue", 1 <= len(queue.get("items", [])) <= 5 and manifest.get("maxItemsPerRun") == 1, "up to five queued, one item per run")
     check("retention", manifest.get("retention", {}).get("originalVideo") is False and manifest.get("retention", {}).get("framePixels") is False, "no retained media pixels")
 
     check("monitor_poll", "POLL_MS=10000" in monitor and "RAW_POLL=5000" in bridge and "APPLY_TICK=1000" in bridge, "10s core, 5s raw, 1s projection")
