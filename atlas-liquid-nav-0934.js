@@ -136,3 +136,5 @@
     init();
   }
 })();
+
+// Validation trigger: Alpha 0.9.3.4 smoother integrated left rail.
