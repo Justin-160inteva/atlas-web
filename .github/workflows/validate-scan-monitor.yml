@@ -58,15 +58,19 @@ jobs:
           assert "const VERSION='0.3.1'" in settings
           assert "scan-monitor.html?embedded=1&v=0.3.1" in settings
           assert 'statusBadge' in monitor_html and 'queueList' in monitor_html and 'recoveryPanel' in monitor_html
-          assert 'scan-monitor-health.js?v=0.3.1' in monitor_html
+          assert 'scan-monitor.js?v=0.3.1' in monitor_html
+          assert 'scan-monitor-health.js?v=0.3.2' in monitor_html
           assert '任务数据更新时间' in monitor_html and 'forceRefresh' in monitor_html
-          assert 'FAST_POLL_MS=10000' in monitor_js
+          assert 'FAST_POLL_MS=10000' in monitor_js and 'RUNNING_STALE_MS=180000' in monitor_js
+          assert "VERSION='0.3.2'" in health_js
           assert 'EXPECTED_HEARTBEAT_SECONDS=60' in health_js
           assert 'STALE_SECONDS=180' in health_js
+          assert 'if(status?.complete)' in health_js and 'matchedRuntime(status,runtime)' in health_js
+          assert 'invalid status schema' in health_js and 'invalid runtime schema' in health_js
           assert 'downloadedBytes' in download_js and 'speedBytesPerSecond' in download_js
           assert 'ATLAS_PROGRESS_CONFLICT_RETRIES' in publisher
           assert './scan-monitor.html' in worker and './scan-monitor-health.js' in worker
-          assert 'monitor-v4' in worker
+          assert 'monitor-v5' in worker
           assert progress['externalSourceId'].endswith(('-p020','-p021','-p022'))
           assert progress['privacy']
           serialized=json.dumps(progress,ensure_ascii=False).lower()
@@ -76,5 +80,5 @@ jobs:
           for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
               media.extend(pathlib.Path('.').rglob(pattern))
           assert not media, media
-          print('embedded scan monitor v0.3.1 validation passed')
+          print('embedded scan monitor health v0.3.2 validation passed')
           PY
