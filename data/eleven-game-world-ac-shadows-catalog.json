@@ -1,29 +1,68 @@
 {
   "schemaVersion": 1,
   "version": "1.0.0",
-  "updatedAt": "2026-07-19",
+  "updatedAt": "2026-07-19T15:11:09.301731Z",
   "author": "11的游戏世界",
+  "authorMid": 360046931,
   "platform": "哔哩哔哩",
   "game": "刺客信条：影",
   "authorizationId": "auth-eleven-game-world-20260719",
   "seedVideo": {
+    "mid": 360046931,
+    "name": "11的游戏世界",
+    "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】",
     "bvid": "BV1FdQ9YdEcN",
-    "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/",
-    "title": "《刺客信条：影》4K全任务、全收集、全剧情流程"
+    "durationSeconds": 198156,
+    "publishedAtUnix": 1742367576
   },
   "catalogStatus": {
-    "discoveryComplete": false,
+    "discoveryComplete": true,
+    "discoveredAccountVideos": 1,
+    "matchedGameVideos": 1,
     "analysisImported": 0,
-    "analysisRemaining": null,
-    "analysisComplete": false
+    "analysisRemaining": 1,
+    "analysisComplete": false,
+    "discoveredAt": "2026-07-19T15:11:09.301731Z"
   },
   "futureInclusionRule": {
     "enabled": true,
     "authorMustEqual": "11的游戏世界",
-    "titleMustContainAny": ["刺客信条影", "刺客信条：影", "AC Shadows"],
+    "titleMustContainAny": [
+      "刺客信条影",
+      "刺客信条：影",
+      "AC Shadows"
+    ],
     "authorizationAutomaticallyInherited": true,
     "catalogEntryStillRequiresTitleAndUrlVerification": true
   },
-  "recommendedScanOrder": [],
-  "items": []
+  "recommendedScanOrder": [
+    "bili-eleven-acshadows-BV1FdQ9YdEcN"
+  ],
+  "items": [
+    {
+      "id": "bili-eleven-acshadows-BV1FdQ9YdEcN",
+      "sequence": 1,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】",
+      "author": "11的游戏世界",
+      "platform": "哔哩哔哩",
+      "game": "刺客信条：影",
+      "type": "待自动细分",
+      "quality": "公开视频",
+      "durationSeconds": 198156,
+      "publishedAtUnix": 1742367576,
+      "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/",
+      "bvid": "BV1FdQ9YdEcN",
+      "exactUrlVerified": true,
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "scanClass": "A",
+      "mapUtility": "最高",
+      "priority": 100,
+      "classificationBasis": {
+        "continuousRouteLikely": true,
+        "locationEvidenceLikely": true,
+        "menuOrCombatHeavyLikely": false
+      },
+      "analysisStatus": "pending"
+    }
+  ]
 }
