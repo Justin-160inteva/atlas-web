@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const VERSION=window.AtlasRelease?.version||'0.9.4.2';
+  const VERSION=window.AtlasRelease?.version||'0.9.4.3';
   const root=document.documentElement;
   let lastMapPoint={x:innerWidth/2,y:innerHeight/2};
   let activeBurst=null;
@@ -18,41 +18,26 @@
     activities:svg('<path d="m5 4 15 15M19 4 4 19"/><path d="m4 4 4 1-3 3m15-4-4 1 3 3M4 20l1-4 3 3m12 1-1-4-3 3"/>'),
     locate:svg('<path d="M12 3v3m0 12v3M3 12h3m12 0h3"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'),
     settings:svg('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.12 2.12-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.04 1.56V20h-3v-.08a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-2.12-2.12.06-.06A1.7 1.7 0 0 0 7 14.7a1.7 1.7 0 0 0-1.56-1.04H5v-3h.44A1.7 1.7 0 0 0 7 9.62a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.12-2.12.06.06A1.7 1.7 0 0 0 10.66 6a1.7 1.7 0 0 0 1.04-1.56V4h3v.44A1.7 1.7 0 0 0 15.74 6a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.12 2.12-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.04H21v3h-.04A1.7 1.7 0 0 0 19.4 15Z"/>'),
-    evidence:svg('<path d="M6 3h12v18H6Z"/><path d="M9 7h6m-6 4h6m-6 4h4"/><circle cx="16.5" cy="16.5" r="2.5"/><path d="m18.3 18.3 2 2"/>'),
-    database:svg('<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>'),
-    performance:svg('<path d="M4 16a8 8 0 1 1 16 0"/><path d="m12 16 4-6"/><path d="M7 16h10"/>'),
     heart:svg('<path d="M12 20s-7-4.1-7-9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 7 3.5C19 15.9 12 20 12 20Z"/>','currentColor')
   };
 
   function replaceIcons(){
     const nav={map:'map',filter:'filter',route:'route',progress:'progress',favorites:'favorite'};
-    document.querySelectorAll('.bottom-nav .nav-item').forEach(b=>{const s=b.querySelector(':scope>span');if(s)s.innerHTML=icons[nav[b.dataset.panel]]||icons.map});
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(button=>{const slot=button.querySelector(':scope>span');if(slot)slot.innerHTML=icons[nav[button.dataset.panel]]||icons.map});
     const rail={all:'all',locations:'locations',collectibles:'collectibles',activities:'activities',favorites:'favorite'};
-    document.querySelectorAll('.quick-rail .rail-button').forEach(b=>{const s=b.querySelector('.rail-icon');if(s)s.innerHTML=icons[rail[b.dataset.mode]]||icons.locations});
+    document.querySelectorAll('.quick-rail .rail-button').forEach(button=>{const slot=button.querySelector('.rail-icon');if(slot)slot.innerHTML=icons[rail[button.dataset.mode]]||icons.locations});
     const locate=document.getElementById('locateBtn');if(locate)locate.innerHTML=icons.locate;
     const settings=document.getElementById('evidenceStudioBtn');if(settings){settings.innerHTML=icons.settings;settings.classList.add('atlas-settings-button');settings.setAttribute('aria-label','打开设置');settings.setAttribute('aria-expanded','false')}
   }
-  function installSettings(){
-    if(document.getElementById('atlasSettingsOverlay'))return;
-    const overlay=document.createElement('section');overlay.id='atlasSettingsOverlay';overlay.className='atlas-settings-overlay';overlay.setAttribute('aria-hidden','true');
-    overlay.innerHTML=`<div class="atlas-settings-card" role="dialog" aria-modal="true" aria-label="设置"><div class="atlas-settings-head"><h2>设置</h2><button class="atlas-settings-close" aria-label="关闭设置">×</button></div><section class="atlas-settings-section"><h3>开发者模式</h3><button class="atlas-setting-row" id="atlasDeveloperToggle">${icons.settings}<span><b>启用开发者模式</b><small>显示证据、数据库与性能工具</small></span><i class="atlas-toggle"></i></button><button class="atlas-setting-row atlas-dev-only" id="atlasOpenEvidence">${icons.evidence}<span><b>证据重建实验室</b><small>授权来源与地图证据工具</small></span><span>›</span></button><button class="atlas-setting-row atlas-dev-only" id="atlasDatabaseStatus">${icons.database}<span><b>数据库状态</b><small>查看导入与扫描信息</small></span><span>›</span></button><button class="atlas-setting-row atlas-dev-only" id="atlasPerformanceStatus">${icons.performance}<span><b>性能监测</b><small>显示FPS与渲染状态</small></span><span>›</span></button></section><section class="atlas-settings-section"><h3>地图设置</h3><button class="atlas-setting-row" id="atlasResetView">${icons.locate}<span><b>重置地图视图</b><small>回到默认缩放和中心</small></span><span>›</span></button></section></div>`;
-    document.querySelector('.app-shell')?.appendChild(overlay);const button=document.getElementById('evidenceStudioBtn');
-    const close=()=>{overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');button?.setAttribute('aria-expanded','false')};const open=()=>{overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');button?.setAttribute('aria-expanded','true')};
-    button?.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();overlay.classList.contains('open')?close():open()},true);overlay.querySelector('.atlas-settings-close').onclick=close;overlay.onclick=e=>{if(e.target===overlay)close()};
-    const enabled=localStorage.getItem('atlas.developerMode')==='1';root.classList.toggle('atlas-developer-enabled',enabled);overlay.querySelector('.atlas-toggle').classList.toggle('on',enabled);
-    overlay.querySelector('#atlasDeveloperToggle').onclick=()=>{const on=!root.classList.contains('atlas-developer-enabled');root.classList.toggle('atlas-developer-enabled',on);overlay.querySelector('.atlas-toggle').classList.toggle('on',on);localStorage.setItem('atlas.developerMode',on?'1':'0')};
-    overlay.querySelector('#atlasOpenEvidence').onclick=()=>{close();document.getElementById('evidencePanel')?.classList.add('open');document.getElementById('evidencePanel')?.setAttribute('aria-hidden','false')};
-    overlay.querySelector('#atlasDatabaseStatus').onclick=()=>{close();document.getElementById('evidencePanel')?.classList.add('open');document.getElementById('evidencePanel')?.setAttribute('aria-hidden','false');setTimeout(()=>document.getElementById('analysisImportRegistry')?.scrollIntoView({block:'start'}),80)};
-    overlay.querySelector('#atlasPerformanceStatus').onclick=()=>{close();location.href=location.pathname+`?perf=1&v=${VERSION.replace(/\D/g,'')}`};overlay.querySelector('#atlasResetView').onclick=()=>{document.getElementById('resetView')?.click();close()};
-  }
-  function rememberPoint(){document.getElementById('mapCanvas')?.addEventListener('pointerup',e=>{lastMapPoint={x:e.clientX,y:e.clientY}},{capture:true,passive:true})}
-  function burst(point){activeBurst?.remove();const host=document.querySelector('.app-shell');if(!host)return;const burst=document.createElement('span');burst.className='atlas-heart-burst';burst.style.left=`${point.x}px`;burst.style.top=`${point.y}px`;const values=[[-26,-52,-12,13,0],[-8,-68,8,15,70],[16,-57,14,12,130],[30,-45,-6,10,190]];for(const [x,y,r,size,delay] of values){const p=document.createElement('span');p.className='atlas-heart-particle';p.style.setProperty('--heart-x',`${x}px`);p.style.setProperty('--heart-y',`${y}px`);p.style.setProperty('--heart-rotate',`${r}deg`);p.style.setProperty('--heart-size',`${size}px`);p.style.setProperty('--heart-delay',`${delay}ms`);p.innerHTML=icons.heart;burst.appendChild(p)}const badge=document.createElement('span');badge.className='atlas-favourite-badge';badge.style.left=`${point.x+15}px`;badge.style.top=`${point.y-15}px`;badge.innerHTML=icons.heart;host.append(burst,badge);activeBurst=burst;setTimeout(()=>burst.remove(),1300);setTimeout(()=>badge.remove(),1150)}
+
+  function rememberPoint(){document.getElementById('mapCanvas')?.addEventListener('pointerup',event=>{lastMapPoint={x:event.clientX,y:event.clientY}},{capture:true,passive:true})}
+  function burst(point){activeBurst?.remove();const host=document.querySelector('.app-shell');if(!host)return;const burstNode=document.createElement('span');burstNode.className='atlas-heart-burst';burstNode.style.left=`${point.x}px`;burstNode.style.top=`${point.y}px`;const values=[[-26,-52,-12,13,0],[-8,-68,8,15,70],[16,-57,14,12,130],[30,-45,-6,10,190]];for(const [x,y,r,size,delay] of values){const particle=document.createElement('span');particle.className='atlas-heart-particle';particle.style.setProperty('--heart-x',`${x}px`);particle.style.setProperty('--heart-y',`${y}px`);particle.style.setProperty('--heart-rotate',`${r}deg`);particle.style.setProperty('--heart-size',`${size}px`);particle.style.setProperty('--heart-delay',`${delay}ms`);particle.innerHTML=icons.heart;burstNode.appendChild(particle)}const badge=document.createElement('span');badge.className='atlas-favourite-badge';badge.style.left=`${point.x+15}px`;badge.style.top=`${point.y-15}px`;badge.innerHTML=icons.heart;host.append(burstNode,badge);activeBurst=burstNode;setTimeout(()=>burstNode.remove(),1300);setTimeout(()=>badge.remove(),1150)}
   function wrapFavourite(){let attempts=0;const timer=setInterval(()=>{attempts++;const original=window.toggleFavorite;if(typeof original!=='function'||original.__atlasFavoriteWrapped||original.__atlas0938){if(attempts>40)clearInterval(timer);return}const wrapped=id=>{const before=new Set(JSON.parse(localStorage.getItem('atlas.favorites')||'[]'));original(id);const after=new Set(JSON.parse(localStorage.getItem('atlas.favorites')||'[]'));if(!before.has(id)&&after.has(id))burst(lastMapPoint)};wrapped.__atlasFavoriteWrapped=true;window.toggleFavorite=wrapped;clearInterval(timer)},100)}
   function loadIPadLayer(){
     document.querySelectorAll('link[data-atlas-ipad-nav],script[data-atlas-ipad-nav]').forEach(node=>{if(node.dataset.atlasIpadNav!==VERSION)node.remove()});
     if(!document.querySelector(`link[data-atlas-ipad-nav="${VERSION}"]`)){const link=document.createElement('link');link.rel='stylesheet';link.href=`atlas-ipad-nav-0940.css?v=${VERSION}`;link.dataset.atlasIpadNav=VERSION;document.head.appendChild(link)}
     if(!document.querySelector(`script[data-atlas-ipad-nav="${VERSION}"]`)){const script=document.createElement('script');script.src=`atlas-ipad-nav-0940.js?v=${VERSION}`;script.defer=true;script.dataset.atlasIpadNav=VERSION;document.body.appendChild(script)}
   }
-  function init(){replaceIcons();installSettings();rememberPoint();wrapFavourite();loadIPadLayer();root.dataset.atlasControls=VERSION}
+  function init(){replaceIcons();rememberPoint();wrapFavourite();loadIPadLayer();root.dataset.atlasControls=VERSION;root.dataset.atlasSettingsOwner='atlas-settings.js'}
   document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init,{once:true}):init();
 })();
