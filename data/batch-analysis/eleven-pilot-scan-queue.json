@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-19T20:07:00Z",
-  "updatedAt": "2026-07-19T21:37:13.065683Z",
-  "status": "retryable_failure",
+  "updatedAt": "2026-07-19T21:39:00.304181Z",
+  "status": "complete",
   "pilotRegion": "顺序批次 P04-P06",
   "strategy": "严格保留原合集顺序；本批只包含P04-P06，每次仅处理一期，完成并验证后自动进入下一期。",
   "items": [
@@ -63,10 +63,11 @@
       "mapUtility": "高",
       "priority": 82,
       "durationSeconds": 3107,
-      "state": "failed",
-      "attemptCount": 0,
-      "error": "heartbeat supervisor: no heartbeat for 3015s at stage persisting",
-      "lastFinishedAt": "2026-07-19T21:37:13.065683Z"
+      "state": "imported",
+      "attemptCount": 1,
+      "lastFinishedAt": "2026-07-19T21:39:00.301540Z",
+      "lastStartedAt": "2026-07-19T21:37:55.310655Z",
+      "resultPath": "data/analysis-results/eleven-p006.json"
     }
   ]
 }
