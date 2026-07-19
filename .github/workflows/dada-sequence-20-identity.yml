@@ -1,0 +1,79 @@
+name: Inspect Dada sequence 20 identity
+
+on:
+  push:
+    branches:
+      - prep/dada-sequence-20-identity
+    paths:
+      - 'tools/inspect_dada_sequence20_identity.py'
+      - '.github/workflows/dada-sequence-20-identity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-sequence-20-identity
+  cancel-in-progress: true
+
+jobs:
+  inspect-identity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out requested revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile metadata-only diagnostic
+        run: |
+          python -m py_compile \
+            tools/resolve_dada_sequence06.py \
+            tools/inspect_dada_sequence20_identity.py
+
+      - name: Inspect author collection and public metadata
+        run: python tools/inspect_dada_sequence20_identity.py
+
+      - name: Verify diagnostic safety and schema
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('data/batch-analysis/dada-sequence-20-identity.json').read_text(encoding='utf-8'))
+          assert report['schemaVersion'] == 1
+          assert report['targetSequence'] == 20
+          assert report['mediaDownloaded'] is False
+          assert report['duplicateWithSequence22'] is True
+          assert report['status'] in {'resolved', 'blocked'}
+          assert report['acceptedCount'] in {0, 1}
+          assert report['candidateCount'] >= report['acceptedCount']
+          if report['status'] == 'resolved':
+              resolved = report['resolved']
+              assert resolved['acceptedForSequence20'] is True
+              assert resolved['ownerVerified'] is True
+              assert resolved['view']['sequence'] == 20
+              assert resolved['bvid'] != report['canonicalSequence22Identity']['bvid']
+          else:
+              assert report['resolved'] is None
+              assert report['reason']
+          PY
+
+      - name: Persist identity evidence on preparation branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/batch-analysis/dada-sequence-20-identity.json
+          if git diff --cached --quiet; then
+            echo 'Identity evidence is unchanged.'
+            exit 0
+          fi
+          git commit -m 'Record Dada sequence 20 identity evidence [skip ci]'
+          git pull --rebase origin prep/dada-sequence-20-identity
+          git push origin HEAD:prep/dada-sequence-20-identity
