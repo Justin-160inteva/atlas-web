@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "runId": "eleven-game-world-author-discovery-v2",
+  "runId": "eleven-game-world-author-discovery-v3",
   "status": "success",
   "author": "11的游戏世界",
   "authorMid": 360046931,
   "authorizationId": "auth-eleven-game-world-20260719",
   "seedBvid": "BV1FdQ9YdEcN",
-  "updatedAt": "2026-07-19T15:17:48.816556Z",
+  "updatedAt": "2026-07-19T15:22:17.754869Z",
   "summary": {
     "accountEnumerationComplete": false,
     "accountVideosDiscovered": 1,
@@ -20,11 +20,11 @@
   },
   "diagnostics": [
     "space api failed: HTTPError('HTTP Error 412: ')",
-    "space api failed: HTTPError('HTTP Error 412: ')",
-    "yt-dlp space failed: RuntimeError('ERROR: [BilibiliSpaceVideo] 360046931: Request is blocked by server (412), please wait and try later.\\n')",
+    "space api failed: RuntimeError('code=-352 风控校验失败')",
+    " blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is rejected by server (352)\\nERROR: Request is rejected by server (352)\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is rejected by server (352)\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is rejected by server (352)\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is rejected by server (352)\\nERROR: Request is rejected by server (352)\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is rejected by server (352)\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\nERROR: Request is blocked by server (412), please wait and try later.\\n')",
     "search failed: 11的游戏世界 刺客信条影: HTTPError('HTTP Error 412: ')",
-    "search completed: 11的游戏世界 刺客信条：影",
-    "search completed: 11的游戏世界 AC Shadows"
+    "search failed: 11的游戏世界 刺客信条：影: HTTPError('HTTP Error 412: ')",
+    "search failed: 11的游戏世界 AC Shadows: HTTPError('HTTP Error 412: ')"
   ],
   "privacy": "No video media or frame pixels were downloaded during catalog discovery."
 }
