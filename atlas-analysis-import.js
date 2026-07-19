@@ -1,10 +1,11 @@
 (() => {
   'use strict';
 
-  const VERSION='0.9.3.1';
+  const VERSION='0.9.3.2';
   const TYPOGRAPHY_VERSION='0.9.3.0';
   const PERFORMANCE_VERSION='0.9.2.0';
   const UI_FIX_VERSION='0.9.3.1';
+  const SMART_ROUTE_VERSION='0.9.3.2';
   let analysisIndex={items:[]};
   const $=selector=>document.querySelector(selector);
   const escapeHtml=value=>String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
@@ -50,6 +51,16 @@
       script.defer=true;
       document.body.appendChild(script);
     }
+  }
+
+  function loadSmartRouteLayer(){
+    if(document.querySelector(`link[data-atlas-smart-route="${SMART_ROUTE_VERSION}"]`))return;
+    const link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href=`atlas-smart-route-0932.css?v=${SMART_ROUTE_VERSION}`;
+    link.dataset.atlasSmartRoute=SMART_ROUTE_VERSION;
+    document.head.appendChild(link);
+    document.documentElement.dataset.atlasSmartRoute=SMART_ROUTE_VERSION;
   }
 
   function installStyles(){
@@ -140,7 +151,7 @@
     renderRegistry();
     annotateCards();
     const brand=document.querySelector('.brand-copy small');
-    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.1";
+    if(brand)brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.2";
   }
 
   async function start(){
@@ -165,5 +176,6 @@
   loadTypographyLayer();
   loadPerformanceLayer();
   loadUiFixLayer();
+  loadSmartRouteLayer();
   start();
 })();
