@@ -43,6 +43,10 @@ jobs:
           python -m py_compile tools/analyze_authorized_video.py
           python -m py_compile tools/analyze_authorized_video_v2.py
           python -m py_compile tools/analyze_authorized_video_v5.py
+          python -m py_compile tools/analyze_authorized_video_v6.py
+          python -m py_compile tools/analyze_authorized_video_v7.py
+          python -m py_compile tools/analyze_authorized_video_v8.py
+          python -m py_compile tools/analyze_authorized_video_v9.py
           python -m py_compile tools/scan_catalog_queue_v2.py
           python -m py_compile tools/diagnose_and_recover_scan.py
           python -m py_compile tools/update_analysis_index.py
@@ -68,11 +72,18 @@ jobs:
           assert scope['localDownloadAndAnalysis'] and scope['computerVisionAnalysis']
           assert scope['privateLowResolutionKeyframes']
           assert scope['nonCommercial'] and scope['commercialUseRequiresSeparateWrittenConsent']
+          heartbeat=manifest['runtimeHeartbeat']
+          telemetry=manifest['downloadTelemetry']
+          assert manifest['analyzer'].endswith('analyze_authorized_video_v9.py')
+          assert heartbeat['minimumIntervalSeconds']==60
+          assert heartbeat['independentTicker'] and heartbeat['continuesDuringNetworkStall']
+          assert telemetry['enabled'] and telemetry['intervalSeconds']==60
+          assert telemetry['speedMode']=='rolling-120-second-window'
           policy=manifest['recoveryPolicy']
           assert policy['neverModifySourceCodeAutomatically']
           assert policy['neverBroadenAuthorization']
           assert policy['neverRetainOriginalMedia']
-          print('authorization, bounded queue, heartbeat, and recovery policy gate passed')
+          print('authorization, bounded queue, minute heartbeat, telemetry, and recovery policy gate passed')
           PY
 
       - name: Scan one regional pilot item with durable state
@@ -85,7 +96,7 @@ jobs:
           ATLAS_PROGRESS_BRANCH: main
           ATLAS_PROGRESS_PATH: data/runtime-progress/eleven-pilot-progress.json
           ATLAS_PROGRESS_LOCAL_PATH: /tmp/atlas-runtime-progress.json
-          ATLAS_PROGRESS_MIN_INTERVAL_SECONDS: '90'
+          ATLAS_PROGRESS_MIN_INTERVAL_SECONDS: '60'
         run: python tools/scan_catalog_queue_v2.py data/batch-analysis/eleven-pilot-scan-manifest.json
 
       - name: Remove all transient media
@@ -168,6 +179,8 @@ jobs:
               assert recovery['safety']['mediaRetentionChanged'] is False
               assert manifest['retention']['originalVideo'] is False
               assert manifest['retention']['framePixels'] is False
+              assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==60
+              assert manifest['runtimeHeartbeat']['independentTicker'] is True
               for item in queue['items']:
                   if item.get('state')=='imported':
                       entry=indexed[item['externalSourceId']]
