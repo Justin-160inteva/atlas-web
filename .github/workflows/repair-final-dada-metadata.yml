@@ -1,0 +1,84 @@
+name: Repair and finalize Dada metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/repair_dada_final_metadata.py'
+      - '.github/workflows/repair-final-dada-metadata.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repair-final-dada-metadata
+  cancel-in-progress: true
+
+jobs:
+  repair-and-finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile metadata repair and finalizer
+        run: |
+          python -m py_compile tools/repair_dada_final_metadata.py
+          python -m py_compile tools/finalize_dada_catalog.py
+
+      - name: Repair sequence 03 and 06 metadata
+        run: python tools/repair_dada_final_metadata.py
+
+      - name: Apply strict final catalog integrity pass
+        run: python tools/finalize_dada_catalog.py --apply --fail-on-error
+
+      - name: Run 400-round final gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          all_sequences = list(range(1, 24))
+          for _ in range(400):
+              report = json.loads(Path('data/batch-analysis/dada-final-integrity.json').read_text(encoding='utf-8'))
+              catalog = json.loads(Path('data/dada-ac-shadows-catalog.json').read_text(encoding='utf-8'))
+              status = json.loads(Path('data/batch-analysis/dada-author-catalog-status.json').read_text(encoding='utf-8'))
+              queue = json.loads(Path('data/analysis-jobs/dada-quality-reprocess.json').read_text(encoding='utf-8'))
+              assert report['status'] == 'pass'
+              assert report['summary']['failed'] == 0
+              assert report['summary']['catalogItems'] == 23
+              assert report['summary']['namedSequences'] == all_sequences
+              assert report['summary']['exactUrlSequences'] == all_sequences
+              assert report['summary']['importedSequences'] == all_sequences
+              assert report['summary']['duplicateBvidGroups'] == []
+              assert catalog['catalogStatus']['confirmedNumberedEntries'] == 23
+              assert catalog['catalogStatus']['namedEntries'] == 23
+              assert catalog['catalogStatus']['pendingTitleVerification'] == []
+              assert catalog['catalogStatus']['exactVideoUrlsVerified'] == all_sequences
+              assert catalog['catalogStatus']['analysisImported'] == 23
+              assert catalog['catalogStatus']['analysisRemaining'] == 0
+              assert catalog['catalogStatus']['analysisComplete'] is True
+              assert catalog['catalogStatus']['integrityVerifiedAt']
+              assert status['complete'] is True
+              assert status['summary']['imported'] == 23
+              assert status['summary']['remaining'] == 0
+              assert queue['sequences'] == []
+              assert queue['items'] == []
+          PY
+
+      - name: Persist repaired final state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/dada-ac-shadows-catalog.json
+          git add data/batch-analysis/dada-author-catalog-status.json
+          git add data/batch-analysis/dada-final-integrity.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Repair and finalize Dada catalog metadata [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
