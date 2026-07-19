@@ -97,7 +97,7 @@ def main() -> int:
     check("monitor_authoritative_api", api_poll == 55000 and "GitHub Contents API" in bridge, f"authoritative API calibration={api_poll}ms")
     check("monitor_projection", max_project == 20 and "实时估算" in bridge and "最近实测" in bridge, f"clearly labelled projection cap={max_project}s")
     check("monitor_recovery_retention", "telemetryMeasuredAt" in bridge and "保留最后下载实测" in bridge, "recovery does not zero last measured telemetry")
-    check("monitor_cache", "monitor-v11" in worker and "scan-monitor-live-bridge.js" in worker, "cache generation v11")
+    check("monitor_cache", "const CACHE='atlas-alpha-0942-pages-v1'" in worker and "scan-monitor-live-bridge.js" in worker, "canonical release cache namespace")
 
     check("publisher_conflict_logic", "error.code not in {409, 422}" in publisher and "ATLAS_PROGRESS_CONFLICT_RETRIES" in publisher, "fresh-SHA conflict retry")
     check("telemetry_preservation", "PRESERVE_STAGES" in publisher_v2 and "telemetryMeasuredAt" in publisher_v2 and "externalSourceId" in publisher_v2, "same-item metrics preserved across stages")
