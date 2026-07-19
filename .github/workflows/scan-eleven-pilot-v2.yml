@@ -1,4 +1,4 @@
-name: Scan 11 game world regional pilot v3
+name: Scan 11 game world regional pilot v4
 
 on:
   push:
@@ -37,21 +37,20 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg curl
 
-      - name: Compile durable pilot, heartbeat, and recovery tools
+      - name: Compile scan, telemetry, and recovery tools
         run: |
           python -m py_compile tools/publish_runtime_progress.py
           python -m py_compile tools/analyze_authorized_video.py
           python -m py_compile tools/analyze_authorized_video_v2.py
           python -m py_compile tools/analyze_authorized_video_v5.py
           python -m py_compile tools/analyze_authorized_video_v6.py
-          python -m py_compile tools/analyze_authorized_video_v7.py
-          python -m py_compile tools/analyze_authorized_video_v8.py
           python -m py_compile tools/analyze_authorized_video_v9.py
+          python -m py_compile tools/analyze_authorized_video_v10.py
           python -m py_compile tools/scan_catalog_queue_v2.py
           python -m py_compile tools/diagnose_and_recover_scan.py
           python -m py_compile tools/update_analysis_index.py
 
-      - name: Verify authorization and bounded regional queue
+      - name: Verify authorization, queue, and minute telemetry contract
         run: |
           python - <<'PY'
           import json
@@ -61,10 +60,8 @@ jobs:
           manifest=json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json',encoding='utf-8'))
           record=next(item for item in auth['records'] if item['id']==queue['authorizationId'])
           scope=record['scope']
-          assert record['status']=='active'
-          assert record['author']=='11的游戏世界'
-          assert queue['pilotRegion']=='山城'
-          assert 1<=len(queue['items'])<=3
+          assert record['status']=='active' and record['author']=='11的游戏世界'
+          assert queue['pilotRegion']=='山城' and 1<=len(queue['items'])<=3
           assert manifest['maxItemsPerRun']==1
           assert all(item['regionGuess']=='山城' for item in queue['items'])
           catalog_ids={entry['id'] for entry in catalog['items']}
@@ -74,7 +71,8 @@ jobs:
           assert scope['nonCommercial'] and scope['commercialUseRequiresSeparateWrittenConsent']
           heartbeat=manifest['runtimeHeartbeat']
           telemetry=manifest['downloadTelemetry']
-          assert manifest['analyzer'].endswith('analyze_authorized_video_v9.py')
+          assert manifest['analyzer'].endswith('analyze_authorized_video_v10.py')
+          assert manifest['compatibilityFixes']['curlCffiResponseContextManager'] is True
           assert heartbeat['minimumIntervalSeconds']==60
           assert heartbeat['independentTicker'] and heartbeat['continuesDuringNetworkStall']
           assert telemetry['enabled'] and telemetry['intervalSeconds']==60
@@ -83,7 +81,7 @@ jobs:
           assert policy['neverModifySourceCodeAutomatically']
           assert policy['neverBroadenAuthorization']
           assert policy['neverRetainOriginalMedia']
-          print('authorization, bounded queue, minute heartbeat, telemetry, and recovery policy gate passed')
+          print('authorization and v10 minute telemetry contract passed')
           PY
 
       - name: Scan one regional pilot item with durable state
@@ -119,43 +117,7 @@ jobs:
           print(f"action={report['action']}")
           PY
 
-      - name: Ensure a machine-readable terminal state
-        if: always()
-        run: |
-          python - <<'PY'
-          import json, pathlib
-          from datetime import datetime, timezone
-          path=pathlib.Path('data/batch-analysis/eleven-pilot-scan-status.json')
-          queue_path=pathlib.Path('data/batch-analysis/eleven-pilot-scan-queue.json')
-          if not path.exists():
-              queue=json.load(queue_path.open(encoding='utf-8'))
-              items=queue.get('items',[])
-              imported=sum(item.get('state')=='imported' for item in items)
-              failed=sum(item.get('state')=='failed' for item in items)
-              status={
-                  'schemaVersion':2,
-                  'batchId':'eleven-shancheng-pilot-scan-v3',
-                  'author':'11的游戏世界',
-                  'authorizationId':queue['authorizationId'],
-                  'pilotRegion':queue.get('pilotRegion'),
-                  'updatedAt':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
-                  'phase':'workflow_failure',
-                  'activeItem':None,
-                  'complete':imported==len(items),
-                  'summary':{
-                      'total':len(items),'imported':imported,'running':0,'failed':failed,
-                      'blocked':0,'retryableFailed':failed,'remaining':len(items)-imported,
-                      'attemptedThisRun':0,'newlyImportedThisRun':0
-                  },
-                  'items':items,
-                  'events':[],
-                  'privacy':'Original videos and frame pixels are transient and are not retained in the public repository.'
-              }
-              path.write_text(json.dumps(status,ensure_ascii=False,indent=2),encoding='utf-8')
-          print('terminal state exists')
-          PY
-
-      - name: Run 400-round regional recovery integrity gate
+      - name: Run 400-round integrity gate
         if: always()
         run: |
           python - <<'PY'
@@ -172,15 +134,14 @@ jobs:
               assert status['authorizationId']==queue['authorizationId']==catalog['authorizationId']
               assert status['summary']['total']==len(queue['items'])==3
               assert queue['pilotRegion']=='山城'
-              assert all(item['regionGuess']=='山城' for item in queue['items'])
               assert all(item.get('state','pending') in allowed for item in queue['items'])
               assert recovery['safety']['sourceCodeModified'] is False
               assert recovery['safety']['authorizationBroadened'] is False
               assert recovery['safety']['mediaRetentionChanged'] is False
+              assert manifest['analyzer'].endswith('analyze_authorized_video_v10.py')
+              assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==60
               assert manifest['retention']['originalVideo'] is False
               assert manifest['retention']['framePixels'] is False
-              assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==60
-              assert manifest['runtimeHeartbeat']['independentTicker'] is True
               for item in queue['items']:
                   if item.get('state')=='imported':
                       entry=indexed[item['externalSourceId']]
@@ -191,7 +152,7 @@ jobs:
               assert not list(pathlib.Path('.').rglob('*.m4a'))
               assert not list(pathlib.Path('.').rglob('*.webm'))
               assert not list(pathlib.Path('.').rglob('*.flv'))
-          print('400/400 recovery integrity checks passed')
+          print('400/400 integrity checks passed')
           PY
 
       - name: Read durable pilot state
@@ -203,10 +164,8 @@ jobs:
           status=json.load(open('data/batch-analysis/eleven-pilot-scan-status.json',encoding='utf-8'))
           summary=status['summary']
           print(f"complete={'true' if status['complete'] else 'false'}")
-          print(f"remaining={summary['remaining']}")
           print(f"progress={summary.get('newlyImportedThisRun',0)}")
           print(f"imported={summary['imported']}")
-          print(f"blocked={summary.get('blocked',0)}")
           print(f"phase={status.get('phase','unknown')}")
           PY
 
@@ -222,15 +181,13 @@ jobs:
           git add data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-scan-manifest.json
           git commit -m "Scan/recover 11 game world 山城 pilot: ${{ steps.state.outputs.imported }}/3 (${{ steps.recovery.outputs.action }})"
           for attempt in 1 2 3; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
-              exit 0
-            fi
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
             git rebase --abort || true
             sleep $((attempt * 4))
           done
           exit 1
 
-      - name: Continue after progress or approved automatic recovery
+      - name: Continue after progress or approved recovery
         if: always() && steps.state.outputs.complete != 'true' && steps.recovery.outputs.human != 'true' && (steps.state.outputs.progress != '0' || steps.recovery.outputs.retry == 'true')
         env:
           GH_TOKEN: ${{ github.token }}
