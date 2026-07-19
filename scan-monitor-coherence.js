@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const VERSION='0.4.0';
+  const VERSION='0.4.1';
   const REPO='Justin-160inteva/atlas-web';
   const BRANCH='main';
   const PATH='data/runtime-progress/eleven-pilot-progress.json';
@@ -15,6 +15,7 @@
   let observer=null;
 
   const $=id=>document.getElementById(id);
+  const setText=(node,value)=>{if(node&&node.textContent!==value)node.textContent=value;};
   const valid=value=>value&&Number(value.schemaVersion)>=2&&typeof value.state==='string'&&typeof value.stage==='string'&&Number.isFinite(Date.parse(value.updatedAt||''));
   const rank=value=>[Number(value?.heartbeatSequence||0),Date.parse(value?.updatedAt||'')||0];
   const newer=(a,b)=>{
@@ -54,26 +55,27 @@
     const page=Number(data.page||0);
     const age=Math.max(0,Math.round((Date.now()-Date.parse(data.updatedAt))/1000));
     const detail=$('activeDetail');
-    if(detail&&['running','recovery'].includes(data.state))detail.textContent=`本期 ${percent.toFixed(1)}% · ${data.message||data.stage}`;
+    if(detail&&['running','recovery'].includes(data.state))setText(detail,`本期 ${percent.toFixed(1)}% · ${data.message||data.stage}`);
     const ageNode=$('heartbeatAge');
-    if(ageNode)ageNode.textContent=age<60?`${age}秒前`:`${Math.floor(age/60)}分钟前`;
+    setText(ageNode,age<60?`${age}秒前`:`${Math.floor(age/60)}分钟前`);
     const origin=$('dataOrigin');
-    if(origin)origin.textContent=`数据源：${acceptedOrigin}${sequence?` · 心跳 #${sequence}`:''}`;
+    setText(origin,`数据源：${acceptedOrigin}${sequence?` · 心跳 #${sequence}`:''}`);
     const badge=$('statusBadge');
     if(badge&&['running','queued','recovery','blocked'].includes(data.state)){
-      badge.dataset.state=data.state;
-      const text=badge.querySelector('b');
-      if(text)text.textContent=stateLabel(data.state);
+      if(badge.dataset.state!==data.state)badge.dataset.state=data.state;
+      setText(badge.querySelector('b'),stateLabel(data.state));
     }
     const queueItems=[...document.querySelectorAll('.queue-item')];
     const row=queueItems.find(item=>item.querySelector('.queue-page')?.textContent.trim()===`P${page}`);
     if(row){
       const state=row.querySelector('.queue-state');
-      if(state){state.className=`queue-state ${data.state}`;state.textContent=stateLabel(data.state);}
+      const stateClass=`queue-state ${data.state}`;
+      if(state&&state.className!==stateClass)state.className=stateClass;
+      setText(state,stateLabel(data.state));
       const small=row.querySelector('.queue-copy small');
       if(small){
         const base=small.textContent.replace(/ · 本期 [^·]+/g,'').replace(/ · 心跳 #[0-9]+/g,'');
-        small.textContent=`${base} · 本期 ${percent.toFixed(1)}%${sequence?` · 心跳 #${sequence}`:''}`;
+        setText(small,`${base} · 本期 ${percent.toFixed(1)}%${sequence?` · 心跳 #${sequence}`:''}`);
       }
     }
     const pilot=$('pilotProgress')?.textContent.match(/(\d+)\s*\/\s*(\d+)/);
@@ -81,8 +83,10 @@
       const imported=Number(pilot[1]),total=Number(pilot[2]);
       if(total>0){
         const batch=Math.min(100,(imported+(['running','recovery'].includes(data.state)?percent/100:0))/total*100);
-        if($('heroPercent'))$('heroPercent').textContent=`${Math.round(batch)}%`;
-        if($('heroBar'))$('heroBar').style.width=`${batch}%`;
+        setText($('heroPercent'),`${Math.round(batch)}%`);
+        const bar=$('heroBar');
+        const width=`${batch}%`;
+        if(bar&&bar.style.width!==width)bar.style.width=width;
       }
     }
     window.dispatchEvent(new CustomEvent('atlas-runtime-update',{detail:{runtime:data,previous,origin:acceptedOrigin}}));
@@ -110,7 +114,7 @@
     }
   }
 
-  observer=new MutationObserver(()=>{if(accepted)apply(accepted,accepted);});
+  observer=new MutationObserver(()=>{if(accepted)queueMicrotask(()=>apply(accepted,accepted));});
   const queue=$('queueList');
   if(queue)observer.observe(queue,{childList:true,subtree:true});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh(true);});
