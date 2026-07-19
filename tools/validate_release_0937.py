@@ -62,7 +62,6 @@ forbidden_tokens = [
 for key, token in forbidden_tokens:
     check(f'{key} excludes {token}', token not in files[key])
 
-# Verify import order and single ownership of the vertical motion.
 check('base imported before 0937 layout', files['refine'].find('atlas-liquid-nav-0933.css') < files['refine'].find('atlas-nav-layout-0937.css'))
 check('vertical CSS transition disabled by layout layer', 'transition:opacity .12s ease!important' in files['layout'])
 check('vertical animation uses compositor transform', 'translate3d' in files['runtime'])
@@ -72,8 +71,6 @@ check('closed route panel covered', '.route-panel:not(.open)' in files['layout']
 check('closed progress panel covered', '.progress-panel:not(.open)' in files['layout'])
 check('open panels restored to zero transform', 'translate3d(0,0,0)!important' in files['layout'])
 
-# 440 layout-model checks across viewport and safe-area combinations.
-# These validate the intended edge formulas and non-overlap invariants; they are not browser screenshots.
 widths = [320, 360, 375, 390, 414, 480, 600, 720, 768, 820, 1024]
 safe_lefts = [0, 4, 12, 24]
 safe_bottoms = [0, 8]
@@ -93,7 +90,6 @@ for width in widths:
             check(f'status safe bottom w{width} sb{safe_bottom}', status_bottom >= safe_bottom)
             check(f'closed panel hidden w{width} sl{safe_left}', closed_panel_right < 0)
 
-# Fill the remaining slots with deterministic source-integrity checks over distinct source slices.
 source_blob = '\n'.join(files.values())
 index = 0
 while len(results) < 500:
@@ -106,3 +102,5 @@ if len(results) != 500:
     raise AssertionError(f'Expected 500 checks, got {len(results)}')
 
 print(f'Alpha 0.9.3.7 release gate passed: {len(results)} checks')
+
+# Validation trigger: high-risk navigation layout release gate.
