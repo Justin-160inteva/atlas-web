@@ -1,0 +1,536 @@
+{
+  "schemaVersion": 3,
+  "generatedAt": "2026-07-19T08:55:19.434070+00:00",
+  "release": "0.9.4.2",
+  "status": "review",
+  "riskScore": 66,
+  "summary": {
+    "critical": 0,
+    "high": 2,
+    "warning": 25,
+    "total": 27
+  },
+  "resourceGraph": {
+    "app.js": [
+      "assets/world-map-4096.webp"
+    ],
+    "atlas-liquid-nav-0934.css": [
+      "atlas-liquid-nav-0933.css",
+      "atlas-nav-layout-0937.css",
+      "atlas-controls-0938.css"
+    ],
+    "index.html": [
+      "icon-180.png",
+      "manifest.webmanifest",
+      "atlas-bootstrap.js",
+      "styles.css",
+      "alpha03.css",
+      "route.css",
+      "smart-route.css",
+      "performance-071.css",
+      "performance-074.css",
+      "atlas-080.css",
+      "evidence-studio.css",
+      "multiview-091.css",
+      "public-library.css",
+      "atlas-icons.js",
+      "atlas-i18n.js",
+      "location-names.js",
+      "location-title-polish.js",
+      "atlas-data-guard-0939.js",
+      "route-engine.js",
+      "app.js",
+      "location-search-patch.js",
+      "marker-state.js",
+      "smart-route.js",
+      "performance-071.js",
+      "performance-074.js",
+      "atlas-080.js",
+      "page-zoom-guard.js",
+      "atlas-hd-init.js",
+      "atlas-hd-map.js",
+      "atlas-hd-runtime.js",
+      "atlas-evidence-studio.js",
+      "atlas-evidence-workflow.js",
+      "atlas-multiview-091.js",
+      "atlas-public-library.js",
+      "atlas-analysis-import.js"
+    ]
+  },
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "SW_REGISTRATION_DELEGATED",
+      "message": "Legacy app registration is intercepted by the canonical bootstrap owner",
+      "files": [
+        "app.js",
+        "atlas-bootstrap.js"
+      ],
+      "evidence": {}
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".bottom-nav .nav-item has multiple transition definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".bottom-nav .nav-item",
+        "property": "transition",
+        "values": [
+          "color .22s ease,transform .16s ease,filter .2s ease",
+          "none!important",
+          "transform .16s ease,color .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".quick-rail .rail-button has multiple transition definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".quick-rail .rail-button",
+        "property": "transition",
+        "values": [
+          "color .22s ease,transform .16s ease,filter .2s ease",
+          "none!important",
+          "transform .16s ease,color .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".bottom-nav .nav-item span has multiple transition definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".bottom-nav .nav-item span",
+        "property": "transition",
+        "values": [
+          "none!important",
+          "transform .16s ease,filter .16s ease,opacity .16s ease",
+          "transform .28s var(--atlas-liquid-ease),filter .22s ease"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".quick-rail .rail-button .rail-icon has multiple transition definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-liquid-nav-0934.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".quick-rail .rail-button .rail-icon",
+        "property": "transition",
+        "values": [
+          "none!important",
+          "opacity .18s ease,transform .24s var(--atlas-liquid-vertical-ease),color .18s ease",
+          "transform .16s ease,filter .16s ease,opacity .16s ease",
+          "transform .28s var(--atlas-liquid-ease),filter .22s ease"
+        ]
+      }
+    },
+    {
+      "severity": "high",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".bottom-nav .nav-item::after has multiple content definitions",
+      "files": [
+        "atlas-ipad-nav-0940.css",
+        "atlas-liquid-nav-0933.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".bottom-nav .nav-item::after",
+        "property": "content",
+        "values": [
+          "\"\"",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".bottom-nav .nav-item.active has multiple transform definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".bottom-nav .nav-item.active",
+        "property": "transform",
+        "values": [
+          "none",
+          "translateY(-1px)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".bottom-nav .nav-item.active span has multiple transform definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".bottom-nav .nav-item.active span",
+        "property": "transform",
+        "values": [
+          "translateY(-1px) scale(1.1)",
+          "translateY(-1px) scale(1.12)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".bottom-nav .nav-item:active has multiple transform definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".bottom-nav .nav-item:active",
+        "property": "transform",
+        "values": [
+          "scale(.96)",
+          "scale(.97)!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".quick-rail .rail-button:active has multiple transform definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-liquid-nav-0934.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".quick-rail .rail-button:active",
+        "property": "transform",
+        "values": [
+          "none!important",
+          "scale(.96)",
+          "scale(.97)!important"
+        ]
+      }
+    },
+    {
+      "severity": "high",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".quick-rail .rail-button::after has multiple content definitions",
+      "files": [
+        "atlas-ipad-nav-0940.css",
+        "atlas-liquid-nav-0933.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".quick-rail .rail-button::after",
+        "property": "content",
+        "values": [
+          "\"\"",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".quick-rail .rail-button.active .rail-icon has multiple transform definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-liquid-nav-0934.css",
+        "atlas-ui-fix-0931.css"
+      ],
+      "evidence": {
+        "selector": ".quick-rail .rail-button.active .rail-icon",
+        "property": "transform",
+        "values": [
+          "scale(1.1)",
+          "translateY(-1px) scale(1.1)",
+          "translateZ(0) scale(1)",
+          "translateZ(0) scale(1.045)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".glass has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "performance-071.css",
+        "styles.css"
+      ],
+      "evidence": {
+        "selector": ".glass",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(22px) saturate(120%)",
+          "blur(8px) saturate(110%)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".glass has multiple backdrop-filter definitions",
+      "files": [
+        "performance-071.css",
+        "styles.css"
+      ],
+      "evidence": {
+        "selector": ".glass",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(22px) saturate(120%)",
+          "blur(8px) saturate(110%)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".atlas-liquid-selection has multiple transition definitions",
+      "files": [
+        "atlas-ipad-nav-0940.css",
+        "atlas-liquid-nav-0933.css"
+      ],
+      "evidence": {
+        "selector": ".atlas-liquid-selection",
+        "property": "transition",
+        "values": [
+          "none!important",
+          "opacity .12s ease!important",
+          "transform .44s var(--atlas-liquid-ease),\n    width .44s var(--atlas-liquid-ease),\n    height .44s var(--atlas-liquid-ease),\n    opacity .16s ease"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".map-controls button has multiple transition definitions",
+      "files": [
+        "alpha03.css",
+        "atlas-080.css",
+        "atlas-liquid-nav-0933.css"
+      ],
+      "evidence": {
+        "selector": ".map-controls button",
+        "property": "transition",
+        "values": [
+          "background .16s ease,transform .14s ease",
+          "background-color .18s ease,color .18s ease,transform .16s ease",
+          "none",
+          "transform .14s ease,filter .14s ease,background-color .18s ease,border-color .18s ease"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".map-controls button:active has multiple transform definitions",
+      "files": [
+        "alpha03.css",
+        "atlas-080.css",
+        "atlas-liquid-nav-0933.css"
+      ],
+      "evidence": {
+        "selector": ".map-controls button:active",
+        "property": "transform",
+        "values": [
+          "scale(.9)",
+          "scale(.92)",
+          "scale(.97)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": "0% has multiple transform definitions",
+      "files": [
+        "alpha03.css",
+        "atlas-controls-0938.css"
+      ],
+      "evidence": {
+        "selector": "0%",
+        "property": "transform",
+        "values": [
+          "scale(1)",
+          "translate(-50%,-50%) scale(.5)",
+          "translate3d(0,4px,0) scale(.55) rotate(-8deg)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": "100% has multiple transform definitions",
+      "files": [
+        "alpha03.css",
+        "atlas-controls-0938.css"
+      ],
+      "evidence": {
+        "selector": "100%",
+        "property": "transform",
+        "values": [
+          "scale(1)",
+          "translate(-50%,-50%) scale(1)",
+          "translate3d(var(--heart-x,0px),var(--heart-y,-58px),0) scale(1.08) rotate(var(--heart-rotate,8deg))"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".atlas-liquid-selection-vertical has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-liquid-nav-0934.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".atlas-liquid-selection-vertical",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(12px) saturate(142%) brightness(1.035)",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".atlas-liquid-selection-vertical has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-liquid-nav-0934.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".atlas-liquid-selection-vertical",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(12px) saturate(142%) brightness(1.035)",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".atlas-liquid-selection-vertical has multiple transition definitions",
+      "files": [
+        "atlas-liquid-nav-0934.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".atlas-liquid-selection-vertical",
+        "property": "transition",
+        "values": [
+          "opacity .12s ease!important",
+          "opacity .1s ease!important",
+          "transform .31s var(--atlas-liquid-vertical-ease),opacity .12s ease"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".quick-rail .rail-button .rail-icon has multiple transform definitions",
+      "files": [
+        "atlas-liquid-nav-0934.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".quick-rail .rail-button .rail-icon",
+        "property": "transform",
+        "values": [
+          "translateZ(0)",
+          "translateZ(0) scale(1)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".atlas-quality-performance .atlas-liquid-selection-vertical has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-liquid-nav-0934.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".atlas-quality-performance .atlas-liquid-selection-vertical",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(6px) saturate(124%)",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".atlas-quality-performance .atlas-liquid-selection-vertical has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-liquid-nav-0934.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".atlas-quality-performance .atlas-liquid-selection-vertical",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(6px) saturate(124%)",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".panel.open has multiple transform definitions",
+      "files": [
+        "atlas-nav-layout-0937.css",
+        "styles.css"
+      ],
+      "evidence": {
+        "selector": ".panel.open",
+        "property": "transform",
+        "values": [
+          "none",
+          "translate3d(0,0,0)!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".progress-panel.open has multiple transform definitions",
+      "files": [
+        "atlas-nav-layout-0937.css",
+        "styles.css"
+      ],
+      "evidence": {
+        "selector": ".progress-panel.open",
+        "property": "transform",
+        "values": [
+          "none",
+          "translate3d(0,0,0)!important"
+        ]
+      }
+    }
+  ]
+}
