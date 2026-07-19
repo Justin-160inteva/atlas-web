@@ -1,0 +1,54 @@
+name: Dada sequence 06 exact resolver
+
+on:
+  pull_request:
+    paths:
+      - 'tools/resolve_dada_sequence.py'
+      - 'data/analysis-jobs/dada-quality-reprocess.json'
+      - 'data/dada-ac-shadows-catalog.json'
+      - '.github/workflows/dada-seq06-resolver.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  resolve-sequence-06:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile exact resolver
+        run: python -m py_compile tools/resolve_dada_sequence.py
+
+      - name: Resolve and verify sequence 06 metadata
+        run: python tools/resolve_dada_sequence.py --sequence 6 --require-match
+
+      - name: Verify approved job safety
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('data/batch-analysis/dada-seq06-resolution.json').read_text(encoding='utf-8'))
+          approved = json.loads(Path('data/analysis-jobs/dada-seq06-approved-reprocess.json').read_text(encoding='utf-8'))
+          assert report['status'] == 'verified'
+          assert report['mediaDownloaded'] is False
+          assert approved['sequence'] == 6
+          assert approved['safeToDownloadNow'] is True
+          assert approved['verifiedBvid'] != 'BV1eeZ7YdEDs'
+          assert all(approved['verificationChecks'].values())
+          PY
+
+      - name: Upload exact-resolution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-seq06-resolution-${{ github.sha }}
+          path: |
+            data/batch-analysis/dada-seq06-resolution.json
+            data/analysis-jobs/dada-seq06-approved-reprocess.json
+          if-no-files-found: warn
