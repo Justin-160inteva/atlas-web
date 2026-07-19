@@ -2,11 +2,8 @@
 """Static and simulated health audit for the Atlas scan and monitor stack."""
 from __future__ import annotations
 
-import importlib.util
 import json
 import pathlib
-import re
-import sys
 from datetime import datetime, timezone
 from typing import Any
 
@@ -36,6 +33,7 @@ def main() -> int:
     manifest = load("data/batch-analysis/eleven-pilot-scan-manifest.json")
     queue = load("data/batch-analysis/eleven-pilot-scan-queue.json")
     monitor = text("scan-monitor.js")
+    monitor_health = text("scan-monitor-health.js")
     monitor_html = text("scan-monitor.html")
     worker = text("sw.js")
     publisher = text("tools/publish_runtime_progress.py")
@@ -59,14 +57,15 @@ def main() -> int:
     record(checks, "bounded_queue", 1 <= len(queue.get("items", [])) <= 3 and manifest.get("maxItemsPerRun") == 1, "one item per run, at most three queued")
     record(checks, "retention_policy", manifest.get("retention", {}).get("originalVideo") is False and manifest.get("retention", {}).get("framePixels") is False, "media and frame pixels are not retained")
 
-    record(checks, "monitor_fast_poll", "FAST_POLL_MS=10000" in monitor, "monitor reads every 10 seconds")
-    record(checks, "monitor_heartbeat_window", "RUNTIME_FRESH_MS=150000" in monitor and "RUNNING_STALE_MS=180000" in monitor, "60-second heartbeat gets bounded freshness windows")
-    record(checks, "monitor_version", "version:'0.3.1'" in monitor and "scan-monitor.js?v=0.3.1" in monitor_html, "monitor assets use v0.3.1")
-    record(checks, "monitor_cache_generation", "monitor-v4" in worker, "service worker cache generation updated")
+    record(checks, "monitor_fast_poll", "FAST_POLL_MS=10000" in monitor and "CHECK_MS=10000" in monitor_health, "monitor reads every 10 seconds")
+    record(checks, "monitor_heartbeat_window", "EXPECTED_HEARTBEAT_SECONDS=60" in monitor_health and "FRESH_SECONDS=150" in monitor_health and "STALE_SECONDS=180" in monitor_health, "minute heartbeat has bounded health thresholds")
+    record(checks, "monitor_version", "VERSION='0.3.1'" in monitor_health and "scan-monitor-health.js?v=0.3.1" in monitor_html, "health guard uses v0.3.1")
+    record(checks, "monitor_schema_guard", "invalid runtime schema" in monitor_health and "schemaVersion>=2" in monitor_health, "malformed runtime payloads are rejected")
+    record(checks, "monitor_cache_generation", "monitor-v4" in worker and "scan-monitor-health.js" in worker, "service worker cache generation updated")
 
     record(checks, "publisher_conflict_retry", "error.code not in {409, 422}" in publisher and "ATLAS_PROGRESS_CONFLICT_RETRIES" in publisher, "GitHub content conflicts refetch SHA and retry")
     record(checks, "workflow_immediate_recovery", "run_scan_with_auto_recovery.py" in workflow and "diagnose_and_recover_scan_v2.py" in workflow, "failure investigation occurs inside the same job")
-    record(checks, "workflow_generic_region", "all(item['regionGuess']==region" in workflow and "len(queue['items'])==3" not in workflow, "workflow is not hard-coded to 山城 or exactly three items")
+    record(checks, "workflow_generic_region", "all(item['regionGuess']==region" in workflow and "len(queue['items'])==3" not in workflow, "workflow is not hard-coded to one region or exactly three items")
 
     sample_expectations = {
         "HTTP Error 412: Precondition Failed": "bilibili-http-412",
