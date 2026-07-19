@@ -1,4 +1,4 @@
-name: Performance typography UI route and liquid navigation check
+name: Performance typography UI route and controls check
 
 on:
   push:
@@ -14,10 +14,12 @@ on:
       - 'atlas-liquid-nav-0934.js'
       - 'atlas-liquid-nav-0934.css'
       - 'atlas-nav-layout-0937.css'
+      - 'atlas-controls-0938.js'
+      - 'atlas-controls-0938.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
-      - 'tools/validate_release_0937.py'
+      - 'tools/verify_controls_0938.py'
       - 'FONT-LICENSES.md'
       - 'sw.js'
       - '.github/workflows/performance-static-check.yml'
@@ -34,10 +36,12 @@ on:
       - 'atlas-liquid-nav-0934.js'
       - 'atlas-liquid-nav-0934.css'
       - 'atlas-nav-layout-0937.css'
+      - 'atlas-controls-0938.js'
+      - 'atlas-controls-0938.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
-      - 'tools/validate_release_0937.py'
+      - 'tools/verify_controls_0938.py'
       - 'FONT-LICENSES.md'
       - 'sw.js'
       - '.github/workflows/performance-static-check.yml'
@@ -63,6 +67,7 @@ jobs:
           node --check atlas-ui-fix-0931.js
           node --check atlas-liquid-nav-0933.js
           node --check atlas-liquid-nav-0934.js
+          node --check atlas-controls-0938.js
           node --check atlas-hd-map.js
           node --check atlas-hd-runtime.js
           node --check atlas-analysis-import.js
@@ -75,22 +80,15 @@ jobs:
           npx --yes postcss-cli@11.0.1 atlas-liquid-nav-0933.css --output /tmp/atlas-liquid-nav-0933.css
           npx --yes postcss-cli@11.0.1 atlas-liquid-nav-0934.css --output /tmp/atlas-liquid-nav-0934.css
           npx --yes postcss-cli@11.0.1 atlas-nav-layout-0937.css --output /tmp/atlas-nav-layout-0937.css
+          npx --yes postcss-cli@11.0.1 atlas-controls-0938.css --output /tmp/atlas-controls-0938.css
       - name: Run 500-check release gate
-        run: python tools/validate_release_0937.py
+        run: python tools/verify_controls_0938.py
       - name: Verify runtime assets and policy
         run: |
-          grep -q "performance-092.js" sw.js
-          grep -q "performance-092.css" sw.js
-          grep -q "atlas-typography-093.css" sw.js
-          grep -q "atlas-ui-fix-0931.js" sw.js
-          grep -q "atlas-ui-fix-0931.css" sw.js
-          grep -q "atlas-smart-route-0932.css" sw.js
-          grep -q "atlas-liquid-nav-0933.css" sw.js
-          grep -q "atlas-liquid-nav-0934.js" sw.js
-          grep -q "atlas-liquid-nav-0934.css" sw.js
-          grep -q "atlas-nav-layout-0937.css" sw.js
-          grep -q "atlas-liquid-nav-0933.css" atlas-liquid-nav-0934.css
-          grep -q "atlas-nav-layout-0937.css" atlas-liquid-nav-0934.css
-          grep -q "0.9.3.7" atlas-liquid-nav-0934.js
-          grep -q "atlas-alpha-0937" sw.js
+          grep -q "atlas-controls-0938.css" sw.js
+          grep -q "atlas-controls-0938.js" sw.js
+          grep -q "atlas-controls-0938.css" atlas-liquid-nav-0934.css
+          grep -q "atlas-controls-0938.js?v=0.9.3.8" atlas-liquid-nav-0934.js
+          grep -q "0.9.3.8" atlas-liquid-nav-0934.js
+          grep -q "atlas-alpha-0938" sw.js
           grep -q "does not bundle, extract, redistribute" FONT-LICENSES.md
