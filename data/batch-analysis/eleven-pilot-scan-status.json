@@ -1,74 +1,19 @@
 {
   "schemaVersion": 2,
-  "batchId": "eleven-production-p001-p003-v1",
+  "batchId": "eleven-production-p004-p006-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
-  "pilotRegion": "顺序批次 P01-P03",
-  "updatedAt": "2026-07-19T19:59:33.665033Z",
-  "phase": "complete",
+  "pilotRegion": "顺序批次 P04-P06",
+  "updatedAt": "2026-07-19T20:08:00Z",
+  "phase": "pending",
   "activeItem": null,
-  "complete": true,
-  "summary": {
-    "total": 3,
-    "imported": 3,
-    "running": 0,
-    "failed": 0,
-    "blocked": 0,
-    "retryableFailed": 0,
-    "remaining": 0,
-    "attemptedThisRun": 1,
-    "newlyImportedThisRun": 1
-  },
+  "complete": false,
+  "summary": {"total":3,"imported":0,"running":0,"failed":0,"blocked":0,"retryableFailed":0,"remaining":3,"attemptedThisRun":0,"newlyImportedThisRun":0},
   "items": [
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p001",
-      "sequence": 1,
-      "page": 1,
-      "state": "imported",
-      "attemptCount": 2,
-      "lastStartedAt": "2026-07-19T19:05:35.857189Z",
-      "lastFinishedAt": "2026-07-19T19:10:49.900460Z",
-      "resultPath": "data/analysis-results/eleven-p001.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p002",
-      "sequence": 2,
-      "page": 2,
-      "state": "imported",
-      "attemptCount": 3,
-      "lastStartedAt": "2026-07-19T19:27:49.739729Z",
-      "lastFinishedAt": "2026-07-19T19:28:13.175886Z",
-      "resultPath": "data/analysis-results/eleven-p002.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p003",
-      "sequence": 3,
-      "page": 3,
-      "state": "imported",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-19T19:59:12.588529Z",
-      "lastFinishedAt": "2026-07-19T19:59:33.661665Z",
-      "resultPath": "data/analysis-results/eleven-p003.json",
-      "error": null
-    }
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p004","sequence":4,"page":4,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p005","sequence":5,"page":5,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p006","sequence":6,"page":6,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null}
   ],
-  "events": [
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p003",
-      "sequence": 3,
-      "page": 3,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P03 第3期：一天之计",
-      "startedAt": "2026-07-19T19:59:12.588529Z",
-      "attemptCount": 1,
-      "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p003.json status=analyzed\n\n",
-      "analysisStatus": "analyzed",
-      "indexReturnCode": 0,
-      "completed": true,
-      "finishedAt": "2026-07-19T19:59:33.661665Z"
-    }
-  ],
+  "events": [],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
 }
