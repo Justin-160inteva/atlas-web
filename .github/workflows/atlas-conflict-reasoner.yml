@@ -46,7 +46,7 @@ jobs:
           node --check sw.js
 
       - name: Run static conflict reasoner
-        run: python tools/atlas_conflict_reasoner_v2.py
+        run: python tools/atlas_conflict_reasoner_v3.py
 
       - name: Install Playwright Chromium
         run: |
