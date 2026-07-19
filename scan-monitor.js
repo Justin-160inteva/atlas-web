@@ -3,6 +3,7 @@
 
   const DATA_POLL_MS=15000;
   const ACTIONS_POLL_MS=60000;
+  const RUNTIME_FRESH_MS=180000;
   const REPO='Justin-160inteva/atlas-web';
   const WORKFLOW='scan-eleven-pilot-v2.yml';
   const sources={
@@ -93,6 +94,14 @@
     return items.find(item=>item.externalSourceId===activeId)||items.find(item=>item.state==='running')||items.find(item=>item.state==='pending')||items.find(item=>item.state==='failed')||null;
   }
 
+  function usableRuntime(runtime,current){
+    if(!runtime||!current)return null;
+    if(runtime.externalSourceId&&runtime.externalSourceId!==current.externalSourceId)return null;
+    const updated=Date.parse(runtime.updatedAt||'');
+    if(!Number.isFinite(updated)||Date.now()-updated>RUNTIME_FRESH_MS)return null;
+    return runtime;
+  }
+
   function renderQueue(queue,status){
     const items=queue?.items||status?.items||[];
     $('queueSummary').textContent=`${items.length} 个任务`;
@@ -128,12 +137,13 @@
     const total=Number(summary.total||queue?.items?.length||3);
     const imported=Number(summary.imported||queue?.items?.filter(item=>item.state==='imported').length||0);
     const current=currentItem(status,queue);
-    const itemProgress=Number(runtime?.progressPercent||0);
+    const liveRuntime=usableRuntime(runtime,current);
+    const itemProgress=Number(liveRuntime?.progressPercent||0);
     const progress=Math.max(0,Math.min(100,total?((imported+(itemProgress>0&&state==='running'?itemProgress/100:0))/total)*100:0));
     const catalogTotal=Number(catalog?.catalogStatus?.matchedGameVideos||catalog?.items?.length||80);
     const catalogImported=Number(catalog?.catalogStatus?.analysisImported||catalog?.items?.filter(item=>item.analysisStatus==='imported').length||0);
     const attempt=Number(current?.attemptCount||status?.activeItem?.attemptCount||recovery?.attemptCount||0);
-    const updated=status?.updatedAt||runtime?.updatedAt||run?.updated_at||catalog?.catalogStatus?.analysisUpdatedAt;
+    const updated=liveRuntime?.updatedAt||status?.updatedAt||run?.updated_at||catalog?.catalogStatus?.analysisUpdatedAt;
 
     $('statusBadge').dataset.state=state;
     $('statusBadge').querySelector('b').textContent=stateLabel(state);
@@ -144,8 +154,8 @@
     $('attemptCount').textContent=`${attempt} / ${recovery?.maxAttempts||3}`;
     $('heartbeatAge').textContent=ageLabel(updated);
     $('activeTitle').textContent=current?`P${current.page||current.sequence||'—'} · ${current.partTitle||current.title||'当前扫描任务'}`:state==='complete'?'山城试验扫描已完成':'当前没有活动扫描任务';
-    $('activeDetail').textContent=runtime?.message||(
-      state==='running'?`GitHub Actions 正在执行${runtime?.stage?` · ${runtime.stage}`:''}`:
+    $('activeDetail').textContent=liveRuntime?.message||(
+      state==='running'?`GitHub Actions 正在执行${liveRuntime?.stage?` · ${liveRuntime.stage}`:''}`:
       state==='queued'?'任务已进入 GitHub Actions 队列。':
       state==='recovery'?`检测到可恢复故障：${recovery?.category||'未知类别'}，系统正在按受限策略重试。`:
       state==='blocked'?`自动处理已暂停：${recovery?.category||'需要人工检查'}。`:
@@ -154,7 +164,7 @@
     $('lastSync').textContent=`页面同步 ${new Date().toLocaleTimeString('zh-CN',{hour12:false})}`;
     $('syncState').textContent='已连接';
 
-    $('stageList').innerHTML=stagesFor(state,runtime).map(stage=>`<div class="stage ${stage.className}"><i></i><span>${esc(stage.label)}</span></div>`).join('');
+    $('stageList').innerHTML=stagesFor(state,liveRuntime).map(stage=>`<div class="stage ${stage.className}"><i></i><span>${esc(stage.label)}</span></div>`).join('');
     const statusAge=Date.parse(updated||'');
     const stale=Number.isFinite(statusAge)&&Date.now()-statusAge>2*60*60*1000;
     $('freshnessNotice').textContent=stale?'最后状态已超过2小时，看门狗会检查是否需要恢复。':'页面每15秒读取状态；GitHub Actions 运行状态每60秒同步一次。';
