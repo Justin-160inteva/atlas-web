@@ -27,6 +27,7 @@
     item.title=item.title_zh;
     return item;
   }
+  polish.atlasPaths=['data/locations.json'];
 
   window.AtlasLocationTitlePolish={polish,exact,version:VERSION};
   window.AtlasDataTransforms=window.AtlasDataTransforms||[];
