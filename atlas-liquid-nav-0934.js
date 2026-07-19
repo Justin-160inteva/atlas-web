@@ -1,7 +1,7 @@
 (() => {
   'use strict';
-  const VERSION='0.9.3.8';
-  const VERSION_TEXT="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.8";
+  const VERSION='0.9.4.1';
+  const VERSION_TEXT="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.1";
   const root=document.documentElement;
   const groups=[];
   let frame=0;
@@ -41,7 +41,8 @@
     if('ResizeObserver'in window)new ResizeObserver(schedule).observe(container);placeIndicator(group);
   }
   function loadControls(){
-    if(!document.querySelector('script[data-atlas-controls="0.9.3.8"]')){const script=document.createElement('script');script.src='atlas-controls-0938.js?v=0.9.3.8';script.defer=true;script.dataset.atlasControls='0.9.3.8';document.body.appendChild(script)}
+    document.querySelectorAll('script[data-atlas-controls]').forEach(node=>{if(node.dataset.atlasControls!==VERSION)node.remove()});
+    if(!document.querySelector(`script[data-atlas-controls="${VERSION}"]`)){const script=document.createElement('script');script.src=`atlas-controls-0938.js?v=${VERSION}`;script.defer=true;script.dataset.atlasControls=VERSION;document.body.appendChild(script)}
   }
   function init(){installGroup('.bottom-nav','horizontal');installGroup('.quick-rail','vertical');root.dataset.atlasLiquidNav=VERSION;stampVersion();const brand=document.querySelector('.brand-copy small');if(brand)new MutationObserver(stampVersion).observe(brand,{childList:true,characterData:true,subtree:true});addEventListener('resize',schedule,{passive:true});addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});document.fonts?.ready?.then(schedule,()=>{});setTimeout(schedule,120);loadControls()}
   document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init,{once:true}):init();
