@@ -3,7 +3,8 @@
 
 The publisher writes a local JSON snapshot and, when GitHub Actions credentials are
 available, updates one public runtime-progress file through the GitHub Contents API.
-It never publishes cookies, CDN URLs, local paths, video bytes, or frame pixels.
+Concurrent heartbeat writes are reconciled by refetching the current blob SHA before a
+bounded retry. Publishing failure never stops the underlying scan.
 """
 from __future__ import annotations
 
@@ -11,6 +12,7 @@ import base64
 import json
 import os
 import pathlib
+import random
 import time
 import urllib.error
 import urllib.parse
@@ -117,12 +119,22 @@ def _github_request(url: str, token: str, *, method: str = "GET", body: dict[str
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {token}",
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "AtlasRuntimeProgress/1.2",
+            "User-Agent": "AtlasRuntimeProgress/1.3",
             "Content-Type": "application/json",
         },
     )
     with urllib.request.urlopen(request, timeout=25) as response:
         return json.loads(response.read().decode("utf-8"))
+
+
+def _current_sha(base_url: str, branch: str, token: str) -> str | None:
+    try:
+        current = _github_request(f"{base_url}?ref={urllib.parse.quote(branch)}", token)
+        return current.get("sha")
+    except urllib.error.HTTPError as error:
+        if error.code == 404:
+            return None
+        raise
 
 
 def _publish_github(payload: dict[str, Any]) -> bool:
@@ -135,23 +147,30 @@ def _publish_github(payload: dict[str, Any]) -> bool:
 
     encoded_path = urllib.parse.quote(path, safe="/")
     base_url = f"https://api.github.com/repos/{repository}/contents/{encoded_path}"
-    sha = None
-    try:
-        current = _github_request(f"{base_url}?ref={urllib.parse.quote(branch)}", token)
-        sha = current.get("sha")
-    except urllib.error.HTTPError as error:
-        if error.code != 404:
-            raise
+    encoded_content = base64.b64encode(
+        json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
+    ).decode("ascii")
+    maximum = max(1, min(8, int(os.getenv("ATLAS_PROGRESS_CONFLICT_RETRIES", "5"))))
 
-    body = {
-        "message": f"Update Atlas runtime progress: {payload.get('stage')} {payload.get('progressPercent')}% [skip ci]",
-        "content": base64.b64encode(json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")).decode("ascii"),
-        "branch": branch,
-    }
-    if sha:
-        body["sha"] = sha
-    _github_request(base_url, token, method="PUT", body=body)
-    return True
+    for attempt in range(1, maximum + 1):
+        sha = _current_sha(base_url, branch, token)
+        body = {
+            "message": f"Update Atlas runtime progress: {payload.get('stage')} {payload.get('progressPercent')}% [skip ci]",
+            "content": encoded_content,
+            "branch": branch,
+        }
+        if sha:
+            body["sha"] = sha
+        try:
+            _github_request(base_url, token, method="PUT", body=body)
+            return True
+        except urllib.error.HTTPError as error:
+            if error.code not in {409, 422} or attempt >= maximum:
+                raise
+            delay = min(8.0, 0.5 * (2 ** (attempt - 1))) + random.uniform(0.05, 0.45)
+            print(f"runtime progress conflict; refetching SHA and retrying in {delay:.2f}s", flush=True)
+            time.sleep(delay)
+    return False
 
 
 def emit(job: dict[str, Any], *, stage: str, progress_percent: float, message: str,
