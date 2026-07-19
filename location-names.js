@@ -33,6 +33,7 @@
   }
   const cache=new Map();
   function localize(item){if(!item||typeof item!=='object')return item;const original=String(item.title_en||item.title||'');if(!cache.has(original))cache.set(original,translateTitle(original));item.title_en=original;item.title_zh=cache.get(original);item.title=item.title_zh;return item}
+  localize.atlasPaths=['data/locations.json'];
 
   window.AtlasLocationNames={translate:translateTitle,localize};
   window.AtlasDataTransforms=window.AtlasDataTransforms||[];
