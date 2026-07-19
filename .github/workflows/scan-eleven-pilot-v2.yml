@@ -37,8 +37,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg curl
 
-      - name: Compile durable pilot and recovery tools
+      - name: Compile durable pilot, heartbeat, and recovery tools
         run: |
+          python -m py_compile tools/publish_runtime_progress.py
+          python -m py_compile tools/analyze_authorized_video.py
+          python -m py_compile tools/analyze_authorized_video_v2.py
           python -m py_compile tools/analyze_authorized_video_v5.py
           python -m py_compile tools/scan_catalog_queue_v2.py
           python -m py_compile tools/diagnose_and_recover_scan.py
@@ -69,7 +72,7 @@ jobs:
           assert policy['neverModifySourceCodeAutomatically']
           assert policy['neverBroadenAuthorization']
           assert policy['neverRetainOriginalMedia']
-          print('authorization, bounded queue, and recovery policy gate passed')
+          print('authorization, bounded queue, heartbeat, and recovery policy gate passed')
           PY
 
       - name: Scan one regional pilot item with durable state
@@ -77,6 +80,12 @@ jobs:
         continue-on-error: true
         env:
           PYTHONUNBUFFERED: '1'
+          ATLAS_PROGRESS_TOKEN: ${{ github.token }}
+          ATLAS_PROGRESS_REPOSITORY: ${{ github.repository }}
+          ATLAS_PROGRESS_BRANCH: main
+          ATLAS_PROGRESS_PATH: data/runtime-progress/eleven-pilot-progress.json
+          ATLAS_PROGRESS_LOCAL_PATH: /tmp/atlas-runtime-progress.json
+          ATLAS_PROGRESS_MIN_INTERVAL_SECONDS: '90'
         run: python tools/scan_catalog_queue_v2.py data/batch-analysis/eleven-pilot-scan-manifest.json
 
       - name: Remove all transient media
