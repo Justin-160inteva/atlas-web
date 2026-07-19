@@ -1,12 +1,39 @@
 (() => {
   'use strict';
 
-  const VERSION='0.1.0';
-  const STATUS_URL='data/batch-analysis/eleven-pilot-scan-status.json';
+  const VERSION='0.2.0';
+  const REPO='Justin-160inteva/atlas-web';
+  const RAW_BASE=`https://raw.githubusercontent.com/${REPO}/main/`;
+  const STATUS_PATH='data/batch-analysis/eleven-pilot-scan-status.json';
+  const RUNTIME_PATH='data/runtime-progress/eleven-pilot-progress.json';
+  const RUNTIME_FRESH_MS=240000;
   let evidenceBypass=false;
   let statusTimer=0;
 
   const $=selector=>document.querySelector(selector);
+
+  async function fetchJson(path){
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),7000);
+    try{
+      for(const url of [`${RAW_BASE}${path}`,path]){
+        try{
+          const response=await fetch(`${url}?t=${Date.now()}`,{cache:'no-store',signal:controller.signal,headers:{Accept:'application/json'}});
+          if(response.ok)return await response.json();
+        }catch(error){if(error.name==='AbortError')throw error;}
+      }
+      throw new Error('status unavailable');
+    }finally{clearTimeout(timeout);}
+  }
+
+  function ageLabel(value){
+    const time=Date.parse(value||'');
+    if(!Number.isFinite(time))return '时间未知';
+    const seconds=Math.max(0,Math.round((Date.now()-time)/1000));
+    if(seconds<60)return `${seconds}秒前`;
+    if(seconds<3600)return `${Math.floor(seconds/60)}分钟前`;
+    return `${Math.floor(seconds/3600)}小时前`;
+  }
 
   function inject(){
     const shell=$('.app-shell');
@@ -24,7 +51,7 @@
               <span class="settings-card-icon">◫</span>
               <span class="settings-card-copy">
                 <b>扫描与导入进度</b>
-                <small id="scanMonitorSummary">正在读取任务状态…</small>
+                <small id="scanMonitorSummary">正在读取 GitHub main…</small>
                 <span class="settings-live" id="scanMonitorLive" data-state="idle"><i></i><em>同步中</em></span>
               </span>
               <span class="settings-card-arrow">›</span>
@@ -45,44 +72,47 @@
         <div class="monitor-toolbar">
           <button class="monitor-close" id="closeScanMonitor" aria-label="返回设置">‹</button>
           <div class="monitor-toolbar-copy"><b>扫描与导入进度</b><small>11的游戏世界 · 山城试验队列</small></div>
-          <button class="monitor-refresh" id="refreshScanMonitor" aria-label="刷新进度">↻</button>
+          <button class="monitor-refresh" id="refreshScanMonitor" aria-label="立即核对 GitHub main">↻</button>
         </div>
         <iframe class="monitor-frame" id="scanMonitorFrame" title="Atlas 扫描与导入进度" loading="lazy"></iframe>
       </section>`);
   }
 
-  function stateFrom(status){
+  function stateFrom(status,runtime){
     const phase=String(status?.phase||'').toLowerCase();
     const summary=status?.summary||{};
+    const runtimeState=String(runtime?.state||'').toLowerCase();
     if(status?.complete)return 'complete';
-    if(phase.includes('recover')||summary.retryableFailed>0)return 'recovery';
+    if(phase.includes('recover')||summary.retryableFailed>0||runtimeState==='failed')return 'recovery';
     if(phase.includes('block')||summary.blocked>0)return 'blocked';
-    if(phase.includes('run')||summary.running>0)return 'running';
+    if(phase.includes('run')||summary.running>0||runtimeState==='running')return 'running';
+    if(runtimeState==='queued')return 'queued';
     return 'idle';
   }
 
   function labelFor(state){
-    return({running:'运行中',recovery:'自动恢复',blocked:'需要检查',complete:'已完成',idle:'等待中'})[state]||'等待中';
+    return({running:'运行中',queued:'排队中',recovery:'自动恢复',blocked:'需要检查',complete:'已完成',idle:'等待中'})[state]||'等待中';
   }
 
   async function refreshBadge(){
     try{
-      const response=await fetch(`${STATUS_URL}?t=${Date.now()}`,{cache:'no-store'});
-      if(!response.ok)throw new Error(String(response.status));
-      const status=await response.json();
+      const [status,runtime]=await Promise.all([fetchJson(STATUS_PATH),fetchJson(RUNTIME_PATH).catch(()=>null)]);
       const summary=status.summary||{};
       const imported=Number(summary.imported||0);
       const total=Number(summary.total||3);
       const active=status.activeItem?.page||status.items?.find(item=>item.state==='running')?.page||status.items?.find(item=>item.state==='pending')?.page;
-      const stateName=stateFrom(status);
+      const activeId=status.activeItem?.externalSourceId||status.items?.find(item=>item.state==='running')?.externalSourceId||status.items?.find(item=>item.state==='pending')?.externalSourceId;
+      const runtimeFresh=runtime&&(!runtime.externalSourceId||runtime.externalSourceId===activeId)&&Date.now()-Date.parse(runtime.updatedAt||'')<=RUNTIME_FRESH_MS?runtime:null;
+      const stateName=stateFrom(status,runtimeFresh);
+      const updated=runtimeFresh?.updatedAt||status.updatedAt;
       const summaryNode=$('#scanMonitorSummary');
       const live=$('#scanMonitorLive');
-      if(summaryNode)summaryNode.textContent=`山城试验 ${imported}/${total}${active?` · 当前 P${active}`:''}`;
+      if(summaryNode)summaryNode.textContent=`山城试验 ${imported}/${total}${active?` · P${active}`:''} · 数据${ageLabel(updated)}`;
       if(live){live.dataset.state=stateName;const text=live.querySelector('em');if(text)text.textContent=labelFor(stateName);}
     }catch(_){
       const summaryNode=$('#scanMonitorSummary');
       const live=$('#scanMonitorLive');
-      if(summaryNode)summaryNode.textContent='暂时无法读取远端状态';
+      if(summaryNode)summaryNode.textContent='本轮状态核对失败，稍后自动重试';
       if(live){live.dataset.state='idle';const text=live.querySelector('em');if(text)text.textContent='等待同步';}
     }
   }
@@ -99,12 +129,19 @@
     $('#settingsPanel')?.setAttribute('aria-hidden','true');
   }
 
+  function requestMonitorRefresh(){
+    const frame=$('#scanMonitorFrame');
+    try{frame?.contentWindow?.postMessage({type:'atlas-monitor-refresh'},location.origin);}catch(_){/* iframe may still be loading */}
+    refreshBadge();
+  }
+
   function openMonitor(){
     const overlay=$('#scanMonitorOverlay');
     const frame=$('#scanMonitorFrame');
-    if(frame&&!frame.src)frame.src='scan-monitor.html?embedded=1';
+    if(frame&&!frame.src)frame.src='scan-monitor.html?embedded=1&v=0.2.0';
     overlay?.classList.add('open');
     overlay?.setAttribute('aria-hidden','false');
+    setTimeout(requestMonitorRefresh,120);
   }
 
   function closeMonitor(){
@@ -131,11 +168,8 @@
     $('#openScanMonitor')?.addEventListener('click',openMonitor);
     $('#closeScanMonitor')?.addEventListener('click',closeMonitor);
     $('#openEvidenceLab')?.addEventListener('click',openEvidence);
-    $('#refreshScanMonitor')?.addEventListener('click',()=>{
-      const frame=$('#scanMonitorFrame');
-      if(frame)frame.src=`scan-monitor.html?embedded=1&t=${Date.now()}`;
-      refreshBadge();
-    });
+    $('#refreshScanMonitor')?.addEventListener('click',requestMonitorRefresh);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshBadge();});
     document.addEventListener('keydown',event=>{
       if(event.key!=='Escape')return;
       if($('#scanMonitorOverlay')?.classList.contains('open'))closeMonitor();
@@ -145,7 +179,7 @@
 
   function init(){
     inject();bind();refreshBadge();
-    statusTimer=window.setInterval(refreshBadge,30000);
+    statusTimer=window.setInterval(refreshBadge,20000);
     window.AtlasSettings={open:openSettings,close:closeSettings,openMonitor,refresh:refreshBadge,version:VERSION};
   }
 
