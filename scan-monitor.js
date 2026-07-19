@@ -65,14 +65,15 @@
     return payload?.workflow_runs?.find(run=>['in_progress','queued'].includes(run.status))||payload?.workflow_runs?.[0]||null;
   }
 
-  function deriveState(status,recovery,run){
+  function deriveState(status,recovery,run,runtime){
     const summary=status?.summary||{};
     const phase=String(status?.phase||'').toLowerCase();
+    const runtimeState=String(runtime?.state||'').toLowerCase();
     if(status?.complete)return 'complete';
     if(recovery?.requiresHumanReview||summary.blocked>0||phase.includes('block'))return 'blocked';
-    if(recovery?.retryScheduled||phase.includes('recover')||summary.retryableFailed>0)return 'recovery';
-    if(run?.status==='in_progress'||summary.running>0||phase.includes('run'))return 'running';
-    if(run?.status==='queued')return 'queued';
+    if(runtimeState==='failed'||recovery?.retryScheduled||phase.includes('recover')||summary.retryableFailed>0)return 'recovery';
+    if(run?.status==='in_progress'||runtimeState==='running'||summary.running>0||phase.includes('run'))return 'running';
+    if(run?.status==='queued'||runtimeState==='queued')return 'queued';
     return 'idle';
   }
 
@@ -132,12 +133,12 @@
   function render(data){
     const {status,queue,catalog,recovery,watchdog,runtime,actionsPayload}=data;
     const run=latestRun(actionsPayload);
-    const state=deriveState(status,recovery,run);
     const summary=status?.summary||{};
     const total=Number(summary.total||queue?.items?.length||3);
     const imported=Number(summary.imported||queue?.items?.filter(item=>item.state==='imported').length||0);
     const current=currentItem(status,queue);
     const liveRuntime=usableRuntime(runtime,current);
+    const state=deriveState(status,recovery,run,liveRuntime);
     const itemProgress=Number(liveRuntime?.progressPercent||0);
     const progress=Math.max(0,Math.min(100,total?((imported+(itemProgress>0&&state==='running'?itemProgress/100:0))/total)*100:0));
     const catalogTotal=Number(catalog?.catalogStatus?.matchedGameVideos||catalog?.items?.length||80);
