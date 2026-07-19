@@ -62,32 +62,15 @@ jobs:
           node --check sw.js
 
       - name: Run systemic audit and simulated bug matches
+        id: systemic_audit
+        continue-on-error: true
         run: python tools/audit_scan_system.py
 
-      - name: Validate complete health report
-        run: |
-          python - <<'PY'
-          import json
-          report=json.load(open('data/batch-analysis/scan-system-health.json',encoding='utf-8'))
-          required={
-              'monitor_fast_poll','monitor_heartbeat_window','monitor_schema_guard',
-              'publisher_conflict_simulation','workflow_immediate_recovery',
-              'live_recovery_status','diagnostic_redaction','repository_media_clean',
-              'recovery_action_412','recovery_action_context_adapter',
-              'recovery_action_transcode','recovery_action_timeout','recovery_action_memory'
-          }
-          checks={item['name']:item for item in report['checks']}
-          assert report['status']=='pass', report
-          assert report['summary']['failed']==0, report['summary']
-          assert report['summary']['total']>=33, report['summary']
-          assert required <= checks.keys(), sorted(required-checks.keys())
-          assert all(checks[name]['passed'] for name in required), checks
-          print(f"scan system health: {report['summary']['passed']}/{report['summary']['total']} passed")
-          PY
-
-      - name: Publish health report
+      - name: Publish health report even when checks fail
+        if: always()
         run: |
           REPORT='data/batch-analysis/scan-system-health.json'
+          test -f "$REPORT"
           if [ -z "$(git status --porcelain -- "$REPORT")" ]; then
             echo 'Health report unchanged.'
             exit 0
@@ -102,3 +85,25 @@ jobs:
             sleep $((attempt * 3))
           done
           exit 1
+
+      - name: Enforce complete health gate
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          report=json.load(open('data/batch-analysis/scan-system-health.json',encoding='utf-8'))
+          required={
+              'monitor_fast_poll','monitor_heartbeat_window','monitor_schema_guard',
+              'publisher_conflict_simulation','workflow_immediate_recovery',
+              'live_recovery_status','diagnostic_redaction','repository_media_clean',
+              'recovery_action_412','recovery_action_context_adapter',
+              'recovery_action_transcode','recovery_action_timeout','recovery_action_memory'
+          }
+          checks={item['name']:item for item in report['checks']}
+          assert report['summary']['total']>=33, report['summary']
+          assert required <= checks.keys(), sorted(required-checks.keys())
+          assert report['status']=='pass', [item for item in report['checks'] if not item['passed']]
+          assert report['summary']['failed']==0, report['summary']
+          assert all(checks[name]['passed'] for name in required), checks
+          print(f"scan system health: {report['summary']['passed']}/{report['summary']['total']} passed")
+          PY
