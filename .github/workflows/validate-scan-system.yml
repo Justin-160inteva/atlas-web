@@ -13,12 +13,11 @@ on:
       - 'tools/analyze_authorized_video_v10.py'
       - 'tools/diagnose_and_recover_scan_v2.py'
       - 'tools/run_scan_with_auto_recovery.py'
-      - 'tools/audit_scan_system.py'
       - 'tools/audit_scan_system_v2.py'
       - 'scan-monitor.html'
       - 'scan-monitor.js'
+      - 'scan-monitor-coherence.js'
       - 'scan-monitor-download.js'
-      - 'scan-monitor-health.js'
       - 'sw.js'
       - '.github/workflows/scan-eleven-pilot-v2.yml'
       - '.github/workflows/validate-scan-monitor.yml'
@@ -58,8 +57,8 @@ jobs:
         run: |
           node --check atlas-settings.js
           node --check scan-monitor.js
+          node --check scan-monitor-coherence.js
           node --check scan-monitor-download.js
-          node --check scan-monitor-health.js
           node --check sw.js
 
       - name: Run executable systemic audit and simulated recovery cases
