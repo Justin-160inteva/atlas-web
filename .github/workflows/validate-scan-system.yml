@@ -14,6 +14,7 @@ on:
       - 'tools/diagnose_and_recover_scan_v2.py'
       - 'tools/run_scan_with_auto_recovery.py'
       - 'tools/audit_scan_system.py'
+      - 'tools/audit_scan_system_v2.py'
       - 'scan-monitor.html'
       - 'scan-monitor.js'
       - 'scan-monitor-download.js'
@@ -51,7 +52,7 @@ jobs:
           python -m py_compile tools/analyze_authorized_video_v10.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
-          python -m py_compile tools/audit_scan_system.py
+          python -m py_compile tools/audit_scan_system_v2.py
 
       - name: Validate JavaScript monitor
         run: |
@@ -61,10 +62,10 @@ jobs:
           node --check scan-monitor-health.js
           node --check sw.js
 
-      - name: Run systemic audit and simulated bug matches
+      - name: Run executable systemic audit and simulated recovery cases
         id: systemic_audit
         continue-on-error: true
-        run: python tools/audit_scan_system.py
+        run: python tools/audit_scan_system_v2.py
 
       - name: Publish health report even when checks fail
         if: always()
@@ -93,11 +94,10 @@ jobs:
           import json
           report=json.load(open('data/batch-analysis/scan-system-health.json',encoding='utf-8'))
           required={
-              'monitor_fast_poll','monitor_heartbeat_window','monitor_schema_guard',
-              'publisher_conflict_simulation','workflow_immediate_recovery',
-              'live_recovery_status','diagnostic_redaction','repository_media_clean',
-              'recovery_action_412','recovery_action_context_adapter',
-              'recovery_action_transcode','recovery_action_timeout','recovery_action_memory'
+              'monitor_poll','monitor_thresholds','monitor_schema','monitor_completion_priority',
+              'publisher_409_simulation','same_job_recovery','live_recovery',
+              'repository_media_clean','action_412','action_context',
+              'action_media','action_timeout','action_memory','v10_adapter','bounded_queue'
           }
           checks={item['name']:item for item in report['checks']}
           assert report['summary']['total']>=33, report['summary']
