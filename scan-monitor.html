@@ -13,7 +13,6 @@
       <div><small>ATLAS DEVELOPER MONITOR</small><h1>扫描与导入进度</h1></div>
       <div class="sync-meta"><b id="syncState" data-state="syncing">连接中</b><small id="lastSync">—</small></div>
     </header>
-
     <section class="hero">
       <div class="hero-top"><span class="status-badge" id="statusBadge" data-state="idle"><i></i><b>读取状态</b></span><strong class="hero-percent" id="heroPercent">0%</strong></div>
       <h2 id="activeTitle">正在连接扫描队列</h2>
@@ -26,7 +25,6 @@
         <div class="stat"><b id="heartbeatAge">—</b><small>任务数据更新时间</small></div>
       </div>
     </section>
-
     <section class="card download-telemetry" id="downloadTelemetry" data-active="false">
       <div class="card-title"><b>实时下载遥测</b><small id="downloadHeartbeatMeta">等待任务心跳</small></div>
       <div class="telemetry-grid">
@@ -41,30 +39,15 @@
       <div class="telemetry-track segment"><i id="segmentBar"></i></div>
       <p id="downloadDetail">等待下载遥测</p>
     </section>
-
     <div class="grid">
-      <section class="card">
-        <div class="card-title"><b>当前区域队列</b><small id="queueSummary">正在读取任务</small></div>
-        <div class="queue" id="queueList"><div class="empty">正在载入队列…</div></div>
-      </section>
-      <section class="card">
-        <div class="card-title"><b>当前处理阶段</b><small>真实事件状态</small></div>
-        <div class="stage-list" id="stageList"></div>
-        <div class="warning" id="freshnessNotice" data-level="info">正在核对 GitHub main 与任务心跳。</div>
-        <div class="poll-row"><span id="dataOrigin">数据源：连接中</span><span id="nextPoll">下次核对 —</span><button id="forceRefresh" type="button">立即核对</button></div>
-      </section>
-      <section class="card">
-        <div class="card-title"><b>自动恢复</b><small id="recoveryCategory">未触发</small></div>
-        <div id="recoveryPanel"><div class="empty">当前没有恢复事件。</div></div>
-      </section>
-      <section class="card">
-        <div class="card-title"><b>最近事件</b><small>脱敏摘要</small></div>
-        <div id="eventList"><div class="empty">等待扫描事件。</div></div>
-      </section>
+      <section class="card"><div class="card-title"><b>当前区域队列</b><small id="queueSummary">正在读取任务</small></div><div class="queue" id="queueList"><div class="empty">正在载入队列…</div></div></section>
+      <section class="card"><div class="card-title"><b>当前处理阶段</b><small>真实事件状态</small></div><div class="stage-list" id="stageList"></div><div class="warning" id="freshnessNotice" data-level="info">正在核对 GitHub main 与任务心跳。</div><div class="poll-row"><span id="dataOrigin">数据源：连接中</span><span id="nextPoll">下次核对 —</span><button id="forceRefresh" type="button">立即核对</button></div></section>
+      <section class="card"><div class="card-title"><b>自动恢复</b><small id="recoveryCategory">未触发</small></div><div id="recoveryPanel"><div class="empty">当前没有恢复事件。</div></div></section>
+      <section class="card"><div class="card-title"><b>最近事件</b><small>脱敏摘要</small></div><div id="eventList"><div class="empty">等待扫描事件。</div></div></section>
     </div>
-
-    <p class="footer">统一监控器每10秒独立核对核心状态；任一附加接口超时都不会让页面永久停在“同步中”。任务端目标每60秒写入一次心跳，超过180秒无新心跳才判定异常。</p>
+    <p class="footer">主监控器每10秒核对核心状态；实时遥测桥每55秒强制查询GitHub Contents API，并每3秒保持最新心跳投影，避免Raw/CDN旧缓存覆盖真实下载数据。</p>
   </main>
   <script src="scan-monitor.js?v=0.5.0" defer></script>
+  <script src="scan-monitor-live-bridge.js?v=0.1.0" defer></script>
 </body>
 </html>
