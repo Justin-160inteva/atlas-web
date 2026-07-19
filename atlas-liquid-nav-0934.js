@@ -1,199 +1,48 @@
 (() => {
   'use strict';
-
-  const VERSION='0.9.3.7';
-  const VERSION_TEXT="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.7";
+  const VERSION='0.9.3.8';
+  const VERSION_TEXT="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.8";
   const root=document.documentElement;
   const groups=[];
   let frame=0;
 
-  const standalone=Boolean(
-    window.matchMedia?.('(display-mode: standalone)').matches||
-    window.navigator.standalone
-  );
-  root.classList.toggle('atlas-standalone',standalone);
-
-  function stampVersion(){
-    const brand=document.querySelector('.brand-copy small');
-    if(brand&&brand.textContent!==VERSION_TEXT)brand.textContent=VERSION_TEXT;
-  }
-
-  function schedule(){
-    if(frame)return;
-    frame=requestAnimationFrame(()=>{
-      frame=0;
-      groups.forEach(placeIndicator);
-    });
-  }
-
+  root.classList.toggle('atlas-standalone',Boolean(window.matchMedia?.('(display-mode: standalone)').matches||window.navigator.standalone));
+  function stampVersion(){const brand=document.querySelector('.brand-copy small');if(brand&&brand.textContent!==VERSION_TEXT)brand.textContent=VERSION_TEXT}
+  function schedule(){if(frame)return;frame=requestAnimationFrame(()=>{frame=0;groups.forEach(placeIndicator)})}
   function geometry(group,containerRect,activeRect){
-    if(group.name!=='vertical'){
-      return{
-        x:activeRect.left-containerRect.left,
-        y:activeRect.top-containerRect.top,
-        width:activeRect.width,
-        height:activeRect.height
-      };
-    }
-
-    const insetX=5;
-    const insetY=3;
-    return{
-      x:activeRect.left-containerRect.left+insetX,
-      y:activeRect.top-containerRect.top+insetY,
-      width:Math.max(0,activeRect.width-insetX*2),
-      height:Math.max(0,activeRect.height-insetY*2)
-    };
+    if(group.name!=='vertical')return{x:activeRect.left-containerRect.left,y:activeRect.top-containerRect.top,width:activeRect.width,height:activeRect.height};
+    const insetX=5,insetY=3;
+    return{x:activeRect.left-containerRect.left+insetX,y:activeRect.top-containerRect.top+insetY,width:Math.max(0,activeRect.width-insetX*2),height:Math.max(0,activeRect.height-insetY*2)};
   }
-
   function animateVertical(group,next){
-    const {indicator}=group;
-    const target=`translate3d(${next.x}px,${next.y}px,0)`;
-
-    indicator.style.setProperty('--liquid-x',`${next.x}px`);
-    indicator.style.setProperty('--liquid-y',`${next.y}px`);
-    indicator.style.setProperty('--liquid-w',`${next.width}px`);
-    indicator.style.setProperty('--liquid-h',`${next.height}px`);
-
-    if(!group.ready||matchMedia('(prefers-reduced-motion: reduce)').matches){
-      group.animation?.cancel();
-      indicator.style.transform=target;
-      group.x=next.x;
-      group.y=next.y;
-      group.ready=true;
-      requestAnimationFrame(()=>indicator.classList.add('is-ready'));
-      return;
-    }
-
+    const {indicator}=group,target=`translate3d(${next.x}px,${next.y}px,0)`;
+    indicator.style.setProperty('--liquid-x',`${next.x}px`);indicator.style.setProperty('--liquid-y',`${next.y}px`);indicator.style.setProperty('--liquid-w',`${next.width}px`);indicator.style.setProperty('--liquid-h',`${next.height}px`);
+    if(!group.ready||matchMedia('(prefers-reduced-motion: reduce)').matches){group.animation?.cancel();indicator.style.transform=target;group.x=next.x;group.y=next.y;group.ready=true;requestAnimationFrame(()=>indicator.classList.add('is-ready'));return}
     if(group.x===next.x&&group.y===next.y)return;
-
-    const computed=getComputedStyle(indicator).transform;
-    group.animation?.cancel();
-    group.animation=indicator.animate(
-      [
-        {transform:computed==='none'?`translate3d(${group.x}px,${group.y}px,0)`:computed},
-        {transform:target}
-      ],
-      {
-        duration:210,
-        easing:'cubic-bezier(.22,.82,.2,1)',
-        fill:'forwards'
-      }
-    );
-    group.animation.onfinish=()=>{
-      indicator.style.transform=target;
-      group.animation?.cancel();
-      group.animation=null;
-    };
-    group.x=next.x;
-    group.y=next.y;
+    const computed=getComputedStyle(indicator).transform;group.animation?.cancel();
+    group.animation=indicator.animate([{transform:computed==='none'?`translate3d(${group.x}px,${group.y}px,0)`:computed},{transform:target}],{duration:210,easing:'cubic-bezier(.22,.82,.2,1)',fill:'forwards'});
+    group.animation.onfinish=()=>{indicator.style.transform=target;group.animation?.cancel();group.animation=null};group.x=next.x;group.y=next.y;
   }
-
   function placeIndicator(group){
-    const {container,indicator}=group;
-    const active=container.querySelector('button.active');
-    if(!active){
-      indicator.classList.remove('is-ready');
-      return;
-    }
-
-    const containerRect=container.getBoundingClientRect();
-    const activeRect=active.getBoundingClientRect();
-    const next=geometry(group,containerRect,activeRect);
-
-    if(group.name==='vertical'){
-      animateVertical(group,next);
-      return;
-    }
-
-    indicator.style.setProperty('--liquid-x',`${next.x}px`);
-    indicator.style.setProperty('--liquid-y',`${next.y}px`);
-
-    if(group.width!==next.width){
-      group.width=next.width;
-      indicator.style.setProperty('--liquid-w',`${next.width}px`);
-    }
-    if(group.height!==next.height){
-      group.height=next.height;
-      indicator.style.setProperty('--liquid-h',`${next.height}px`);
-    }
-
-    if(!indicator.classList.contains('is-ready')){
-      requestAnimationFrame(()=>indicator.classList.add('is-ready'));
-    }
+    const active=group.container.querySelector('button.active');if(!active){group.indicator.classList.remove('is-ready');return}
+    const next=geometry(group,group.container.getBoundingClientRect(),active.getBoundingClientRect());
+    if(group.name==='vertical'){animateVertical(group,next);return}
+    const i=group.indicator;i.style.setProperty('--liquid-x',`${next.x}px`);i.style.setProperty('--liquid-y',`${next.y}px`);
+    if(group.width!==next.width){group.width=next.width;i.style.setProperty('--liquid-w',`${next.width}px`)}if(group.height!==next.height){group.height=next.height;i.style.setProperty('--liquid-h',`${next.height}px`)}
+    if(!i.classList.contains('is-ready'))requestAnimationFrame(()=>i.classList.add('is-ready'));
   }
-
-  function release(group){
-    group.indicator.classList.remove('is-pressed');
-  }
-
   function installGroup(selector,name){
-    const container=document.querySelector(selector);
-    if(!container)return;
-
-    container.querySelector('.atlas-liquid-selection')?.remove();
-
-    const indicator=document.createElement('span');
-    indicator.className=`atlas-liquid-selection atlas-liquid-selection-${name}`;
-    indicator.setAttribute('aria-hidden','true');
-    container.prepend(indicator);
-
-    const group={container,indicator,name,width:-1,height:-1,x:0,y:0,ready:false,animation:null};
-    groups.push(group);
-
-    container.addEventListener('pointerdown',event=>{
-      const button=event.target.closest('button');
-      if(!button||!container.contains(button))return;
-      if(name!=='vertical')indicator.classList.add('is-pressed');
-    },{passive:true});
-
-    container.addEventListener('pointerup',()=>{
-      release(group);
-      schedule();
-    },{passive:true});
-    container.addEventListener('pointercancel',()=>release(group),{passive:true});
-    container.addEventListener('pointerleave',()=>release(group),{passive:true});
-    container.addEventListener('click',schedule);
-
-    const observer=new MutationObserver(records=>{
-      const activeButtonChanged=records.some(record=>
-        record.type==='attributes'&&
-        record.attributeName==='class'&&
-        record.target instanceof HTMLButtonElement
-      );
-      if(activeButtonChanged)schedule();
-    });
-    observer.observe(container,{subtree:true,attributes:true,attributeFilter:['class']});
-    group.observer=observer;
-
-    if('ResizeObserver'in window){
-      group.resizeObserver=new ResizeObserver(schedule);
-      group.resizeObserver.observe(container);
-    }
-
-    placeIndicator(group);
+    const container=document.querySelector(selector);if(!container)return;
+    container.querySelector('.atlas-liquid-selection')?.remove();const indicator=document.createElement('span');indicator.className=`atlas-liquid-selection atlas-liquid-selection-${name}`;indicator.setAttribute('aria-hidden','true');container.prepend(indicator);
+    const group={container,indicator,name,width:-1,height:-1,x:0,y:0,ready:false,animation:null};groups.push(group);
+    container.addEventListener('pointerdown',event=>{const button=event.target.closest('button');if(button&&container.contains(button)&&name!=='vertical')indicator.classList.add('is-pressed')},{passive:true});
+    const release=()=>indicator.classList.remove('is-pressed');container.addEventListener('pointerup',()=>{release();schedule()},{passive:true});container.addEventListener('pointercancel',release,{passive:true});container.addEventListener('pointerleave',release,{passive:true});container.addEventListener('click',schedule);
+    new MutationObserver(records=>{if(records.some(r=>r.type==='attributes'&&r.attributeName==='class'&&r.target instanceof HTMLButtonElement))schedule()}).observe(container,{subtree:true,attributes:true,attributeFilter:['class']});
+    if('ResizeObserver'in window)new ResizeObserver(schedule).observe(container);placeIndicator(group);
   }
-
-  function init(){
-    installGroup('.bottom-nav','horizontal');
-    installGroup('.quick-rail','vertical');
-    root.dataset.atlasLiquidNav=VERSION;
-    stampVersion();
-
-    const brand=document.querySelector('.brand-copy small');
-    if(brand){
-      new MutationObserver(stampVersion).observe(brand,{childList:true,characterData:true,subtree:true});
-    }
-
-    addEventListener('resize',schedule,{passive:true});
-    addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});
-    document.fonts?.ready?.then(schedule,()=>{});
-    setTimeout(schedule,120);
+  function loadControls(){
+    if(!document.querySelector('script[data-atlas-controls="0.9.3.8"]')){const script=document.createElement('script');script.src='atlas-controls-0938.js?v=0.9.3.8';script.defer=true;script.dataset.atlasControls='0.9.3.8';document.body.appendChild(script)}
   }
-
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',init,{once:true});
-  }else{
-    init();
-  }
+  function init(){installGroup('.bottom-nav','horizontal');installGroup('.quick-rail','vertical');root.dataset.atlasLiquidNav=VERSION;stampVersion();const brand=document.querySelector('.brand-copy small');if(brand)new MutationObserver(stampVersion).observe(brand,{childList:true,characterData:true,subtree:true});addEventListener('resize',schedule,{passive:true});addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});document.fonts?.ready?.then(schedule,()=>{});setTimeout(schedule,120);loadControls()}
+  document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init,{once:true}):init();
 })();
