@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "eleven-shancheng-pilot-scan-v1",
+  "author": "11的游戏世界",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
+  "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
+  "statusOutput": "data/batch-analysis/eleven-pilot-scan-status.json",
+  "analyzer": "tools/analyze_authorized_video_v5.py",
+  "outputPrefix": "eleven",
+  "maxItemsPerRun": 1,
+  "maxSamplesA": 720,
+  "maxSamplesDefault": 480,
+  "minimumIntervalSeconds": 2.0,
+  "perItemTimeoutSeconds": 7200,
+  "pilotRegion": "山城",
+  "retention": {
+    "originalVideo": false,
+    "framePixels": false,
+    "numericDescriptorsOnly": true
+  }
+}
