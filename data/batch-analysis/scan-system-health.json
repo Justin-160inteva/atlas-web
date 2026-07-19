@@ -1,11 +1,11 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-19T21:10:53.908872Z",
+  "generatedAt": "2026-07-19T21:11:48.554365Z",
   "status": "fail",
   "summary": {
     "total": 42,
-    "passed": 39,
-    "failed": 3
+    "passed": 37,
+    "failed": 5
   },
   "dictionaryVersion": "2026.07.19.4",
   "checks": [
@@ -191,7 +191,7 @@
     },
     {
       "name": "action_412",
-      "passed": true,
+      "passed": false,
       "detail": "fast public API plus adaptive ranges"
     },
     {
@@ -206,7 +206,7 @@
     },
     {
       "name": "action_timeout",
-      "passed": true,
+      "passed": false,
       "detail": "timeout quality/speed recovery"
     },
     {
