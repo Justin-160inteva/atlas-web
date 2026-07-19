@@ -37,12 +37,38 @@ def _safe_text(value: Any, limit: int = 280) -> str:
     return text[:limit]
 
 
+def _safe_metrics(metrics: dict[str, Any] | None) -> dict[str, Any]:
+    metrics = metrics or {}
+    allowed = {
+        "downloadedBytes": int,
+        "totalBytes": int,
+        "segmentDownloadedBytes": int,
+        "segmentTotalBytes": int,
+        "segmentIndex": int,
+        "segmentCount": int,
+        "speedBytesPerSecond": float,
+        "etaSeconds": float,
+    }
+    clean: dict[str, Any] = {}
+    for key, caster in allowed.items():
+        value = metrics.get(key)
+        if value is None:
+            continue
+        try:
+            number = caster(value)
+        except (TypeError, ValueError):
+            continue
+        clean[key] = max(0, number)
+    return clean
+
+
 def _payload(job: dict[str, Any], *, stage: str, progress_percent: float, message: str,
              processed_seconds: float = 0, sampled_frames: int = 0,
-             target_frames: int | None = None, state: str = "running") -> dict[str, Any]:
+             target_frames: int | None = None, state: str = "running",
+             metrics: dict[str, Any] | None = None) -> dict[str, Any]:
     batch = job.get("batch") or {}
-    return {
-        "schemaVersion": 2,
+    payload = {
+        "schemaVersion": 3,
         "author": job.get("author"),
         "authorizationId": job.get("authorizationId"),
         "pilotRegion": batch.get("regionGuess"),
@@ -59,6 +85,8 @@ def _payload(job: dict[str, Any], *, stage: str, progress_percent: float, messag
         "updatedAt": utc_now(),
         "privacy": "Only public, sanitized task progress is stored. No media URLs, cookies, video files, local paths, or frame pixels are included.",
     }
+    payload.update(_safe_metrics(metrics))
+    return payload
 
 
 def _local_path() -> pathlib.Path:
@@ -84,7 +112,7 @@ def _github_request(url: str, token: str, *, method: str = "GET", body: dict[str
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {token}",
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "AtlasRuntimeProgress/1.0",
+            "User-Agent": "AtlasRuntimeProgress/1.1",
             "Content-Type": "application/json",
         },
     )
@@ -124,7 +152,7 @@ def _publish_github(payload: dict[str, Any]) -> bool:
 def emit(job: dict[str, Any], *, stage: str, progress_percent: float, message: str,
          processed_seconds: float = 0, sampled_frames: int = 0,
          target_frames: int | None = None, state: str = "running",
-         force: bool = False) -> dict[str, Any]:
+         metrics: dict[str, Any] | None = None, force: bool = False) -> dict[str, Any]:
     """Write and optionally publish a throttled sanitized heartbeat."""
     global _LAST_PUBLISHED_AT, _LAST_STAGE
     payload = _payload(
@@ -136,19 +164,20 @@ def emit(job: dict[str, Any], *, stage: str, progress_percent: float, message: s
         sampled_frames=sampled_frames,
         target_frames=target_frames,
         state=state,
+        metrics=metrics,
     )
     _write_local(payload)
 
-    minimum_interval = max(30, int(os.getenv("ATLAS_PROGRESS_MIN_INTERVAL_SECONDS", "90")))
-    now = time.monotonic()
-    should_publish = force or stage != _LAST_STAGE or now - _LAST_PUBLISHED_AT >= minimum_interval
+    minimum_interval = max(30, int(os.getenv("ATLAS_PROGRESS_MIN_INTERVAL_SECONDS", "60")))
+    current = time.monotonic()
+    should_publish = force or stage != _LAST_STAGE or current - _LAST_PUBLISHED_AT >= minimum_interval
     if should_publish:
         try:
             published = _publish_github(payload)
             if published:
-                _LAST_PUBLISHED_AT = now
+                _LAST_PUBLISHED_AT = current
                 _LAST_STAGE = stage
-        except Exception as error:  # heartbeats must never fail the scan itself
+        except Exception as error:
             print(f"runtime progress publish warning: {type(error).__name__}: {_safe_text(error)}", flush=True)
     return payload
 
