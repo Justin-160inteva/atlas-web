@@ -32,7 +32,9 @@ jobs:
 
       - name: Compile evidence extractor
         id: compile
-        run: python -m py_compile tools/extract_dada_temple_evidence.py
+        run: |
+          python -m py_compile tools/extract_dada_temple_evidence.py
+          python -m py_compile tools/analyze_authorized_video_v2.py tools/analyze_authorized_video_v4.py
 
       - name: Install transient dependencies
         id: dependencies
@@ -47,16 +49,28 @@ jobs:
         run: |
           rm -rf /tmp/dada-temples-36-evidence /tmp/dada-temples-36-video
           mkdir -p /tmp/dada-temples-36-evidence /tmp/dada-temples-36-video
-          python -m yt_dlp \
-            --no-playlist \
-            --impersonate chrome \
-            --merge-output-format mp4 \
-            -f 'bv*+ba/b' \
-            -o '/tmp/dada-temples-36-video/source.%(ext)s' \
-            'https://www.bilibili.com/video/BV19EXYYWEdv/'
-          VIDEO_PATH="$(find /tmp/dada-temples-36-video -maxdepth 1 -type f \( -name '*.mp4' -o -name '*.mkv' -o -name '*.webm' -o -name '*.flv' \) | head -n 1)"
-          test -n "$VIDEO_PATH"
-          echo "video_path=$VIDEO_PATH" >> "$GITHUB_OUTPUT"
+          PYTHONPATH=tools python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import analyze_authorized_video_v4 as resilient
+
+          workdir = Path('/tmp/dada-temples-36-video')
+          url = 'https://www.bilibili.com/video/BV19EXYYWEdv/'
+          try:
+              video_path, attempts = resilient.runner.download_with_fallbacks(url, workdir)
+          except Exception as exc:
+              print(f'resilient download failed: {exc}')
+              raise
+          diagnostic = workdir / 'download-attempts.json'
+          diagnostic.write_text(json.dumps(attempts, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          if not video_path.is_file() or video_path.stat().st_size < 1024:
+              raise RuntimeError('resilient downloader produced no usable video')
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'video_path={video_path.resolve()}\n')
+              handle.write(f'download_strategy={next(row["strategy"] for row in attempts if row.get("success"))}\n')
+          print(json.dumps({'videoPath': str(video_path), 'bytes': video_path.stat().st_size, 'attempts': attempts}, ensure_ascii=False))
+          PY
 
       - name: Extract 108 evidence frames and contact sheets
         id: extract
@@ -112,6 +126,7 @@ jobs:
           ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
           ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
           ARTIFACT_DIGEST: ${{ steps.upload.outputs.artifact-digest }}
+          DOWNLOAD_STRATEGY: ${{ steps.download.outputs.download_strategy }}
         run: |
           python - <<'PY'
           import json, os
@@ -124,6 +139,7 @@ jobs:
           value['artifactId'] = os.environ.get('ARTIFACT_ID')
           value['artifactUrl'] = os.environ.get('ARTIFACT_URL')
           value['artifactDigest'] = os.environ.get('ARTIFACT_DIGEST')
+          value['downloadStrategy'] = os.environ.get('DOWNLOAD_STRATEGY')
           path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
 
@@ -166,6 +182,7 @@ jobs:
           CLEANUP_OUTCOME: ${{ steps.cleanup.outcome }}
           ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
           ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+          DOWNLOAD_STRATEGY: ${{ steps.download.outputs.download_strategy }}
         run: |
           python - <<'PY'
           import json, os
@@ -192,6 +209,7 @@ jobs:
               'triggerSha': os.environ.get('GITHUB_SHA'),
               'artifactId': os.environ.get('ARTIFACT_ID'),
               'artifactUrl': os.environ.get('ARTIFACT_URL'),
+              'downloadStrategy': os.environ.get('DOWNLOAD_STRATEGY'),
               'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
           }
           Path('/tmp/dada-temples-36-evidence-workflow.json').write_text(
