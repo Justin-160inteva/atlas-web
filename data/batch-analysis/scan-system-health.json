@@ -1,11 +1,11 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-19T21:11:48.554365Z",
+  "generatedAt": "2026-07-19T21:12:20.838285Z",
   "status": "fail",
   "summary": {
     "total": 42,
-    "passed": 37,
-    "failed": 5
+    "passed": 32,
+    "failed": 10
   },
   "dictionaryVersion": "2026.07.19.4",
   "checks": [
@@ -96,27 +96,27 @@
     },
     {
       "name": "monitor_poll",
-      "passed": true,
+      "passed": false,
       "detail": "10s core, 5s raw, 1s projection"
     },
     {
       "name": "monitor_thresholds",
-      "passed": true,
+      "passed": false,
       "detail": "30/75/150-second monitor thresholds"
     },
     {
       "name": "monitor_versions",
-      "passed": true,
+      "passed": false,
       "detail": "realtime bridge version coherent"
     },
     {
       "name": "monitor_authoritative_api",
-      "passed": true,
+      "passed": false,
       "detail": "bounded authoritative API calibration"
     },
     {
       "name": "monitor_projection",
-      "passed": true,
+      "passed": false,
       "detail": "clearly labelled short projection"
     },
     {
