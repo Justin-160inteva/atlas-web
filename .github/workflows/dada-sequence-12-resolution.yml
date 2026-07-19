@@ -1,0 +1,159 @@
+name: Resolve and reprocess Dada sequence 12
+
+on:
+  pull_request:
+    paths:
+      - 'tools/resolve_dada_sequence12.py'
+      - 'data/reprocess/dada-seq12.json'
+      - '.github/workflows/dada-sequence-12-resolution.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/resolve_dada_sequence12.py'
+      - 'data/reprocess/dada-seq12.json'
+      - '.github/workflows/dada-sequence-12-resolution.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-sequence-12-end-to-end
+  cancel-in-progress: false
+
+jobs:
+  resolve-and-reprocess:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out requested revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile isolated resolver and reusable reprocessor
+        run: |
+          python -m py_compile \
+            tools/resolve_dada_sequence06.py \
+            tools/resolve_dada_sequence12.py \
+            tools/reprocess_verified_dada_item.py \
+            tools/reprocess_verified_dada_item_v2.py
+
+      - name: Resolve and stage sequence 12 without media download
+        run: python tools/resolve_dada_sequence12.py --apply --require-resolved
+
+      - name: Run 400-round exact-resolution gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          for _ in range(400):
+              report = json.loads(Path('data/batch-analysis/dada-sequence-12-resolution.json').read_text(encoding='utf-8'))
+              assert report['status'] == 'resolved'
+              assert report['acceptedCount'] == 1
+              assert report['mediaDownloaded'] is False
+              resolved = report['resolved']
+              assert resolved['accepted'] is True
+              assert all(resolved['checks'].values())
+              assert resolved['bvid'] == 'BV1kpcDzYE2U'
+              assert resolved['sequence'] == 12
+              assert 588 <= resolved['durationSeconds'] <= 592
+
+              queue = json.loads(Path('data/analysis-jobs/dada-quality-reprocess.json').read_text(encoding='utf-8'))
+              queue_item = next(item for item in queue['items'] if int(item['sequence']) == 12)
+              assert queue_item['safeToDownloadNow'] is True
+              assert queue_item['requiresExactUrlVerification'] is False
+              assert queue_item['action'] == 'reprocess_verified_video'
+              assert queue_item['exactBvid'] == 'BV1kpcDzYE2U'
+              assert queue.get('readyForReprocessSequences') == [12]
+              for other in queue['items']:
+                  if int(other['sequence']) != 12:
+                      assert other.get('safeToDownloadNow') is False
+
+              catalog = json.loads(Path('data/dada-ac-shadows-catalog.json').read_text(encoding='utf-8'))
+              catalog_item = next(item for item in catalog['items'] if int(item['sequence']) == 12)
+              assert catalog_item['resolvedBvid'] == 'BV1kpcDzYE2U'
+              assert catalog_item['exactUrlVerified'] is True
+              assert catalog_item['analysisQualityStatus'] == 'stale-wrong-source-pending-reprocess'
+
+              status = json.loads(Path('data/batch-analysis/dada-author-catalog-status.json').read_text(encoding='utf-8'))
+              status_item = next(item for item in status['items'] if int(item['sequence']) == 12)
+              assert status_item['verifiedResolution']['bvid'] == 'BV1kpcDzYE2U'
+              assert status_item['resultStale'] is True
+              assert 'Ghost of Tsushima' in status_item['staleReason']
+          PY
+
+      - name: Run 400-round reprocess preflight
+        run: python tools/reprocess_verified_dada_item_v2.py data/reprocess/dada-seq12.json --validate-only --self-check-rounds 400
+
+      - name: Install transient analysis dependencies
+        if: github.event_name != 'pull_request'
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download and analyze only verified sequence 12
+        if: github.event_name != 'pull_request'
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: python tools/reprocess_verified_dada_item_v2.py data/reprocess/dada-seq12.json --self-check-rounds 400
+
+      - name: Remove all transient media
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
+          find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' \) -delete
+
+      - name: Rebuild Dada quality report and remaining queue
+        if: github.event_name != 'pull_request'
+        run: python tools/audit_dada_catalog.py
+
+      - name: Run 400-round post-audit transition gate
+        if: github.event_name != 'pull_request'
+        run: python tools/reprocess_verified_dada_item_v2.py data/reprocess/dada-seq12.json --verify-transition --self-check-rounds 400
+
+      - name: Upload exact-resolution and replacement evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-sequence-12-end-to-end-${{ github.sha }}
+          path: |
+            data/reprocess/dada-seq12.json
+            data/batch-analysis/dada-sequence-12-resolution.json
+            data/analysis-results/dada-12.json
+            data/batch-analysis/dada-seq12-reprocess-status.json
+            data/dada-ac-shadows-catalog.json
+            data/batch-analysis/dada-author-catalog-status.json
+            data/batch-analysis/dada-catalog-quality-audit.json
+            data/analysis-jobs/dada-quality-reprocess.json
+          if-no-files-found: warn
+
+      - name: Persist verified sequence 12 replacement
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/batch-analysis/dada-sequence-12-resolution.json \
+            data/analysis-jobs/dada-12.json \
+            data/analysis-results/dada-12.json \
+            data/analysis-index.json \
+            data/dada-ac-shadows-catalog.json \
+            data/batch-analysis/dada-author-catalog-status.json \
+            data/batch-analysis/dada-seq12-reprocess-status.json \
+            data/batch-analysis/dada-catalog-quality-audit.json \
+            data/analysis-jobs/dada-quality-reprocess.json
+          if git diff --cached --quiet; then
+            echo 'No sequence 12 replacement changes.'
+            exit 0
+          fi
+          git commit -m 'Resolve and reprocess Dada sequence 12 [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
