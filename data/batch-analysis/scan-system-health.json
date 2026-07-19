@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T19:15:15.374022Z",
-  "status": "pass",
+  "generatedAt": "2026-07-19T19:16:07.652195Z",
+  "status": "fail",
   "summary": {
     "total": 33,
-    "passed": 33,
-    "failed": 0
+    "passed": 32,
+    "failed": 1
   },
   "dictionaryVersion": "2026.07.19.1",
   "checks": [
@@ -71,7 +71,7 @@
     },
     {
       "name": "monitor_versions",
-      "passed": true,
+      "passed": false,
       "detail": "monitor core and health versions"
     },
     {
