@@ -67,9 +67,9 @@ def main() -> int:
 
     check("monitor_poll", "FAST_POLL_MS=10000" in monitor and "POLL_MS=10000" in coherence, "10-second page and coherence checks")
     check("monitor_thresholds", "RUNTIME_FRESH_MS=150000" in monitor and "RUNNING_STALE_MS=180000" in monitor and "rawAge>75000" in coherence, "60/75/150/180-second bounded thresholds")
-    check("monitor_versions", "VERSION='0.4.0'" in coherence and "VERSION='0.4.0'" in download and "scan-monitor-coherence.js?v=0.4.0" in monitor_html and "scan-monitor-download.js?v=0.4.0" in monitor_html, "coherent monitor component versions")
+    check("monitor_versions", "VERSION='0.4.1'" in coherence and "VERSION='0.4.0'" in download and "scan-monitor-coherence.js?v=0.4.1" in monitor_html and "scan-monitor-download.js?v=0.4.0" in monitor_html, "coherent monitor component versions")
     check("monitor_schema", "validRuntime" in monitor and "const valid=value" in coherence and "const valid=data" in download, "runtime schema guards across monitor channels")
-    check("monitor_completion_priority", "scan-monitor-health.js" not in monitor_html and "MutationObserver" in coherence and "atlas-runtime-update" in coherence, "one freshness writer with coherent queue overlay")
+    check("monitor_completion_priority", "scan-monitor-health.js" not in monitor_html and "MutationObserver" in coherence and "atlas-runtime-update" in coherence and "const setText=" in coherence and "queueMicrotask" in coherence, "one freshness writer with loop-safe coherent queue overlay")
     check("monitor_cache", "monitor-v6" in worker and "scan-monitor-coherence.js" in worker and "scan-monitor-download.js" in worker, "cache generation v6 includes coherent assets")
 
     check("publisher_conflict_logic", "error.code not in {409, 422}" in publisher_text and "ATLAS_PROGRESS_CONFLICT_RETRIES" in publisher_text, "fresh-SHA conflict retry")
