@@ -9,6 +9,29 @@ Updated baseline: Alpha 0.9.3.5
 - A task is not complete only because code was committed. Completion requires implementation, automated validation, device-level verification where applicable, and no regression of previously accepted behaviour.
 - Every audit updates this file and `data/version-audit.json`.
 
+## Latest audit: Alpha 0.9.3.5 deployment regression
+
+Audit date: 2026-07-19.
+
+Trigger: an accepted feature/version regression was found before the scheduled 0.9.3.8 audit.
+
+Findings:
+
+- The audit ledger and roadmap identify the project as Alpha 0.9.3.5.
+- The default-branch `index.html` still displays and cache-busts Alpha 0.9.1.4 assets.
+- The default-branch entry page does not explicitly load the Alpha 0.9.3.3/0.9.3.4 liquid-navigation CSS and JavaScript layers.
+- Alpha 0.9.3.5 version stamping exists inside `atlas-liquid-nav-0934.js`, but that does not prove the public entry page loads the file.
+- The service worker cache name was upgraded to `atlas-alpha-0935-pages-v1`, creating a mixed-release state: a 0.9.3.5 cache can store an entry page whose primary references and visible fallback version remain 0.9.1.4.
+- Therefore the user's report that the public site still showed 0.9.3.4 is treated as a real deployment/version-source regression, not merely a browser-cache issue.
+
+Required corrective controls:
+
+1. Use one release manifest/version source for the visible version, asset query strings, service-worker cache name and audit ledger.
+2. Make the production entry page explicitly load every required cumulative patch layer.
+3. Add a deployment test that fetches the public `index.html` and confirms the intended version and required asset references.
+4. Fail validation when the static version, runtime version, service-worker version and audit-ledger version disagree.
+5. Do not mark a release deployed until the public GitHub Pages URL is verified after publication.
+
 ## Stage gate: ultra-high-definition original map
 
 Status: not complete.
@@ -24,6 +47,14 @@ Definition of complete:
 Tasks dependent on this gate remain queued, then become active gradually after the gate is complete.
 
 ## Active work
+
+### Immediate release recovery
+
+- [ ] Alpha 0.9.3.6: repair the production entry page so its visible version and loaded assets match the intended release.
+- [ ] Alpha 0.9.3.6: verify the public GitHub Pages response, not only repository files or JavaScript syntax.
+- [ ] Alpha 0.9.3.7: introduce a single release manifest and cross-file version-consistency validation.
+- [ ] Alpha 0.9.3.7: add regression checks proving liquid-navigation base and refinement layers are both loaded.
+- [ ] Alpha 0.9.3.8: run the next scheduled full audit and resume ultra-HD map work after release recovery is stable.
 
 ### Data and evidence pipeline
 
@@ -58,7 +89,8 @@ Tasks dependent on this gate remain queued, then become active gradually after t
 - [x] Attach the header to the browser viewport edge with safe-area support.
 - [x] Keep the approved bottom navigation liquid-glass behaviour.
 - [x] Integrate left-rail icons into the shared selection medium and remove separate selected icon frames.
-- [ ] Device-verify Alpha 0.9.3.5 left-rail smoothness and composition.
+- [ ] Reclassify Alpha 0.9.3.5 liquid-navigation deployment as unverified until the production entry point loads the required layers.
+- [ ] Device-verify Alpha 0.9.3.5/0.9.3.6 left-rail smoothness and composition after deployment repair.
 - [ ] Recheck all panels, bottom sheets, search, route, progress, favourites and category filters after each navigation-layer change.
 - [ ] Continue refining mobile and desktop control spacing where screenshots reveal crowding or overlap.
 
@@ -77,6 +109,7 @@ Tasks dependent on this gate remain queued, then become active gradually after t
 - [ ] Validate search, filters, favourites, discovery progress, routes, progress views and evidence workflows end-to-end.
 - [ ] Verify PWA installation, offline loading and cache migration between releases.
 - [ ] Add regression coverage so a new patch cannot silently remove an older accepted feature or style dependency.
+- [ ] Add public-deployment verification so repository state cannot be mistaken for the live release state.
 
 ## Deferred until the ultra-HD map gate opens
 
