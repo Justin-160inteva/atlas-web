@@ -8,6 +8,7 @@ on:
       - 'atlas-settings.js'
       - 'data/scan-bug-dictionary.json'
       - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
+      - 'data/batch-analysis/eleven-production-order-policy.json'
       - 'tools/publish_runtime_progress.py'
       - 'tools/analyze_authorized_video_v10.py'
       - 'tools/diagnose_and_recover_scan_v2.py'
@@ -33,6 +34,7 @@ concurrency:
 jobs:
   audit:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -62,14 +64,24 @@ jobs:
       - name: Run systemic audit and simulated bug matches
         run: python tools/audit_scan_system.py
 
-      - name: Validate health report
+      - name: Validate complete health report
         run: |
           python - <<'PY'
           import json
           report=json.load(open('data/batch-analysis/scan-system-health.json',encoding='utf-8'))
+          required={
+              'monitor_fast_poll','monitor_heartbeat_window','monitor_schema_guard',
+              'publisher_conflict_simulation','workflow_immediate_recovery',
+              'live_recovery_status','diagnostic_redaction','repository_media_clean',
+              'recovery_action_412','recovery_action_context_adapter',
+              'recovery_action_transcode','recovery_action_timeout','recovery_action_memory'
+          }
+          checks={item['name']:item for item in report['checks']}
           assert report['status']=='pass', report
           assert report['summary']['failed']==0, report['summary']
-          assert report['summary']['total']>=24, report['summary']
+          assert report['summary']['total']>=33, report['summary']
+          assert required <= checks.keys(), sorted(required-checks.keys())
+          assert all(checks[name]['passed'] for name in required), checks
           print(f"scan system health: {report['summary']['passed']}/{report['summary']['total']} passed")
           PY
 
