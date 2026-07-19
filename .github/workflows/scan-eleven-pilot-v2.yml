@@ -1,0 +1,195 @@
+name: Scan 11 game world regional pilot v2
+
+on:
+  push:
+    paths:
+      - 'data/batch-analysis/eleven-pilot-v2-trigger.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: scan-eleven-regional-pilot
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install analysis dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg curl
+
+      - name: Compile durable pilot tools
+        run: |
+          python -m py_compile tools/analyze_authorized_video_v5.py
+          python -m py_compile tools/scan_catalog_queue_v2.py
+          python -m py_compile tools/update_analysis_index.py
+
+      - name: Verify authorization and bounded regional queue
+        run: |
+          python - <<'PY'
+          import json
+          auth=json.load(open('data/authorizations.json',encoding='utf-8'))
+          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          catalog=json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))
+          manifest=json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json',encoding='utf-8'))
+          record=next(item for item in auth['records'] if item['id']==queue['authorizationId'])
+          scope=record['scope']
+          assert record['status']=='active'
+          assert record['author']=='11的游戏世界'
+          assert queue['pilotRegion']=='山城'
+          assert 1<=len(queue['items'])<=3
+          assert manifest['maxItemsPerRun']==1
+          assert all(item['regionGuess']=='山城' for item in queue['items'])
+          catalog_ids={entry['id'] for entry in catalog['items']}
+          assert all(item['externalSourceId'] in catalog_ids for item in queue['items'])
+          assert scope['localDownloadAndAnalysis'] and scope['computerVisionAnalysis']
+          assert scope['privateLowResolutionKeyframes']
+          assert scope['nonCommercial'] and scope['commercialUseRequiresSeparateWrittenConsent']
+          print('authorization and bounded queue gate passed')
+          PY
+
+      - name: Scan one regional pilot item with durable state
+        id: scan
+        continue-on-error: true
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: python tools/scan_catalog_queue_v2.py data/batch-analysis/eleven-pilot-scan-manifest.json
+
+      - name: Remove all transient media
+        if: always()
+        run: |
+          find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
+          find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' \) -delete
+
+      - name: Ensure a machine-readable terminal state
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          from datetime import datetime, timezone
+          path=pathlib.Path('data/batch-analysis/eleven-pilot-scan-status.json')
+          queue_path=pathlib.Path('data/batch-analysis/eleven-pilot-scan-queue.json')
+          if not path.exists():
+              queue=json.load(queue_path.open(encoding='utf-8'))
+              items=queue.get('items',[])
+              imported=sum(item.get('state')=='imported' for item in items)
+              failed=sum(item.get('state')=='failed' for item in items)
+              status={
+                  'schemaVersion':2,
+                  'batchId':'eleven-shancheng-pilot-scan-v2',
+                  'author':'11的游戏世界',
+                  'authorizationId':queue['authorizationId'],
+                  'pilotRegion':queue.get('pilotRegion'),
+                  'updatedAt':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+                  'phase':'workflow_failure',
+                  'activeItem':None,
+                  'complete':imported==len(items),
+                  'summary':{
+                      'total':len(items),'imported':imported,'running':0,'failed':failed,
+                      'blocked':0,'retryableFailed':failed,'remaining':len(items)-imported,
+                      'attemptedThisRun':0,'newlyImportedThisRun':0
+                  },
+                  'items':items,
+                  'events':[],
+                  'privacy':'Original videos and frame pixels are transient and are not retained in the public repository.'
+              }
+              path.write_text(json.dumps(status,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('terminal state exists')
+          PY
+
+      - name: Run 400-round regional integrity gate
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          status=json.load(open('data/batch-analysis/eleven-pilot-scan-status.json',encoding='utf-8'))
+          catalog=json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))
+          index=json.load(open('data/analysis-index.json',encoding='utf-8'))
+          indexed={item['externalSourceId']:item for item in index['items']}
+          allowed={'pending','running','failed','imported'}
+          for _ in range(400):
+              assert status['authorizationId']==queue['authorizationId']==catalog['authorizationId']
+              assert status['summary']['total']==len(queue['items'])==3
+              assert status['summary']['remaining']==3-status['summary']['imported']
+              assert queue['pilotRegion']=='山城'
+              assert all(item['regionGuess']=='山城' for item in queue['items'])
+              assert all(item.get('state','pending') in allowed for item in queue['items'])
+              for item in queue['items']:
+                  if item.get('state')=='imported':
+                      entry=indexed[item['externalSourceId']]
+                      assert entry['status']=='imported'
+                      assert entry['media']['videoRetained'] is False
+                      assert entry['media']['framePixelsRetained'] is False
+              assert not list(pathlib.Path('.').rglob('*.mp4'))
+              assert not list(pathlib.Path('.').rglob('*.m4a'))
+              assert not list(pathlib.Path('.').rglob('*.webm'))
+              assert not list(pathlib.Path('.').rglob('*.flv'))
+          print('400/400 durable pilot checks passed')
+          PY
+
+      - name: Read durable pilot state
+        if: always()
+        id: state
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          status=json.load(open('data/batch-analysis/eleven-pilot-scan-status.json',encoding='utf-8'))
+          summary=status['summary']
+          print(f"complete={'true' if status['complete'] else 'false'}")
+          print(f"remaining={summary['remaining']}")
+          print(f"progress={summary['newlyImportedThisRun']}")
+          print(f"imported={summary['imported']}")
+          print(f"blocked={summary.get('blocked',0)}")
+          print(f"phase={status.get('phase','unknown')}")
+          PY
+
+      - name: Persist pilot state even after failure
+        if: always()
+        run: |
+          if [ -z "$(git status --porcelain -- data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json)" ]; then
+            echo 'No durable pilot changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json
+          git commit -m "Scan 11 game world 山城 pilot v2: ${{ steps.state.outputs.imported }}/3 imported (${{ steps.state.outputs.phase }})"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Persist attempt $attempt failed; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Continue one item at a time after verified progress
+        if: always() && steps.state.outputs.complete != 'true' && steps.state.outputs.progress != '0' && steps.state.outputs.blocked == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run scan-eleven-pilot-v2.yml --ref main
+
+      - name: Fail visibly after state persistence
+        if: always() && steps.scan.outcome == 'failure'
+        run: exit 1
