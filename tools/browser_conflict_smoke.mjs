@@ -121,12 +121,12 @@ for (const [profileIndex, profile] of profiles.entries()) {
       check('navigation guard release contract', await page.evaluate(version => window.AtlasLiquidNavigation?.version === version, manifest.version));
     }
 
-    await page.locator('#evidenceStudioBtn').click();await page.waitForTimeout(120);
-    check('settings opens', await page.locator('#atlasSettingsOverlay.open').count() === 1);
-    check('settings aria visible', await page.locator('#atlasSettingsOverlay').getAttribute('aria-hidden') === 'false');
-    await page.locator('.atlas-settings-close').click();check('settings closes', await page.locator('#atlasSettingsOverlay.open').count() === 0);
+    await page.locator('#evidenceStudioBtn').click();await page.waitForTimeout(160);
+    check('settings opens', await page.locator('#settingsPanel.open').count() === 1);
+    check('settings owner coherent', await page.locator('#settingsPanel').getAttribute('aria-hidden') === 'false' && await page.locator('#atlasSettingsOverlay').count() === 0);
+    await page.locator('#closeSettings').click();check('settings closes', await page.locator('#settingsPanel.open').count() === 0);
 
-    const releaseScripts = await page.evaluate(() => [...document.scripts].filter(script => /atlas-(?:bootstrap|analysis-import|liquid-nav-0934|controls-0938|ipad-nav-0940|data-guard-0939)\.js/.test(script.src)).map(script => script.src));
+    const releaseScripts = await page.evaluate(() => [...document.scripts].filter(script => /atlas-(?:bootstrap|analysis-import|liquid-nav-0934|controls-0938|ipad-nav-0940|settings|data-guard-0939)\.js/.test(script.src)).map(script => script.src));
     const wrongScript = releaseScripts.find(url => !url.includes(`v=${manifest.version}`));
     check('release scripts use one cache version', !wrongScript, wrongScript || releaseScripts.join('\n'));
     check('bootstrap loaded once', releaseScripts.filter(url => url.includes('atlas-bootstrap.js')).length === 1, releaseScripts.join('\n'));
