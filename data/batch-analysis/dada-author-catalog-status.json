@@ -3,7 +3,7 @@
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "authorizationId": "auth-dada-20260718",
-  "updatedAt": "2026-07-19T10:45:53.452805Z",
+  "updatedAt": "2026-07-19T10:53:45.432295Z",
   "complete": true,
   "summary": {
     "total": 23,
@@ -636,32 +636,51 @@
     {
       "externalSourceId": "bili-dada-acshadows-20",
       "sequence": 20,
-      "title": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
-      "url": "https://www.bilibili.com/video/BV1Ub7N6zEKa/",
+      "title": "【刺客信条影 新手攻略】20 锁链晕眩流（奈绪江配装）",
+      "url": "https://www.bilibili.com/video/BV1Gqj867Eep/",
       "state": "imported",
-      "attemptCount": 1,
+      "attemptCount": 2,
       "resultPath": "data/analysis-results/dada-20.json",
       "lastAttempt": {
         "externalSourceId": "bili-dada-acshadows-20",
         "sequence": 20,
-        "startedAt": "2026-07-19T00:17:21.389907Z",
+        "startedAt": "2026-07-19T10:51:26.153709Z",
         "resolution": {
-          "url": "https://www.bilibili.com/video/BV1Ub7N6zEKa/",
-          "bvid": "BV1Ub7N6zEKa",
-          "title": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+          "url": "https://www.bilibili.com/video/BV1Gqj867Eep/",
+          "bvid": "BV1Gqj867Eep",
+          "title": "【刺客信条影 新手攻略】20 锁链晕眩流（奈绪江配装）",
           "author": "不再犹豫的达达猪",
-          "duration": "1:56",
-          "score": 160.0,
-          "source": "bilibili-search-api",
-          "query": "不再犹豫的达达猪 刺客信条影 新手攻略 20"
+          "score": 1000,
+          "source": "verified-catalog-source"
         },
         "analyzerReturnCode": 0,
         "analyzerOutput": "analysis result written: data/analysis-results/dada-20.json status=analyzed\n\n",
         "analysisStatus": "analyzed",
         "indexReturnCode": 0,
         "completed": true,
-        "finishedAt": "2026-07-19T00:20:01.409519Z"
-      }
+        "resultChecks": {
+          "statusAnalyzed": true,
+          "authorExact": true,
+          "titleExact": true,
+          "bvidExact": true,
+          "durationWithinTolerance": true,
+          "originalVideoDeleted": true,
+          "framePixelsDeleted": true
+        },
+        "finishedAt": "2026-07-19T10:53:45.432295Z"
+      },
+      "verifiedResolution": {
+        "bvid": "BV1Gqj867Eep",
+        "url": "https://www.bilibili.com/video/BV1Gqj867Eep/",
+        "title": "【刺客信条影 新手攻略】20 锁链晕眩流（奈绪江配装）",
+        "durationSeconds": 135,
+        "author": "不再犹豫的达达猪",
+        "authorMid": 3493082095946091,
+        "collectionId": 5059842,
+        "verifiedAt": "2026-07-19T10:50:43.386165Z"
+      },
+      "qualityState": "verified-correct-source",
+      "resultStale": false
     },
     {
       "externalSourceId": "bili-dada-acshadows-21",

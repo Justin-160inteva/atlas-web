@@ -23,7 +23,7 @@
     "analysisImported": 23,
     "analysisRemaining": 0,
     "analysisComplete": true,
-    "analysisUpdatedAt": "2026-07-19T10:45:53.452805Z"
+    "analysisUpdatedAt": "2026-07-19T10:53:45.432295Z"
   },
   "futureInclusionRule": {
     "enabled": true,
@@ -724,32 +724,57 @@
     {
       "id": "bili-dada-acshadows-20",
       "sequence": 20,
-      "title": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+      "title": "【刺客信条影 新手攻略】20 锁链晕眩流（奈绪江配装）",
       "author": "不再犹豫的达达猪",
       "platform": "哔哩哔哩",
       "game": "刺客信条：影",
-      "type": "待核实",
+      "type": "配装与装备",
       "quality": "公开视频",
-      "duration": "1:56",
+      "duration": "02:15",
       "coverage": [],
-      "url": "https://www.bilibili.com/video/BV1Ub7N6zEKa/",
+      "url": "https://www.bilibili.com/video/BV1Gqj867Eep/",
       "exactUrlVerified": true,
       "catalogVerified": true,
       "license": "authorized_author_level",
       "licenseLabel": "作者级授权（现有及未来）",
       "authorizationId": "auth-dada-20260718",
       "contact": "作者级授权已登记，无需逐条联系",
-      "value": "已确认存在编号序列，标题和准确链接待下一轮公开检索核对。",
+      "value": "主要用于配装；本轮已修复此前误与序列22重复的目录身份。",
       "notes": "允许从公开视频页面下载，仅用于本地计算机视觉分析；不得公开分发完整视频。",
-      "mapUtility": "待核实",
-      "priority": 20,
+      "mapUtility": "低",
+      "priority": 32,
       "sourceSeries": "〖刺客信条影 新手攻略〗",
-      "resolvedBvid": "BV1Ub7N6zEKa",
-      "resolvedAt": "2026-07-19T00:17:24.371714Z",
-      "resolvedTitle": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+      "resolvedBvid": "BV1Gqj867Eep",
+      "resolvedAt": "2026-07-19T10:50:43.386165Z",
+      "resolvedTitle": "【刺客信条影 新手攻略】20 锁链晕眩流（奈绪江配装）",
       "analysisStatus": "imported",
       "analysisResultPath": "data/analysis-results/dada-20.json",
-      "analysisUpdatedAt": "2026-07-19T00:20:01.409508Z"
+      "analysisUpdatedAt": "2026-07-19T10:53:45.432295Z",
+      "analysisQualityStatus": "verified-correct-source",
+      "resolutionEvidence": {
+        "method": "author-collection-plus-video-view-and-identity-repair",
+        "authorMid": 3493082095946091,
+        "collectionId": 5059842,
+        "durationSeconds": 135,
+        "verifiedAt": "2026-07-19T10:50:43.386165Z",
+        "replacesDuplicateSequence": 22
+      },
+      "analysisVerification": {
+        "verifiedBvid": "BV1Gqj867Eep",
+        "verifiedAt": "2026-07-19T10:53:45.432295Z",
+        "resultChecks": {
+          "statusAnalyzed": true,
+          "authorExact": true,
+          "titleExact": true,
+          "bvidExact": true,
+          "durationWithinTolerance": true,
+          "originalVideoDeleted": true,
+          "framePixelsDeleted": true
+        },
+        "replacesJobId": "dada-20-v1",
+        "replacementJobId": "dada-20-v2-correct-source",
+        "replacesWrongBvid": "BV1Ub7N6zEKa"
+      }
     },
     {
       "id": "bili-dada-acshadows-21",

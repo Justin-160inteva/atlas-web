@@ -1,79 +1,26 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T10:45:53.544221+00:00",
+  "generatedAt": "2026-07-19T10:53:45.523519+00:00",
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "pipelineComplete": true,
-  "qualityComplete": false,
+  "qualityComplete": true,
   "summary": {
     "catalogItems": 23,
-    "critical": 3,
-    "warnings": 2,
-    "affectedCount": 2,
-    "canonicalRetainedCount": 1,
-    "canonicalRetainedSequences": [
-      22
-    ],
-    "resolutionRequiredCount": 1,
-    "resolutionRequiredSequences": [
-      20
-    ],
-    "identityRequiredCount": 1,
-    "identityRequiredSequences": [
-      20
-    ],
-    "queueCount": 1,
-    "queueSequences": [
-      20
-    ]
+    "critical": 0,
+    "warnings": 1,
+    "affectedCount": 0,
+    "canonicalRetainedCount": 0,
+    "canonicalRetainedSequences": [],
+    "resolutionRequiredCount": 0,
+    "resolutionRequiredSequences": [],
+    "identityRequiredCount": 0,
+    "identityRequiredSequences": [],
+    "queueCount": 0,
+    "queueSequences": []
   },
-  "duplicateGroups": [
-    {
-      "type": "BVID",
-      "value": "BV1Ub7N6zEKa",
-      "sequences": [
-        20,
-        22
-      ],
-      "canonicalSequence": 22,
-      "strongCandidates": [
-        22
-      ]
-    }
-  ],
+  "duplicateGroups": [],
   "findings": [
-    {
-      "severity": "critical",
-      "code": "CATALOG_IDENTITY_MISMATCH",
-      "sequence": 20,
-      "message": "Catalog sequence is 20, but its expected title indicates 22",
-      "evidence": {
-        "expectedTitle": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
-        "titleSequence": 22,
-        "bvid": "BV1Ub7N6zEKa"
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "SEQUENCE_MISMATCH",
-      "sequence": 20,
-      "message": "Expected video 20, resolved title indicates 22",
-      "evidence": {
-        "expectedTitle": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
-        "resolvedTitle": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
-        "bvid": "BV1Ub7N6zEKa"
-      }
-    },
-    {
-      "severity": "warning",
-      "code": "LOW_MATCH_SCORE",
-      "sequence": 20,
-      "message": "Match score is only 160.0",
-      "evidence": {
-        "score": 160.0,
-        "bvid": "BV1Ub7N6zEKa"
-      }
-    },
     {
       "severity": "warning",
       "code": "LOW_MATCH_SCORE",
@@ -82,38 +29,6 @@
       "evidence": {
         "score": 215.0,
         "bvid": "BV1Ub7N6zEKa"
-      }
-    },
-    {
-      "severity": "info",
-      "code": "DUPLICATE_CANONICAL_RETAINED",
-      "sequence": 22,
-      "message": "BVID duplicate group [20, 22] has canonical sequence 22; keep it and resolve the others",
-      "evidence": {
-        "duplicateType": "BVID",
-        "duplicateValue": "BV1Ub7N6zEKa",
-        "sequences": [
-          20,
-          22
-        ],
-        "canonicalSequence": 22,
-        "suspectSequences": [
-          20
-        ]
-      }
-    },
-    {
-      "severity": "critical",
-      "code": "DUPLICATE_BVID_MISASSIGNED",
-      "sequence": 20,
-      "message": "BVID belongs to canonical sequence 22, not sequence 20",
-      "evidence": {
-        "duplicateValue": "BV1Ub7N6zEKa",
-        "sequences": [
-          20,
-          22
-        ],
-        "canonicalSequence": 22
       }
     }
   ]
