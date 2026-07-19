@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "sequence": 12,
+  "workflow": "dada-sequence-12-resolution.yml",
+  "workflowName": "Resolve and reprocess Dada sequence 12",
+  "runId": 29682828521,
+  "runNumber": 6,
+  "runAttempt": 1,
+  "headSha": "2d9d76293845d5b6a279f413cf31a058880d46a9",
+  "event": "push",
+  "status": "completed",
+  "conclusion": "cancelled",
+  "failedStage": null,
+  "runUrl": "https://github.com/Justin-160inteva/atlas-web/actions/runs/29682828521",
+  "createdAt": "2026-07-19T10:08:53Z",
+  "updatedAt": "2026-07-19T10:16:41Z",
+  "recordedAt": "2026-07-19T10:16:49.655391Z",
+  "jobs": [
+    {
+      "id": 88181934585,
+      "name": "resolve-and-reprocess",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "startedAt": "2026-07-19T10:08:55Z",
+      "completedAt": "2026-07-19T10:16:40Z",
+      "runnerName": "GitHub Actions 1000001174",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:08:56Z",
+          "completedAt": "2026-07-19T10:08:56Z"
+        },
+        {
+          "number": 2,
+          "name": "Check out requested revision",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:08:56Z",
+          "completedAt": "2026-07-19T10:08:57Z"
+        },
+        {
+          "number": 3,
+          "name": "Set up Python",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:08:57Z",
+          "completedAt": "2026-07-19T10:08:58Z"
+        },
+        {
+          "number": 4,
+          "name": "Compile isolated resolver and reusable reprocessor",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:08:58Z",
+          "completedAt": "2026-07-19T10:08:58Z"
+        },
+        {
+          "number": 5,
+          "name": "Resolve and stage sequence 12 without media download",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:08:58Z",
+          "completedAt": "2026-07-19T10:09:00Z"
+        },
+        {
+          "number": 6,
+          "name": "Run 400-round exact-resolution gate",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:09:00Z",
+          "completedAt": "2026-07-19T10:09:00Z"
+        },
+        {
+          "number": 7,
+          "name": "Run 400-round reprocess preflight",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:09:00Z",
+          "completedAt": "2026-07-19T10:09:01Z"
+        },
+        {
+          "number": 8,
+          "name": "Install transient analysis dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:09:01Z",
+          "completedAt": "2026-07-19T10:09:29Z"
+        },
+        {
+          "number": 9,
+          "name": "Download and analyze only verified sequence 12",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "startedAt": "2026-07-19T10:09:29Z",
+          "completedAt": "2026-07-19T10:16:36Z"
+        },
+        {
+          "number": 10,
+          "name": "Remove all transient media",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:16:36Z",
+          "completedAt": "2026-07-19T10:16:36Z"
+        },
+        {
+          "number": 11,
+          "name": "Rebuild Dada quality report and remaining queue",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-07-19T10:16:36Z",
+          "completedAt": "2026-07-19T10:16:36Z"
+        },
+        {
+          "number": 12,
+          "name": "Run 400-round post-audit transition gate",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-07-19T10:16:36Z",
+          "completedAt": "2026-07-19T10:16:36Z"
+        },
+        {
+          "number": 13,
+          "name": "Upload exact-resolution and replacement evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:16:36Z",
+          "completedAt": "2026-07-19T10:16:36Z"
+        },
+        {
+          "number": 14,
+          "name": "Persist verified sequence 12 replacement",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-07-19T10:16:36Z",
+          "completedAt": "2026-07-19T10:16:36Z"
+        },
+        {
+          "number": 15,
+          "name": "Persist observable workflow outcome",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:16:36Z",
+          "completedAt": "2026-07-19T10:16:38Z"
+        },
+        {
+          "number": 29,
+          "name": "Post Set up Python",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-07-19T10:16:38Z",
+          "completedAt": "2026-07-19T10:16:38Z"
+        },
+        {
+          "number": 30,
+          "name": "Post Check out requested revision",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:16:38Z",
+          "completedAt": "2026-07-19T10:16:38Z"
+        },
+        {
+          "number": 31,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-07-19T10:16:38Z",
+          "completedAt": "2026-07-19T10:16:38Z"
+        }
+      ]
+    }
+  ]
+}
