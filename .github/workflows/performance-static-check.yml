@@ -1,4 +1,4 @@
-name: Performance typography UI and route static check
+name: Performance typography UI route and liquid navigation check
 
 on:
   push:
@@ -9,6 +9,8 @@ on:
       - 'atlas-ui-fix-0931.js'
       - 'atlas-ui-fix-0931.css'
       - 'atlas-smart-route-0932.css'
+      - 'atlas-liquid-nav-0933.js'
+      - 'atlas-liquid-nav-0933.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
@@ -23,6 +25,8 @@ on:
       - 'atlas-ui-fix-0931.js'
       - 'atlas-ui-fix-0931.css'
       - 'atlas-smart-route-0932.css'
+      - 'atlas-liquid-nav-0933.js'
+      - 'atlas-liquid-nav-0933.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
@@ -46,6 +50,7 @@ jobs:
         run: |
           node --check performance-092.js
           node --check atlas-ui-fix-0931.js
+          node --check atlas-liquid-nav-0933.js
           node --check atlas-hd-map.js
           node --check atlas-hd-runtime.js
           node --check atlas-analysis-import.js
@@ -55,6 +60,7 @@ jobs:
           npx --yes postcss-cli@11.0.1 atlas-typography-093.css --output /tmp/atlas-typography-093.css
           npx --yes postcss-cli@11.0.1 atlas-ui-fix-0931.css --output /tmp/atlas-ui-fix-0931.css
           npx --yes postcss-cli@11.0.1 atlas-smart-route-0932.css --output /tmp/atlas-smart-route-0932.css
+          npx --yes postcss-cli@11.0.1 atlas-liquid-nav-0933.css --output /tmp/atlas-liquid-nav-0933.css
       - name: Verify runtime assets and policy
         run: |
           grep -q "performance-092.js" sw.js
@@ -63,10 +69,11 @@ jobs:
           grep -q "atlas-ui-fix-0931.js" sw.js
           grep -q "atlas-ui-fix-0931.css" sw.js
           grep -q "atlas-smart-route-0932.css" sw.js
-          grep -q "atlas-ui-fix-0931.js" atlas-analysis-import.js
-          grep -q "atlas-ui-fix-0931.css" atlas-analysis-import.js
-          grep -q "atlas-smart-route-0932.css" atlas-analysis-import.js
-          grep -q "0.9.3.2" atlas-analysis-import.js
+          grep -q "atlas-liquid-nav-0933.js" sw.js
+          grep -q "atlas-liquid-nav-0933.css" sw.js
+          grep -q "atlas-liquid-nav-0933.js" atlas-analysis-import.js
+          grep -q "atlas-liquid-nav-0933.css" atlas-analysis-import.js
+          grep -q "0.9.3.3" atlas-analysis-import.js
           grep -q "does not bundle, extract, redistribute" FONT-LICENSES.md
 
-# Validation trigger: Alpha 0.9.3.2 responsive smart-route controls.
+# Validation trigger: Alpha 0.9.3.3 edge-attached header and liquid navigation.
