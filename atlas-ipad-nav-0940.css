@@ -1,4 +1,4 @@
-/* Atlas Alpha 0.9.4.0 — iPad navigation stability */
+/* Atlas Alpha 0.9.4.3 — iPad navigation stability and efficient frosted fallback */
 .bottom-nav .nav-item>span,
 .quick-rail .rail-icon{
   font-size:0!important;
@@ -38,14 +38,19 @@ html.atlas-ipad .glass{
 }
 html.atlas-ipad .bottom-nav,
 html.atlas-ipad .quick-rail{
-  background:linear-gradient(155deg,rgba(39,36,33,.94),rgba(15,14,13,.91))!important;
+  background:
+    linear-gradient(145deg,rgba(72,70,69,.9),rgba(29,28,29,.93) 38%,rgba(14,14,15,.94) 100%),
+    radial-gradient(circle at 28% 0%,rgba(255,255,255,.16),transparent 46%)!important;
+  border-color:rgba(255,255,255,.16)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.17),0 12px 28px rgba(0,0,0,.24)!important;
   contain:layout paint style;
   transform:translateZ(0);
   backface-visibility:hidden;
 }
 html.atlas-ipad .atlas-liquid-selection{
-  background:linear-gradient(150deg,rgba(255,255,255,.17),rgba(126,31,42,.28) 58%,rgba(255,255,255,.06))!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 5px 14px rgba(20,4,7,.18)!important;
+  background:linear-gradient(150deg,rgba(255,255,255,.17),rgba(255,255,255,.055) 58%,rgba(16,16,17,.13))!important;
+  border-color:rgba(255,255,255,.17)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 5px 14px rgba(0,0,0,.16)!important;
   filter:none!important;
   will-change:transform;
   contain:paint;
@@ -59,9 +64,5 @@ html.atlas-ipad .quick-rail .rail-icon{
   transform:translateZ(0);
   backface-visibility:hidden;
 }
-html.atlas-ipad.atlas-nav-moving #mapCanvas{
-  pointer-events:none;
-}
-@media (prefers-reduced-motion:reduce){
-  .atlas-liquid-selection{animation:none!important;transition:none!important}
-}
+html.atlas-ipad.atlas-nav-moving #mapCanvas{pointer-events:none}
+@media(prefers-reduced-motion:reduce){.atlas-liquid-selection{animation:none!important;transition:none!important}}
