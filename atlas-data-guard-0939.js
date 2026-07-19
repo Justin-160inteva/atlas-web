@@ -1,12 +1,18 @@
 (() => {
   'use strict';
-  const VERSION='0.9.3.9';
+  const VERSION=window.AtlasRelease?.version||'0.9.4.2';
   const nativeFetch=window.fetch.bind(window);
   const guarded=new Set(['data/locations.json','data/categories.json','data/regions.json']);
   const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   const pathOf=input=>{
     try{return new URL(typeof input==='string'?input:input.url,location.href).pathname.replace(/^.*\/atlas-web\//,'')}catch{return String(input)}
   };
+  function applyTransforms(value,path){
+    if(path!=='data/locations.json')return value;
+    const transforms=Array.isArray(window.AtlasDataTransforms)?window.AtlasDataTransforms:[];
+    for(const item of value){for(const transform of transforms){try{transform(item)}catch(error){console.warn('[Atlas data transform failed]',error)}}}
+    return value;
+  }
   async function validJsonResponse(response,path){
     if(!response||!response.ok)return null;
     const text=await response.clone().text();
@@ -16,7 +22,8 @@
       if(!Array.isArray(value))return null;
       if(path==='data/locations.json'&&value.length<3000)return null;
       if(path!=='data/locations.json'&&value.length<1)return null;
-      return new Response(text,{status:200,headers:{'Content-Type':'application/json','X-Atlas-Data-Guard':VERSION}});
+      const transformed=applyTransforms(value,path);
+      return new Response(JSON.stringify(transformed),{status:200,headers:{'Content-Type':'application/json','X-Atlas-Data-Guard':VERSION}});
     }catch{return null}
   }
   async function cacheFallback(request,path){
