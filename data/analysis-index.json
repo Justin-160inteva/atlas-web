@@ -1,7 +1,46 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-19T10:53:45.427090Z",
+  "updatedAt": "2026-07-19T16:28:53.055655Z",
   "items": [
+    {
+      "id": "analysis-eleven-p022-v2",
+      "jobId": "eleven-p022-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p022",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P22 第22期：山城（收集3）",
+      "status": "failed",
+      "resultPath": "data/analysis-results/eleven-p022.json",
+      "resultSha256": "5d1561654beb4b67088434f8a5d5175ffe7d8b86107ff2e4bdf8cc0a204e3f53",
+      "generatedAt": "2026-07-19T16:28:53.001762Z",
+      "media": {
+        "durationSeconds": null,
+        "width": null,
+        "height": null,
+        "fps": null,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 0,
+        "kept": 0,
+        "blurred": 0,
+        "duplicates": 0,
+        "keepRatio": 0
+      },
+      "pipeline": {
+        "sourceDownloaded": false,
+        "numericDescriptorsGenerated": false,
+        "resultCommitted": true,
+        "libraryImported": false,
+        "geospatialAnchoringCompleted": false
+      },
+      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。",
+      "failure": {
+        "stage": "download",
+        "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 22 segment 0: TimeoutExpired(['curl', '--location', '--fail', '--silent', '--show-error', '--http1.1', '--retry', '12', '--retry-all-errors', '--retry-delay', '2', '--continue-at', '-', '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131 Safari/537.36', '--referer', 'https://www.bilibili.com/', '--header', 'Origin: https://www.bilibili.com', '--output', '/tmp/atlas-authorized-52m8_xy0/p022-segment-000.flv', 'https://upos-hz-mirrorakam.akamaized.net/upgcxcode/66/09/28957280966/28957280966-1-16.mp4?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&deadline=1784483928&nbs=1&oi=2153065698&trid=abd1fda711ec424db1e23858fec7330u&mid=0&os=akam&uipk=5&platform=pc&gen=playurlv3&og=cos&upsig=7fc9010640f890e0244b40d4acb80943&uparams=e,deadline,nbs,oi,trid,mid,os,uipk,platform,gen,og&hdnts=exp=1784483929~hmac=bc9a1f9a24c61eb0c75dff532877910058eb2ac0d7ec81bb27afb43dd61889bd&bvc=vod&nettype=0&bw=470011&lrs=0&f=u_0_0&qn_dyeid=fc80666e7cc1ee74005f0d976a5cf438&agrr=0&buvid=&build=0&dl=0&orderid=1,2'], 900)\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]"
+      }
+    },
     {
       "id": "analysis-dada-05-v1",
       "jobId": "dada-05-v1",

@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-19T15:25:44.933425Z",
-  "updatedAt": "2026-07-19T15:34:00Z",
-  "status": "ready",
+  "updatedAt": "2026-07-19T16:28:53.064094Z",
+  "status": "recovery_scheduled",
   "pilotRegion": "山城",
   "strategy": "Process the same coherent 山城 collection group from shortest to longest so the first production run validates the multipart pipeline before longer episodes.",
   "items": [
@@ -23,7 +23,12 @@
       "mapUtility": "最高",
       "priority": 102,
       "durationSeconds": 2349,
-      "state": "pending"
+      "state": "pending",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-19T15:58:47.691616Z",
+      "lastFinishedAt": "2026-07-19T16:28:53.060755Z",
+      "lastRecoveryAt": "2026-07-19T16:28:53.138498Z",
+      "lastRecoveryAction": "increase_backoff_and_retry_public_api"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p021",
