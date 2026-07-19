@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "eleven-runtime-heartbeat-supervisor-v1",
+  "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
+  "runtimeProgress": "data/runtime-progress/eleven-pilot-progress.json",
+  "dictionary": "data/scan-bug-dictionary.json",
+  "reportOutput": "data/batch-analysis/eleven-heartbeat-supervisor-state.json",
+  "workflow": "scan-eleven-pilot-v2.yml",
+  "staleAfterSeconds": 180,
+  "hardStaleAfterSeconds": 420,
+  "policy": {
+    "checkEveryMinutes": 5,
+    "oneItemPerRun": true,
+    "maximumAttemptsPerItem": 3,
+    "runtimeOrConfigRepairsOnly": true,
+    "neverModifyExecutableSourceAutomatically": true,
+    "neverBroadenAuthorization": true,
+    "neverRetainOriginalMedia": true,
+    "neverExpandQueueScope": true
+  }
+}
