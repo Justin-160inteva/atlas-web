@@ -17,7 +17,7 @@
     <section class="hero">
       <div class="hero-top"><span class="status-badge" id="statusBadge" data-state="idle"><i></i><b>读取状态</b></span><strong class="hero-percent" id="heroPercent">0%</strong></div>
       <h2 id="activeTitle">正在连接扫描队列</h2>
-      <p id="activeDetail">读取 GitHub Actions、扫描状态、自动恢复和看门狗数据。</p>
+      <p id="activeDetail">读取队列、实时心跳和自动恢复数据。</p>
       <div class="progress-track"><i id="heroBar"></i></div>
       <div class="stats">
         <div class="stat"><b id="pilotProgress">0 / 3</b><small>区域批次导入</small></div>
@@ -63,10 +63,8 @@
       </section>
     </div>
 
-    <p class="footer">页面每10秒核对一次，并拒绝倒退到旧心跳；任务端每60秒至少写入一次。原始文件异常陈旧时会使用GitHub Contents API二次校验，超过180秒无匹配心跳才判定为故障。</p>
+    <p class="footer">统一监控器每10秒独立核对核心状态；任一附加接口超时都不会让页面永久停在“同步中”。任务端目标每60秒写入一次心跳，超过180秒无新心跳才判定异常。</p>
   </main>
-  <script src="scan-monitor.js?v=0.3.1" defer></script>
-  <script src="scan-monitor-coherence.js?v=0.4.1" defer></script>
-  <script src="scan-monitor-download.js?v=0.4.0" defer></script>
+  <script src="scan-monitor.js?v=0.5.0" defer></script>
 </body>
 </html>
