@@ -3,6 +3,7 @@ import process from 'node:process';
 import { chromium } from 'playwright';
 
 const manifest = JSON.parse(await fs.readFile(new URL('../release-manifest.json', import.meta.url), 'utf8'));
+const scanBugDictionary = JSON.parse(await fs.readFile(new URL('../data/scan-bug-dictionary.json', import.meta.url), 'utf8'));
 const baseURL = process.env.ATLAS_URL || 'http://127.0.0.1:4173/';
 const ipadUA='Mozilla/5.0 (iPad; CPU OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1';
 const iphoneUA='Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1';
@@ -39,6 +40,10 @@ for (const [profileIndex, profile] of profiles.entries()) {
     checks.push({ name, passed: Boolean(condition), detail });
     if (!condition) failed = true;
   };
+  const railMediumVisible = async () => page.locator('.atlas-liquid-selection-vertical').evaluate(node => {
+    const style=getComputedStyle(node),rect=node.getBoundingClientRect();
+    return node.classList.contains('is-ready')&&Number.parseFloat(style.opacity)>.9&&rect.width>10&&rect.height>10&&style.backgroundImage!=='none';
+  });
 
   try {
     await page.goto(`${baseURL}?conflict-smoke=1&v=${manifest.version.replace(/\D/g, '')}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
@@ -103,7 +108,7 @@ for (const [profileIndex, profile] of profiles.entries()) {
 
     for (const mode of ['all', 'locations', 'collectibles', 'activities', 'favorites']) {
       await page.locator(`.quick-rail .rail-button[data-mode="${mode}"]`).click();await page.waitForTimeout(220);
-      check(`rail ${mode} active`, await page.locator(`.quick-rail .rail-button[data-mode="${mode}"].active`).count() === 1);
+      check(`rail ${mode} active with visible medium`, await page.locator(`.quick-rail .rail-button[data-mode="${mode}"].active`).count() === 1 && await railMediumVisible());
       check(`rail ${mode} single active`, await page.locator('.quick-rail .rail-button.active').count() === 1);
     }
 
@@ -112,13 +117,14 @@ for (const [profileIndex, profile] of profiles.entries()) {
       await page.locator(`.bottom-nav .nav-item[data-panel="${panel}"]`).click();await page.waitForTimeout(90);
       await page.locator('.bottom-nav .nav-item[data-panel="map"]').click();await page.waitForTimeout(90);
       await page.locator(`.quick-rail .rail-button[data-mode="${mode}"]`).click();await page.waitForTimeout(90);
-      check(`${panel} return keeps rail ${mode} interactive`, await page.locator(`.quick-rail .rail-button[data-mode="${mode}"].active`).count() === 1);
+      check(`${panel} return keeps rail ${mode} interactive with medium`, await page.locator(`.quick-rail .rail-button[data-mode="${mode}"].active`).count() === 1 && await railMediumVisible());
       check(`${panel} closed panel inert`, await page.locator(selector).evaluate(node => node.hasAttribute('inert') && getComputedStyle(node).pointerEvents === 'none' && node.getAttribute('aria-hidden') === 'true'));
     }
 
     if(profileIndex===0){
       check('bottom maximum width contract', navigationGeometry.bottom.width <= 431, String(navigationGeometry.bottom.width));
-      check('navigation guard release contract', await page.evaluate(version => window.AtlasLiquidNavigation?.version === version, manifest.version));
+      const openCvRule=scanBugDictionary.entries.find(entry=>entry.id==='opencv-open-failure');
+      check('navigation guard and observed OpenCV recovery contract', await page.evaluate(version => window.AtlasLiquidNavigation?.version === version, manifest.version) && manifest.invariants.quickRailMediumMustRecover===true && openCvRule?.retryable===true && openCvRule?.autoAction==='enable_transcode_fallback_and_retry' && openCvRule.patterns.includes('opencv could not open the downloaded video'));
     }
 
     await page.locator('#evidenceStudioBtn').click();await page.waitForTimeout(160);

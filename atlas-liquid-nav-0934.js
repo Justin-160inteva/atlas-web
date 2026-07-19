@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const VERSION=window.AtlasRelease?.version||'0.9.4.3';
+  const VERSION=window.AtlasRelease?.version||'0.9.4.4';
   const root=document.documentElement;
   const groups=[];
   const panelSelectors=['#filterPanel','#routePanel','#progressPanel'];
@@ -13,17 +13,27 @@
     const insetX=5,insetY=3;
     return{x:activeRect.left-containerRect.left+insetX,y:activeRect.top-containerRect.top+insetY,width:Math.max(0,activeRect.width-insetX*2),height:Math.max(0,activeRect.height-insetY*2)};
   }
+  function hideIndicator(group){
+    group.animation?.cancel();
+    group.animation=null;
+    group.ready=false;
+    group.indicator.classList.remove('is-ready','is-pressed');
+  }
+  function revealIndicator(group){
+    if(!group.indicator.classList.contains('is-ready'))requestAnimationFrame(()=>group.indicator.classList.add('is-ready'));
+  }
   function animateVertical(group,next){
     const {indicator}=group,target=`translate3d(${next.x}px,${next.y}px,0)`;
     indicator.style.setProperty('--liquid-x',`${next.x}px`);indicator.style.setProperty('--liquid-y',`${next.y}px`);indicator.style.setProperty('--liquid-w',`${next.width}px`);indicator.style.setProperty('--liquid-h',`${next.height}px`);
-    if(!group.ready||matchMedia('(prefers-reduced-motion: reduce)').matches){group.animation?.cancel();indicator.style.transform=target;group.x=next.x;group.y=next.y;group.ready=true;requestAnimationFrame(()=>indicator.classList.add('is-ready'));return}
+    if(!group.ready||matchMedia('(prefers-reduced-motion: reduce)').matches){group.animation?.cancel();indicator.style.transform=target;group.x=next.x;group.y=next.y;group.ready=true;revealIndicator(group);return}
+    revealIndicator(group);
     if(group.x===next.x&&group.y===next.y)return;
     const computed=getComputedStyle(indicator).transform;group.animation?.cancel();
     group.animation=indicator.animate([{transform:computed==='none'?`translate3d(${group.x}px,${group.y}px,0)`:computed},{transform:target}],{duration:210,easing:'cubic-bezier(.22,.82,.2,1)',fill:'forwards'});
-    group.animation.onfinish=()=>{indicator.style.transform=target;group.animation?.cancel();group.animation=null};group.x=next.x;group.y=next.y;
+    group.animation.onfinish=()=>{indicator.style.transform=target;group.animation?.cancel();group.animation=null;revealIndicator(group)};group.x=next.x;group.y=next.y;
   }
   function placeIndicator(group){
-    const active=group.container.querySelector('button.active');if(!active){group.indicator.classList.remove('is-ready');return}
+    const active=group.container.querySelector('button.active');if(!active){hideIndicator(group);return}
     const next=geometry(group,group.container.getBoundingClientRect(),active.getBoundingClientRect());
     if(group.name==='vertical'){animateVertical(group,next);return}
     const i=group.indicator;i.style.setProperty('--liquid-x',`${next.x}px`);i.style.setProperty('--liquid-y',`${next.y}px`);

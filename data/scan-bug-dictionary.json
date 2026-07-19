@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "version": "2026.07.19.4",
+  "version": "2026.07.19.5",
   "project": "Atlas authorized video scan pipeline",
   "scope": "Extensible dictionary of project-observed and primary-source failure signatures for source retrieval, media processing, analysis, GitHub Actions, progress publishing, queue state, authorization, privacy, runtime heartbeat supervision, and adaptive transfer recovery.",
   "defaultPolicy": {
@@ -37,7 +37,7 @@
     {"id":"range-not-supported","layer":"source-download","retryable":true,"autoAction":"fallback_resumable_single_stream","cooldownSeconds":0,"patterns":["range request was not honored","range unsupported"],"diagnosis":"The selected CDN endpoint does not honor byte ranges; use resumable single-stream mode."},
     {"id":"download-low-throughput","layer":"source-download","retryable":true,"autoAction":"enable_adaptive_range_and_retry","cooldownSeconds":5,"patterns":["download throughput below floor","rolling speed remained below"],"diagnosis":"The selected transfer path is persistently slow; enable bounded parallel ranges and approved backup URLs."},
     {"id":"ffmpeg-invalid-data","layer":"media","retryable":true,"autoAction":"enable_transcode_fallback_and_retry","cooldownSeconds":0,"patterns":["invalid data found when processing input","averror_invaliddata","header missing","moov atom not found","ffmpeg remux failed"],"diagnosis":"Container or stream data cannot be remuxed directly; normalize by transcoding."},
-    {"id":"opencv-open-failure","layer":"analysis","retryable":true,"autoAction":"enable_transcode_fallback_and_retry","cooldownSeconds":0,"patterns":["videocapture failed","could not open video","failed to open media","duration is zero"],"diagnosis":"OpenCV cannot decode or seek the prepared media."},
+    {"id":"opencv-open-failure","layer":"analysis","retryable":true,"autoAction":"enable_transcode_fallback_and_retry","cooldownSeconds":0,"patterns":["videocapture failed","could not open video","could not open the downloaded video","opencv could not open the downloaded video","failed to open media","duration is zero"],"diagnosis":"OpenCV cannot decode or seek the prepared media; normalize the downloaded container with the approved transcode fallback, then retry the same authorized item."},
     {"id":"analysis-timeout","layer":"analysis","retryable":true,"autoAction":"extend_timeout_reduce_samples_and_retry","cooldownSeconds":0,"patterns":["timeout after","timeoutexpired","process timed out"],"diagnosis":"Analysis exceeded the per-item time budget."},
     {"id":"analysis-memory","layer":"analysis","retryable":true,"autoAction":"reduce_memory_pressure_and_retry","cooldownSeconds":0,"patterns":["memoryerror","out of memory","exit code 137","killed process"],"diagnosis":"The runner exhausted memory."},
     {"id":"runner-disk-space","layer":"runner","retryable":true,"autoAction":"cleanup_then_retry","cooldownSeconds":0,"patterns":["no space left on device","disk quota exceeded","errno 28"],"diagnosis":"Temporary storage is full."},

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 7,
-  "triggerId": "eleven-production-p007-p011-20260719-01",
-  "requestedAt": "2026-07-19T21:52:00Z",
+  "triggerId": "eleven-production-p007-p011-20260719-02-opencv-recovery",
+  "requestedAt": "2026-07-19T22:59:57Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P07-P11",
@@ -10,7 +10,7 @@
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "mode": "chronological-five-queued-one-item-per-run-live-telemetry",
   "queuePages": [7, 8, 9, 10, 11],
-  "startWithPage": 7,
+  "startWithPage": 9,
   "requiredAnalyzer": "tools/analyze_authorized_video_v12.py",
   "automaticRecovery": true,
   "heartbeatSupervisor": true,
@@ -26,5 +26,6 @@
     "segmentProgress": true,
     "etaSeconds": true
   },
-  "humanReviewOnUnknownFailure": true
+  "humanReviewOnUnknownFailure": true,
+  "recoveryReason": "Known OpenCV downloaded-container open failure now maps to the approved transcode fallback and bounded retry."
 }
