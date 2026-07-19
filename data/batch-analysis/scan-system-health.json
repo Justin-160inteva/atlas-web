@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T19:26:54.112677Z",
-  "status": "fail",
+  "generatedAt": "2026-07-19T19:27:35.957657Z",
+  "status": "pass",
   "summary": {
     "total": 33,
-    "passed": 32,
-    "failed": 1
+    "passed": 33,
+    "failed": 0
   },
   "dictionaryVersion": "2026.07.19.1",
   "checks": [
@@ -71,7 +71,7 @@
     },
     {
       "name": "monitor_versions",
-      "passed": false,
+      "passed": true,
       "detail": "coherent monitor component versions"
     },
     {
@@ -82,7 +82,7 @@
     {
       "name": "monitor_completion_priority",
       "passed": true,
-      "detail": "one freshness writer with coherent queue overlay"
+      "detail": "one freshness writer with loop-safe coherent queue overlay"
     },
     {
       "name": "monitor_cache",
