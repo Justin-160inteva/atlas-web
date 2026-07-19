@@ -2,6 +2,7 @@
   'use strict';
 
   const VERSION='0.9.3.7';
+  const VERSION_TEXT="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.7";
   const root=document.documentElement;
   const groups=[];
   let frame=0;
@@ -14,9 +15,7 @@
 
   function stampVersion(){
     const brand=document.querySelector('.brand-copy small');
-    if(brand&&brand.textContent!=="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.7"){
-      brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.7";
-    }
+    if(brand&&brand.textContent!==VERSION_TEXT)brand.textContent=VERSION_TEXT;
   }
 
   function schedule(){
@@ -180,12 +179,12 @@
     installGroup('.quick-rail','vertical');
     root.dataset.atlasLiquidNav=VERSION;
     stampVersion();
-    let stamps=0;
-    const versionTimer=setInterval(()=>{
-      stampVersion();
-      stamps+=1;
-      if(stamps>=32)clearInterval(versionTimer);
-    },250);
+
+    const brand=document.querySelector('.brand-copy small');
+    if(brand){
+      new MutationObserver(stampVersion).observe(brand,{childList:true,characterData:true,subtree:true});
+    }
+
     addEventListener('resize',schedule,{passive:true});
     addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});
     document.fonts?.ready?.then(schedule,()=>{});
