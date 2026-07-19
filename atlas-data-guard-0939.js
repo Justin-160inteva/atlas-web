@@ -5,7 +5,7 @@
   const guarded=new Set(['data/locations.json','data/categories.json','data/regions.json']);
   const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   const pathOf=input=>{
-    try{return new URL(typeof input==='string'?input:input.url,location.href).pathname.replace(/^.*\/atlas-web\//,'')}catch{return String(input)}
+    try{return new URL(typeof input==='string'?input:input.url,location.href).pathname.replace(/^.*\/atlas-web\//,'').replace(/^\/+/, '')}catch{return String(input)}
   };
   function applyTransforms(value,path){
     if(path!=='data/locations.json')return value;
