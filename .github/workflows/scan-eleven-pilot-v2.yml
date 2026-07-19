@@ -1,4 +1,4 @@
-name: Scan 11 game world regional batch v7
+name: Scan 11 game world regional batch v8
 
 on:
   push:
@@ -68,7 +68,7 @@ jobs:
           scope=record['scope']
           region=queue['pilotRegion']
           assert record['status']=='active' and record['author']=='11的游戏世界'
-          assert 1<=len(queue['items'])<=3 and manifest['maxItemsPerRun']==1
+          assert 1<=len(queue['items'])<=5 and manifest['maxItemsPerRun']==1
           assert all(item['regionGuess']==region for item in queue['items'])
           catalog_ids={entry['id'] for entry in catalog['items']}
           assert all(item['externalSourceId'] in catalog_ids for item in queue['items'])
@@ -145,7 +145,7 @@ jobs:
           for _ in range(400):
               assert status['authorizationId']==queue['authorizationId']==catalog['authorizationId']
               assert status['summary']['total']==len(queue['items'])
-              assert 1<=len(queue['items'])<=3
+              assert 1<=len(queue['items'])<=5
               assert all(item['regionGuess']==queue['pilotRegion'] for item in queue['items'])
               assert all(item.get('state','pending') in allowed for item in queue['items'])
               assert manifest['analyzer'].endswith('analyze_authorized_video_v12.py')
