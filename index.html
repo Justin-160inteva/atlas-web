@@ -42,16 +42,10 @@
     <section class="panel glass route-panel" id="routePanel" aria-hidden="true"><header><div><small>ATLAS EXPLORATION PLANNER</small><h2>探索路线规划</h2></div><button class="close-route">×</button></header><div class="route-summary"><div class="route-stat"><b id="routeStops">0</b><small>路线点</small></div><div class="route-stat"><b id="routeDistance">0</b><small>地图距离</small></div><div class="route-stat"><b id="routeTime">0 分钟</b><small>预计时间</small></div></div><div class="route-actions"><button class="primary" id="optimizeRoute">优化顺序</button><button id="focusRoute">查看全程</button><button id="clearRoute">清除</button></div><div class="route-list" id="routeList"></div></section>
     <section class="panel glass progress-panel" id="progressPanel" aria-hidden="true"><header><div><small>探索进度</small><h2>区域完成情况</h2></div><button class="close-progress">×</button></header><div class="overall-progress"><div><b id="overallPercent">0%</b><small>总体完成度</small></div><div class="progress-track"><i id="overallBar"></i></div><p>已发现 <span id="overallDone">0</span> / <span id="overallTotal">0</span></p></div><div class="region-progress-list" id="regionProgressList"></div></section>
     <section class="search-overlay" id="searchOverlay" aria-hidden="true"><div class="search-modal glass"><div class="search-input-row"><span>⌕</span><input id="searchInput" autocomplete="off" placeholder="搜索中文或英文名称"/><button id="closeSearch">取消</button></div><div class="search-meta"><span>结果</span><b id="resultCount">0</b></div><div class="search-results" id="searchResults"></div></div></section>
-
     <section class="evidence-panel glass" id="evidencePanel" aria-hidden="true">
       <header><div><small>ATLAS EVIDENCE RECONSTRUCTION</small><h2>证据重建实验室</h2></div><button id="closeEvidenceStudio" aria-label="关闭证据重建实验室">×</button></header>
       <div class="evidence-scroll">
-        <div class="evidence-stats">
-          <div class="evidence-stat"><b id="evidenceSources">0</b><small>本地视频</small></div>
-          <div class="evidence-stat"><b id="evidenceFrames">0</b><small>关键帧</small></div>
-          <div class="evidence-stat"><b id="evidenceBuildings">0</b><small>建筑</small></div>
-          <div class="evidence-stat"><b id="evidenceCoverage">0%</b><small>覆盖率</small></div>
-        </div>
+        <div class="evidence-stats"><div class="evidence-stat"><b id="evidenceSources">0</b><small>本地视频</small></div><div class="evidence-stat"><b id="evidenceFrames">0</b><small>关键帧</small></div><div class="evidence-stat"><b id="evidenceBuildings">0</b><small>建筑</small></div><div class="evidence-stat"><b id="evidenceCoverage">0%</b><small>覆盖率</small></div></div>
         <section class="evidence-section"><div class="evidence-section-title"><b>本地项目</b><small>视频与关键帧不会上传</small></div><div class="evidence-actions"><button class="primary" id="addEvidenceVideos">添加视频</button><button id="importEvidenceProject">导入项目</button><button id="exportEvidenceProject">导出项目</button><button class="danger" id="clearEvidenceProject">清空本机项目</button></div><input id="evidenceVideoInput" type="file" accept="video/*" multiple hidden /><input id="evidenceImportInput" type="file" accept="application/json,.json" hidden /></section>
         <section class="evidence-section"><div class="evidence-section-title"><b>季节数据层</b><small>基础几何独立保存</small></div><div class="evidence-season-tabs"><button data-evidence-season="spring">春</button><button data-evidence-season="summer">夏</button><button data-evidence-season="autumn">秋</button><button data-evidence-season="winter">冬</button></div><div class="evidence-switches"><label><input id="toggleEvidenceCoverage" type="checkbox">覆盖热力图</label><label><input id="toggleEvidenceBuildings" type="checkbox">建筑矢量层</label><label><input id="toggleEvidenceAnchors" type="checkbox">证据锚点</label></div></section>
         <section class="evidence-section"><div class="evidence-section-title"><b>地图编辑工具</b><small>点击工具后在地图上落点</small></div><div class="evidence-tool-grid"><button data-evidence-tool="anchor">定位证据帧</button><button data-evidence-tool="coverage">标注覆盖</button><button data-evidence-tool="building">放置建筑</button></div><div class="evidence-template-row"><select id="evidenceTemplateSelect" aria-label="建筑模板"></select></div><div class="evidence-tool-label" id="evidenceToolLabel">浏览地图</div></section>
@@ -61,7 +55,6 @@
       </div>
       <div class="evidence-status" id="evidenceStatus" role="status"></div>
     </section>
-
     <div class="route-badge" id="routeBadge"><span id="routeBadgeText">路线未建立</span><button id="openRouteBadge">查看</button></div>
     <div class="toast" id="toast" role="status"></div>
   </main>
@@ -69,6 +62,7 @@
   <script src="atlas-i18n.js?v=0.9.4.2"></script>
   <script src="location-names.js?v=0.9.4.2"></script>
   <script src="location-title-polish.js?v=0.9.4.2"></script>
+  <script src="atlas-data-guard-0939.js?v=0.9.4.2"></script>
   <script src="route-engine.js?v=0.9.4.2"></script>
   <script src="app.js?v=0.9.4.2" defer></script>
   <script src="location-search-patch.js?v=0.9.4.2" defer></script>
