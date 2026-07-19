@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION='0.9.3.9';
+  const VERSION=window.AtlasRelease?.version||'0.9.4.2';
   const exact = new Map(Object.entries({
     'Mibuno Castle':'壬生野城','Katano Castle':'交野城','Osaka Castle':'大阪城','Amagasaki Castle':'尼崎城',
     'Takatsuki Castle':'高槻城','Yamazaki Castle':'山崎城','Shoryuji Castle':'胜龙寺城','Nijo Palace':'二条城',
@@ -29,41 +29,6 @@
   }
 
   window.AtlasLocationTitlePolish={polish,exact,version:VERSION};
-  const previousFetch=window.fetch.bind(window);
-  const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-  const isLocations=input=>/data\/locations\.json(?:\?|$)/.test(typeof input==='string'?input:(input&&input.url)||'');
-
-  async function parseLocations(response){
-    if(!response || !response.ok) throw new Error(`locations HTTP ${response?.status||0}`);
-    const text=await response.clone().text();
-    if(!text.trim()) throw new Error('locations response empty');
-    const data=JSON.parse(text);
-    if(!Array.isArray(data) || data.length<3000) throw new Error(`locations count invalid: ${data?.length||0}`);
-    data.forEach(polish);
-    return new Response(JSON.stringify(data),{status:200,headers:{'Content-Type':'application/json','X-Atlas-Recovery':VERSION}});
-  }
-
-  async function cachedLocations(input){
-    if(!('caches' in window)) return null;
-    const url=new URL(typeof input==='string'?input:input.url,location.href);
-    url.search='';
-    for(const candidate of [input,url.href,'data/locations.json']){
-      const response=await caches.match(candidate).catch(()=>null);
-      if(!response) continue;
-      try{return await parseLocations(response)}catch{}
-    }
-    return null;
-  }
-
-  window.fetch=async function(input,init){
-    if(!isLocations(input)) return previousFetch(input,init);
-    let lastError;
-    for(let attempt=0;attempt<4;attempt++){
-      try{return await parseLocations(await previousFetch(input,{...init,cache:attempt?'reload':'default'}))}
-      catch(error){lastError=error;if(attempt<3)await sleep(180*(attempt+1))}
-    }
-    const cached=await cachedLocations(input);
-    if(cached) return cached;
-    throw lastError || new Error('locations unavailable');
-  };
+  window.AtlasDataTransforms=window.AtlasDataTransforms||[];
+  if(!window.AtlasDataTransforms.includes(polish))window.AtlasDataTransforms.push(polish);
 })();
