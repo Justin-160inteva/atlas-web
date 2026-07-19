@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION='0.9.3.4';
+  const VERSION='0.9.3.5';
   const root=document.documentElement;
   const groups=[];
   let frame=0;
@@ -11,6 +11,13 @@
     window.navigator.standalone
   );
   root.classList.toggle('atlas-standalone',standalone);
+
+  function stampVersion(){
+    const brand=document.querySelector('.brand-copy small');
+    if(brand&&brand.textContent!=="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.5"){
+      brand.textContent="ASSASSIN'S CREED SHADOWS · ALPHA 0.9.3.5";
+    }
+  }
 
   function schedule(){
     if(frame)return;
@@ -124,6 +131,13 @@
     installGroup('.bottom-nav','horizontal');
     installGroup('.quick-rail','vertical');
     root.dataset.atlasLiquidNav=VERSION;
+    stampVersion();
+    let stamps=0;
+    const versionTimer=setInterval(()=>{
+      stampVersion();
+      stamps+=1;
+      if(stamps>=32)clearInterval(versionTimer);
+    },250);
     addEventListener('resize',schedule,{passive:true});
     addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});
     document.fonts?.ready?.then(schedule,()=>{});
@@ -136,5 +150,3 @@
     init();
   }
 })();
-
-// Validation trigger: Alpha 0.9.3.4 smoother integrated left rail.
