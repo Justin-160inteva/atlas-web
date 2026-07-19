@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-19T12:51:05.362784Z",
+  "stage": "visual-review-batch-02",
+  "status": "complete",
+  "source": {
+    "bvid": "BV19EXYYWEdv",
+    "analysisResultPath": "data/analysis-results/dada-temples-36.json",
+    "evidenceManifestPath": "data/geospatial/dada-temples-36-evidence-manifest.json",
+    "artifactId": "8441753687",
+    "artifactDigest": "a77a222781a204a1db89f90da315c7cfc98be45c315dfe296033103b7f2d95f0",
+    "artifactRetentionDays": 1
+  },
+  "scope": {
+    "videoPositions": [
+      13,
+      24
+    ],
+    "count": 12
+  },
+  "counts": {
+    "reviewed": 12,
+    "confirmed": 12,
+    "unresolved": 0,
+    "coordinatesWritten": 12
+  },
+  "policy": {
+    "confirmedThreshold": 0.9,
+    "directPopupRequired": true,
+    "repositoryContainsFramePixels": false
+  },
+  "anchors": [
+    {
+      "videoPosition": 13,
+      "observedLabelZh": "伊崎寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 伊崎寺 matches Isakiji Temple in Omi.",
+      "evidence": [
+        {
+          "filename": "slot-15-early-102.621s.jpg",
+          "timeSeconds": 102.621,
+          "sha256": "fd1bf91f631afbe7cbcf8f8261ad34750af47328585e4977d3a336ebff101a58"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435820",
+      "title": "Isakiji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.844885067686574,
+        "y": 0.7013996992738424
+      },
+      "sourceLocationId": 435820
+    },
+    {
+      "videoPosition": 14,
+      "observedLabelZh": "总见寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 总见寺 matches Sokenji Temple in Omi.",
+      "evidence": [
+        {
+          "filename": "slot-15-middle-104.642s.jpg",
+          "timeSeconds": 104.642,
+          "sha256": "1c6cffee07adad0241187db05b12b1bf9382c58920b2ed126cdd7c92514fc6cf"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436705",
+      "title": "Sokenji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.8248891896856565,
+        "y": 0.6376887026766942
+      },
+      "sourceLocationId": 436705
+    },
+    {
+      "videoPosition": 15,
+      "observedLabelZh": "宝严寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 宝严寺 matches Hogonji Temple in Omi.",
+      "evidence": [
+        {
+          "filename": "slot-16-late-113.878s.jpg",
+          "timeSeconds": 113.878,
+          "sha256": "9b8fedee3783d8fbf16e17e227dea3223819647bc5bbca94f7e6645224350015"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435908",
+      "title": "Hogonji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.8091070270583754,
+        "y": 0.8262108554791456
+      },
+      "sourceLocationId": 435908
+    },
+    {
+      "videoPosition": 16,
+      "observedLabelZh": "大吉寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 大吉寺 matches Daikichiji Temple in Omi.",
+      "evidence": [
+        {
+          "filename": "slot-17-middle-119.075s.jpg",
+          "timeSeconds": 119.075,
+          "sha256": "753d8eae1bfff8e4964fd216332b29257a839b490103e33b2d9dd5651b7cda2a"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435886",
+      "title": "Daikichiji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.9637426733723486,
+        "y": 0.8530512449651859
+      },
+      "sourceLocationId": 435886
+    },
+    {
+      "videoPosition": 17,
+      "observedLabelZh": "三之堂",
+      "confidence": 0.98,
+      "basis": "Direct popup text 三之堂 matches the Mitsunodo Hall temple candidate in Harima.",
+      "evidence": [
+        {
+          "filename": "slot-18-late-128.311s.jpg",
+          "timeSeconds": 128.311,
+          "sha256": "479eede148c02449a556bcca40fc3b9aea67bc760ea69dfa21ab2b98cd771d4f"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437649",
+      "title": "Mitsunodo Hall",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.08293388814483968,
+        "y": 0.4345237450128953
+      },
+      "sourceLocationId": 437649
+    },
+    {
+      "videoPosition": 18,
+      "observedLabelZh": "阿贺本德寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 阿贺本德寺 matches Aga Hontokuji Temple in Harima.",
+      "evidence": [
+        {
+          "filename": "slot-19-early-131.487s.jpg",
+          "timeSeconds": 131.487,
+          "sha256": "9a19b85d59a03116a8d090a04e6c45da36109164416e9000cc32e6125d2cc7cc"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437692",
+      "title": "Aga Hontokuji Temple",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.03242485991559547,
+        "y": 0.340236799904092
+      },
+      "sourceLocationId": 437692
+    },
+    {
+      "videoPosition": 19,
+      "observedLabelZh": "教海寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 教海寺 matches Kyokaiji Temple in Harima.",
+      "evidence": [
+        {
+          "filename": "slot-20-middle-140.725s.jpg",
+          "timeSeconds": 140.725,
+          "sha256": "9c55f709fad15d654fe123b492186b947cb11052ce9e6e4329bf22d103b0ad74"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437593",
+      "title": "Kyokaiji Temple",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.28614862179050804,
+        "y": 0.4429996162734424
+      },
+      "sourceLocationId": 437593
+    },
+    {
+      "videoPosition": 20,
+      "observedLabelZh": "丹生山妙养寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 丹生山妙养寺 matches Tanjosan Myoyoji Temple in Harima.",
+      "evidence": [
+        {
+          "filename": "slot-20-late-142.745s.jpg",
+          "timeSeconds": 142.745,
+          "sha256": "7483e0f70aa92c243fff3c4a7eb1165f3fb543ab9d7130b444064fee6e054265"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437563",
+      "title": "Tanjosan Myoyoji Temple",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.31494259495709565,
+        "y": 0.377046362874794
+      },
+      "sourceLocationId": 437563
+    },
+    {
+      "videoPosition": 21,
+      "observedLabelZh": "安稳寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 安稳寺 matches Annonji Temple in Tamba.",
+      "evidence": [
+        {
+          "filename": "slot-22-middle-155.157s.jpg",
+          "timeSeconds": 155.157,
+          "sha256": "cf198876bc07604468130ae8a313f8585fd5b9ffc59abb0deb1ff4cae3a85e09"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435078",
+      "title": "Annonji Temple",
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "atlas": {
+        "x": 0.1907882991022417,
+        "y": 0.5331024804986199
+      },
+      "sourceLocationId": 435078
+    },
+    {
+      "videoPosition": 22,
+      "observedLabelZh": "宗镜寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 宗镜寺 matches Sukyoji Temple in Tamba.",
+      "evidence": [
+        {
+          "filename": "slot-23-late-164.395s.jpg",
+          "timeSeconds": 164.395,
+          "sha256": "c8cacf4fe8b19a170f8c8fa2c1e249894cadbea57afc003b3c2953f9a6eb404b"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-438261",
+      "title": "Sukyoji Temple",
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "atlas": {
+        "x": 0.018727370004443758,
+        "y": 0.669736613924803
+      },
+      "sourceLocationId": 438261
+    },
+    {
+      "videoPosition": 23,
+      "observedLabelZh": "西福寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 西福寺 matches Saifukuji Temple in Wakasa.",
+      "evidence": [
+        {
+          "filename": "slot-25-early-174.787s.jpg",
+          "timeSeconds": 174.787,
+          "sha256": "4ea76f5315040c9fafc93e195bbd1025d803c69f5aa32d0b4d8ee622bf8cf123"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437090",
+      "title": "Saifukuji Temple",
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "atlas": {
+        "x": 0.47095051971997626,
+        "y": 0.9517743587991078
+      },
+      "sourceLocationId": 437090
+    },
+    {
+      "videoPosition": 24,
+      "observedLabelZh": "极乐寺",
+      "confidence": 0.99,
+      "basis": "Direct popup text 极乐寺 matches Gokurakuji Temple in Wakasa.",
+      "evidence": [
+        {
+          "filename": "slot-26-middle-184.024s.jpg",
+          "timeSeconds": 184.024,
+          "sha256": "2e1ba9c75f35d816ee8dfec0a398b5936d6dfe5106f2d9c2566271c0dead9749"
+        }
+      ],
+      "status": "confirmed",
+      "locationId": "location-mapgenie-438274",
+      "title": "Gokurakuji Temple",
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "atlas": {
+        "x": 0.4244034804476575,
+        "y": 0.712306882873084
+      },
+      "sourceLocationId": 438274
+    }
+  ]
+}
