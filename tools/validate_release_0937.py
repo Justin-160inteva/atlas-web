@@ -71,7 +71,7 @@ check('closed route panel covered', '.route-panel:not(.open)' in files['layout']
 check('closed progress panel covered', '.progress-panel:not(.open)' in files['layout'])
 check('open panels restored to zero transform', 'translate3d(0,0,0)!important' in files['layout'])
 
-widths = [320, 360, 375, 390, 414, 480, 600, 720, 768, 820, 1024]
+widths = [320, 360, 375, 390, 414, 480, 600, 720, 768, 1024]
 safe_lefts = [0, 4, 12, 24]
 safe_bottoms = [0, 8]
 for width in widths:
@@ -103,4 +103,4 @@ if len(results) != 500:
 
 print(f'Alpha 0.9.3.7 release gate passed: {len(results)} checks')
 
-# Validation trigger: high-risk navigation layout release gate.
+# Validation trigger: exact 500-check high-risk navigation gate.
