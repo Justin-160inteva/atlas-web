@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "project": "Atlas - Assassin's Creed Shadows Interactive Map",
   "currentVersion": "0.9.3.5",
   "lastAuditedVersion": "0.9.3.5",
@@ -11,6 +11,15 @@
     "status": "pending",
     "unlocksDeferredBacklog": true
   },
+  "deploymentState": {
+    "status": "regressed",
+    "detectedAt": "2026-07-19",
+    "intendedVersion": "0.9.3.5",
+    "entryPageFallbackVersion": "0.9.1.4",
+    "serviceWorkerCacheVersion": "0.9.3.5",
+    "publicVerificationRequired": true,
+    "summary": "The default-branch entry page remains stamped and cache-busted as 0.9.1.4 and does not explicitly load the cumulative liquid-navigation patch layers, while the service worker and audit ledger claim 0.9.3.5."
+  },
   "auditPolicy": {
     "checkConversationRequests": true,
     "checkAssistantCommitments": true,
@@ -21,14 +30,17 @@
     "checkTechnicalDebt": true,
     "requireImplementationEvidence": true,
     "requireAutomatedValidation": true,
-    "requireDeviceVerificationWhenApplicable": true
+    "requireDeviceVerificationWhenApplicable": true,
+    "requirePublicDeploymentVerification": true,
+    "requireCrossFileVersionConsistency": true
   },
   "currentHighPriority": [
+    "0.9.3.6: repair production index version and cumulative asset loading",
+    "0.9.3.6: verify the public GitHub Pages response after deployment",
+    "0.9.3.7: add a single release manifest and cross-file version checks",
+    "0.9.3.7: add regression tests for liquid-navigation base and refinements",
+    "0.9.3.8: perform the scheduled full audit and resume ultra-HD map work",
     "Finish all 23 authorised 达达猪 video scans and imports",
-    "Build and validate the ultra-high-definition original map",
-    "Maintain mobile and desktop 60 FPS performance targets",
-    "Prevent navigation and style dependency regressions",
-    "Device-verify Alpha 0.9.3.5 liquid navigation",
     "Convert scanned evidence descriptors into map anchors"
   ],
   "knownDeferred": [
@@ -37,12 +49,40 @@
     "Actual original Atlas display font assets beyond CSS aliases and fallbacks",
     "Full completeness audit against 完整版 and 终极完整版 requirements"
   ],
+  "knownRegressions": [
+    {
+      "id": "deployment-version-source-mismatch-0935",
+      "status": "open",
+      "severity": "high",
+      "acceptedBehaviourAffected": "The public release should load and display the intended Alpha 0.9.3.5 cumulative liquid-navigation implementation.",
+      "evidence": [
+        "index.html visible version and primary asset query strings remain 0.9.1.4",
+        "index.html does not explicitly reference atlas-liquid-nav-0933/0934 CSS or JavaScript",
+        "atlas-liquid-nav-0934.js contains runtime 0.9.3.5 stamping but entry-page loading is unproven",
+        "sw.js cache name is atlas-alpha-0935-pages-v1"
+      ],
+      "requiredFixVersion": "0.9.3.6"
+    }
+  ],
   "auditHistory": [
     {
       "version": "0.9.3.5",
       "date": "2026-07-19",
       "type": "baseline",
       "result": "Roadmap and recurring audit policy established",
+      "roadmap": "PROJECT-ROADMAP.md"
+    },
+    {
+      "version": "0.9.3.5",
+      "date": "2026-07-19",
+      "type": "early-regression-audit",
+      "trigger": "accepted feature/version regression",
+      "result": "Deployment version-source mismatch confirmed; release reclassified as regressed and unverified.",
+      "nextThreeReleasePriorities": {
+        "0.9.3.6": "Repair production entry page, cumulative asset loading and public deployment verification.",
+        "0.9.3.7": "Create a single release manifest and automated cross-file/version regression checks.",
+        "0.9.3.8": "Run the next scheduled audit and continue ultra-HD original map work after deployment stability is proven."
+      },
       "roadmap": "PROJECT-ROADMAP.md"
     }
   ]
