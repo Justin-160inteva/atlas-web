@@ -21,7 +21,6 @@ required=[
  ('data guard kept','atlas-data-guard-0939.js' in sw)
 ]
 for n,c in required: check(n,c)
-# Supported iPad viewport and safe-area models.
 widths=[744,768,810,820,834,1024,1180,1194,1366]
 heights=[744,810,820,834,1024,1112,1180]
 safe=[0,4,8,12,20]
@@ -29,7 +28,6 @@ for w in widths:
   for h in heights:
     for s in safe:
       check(f'ipad viewport {w}x{h} safe{s}',w>=744 and h>=744 and max(8,s)>=s)
-# Navigation icon-host invariants.
 for buttons in [5,10]:
   for svg_count in [1]:
     for text_nodes in [0]:
@@ -40,3 +38,4 @@ while len(results)<500:
     check(f'integrity {i}',len(chunk)==72 and '\x00' not in chunk);i+=1
 if len(results)!=500: raise AssertionError(len(results))
 print(f'Alpha 0.9.4.0 iPad navigation gate passed: {len(results)} checks')
+# validation trigger 2
