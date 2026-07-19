@@ -1,6 +1,6 @@
 # Atlas Project Roadmap and Version Audit
 
-Updated baseline: Alpha 0.9.3.5
+Updated baseline: Alpha 0.9.3.6
 
 ## Audit cadence
 
@@ -8,6 +8,16 @@ Updated baseline: Alpha 0.9.3.5
 - Compare the current implementation against user requests, assistant commitments, known bugs, deferred work, validation evidence, and prior completed features that may have regressed.
 - A task is not complete only because code was committed. Completion requires implementation, automated validation, device-level verification where applicable, and no regression of previously accepted behaviour.
 - Every audit updates this file and `data/version-audit.json`.
+
+## Per-change release verification gate
+
+- Every completed program change must pass 200–500 independently recorded automated assertions or scenario checks before it can be called complete.
+- Low-risk isolated changes use at least 200 checks; normal UI/logic changes use 300; high-risk navigation, rendering, cache, deployment, persistence and map changes use 500.
+- Repeating one identical command hundreds of times does not count. The checks must cover distinct behaviours, states, dependencies, devices/viewports and regression risks.
+- Every release must commit a verification report under `data/release-verification/`.
+- Public GitHub Pages deployment must be verified after publication.
+- Physical iPad or desktop testing must be recorded separately and cannot be replaced by CI or static analysis.
+- Full policy: `RELEASE-VERIFICATION-POLICY.md`.
 
 ## Latest audit: Alpha 0.9.3.5 deployment regression
 
@@ -50,7 +60,7 @@ Tasks dependent on this gate remain queued, then become active gradually after t
 
 ### Immediate release recovery
 
-- [ ] Alpha 0.9.3.6: repair the production entry page so its visible version and loaded assets match the intended release.
+- [ ] Alpha 0.9.3.6: complete the 500-check high-risk release verification matrix for entry-page, cache and deployment repair.
 - [ ] Alpha 0.9.3.6: verify the public GitHub Pages response, not only repository files or JavaScript syntax.
 - [ ] Alpha 0.9.3.7: introduce a single release manifest and cross-file version-consistency validation.
 - [ ] Alpha 0.9.3.7: add regression checks proving liquid-navigation base and refinement layers are both loaded.
@@ -89,8 +99,7 @@ Tasks dependent on this gate remain queued, then become active gradually after t
 - [x] Attach the header to the browser viewport edge with safe-area support.
 - [x] Keep the approved bottom navigation liquid-glass behaviour.
 - [x] Integrate left-rail icons into the shared selection medium and remove separate selected icon frames.
-- [ ] Reclassify Alpha 0.9.3.5 liquid-navigation deployment as unverified until the production entry point loads the required layers.
-- [ ] Device-verify Alpha 0.9.3.5/0.9.3.6 left-rail smoothness and composition after deployment repair.
+- [ ] Device-verify Alpha 0.9.3.6 left-rail smoothness and composition after deployment repair.
 - [ ] Recheck all panels, bottom sheets, search, route, progress, favourites and category filters after each navigation-layer change.
 - [ ] Continue refining mobile and desktop control spacing where screenshots reveal crowding or overlap.
 
