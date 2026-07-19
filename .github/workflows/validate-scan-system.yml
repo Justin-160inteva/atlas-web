@@ -10,14 +10,16 @@ on:
       - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
       - 'data/batch-analysis/eleven-production-order-policy.json'
       - 'tools/publish_runtime_progress.py'
-      - 'tools/analyze_authorized_video_v10.py'
+      - 'tools/publish_runtime_progress_v2.py'
+      - 'tools/analyze_authorized_video_v11.py'
+      - 'tools/analyze_authorized_video_v12.py'
       - 'tools/diagnose_and_recover_scan_v2.py'
       - 'tools/run_scan_with_auto_recovery.py'
-      - 'tools/audit_scan_system_v2.py'
+      - 'tools/run_scan_with_auto_recovery_v2.py'
+      - 'tools/audit_scan_system_v3.py'
       - 'scan-monitor.html'
       - 'scan-monitor.js'
-      - 'scan-monitor-coherence.js'
-      - 'scan-monitor-download.js'
+      - 'scan-monitor-live-bridge.js'
       - 'sw.js'
       - '.github/workflows/scan-eleven-pilot-v2.yml'
       - '.github/workflows/validate-scan-monitor.yml'
@@ -48,23 +50,25 @@ jobs:
       - name: Compile Python pipeline
         run: |
           python -m py_compile tools/publish_runtime_progress.py
-          python -m py_compile tools/analyze_authorized_video_v10.py
+          python -m py_compile tools/publish_runtime_progress_v2.py
+          python -m py_compile tools/analyze_authorized_video_v11.py
+          python -m py_compile tools/analyze_authorized_video_v12.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
-          python -m py_compile tools/audit_scan_system_v2.py
+          python -m py_compile tools/run_scan_with_auto_recovery_v2.py
+          python -m py_compile tools/audit_scan_system_v3.py
 
       - name: Validate JavaScript monitor
         run: |
           node --check atlas-settings.js
           node --check scan-monitor.js
-          node --check scan-monitor-coherence.js
-          node --check scan-monitor-download.js
+          node --check scan-monitor-live-bridge.js
           node --check sw.js
 
       - name: Run executable systemic audit and simulated recovery cases
         id: systemic_audit
         continue-on-error: true
-        run: python tools/audit_scan_system_v2.py
+        run: python tools/audit_scan_system_v3.py
 
       - name: Publish health report even when checks fail
         if: always()
@@ -93,13 +97,14 @@ jobs:
           import json
           report=json.load(open('data/batch-analysis/scan-system-health.json',encoding='utf-8'))
           required={
-              'monitor_poll','monitor_thresholds','monitor_schema','monitor_completion_priority',
+              'monitor_poll','monitor_thresholds','monitor_projection','monitor_recovery_retention',
               'publisher_409_simulation','same_job_recovery','live_recovery',
-              'repository_media_clean','action_412','action_context',
-              'action_media','action_timeout','action_memory','v10_adapter','bounded_queue'
+              'repository_media_clean','action_412','action_range_fallback',
+              'action_media','action_timeout','v12_adapter','adaptive_ranges',
+              'no_rate_limit','balanced_sampling','telemetry_preservation','bounded_queue'
           }
           checks={item['name']:item for item in report['checks']}
-          assert report['summary']['total']>=33, report['summary']
+          assert report['summary']['total']>=35, report['summary']
           assert required <= checks.keys(), sorted(required-checks.keys())
           assert report['status']=='pass', [item for item in report['checks'] if not item['passed']]
           assert report['summary']['failed']==0, report['summary']
