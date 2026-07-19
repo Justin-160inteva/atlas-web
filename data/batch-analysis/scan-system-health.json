@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T20:47:57.422543Z",
+  "generatedAt": "2026-07-19T20:48:58.414846Z",
   "status": "fail",
   "summary": {
     "total": 33,
-    "passed": 29,
-    "failed": 4
+    "passed": 25,
+    "failed": 8
   },
   "dictionaryVersion": "2026.07.19.3",
   "checks": [
@@ -141,12 +141,12 @@
     },
     {
       "name": "action_412",
-      "passed": true,
+      "passed": false,
       "detail": "backoff and API fallback"
     },
     {
       "name": "action_context",
-      "passed": true,
+      "passed": false,
       "detail": "v10 compatibility action"
     },
     {
@@ -156,12 +156,12 @@
     },
     {
       "name": "action_timeout",
-      "passed": true,
+      "passed": false,
       "detail": "timeout recovery action"
     },
     {
       "name": "action_memory",
-      "passed": true,
+      "passed": false,
       "detail": "memory recovery action"
     },
     {
