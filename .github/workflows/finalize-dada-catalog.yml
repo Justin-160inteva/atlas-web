@@ -36,7 +36,7 @@ jobs:
 
       - name: Rebuild summaries and final integrity evidence
         id: finalize
-        run: python tools/finalize_dada_catalog.py --apply --fail-on-error
+        run: python tools/finalize_dada_catalog.py --apply
 
       - name: Run 400-round final catalog gate
         id: gate
@@ -45,14 +45,21 @@ jobs:
           import json
           from pathlib import Path
 
-          for _ in range(400):
+          for round_index in range(400):
               report = json.loads(Path('data/batch-analysis/dada-final-integrity.json').read_text(encoding='utf-8'))
               catalog = json.loads(Path('data/dada-ac-shadows-catalog.json').read_text(encoding='utf-8'))
               status = json.loads(Path('data/batch-analysis/dada-author-catalog-status.json').read_text(encoding='utf-8'))
               queue = json.loads(Path('data/analysis-jobs/dada-quality-reprocess.json').read_text(encoding='utf-8'))
               audit = json.loads(Path('data/batch-analysis/dada-catalog-quality-audit.json').read_text(encoding='utf-8'))
 
-              assert report['status'] == 'pass'
+              if report['status'] != 'pass':
+                  print(json.dumps({
+                      'round': round_index + 1,
+                      'summary': report.get('summary'),
+                      'errors': report.get('errors'),
+                  }, ensure_ascii=False, indent=2))
+                  raise AssertionError('Dada final integrity report contains failed checks')
+
               assert report['summary']['catalogItems'] == 23
               assert report['summary']['failed'] == 0
               assert report['summary']['namedSequences'] == list(range(1, 24))
@@ -77,17 +84,20 @@ jobs:
               assert audit['summary']['critical'] == 0
           PY
 
-      - name: Persist final Dada integrity state
+      - name: Persist final Dada integrity evidence
         id: persist
+        if: always()
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/dada-ac-shadows-catalog.json
           git add data/batch-analysis/dada-author-catalog-status.json
-          git add data/batch-analysis/dada-final-integrity.json
+          if [ -f data/batch-analysis/dada-final-integrity.json ]; then
+            git add data/batch-analysis/dada-final-integrity.json
+          fi
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Finalize Dada catalog integrity [skip ci]'
-          git pull --rebase origin main
+          git commit -m 'Persist Dada catalog integrity evidence [skip ci]'
+          git pull --rebase --autostash origin main
           git push origin HEAD:main
 
       - name: Record finalization outcome
