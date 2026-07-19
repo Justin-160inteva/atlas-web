@@ -1,29 +1,20 @@
 {
   "schemaVersion": 6,
-  "triggerId": "eleven-production-p001-p003-20260719-01",
-  "requestedAt": "2026-07-19T18:54:00Z",
+  "triggerId": "eleven-production-p004-p006-20260719-01",
+  "requestedAt": "2026-07-19T20:09:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
-  "pilotRegion": "顺序批次 P01-P03",
+  "pilotRegion": "顺序批次 P04-P06",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "mode": "chronological-bounded-one-item-live-telemetry",
-  "queuePages": [1, 2, 3],
-  "startWithPage": 1,
+  "queuePages": [4,5,6],
+  "startWithPage": 4,
   "requiredAnalyzer": "tools/analyze_authorized_video_v10.py",
   "automaticRecovery": true,
-  "runtimeHeartbeat": {
-    "enabled": true,
-    "minimumIntervalSeconds": 60,
-    "independentDuringNetworkStall": true,
-    "publicSanitizedProgressOnly": true
-  },
-  "downloadTelemetry": {
-    "downloadedMegabytes": true,
-    "speedMegabytesPerSecond": true,
-    "segmentProgress": true,
-    "etaSeconds": true
-  },
+  "heartbeatSupervisor": true,
+  "runtimeHeartbeat": {"enabled":true,"minimumIntervalSeconds":60,"independentDuringNetworkStall":true,"publicSanitizedProgressOnly":true},
+  "downloadTelemetry": {"downloadedMegabytes":true,"speedMegabytesPerSecond":true,"segmentProgress":true,"etaSeconds":true},
   "humanReviewOnUnknownFailure": true
 }
