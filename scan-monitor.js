@@ -1,11 +1,12 @@
 (() => {
   'use strict';
 
+  const VERSION='0.3.1';
   const FAST_POLL_MS=10000;
   const SLOW_POLL_MS=60000;
   const CLOCK_TICK_MS=1000;
-  const RUNTIME_FRESH_MS=240000;
-  const RUNNING_STALE_MS=300000;
+  const RUNTIME_FRESH_MS=150000;
+  const RUNNING_STALE_MS=180000;
   const REPO='Justin-160inteva/atlas-web';
   const BRANCH='main';
   const WORKFLOW='scan-eleven-pilot-v2.yml';
@@ -81,15 +82,19 @@
   }
 
   function stateLabel(state){
-    return({running:'运行中',queued:'排队中',recovery:'自动恢复',blocked:'需要人工检查',complete:'试验完成',idle:'等待任务'})[state]||'等待任务';
+    return({running:'运行中',queued:'排队中',recovery:'自动恢复',blocked:'需要人工检查',complete:'批次完成',idle:'等待任务'})[state]||'等待任务';
   }
 
   function queueStateLabel(state){
-    return({pending:'等待',running:'运行中',failed:'失败',imported:'已导入'})[state]||state||'等待';
+    return({pending:'等待',queued:'排队',running:'运行中',failed:'失败',imported:'已导入'})[state]||state||'等待';
   }
 
   function latestRun(payload){
     return payload?.workflow_runs?.find(run=>['in_progress','queued'].includes(run.status))||payload?.workflow_runs?.[0]||null;
+  }
+
+  function validRuntime(runtime){
+    return Boolean(runtime&&Number(runtime.schemaVersion)>=2&&typeof runtime.state==='string'&&typeof runtime.stage==='string'&&Number.isFinite(Date.parse(runtime.updatedAt||'')));
   }
 
   function deriveState(status,recovery,run,runtime){
@@ -122,37 +127,44 @@
     return items.find(item=>item.externalSourceId===activeId)||items.find(item=>item.state==='running')||items.find(item=>item.state==='pending')||items.find(item=>item.state==='failed')||null;
   }
 
-  function usableRuntime(runtime,current){
-    if(!runtime||!current)return null;
+  function runtimeForCurrent(runtime,current){
+    if(!validRuntime(runtime)||!current)return null;
     if(runtime.externalSourceId&&runtime.externalSourceId!==current.externalSourceId)return null;
-    const updated=Date.parse(runtime.updatedAt||'');
-    if(!Number.isFinite(updated)||Date.now()-updated>RUNTIME_FRESH_MS)return null;
     return runtime;
+  }
+
+  function usableRuntime(runtime,current){
+    const matched=runtimeForCurrent(runtime,current);
+    if(!matched)return null;
+    if(Date.now()-Date.parse(matched.updatedAt)>RUNTIME_FRESH_MS)return null;
+    return matched;
   }
 
   function renderQueue(queue,status){
     const items=queue?.items||status?.items||[];
+    const region=queue?.pilotRegion||status?.pilotRegion||'当前区域';
     $('queueSummary').textContent=`${items.length} 个任务`;
     $('queueList').innerHTML=items.length?items.map(item=>{
       const state=item.state||'pending';
       const title=item.partTitle||item.title||`第${item.sequence||item.page||'—'}期`;
-      const detail=[item.regionGuess||status?.pilotRegion||'山城',item.durationSeconds?`${Math.round(item.durationSeconds/60)}分钟`:null,item.attemptCount?`尝试 ${item.attemptCount}`:null,item.lastFinishedAt?`完成于 ${ageLabel(item.lastFinishedAt)}`:null].filter(Boolean).join(' · ');
+      const detail=[item.regionGuess||region,item.durationSeconds?`${Math.round(item.durationSeconds/60)}分钟`:null,item.attemptCount?`尝试 ${item.attemptCount}`:null,item.lastFinishedAt?`完成于 ${ageLabel(item.lastFinishedAt)}`:null].filter(Boolean).join(' · ');
       return `<article class="queue-item"><span class="queue-page">P${esc(item.page||item.sequence||'—')}</span><span class="queue-copy"><b>${esc(title)}</b><small>${esc(detail)}</small></span><span class="queue-state ${esc(state)}">${esc(queueStateLabel(state))}</span></article>`;
     }).join(''):'<div class="empty">队列为空。</div>';
   }
 
   function renderRecovery(recovery){
     if(!recovery){$('recoveryCategory').textContent='未触发';$('recoveryPanel').innerHTML='<div class="empty">当前没有恢复事件。</div>';return;}
-    $('recoveryCategory').textContent=recovery.category||'none';
+    $('recoveryCategory').textContent=recovery.dictionaryEntryId||recovery.category||'none';
     const changed=Object.entries(recovery.changedRuntimeSettings||{}).map(([key,value])=>`${key}=${value}`).join(' · ')||'未调整运行参数';
-    $('recoveryPanel').innerHTML=`<div class="event"><b>${esc(recovery.action||'none')}</b><small>${recovery.retryScheduled?'已安排安全重试':'未安排重试'} · ${recovery.requiresHumanReview?'需要人工检查':'无需人工介入'}</small><small>${esc(changed)}</small></div>`;
+    const diagnosis=recovery.diagnosis?`<small>${esc(recovery.diagnosis)}</small>`:'';
+    $('recoveryPanel').innerHTML=`<div class="event"><b>${esc(recovery.action||'none')}</b><small>${recovery.retryScheduled?'已安排安全重试':'未安排重试'} · ${recovery.requiresHumanReview?'需要人工检查':'无需人工介入'}</small>${diagnosis}<small>${esc(changed)}</small></div>`;
   }
 
   function renderEvents(status,recovery,watchdog,run){
     const events=[];
     if(run)events.push({title:`GitHub Actions：${run.status}${run.conclusion?` / ${run.conclusion}`:''}`,detail:`运行 #${run.run_number||'—'} · ${ageLabel(run.updated_at||run.created_at)}`});
-    if(recovery&&recovery.action!=='none')events.push({title:`自动恢复：${recovery.action}`,detail:`${recovery.category||'unknown'} · ${ageLabel(recovery.generatedAt)}`});
-    if(watchdog?.action&&watchdog.action!=='none')events.push({title:`看门狗：${watchdog.action}`,detail:`${watchdog.reason||watchdog.state||''} · ${ageLabel(watchdog.generatedAt||watchdog.updatedAt)}`});
+    if(recovery&&recovery.action!=='none')events.push({title:`自动恢复：${recovery.action}`,detail:`${recovery.dictionaryEntryId||recovery.category||'unknown'} · ${ageLabel(recovery.generatedAt)}`});
+    if(watchdog?.decision&&watchdog.decision!=='no_action')events.push({title:`看门狗：${watchdog.decision}`,detail:`${watchdog.reason||''} · ${ageLabel(watchdog.generatedAt)}`});
     for(const event of [...(status?.events||[])].reverse().slice(0,3))events.push({title:event.completed?'扫描已完成':'扫描事件',detail:`P${event.page||event.sequence||'—'} · ${event.analysisStatus||event.error||'状态已更新'} · ${ageLabel(event.finishedAt||event.startedAt)}`});
     $('eventList').innerHTML=events.length?events.slice(0,5).map(event=>`<div class="event"><b>${esc(event.title)}</b><small>${esc(event.detail)}</small></div>`).join(''):'<div class="empty">等待扫描事件。</div>';
   }
@@ -161,14 +173,14 @@
     const age=secondsSince(view.taskUpdatedAt);
     const label=ageLabel(view.taskUpdatedAt);
     if(view.state==='running'){
-      if(view.liveRuntime&&age!==null&&age<=RUNTIME_FRESH_MS/1000)return{level:'live',text:`页面联网正常；当前任务心跳更新于${label}。页面每10秒核对数据，任务端最多约90秒发布一次脱敏心跳。`};
-      if(age!==null&&age>RUNNING_STALE_MS/1000)return{level:'danger',text:`页面刚刚完成联网核对，但运行中的任务已经${label}没有新心跳。该状态可能是下载阶段长时间无阶段变化，也可能是任务卡住；看门狗将在安全阈值后处理。`};
-      return{level:'warn',text:`GitHub Actions 显示任务正在运行，但尚未收到当前分P的新心跳。页面仍会每10秒直接核对 GitHub main。`};
+      if(view.liveRuntime&&age!==null&&age<=RUNTIME_FRESH_MS/1000)return{level:'live',text:`页面联网正常；当前任务心跳更新于${label}。页面每10秒核对，任务端目标每60秒发布一次脱敏心跳。`};
+      if(age!==null&&age>RUNNING_STALE_MS/1000)return{level:'danger',text:`运行中的任务已经${label}没有新心跳，超过180秒故障阈值。系统将核对Actions状态、错误字典和队列租约；安全可恢复故障会在同一任务内重试。`};
+      return{level:'warn',text:'GitHub Actions 显示任务正在运行，但当前分P尚无有效新心跳。页面仍每10秒直接核对 GitHub main。'};
     }
-    if(view.state==='queued')return{level:'info',text:`页面联网正常；当前任务仍在 GitHub Actions 队列。排队期间任务数据时间可能保持不变，这不代表监控页面停止刷新。`};
-    if(view.state==='recovery')return{level:'warn',text:`页面联网正常；任务处于自动恢复阶段，最后任务事件更新于${label}。恢复器只会在安全策略允许时继续。`};
-    if(view.state==='blocked')return{level:'danger',text:`页面联网正常，但任务已暂停并等待人工检查。最后任务事件更新于${label}。`};
-    if(view.state==='complete')return{level:'live',text:`页面联网正常；山城试验队列已完成。最后任务事件更新于${label}。`};
+    if(view.state==='queued')return{level:'info',text:'页面联网正常；任务仍在 GitHub Actions 队列。排队阶段没有下载字节心跳。'};
+    if(view.state==='recovery')return{level:'warn',text:`任务处于自动调查与恢复阶段，最后任务事件更新于${label}。只有错误字典中明确可安全恢复的问题才会重试。`};
+    if(view.state==='blocked')return{level:'danger',text:`任务已停止自动处理并等待人工检查。最后任务事件更新于${label}。`};
+    if(view.state==='complete')return{level:'live',text:`当前区域批次已完成。最后任务事件更新于${label}。`};
     return{level:'info',text:`页面联网正常；任务端暂无新的运行事件。最后任务数据更新于${label}。`};
   }
 
@@ -191,23 +203,25 @@
     const status=statusEntry.data;
     const queue=queueEntry.data;
     const catalog=catalogEntry.data;
-    const recovery=recoveryEntry.data;
+    const current=currentItem(status,queue);
+    const matchedRuntime=runtimeForCurrent(runtimeEntry.data,current);
+    const liveRuntime=usableRuntime(runtimeEntry.data,current);
+    const recoveryRaw=recoveryEntry.data;
+    const recovery=recoveryRaw&&current&&(!recoveryRaw.activeExternalSourceId||recoveryRaw.activeExternalSourceId===current.externalSourceId)?recoveryRaw:null;
     const watchdog=watchdogEntry.data;
-    const runtime=runtimeEntry.data;
     const run=latestRun(actionsPayload);
     const summary=status?.summary||{};
-    const total=Number(summary.total||queue?.items?.length||3);
+    const total=Number(summary.total||queue?.items?.length||0);
     const imported=Number(summary.imported||queue?.items?.filter(item=>item.state==='imported').length||0);
-    const current=currentItem(status,queue);
-    const liveRuntime=usableRuntime(runtime,current);
     const state=deriveState(status,recovery,run,liveRuntime);
     const itemProgress=Number(liveRuntime?.progressPercent||0);
     const progress=Math.max(0,Math.min(100,total?((imported+(itemProgress>0&&state==='running'?itemProgress/100:0))/total)*100:0));
-    const catalogTotal=Number(catalog?.catalogStatus?.matchedGameVideos||catalog?.items?.length||80);
+    const catalogTotal=Number(catalog?.catalogStatus?.matchedScanItems||catalog?.items?.length||80);
     const catalogImported=Number(catalog?.catalogStatus?.analysisImported||catalog?.items?.filter(item=>item.analysisStatus==='imported').length||0);
     const attempt=Number(current?.attemptCount||status?.activeItem?.attemptCount||recovery?.attemptCount||0);
-    const taskUpdatedAt=liveRuntime?.updatedAt||run?.updated_at||status?.updatedAt||queue?.updatedAt||catalog?.catalogStatus?.analysisUpdatedAt;
+    const taskUpdatedAt=matchedRuntime?.updatedAt||status?.updatedAt||queue?.updatedAt||run?.updated_at||catalog?.updatedAt;
     const origin=[statusEntry.origin,queueEntry.origin,runtimeEntry.origin].every(value=>value==='GitHub main')?'GitHub main':'混合回退';
+    const region=queue?.pilotRegion||status?.pilotRegion||'区域';
 
     $('statusBadge').dataset.state=state;
     $('statusBadge').querySelector('b').textContent=stateLabel(state);
@@ -216,18 +230,18 @@
     $('pilotProgress').textContent=`${imported} / ${total}`;
     $('catalogProgress').textContent=`${catalogImported} / ${catalogTotal}`;
     $('attemptCount').textContent=`${attempt} / ${recovery?.maxAttempts||3}`;
-    $('activeTitle').textContent=current?`P${current.page||current.sequence||'—'} · ${current.partTitle||current.title||'当前扫描任务'}`:state==='complete'?'山城试验扫描已完成':'当前没有活动扫描任务';
+    $('activeTitle').textContent=current?`P${current.page||current.sequence||'—'} · ${current.partTitle||current.title||'当前扫描任务'}`:state==='complete'?`${region}批次扫描已完成`:'当前没有活动扫描任务';
     $('activeDetail').textContent=liveRuntime?.message||(
-      state==='running'?`GitHub Actions 正在执行${liveRuntime?.stage?` · ${liveRuntime.stage}`:''}`:
+      state==='running'?`GitHub Actions 正在执行${matchedRuntime?.stage?` · ${matchedRuntime.stage}`:''}`:
       state==='queued'?'任务已经排队，等待 GitHub Actions 领取。':
-      state==='recovery'?`检测到可恢复故障：${recovery?.category||'未知类别'}，系统正在按受限策略重试。`:
-      state==='blocked'?`自动处理已暂停：${recovery?.category||'需要人工检查'}。`:
-      state==='complete'?'3个山城试验视频均已导入分析索引。':'等待新的工作流事件。'
+      state==='recovery'?`检测到可恢复故障：${recovery?.dictionaryEntryId||recovery?.category||'未知类别'}，系统正在按受限策略调查与重试。`:
+      state==='blocked'?`自动处理已暂停：${recovery?.dictionaryEntryId||recovery?.category||'需要人工检查'}。`:
+      state==='complete'?`${region}区域队列中的视频均已导入分析索引。`:'等待新的工作流事件。'
     );
     $('syncState').textContent='已连接';
     $('syncState').dataset.state='connected';
     $('dataOrigin').textContent=`数据源：${origin}`;
-    $('stageList').innerHTML=stagesFor(state,liveRuntime).map(stage=>`<div class="stage ${stage.className}"><i></i><span>${esc(stage.label)}</span></div>`).join('');
+    $('stageList').innerHTML=stagesFor(state,liveRuntime||matchedRuntime).map(stage=>`<div class="stage ${stage.className}"><i></i><span>${esc(stage.label)}</span></div>`).join('');
     renderQueue(queue,status);renderRecovery(recovery);renderEvents(status,recovery,watchdog,run);
 
     lastSuccessfulSyncAt=Date.now();
@@ -271,7 +285,7 @@
       $('syncState').dataset.state='failed';
       $('lastSync').textContent=`${error.name==='AbortError'?'请求超时':error.message||error}`;
       $('freshnessNotice').dataset.level='danger';
-      $('freshnessNotice').textContent='本轮联网核对失败。页面会保留最后一次成功状态，并在下一轮自动重试。';
+      $('freshnessNotice').textContent='本轮联网核对失败。页面会保留最后一次成功状态，并在10秒后的下一轮自动重试。';
       nextPollAt=Date.now()+FAST_POLL_MS;
     }finally{
       refreshing=false;
@@ -293,6 +307,6 @@
   addEventListener('online',()=>refresh(true));
   addEventListener('message',event=>{if(event.data?.type==='atlas-monitor-refresh')refresh(true);});
   addEventListener('pagehide',()=>{clearInterval(fastTimer);clearInterval(clockTimer);},{once:true});
-  window.AtlasScanMonitor={refresh:()=>refresh(true),version:'0.2.0'};
+  window.AtlasScanMonitor={refresh:()=>refresh(true),version:VERSION};
   schedule();
 })();
