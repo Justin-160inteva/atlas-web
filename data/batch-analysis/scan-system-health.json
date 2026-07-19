@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T20:30:54.517968Z",
+  "generatedAt": "2026-07-19T20:47:03.747925Z",
   "status": "fail",
   "summary": {
     "total": 33,
-    "passed": 32,
-    "failed": 1
+    "passed": 29,
+    "failed": 4
   },
   "dictionaryVersion": "2026.07.19.2",
   "checks": [
@@ -36,17 +36,17 @@
     },
     {
       "name": "heartbeat_60_seconds",
-      "passed": true,
+      "passed": false,
       "detail": "60-second worker heartbeat"
     },
     {
       "name": "telemetry_60_seconds",
-      "passed": true,
+      "passed": false,
       "detail": "60-second download telemetry"
     },
     {
       "name": "v10_adapter",
-      "passed": true,
+      "passed": false,
       "detail": "curl response compatibility"
     },
     {
