@@ -1,0 +1,128 @@
+name: Observe Dada sequence 14 workflow
+
+on:
+  workflow_run:
+    workflows:
+      - Resolve and reprocess Dada sequence 14
+    types:
+      - completed
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: observe-dada-sequence-14
+  cancel-in-progress: false
+
+jobs:
+  record-outcome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Read completed run jobs and steps
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_NUMBER: ${{ github.event.workflow_run.run_number }}
+          RUN_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_EVENT: ${{ github.event.workflow_run.event }}
+          RUN_STATUS: ${{ github.event.workflow_run.status }}
+          RUN_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+          RUN_CREATED_AT: ${{ github.event.workflow_run.created_at }}
+          RUN_UPDATED_AT: ${{ github.event.workflow_run.updated_at }}
+        run: |
+          gh api --paginate "repos/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}/jobs?per_page=100" > /tmp/dada-seq14-jobs.json
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          raw = json.loads(Path('/tmp/dada-seq14-jobs.json').read_text(encoding='utf-8'))
+          if isinstance(raw, list):
+              job_rows = []
+              for page in raw:
+                  job_rows.extend(page.get('jobs') or [])
+          else:
+              job_rows = raw.get('jobs') or []
+
+          jobs = []
+          failed_stage = None
+          for job in job_rows:
+              steps = []
+              for step in job.get('steps') or []:
+                  row = {
+                      'number': step.get('number'),
+                      'name': step.get('name'),
+                      'status': step.get('status'),
+                      'conclusion': step.get('conclusion'),
+                      'startedAt': step.get('started_at'),
+                      'completedAt': step.get('completed_at'),
+                  }
+                  steps.append(row)
+                  if failed_stage is None and step.get('conclusion') in {'failure', 'cancelled'}:
+                      failed_stage = step.get('name')
+              jobs.append({
+                  'id': job.get('id'),
+                  'name': job.get('name'),
+                  'status': job.get('status'),
+                  'conclusion': job.get('conclusion'),
+                  'startedAt': job.get('started_at'),
+                  'completedAt': job.get('completed_at'),
+                  'runnerName': job.get('runner_name'),
+                  'steps': steps,
+              })
+
+          payload = {
+              'schemaVersion': 1,
+              'sequence': 14,
+              'workflow': 'dada-sequence-14-resolution.yml',
+              'workflowName': 'Resolve and reprocess Dada sequence 14',
+              'runId': int(os.environ['RUN_ID']),
+              'runNumber': int(os.environ['RUN_NUMBER']),
+              'runAttempt': int(os.environ.get('RUN_ATTEMPT') or 1),
+              'headSha': os.environ.get('HEAD_SHA'),
+              'event': os.environ.get('RUN_EVENT'),
+              'status': os.environ.get('RUN_STATUS'),
+              'conclusion': os.environ.get('RUN_CONCLUSION'),
+              'failedStage': failed_stage,
+              'runUrl': os.environ.get('RUN_URL'),
+              'createdAt': os.environ.get('RUN_CREATED_AT'),
+              'updatedAt': os.environ.get('RUN_UPDATED_AT'),
+              'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+              'jobs': jobs,
+          }
+          Path('/tmp/dada-seq14-workflow-run.json').write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          PY
+
+      - name: Persist observable run result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data/batch-analysis
+            cp /tmp/dada-seq14-workflow-run.json data/batch-analysis/dada-seq14-workflow-run.json
+            git add data/batch-analysis/dada-seq14-workflow-run.json
+            if git diff --cached --quiet; then
+              exit 0
+            fi
+            git commit -m 'Record Dada sequence 14 completed run [skip ci]'
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+          exit 1
