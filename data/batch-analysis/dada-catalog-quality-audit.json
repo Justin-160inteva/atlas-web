@@ -1,23 +1,22 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-19T09:35:08.399489+00:00",
+  "generatedAt": "2026-07-19T10:33:55.200774+00:00",
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "pipelineComplete": true,
   "qualityComplete": false,
   "summary": {
     "catalogItems": 23,
-    "critical": 7,
-    "warnings": 4,
-    "affectedCount": 5,
+    "critical": 6,
+    "warnings": 3,
+    "affectedCount": 4,
     "canonicalRetainedCount": 2,
     "canonicalRetainedSequences": [
       9,
       22
     ],
-    "resolutionRequiredCount": 3,
+    "resolutionRequiredCount": 2,
     "resolutionRequiredSequences": [
-      12,
       14,
       20
     ],
@@ -25,9 +24,8 @@
     "identityRequiredSequences": [
       20
     ],
-    "queueCount": 3,
+    "queueCount": 2,
     "queueSequences": [
-      12,
       14,
       20
     ]
@@ -59,28 +57,6 @@
     }
   ],
   "findings": [
-    {
-      "severity": "critical",
-      "code": "TITLE_TOPIC_MISMATCH",
-      "sequence": 12,
-      "message": "Resolved title topic differs from catalog title",
-      "evidence": {
-        "expectedTitle": "〖刺客信条影 新手攻略〗12 饕餮之刃（250%伤害）",
-        "resolvedTitle": "【对马岛之魂 新手攻略】12 解救铁匠",
-        "overlap": 0.0,
-        "bvid": "BV197cjebEXW"
-      }
-    },
-    {
-      "severity": "warning",
-      "code": "LOW_MATCH_SCORE",
-      "sequence": 12,
-      "message": "Match score is only 205.429",
-      "evidence": {
-        "score": 205.429,
-        "bvid": "BV197cjebEXW"
-      }
-    },
     {
       "severity": "critical",
       "code": "SEQUENCE_MISMATCH",

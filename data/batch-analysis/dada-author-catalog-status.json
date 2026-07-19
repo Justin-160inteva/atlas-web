@@ -3,7 +3,7 @@
   "batchId": "dada-author-catalog-v1",
   "author": "不再犹豫的达达猪",
   "authorizationId": "auth-dada-20260718",
-  "updatedAt": "2026-07-19T09:35:08.304592Z",
+  "updatedAt": "2026-07-19T10:33:55.112272Z",
   "complete": true,
   "summary": {
     "total": 23,
@@ -361,31 +361,50 @@
       "externalSourceId": "bili-dada-acshadows-12",
       "sequence": 12,
       "title": "〖刺客信条影 新手攻略〗12 饕餮之刃（250%伤害）",
-      "url": "https://www.bilibili.com/video/BV197cjebEXW/",
+      "url": "https://www.bilibili.com/video/BV1kpcDzYE2U/",
       "state": "imported",
-      "attemptCount": 1,
+      "attemptCount": 2,
       "resultPath": "data/analysis-results/dada-12.json",
       "lastAttempt": {
         "externalSourceId": "bili-dada-acshadows-12",
         "sequence": 12,
-        "startedAt": "2026-07-18T23:45:33.818018Z",
+        "startedAt": "2026-07-19T10:30:22.795758Z",
         "resolution": {
-          "url": "https://www.bilibili.com/video/BV197cjebEXW/",
-          "bvid": "BV197cjebEXW",
-          "title": "【对马岛之魂 新手攻略】12 解救铁匠",
+          "url": "https://www.bilibili.com/video/BV1kpcDzYE2U/",
+          "bvid": "BV1kpcDzYE2U",
+          "title": "〖刺客信条影 新手攻略〗12 饕餮之刃（250%伤害）",
           "author": "不再犹豫的达达猪",
-          "duration": "4:58",
-          "score": 205.429,
-          "source": "bilibili-search-api",
-          "query": "不再犹豫的达达猪 刺客信条影 新手攻略 12"
+          "score": 1000,
+          "source": "verified-catalog-source"
         },
         "analyzerReturnCode": 0,
         "analyzerOutput": "analysis result written: data/analysis-results/dada-12.json status=analyzed\n\n",
         "analysisStatus": "analyzed",
         "indexReturnCode": 0,
         "completed": true,
-        "finishedAt": "2026-07-18T23:50:39.306681Z"
-      }
+        "resultChecks": {
+          "statusAnalyzed": true,
+          "authorExact": true,
+          "titleExact": true,
+          "bvidExact": true,
+          "durationWithinTolerance": true,
+          "originalVideoDeleted": true,
+          "framePixelsDeleted": true
+        },
+        "finishedAt": "2026-07-19T10:33:55.112272Z"
+      },
+      "verifiedResolution": {
+        "bvid": "BV1kpcDzYE2U",
+        "url": "https://www.bilibili.com/video/BV1kpcDzYE2U/",
+        "title": "【刺客信条影 新手攻略】12 饕餮之刃（250%伤害）",
+        "durationSeconds": 590,
+        "author": "不再犹豫的达达猪",
+        "authorMid": 3493082095946091,
+        "collectionId": 5059842,
+        "verifiedAt": "2026-07-19T10:29:48.827168+00:00"
+      },
+      "qualityState": "verified-correct-source",
+      "resultStale": false
     },
     {
       "externalSourceId": "bili-dada-acshadows-13",

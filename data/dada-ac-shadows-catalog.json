@@ -23,7 +23,7 @@
     "analysisImported": 23,
     "analysisRemaining": 0,
     "analysisComplete": true,
-    "analysisUpdatedAt": "2026-07-19T09:35:08.304592Z"
+    "analysisUpdatedAt": "2026-07-19T10:33:55.112272Z"
   },
   "futureInclusionRule": {
     "enabled": true,
@@ -444,7 +444,7 @@
       "quality": "公开视频",
       "duration": "09:50",
       "coverage": [],
-      "url": "https://www.bilibili.com/video/BV197cjebEXW/",
+      "url": "https://www.bilibili.com/video/BV1kpcDzYE2U/",
       "exactUrlVerified": true,
       "catalogVerified": true,
       "license": "authorized_author_level",
@@ -456,12 +456,36 @@
       "mapUtility": "中",
       "priority": 50,
       "sourceSeries": "〖刺客信条影 新手攻略〗",
-      "resolvedBvid": "BV197cjebEXW",
-      "resolvedAt": "2026-07-18T23:45:35.892914Z",
-      "resolvedTitle": "【对马岛之魂 新手攻略】12 解救铁匠",
+      "resolvedBvid": "BV1kpcDzYE2U",
+      "resolvedAt": "2026-07-19T10:29:48.827168+00:00",
+      "resolvedTitle": "【刺客信条影 新手攻略】12 饕餮之刃（250%伤害）",
       "analysisStatus": "imported",
       "analysisResultPath": "data/analysis-results/dada-12.json",
-      "analysisUpdatedAt": "2026-07-18T23:50:39.306670Z"
+      "analysisUpdatedAt": "2026-07-19T10:33:55.112272Z",
+      "analysisQualityStatus": "verified-correct-source",
+      "resolutionEvidence": {
+        "method": "author-collection-plus-video-view",
+        "authorMid": 3493082095946091,
+        "collectionId": 5059842,
+        "durationSeconds": 590,
+        "verifiedAt": "2026-07-19T10:29:48.827168+00:00"
+      },
+      "analysisVerification": {
+        "verifiedBvid": "BV1kpcDzYE2U",
+        "verifiedAt": "2026-07-19T10:33:55.112272Z",
+        "resultChecks": {
+          "statusAnalyzed": true,
+          "authorExact": true,
+          "titleExact": true,
+          "bvidExact": true,
+          "durationWithinTolerance": true,
+          "originalVideoDeleted": true,
+          "framePixelsDeleted": true
+        },
+        "replacesJobId": "dada-12-v1",
+        "replacementJobId": "dada-12-v2-correct-source",
+        "replacesWrongBvid": "BV197cjebEXW"
+      }
     },
     {
       "id": "bili-dada-acshadows-13",

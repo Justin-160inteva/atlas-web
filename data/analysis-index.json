@@ -1,6 +1,6 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-19T09:35:08.299196Z",
+  "updatedAt": "2026-07-19T10:33:55.106697Z",
   "items": [
     {
       "id": "analysis-dada-05-v1",
@@ -528,41 +528,6 @@
       "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
     },
     {
-      "id": "analysis-dada-12-v1",
-      "jobId": "dada-12-v1",
-      "externalSourceId": "bili-dada-acshadows-12",
-      "authorizationId": "auth-dada-20260718",
-      "author": "不再犹豫的达达猪",
-      "title": "【对马岛之魂 新手攻略】12 解救铁匠",
-      "status": "imported",
-      "resultPath": "data/analysis-results/dada-12.json",
-      "resultSha256": "1517e5b853681faa9a5089ce44d3bdac43923c7e597a88b656fa071ed900e1e9",
-      "generatedAt": "2026-07-18T23:50:39.173087Z",
-      "media": {
-        "durationSeconds": 297.433,
-        "width": 1280,
-        "height": 720,
-        "fps": 30.0,
-        "videoRetained": false,
-        "framePixelsRetained": false
-      },
-      "scan": {
-        "sampled": 149,
-        "kept": 131,
-        "blurred": 0,
-        "duplicates": 18,
-        "keepRatio": 0.879195
-      },
-      "pipeline": {
-        "sourceDownloaded": true,
-        "numericDescriptorsGenerated": true,
-        "resultCommitted": true,
-        "libraryImported": true,
-        "geospatialAnchoringCompleted": false
-      },
-      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
-    },
-    {
       "id": "analysis-dada-01-v1",
       "jobId": "dada-01-v1",
       "externalSourceId": "bili-dada-acshadows-01",
@@ -761,6 +726,41 @@
         "blurred": 0,
         "duplicates": 105,
         "keepRatio": 0.16
+      },
+      "pipeline": {
+        "sourceDownloaded": true,
+        "numericDescriptorsGenerated": true,
+        "resultCommitted": true,
+        "libraryImported": true,
+        "geospatialAnchoringCompleted": false
+      },
+      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
+    },
+    {
+      "id": "analysis-dada-12-v2-correct-source",
+      "jobId": "dada-12-v2-correct-source",
+      "externalSourceId": "bili-dada-acshadows-12",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗12 饕餮之刃（250%伤害）",
+      "status": "imported",
+      "resultPath": "data/analysis-results/dada-12.json",
+      "resultSha256": "a2e378a7a6609e5457fba030c595539d1bc101497fc425a9db85b63374d8d283",
+      "generatedAt": "2026-07-19T10:33:54.952981Z",
+      "media": {
+        "durationSeconds": 589.733,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 480,
+        "kept": 199,
+        "blurred": 0,
+        "duplicates": 281,
+        "keepRatio": 0.414583
       },
       "pipeline": {
         "sourceDownloaded": true,
