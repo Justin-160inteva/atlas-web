@@ -1,19 +1,17 @@
 {
-  "schemaVersion": 3,
-  "triggerId": "eleven-shancheng-pilot-v4-monitor-heartbeat-20260719-01",
-  "requestedAt": "2026-07-19T16:45:00Z",
+  "schemaVersion": 4,
+  "triggerId": "eleven-shancheng-pilot-next-20260719-01",
+  "requestedAt": "2026-07-19T16:41:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "山城",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
-  "mode": "bounded-one-item-diagnose-recover-heartbeat-continue",
-  "startWithPage": 22,
-  "automaticRecovery": true,
+  "mode": "bounded-one-item-with-progress",
+  "startWithPage": 21,
   "runtimeHeartbeat": {
     "enabled": true,
     "minimumIntervalSeconds": 90,
     "publicSanitizedProgressOnly": true
-  },
-  "humanReviewOnUnknownFailure": true
+  }
 }
