@@ -1,0 +1,39 @@
+.settings-panel{
+  position:absolute;z-index:31;top:88px;right:18px;bottom:calc(var(--safe-bottom) + 82px);
+  width:min(430px,calc(100% - 36px));display:flex;flex-direction:column;overflow:hidden;
+  border-radius:24px;transform:translateX(calc(100% + 48px));pointer-events:none;
+  transition:transform .26s cubic-bezier(.2,.8,.2,1)
+}
+.settings-panel.open{transform:none;pointer-events:auto}
+.settings-panel>header{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:18px;border-bottom:1px solid var(--line)}
+.settings-panel>header small{display:block;color:var(--primary2);font-size:9px;font-weight:800;letter-spacing:.14em}
+.settings-panel>header h2{margin:5px 0 0;font-size:22px}
+.settings-close,.monitor-close,.monitor-refresh{width:38px;height:38px;flex:none;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.05);color:var(--text);font-size:20px}
+.settings-scroll{flex:1;overflow:auto;padding:14px 16px 24px;overscroll-behavior:contain}
+.settings-section{margin-bottom:14px}
+.settings-section-title{display:flex;align-items:end;justify-content:space-between;padding:0 3px 9px}
+.settings-section-title b{font-size:12px}.settings-section-title small{color:var(--muted);font-size:9px}
+.settings-card{width:100%;display:flex;align-items:center;gap:12px;padding:13px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.035);color:var(--text);text-align:left}
+.settings-card+.settings-card{margin-top:8px}
+.settings-card:active{transform:scale(.99)}
+.settings-card-icon{width:42px;height:42px;display:grid;place-items:center;flex:none;border-radius:13px;background:rgba(184,32,45,.19);border:1px solid rgba(225,69,80,.23);font-size:18px}
+.settings-card-copy{min-width:0;flex:1}.settings-card-copy b,.settings-card-copy small{display:block}.settings-card-copy b{font-size:12px}.settings-card-copy small{margin-top:4px;color:var(--muted);font-size:9px;line-height:1.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.settings-card-arrow{flex:none;color:var(--muted);font-size:18px}
+.settings-live{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.045);font-size:8px;color:var(--muted)}
+.settings-live i{width:7px;height:7px;border-radius:50%;background:#777;box-shadow:0 0 0 3px rgba(255,255,255,.04)}
+.settings-live[data-state="running"] i{background:#53c985;box-shadow:0 0 0 3px rgba(83,201,133,.13)}
+.settings-live[data-state="recovery"] i{background:#e1b458;box-shadow:0 0 0 3px rgba(225,180,88,.13)}
+.settings-live[data-state="blocked"] i{background:#e35b65;box-shadow:0 0 0 3px rgba(227,91,101,.13)}
+.settings-about{padding:12px 13px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.025)}
+.settings-about p{margin:0;color:var(--muted);font-size:9px;line-height:1.7}.settings-about b{color:var(--text)}
+.monitor-overlay{position:absolute;z-index:48;inset:0;display:flex;flex-direction:column;background:#0b0b0c;opacity:0;pointer-events:none;transform:translateY(16px);transition:.2s ease}
+.monitor-overlay.open{opacity:1;pointer-events:auto;transform:none}
+.monitor-toolbar{height:calc(58px + var(--safe-top));padding:var(--safe-top) 12px 0;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(15,15,16,.95);backdrop-filter:blur(18px)}
+.monitor-toolbar-copy{min-width:0;flex:1}.monitor-toolbar-copy b,.monitor-toolbar-copy small{display:block}.monitor-toolbar-copy b{font-size:13px}.monitor-toolbar-copy small{margin-top:2px;color:#8f8f95;font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.monitor-refresh{font-size:15px}.monitor-frame{width:100%;flex:1;border:0;background:#0b0b0c}
+@media(max-width:720px){
+  .settings-panel{top:74px;left:8px;right:8px;bottom:calc(var(--safe-bottom) + 70px);width:auto;border-radius:22px;transform:translateY(calc(100% + 100px))}
+  .settings-panel.open{transform:none}
+  .settings-scroll{padding:12px}
+}
+@media(prefers-reduced-motion:reduce){.settings-panel,.monitor-overlay{transition:none}}
