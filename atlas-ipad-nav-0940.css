@@ -1,0 +1,67 @@
+/* Atlas Alpha 0.9.4.0 — iPad navigation stability */
+.bottom-nav .nav-item>span,
+.quick-rail .rail-icon{
+  font-size:0!important;
+  line-height:0!important;
+  text-indent:0!important;
+  background-image:none!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+}
+.bottom-nav .nav-item>span::before,
+.bottom-nav .nav-item>span::after,
+.quick-rail .rail-icon::before,
+.quick-rail .rail-icon::after,
+.bottom-nav .nav-item::before,
+.bottom-nav .nav-item::after,
+.quick-rail .rail-button::before,
+.quick-rail .rail-button::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  box-shadow:none!important;
+}
+.bottom-nav .nav-item>span>.atlas-control-icon,
+.quick-rail .rail-icon>.atlas-control-icon{
+  position:relative!important;
+  inset:auto!important;
+  margin:0!important;
+  flex:none!important;
+}
+
+html.atlas-ipad .bottom-nav,
+html.atlas-ipad .quick-rail,
+html.atlas-ipad .atlas-liquid-selection,
+html.atlas-ipad .glass{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+html.atlas-ipad .bottom-nav,
+html.atlas-ipad .quick-rail{
+  background:linear-gradient(155deg,rgba(39,36,33,.94),rgba(15,14,13,.91))!important;
+  contain:layout paint style;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+html.atlas-ipad .atlas-liquid-selection{
+  background:linear-gradient(150deg,rgba(255,255,255,.17),rgba(126,31,42,.28) 58%,rgba(255,255,255,.06))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 5px 14px rgba(20,4,7,.18)!important;
+  filter:none!important;
+  will-change:transform;
+  contain:paint;
+}
+html.atlas-ipad .atlas-liquid-selection::before,
+html.atlas-ipad .atlas-liquid-selection::after{filter:none!important}
+html.atlas-ipad .bottom-nav .nav-item,
+html.atlas-ipad .quick-rail .rail-button,
+html.atlas-ipad .bottom-nav .nav-item>span,
+html.atlas-ipad .quick-rail .rail-icon{
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+html.atlas-ipad.atlas-nav-moving #mapCanvas{
+  pointer-events:none;
+}
+@media (prefers-reduced-motion:reduce){
+  .atlas-liquid-selection{animation:none!important;transition:none!important}
+}
