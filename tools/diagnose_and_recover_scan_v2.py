@@ -3,7 +3,7 @@
 
 The engine reconciles failed analyzer results with queue state, matches a curated bug
 signature, applies only pre-approved runtime changes, and writes an auditable report.
-It never changes authorization, queue scope, source code, or media retention.
+It never changes authorization, queue scope, executable source, or media retention.
 """
 from __future__ import annotations
 
@@ -94,30 +94,68 @@ def reconcile_failure(queue: dict[str, Any], status: dict[str, Any]) -> tuple[di
     return None, error
 
 
+def _enable_adaptive_transfer(manifest: dict[str, Any], *, parallel: bool = True) -> dict[str, Any]:
+    manifest["analyzer"] = "tools/analyze_authorized_video_v11.py"
+    optimization = manifest.setdefault("downloadOptimization", {})
+    optimization.update({
+        "noArtificialRateLimit": True,
+        "adaptiveParallelRanges": bool(parallel),
+        "maxRangeWorkers": max(2, min(4, int(optimization.get("maxRangeWorkers", 4)))),
+        "parallelRangeThresholdBytes": int(optimization.get("parallelRangeThresholdBytes", 25165824)),
+        "chunkSizeBytes": int(optimization.get("chunkSizeBytes", 4194304)),
+        "rangeRetries": max(3, int(optimization.get("rangeRetries", 3))),
+        "fallbackToResumableSingleStream": True,
+    })
+    return {
+        "analyzer": manifest["analyzer"],
+        "adaptiveParallelRanges": optimization["adaptiveParallelRanges"],
+        "maxRangeWorkers": optimization["maxRangeWorkers"],
+        "fallbackToResumableSingleStream": True,
+    }
+
+
 def apply_action(action: str, active: dict[str, Any], manifest: dict[str, Any]) -> dict[str, Any]:
     changed: dict[str, Any] = {}
-    if action == "increase_backoff_and_retry_public_api":
-        manifest["downloadBackoffSeconds"] = min(900, max(60, int(manifest.get("downloadBackoffSeconds", 60)) * 2))
+    attempts = max(1, int(active.get("attemptCount", 1)))
+    cooldown_cap = max(45, min(180, int(manifest.get("recoveryPolicy", {}).get("fastCooldownCapSeconds", 180))))
+    if action in {"increase_backoff_and_retry_public_api", "fast_backoff_public_api_and_adaptive_range"}:
+        backoff = min(cooldown_cap, 45 * (2 ** max(0, attempts - 1)))
+        manifest["downloadBackoffSeconds"] = backoff
         manifest["preferPublicApi"] = True
-        changed = {"downloadBackoffSeconds": manifest["downloadBackoffSeconds"], "preferPublicApi": True}
+        changed = {"downloadBackoffSeconds": backoff, "preferPublicApi": True}
+        if action == "fast_backoff_public_api_and_adaptive_range":
+            changed.update(_enable_adaptive_transfer(manifest, parallel=True))
     elif action in {"switch_to_public_api", "refresh_source_metadata_and_retry"}:
         manifest["preferPublicApi"] = True
         manifest["refreshSourceMetadata"] = True
         changed = {"preferPublicApi": True, "refreshSourceMetadata": True}
-    elif action == "use_v10_response_compatibility_adapter":
-        manifest["analyzer"] = "tools/analyze_authorized_video_v10.py"
-        changed = {"analyzer": manifest["analyzer"]}
+    elif action in {"use_v10_response_compatibility_adapter", "use_v11_transfer_adapter"}:
+        changed = _enable_adaptive_transfer(manifest, parallel=True)
+    elif action == "enable_adaptive_range_and_retry":
+        changed = _enable_adaptive_transfer(manifest, parallel=True)
+    elif action == "fallback_resumable_single_stream":
+        changed = _enable_adaptive_transfer(manifest, parallel=False)
     elif action == "enable_transcode_fallback_and_retry":
         manifest["forceTranscodeFallback"] = True
         changed = {"forceTranscodeFallback": True}
     elif action == "extend_timeout_reduce_samples_and_retry":
-        manifest["perItemTimeoutSeconds"] = min(10800, int(manifest.get("perItemTimeoutSeconds", 5400)) + 1800)
-        manifest["maxSamplesA"] = max(240, int(manifest.get("maxSamplesA", 540)) - 120)
-        changed = {"perItemTimeoutSeconds": manifest["perItemTimeoutSeconds"], "maxSamplesA": manifest["maxSamplesA"]}
+        manifest["perItemTimeoutSeconds"] = min(10800, int(manifest.get("perItemTimeoutSeconds", 5400)) + 1200)
+        manifest["maxSamplesA"] = max(240, int(manifest.get("maxSamplesA", 540)) - 60)
+        manifest["maxSamplesDefault"] = max(180, int(manifest.get("maxSamplesDefault", 360)) - 60)
+        changed = {
+            "perItemTimeoutSeconds": manifest["perItemTimeoutSeconds"],
+            "maxSamplesA": manifest["maxSamplesA"],
+            "maxSamplesDefault": manifest["maxSamplesDefault"],
+        }
     elif action == "reduce_memory_pressure_and_retry":
         manifest["maxSamplesA"] = max(180, int(manifest.get("maxSamplesA", 540)) // 2)
+        manifest["maxSamplesDefault"] = max(150, int(manifest.get("maxSamplesDefault", 360)) // 2)
         manifest["minimumIntervalSeconds"] = min(12.0, float(manifest.get("minimumIntervalSeconds", 3.0)) * 1.5)
-        changed = {"maxSamplesA": manifest["maxSamplesA"], "minimumIntervalSeconds": manifest["minimumIntervalSeconds"]}
+        changed = {
+            "maxSamplesA": manifest["maxSamplesA"],
+            "maxSamplesDefault": manifest["maxSamplesDefault"],
+            "minimumIntervalSeconds": manifest["minimumIntervalSeconds"],
+        }
     elif action == "retry_progress_publish_with_fresh_sha":
         manifest["progressPublishConflictRetries"] = 5
         changed = {"progressPublishConflictRetries": 5}
@@ -128,7 +166,8 @@ def apply_action(action: str, active: dict[str, Any], manifest: dict[str, Any]) 
         active.pop("lastStartedAt", None)
         changed = {"staleLeaseReset": True}
     elif action == "wait_then_retry":
-        changed = {"rateLimitCooldown": True}
+        manifest["downloadBackoffSeconds"] = min(cooldown_cap, max(60, int(manifest.get("downloadBackoffSeconds", 45))))
+        changed = {"rateLimitCooldown": manifest["downloadBackoffSeconds"]}
     return changed
 
 
@@ -164,7 +203,9 @@ def main() -> int:
             requires_human = True
         else:
             action = str(entry.get("autoAction") or "human_review_required")
-            cooldown = max(0, int(entry.get("cooldownSeconds") or 0))
+            configured_cooldown = max(0, int(entry.get("cooldownSeconds") or 0))
+            cap = max(0, int(manifest.get("recoveryPolicy", {}).get("fastCooldownCapSeconds", 180)))
+            cooldown = min(configured_cooldown, cap) if cap else configured_cooldown
             retry = bool(entry.get("retryable")) and action != "human_review_required"
             requires_human = not retry
             if retry:
@@ -179,7 +220,7 @@ def main() -> int:
                 queue["status"] = "blocked"
 
     report = {
-        "schemaVersion": 2,
+        "schemaVersion": 3,
         "generatedAt": now(),
         "dictionaryVersion": dictionary.get("version"),
         "dictionaryEntryId": (entry or {}).get("id"),
@@ -200,8 +241,8 @@ def main() -> int:
             "sourceCodeModified": False,
             "authorizationBroadened": False,
             "mediaRetentionChanged": False,
-            "queueScopeExpanded": False
-        }
+            "queueScopeExpanded": False,
+        },
     }
 
     write(manifest_path, manifest)
