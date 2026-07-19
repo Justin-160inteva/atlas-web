@@ -1,7 +1,46 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-19T16:31:25.765763Z",
+  "updatedAt": "2026-07-19T16:47:58.002344Z",
   "items": [
+    {
+      "id": "analysis-eleven-p021-v2",
+      "jobId": "eleven-p021-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p021",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P21 第21期：山城（收集2）",
+      "status": "failed",
+      "resultPath": "data/analysis-results/eleven-p021.json",
+      "resultSha256": "80a4543f0d0ff45263eabcf2893a6808fddf3dddf9fe21b8928070a3dc7db019",
+      "generatedAt": "2026-07-19T16:47:57.940332Z",
+      "media": {
+        "durationSeconds": null,
+        "width": null,
+        "height": null,
+        "fps": null,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 0,
+        "kept": 0,
+        "blurred": 0,
+        "duplicates": 0,
+        "keepRatio": 0
+      },
+      "pipeline": {
+        "sourceDownloaded": false,
+        "numericDescriptorsGenerated": false,
+        "resultCommitted": true,
+        "libraryImported": false,
+        "geospatialAnchoringCompleted": false
+      },
+      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。",
+      "failure": {
+        "stage": "download",
+        "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 21 segment 0: RuntimeError('curl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read\\\\\\\\ncurl: (18) transfer closed with 234103537 bytes remaining to read')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]"
+      }
+    },
     {
       "id": "analysis-eleven-p022-v2",
       "jobId": "eleven-p022-v2",
