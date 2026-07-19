@@ -150,3 +150,5 @@
     init();
   }
 })();
+
+// Validation trigger: Alpha 0.9.3.5 restores the base liquid layer before refinements.
