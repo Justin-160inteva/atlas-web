@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-19T18:53:30Z",
-  "updatedAt": "2026-07-19T19:31:27.211245Z",
-  "status": "progress",
+  "updatedAt": "2026-07-19T19:57:56.590833Z",
+  "status": "retryable_failure",
   "pilotRegion": "顺序批次 P01-P03",
   "strategy": "正式生产从P01开始，严格保留原合集顺序；本批只包含P01-P03，每次仅处理一期，完成后自动进入下一期。",
   "items": [
@@ -67,8 +67,10 @@
       "mapUtility": "中高",
       "priority": 74,
       "durationSeconds": 1724,
-      "state": "pending",
-      "attemptCount": 0
+      "state": "failed",
+      "attemptCount": 0,
+      "error": "heartbeat supervisor: no heartbeat for 1513s at stage persisting",
+      "lastFinishedAt": "2026-07-19T19:57:56.590833Z"
     }
   ]
 }

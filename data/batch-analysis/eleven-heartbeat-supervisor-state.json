@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-19T19:57:56.590833Z",
+  "decision": "hard_stale",
+  "dictionaryEntryId": "runtime-heartbeat-hard-stale",
+  "dictionaryEntryKnown": true,
+  "diagnosis": "no heartbeat for 1513s while stage=persisting",
+  "repair": "reset_lease_and_retry",
+  "resumeWorkflow": true,
+  "heartbeatAgeSeconds": 1513,
+  "softThresholdSeconds": 180,
+  "hardThresholdSeconds": 420,
+  "runtime": {
+    "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p003",
+    "page": 3,
+    "state": "running",
+    "stage": "persisting",
+    "updatedAt": "2026-07-19T19:32:43.203532Z",
+    "heartbeatSequence": null
+  },
+  "safety": {
+    "sourceCodeModified": false,
+    "authorizationBroadened": false,
+    "queueScopeExpanded": false,
+    "mediaRetentionChanged": false
+  }
+}
