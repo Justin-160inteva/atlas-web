@@ -5,15 +5,15 @@
   "pilotRegion": "顺序批次 P07-P11",
   "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p010",
   "page": 10,
-  "state": "failed",
-  "stage": "analysis",
+  "state": "blocked",
+  "stage": "recovery",
   "progressPercent": 2.0,
   "processedSeconds": 0.0,
   "durationSeconds": 0.0,
   "sampledFrames": 0,
   "targetFrames": 360,
-  "message": "本轮扫描失败，正在进入受限自动诊断与恢复",
-  "updatedAt": "2026-07-19T23:11:38.924387Z",
+  "message": "自动调查完成：unknown；该问题不允许自动修复，已停止并等待人工检查",
+  "updatedAt": "2026-07-19T23:11:41.359230Z",
   "privacy": "Only public, sanitized task progress is stored. No media URLs, cookies, video files, local paths, or frame pixels are included.",
   "downloadedBytes": 99931945,
   "totalBytes": 99931945,
@@ -27,7 +27,5 @@
   "downloadElapsedSeconds": 220.35043909,
   "speedWindowSeconds": 7.922446924000042,
   "stalledSeconds": 0,
-  "heartbeatSequence": 9,
-  "telemetryMeasuredAt": "2026-07-19T23:11:34.772834Z",
-  "telemetryPreserved": true
+  "heartbeatSequence": 9
 }
