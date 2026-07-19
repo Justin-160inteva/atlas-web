@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "eleven-game-world-author-discovery-v1",
+  "author": "11的游戏世界",
+  "platform": "哔哩哔哩",
+  "game": "刺客信条：影",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "seedBvid": "BV1FdQ9YdEcN",
+  "titleMustContainAny": ["刺客信条影", "刺客信条：影", "AC Shadows"],
+  "catalogOutput": "data/eleven-game-world-ac-shadows-catalog.json",
+  "statusOutput": "data/batch-analysis/eleven-author-discovery-status.json",
+  "pilotQueueOutput": "data/batch-analysis/eleven-pilot-scan-queue.json",
+  "pilotCount": 5,
+  "mediaPolicy": {
+    "downloadVideoDuringDiscovery": false,
+    "retainVideo": false,
+    "retainFramePixels": false
+  }
+}
