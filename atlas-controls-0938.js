@@ -66,6 +66,6 @@
   function wrapFavourite(){
     let attempts=0;const timer=setInterval(()=>{attempts++;const original=window.toggleFavorite;if(typeof original!=='function'||original.__atlas0938){if(attempts>40)clearInterval(timer);return}const wrapped=id=>{const before=new Set(JSON.parse(localStorage.getItem('atlas.favorites')||'[]'));original(id);const after=new Set(JSON.parse(localStorage.getItem('atlas.favorites')||'[]'));if(!before.has(id)&&after.has(id))burst(lastMapPoint)};wrapped.__atlas0938=true;window.toggleFavorite=wrapped;clearInterval(timer)},100);
   }
-  function init(){replaceIcons();installSettings();rememberPoint();wrapFavourite();stamp();root.dataset.atlasControls=VERSION;new MutationObserver(()=>{replaceIcons();stamp()}).observe(document.body,{childList:true,subtree:true});}
+  function init(){replaceIcons();installSettings();rememberPoint();wrapFavourite();stamp();root.dataset.atlasControls=VERSION}
   document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init,{once:true}):init();
 })();
