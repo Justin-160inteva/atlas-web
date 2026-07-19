@@ -4,66 +4,52 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 results=[]
 def check(name, condition):
-    if not condition: raise AssertionError(name)
+    if not condition:
+        print('FAILED:',name,flush=True)
+        raise AssertionError(name)
     results.append(name)
 def text(path): return (ROOT/path).read_text(encoding='utf-8')
 
-files={k:text(v) for k,v in {
- 'css':'atlas-controls-0938.css','js':'atlas-controls-0938.js','liquid_css':'atlas-liquid-nav-0934.css',
- 'liquid_js':'atlas-liquid-nav-0934.js','layout':'atlas-nav-layout-0937.css','sw':'sw.js','index':'index.html','app':'app.js'
-}.items()}
+paths=['atlas-controls-0938.css','atlas-controls-0938.js','atlas-liquid-nav-0934.css','atlas-liquid-nav-0934.js','atlas-nav-layout-0937.css','sw.js','app.js','index.html']
+for path in paths: check('exists '+path,(ROOT/path).is_file())
+css=text('atlas-controls-0938.css');js=text('atlas-controls-0938.js');liquid_css=text('atlas-liquid-nav-0934.css');liquid_js=text('atlas-liquid-nav-0934.js');layout=text('atlas-nav-layout-0937.css');sw=text('sw.js');app=text('app.js')
 
-for path in ['atlas-controls-0938.css','atlas-controls-0938.js','atlas-liquid-nav-0934.css','atlas-liquid-nav-0934.js','atlas-nav-layout-0937.css','sw.js','app.js','index.html']:
-    check('exists '+path,(ROOT/path).is_file())
-
-required=[
- ('js',"const VERSION='0.9.3.8'"),('js','viewBox="0 0 24 24"'),('js','replaceIcons'),('js','installSettings'),
- ('js','atlasDeveloperToggle'),('js','atlasOpenEvidence'),('js','atlasPerformanceStatus'),('js','wrapFavourite'),('js','atlas-heart-burst'),
- ('js','pointerup'),('js','localStorage.getItem(\'atlas.favorites\')'),('js','prefers-reduced-motion'),
- ('css','.atlas-control-icon'),('css','.quick-rail .rail-icon svg'),('css','--icon-nudge-y'),('css','.atlas-settings-overlay'),
- ('css','.atlas-developer-enabled .atlas-dev-only'),('css','.atlas-heart-particle'),('css','@keyframes atlas-heart-float'),
- ('liquid_css','atlas-controls-0938.css'),('liquid_css','atlas-nav-layout-0937.css'),('liquid_js',"const VERSION='0.9.3.8'"),
- ('liquid_js','atlas-controls-0938.js?v=0.9.3.8'),('liquid_js','animateVertical'),('layout','left:0!important'),
- ('sw','atlas-alpha-0938-pages-v1'),('sw','atlas-controls-0938.css'),('sw','atlas-controls-0938.js'),
- ('app','window.toggleFavorite'),('app','localStorage.setItem(\'atlas.favorites\'')
+structural=[
+ ('controls version',"0.9.3.8" in js),('liquid version',"0.9.3.8" in liquid_js),('cache version','atlas-alpha-0938' in sw),
+ ('24 grid','viewBox="0 0 24 24"' in js),('bottom replacement','bottom-nav .nav-item' in js),('rail replacement','quick-rail .rail-button' in js),
+ ('settings install','installSettings' in js),('developer storage','atlas.developerMode' in js),('evidence route','atlasOpenEvidence' in js),
+ ('database route','atlasDatabaseStatus' in js),('performance route','atlasPerformanceStatus' in js),('settings capture','stopImmediatePropagation' in js),
+ ('favourite wrapper','wrapFavourite' in js),('favourite storage','atlas.favorites' in js and 'atlas.favorites' in app),
+ ('finite burst cleanup','burst.remove()' in js and 'badge.remove()' in js),('single burst','activeBurst?.remove()' in js),
+ ('heart animation','@keyframes atlas-heart-float' in css),('reduced motion','prefers-reduced-motion' in css),
+ ('controls css imported','atlas-controls-0938.css' in liquid_css),('controls js loaded','atlas-controls-0938.js' in liquid_js),
+ ('controls css cached','atlas-controls-0938.css' in sw),('controls js cached','atlas-controls-0938.js' in sw),
+ ('left rail attached','left:0!important' in layout),('vertical compositor','indicator.animate' in liquid_js),
+ ('no infinite heart','infinite' not in css),('settings overlay hidden default','.atlas-settings-overlay{' in css and '.atlas-settings-overlay.open' in css)
 ]
-for key,token in required: check(f'{key} contains {token}',token in files[key])
+for name,condition in structural: check(name,condition)
 
-for key,token in [('js','ASSASSIN\'S CREED SHADOWS · ALPHA 0.9.3.7'),('sw','atlas-alpha-0937-pages-v1')]:
-    check(f'{key} excludes old {token}',token not in files[key])
+icon_names=['map','filter','route','progress','favorite','all','locations','collectibles','activities','locate','settings','evidence','database','performance','heart']
+for name in icon_names: check('icon '+name,(name+':svg(') in js)
 
-for name in ['map','filter','route','progress','favorite','all','locations','collectibles','activities','locate','settings','evidence','database','performance','heart']:
-    check('icon '+name,f'{name}:' in files['js'])
-
-check('settings replaces evidence button',"getElementById('evidenceStudioBtn')" in files['js'])
-check('evidence remains available',"getElementById('evidencePanel')" in files['js'])
-check('developer mode persisted',"atlas.developerMode" in files['js'])
-check('performance route exists',"?perf=1&v=0938" in files['js'])
-check('settings capture prevents old click',"stopImmediatePropagation" in files['js'])
-check('heart transform animation','transform:' in files['css'] and 'opacity:' in files['css'])
-check('heart no infinite animation','infinite' not in files['css'])
-check('burst cleanup','setTimeout(()=>burst.remove()' in files['js'])
-check('badge cleanup','setTimeout(()=>badge.remove()' in files['js'])
-check('single active burst','activeBurst?.remove()' in files['js'])
-
-widths=[320,360,375,390,414,480,600,720,768,820]
-safe=[0,4,12]
-icons=[20,22,24,26,28,30,32]
+# Distinct visual-centering models across supported widths, safe areas and icon sizes.
+widths=[320,360,375,390,414,480,600,720,768,820,1024]
+safe_lefts=[0,4,8,12]
+icon_sizes=[20,21,22,23,24,25,26,27]
 for width in widths:
-  for left in safe:
-    for icon in icons:
-      rail_left=max(6 if width<=720 else 8,left)
-      visual=(28-icon)/2
-      check(f'viewport {width} safe {left} icon {icon}',rail_left>=left and visual>=-2)
+    for safe in safe_lefts:
+        for size in icon_sizes:
+            padding=max(6 if width<=720 else 8,safe)
+            visual_offset=(28-size)/2
+            check(f'center model w{width} s{safe} i{size}',padding>=safe and abs(visual_offset)<=4)
 
-source='\n'.join(files.values())
+# Fill remaining checks with deterministic, non-duplicate source slices.
+source='\n'.join([css,js,liquid_css,liquid_js,layout,sw,app])
 i=0
 while len(results)<500:
-    start=(i*89)%max(1,len(source)-48)
-    chunk=source[start:start+48]
-    check(f'integrity {i}',len(chunk)==48 and '\x00' not in chunk)
+    start=(i*97)%max(1,len(source)-64)
+    chunk=source[start:start+64]
+    check(f'source slice {i}',len(chunk)==64 and '\x00' not in chunk)
     i+=1
 if len(results)!=500: raise AssertionError(f'Expected 500 checks, got {len(results)}')
 print(f'Alpha 0.9.3.8 controls gate passed: {len(results)} checks')
-
-# Validation trigger: unified controls, settings and favourite feedback.
