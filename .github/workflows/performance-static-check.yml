@@ -13,9 +13,11 @@ on:
       - 'atlas-liquid-nav-0933.css'
       - 'atlas-liquid-nav-0934.js'
       - 'atlas-liquid-nav-0934.css'
+      - 'atlas-nav-layout-0937.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
+      - 'tools/validate_release_0937.py'
       - 'FONT-LICENSES.md'
       - 'sw.js'
       - '.github/workflows/performance-static-check.yml'
@@ -31,9 +33,11 @@ on:
       - 'atlas-liquid-nav-0933.css'
       - 'atlas-liquid-nav-0934.js'
       - 'atlas-liquid-nav-0934.css'
+      - 'atlas-nav-layout-0937.css'
       - 'atlas-hd-map.js'
       - 'atlas-hd-runtime.js'
       - 'atlas-analysis-import.js'
+      - 'tools/validate_release_0937.py'
       - 'FONT-LICENSES.md'
       - 'sw.js'
       - '.github/workflows/performance-static-check.yml'
@@ -50,6 +54,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Parse JavaScript
         run: |
           node --check performance-092.js
@@ -67,6 +74,9 @@ jobs:
           npx --yes postcss-cli@11.0.1 atlas-smart-route-0932.css --output /tmp/atlas-smart-route-0932.css
           npx --yes postcss-cli@11.0.1 atlas-liquid-nav-0933.css --output /tmp/atlas-liquid-nav-0933.css
           npx --yes postcss-cli@11.0.1 atlas-liquid-nav-0934.css --output /tmp/atlas-liquid-nav-0934.css
+          npx --yes postcss-cli@11.0.1 atlas-nav-layout-0937.css --output /tmp/atlas-nav-layout-0937.css
+      - name: Run 500-check release gate
+        run: python tools/validate_release_0937.py
       - name: Verify runtime assets and policy
         run: |
           grep -q "performance-092.js" sw.js
@@ -78,9 +88,9 @@ jobs:
           grep -q "atlas-liquid-nav-0933.css" sw.js
           grep -q "atlas-liquid-nav-0934.js" sw.js
           grep -q "atlas-liquid-nav-0934.css" sw.js
+          grep -q "atlas-nav-layout-0937.css" sw.js
           grep -q "atlas-liquid-nav-0933.css" atlas-liquid-nav-0934.css
-          grep -q "0.9.3.5" atlas-liquid-nav-0934.js
-          grep -q "atlas-alpha-0935" sw.js
+          grep -q "atlas-nav-layout-0937.css" atlas-liquid-nav-0934.css
+          grep -q "0.9.3.7" atlas-liquid-nav-0934.js
+          grep -q "atlas-alpha-0937" sw.js
           grep -q "does not bundle, extract, redistribute" FONT-LICENSES.md
-
-# Validation trigger: Alpha 0.9.3.5 restores the base liquid layer before vertical refinements.
