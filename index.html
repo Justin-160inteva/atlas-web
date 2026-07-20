@@ -30,7 +30,7 @@
     <div class="vignette" aria-hidden="true"></div>
     <header class="top-bar glass">
       <button class="brand" id="brandBtn" aria-label="重置地图视图"><span class="brand-mark">A</span><span class="brand-copy"><b>ATLAS</b><small>ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.9</small></span></button>
-      <button class="search-trigger" id="searchTrigger" aria-label="搜索地点"><span class="icon">⌕</span><span id="searchLabel">搜索地点、区域或类别</span><kbd>⌘ K</kbd></button>
+      <button class="search-trigger" id="searchTrigger" aria-label="搜索地点、区域、奖励或类别"><span class="icon">⌕</span><span id="searchLabel">搜索地点、区域、奖励或类别</span><kbd>⌘ K</kbd></button>
       <div class="top-actions"><button class="icon-button" id="locateBtn" aria-label="回到地图中心">⌖</button><button class="profile-button" id="evidenceStudioBtn" aria-label="打开数据与证据中心">⚙</button></div>
     </header>
     <aside class="quick-rail glass" aria-label="快捷筛选">
@@ -43,7 +43,7 @@
     <section class="panel glass" id="filterPanel" aria-hidden="true"><header><div><small>探索筛选</small><h2>选择要显示的发现</h2></div><button class="close-panel">×</button></header><div class="filter-summary"><span id="filterCount">44</span><small>个分类</small><button id="toggleAll">全部隐藏</button></div><div class="category-grid" id="categoryGrid"></div></section>
     <section class="panel glass route-panel" id="routePanel" aria-hidden="true"><header><div><small>ATLAS EXPLORATION PLANNER</small><h2>探索路线规划</h2></div><button class="close-route">×</button></header><div class="route-summary"><div class="route-stat"><b id="routeStops">0</b><small>路线点</small></div><div class="route-stat"><b id="routeDistance">0</b><small>地图距离</small></div><div class="route-stat"><b id="routeTime">0 分钟</b><small>预计时间</small></div></div><div class="route-actions"><button class="primary" id="optimizeRoute">优化顺序</button><button id="focusRoute">查看全程</button><button id="clearRoute">清除</button></div><div class="route-list" id="routeList"></div></section>
     <section class="panel glass progress-panel" id="progressPanel" aria-hidden="true"><header><div><small>探索进度</small><h2>区域完成情况</h2></div><button class="close-progress">×</button></header><div class="overall-progress"><div><b id="overallPercent">0%</b><small>总体完成度</small></div><div class="progress-track"><i id="overallBar"></i></div><p>已发现 <span id="overallDone">0</span> / <span id="overallTotal">0</span></p></div><div class="region-progress-list" id="regionProgressList"></div></section>
-    <section class="search-overlay" id="searchOverlay" aria-hidden="true"><div class="search-modal glass"><div class="search-input-row"><span>⌕</span><input id="searchInput" autocomplete="off" placeholder="搜索中文或英文名称"/><button id="closeSearch">取消</button></div><div class="search-meta"><span>结果</span><b id="resultCount">0</b></div><div class="search-results" id="searchResults"></div></div></section>
+    <section class="search-overlay" id="searchOverlay" aria-hidden="true"><div class="search-modal glass"><div class="search-input-row"><span>⌕</span><input id="searchInput" autocomplete="off" placeholder="搜索地点、区域、奖励或类别"/><button id="closeSearch">取消</button></div><div class="search-meta"><span>结果</span><b id="resultCount">0</b></div><div class="search-results" id="searchResults"></div></div></section>
     <section class="evidence-panel glass" id="evidencePanel" aria-hidden="true">
       <header><div><small>ATLAS EVIDENCE RECONSTRUCTION</small><h2>证据重建实验室</h2></div><button id="closeEvidenceStudio" aria-label="关闭证据重建工作区">×</button></header>
       <div class="evidence-scroll">
