@@ -45,6 +45,7 @@ jobs:
           python -m py_compile tools/bilibili_transport_v13.py
           python -m py_compile tools/analyze_authorized_video_v13.py
           python -m py_compile tools/bilibili_transport_smoke.py
+          python -m py_compile tools/p33_v14_hook/sitecustomize.py
           python -m py_compile tools/scan_catalog_queue_v2.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
@@ -53,6 +54,21 @@ jobs:
 
       - name: Run 96-check signed metadata and CDN failover gate
         run: python tools/bilibili_transport_smoke.py
+
+      - name: Verify conditional HTTP/1.1 hook
+        env:
+          ATLAS_FORCE_HTTP11: '1'
+          PYTHONPATH: ${{ github.workspace }}/tools/p33_v14_hook
+        run: |
+          python - <<'PY'
+          import sitecustomize
+          from curl_cffi import requests
+          assert sitecustomize.ATLAS_HTTP11_PATCHED is True
+          assert requests._atlas_http11_patched is True
+          assert callable(requests._atlas_http11_original_get)
+          assert callable(requests._atlas_http11_original_request)
+          print('conditional HTTP/1.1 transport hook is active')
+          PY
 
       - name: Verify authorization and eleven-item serial state
         run: |
@@ -107,6 +123,8 @@ jobs:
         continue-on-error: true
         env:
           PYTHONUNBUFFERED: '1'
+          ATLAS_FORCE_HTTP11: '1'
+          PYTHONPATH: ${{ github.workspace }}/tools/p33_v14_hook
           ATLAS_PROGRESS_TOKEN: ${{ github.token }}
           ATLAS_PROGRESS_REPOSITORY: ${{ github.repository }}
           ATLAS_PROGRESS_BRANCH: main
