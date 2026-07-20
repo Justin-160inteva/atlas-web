@@ -3,8 +3,8 @@
   "sourceLocationId": 434456,
   "categoryId": "category-12312-castle",
   "status": "high_confidence_inference",
-  "confidence": 0.78,
-  "summaryZhCN": "来源数据库记录：3,000经验值、3技能点及 Peasant Clothes（传奇轻型护甲）（高置信推断）",
+  "confidence": 0.84,
+  "summaryZhCN": "装备奖励 Peasant Clothes 已获两个独立来源一致支持；3,000经验值与3技能点仍为单一来源（整体保持高置信推断）",
   "rewards": [
     {
       "type": "experience",
@@ -13,7 +13,7 @@
       "quantity": 3000,
       "quantityStatus": "exact",
       "rarity": null,
-      "notesZhCN": "来源原文为 3000 XP。"
+      "notesZhCN": "来源原文为 3,000 XP；当前仅由 MapGenie 支持。"
     },
     {
       "type": "skill_point",
@@ -22,7 +22,7 @@
       "quantity": 3,
       "quantityStatus": "exact",
       "rarity": null,
-      "notesZhCN": "来源原文为 3 Mastery Points；官方简中术语待游戏内复核。"
+      "notesZhCN": "来源原文为 3 Mastery Points；官方简中术语待游戏内复核，当前仅由 MapGenie 支持。"
     },
     {
       "type": "armor",
@@ -31,7 +31,7 @@
       "quantity": null,
       "quantityStatus": "not_applicable",
       "rarity": "Legendary",
-      "notesZhCN": "保留来源英文专有名词；官方简中译名待核实。"
+      "notesZhCN": "MapGenie 与 Game8 均指向 Osaka Castle；保留来源英文专有名词。"
     }
   ],
   "sources": [
@@ -45,19 +45,37 @@
       "gameVersion": null,
       "supports": [
         "地点身份：Osaka Castle",
-        "奖励：3000 XP",
+        "奖励：3,000 XP",
         "奖励：3 Mastery Points",
-        "奖励：Peasant Clothes - Legendary Light Armor"
+        "奖励：Peasant Clothes - Legendary Light Armor",
+        "reward:experience:XP",
+        "reward:skill_point:Mastery Points",
+        "reward:armor:Peasant Clothes"
       ],
-      "limitationsZhCN": "单一社区数据库来源；来源快照未记录游戏版本，尚无第二独立来源或游戏内画面复核。"
+      "limitationsZhCN": "社区数据库快照未记录游戏版本。"
+    },
+    {
+      "sourceId": "game8-peasant-clothes-505666",
+      "sourceType": "guide_article",
+      "title": "Game8 · How to Get Peasant Clothes and Stats",
+      "publisherOrAuthor": "Game8 Assassin's Creed Shadows Walkthrough Team",
+      "locator": "https://game8.co/games/Assassins-Creed-Shadows/archives/505666",
+      "capturedAt": "2026-07-20T21:40:00Z",
+      "gameVersion": null,
+      "supports": [
+        "Peasant Clothes is Legendary Light Armor",
+        "获取地点：Osaka Castle 的 Legendary Chest",
+        "reward:armor:Peasant Clothes"
+      ],
+      "limitationsZhCN": "仅支持装备奖励及获取地点，不支持3,000 XP或3 Mastery Points；页面未标注游戏版本。"
     }
   ],
   "conflicts": [
     {
       "type": "version_or_patch_mismatch",
       "status": "accepted_uncertainty",
-      "detailZhCN": "来源未记录对应游戏版本，后续补丁可能改变奖励。",
-      "resolutionZhCN": "暂以高置信推断展示，等待当前版本游戏内复核。"
+      "detailZhCN": "两项来源均未记录对应游戏版本，且第二来源不覆盖经验值与技能点。",
+      "resolutionZhCN": "整条记录继续保持高置信推断，等待当前版本游戏内复核。"
     },
     {
       "type": "translation_mismatch",
@@ -68,9 +86,9 @@
   ],
   "review": {
     "state": "machine_checked",
-    "lastReviewedAt": "2026-07-20T20:30:00Z",
-    "method": "reward-policy-v1 + source-snapshot-cross-check",
+    "lastReviewedAt": "2026-07-20T21:40:00Z",
+    "method": "reward-policy-v1 + per-reward-source-coverage",
     "reviewer": null,
-    "changeReasonZhCN": "首批城堡奖励候选；通过 schema、来源定位和术语规则机器检查。"
+    "changeReasonZhCN": "加入独立指南来源；装备奖励达到两来源一致，数值奖励仍为单一来源。"
   }
 }
