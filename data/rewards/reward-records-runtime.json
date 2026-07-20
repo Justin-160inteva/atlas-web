@@ -3,7 +3,7 @@
   "release": "0.9.4.9",
   "recordSchema": "data/rewards/reward-record-schema.json",
   "sourcePolicy": "data/rewards/reward-source-policy.json",
-  "generatedAt": "2026-07-20T20:35:00Z",
+  "generatedAt": "2026-07-20T22:00:00Z",
   "recordCount": 5,
   "records": {},
   "recordFiles": {
@@ -20,5 +20,5 @@
     "location-mapgenie-434582",
     "location-mapgenie-434635"
   ],
-  "noteZhCN": "运行时只展示通过 reward-record-schema 校验并带可复查来源定位的记录。首批5条为单一社区数据库支持的高置信推断，仍需第二来源或当前版本游戏内人工复核。"
+  "noteZhCN": "运行时只展示通过 reward-record-schema 校验并带可复查来源定位的记录。首批5条的全部奖励已获得至少两个来源支持，但社区地图之间的数据链独立性和游戏版本仍未完全确认，因此继续标记为高置信推断并保留人工复核队列。"
 }
