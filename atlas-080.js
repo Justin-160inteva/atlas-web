@@ -4,6 +4,7 @@
   const root=document.documentElement;
   const mapCanvas=document.getElementById('mapCanvas');
   const clamp080=(value,min,max)=>Math.max(min,Math.min(max,value));
+  const SELECTED_SCALE=1.28;
 
   const railIcons={
     all:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8c.9 4.2 3.2 6.5 7.4 7.4-4.2.9-6.5 3.2-7.4 7.4-.9-4.2-3.2-6.5-7.4-7.4 4.2-.9 6.5-3.2 7.4-7.4Z"/><path d="M19 3.8c.3 1.4 1.1 2.2 2.5 2.5-1.4.3-2.2 1.1-2.5 2.5-.3-1.4-1.1-2.2-2.5-2.5 1.4-.3 2.2-1.1 2.5-2.5Z"/></svg>',
@@ -26,22 +27,20 @@
   installRailIcons();
 
   function pinGeometry(tipY,r,tipHeight){
-    return{centerY:tipY-tipHeight-r*.35};
+    return{centerY:tipY-tipHeight-r*.58};
   }
 
   function tracePin(context,x,tipY,r,tipHeight){
     const {centerY}=pinGeometry(tipY,r,tipHeight);
-    const leftAngle=Math.PI*2/3;
-    const rightAngle=Math.PI/3;
-    const leftX=x+Math.cos(leftAngle)*r;
-    const leftY=centerY+Math.sin(leftAngle)*r;
-    const rightX=x+Math.cos(rightAngle)*r;
-    const rightY=centerY+Math.sin(rightAngle)*r;
+    const topY=centerY-r;
+    const shoulderY=centerY+r*.16;
+    const lowerY=centerY+r*.58;
     context.beginPath();
     context.moveTo(x,tipY);
-    context.bezierCurveTo(x-r*.2,tipY-tipHeight*.26,leftX-r*.08,leftY+r*.08,leftX,leftY);
-    context.arc(x,centerY,r,leftAngle,rightAngle,false);
-    context.bezierCurveTo(rightX+r*.08,rightY+r*.08,x+r*.2,tipY-tipHeight*.26,x,tipY);
+    context.bezierCurveTo(x-r*.18,tipY-tipHeight*.2,x-r*.72,lowerY,x-r*.92,shoulderY);
+    context.bezierCurveTo(x-r*1.08,centerY-r*.34,x-r*.72,topY,x,topY);
+    context.bezierCurveTo(x+r*.72,topY,x+r*1.08,centerY-r*.34,x+r*.92,shoulderY);
+    context.bezierCurveTo(x+r*.72,lowerY,x+r*.18,tipY-tipHeight*.2,x,tipY);
     context.closePath();
     return centerY;
   }
@@ -63,9 +62,10 @@
     const favorite=state.favorites.has(location.id);
     const inRoute=state.route.some(item=>item.id===location.id);
     const lightweight=interactionActive();
-    const radius=selected?18:clamp080(6.5+relative*3.2,7,12.5);
-    const tipHeight=selected?9:clamp080(5+relative*1.35,5,8);
-    const iconSize=selected?22:clamp080(9+relative*4,10,15);
+    const visualScale=selected?SELECTED_SCALE:1;
+    const radius=clamp080(6.5+relative*3.2,7,12.5)*visualScale;
+    const tipHeight=clamp080(5.8+relative*1.55,5.8,8.8)*visualScale;
+    const iconSize=clamp080(9+relative*4,10,15)*visualScale;
     const base=AtlasIcons.color(icon);
     const centerY=pinGeometry(cluster.y,radius,tipHeight).centerY;
 
@@ -79,47 +79,40 @@
       ctx.lineWidth=inRoute?1.7:.9;
       ctx.strokeStyle=inRoute?'#edc574':'rgba(255,244,226,.58)';
       ctx.stroke();
-      if(selected||relative>.95)AtlasIcons.draw(ctx,icon,cluster.x,centerY,selected?17:Math.max(8,radius*1.08),{alpha:1});
+      if(selected||relative>.95)AtlasIcons.draw(ctx,icon,cluster.x,centerY,Math.max(8,iconSize),{alpha:1});
       ctx.restore();
       return;
     }
 
-    ctx.shadowColor=selected?'rgba(224,60,72,.34)':'rgba(0,0,0,.16)';
-    ctx.shadowBlur=selected?10:2;
+    ctx.shadowColor='rgba(0,0,0,.16)';
+    ctx.shadowBlur=2;
     ctx.shadowOffsetY=1;
     tracePin(ctx,cluster.x,cluster.y,radius+1.25,tipHeight+1.1);
-    ctx.fillStyle=selected?'rgba(255,245,228,.9)':'rgba(18,16,15,.55)';
+    ctx.fillStyle='rgba(18,16,15,.55)';
     ctx.fill();
 
     ctx.shadowColor='transparent';
     ctx.shadowBlur=0;
     ctx.shadowOffsetY=0;
     tracePin(ctx,cluster.x,cluster.y,radius,tipHeight);
-    const gradient=ctx.createRadialGradient(cluster.x-radius*.35,centerY-radius*.42,1,cluster.x,centerY,radius*1.08);
+    const gradient=ctx.createRadialGradient(cluster.x-radius*.34,centerY-radius*.43,1,cluster.x,centerY,radius*1.06);
     gradient.addColorStop(0,lighten(base,24));
     gradient.addColorStop(1,base);
     ctx.fillStyle=gradient;
     ctx.fill();
-    ctx.lineWidth=selected?2:1;
-    ctx.strokeStyle=inRoute?'#edc574':selected?'#fff7e8':'rgba(255,239,218,.58)';
+    ctx.lineWidth=inRoute?1.8:1;
+    ctx.strokeStyle=inRoute?'#edc574':'rgba(255,239,218,.58)';
     ctx.stroke();
 
     AtlasIcons.draw(ctx,icon,cluster.x,centerY,iconSize,{alpha:1});
 
     if(favorite){
       ctx.beginPath();
-      ctx.arc(cluster.x+radius*.72,centerY-radius*.74,3.6,0,Math.PI*2);
+      ctx.arc(cluster.x+radius*.7,centerY-radius*.72,3.6,0,Math.PI*2);
       ctx.fillStyle='#d9af62';
       ctx.fill();
       ctx.strokeStyle='rgba(255,245,230,.86)';
       ctx.lineWidth=.9;
-      ctx.stroke();
-    }
-
-    if(selected){
-      tracePin(ctx,cluster.x,cluster.y,radius+6,tipHeight+4);
-      ctx.strokeStyle='rgba(236,74,86,.55)';
-      ctx.lineWidth=1.8;
       ctx.stroke();
     }
     ctx.restore();
@@ -131,9 +124,9 @@
     const relative=state.scale/fitScale();
     for(const cluster of state.markers){
       const location=cluster.items[0];
-      const selected=location.id===state.selected?.id;
-      const radius=selected?18:clamp080(6.5+relative*3.2,7,12.5);
-      const tipHeight=selected?9:clamp080(5+relative*1.35,5,8);
+      const visualScale=location.id===state.selected?.id?SELECTED_SCALE:1;
+      const radius=clamp080(6.5+relative*3.2,7,12.5)*visualScale;
+      const tipHeight=clamp080(5.8+relative*1.55,5.8,8.8)*visualScale;
       const centerY=pinGeometry(cluster.y,radius,tipHeight).centerY;
       const circleDistance=Math.hypot(cluster.x-x,centerY-y);
       const tipDistance=Math.hypot(cluster.x-x,cluster.y-y);
@@ -223,6 +216,6 @@
   mapCanvas.addEventListener('pointerdown',()=>cancelButtonZoom(true),{capture:true,passive:true});
   mapCanvas.addEventListener('wheel',()=>cancelButtonZoom(true),{capture:true,passive:true});
 
-  window.Atlas080={animateButtonZoom,cancelButtonZoom,tracePin,installRailIcons};
+  window.Atlas080={animateButtonZoom,cancelButtonZoom,tracePin,pinGeometry,selectedScale:SELECTED_SCALE,installRailIcons};
   scheduleDraw();
 })();
