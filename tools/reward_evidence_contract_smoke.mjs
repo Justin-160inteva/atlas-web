@@ -14,6 +14,7 @@ const profiles=[
   'screenshot','community-database','guide-article','manual-review','conflict-recovery'
 ];
 
+const forbidden=policy.forbiddenBehaviors||[];
 const contracts={
   release:manifest.version==='0.9.4.8',
   fullAudit:manifest.invariants?.requireFullAuditAtThisRelease===true,
@@ -33,8 +34,8 @@ const contracts={
   unresolvedThreshold:policy.evidenceLevels?.find(level=>level.id==='unresolved')?.minimumConfidence===0,
   sourceTypes:Array.isArray(policy.sourceTypes)&&policy.sourceTypes.length>=8,
   conflictTypes:Array.isArray(policy.conflictTypes)&&policy.conflictTypes.length>=5,
-  forbiddenBulkCopy:policy.forbiddenBehaviors?.some(text=>text.includes('批量')),
-  forbiddenFakeOfficial:policy.forbiddenBehaviors?.some(text=>text.includes('官方确认')),
+  forbiddenBulkCopy:forbidden.some(text=>text.includes('类别')&&text.includes('复制')&&text.includes('同类点位')),
+  forbiddenFakeOfficial:forbidden.some(text=>text.includes('没有证据')&&text.includes('官方确认')),
   schemaObject:schema.type==='object',
   schemaLocationRequired:schema.required?.includes('locationId'),
   schemaStatusRequired:schema.required?.includes('status'),
