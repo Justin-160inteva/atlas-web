@@ -67,9 +67,7 @@ def main() -> int:
     os.environ["ATLAS_TAIL_REQUEST_BYTES"] = "2048"
 
     responses = [
-        # Must be rejected before opening the partial target.
         FakeResponse(200, {"content-length": "2048"}, [b"X" * 2048]),
-        # Delivers half a requested chunk, then disconnects. Those bytes must stay.
         FakeResponse(
             206,
             {"content-range": "bytes 2048-4095/8192", "content-length": "2048"},
@@ -166,7 +164,7 @@ def main() -> int:
             call.get("http_version") == "HTTP/1.1" for call in fake_requests.calls
         ),
         "heartbeat-monotonic": bool(heartbeat.updates) and all(
-            left["segmentDownloadedBytes"] <= right["segmentDownloadedBytes"]
+            left["segment_downloaded_bytes"] <= right["segment_downloaded_bytes"]
             for left, right in zip(heartbeat.updates, heartbeat.updates[1:])
         ),
     }
