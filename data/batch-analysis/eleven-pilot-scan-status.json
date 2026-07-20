@@ -4,20 +4,20 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
-  "updatedAt": "2026-07-20T22:03:59.796955Z",
-  "phase": "blocked",
+  "updatedAt": "2026-07-20T22:08:10.437768Z",
+  "phase": "complete",
   "activeItem": null,
-  "complete": false,
+  "complete": true,
   "summary": {
     "total": 11,
-    "imported": 10,
-    "running": 1,
+    "imported": 11,
+    "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 1,
-    "attemptedThisRun": 0,
-    "newlyImportedThisRun": 0
+    "remaining": 0,
+    "attemptedThisRun": 1,
+    "newlyImportedThisRun": 1
   },
   "items": [
     {
@@ -134,14 +134,29 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p035",
       "sequence": 35,
       "page": 35,
-      "state": "running",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-20T21:49:10.364504Z",
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 2,
+      "lastStartedAt": "2026-07-20T22:04:56.568581Z",
+      "lastFinishedAt": "2026-07-20T22:08:10.431805Z",
+      "resultPath": "data/analysis-results/eleven-p035.json",
       "error": null
     }
   ],
-  "events": [],
+  "events": [
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p035",
+      "sequence": 35,
+      "page": 35,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P35 第35期：五忍众",
+      "startedAt": "2026-07-20T22:04:56.568581Z",
+      "attemptCount": 2,
+      "analyzerReturnCode": 0,
+      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.78s\nanalysis result written: data/analysis-results/eleven-p035.json status=analyzed\n\n",
+      "analysisStatus": "analyzed",
+      "indexReturnCode": 0,
+      "completed": true,
+      "finishedAt": "2026-07-20T22:08:10.431805Z"
+    }
+  ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
 }
