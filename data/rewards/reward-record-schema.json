@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "atlas://schemas/reward-record-v1",
+  "title": "Atlas Reward Evidence Record",
+  "type": "object",
+  "required": [
+    "locationId",
+    "status",
+    "confidence",
+    "summaryZhCN",
+    "rewards",
+    "sources",
+    "conflicts",
+    "review"
+  ],
+  "properties": {
+    "locationId": {"type": "string", "minLength": 1},
+    "sourceLocationId": {"type": ["integer", "string", "null"]},
+    "categoryId": {"type": ["string", "null"]},
+    "status": {
+      "enum": [
+        "official_confirmed",
+        "multi_source_confirmed",
+        "high_confidence_inference",
+        "unresolved"
+      ]
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "summaryZhCN": {"type": "string"},
+    "rewards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "nameZhCN", "quantityStatus"],
+        "properties": {
+          "type": {
+            "enum": [
+              "currency",
+              "resource",
+              "gear",
+              "weapon",
+              "armor",
+              "trinket",
+              "engraving",
+              "skill_point",
+              "knowledge_point",
+              "experience",
+              "ability",
+              "cosmetic",
+              "quest_item",
+              "collectible",
+              "service_unlock",
+              "unknown"
+            ]
+          },
+          "nameOriginal": {"type": ["string", "null"]},
+          "nameZhCN": {"type": "string"},
+          "quantity": {"type": ["number", "null"]},
+          "quantityStatus": {"enum": ["exact", "minimum", "range", "unknown", "not_applicable"]},
+          "rarity": {"type": ["string", "null"]},
+          "notesZhCN": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sourceId", "sourceType", "locator", "supports"],
+        "properties": {
+          "sourceId": {"type": "string"},
+          "sourceType": {"type": "string"},
+          "title": {"type": "string"},
+          "publisherOrAuthor": {"type": "string"},
+          "locator": {"type": "string"},
+          "capturedAt": {"type": ["string", "null"]},
+          "gameVersion": {"type": ["string", "null"]},
+          "supports": {"type": "array", "items": {"type": "string"}},
+          "limitationsZhCN": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "status", "detailZhCN"],
+        "properties": {
+          "type": {"type": "string"},
+          "status": {"enum": ["open", "resolved", "accepted_uncertainty"]},
+          "detailZhCN": {"type": "string"},
+          "resolutionZhCN": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["state", "lastReviewedAt", "method"],
+      "properties": {
+        "state": {"enum": ["unreviewed", "machine_checked", "human_reviewed", "locked"]},
+        "lastReviewedAt": {"type": ["string", "null"]},
+        "method": {"type": "string"},
+        "reviewer": {"type": ["string", "null"]},
+        "changeReasonZhCN": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
