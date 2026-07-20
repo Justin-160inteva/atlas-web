@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-20T19:30:19.159245Z",
+  "release": "0.9.4.8",
+  "policyRevision": "2026.07.20.2",
+  "tier": "standard",
+  "forcedFull": false,
+  "scheduledFull": false,
+  "changedFiles": [
+    ".github/workflows/atlas-conflict-reasoner.yml",
+    "PROJECT-ROADMAP.md",
+    "data/quality/release-validation-policy.json",
+    "release-manifest.json",
+    "tools/heartbeat_system_smoke.py",
+    "tools/queue_schema_smoke.py",
+    "tools/select_release_validation.py",
+    "tools/serial_queue_order_smoke.py"
+  ],
+  "matchedGroups": {
+    "validationFramework": [
+      ".github/workflows/atlas-conflict-reasoner.yml",
+      "data/quality/release-validation-policy.json",
+      "release-manifest.json",
+      "tools/select_release_validation.py"
+    ],
+    "scanCore": [
+      "tools/heartbeat_system_smoke.py",
+      "tools/queue_schema_smoke.py",
+      "tools/serial_queue_order_smoke.py"
+    ],
+    "monitor": [],
+    "dataCenter": [],
+    "rewards": [],
+    "ui": [],
+    "highRisk": []
+  },
+  "run": {
+    "data_center": false,
+    "reward": false,
+    "heartbeat": true,
+    "serial": true,
+    "queue_schema": true,
+    "browser": false,
+    "monitor": false,
+    "full_audit": false,
+    "playwright": false
+  },
+  "budget": {
+    "heartbeatChecks": 128,
+    "serialQueueChecks": 128,
+    "queueSchemaChecks": 96,
+    "browserChecks": 500,
+    "monitorAuthorityChecks": 500,
+    "dataCenterChecks": 500,
+    "rewardEvidenceChecks": 500,
+    "fullAudit": false
+  },
+  "safety": {
+    "authorizationChecksPreserved": true,
+    "privacyChecksPreserved": true,
+    "singleDownloadChecksPreserved": true,
+    "unrelatedMatricesSkipped": true
+  }
+}
