@@ -1,11 +1,11 @@
 {
   "schemaVersion": 10,
-  "generatedAt": "2026-07-20T22:02:43.427610Z",
-  "status": "pass",
+  "generatedAt": "2026-07-20T22:20:55.497383Z",
+  "status": "fail",
   "summary": {
     "total": 76,
-    "passed": 76,
-    "failed": 0
+    "passed": 75,
+    "failed": 1
   },
   "dictionaryVersion": "2026.07.20.2",
   "release": "0.9.4.9",
@@ -151,7 +151,7 @@
     },
     {
       "name": "queue_authority",
-      "passed": true,
+      "passed": false,
       "detail": "active/terminal authority stays coherent"
     },
     {
