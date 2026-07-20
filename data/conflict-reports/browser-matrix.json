@@ -1,9 +1,9 @@
 {
-  "schemaVersion": 1,
-  "release": "0.9.4.2",
-  "generatedAt": "2026-07-19T16:10:33.578Z",
+  "schemaVersion": 2,
+  "release": "0.9.4.4",
+  "generatedAt": "2026-07-20T01:12:41.356Z",
   "passed": true,
-  "totalChecks": 372,
+  "totalChecks": 500,
   "profiles": [
     {
       "profile": "desktop-wide",
@@ -11,7 +11,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.2"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.4"
         },
         {
           "name": "release conflict absent",
@@ -154,6 +154,81 @@
           "detail": "{\"svg\":1,\"text\":0}"
         },
         {
+          "name": "bottom fully visible left",
+          "passed": true,
+          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible right",
+          "passed": true,
+          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible lower edge",
+          "passed": true,
+          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom horizontally centered",
+          "passed": true,
+          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom has no horizontal translation drift",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "name": "bottom complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom visible border",
+          "passed": true,
+          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)"
+        },
+        {
+          "name": "rail fully visible left",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible right",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible top",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible bottom",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail visible border",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)"
+        },
+        {
           "name": "bottom map active",
           "passed": true,
           "detail": ""
@@ -219,7 +294,7 @@
           "detail": ""
         },
         {
-          "name": "rail all active",
+          "name": "rail all active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -229,7 +304,7 @@
           "detail": ""
         },
         {
-          "name": "rail locations active",
+          "name": "rail locations active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -239,7 +314,7 @@
           "detail": ""
         },
         {
-          "name": "rail collectibles active",
+          "name": "rail collectibles active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -249,7 +324,7 @@
           "detail": ""
         },
         {
-          "name": "rail activities active",
+          "name": "rail activities active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -259,7 +334,7 @@
           "detail": ""
         },
         {
-          "name": "rail favorites active",
+          "name": "rail favorites active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -269,12 +344,52 @@
           "detail": ""
         },
         {
+          "name": "filter return keeps rail locations interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "filter closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route return keeps rail collectibles interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress return keeps rail activities interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "bottom maximum width contract",
+          "passed": true,
+          "detail": "430"
+        },
+        {
+          "name": "navigation guard and observed OpenCV recovery contract",
+          "passed": true,
+          "detail": ""
+        },
+        {
           "name": "settings opens",
           "passed": true,
           "detail": ""
         },
         {
-          "name": "settings aria visible",
+          "name": "settings owner coherent",
           "passed": true,
           "detail": ""
         },
@@ -286,27 +401,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "ipad class not forced",
@@ -327,7 +442,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.2"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.4"
         },
         {
           "name": "release conflict absent",
@@ -470,6 +585,81 @@
           "detail": "{\"svg\":1,\"text\":0}"
         },
         {
+          "name": "bottom fully visible left",
+          "passed": true,
+          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible right",
+          "passed": true,
+          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible lower edge",
+          "passed": true,
+          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom horizontally centered",
+          "passed": true,
+          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom has no horizontal translation drift",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "name": "bottom complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom visible border",
+          "passed": true,
+          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)"
+        },
+        {
+          "name": "rail fully visible left",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible right",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible top",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible bottom",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail visible border",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)"
+        },
+        {
           "name": "bottom map active",
           "passed": true,
           "detail": ""
@@ -535,7 +725,7 @@
           "detail": ""
         },
         {
-          "name": "rail all active",
+          "name": "rail all active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -545,7 +735,7 @@
           "detail": ""
         },
         {
-          "name": "rail locations active",
+          "name": "rail locations active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -555,7 +745,7 @@
           "detail": ""
         },
         {
-          "name": "rail collectibles active",
+          "name": "rail collectibles active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -565,7 +755,7 @@
           "detail": ""
         },
         {
-          "name": "rail activities active",
+          "name": "rail activities active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -575,7 +765,7 @@
           "detail": ""
         },
         {
-          "name": "rail favorites active",
+          "name": "rail favorites active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -585,12 +775,42 @@
           "detail": ""
         },
         {
+          "name": "filter return keeps rail locations interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "filter closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route return keeps rail collectibles interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress return keeps rail activities interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
           "name": "settings opens",
           "passed": true,
           "detail": ""
         },
         {
-          "name": "settings aria visible",
+          "name": "settings owner coherent",
           "passed": true,
           "detail": ""
         },
@@ -602,27 +822,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "ipad class not forced",
@@ -643,7 +863,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.2"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.4"
         },
         {
           "name": "release conflict absent",
@@ -786,6 +1006,81 @@
           "detail": "{\"svg\":1,\"text\":0}"
         },
         {
+          "name": "bottom fully visible left",
+          "passed": true,
+          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible right",
+          "passed": true,
+          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible lower edge",
+          "passed": true,
+          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom horizontally centered",
+          "passed": true,
+          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom has no horizontal translation drift",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "name": "bottom complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom visible border",
+          "passed": true,
+          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)"
+        },
+        {
+          "name": "rail fully visible left",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible right",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible top",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible bottom",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail visible border",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)"
+        },
+        {
           "name": "bottom map active",
           "passed": true,
           "detail": ""
@@ -851,7 +1146,7 @@
           "detail": ""
         },
         {
-          "name": "rail all active",
+          "name": "rail all active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -861,7 +1156,7 @@
           "detail": ""
         },
         {
-          "name": "rail locations active",
+          "name": "rail locations active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -871,7 +1166,7 @@
           "detail": ""
         },
         {
-          "name": "rail collectibles active",
+          "name": "rail collectibles active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -881,7 +1176,7 @@
           "detail": ""
         },
         {
-          "name": "rail activities active",
+          "name": "rail activities active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -891,7 +1186,7 @@
           "detail": ""
         },
         {
-          "name": "rail favorites active",
+          "name": "rail favorites active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -901,12 +1196,42 @@
           "detail": ""
         },
         {
+          "name": "filter return keeps rail locations interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "filter closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route return keeps rail collectibles interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress return keeps rail activities interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
           "name": "settings opens",
           "passed": true,
           "detail": ""
         },
         {
-          "name": "settings aria visible",
+          "name": "settings owner coherent",
           "passed": true,
           "detail": ""
         },
@@ -918,27 +1243,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "ipad class enabled",
@@ -959,7 +1284,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.2"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.4"
         },
         {
           "name": "release conflict absent",
@@ -1102,6 +1427,81 @@
           "detail": "{\"svg\":1,\"text\":0}"
         },
         {
+          "name": "bottom fully visible left",
+          "passed": true,
+          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible right",
+          "passed": true,
+          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible lower edge",
+          "passed": true,
+          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom horizontally centered",
+          "passed": true,
+          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom has no horizontal translation drift",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "name": "bottom complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom visible border",
+          "passed": true,
+          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)"
+        },
+        {
+          "name": "rail fully visible left",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible right",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible top",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible bottom",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail visible border",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)"
+        },
+        {
           "name": "bottom map active",
           "passed": true,
           "detail": ""
@@ -1167,7 +1567,7 @@
           "detail": ""
         },
         {
-          "name": "rail all active",
+          "name": "rail all active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1177,7 +1577,7 @@
           "detail": ""
         },
         {
-          "name": "rail locations active",
+          "name": "rail locations active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1187,7 +1587,7 @@
           "detail": ""
         },
         {
-          "name": "rail collectibles active",
+          "name": "rail collectibles active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1197,7 +1597,7 @@
           "detail": ""
         },
         {
-          "name": "rail activities active",
+          "name": "rail activities active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1207,7 +1607,7 @@
           "detail": ""
         },
         {
-          "name": "rail favorites active",
+          "name": "rail favorites active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1217,12 +1617,42 @@
           "detail": ""
         },
         {
+          "name": "filter return keeps rail locations interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "filter closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route return keeps rail collectibles interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress return keeps rail activities interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
           "name": "settings opens",
           "passed": true,
           "detail": ""
         },
         {
-          "name": "settings aria visible",
+          "name": "settings owner coherent",
           "passed": true,
           "detail": ""
         },
@@ -1234,27 +1664,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "ipad class enabled",
@@ -1275,7 +1705,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.2"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.4"
         },
         {
           "name": "release conflict absent",
@@ -1418,6 +1848,81 @@
           "detail": "{\"svg\":1,\"text\":0}"
         },
         {
+          "name": "bottom fully visible left",
+          "passed": true,
+          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible right",
+          "passed": true,
+          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible lower edge",
+          "passed": true,
+          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom horizontally centered",
+          "passed": true,
+          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom has no horizontal translation drift",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "name": "bottom complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom visible border",
+          "passed": true,
+          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)"
+        },
+        {
+          "name": "rail fully visible left",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible right",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible top",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible bottom",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail visible border",
+          "passed": true,
+          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)"
+        },
+        {
           "name": "bottom map active",
           "passed": true,
           "detail": ""
@@ -1483,7 +1988,7 @@
           "detail": ""
         },
         {
-          "name": "rail all active",
+          "name": "rail all active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1493,7 +1998,7 @@
           "detail": ""
         },
         {
-          "name": "rail locations active",
+          "name": "rail locations active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1503,7 +2008,7 @@
           "detail": ""
         },
         {
-          "name": "rail collectibles active",
+          "name": "rail collectibles active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1513,7 +2018,7 @@
           "detail": ""
         },
         {
-          "name": "rail activities active",
+          "name": "rail activities active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1523,7 +2028,7 @@
           "detail": ""
         },
         {
-          "name": "rail favorites active",
+          "name": "rail favorites active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1533,12 +2038,42 @@
           "detail": ""
         },
         {
+          "name": "filter return keeps rail locations interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "filter closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route return keeps rail collectibles interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress return keeps rail activities interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
           "name": "settings opens",
           "passed": true,
           "detail": ""
         },
         {
-          "name": "settings aria visible",
+          "name": "settings owner coherent",
           "passed": true,
           "detail": ""
         },
@@ -1550,27 +2085,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "ipad class enabled",
@@ -1591,7 +2126,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.2"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.4"
         },
         {
           "name": "release conflict absent",
@@ -1734,6 +2269,81 @@
           "detail": "{\"svg\":1,\"text\":0}"
         },
         {
+          "name": "bottom fully visible left",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible right",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom fully visible lower edge",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom horizontally centered",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom has no horizontal translation drift",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "name": "bottom complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom visible border",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "bottom material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)"
+        },
+        {
+          "name": "rail fully visible left",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible right",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible top",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail fully visible bottom",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail complete rounded medium",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail visible border",
+          "passed": true,
+          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+        },
+        {
+          "name": "rail material background",
+          "passed": true,
+          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)"
+        },
+        {
           "name": "bottom map active",
           "passed": true,
           "detail": ""
@@ -1799,7 +2409,7 @@
           "detail": ""
         },
         {
-          "name": "rail all active",
+          "name": "rail all active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1809,7 +2419,7 @@
           "detail": ""
         },
         {
-          "name": "rail locations active",
+          "name": "rail locations active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1819,7 +2429,7 @@
           "detail": ""
         },
         {
-          "name": "rail collectibles active",
+          "name": "rail collectibles active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1829,7 +2439,7 @@
           "detail": ""
         },
         {
-          "name": "rail activities active",
+          "name": "rail activities active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1839,7 +2449,7 @@
           "detail": ""
         },
         {
-          "name": "rail favorites active",
+          "name": "rail favorites active with visible medium",
           "passed": true,
           "detail": ""
         },
@@ -1849,12 +2459,42 @@
           "detail": ""
         },
         {
+          "name": "filter return keeps rail locations interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "filter closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route return keeps rail collectibles interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "route closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress return keeps rail activities interactive with medium",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "progress closed panel inert",
+          "passed": true,
+          "detail": ""
+        },
+        {
           "name": "settings opens",
           "passed": true,
           "detail": ""
         },
         {
-          "name": "settings aria visible",
+          "name": "settings owner coherent",
           "passed": true,
           "detail": ""
         },
@@ -1866,27 +2506,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.2\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.4\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.4"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.2"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.4"
         },
         {
           "name": "ipad class not forced",

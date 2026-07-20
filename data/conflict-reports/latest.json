@@ -1,14 +1,14 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-19T16:09:27.247552+00:00",
-  "release": "0.9.4.2",
+  "generatedAt": "2026-07-20T01:11:29.759025+00:00",
+  "release": "0.9.4.4",
   "status": "pass",
-  "riskScore": 50,
+  "riskScore": 56,
   "summary": {
     "critical": 0,
     "high": 0,
-    "warning": 25,
-    "total": 25
+    "warning": 28,
+    "total": 28
   },
   "resourceGraph": {
     "app.js": [
@@ -33,6 +33,7 @@
       "evidence-studio.css",
       "multiview-091.css",
       "public-library.css",
+      "atlas-settings.css",
       "atlas-icons.js",
       "atlas-i18n.js",
       "location-names.js",
@@ -50,11 +51,17 @@
       "atlas-hd-init.js",
       "atlas-hd-map.js",
       "atlas-hd-runtime.js",
+      "atlas-settings.js",
       "atlas-evidence-studio.js",
       "atlas-evidence-workflow.js",
       "atlas-multiview-091.js",
       "atlas-public-library.js",
       "atlas-analysis-import.js"
+    ],
+    "scan-monitor.html": [
+      "scan-monitor.css",
+      "scan-monitor.js",
+      "scan-monitor-live-bridge.js"
     ]
   },
   "findings": [
@@ -228,7 +235,7 @@
           "scale(1.1)",
           "translateY(-1px) scale(1.1)",
           "translateZ(0) scale(1)",
-          "translateZ(0) scale(1.045)"
+          "translateZ(0) scale(1.055)"
         ]
       }
     },
@@ -263,6 +270,74 @@
         "values": [
           "blur(22px) saturate(120%)",
           "blur(8px) saturate(110%)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".bottom-nav has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".bottom-nav",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(23px) saturate(150%) brightness(1.035)!important",
+          "blur(24px) saturate(138%)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".quick-rail has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".quick-rail",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(22px) saturate(148%) brightness(1.035)!important",
+          "blur(24px) saturate(138%)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".bottom-nav has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".bottom-nav",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(23px) saturate(150%) brightness(1.035)!important",
+          "blur(24px) saturate(138%)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".quick-rail has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-liquid-nav-0933.css",
+        "atlas-nav-layout-0937.css"
+      ],
+      "evidence": {
+        "selector": ".quick-rail",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(22px) saturate(148%) brightness(1.035)!important",
+          "blur(24px) saturate(138%)"
         ]
       }
     },
@@ -371,7 +446,7 @@
         "selector": ".atlas-liquid-selection-vertical",
         "property": "-webkit-backdrop-filter",
         "values": [
-          "blur(12px) saturate(142%) brightness(1.035)",
+          "blur(12px) saturate(140%) brightness(1.035)",
           "none!important"
         ]
       }
@@ -388,7 +463,7 @@
         "selector": ".atlas-liquid-selection-vertical",
         "property": "backdrop-filter",
         "values": [
-          "blur(12px) saturate(142%) brightness(1.035)",
+          "blur(12px) saturate(140%) brightness(1.035)",
           "none!important"
         ]
       }
@@ -431,34 +506,17 @@
     {
       "severity": "warning",
       "code": "CSS_CASCADE_CONFLICT",
-      "message": ".atlas-quality-performance .atlas-liquid-selection-vertical has multiple -webkit-backdrop-filter definitions",
+      "message": ".bottom-nav has multiple transform definitions",
       "files": [
-        "atlas-liquid-nav-0934.css",
-        "atlas-nav-layout-0937.css"
+        "atlas-nav-layout-0937.css",
+        "styles.css"
       ],
       "evidence": {
-        "selector": ".atlas-quality-performance .atlas-liquid-selection-vertical",
-        "property": "-webkit-backdrop-filter",
+        "selector": ".bottom-nav",
+        "property": "transform",
         "values": [
-          "blur(6px) saturate(124%)",
-          "none!important"
-        ]
-      }
-    },
-    {
-      "severity": "warning",
-      "code": "CSS_CASCADE_CONFLICT",
-      "message": ".atlas-quality-performance .atlas-liquid-selection-vertical has multiple backdrop-filter definitions",
-      "files": [
-        "atlas-liquid-nav-0934.css",
-        "atlas-nav-layout-0937.css"
-      ],
-      "evidence": {
-        "selector": ".atlas-quality-performance .atlas-liquid-selection-vertical",
-        "property": "backdrop-filter",
-        "values": [
-          "blur(6px) saturate(124%)",
-          "none!important"
+          "translateX(-50%)",
+          "translateZ(0)!important"
         ]
       }
     },

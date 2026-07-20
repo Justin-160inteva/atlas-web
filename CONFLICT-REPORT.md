@@ -1,9 +1,9 @@
 # Atlas Conflict Report
 
-- Release: **0.9.4.2**
+- Release: **0.9.4.4**
 - Status: **pass**
-- Risk score: **50/100**
-- Findings: 25 (0 critical, 0 high, 25 warning)
+- Risk score: **56/100**
+- Findings: 28 (0 critical, 0 high, 28 warning)
 
 ## WARNING · SW_REGISTRATION_DELEGATED
 
@@ -79,6 +79,30 @@ Files: `performance-071.css`, `styles.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
+.bottom-nav has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.quick-rail has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.bottom-nav has multiple backdrop-filter definitions
+
+Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.quick-rail has multiple backdrop-filter definitions
+
+Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
 .atlas-liquid-selection has multiple transition definitions
 
 Files: `atlas-ipad-nav-0940.css`, `atlas-liquid-nav-0933.css`
@@ -133,15 +157,9 @@ Files: `atlas-liquid-nav-0934.css`, `atlas-nav-layout-0937.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
-.atlas-quality-performance .atlas-liquid-selection-vertical has multiple -webkit-backdrop-filter definitions
+.bottom-nav has multiple transform definitions
 
-Files: `atlas-liquid-nav-0934.css`, `atlas-nav-layout-0937.css`
-
-## WARNING · CSS_CASCADE_CONFLICT
-
-.atlas-quality-performance .atlas-liquid-selection-vertical has multiple backdrop-filter definitions
-
-Files: `atlas-liquid-nav-0934.css`, `atlas-nav-layout-0937.css`
+Files: `atlas-nav-layout-0937.css`, `styles.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
