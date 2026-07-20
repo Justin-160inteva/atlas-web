@@ -72,16 +72,10 @@
   ],
   "conflicts": [
     {
-      "type": "evidence_missing",
-      "status": "accepted_uncertainty",
-      "detailZhCN": "第二来源只确认传奇装备，不覆盖经验值与技能点数量。",
-      "resolutionZhCN": "整条记录继续保持高置信推断，不升级为多来源确认。"
-    },
-    {
       "type": "version_or_patch_mismatch",
       "status": "accepted_uncertainty",
-      "detailZhCN": "两项来源均未记录对应游戏版本，后续补丁可能改变奖励。",
-      "resolutionZhCN": "等待当前版本游戏内复核。"
+      "detailZhCN": "两项来源均未记录对应游戏版本，且第二来源不覆盖经验值与技能点。",
+      "resolutionZhCN": "整条记录继续保持高置信推断，等待当前版本游戏内复核。"
     },
     {
       "type": "translation_mismatch",
