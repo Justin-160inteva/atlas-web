@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit the Atlas scan, monitor, heartbeat, and P25-P35 serial execution stack."""
+"""Audit the Atlas scan, monitor, heartbeat, data center, and P25-P35 serial execution stack."""
 from __future__ import annotations
 
 import importlib.util
@@ -59,6 +59,10 @@ def main() -> int:
     orchestrator_v2 = read_text("tools/run_scan_with_auto_recovery_v2.py")
     marker_runtime = read_text("atlas-ui-fix-0931.js")
     controls_runtime = read_text("atlas-controls-0938.js")
+    settings_runtime = read_text("atlas-settings.js")
+    settings_css = read_text("atlas-settings.css")
+    evidence_css = read_text("evidence-studio.css")
+    data_center_matrix = read_text("tools/data_center_contract_smoke.mjs")
 
     entries = bugs.get("entries", [])
     ids = [entry.get("id") for entry in entries]
@@ -70,14 +74,19 @@ def main() -> int:
     check("cooldowns_bounded", next(entry for entry in entries if entry["id"] == "bilibili-http-412")["cooldownSeconds"] <= 45 and next(entry for entry in entries if entry["id"] == "bilibili-http-429")["cooldownSeconds"] <= 120, "network cooldowns bounded")
 
     invariants = release.get("invariants", {})
-    check("release_version", release.get("version") == "0.9.4.6", "Alpha 0.9.4.6")
+    check("release_version", release.get("version") == "0.9.4.7", "Alpha 0.9.4.7")
     check("release_audit_cycle", invariants.get("requireFullAuditAtThisRelease") is False, "next mandatory full audit remains Alpha 0.9.4.8")
-    check("release_matrices", all(invariants.get(key) == 500 for key in ("requiredHeartbeatMatrixChecks", "requiredBrowserMatrixChecks", "requiredSerialQueueOrderChecks", "requiredMonitorBatchAuthorityChecks", "requiredQueueSchemaChecks")), "five exact 500-check gates")
+    check("release_matrices", all(invariants.get(key) == 500 for key in ("requiredHeartbeatMatrixChecks", "requiredBrowserMatrixChecks", "requiredDataCenterMatrixChecks", "requiredSerialQueueOrderChecks", "requiredMonitorBatchAuthorityChecks", "requiredQueueSchemaChecks")), "six exact 500-check gates")
     check("release_monitor_contract", invariants.get("singleMonitorController") is True and invariants.get("durableScanStateAlwaysWins") is True and invariants.get("monitorBatchIdentityMustMatch") is True, "single batch-authoritative monitor")
     check("release_serial11_contract", invariants.get("heartbeatSupervisorMaximumQueueItems") == 11 and invariants.get("scanMaximumConcurrentDownloads") == 1 and invariants.get("scanAutoContinueAfterDurableSuccess") is True, "eleven queued, one active, auto continue")
     check("release_marker_contract", invariants.get("markerSelectionUsesScaleOnly") is True and invariants.get("markerSelectionDecorationLayers") == 0 and invariants.get("markerSelectedScale") == 1.28 and invariants.get("markerSelectionDurationMs") == 190 and invariants.get("markerTipAnchorStable") is True, "anchored scale-only marker selection")
     check("release_marker_runtime", all(token in marker_runtime for token in ("selectionUsesScaleOnly:true", "selectionDecorationLayers:0", "tipAnchorStable:true", "SELECTION_DURATION=190", "SELECTED_SCALE=1.28")) and "ctx.ellipse(" not in marker_runtime and "radius+4.2" not in marker_runtime, "no legacy selection rings or ornaments")
     check("release_settings_icon", invariants.get("settingsIconDesign") == "radial-eight" and "dataset.iconDesign='radial-eight'" in controls_runtime, "simplified radial settings icon")
+    check("release_data_center_owner", release.get("runtimeOwners", {}).get("dataEvidenceCenter") == "atlas-settings.js" and release.get("runtimeOwners", {}).get("evidenceDataEngine") == "atlas-evidence-studio.js", "one shell owner and one evidence data engine")
+    check("release_data_center_contract", invariants.get("singleDataEvidenceCenter") is True and invariants.get("dataEvidenceCenterViews") == 2 and invariants.get("legacyEvidencePanelStandalone") is False, "one data and evidence center with two views")
+    check("release_data_center_runtime", all(token in settings_runtime for token in ('id="settingsPanel"', 'data-center-tab="database"', 'data-center-tab="evidence"', 'id="settingsEvidenceHost"', "host.appendChild(panel)", "legacyClose.hidden=true", "MONITOR_VERSION='0.6.1'")) and 'id="openEvidenceLab"' not in settings_runtime, "legacy evidence workspace is embedded under one controller")
+    check("release_data_center_css", all(token in settings_css for token in (".atlas-data-center", ".data-center-tabs", ".data-center-metrics", ".atlas-quality-performance .settings-panel")) and all(token in evidence_css for token in (".settings-evidence-host .evidence-panel", ".settings-evidence-host .evidence-panel>header{display:none}", ".settings-evidence-host .evidence-panel.open{display:block")), "responsive frosted center and embedded evidence workspace")
+    check("release_data_center_matrix", "Expected exactly 500 data center checks" in data_center_matrix and "staticValues.length!==50" in data_center_matrix and "totalChecks!==500" in data_center_matrix, "dedicated exact-500 data center matrix")
 
     items = queue.get("items", [])
     sequences = [item.get("sequence") for item in items]
@@ -188,7 +197,7 @@ def main() -> int:
 
     passed = sum(item["passed"] for item in checks)
     report = {
-        "schemaVersion": 8,
+        "schemaVersion": 9,
         "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "status": "pass" if passed == len(checks) else "fail",
         "summary": {"total": len(checks), "passed": passed, "failed": len(checks) - passed},
