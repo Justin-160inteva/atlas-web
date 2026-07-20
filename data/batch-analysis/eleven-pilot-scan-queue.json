@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-20T13:35:00Z",
-  "updatedAt": "2026-07-20T16:35:19.215595Z",
-  "status": "progress",
+  "updatedAt": "2026-07-20T17:10:28.966338Z",
+  "status": "blocked",
   "pilotRegion": "顺序批次 P25-P35",
   "strategy": "严格按P25至P35原始顺序处理11期；任何时刻最多下载和分析1期。当前一期完成、验证并持久化后，才自动启动下一期。",
   "maximumQueueItems": 11,
@@ -215,8 +215,13 @@
       "mapUtility": "最高",
       "priority": 100,
       "durationSeconds": 4707,
-      "state": "pending",
-      "attemptCount": 0
+      "state": "failed",
+      "attemptCount": 3,
+      "lastStartedAt": "2026-07-20T17:03:39.740265Z",
+      "lastFinishedAt": "2026-07-20T17:10:28.962350Z",
+      "lastRecoveryAt": "2026-07-20T17:03:18.162879Z",
+      "lastRecoveryAction": "fast_backoff_public_api_and_adaptive_range",
+      "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: RequestException('Failed to perform, curl: (18) end of response with 378 bytes missing. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",

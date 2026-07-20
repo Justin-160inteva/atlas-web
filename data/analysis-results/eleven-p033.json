@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "jobId": "eleven-p033-v2",
+  "status": "failed",
+  "generatedAt": "2026-07-20T17:10:27.809147Z",
+  "stage": "download",
+  "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: RequestException('Failed to perform, curl: (18) end of response with 378 bytes missing. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
+  "attempts": [
+    {
+      "strategy": "bilibili-public-api",
+      "success": false,
+      "diagnostic": "RuntimeError(\"Unable to download page 33 media part 0: RequestException('Failed to perform, curl: (18) end of response with 378 bytes missing. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')\")"
+    },
+    {
+      "strategy": "dash-720",
+      "success": false,
+      "diagnostic": "ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
+    },
+    {
+      "strategy": "impersonated-480",
+      "success": false,
+      "diagnostic": "ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
+    },
+    {
+      "strategy": "multi-flv",
+      "success": false,
+      "diagnostic": "ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
+    },
+    {
+      "strategy": "best-public",
+      "success": false,
+      "diagnostic": "ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)"
+    }
+  ],
+  "source": {
+    "author": "11的游戏世界",
+    "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P33 第33期：近江（收集1）",
+    "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/?p=33",
+    "platform": "哔哩哔哩",
+    "authorizationId": "auth-eleven-game-world-20260719",
+    "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033"
+  },
+  "media": {
+    "videoRetained": false,
+    "framePixelsRetained": false
+  },
+  "privacy": "Only diagnostics are committed. No original media or frame pixels are retained."
+}

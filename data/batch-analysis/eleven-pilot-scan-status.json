@@ -4,20 +4,20 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
-  "updatedAt": "2026-07-20T16:35:19.217979Z",
-  "phase": "progress",
+  "updatedAt": "2026-07-20T17:10:28.968906Z",
+  "phase": "blocked",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
     "imported": 8,
     "running": 0,
-    "failed": 0,
-    "blocked": 0,
+    "failed": 1,
+    "blocked": 1,
     "retryableFailed": 0,
     "remaining": 3,
     "attemptedThisRun": 1,
-    "newlyImportedThisRun": 1
+    "newlyImportedThisRun": 0
   },
   "items": [
     {
@@ -112,12 +112,12 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
       "sequence": 33,
       "page": 33,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
+      "state": "failed",
+      "attemptCount": 3,
+      "lastStartedAt": "2026-07-20T17:03:39.740265Z",
+      "lastFinishedAt": "2026-07-20T17:10:28.962350Z",
       "resultPath": null,
-      "error": null
+      "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: RequestException('Failed to perform, curl: (18) end of response with 378 bytes missing. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
@@ -144,18 +144,19 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p032",
-      "sequence": 32,
-      "page": 32,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P32 第32期：轮的面纱（阿市公主）",
-      "startedAt": "2026-07-20T16:23:40.455308Z",
-      "attemptCount": 2,
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
+      "sequence": 33,
+      "page": 33,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P33 第33期：近江（收集1）",
+      "startedAt": "2026-07-20T17:03:39.740265Z",
+      "attemptCount": 3,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p032.json status=analyzed\n\n",
-      "analysisStatus": "analyzed",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p033.json status=failed\n\n",
+      "analysisStatus": "failed",
       "indexReturnCode": 0,
-      "completed": true,
-      "finishedAt": "2026-07-20T16:35:19.211951Z"
+      "completed": false,
+      "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: RequestException('Failed to perform, curl: (18) end of response with 378 bytes missing. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
+      "finishedAt": "2026-07-20T17:10:28.962350Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
