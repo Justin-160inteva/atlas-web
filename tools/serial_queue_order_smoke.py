@@ -9,14 +9,14 @@ import pathlib
 import run_scan_with_auto_recovery_v2 as serial
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-PAGES = [12, 13, 14, 15, 16, 17, 18, 19, 23, 24]
+PAGES = list(range(25, 36))
 results: list[dict[str, object]] = []
 
 
 def make_queue(states: list[str]) -> dict:
     return {
         "status": "queued",
-        "maximumQueueItems": 10,
+        "maximumQueueItems": 11,
         "maximumConcurrentItems": 1,
         "items": [
             {
@@ -42,8 +42,8 @@ def record(name: str, passed: bool, detail: str) -> None:
 
 
 for index in range(100):
-    prefix = index % 10
-    states = ["imported"] * prefix + ["queued"] + ["pending"] * (9 - prefix)
+    prefix = index % 11
+    states = ["imported"] * prefix + ["queued"] + ["pending"] * (10 - prefix)
     queue = make_queue(states)
     before_ids = [item["externalSourceId"] for item in queue["items"]]
     changed = serial.normalize_queue(queue)
@@ -51,9 +51,9 @@ for index in range(100):
     record(f"queued-prefix-{index:03d}", changed and target["state"] == "pending" and [item["externalSourceId"] for item in queue["items"]] == before_ids and active_count(queue) == 0, f"prefix={prefix}, target={target['externalSourceId']}")
 
 for index in range(100):
-    active_index = 1 + (index % 9)
+    active_index = 1 + (index % 10)
     active_state = "running" if index % 2 == 0 else "recovery"
-    states = ["queued"] + ["pending"] * 9
+    states = ["queued"] + ["pending"] * 10
     states[active_index] = active_state
     queue = make_queue(states)
     before = copy.deepcopy(queue)
@@ -61,8 +61,8 @@ for index in range(100):
     record(f"active-block-{index:03d}", not changed and queue == before and active_count(queue) == 1, f"active={active_index}:{active_state}")
 
 for index in range(100):
-    queued_index = 1 + (index % 9)
-    states = ["pending"] * 10
+    queued_index = 1 + (index % 10)
+    states = ["pending"] * 11
     states[queued_index] = "queued"
     queue = make_queue(states)
     before = copy.deepcopy(queue)
@@ -70,8 +70,8 @@ for index in range(100):
     record(f"pending-first-{index:03d}", not changed and queue == before and queue["items"][0]["state"] == "pending", f"laterQueued={queued_index}")
 
 for index in range(100):
-    prefix = index % 10
-    states = ["imported"] * prefix + ["queued"] + ["pending"] * (9 - prefix)
+    prefix = index % 11
+    states = ["imported"] * prefix + ["queued"] + ["pending"] * (10 - prefix)
     queue = make_queue(states)
     first = serial.normalize_queue(queue)
     after_first = copy.deepcopy(queue)
@@ -81,13 +81,14 @@ for index in range(100):
 for index in range(100):
     mode = index % 4
     if mode == 0:
-        states = ["imported"] * 10
+        states = ["imported"] * 11
     elif mode == 1:
-        states = ["failed"] + ["pending"] * 9
+        states = ["failed"] + ["pending"] * 10
     elif mode == 2:
-        states = ["imported"] * (index % 10) + ["pending"] * (10 - (index % 10))
+        prefix = index % 11
+        states = ["imported"] * prefix + ["pending"] * (11 - prefix)
     else:
-        states = ["pending"] * 10
+        states = ["pending"] * 11
     queue = make_queue(states)
     before = copy.deepcopy(queue)
     changed = serial.normalize_queue(queue)
@@ -97,8 +98,8 @@ if len(results) != 500:
     raise SystemExit(f"expected exactly 500 serial-order checks, got {len(results)}")
 
 output = {
-    "schemaVersion": 1,
-    "queueItems": 10,
+    "schemaVersion": 2,
+    "queueItems": 11,
     "maximumConcurrentItems": 1,
     "totalChecks": len(results),
     "passed": all(item["passed"] for item in results),
