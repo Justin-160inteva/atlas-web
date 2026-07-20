@@ -23,6 +23,11 @@ const policy = json('data/rewards/reward-source-policy.json');
 const terms = json('data/rewards/reward-terminology-zh-CN.json');
 const recordFileEntries = Object.entries(records.recordFiles || {});
 const runtimeRecords = recordFileEntries.map(([locationId, path]) => ({ locationId, path, record: json(path) }));
+const numericRewardTypes = new Set(['experience', 'skill_point']);
+const supportCount = (reward, sources) => {
+  const token = `reward:${reward.type}:${reward.nameOriginal || reward.nameZhCN}`;
+  return sources.filter(source => Array.isArray(source.supports) && source.supports.includes(token)).length;
+};
 
 new vm.Script(script, { filename: 'atlas-rewards-0949.js' });
 check(manifest.version === '0.9.4.9', 'release is Alpha 0.9.4.9');
@@ -43,6 +48,7 @@ check(manifest.invariants.rewardUnresolvedNeverFabricated === true, 'unresolved 
 check(manifest.invariants.rewardRuntimeIndexRequired === true, 'runtime index invariant is enabled');
 check(manifest.invariants.rewardRuntimeRecordCount === records.recordCount, 'runtime record invariant matches index');
 check(manifest.invariants.rewardSingleSourceMustRemainInference === true, 'single-source inference invariant is enabled');
+check(manifest.invariants.rewardPartialSourceCoverageMustRemainInference === true, 'partial coverage inference invariant is enabled');
 check(sw.includes("'./atlas-rewards-0949.js'"), 'service worker caches runtime');
 check(sw.includes("'./atlas-rewards-0949.css'"), 'service worker caches stylesheet');
 check(sw.includes("'./data/rewards/reward-records-runtime.json'"), 'service worker caches records');
@@ -54,7 +60,12 @@ check(Array.isArray(records.reviewQueue) && records.reviewQueue.length === recor
 check(new Set(records.reviewQueue).size === records.recordCount, 'review queue has no duplicates');
 check(runtimeRecords.every(({locationId, path, record}) => record.locationId === locationId && path === `data/rewards/records/${locationId}.json`), 'record files match indexed location ids');
 check(runtimeRecords.every(({path}) => manifest.releaseAssets.includes(path) && sw.includes(`'./${path}'`)), 'every candidate is a cached release asset');
-check(runtimeRecords.every(({record}) => record.status === 'high_confidence_inference' && record.confidence >= 0.75 && record.sources.length === 1 && record.review.state === 'machine_checked'), 'first candidates remain machine-checked single-source inference');
+check(runtimeRecords.every(({record}) => {
+  const sourceTypes = new Set(record.sources.map(source => source.sourceType));
+  return record.status === 'high_confidence_inference' && record.confidence >= 0.75 && record.confidence < 0.90 && record.sources.length >= 2 && sourceTypes.has('community_database') && sourceTypes.has('guide_article') && record.review.state === 'machine_checked';
+}), 'candidates remain machine-checked partial-coverage inference');
+check(runtimeRecords.every(({record}) => record.rewards.every(reward => numericRewardTypes.has(reward.type) ? supportCount(reward, record.sources) === 1 : supportCount(reward, record.sources) >= 2)), 'per-reward source coverage is exact');
+check(runtimeRecords.every(({record}) => record.summaryZhCN.includes('整体保持高置信推断')), 'record summaries disclose the inference boundary');
 check(evidence.coverage.total === 3430, 'coverage total remains 3430');
 check(evidence.coverage.highConfidenceInference === records.recordCount, 'coverage reflects candidate records');
 check(evidence.coverage.unresolved === evidence.coverage.total - records.recordCount, 'unresolved count excludes only candidate records');
@@ -64,6 +75,10 @@ check(script.includes('selectedLocationId()'), 'runtime resolves the selected lo
 check(script.includes('runtime.records.get(locationId)'), 'runtime uses exact location id lookup');
 check(script.includes('loadRuntimeRecords'), 'runtime loads indexed record files');
 check(script.includes('Promise.allSettled'), 'one failed record does not hide all other records');
+check(script.includes('rewardSupportCount'), 'runtime calculates per-reward source support');
+check(script.includes('`${supportCount}个来源`'), 'runtime renders per-reward source badges');
+check(script.includes('formatQuantity(reward, sources)'), 'reward formatter receives source coverage');
+check(script.includes('来源覆盖可能只支持部分奖励'), 'runtime explains partial source coverage');
 check(script.includes('rewardLocationId'), 'rendering is idempotent per location');
 check(script.includes('MutationObserver'), 'detail rebuilds are observed');
 check(script.includes('queueMicrotask(renderSelectedReward)'), 'detail injection is deferred safely');

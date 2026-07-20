@@ -23,17 +23,25 @@ const allowedStatuses=new Set(schema.properties?.status?.enum||[]);
 const allowedRewardTypes=new Set(schema.properties?.rewards?.items?.properties?.type?.enum||[]);
 const allowedQuantityStatuses=new Set(schema.properties?.rewards?.items?.properties?.quantityStatus?.enum||[]);
 const allowedReviewStates=new Set(schema.properties?.review?.properties?.state?.enum||[]);
+const numericRewardTypes=new Set(['experience','skill_point']);
 const inferenceThreshold=policy.evidenceLevels?.find(level=>level.id==='high_confidence_inference')?.minimumConfidence;
+const multiThreshold=policy.evidenceLevels?.find(level=>level.id==='multi_source_confirmed')?.minimumConfidence;
 const runtimeRecordsValid=recordPairs.length===runtimeIndex.recordCount&&recordPairs.every(([locationId,path,record])=>{
   const sources=Array.isArray(record.sources)?record.sources:[];
   const rewards=Array.isArray(record.rewards)?record.rewards:[];
   const conflicts=Array.isArray(record.conflicts)?record.conflicts:[];
-  const singleSourceInference=sources.length===1&&record.status==='high_confidence_inference'&&record.confidence>=inferenceThreshold;
+  const sourceTypes=new Set(sources.map(source=>source.sourceType));
+  const partialCoverageInference=sources.length>=2&&sourceTypes.has('community_database')&&sourceTypes.has('guide_article')&&record.status==='high_confidence_inference'&&record.confidence>=inferenceThreshold&&record.confidence<multiThreshold;
   const sourceValid=sources.every(source=>policy.sourceTypes.includes(source.sourceType)&&typeof source.locator==='string'&&source.locator.startsWith('https://')&&Array.isArray(source.supports)&&source.supports.length>0);
-  const rewardsValid=rewards.length>0&&rewards.every(reward=>allowedRewardTypes.has(reward.type)&&allowedQuantityStatuses.has(reward.quantityStatus)&&typeof reward.nameZhCN==='string'&&reward.nameZhCN.length>0&&(reward.quantityStatus!=='exact'||Number.isFinite(reward.quantity)));
+  const rewardsValid=rewards.length>0&&rewards.every(reward=>{
+    const token=`reward:${reward.type}:${reward.nameOriginal||reward.nameZhCN}`;
+    const supportCount=sources.filter(source=>Array.isArray(source.supports)&&source.supports.includes(token)).length;
+    const expectedCoverage=numericRewardTypes.has(reward.type)?supportCount===1:supportCount>=2;
+    return allowedRewardTypes.has(reward.type)&&allowedQuantityStatuses.has(reward.quantityStatus)&&typeof reward.nameZhCN==='string'&&reward.nameZhCN.length>0&&(reward.quantityStatus!=='exact'||Number.isFinite(reward.quantity))&&expectedCoverage;
+  });
   const conflictsValid=conflicts.length>0&&conflicts.every(conflict=>policy.conflictTypes.includes(conflict.type)&&['open','resolved','accepted_uncertainty'].includes(conflict.status)&&typeof conflict.detailZhCN==='string');
-  const reviewValid=allowedReviewStates.has(record.review?.state)&&record.review?.state==='machine_checked'&&typeof record.review?.method==='string';
-  return locationId===record.locationId&&path===`data/rewards/records/${locationId}.json`&&allowedStatuses.has(record.status)&&singleSourceInference&&sourceValid&&rewardsValid&&conflictsValid&&reviewValid&&record.summaryZhCN.includes('高置信推断')&&manifest.releaseAssets.includes(path)&&serviceWorker.includes(`'./${path}'`);
+  const reviewValid=allowedReviewStates.has(record.review?.state)&&record.review?.state==='machine_checked'&&record.review?.method==='reward-policy-v1 + per-reward-source-coverage';
+  return locationId===record.locationId&&path===`data/rewards/records/${locationId}.json`&&allowedStatuses.has(record.status)&&partialCoverageInference&&sourceValid&&rewardsValid&&conflictsValid&&reviewValid&&record.summaryZhCN.includes('整体保持高置信推断')&&manifest.releaseAssets.includes(path)&&serviceWorker.includes(`'./${path}'`);
 });
 const reviewQueueValid=Array.isArray(runtimeIndex.reviewQueue)&&runtimeIndex.reviewQueue.length===runtimeIndex.recordCount&&new Set(runtimeIndex.reviewQueue).size===runtimeIndex.recordCount&&runtimeIndex.reviewQueue.every(id=>runtimeIndex.recordFiles?.[id]);
 const runtimeCoverageValid=index.coverage?.highConfidenceInference===runtimeIndex.recordCount&&index.coverage?.unresolved===index.targetLocationCount-runtimeIndex.recordCount&&index.coverage?.officialConfirmed===0&&index.coverage?.multiSourceConfirmed===0&&index.coverage?.openConflicts===0;
@@ -45,7 +53,7 @@ const contracts={
   release:index.release===manifest.version&&runtimeIndex.release===manifest.version,
   fullAudit:manifest.invariants?.requireFullAuditAtThisRelease===fullAuditRequired,
   rewardOwner:manifest.runtimeOwners?.rewardEvidenceIndex==='data/rewards/reward-evidence-index.json'&&manifest.runtimeOwners?.rewardSummaryRuntime==='atlas-rewards-0949.js'&&manifest.runtimeOwners?.rewardRuntimeRecords==='data/rewards/reward-records-runtime.json',
-  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500&&manifest.invariants?.rewardUnresolvedNeverFabricated===true&&manifest.invariants?.rewardRuntimeRecordCount===runtimeIndex.recordCount&&manifest.invariants?.rewardSingleSourceMustRemainInference===true&&manifest.invariants?.rewardCandidateRecordsMachineChecked===true&&runtimeRecordsValid&&reviewQueueValid&&runtimeCoverageValid&&runtimeSource.includes('旧描述不会被当作已确认事实')&&runtimeSource.includes('loadRuntimeRecords')&&runtimeSource.includes('Promise.allSettled')&&serviceWorker.includes('records\\/[^?]+\\.json'),
+  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500&&manifest.invariants?.rewardUnresolvedNeverFabricated===true&&manifest.invariants?.rewardRuntimeRecordCount===runtimeIndex.recordCount&&manifest.invariants?.rewardSingleSourceMustRemainInference===true&&manifest.invariants?.rewardPartialSourceCoverageMustRemainInference===true&&manifest.invariants?.rewardCandidateRecordsMachineChecked===true&&runtimeRecordsValid&&reviewQueueValid&&runtimeCoverageValid&&runtimeSource.includes('旧描述不会被当作已确认事实')&&runtimeSource.includes('loadRuntimeRecords')&&runtimeSource.includes('Promise.allSettled')&&runtimeSource.includes('rewardSupportCount')&&runtimeSource.includes('个来源')&&serviceWorker.includes(String.raw`records\/[^?]+\.json`),
   targetCount:index.targetLocationCount===3430,
   coverageTotal:index.coverage?.total===3430,
   coverageConserved:['officialConfirmed','multiSourceConfirmed','highConfidenceInference','unresolved'].reduce((sum,key)=>sum+Number(index.coverage?.[key]||0),0)===3430,
@@ -56,7 +64,7 @@ const contracts={
   simplifiedChineseRequired:policy.principles?.requireStandardSimplifiedChinese===true,
   fourEvidenceLevels:Array.isArray(policy.evidenceLevels)&&policy.evidenceLevels.length===4,
   officialThreshold:policy.evidenceLevels?.find(level=>level.id==='official_confirmed')?.minimumConfidence===0.98,
-  multiThreshold:policy.evidenceLevels?.find(level=>level.id==='multi_source_confirmed')?.minimumConfidence===0.90,
+  multiThreshold:multiThreshold===0.90,
   inferenceThreshold:inferenceThreshold===0.75,
   unresolvedThreshold:policy.evidenceLevels?.find(level=>level.id==='unresolved')?.minimumConfidence===0,
   sourceTypes:Array.isArray(policy.sourceTypes)&&policy.sourceTypes.length>=8,
