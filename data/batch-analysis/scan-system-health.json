@@ -1,13 +1,14 @@
 {
-  "schemaVersion": 3,
-  "generatedAt": "2026-07-20T01:19:55.273387Z",
-  "status": "fail",
+  "schemaVersion": 4,
+  "generatedAt": "2026-07-20T01:23:19.881014Z",
+  "status": "pass",
   "summary": {
-    "total": 42,
-    "passed": 34,
-    "failed": 8
+    "total": 59,
+    "passed": 59,
+    "failed": 0
   },
   "dictionaryVersion": "2026.07.19.5",
+  "release": "0.9.4.5",
   "checks": [
     {
       "name": "dictionary_size",
@@ -43,6 +44,26 @@
       "name": "bounded_429_cooldown",
       "passed": true,
       "detail": "429 cooldown <=120s"
+    },
+    {
+      "name": "release_0945",
+      "passed": true,
+      "detail": "Alpha 0.9.4.5 full audit required"
+    },
+    {
+      "name": "release_heartbeat_matrix",
+      "passed": true,
+      "detail": "exact heartbeat matrix contract"
+    },
+    {
+      "name": "release_single_monitor",
+      "passed": true,
+      "detail": "single monitor owner"
+    },
+    {
+      "name": "release_durable_priority",
+      "passed": true,
+      "detail": "durable state wins"
     },
     {
       "name": "heartbeat_30_seconds",
@@ -96,38 +117,88 @@
     },
     {
       "name": "monitor_poll",
-      "passed": false,
-      "detail": "10s core, 5s raw, 1s projection"
+      "passed": true,
+      "detail": "5s raw, 180s API, 1s UI"
     },
     {
       "name": "monitor_thresholds",
-      "passed": false,
+      "passed": true,
       "detail": "30/75/150-second monitor thresholds"
     },
     {
-      "name": "monitor_versions",
-      "passed": false,
-      "detail": "realtime bridge version coherent"
+      "name": "monitor_version",
+      "passed": true,
+      "detail": "monitor v0.6.0 pinned"
+    },
+    {
+      "name": "monitor_single_controller",
+      "passed": true,
+      "detail": "obsolete competing controller removed"
     },
     {
       "name": "monitor_authoritative_api",
-      "passed": false,
-      "detail": "bounded authoritative API calibration"
-    },
-    {
-      "name": "monitor_projection",
-      "passed": false,
-      "detail": "clearly labelled short projection"
-    },
-    {
-      "name": "monitor_recovery_retention",
       "passed": true,
-      "detail": "recovery does not zero last measured telemetry"
+      "detail": "bounded authoritative calibration"
+    },
+    {
+      "name": "monitor_durable_priority",
+      "passed": true,
+      "detail": "imported state rejects stale runtime"
+    },
+    {
+      "name": "monitor_terminal_telemetry",
+      "passed": true,
+      "detail": "historical telemetry cannot become active heartbeat"
+    },
+    {
+      "name": "monitor_supervisor_visibility",
+      "passed": true,
+      "detail": "supervisor state is visible"
     },
     {
       "name": "monitor_cache",
-      "passed": false,
-      "detail": "cache generation v10"
+      "passed": true,
+      "detail": "monitor cache generation v11"
+    },
+    {
+      "name": "supervisor_thresholds",
+      "passed": true,
+      "detail": "90/180-second supervisor thresholds"
+    },
+    {
+      "name": "supervisor_dedup_policy",
+      "passed": true,
+      "detail": "360-second resume deduplication"
+    },
+    {
+      "name": "supervisor_durable_policy",
+      "passed": true,
+      "detail": "durable terminal projection policy"
+    },
+    {
+      "name": "supervisor_five_item_gate",
+      "passed": true,
+      "detail": "five-item safety gate"
+    },
+    {
+      "name": "supervisor_persists_projection",
+      "passed": true,
+      "detail": "runtime projection persisted"
+    },
+    {
+      "name": "supervisor_terminal_logic",
+      "passed": true,
+      "detail": "terminal runtime reconciliation"
+    },
+    {
+      "name": "supervisor_resume_dedup",
+      "passed": true,
+      "detail": "duplicate dispatch suppression"
+    },
+    {
+      "name": "supervisor_safety",
+      "passed": true,
+      "detail": "repair safety invariants"
     },
     {
       "name": "publisher_conflict_logic",
@@ -148,6 +219,11 @@
       "name": "v12_recovery_normalization",
       "passed": true,
       "detail": "retries remain on v12"
+    },
+    {
+      "name": "success_projection",
+      "passed": true,
+      "detail": "success clears stale recovery and publishes terminal projection"
     },
     {
       "name": "generic_region",
@@ -190,9 +266,14 @@
       "detail": "CID mismatch"
     },
     {
+      "name": "match_opencv-open-failure",
+      "passed": true,
+      "detail": "OpenCV could not open the downloaded video"
+    },
+    {
       "name": "action_412",
-      "passed": false,
-      "detail": "fast public API plus adaptive ranges"
+      "passed": true,
+      "detail": "bounded public API plus adaptive ranges"
     },
     {
       "name": "action_range_fallback",
@@ -206,7 +287,7 @@
     },
     {
       "name": "action_timeout",
-      "passed": false,
+      "passed": true,
       "detail": "timeout quality/speed recovery"
     },
     {
@@ -218,6 +299,11 @@
       "name": "repository_media_clean",
       "passed": true,
       "detail": "media files=0"
+    },
+    {
+      "name": "release_assets_exist",
+      "passed": true,
+      "detail": "all release assets exist"
     }
   ]
 }
