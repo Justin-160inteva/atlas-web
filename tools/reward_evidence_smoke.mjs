@@ -80,11 +80,11 @@ const contracts=[
   ['runtime validates target',()=>runtime.includes("payload.targetLocationCount!==3430")],
   ['runtime validates duplicate ids',()=>runtime.includes("duplicate reward evidence location")],
   ['runtime uses safe DOM construction',()=>runtime.includes("document.createElement")&&!runtime.includes('innerHTML=')],
-  ['runtime has unresolved fallback',()=>runtime.includes('该点位尚未进入奖励证据批次')&&runtime.includes('不把它显示为官方事实')],
+  ['runtime has unresolved fallback',()=>runtime.includes('该点位尚未进入奖励证据批次')&&runtime.includes('不会把它显示为官方事实')],
   ['runtime preserves original names',()=>runtime.includes('reward.originalName')],
   ['runtime uses noopener links',()=>runtime.includes("noopener noreferrer")],
   ['runtime loads only once',()=>runtime.includes('if(loadPromise)return loadPromise')],
-  ['style defines all four statuses',()=>['official_confirmed','multi_source_confirmed','high_confidence_inference','unresolved'].every(status=>css.includes(`[data-status=\"${status}\"]`))],
+  ['style defines all four statuses',()=>['official_confirmed','multi_source_confirmed','high_confidence_inference','unresolved'].every(status=>css.includes(`[data-status="${status}"]`))],
   ['style includes mobile and performance paths',()=>css.includes('@media(max-width:720px)')&&css.includes('.atlas-quality-performance .atlas-reward-evidence')],
   ['entry includes one style and one script',()=>styleCount===1&&scriptCount===1],
   ['service worker caches reward assets',()=>worker.includes("./atlas-reward-evidence.css")&&worker.includes("./atlas-reward-evidence.js")&&worker.includes("./data/reward-evidence-index.json")]
