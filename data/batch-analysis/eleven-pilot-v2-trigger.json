@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 8,
-  "triggerId": "eleven-production-p025-p035-20260720-01-wbi-cdn-v13",
-  "requestedAt": "2026-07-20T20:01:34Z",
+  "schemaVersion": 9,
+  "triggerId": "eleven-production-p025-p035-20260720-02-http11-v14",
+  "requestedAt": "2026-07-20T20:50:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
@@ -12,6 +12,7 @@
   "queuePages": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
   "startWithPage": 33,
   "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
+  "transportOverride": "conditional-http11-v14",
   "automaticRecovery": true,
   "heartbeatSupervisor": true,
   "runtimeHeartbeat": {
@@ -29,10 +30,10 @@
   "humanReviewOnUnknownFailure": true,
   "manualTransportMigration": {
     "page": 33,
-    "generation": "v13-wbi-cdn",
-    "previousAttemptCount": 5,
+    "generation": "v14-http11-tail-resume",
+    "previousAttemptCount": 6,
     "manualAttemptsScheduled": 1,
     "additionalAutomaticRetriesAuthorized": 0
   },
-  "recoveryReason": "Run P33 once on the newly merged signed-WBI metadata path with API-provided CDN rotation and cross-CDN byte resume; continue strictly to P34 and P35 only after durable success."
+  "recoveryReason": "Run P33 once with the merged conditional HTTP/1.1 curl_cffi hook after the prior HTTP/2 INTERNAL_ERROR and 378-byte tail gap; continue strictly to P34 and P35 only after durable success."
 }
