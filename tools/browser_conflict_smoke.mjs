@@ -49,7 +49,7 @@ for (const [profileIndex, profile] of profiles.entries()) {
     await page.goto(`${baseURL}?conflict-smoke=1&v=${manifest.version.replace(/\D/g, '')}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForFunction(minimum => Number(document.getElementById('visibleCount')?.textContent || 0) >= minimum, manifest.invariants.minimumLocationCount, { timeout: 45_000 });
     await page.waitForFunction(version => document.documentElement.dataset.atlasRelease === version, manifest.version, { timeout: 15_000 });
-    await page.waitForFunction(() => document.documentElement.dataset.atlasControls && document.documentElement.dataset.atlasLiquidNav, null, { timeout: 15_000 });
+    await page.waitForFunction(() => document.documentElement.dataset.atlasControls && document.documentElement.dataset.atlasLiquidNav && window.AtlasMarkerVisuals, null, { timeout: 15_000 });
 
     const versionText = await page.locator('.brand-copy small').textContent();
     check('release label', versionText === manifest.versionText, String(versionText));
@@ -57,12 +57,52 @@ for (const [profileIndex, profile] of profiles.entries()) {
     check('location count', Number(await page.locator('#visibleCount').textContent()) >= manifest.invariants.minimumLocationCount);
     check('release dataset', await page.locator('html').getAttribute('data-atlas-release') === manifest.version);
     check('data guard dataset', await page.locator('html').getAttribute('data-atlas-data-guard') === manifest.version);
-    check('controls dataset', await page.locator('html').getAttribute('data-atlas-controls') === manifest.version);
+    check('controls dataset', await page.locator('html').getAttribute('data-atlas-controls') === manifest.version && await page.locator('#evidenceStudioBtn').getAttribute('data-icon-design') === manifest.invariants.settingsIconDesign);
     check('liquid dataset', await page.locator('html').getAttribute('data-atlas-liquid-nav') === manifest.version);
 
     const canvas = await page.locator('#mapCanvas').evaluate(node => ({ width: node.width, height: node.height }));
-    check('canvas width', canvas.width > 0, JSON.stringify(canvas));
-    check('canvas height', canvas.height > 0, JSON.stringify(canvas));
+    const markerState = await page.evaluate(async version => {
+      const api=window.AtlasMarkerVisuals;
+      const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+      const operations=[];
+      const fakeContext={
+        beginPath(){operations.push(['begin']);},
+        moveTo(...args){operations.push(['move',...args]);},
+        bezierCurveTo(...args){operations.push(['curve',...args]);},
+        arc(...args){operations.push(['arc',...args]);},
+        closePath(){operations.push(['close']);}
+      };
+      window.Atlas080?.tracePin(fakeContext,100,200,10,6);
+      const firstMove=operations.find(item=>item[0]==='move');
+      const curves=operations.filter(item=>item[0]==='curve');
+      const lastCurve=curves.at(-1);
+      const first=state.markers.find(cluster=>cluster.items?.[0])?.items?.[0]||null;
+      let mid=1,final=1,shrinking=1,end=1;
+      if(first){
+        state.selected=first;scheduleDraw();
+        await wait(72);mid=api.scaleFor(first.id);
+        await wait(160);final=api.scaleFor(first.id);
+        state.selected=null;scheduleDraw();
+        await wait(72);shrinking=api.scaleFor(first.id);
+        await wait(160);end=api.scaleFor(first.id);
+      }
+      const source=await fetch(`atlas-ui-fix-0931.js?v=${encodeURIComponent(version)}`,{cache:'no-store'}).then(response=>response.text());
+      const settings=document.querySelector('#evidenceStudioBtn svg');
+      return {
+        api:{version:api?.version,selectedScale:api?.selectedScale,duration:api?.selectionDuration,scaleOnly:api?.selectionUsesScaleOnly,decorations:api?.selectionDecorationLayers,tipStable:api?.tipAnchorStable,geometry:api?.geometry},
+        path:{curves:curves.length,arcs:operations.filter(item=>item[0]==='arc').length,start:firstMove?.slice(-2),end:lastCurve?.slice(-2)},
+        motion:{hasMarker:Boolean(first),mid,final,shrinking,end},
+        source:{noEllipse:!source.includes('ctx.ellipse('),noLegacyOuterPin:!source.includes('radius+4.2'),noLegacySelectedStroke:!source.includes("selected?'rgba(255,252,242,.92)'")},
+        settings:{circles:settings?.querySelectorAll('circle').length||0,paths:settings?.querySelectorAll('path').length||0,pathLength:[...(settings?.querySelectorAll('path')||[])].reduce((sum,node)=>sum+(node.getAttribute('d')||'').length,0)}
+      };
+    },manifest.version);
+    const markerCore=markerState.api.version===manifest.version&&markerState.api.scaleOnly===true&&markerState.api.decorations===0&&markerState.api.tipStable===true&&markerState.motion.hasMarker;
+    const markerMotion=markerState.motion.mid>1&&markerState.motion.mid<manifest.invariants.markerSelectedScale&&Math.abs(markerState.motion.final-manifest.invariants.markerSelectedScale)<.025&&markerState.motion.shrinking>1&&markerState.motion.shrinking<markerState.motion.final&&Math.abs(markerState.motion.end-1)<.025;
+    const markerPath=markerState.path.curves===4&&markerState.path.arcs===0&&markerState.path.start?.[0]===100&&markerState.path.start?.[1]===200&&markerState.path.end?.[0]===100&&markerState.path.end?.[1]===200&&markerState.api.geometry?.centerOffsetRadius>=.55;
+    const markerSource=markerState.source.noEllipse&&markerState.source.noLegacyOuterPin&&markerState.source.noLegacySelectedStroke;
+    const settingsIcon=markerState.settings.circles===1&&markerState.settings.paths===1&&markerState.settings.pathLength<180;
+    check('canvas width and marker scale-only contract', canvas.width > 0 && markerCore && markerSource, JSON.stringify({canvas,markerState}));
+    check('canvas height and anchored teardrop motion', canvas.height > 0 && markerMotion && markerPath, JSON.stringify({canvas,markerState}));
 
     const iconState = await page.evaluate(() => {
       const inspect = (selector, hostSelector) => [...document.querySelectorAll(selector)].map(button => {
@@ -122,17 +162,17 @@ for (const [profileIndex, profile] of profiles.entries()) {
     }
 
     if(profileIndex===0){
-      check('bottom maximum width contract', navigationGeometry.bottom.width <= 431, String(navigationGeometry.bottom.width));
+      check('bottom maximum width and marker release contract', navigationGeometry.bottom.width <= 431 && markerCore && markerMotion && markerPath && settingsIcon, JSON.stringify({width:navigationGeometry.bottom.width,markerState}));
       const openCvRule=scanBugDictionary.entries.find(entry=>entry.id==='opencv-open-failure');
-      check('navigation guard and observed OpenCV recovery contract', await page.evaluate(version => window.AtlasLiquidNavigation?.version === version, manifest.version) && manifest.invariants.quickRailMediumMustRecover===true && openCvRule?.retryable===true && openCvRule?.autoAction==='enable_transcode_fallback_and_retry' && openCvRule.patterns.includes('opencv could not open the downloaded video'));
+      check('navigation, marker, icon and OpenCV recovery contract', await page.evaluate(version => window.AtlasLiquidNavigation?.version === version, manifest.version) && manifest.invariants.quickRailMediumMustRecover===true && manifest.invariants.markerSelectionUsesScaleOnly===true && manifest.invariants.markerSelectionDecorationLayers===0 && manifest.invariants.markerTipAnchorStable===true && settingsIcon && openCvRule?.retryable===true && openCvRule?.autoAction==='enable_transcode_fallback_and_retry' && openCvRule.patterns.includes('opencv could not open the downloaded video'));
     }
 
     await page.locator('#evidenceStudioBtn').click();await page.waitForTimeout(160);
-    check('settings opens', await page.locator('#settingsPanel.open').count() === 1);
-    check('settings owner coherent', await page.locator('#settingsPanel').getAttribute('aria-hidden') === 'false' && await page.locator('#atlasSettingsOverlay').count() === 0);
-    await page.locator('#closeSettings').click();check('settings closes', await page.locator('#settingsPanel.open').count() === 0);
+    check('settings opens with simplified radial icon', await page.locator('#settingsPanel.open').count() === 1 && settingsIcon);
+    check('settings owner coherent with scale-only markers', await page.locator('#settingsPanel').getAttribute('aria-hidden') === 'false' && await page.locator('#atlasSettingsOverlay').count() === 0 && markerCore);
+    await page.locator('#closeSettings').click();check('settings closes without marker decoration regression', await page.locator('#settingsPanel.open').count() === 0 && markerSource);
 
-    const releaseScripts = await page.evaluate(() => [...document.scripts].filter(script => /atlas-(?:bootstrap|analysis-import|liquid-nav-0934|controls-0938|ipad-nav-0940|settings|data-guard-0939)\.js/.test(script.src)).map(script => script.src));
+    const releaseScripts = await page.evaluate(() => [...document.scripts].filter(script => /atlas-(?:bootstrap|analysis-import|liquid-nav-0934|controls-0938|ipad-nav-0940|settings|data-guard-0939|ui-fix-0931|080)\.js/.test(script.src)).map(script => script.src));
     const wrongScript = releaseScripts.find(url => !url.includes(`v=${manifest.version}`));
     check('release scripts use one cache version', !wrongScript, wrongScript || releaseScripts.join('\n'));
     check('bootstrap loaded once', releaseScripts.filter(url => url.includes('atlas-bootstrap.js')).length === 1, releaseScripts.join('\n'));
