@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "2026.07.20.1",
+  "revision": "2026.07.20.2",
   "purpose": "Choose the smallest deterministic validation set that still covers the risk introduced by each release.",
   "principles": {
     "userRequirementsFirst": true,
@@ -10,6 +10,11 @@
     "preserveAuthorizationPrivacyAndSerialSafety": true,
     "fullAuditEveryThreePatchVersions": true
   },
+  "parameterizedMatrices": [
+    "heartbeat",
+    "serialQueue",
+    "queueSchema"
+  ],
   "tiers": {
     "quick": {
       "heartbeatChecks": 96,
@@ -17,18 +22,18 @@
       "queueSchemaChecks": 80,
       "browserChecks": 0,
       "monitorAuthorityChecks": 0,
-      "dataCenterChecks": 120,
-      "rewardEvidenceChecks": 120,
+      "dataCenterChecks": 500,
+      "rewardEvidenceChecks": 500,
       "fullAudit": false
     },
     "standard": {
       "heartbeatChecks": 128,
       "serialQueueChecks": 128,
       "queueSchemaChecks": 96,
-      "browserChecks": 240,
-      "monitorAuthorityChecks": 160,
-      "dataCenterChecks": 180,
-      "rewardEvidenceChecks": 180,
+      "browserChecks": 500,
+      "monitorAuthorityChecks": 500,
+      "dataCenterChecks": 500,
+      "rewardEvidenceChecks": 500,
       "fullAudit": false
     },
     "full": {
