@@ -12,7 +12,8 @@
     coverage: null,
     records: new Map(),
     ready: false,
-    loading: null
+    loading: null,
+    searchInstalled: false
   };
 
   const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -160,6 +161,79 @@
     `;
   }
 
+  function normalizedSearchTokens(query) {
+    const stop = new Set(['所有', '全部', '的', '在', '里面', '地点', '给我', 'find', 'show', 'all', 'in', 'the']);
+    return String(query || '').toLowerCase().replace(/[，。,.]/g, ' ').split(/\s+/).filter(token => token && !stop.has(token));
+  }
+
+  function rewardSearchDocument(record) {
+    if (!record) return { text: '', names: [] };
+    const rewards = Array.isArray(record.rewards) ? record.rewards : [];
+    const sources = Array.isArray(record.sources) ? record.sources : [];
+    const names = rewards.map(reward => reward.nameZhCN || reward.nameOriginal).filter(Boolean);
+    const text = [
+      record.summaryZhCN,
+      STATUS_LABELS[record.status],
+      ...rewards.flatMap(reward => [reward.nameOriginal, reward.nameZhCN, reward.type, reward.rarity, reward.quantity]),
+      ...sources.flatMap(source => [source.title, source.publisherOrAuthor])
+    ].filter(value => value !== null && value !== undefined).join(' ').toLowerCase();
+    return { text, names };
+  }
+
+  function rewardAwareSearch(query) {
+    if (typeof state === 'undefined' || !Array.isArray(state.locations)) return;
+    const tokens = normalizedSearchTokens(query);
+    const scored = state.locations.map(location => {
+      const category = state.categoryMap.get(location.category_id)?.title || '';
+      const region = state.regionMap.get(location.region_id)?.title || '';
+      const baseText = `${location.title} ${category} ${region} ${location.description || ''}`.toLowerCase();
+      const rewardDocument = rewardSearchDocument(runtime.records.get(String(location.id)));
+      let score = 0;
+      let rewardMatches = 0;
+      for (const token of tokens) {
+        let matched = false;
+        if (location.title.toLowerCase().includes(token)) { score += 8; matched = true; }
+        if (category.toLowerCase().includes(token)) { score += 5; matched = true; }
+        if (region.toLowerCase().includes(token)) { score += 5; matched = true; }
+        if (baseText.includes(token)) { score += 1; matched = true; }
+        if (rewardDocument.text.includes(token)) { score += 10; rewardMatches += 1; matched = true; }
+        if (!matched) return { location, score: -1, rewardMatches: 0, rewardNames: [] };
+      }
+      return { location, score, rewardMatches, rewardNames: rewardDocument.names };
+    }).filter(item => !tokens.length || item.score >= 0)
+      .sort((left, right) => right.score - left.score || right.rewardMatches - left.rewardMatches)
+      .slice(0, 80);
+
+    const resultCount = document.getElementById('resultCount');
+    const results = document.getElementById('searchResults');
+    if (!resultCount || !results) return;
+    resultCount.textContent = scored.length + (scored.length === 80 ? '＋' : '');
+    results.innerHTML = scored.map(item => {
+      const location = item.location;
+      const category = state.categoryMap.get(location.category_id);
+      const region = state.regionMap.get(location.region_id);
+      const rewardHint = item.rewardMatches && item.rewardNames.length
+        ? `<small class="atlas-search-reward">奖励：${escapeHTML(item.rewardNames.slice(0, 2).join(' · '))}</small>`
+        : '';
+      return `<button class="result-item" data-id="${escapeHTML(location.id)}"><span class="result-icon">${iconMarkup(category?.title, 22)}</span><span class="result-copy"><b>${escapeHTML(location.title)}</b><small>${escapeHTML(category?.title || '')} · ${escapeHTML(region?.title || '未知区域')}</small>${rewardHint}</span><em>›</em></button>`;
+    }).join('') || '<div class="empty-state">没有匹配结果</div>';
+    document.querySelectorAll('.result-item').forEach(button => {
+      button.onclick = () => {
+        const location = state.locations.find(item => item.id === button.dataset.id);
+        closeSearch();
+        focusLocation(location);
+      };
+    });
+  }
+
+  function installRewardSearch() {
+    if (runtime.searchInstalled || typeof window.runSearch !== 'function') return;
+    window.runSearch = rewardAwareSearch;
+    const input = document.getElementById('searchInput');
+    if (input) input.oninput = event => rewardAwareSearch(event.target.value);
+    runtime.searchInstalled = true;
+  }
+
   function observeDetails() {
     const detail = document.getElementById('detailContent');
     if (!detail || detail.dataset.rewardObserver === '1') return;
@@ -181,6 +255,7 @@
         runtime.coverage = index.coverage || null;
         runtime.records = await loadRuntimeRecords(recordIndex);
         runtime.ready = true;
+        installRewardSearch();
         renderCoverage();
         renderSelectedReward();
         return runtime;
@@ -188,6 +263,7 @@
       .catch(error => {
         console.warn('[Atlas Rewards] 奖励证据数据加载失败', error);
         runtime.ready = true;
+        installRewardSearch();
         renderSelectedReward();
         return runtime;
       })
@@ -197,6 +273,7 @@
 
   window.AtlasRewards = {
     refresh,
+    search: rewardAwareSearch,
     getRecord: locationId => runtime.records.get(String(locationId)) || null,
     getCoverage: () => runtime.coverage
   };
