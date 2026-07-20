@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit the Atlas scan, monitor, and heartbeat stack, including NEXT10 serial execution."""
+"""Audit the Atlas scan, monitor, heartbeat, and P25-P35 serial execution stack."""
 from __future__ import annotations
 
 import importlib.util
@@ -11,6 +11,8 @@ from typing import Any
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data/batch-analysis/scan-system-health.json"
+EXPECTED_PAGES = list(range(25, 36))
+EXPECTED_BATCH = "eleven-production-p025-p035-v1"
 
 
 def read_json(path: str) -> Any:
@@ -68,9 +70,9 @@ def main() -> int:
     invariants = release.get("invariants", {})
     check("release_version", release.get("version") == "0.9.4.5", "Alpha 0.9.4.5")
     check("release_full_audit", invariants.get("requireFullAuditAtThisRelease") is True, "full audit required")
-    check("release_matrices", invariants.get("requiredHeartbeatMatrixChecks") == 500 and invariants.get("requiredBrowserMatrixChecks") == 500, "two exact 500-check gates")
-    check("release_monitor_contract", invariants.get("singleMonitorController") is True and invariants.get("durableScanStateAlwaysWins") is True, "single durable monitor")
-    check("release_next10_contract", invariants.get("heartbeatSupervisorMaximumQueueItems") == 10 and invariants.get("scanMaximumConcurrentDownloads") == 1 and invariants.get("scanAutoContinueAfterDurableSuccess") is True, "ten queued, one active, auto continue")
+    check("release_matrices", all(invariants.get(key) == 500 for key in ("requiredHeartbeatMatrixChecks", "requiredBrowserMatrixChecks", "requiredSerialQueueOrderChecks", "requiredMonitorBatchAuthorityChecks")), "four exact 500-check gates")
+    check("release_monitor_contract", invariants.get("singleMonitorController") is True and invariants.get("durableScanStateAlwaysWins") is True and invariants.get("monitorBatchIdentityMustMatch") is True, "single batch-authoritative monitor")
+    check("release_serial11_contract", invariants.get("heartbeatSupervisorMaximumQueueItems") == 11 and invariants.get("scanMaximumConcurrentDownloads") == 1 and invariants.get("scanAutoContinueAfterDurableSuccess") is True, "eleven queued, one active, auto continue")
 
     items = queue.get("items", [])
     sequences = [item.get("sequence") for item in items]
@@ -78,18 +80,18 @@ def main() -> int:
     catalog_by_id = {item["id"]: item for item in catalog.get("items", [])}
     queue_id = queue.get("queueId")
     status_id = status.get("batchId")
-    terminal_status = status.get("complete") is True and status.get("summary", {}).get("imported") == status.get("summary", {}).get("total") == 10
+    terminal_status = status.get("complete") is True and status.get("summary", {}).get("imported") == status.get("summary", {}).get("total") == 11
 
-    check("queue_exact_ten", len(items) == queue.get("maximumQueueItems") == manifest.get("maximumQueueItems") == 10, "exactly ten bounded items")
-    check("queue_unique", len({item.get("externalSourceId") for item in items}) == 10, "ten unique sources")
-    check("queue_chronological", sequences == sorted(sequences), f"sequence={sequences}")
-    check("queue_skips_imported", queue.get("skippedAlreadyImportedPages") == [20, 21, 22], "P20-P22 do not consume slots")
+    check("queue_exact_eleven", len(items) == queue.get("maximumQueueItems") == manifest.get("maximumQueueItems") == 11, "exactly eleven bounded items")
+    check("queue_unique", len({item.get("externalSourceId") for item in items}) == 11, "eleven unique sources")
+    check("queue_chronological", sequences == EXPECTED_PAGES, f"sequence={sequences}")
+    check("queue_no_skips", queue.get("skippedAlreadyImportedPages") == [], "P25-P35 all included")
     check("queue_region", all(item.get("regionGuess") == queue.get("pilotRegion") for item in items), "bounded batch label")
     check("queue_serial", queue.get("maximumConcurrentItems") == 1 and sum(item.get("state") in {"running", "recovery"} for item in items) <= 1, "maximum one active item")
     check("queue_auto_continue", queue.get("autoContinueAfterDurableSuccess") is True, "durable-success continuation")
-    check("queue_status_batch_identity", queue_id == status_id == "eleven-production-next-10-p012-p024-v1", f"queue={queue_id}, status={status_id}")
-    check("queue_terminal_authority", queue.get("authority", {}).get("terminal") is True and queue.get("authority", {}).get("protectFromCatalogRegeneration") is True and terminal_status, "terminal status protects completed queue")
-    check("status_coherent", status.get("summary", {}).get("total") == len(items) and status.get("authorizationId") == queue.get("authorizationId"), "status matches queue")
+    check("queue_status_batch_identity", queue_id == status_id == EXPECTED_BATCH, f"queue={queue_id}, status={status_id}")
+    check("queue_authority", queue.get("authority", {}).get("protectFromCatalogRegeneration") is True and queue.get("authority", {}).get("batchId") == EXPECTED_BATCH and queue.get("authority", {}).get("terminal") is terminal_status, "active/terminal authority stays coherent")
+    check("status_coherent", status.get("summary", {}).get("total") == len(items) and status.get("authorizationId") == queue.get("authorizationId") and len(status_items) == 11, "status matches queue")
 
     catalog_coherent = True
     catalog_lagged: list[str] = []
@@ -106,8 +108,9 @@ def main() -> int:
         else:
             catalog_coherent = catalog_coherent and catalog_state != "imported"
     check("queue_catalog_state", catalog_coherent, f"durable status wins; catalog lagged={len(catalog_lagged)}")
-    check("catalog_lag_is_bounded", len(catalog_lagged) <= 10 and terminal_status, f"lagged projections={len(catalog_lagged)}")
+    check("catalog_lag_is_bounded", len(catalog_lagged) <= 11, f"lagged projections={len(catalog_lagged)}")
 
+    check("manifest_batch", manifest.get("id") == EXPECTED_BATCH and manifest.get("pilotRegion") == queue.get("pilotRegion"), "manifest targets P25-P35")
     check("manifest_serial", manifest.get("maxItemsPerRun") == 1 and manifest.get("maximumConcurrentDownloads") == 1, "one item per run")
     check("manifest_auto_continue", manifest.get("autoContinueAfterDurableSuccess") is True, "auto continuation enabled")
     check("heartbeat_telemetry", manifest.get("runtimeHeartbeat", {}).get("minimumIntervalSeconds") == 30 and manifest.get("downloadTelemetry", {}).get("intervalSeconds") == 30, "30-second heartbeat and telemetry")
@@ -116,10 +119,10 @@ def main() -> int:
     check("download_policy", manifest.get("downloadOptimization", {}).get("noArtificialRateLimit") is True and 2 <= int(manifest.get("downloadOptimization", {}).get("maxRangeWorkers", 0)) <= 4, "no artificial cap, bounded workers")
     check("retention", manifest.get("retention", {}).get("originalVideo") is False and manifest.get("retention", {}).get("framePixels") is False, "no retained media pixels")
 
-    check("workflow_capacity", "len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']==10" in workflow, "ten-item workflow gate")
+    check("workflow_capacity", "len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']==11" in workflow, "eleven-item workflow gate")
     check("workflow_serial", "Scan exactly one item" in workflow and "maximumConcurrentDownloads" in workflow, "one active scan")
     check("workflow_catalog_state", "if item.get('state')=='imported'" in workflow and "catalog_state=='imported'" in workflow, "catalog state remains coherent after each run")
-    check("workflow_400_gate", "400/400 ten-item serial integrity and privacy checks passed" in workflow, "400-round scan gate")
+    check("workflow_400_gate", "400/400 eleven-item serial integrity and privacy checks passed" in workflow, "400-round scan gate")
     check("workflow_auto_continue", "Continue with exactly one next item after durable success" in workflow and "steps.decision.outputs.progressed == 'true'" in workflow, "next run only after durable success")
 
     check("monitor_poll", all(token in monitor for token in ("RAW_POLL_MS", "API_POLL_MS", "APPLY_TICK_MS")) and all(value in monitor for value in ("5000", "180000", "1000")), "5s raw, 180s API, 1s UI")
@@ -131,7 +134,7 @@ def main() -> int:
     check("monitor_cache", "monitor-v11" in worker and "scan-monitor-live-bridge" not in worker, "single-monitor cache")
 
     policy = supervisor_config.get("policy", {})
-    check("supervisor_capacity", supervisor_config.get("maximumQueueItems") == 10 and "len(queue['items'])==10" in supervisor_workflow, "ten-item supervisor gate")
+    check("supervisor_capacity", supervisor_config.get("maximumQueueItems") == 11 and "len(queue['items'])==11" in supervisor_workflow, "eleven-item supervisor gate")
     check("supervisor_serial", policy.get("oneItemPerRun") is True and policy.get("maximumConcurrentDownloads") == 1, "one-item supervisor policy")
     check("supervisor_auto_continue", policy.get("automaticContinuationAfterDurableSuccess") is True, "supervisor continuation policy")
     check("supervisor_thresholds", supervisor_config.get("staleAfterSeconds") == 90 and supervisor_config.get("hardStaleAfterSeconds") == 180, "90/180-second thresholds")
@@ -144,7 +147,7 @@ def main() -> int:
     check("same_job_recovery", "diagnose_and_recover_scan_v2.py" in orchestrator and "analyze_authorized_video_v12.py" in orchestrator_v2, "same-job bounded recovery")
     check("success_projection", "publish_durable_projection(queue)" in orchestrator and "clear_stale_recovery(queue)" in orchestrator, "success projects next item")
 
-    recovery = load_module("tools/diagnose_and_recover_scan_v2.py", "atlas_recovery_next10_test")
+    recovery = load_module("tools/diagnose_and_recover_scan_v2.py", "atlas_recovery_p25_p35_test")
     examples = {
         "HTTP Error 412: Precondition Failed": "bilibili-http-412",
         "curl: (18) end of response with bytes missing": "curl-transport",
@@ -158,7 +161,7 @@ def main() -> int:
         matched, _ = recovery.match_entry(message, bugs)
         check(f"match_{expected}", matched and matched.get("id") == expected, message)
 
-    base_publisher = load_module("tools/publish_runtime_progress.py", "atlas_publisher_next10_test")
+    base_publisher = load_module("tools/publish_runtime_progress.py", "atlas_publisher_p25_p35_test")
     calls = {"put": 0}
     base_publisher._current_sha = lambda *_args, **_kwargs: "sha"
     base_publisher.time.sleep = lambda _seconds: None
@@ -180,7 +183,7 @@ def main() -> int:
 
     passed = sum(item["passed"] for item in checks)
     report = {
-        "schemaVersion": 6,
+        "schemaVersion": 7,
         "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "status": "pass" if passed == len(checks) else "fail",
         "summary": {"total": len(checks), "passed": passed, "failed": len(checks) - passed},

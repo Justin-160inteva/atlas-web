@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 14,
-  "id": "eleven-production-next-10-p012-p024-v1",
+  "schemaVersion": 15,
+  "id": "eleven-production-p025-p035-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
@@ -8,7 +8,7 @@
   "statusOutput": "data/batch-analysis/eleven-pilot-scan-status.json",
   "analyzer": "tools/analyze_authorized_video_v12.py",
   "outputPrefix": "eleven",
-  "maximumQueueItems": 10,
+  "maximumQueueItems": 11,
   "maxItemsPerRun": 1,
   "maximumConcurrentDownloads": 1,
   "autoContinueAfterDurableSuccess": true,
@@ -16,90 +16,19 @@
   "maxSamplesDefault": 360,
   "minimumIntervalSeconds": 3.0,
   "perItemTimeoutSeconds": 5400,
-  "pilotRegion": "顺序批次 NEXT10 P12-P24",
-  "processingOrder": "chronological-unimported-preserve-episode-order",
+  "pilotRegion": "顺序批次 P25-P35",
+  "processingOrder": "strict-p025-through-p035-episode-order",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "preferPublicApi": true,
   "downloadBackoffSeconds": 20,
   "forceTranscodeFallback": false,
   "maxAttemptsPerItem": 3,
   "staleRunningAfterSeconds": 600,
-  "runtimeHeartbeat": {
-    "enabled": true,
-    "publishDownloadStageImmediately": true,
-    "publishTerminalAnalyzerState": true,
-    "preserveLastMeasuredDownloadTelemetry": true,
-    "minimumIntervalSeconds": 30,
-    "independentTicker": true,
-    "continuesDuringNetworkStall": true,
-    "publicSanitizedProgressOnly": true
-  },
-  "downloadTelemetry": {
-    "enabled": true,
-    "intervalSeconds": 30,
-    "speedMode": "rolling-30-second-window",
-    "fields": [
-      "downloadedBytes",
-      "totalBytes",
-      "speedBytesPerSecond",
-      "averageSpeedBytesPerSecond",
-      "segmentIndex",
-      "segmentCount",
-      "segmentDownloadedBytes",
-      "segmentTotalBytes",
-      "etaSeconds",
-      "downloadElapsedSeconds",
-      "speedWindowSeconds",
-      "stalledSeconds",
-      "heartbeatSequence",
-      "transferMode",
-      "maxRangeWorkers",
-      "telemetryMeasuredAt",
-      "telemetryPreserved"
-    ]
-  },
-  "downloadOptimization": {
-    "noArtificialRateLimit": true,
-    "adaptiveParallelRanges": true,
-    "maxRangeWorkers": 4,
-    "parallelRangeThresholdBytes": 16777216,
-    "chunkSizeBytes": 2097152,
-    "rangeRetries": 3,
-    "heartbeatSeconds": 20,
-    "speedWindowSeconds": 30,
-    "fallbackToResumableSingleStream": true,
-    "preferBackupUrlOnRepeated412": true
-  },
-  "analysisOptimization": {
-    "policy": "catalog-aware-quality-speed-balance",
-    "classAQualitySamples": 480,
-    "classBHighUtilitySamples": 360,
-    "classBBalancedSamples": 300,
-    "classCFastReviewSamples": 180,
-    "descriptorResolution": "320x180",
-    "preserveNumericDescriptorSchema": true,
-    "qualityFloor": "retain route, scene-change, color, edge, motion and perceptual-hash descriptors"
-  },
-  "compatibilityFixes": {
-    "curlCffiResponseContextManager": true,
-    "adaptiveRangeResume": true,
-    "preserveDownloadTelemetryAcrossStages": true,
-    "fixedBy": "tools/analyze_authorized_video_v12.py"
-  },
-  "recoveryPolicy": {
-    "enabled": true,
-    "maxAttemptsPerItem": 3,
-    "automaticallyRetryKnownTransientFailures": true,
-    "fastCooldownCapSeconds": 60,
-    "minimumSafeCooldownSeconds": 5,
-    "blockUnknownOrIdentityFailures": true,
-    "neverModifySourceCodeAutomatically": true,
-    "neverBroadenAuthorization": true,
-    "neverRetainOriginalMedia": true
-  },
-  "retention": {
-    "originalVideo": false,
-    "framePixels": false,
-    "numericDescriptorsOnly": true
-  }
+  "runtimeHeartbeat": {"enabled":true,"publishDownloadStageImmediately":true,"publishTerminalAnalyzerState":true,"preserveLastMeasuredDownloadTelemetry":true,"minimumIntervalSeconds":30,"independentTicker":true,"continuesDuringNetworkStall":true,"publicSanitizedProgressOnly":true},
+  "downloadTelemetry": {"enabled":true,"intervalSeconds":30,"speedMode":"rolling-30-second-window","fields":["downloadedBytes","totalBytes","speedBytesPerSecond","averageSpeedBytesPerSecond","segmentIndex","segmentCount","segmentDownloadedBytes","segmentTotalBytes","etaSeconds","downloadElapsedSeconds","speedWindowSeconds","stalledSeconds","heartbeatSequence","transferMode","maxRangeWorkers","telemetryMeasuredAt","telemetryPreserved"]},
+  "downloadOptimization": {"noArtificialRateLimit":true,"adaptiveParallelRanges":true,"maxRangeWorkers":4,"parallelRangeThresholdBytes":16777216,"chunkSizeBytes":2097152,"rangeRetries":3,"heartbeatSeconds":20,"speedWindowSeconds":30,"fallbackToResumableSingleStream":true,"preferBackupUrlOnRepeated412":true},
+  "analysisOptimization": {"policy":"catalog-aware-quality-speed-balance","classAQualitySamples":480,"classBHighUtilitySamples":360,"classBBalancedSamples":300,"classCFastReviewSamples":180,"descriptorResolution":"320x180","preserveNumericDescriptorSchema":true,"qualityFloor":"retain route, scene-change, color, edge, motion and perceptual-hash descriptors"},
+  "compatibilityFixes": {"curlCffiResponseContextManager":true,"adaptiveRangeResume":true,"preserveDownloadTelemetryAcrossStages":true,"fixedBy":"tools/analyze_authorized_video_v12.py"},
+  "recoveryPolicy": {"enabled":true,"maxAttemptsPerItem":3,"automaticallyRetryKnownTransientFailures":true,"fastCooldownCapSeconds":60,"minimumSafeCooldownSeconds":5,"blockUnknownOrIdentityFailures":true,"neverModifySourceCodeAutomatically":true,"neverBroadenAuthorization":true,"neverRetainOriginalMedia":true},
+  "retention": {"originalVideo":false,"framePixels":false,"numericDescriptorsOnly":true}
 }
