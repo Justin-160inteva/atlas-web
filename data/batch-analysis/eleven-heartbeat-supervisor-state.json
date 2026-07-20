@@ -1,25 +1,25 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-20T01:42:41.551955Z",
-  "decision": "complete",
-  "dictionaryEntryId": "heartbeat-complete",
+  "generatedAt": "2026-07-20T01:54:19.475411Z",
+  "decision": "inactive_stale",
+  "dictionaryEntryId": "runtime-heartbeat-inactive-stale",
   "dictionaryEntryKnown": true,
-  "diagnosis": "all bounded queue items are durably imported",
-  "repair": "none",
-  "resumeWorkflow": false,
+  "diagnosis": "last runtime state=complete is 1322s old while durable work remains",
+  "repair": "resume_pending_item",
+  "resumeWorkflow": true,
   "resumeSuppressedByCooldown": false,
-  "resumeTargetExternalSourceId": null,
-  "lastResumeRequestedAt": null,
+  "resumeTargetExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p012",
+  "lastResumeRequestedAt": "2026-07-20T01:54:19.475411Z",
   "resumeCooldownSeconds": 360,
-  "heartbeatAgeSeconds": 624,
+  "heartbeatAgeSeconds": 1322,
   "softThresholdSeconds": 90,
   "hardThresholdSeconds": 180,
   "durable": {
-    "total": 5,
-    "imported": 5,
-    "pending": 0,
-    "statusUpdatedAt": "2026-07-20T01:32:17.341807Z",
-    "queueUpdatedAt": "2026-07-20T01:32:17.339460Z"
+    "total": 10,
+    "imported": 0,
+    "pending": 10,
+    "statusUpdatedAt": "2026-07-20T01:39:00Z",
+    "queueUpdatedAt": "2026-07-20T01:39:00Z"
   },
   "runtime": {
     "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p011",
@@ -28,9 +28,9 @@
     "stage": "complete",
     "updatedAt": "2026-07-20T01:32:17.350574Z",
     "heartbeatSequence": null,
-    "durableItemState": "imported"
+    "durableItemState": null
   },
-  "projectionWritten": false,
+  "projectionWritten": true,
   "queueChanged": false,
   "safety": {
     "sourceCodeModified": false,
