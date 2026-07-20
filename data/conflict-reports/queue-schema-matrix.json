@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "validationTier": "standard",
-  "requestedChecks": 96,
+  "validationTier": "quick",
+  "requestedChecks": 80,
   "queueItems": 11,
   "maximumConcurrentItems": 1,
   "coverageFamilies": [
@@ -11,7 +11,7 @@
     "idempotent",
     "unknown-id-stop"
   ],
-  "totalChecks": 96,
+  "totalChecks": 80,
   "passed": true,
   "checks": [
     {
@@ -95,26 +95,6 @@
       "detail": "page=29"
     },
     {
-      "name": "title-016",
-      "passed": true,
-      "detail": "page=30"
-    },
-    {
-      "name": "title-017",
-      "passed": true,
-      "detail": "page=31"
-    },
-    {
-      "name": "title-018",
-      "passed": true,
-      "detail": "page=32"
-    },
-    {
-      "name": "title-019",
-      "passed": true,
-      "detail": "page=33"
-    },
-    {
       "name": "identity-000",
       "passed": true,
       "detail": "page=25"
@@ -193,21 +173,6 @@
       "name": "identity-015",
       "passed": true,
       "detail": "page=29"
-    },
-    {
-      "name": "identity-016",
-      "passed": true,
-      "detail": "page=30"
-    },
-    {
-      "name": "identity-017",
-      "passed": true,
-      "detail": "page=31"
-    },
-    {
-      "name": "identity-018",
-      "passed": true,
-      "detail": "page=32"
     },
     {
       "name": "analysis-000",
@@ -290,21 +255,6 @@
       "detail": "page=29"
     },
     {
-      "name": "analysis-016",
-      "passed": true,
-      "detail": "page=30"
-    },
-    {
-      "name": "analysis-017",
-      "passed": true,
-      "detail": "page=31"
-    },
-    {
-      "name": "analysis-018",
-      "passed": true,
-      "detail": "page=32"
-    },
-    {
       "name": "idempotent-000",
       "passed": true,
       "detail": "page=25"
@@ -385,21 +335,6 @@
       "detail": "page=29"
     },
     {
-      "name": "idempotent-016",
-      "passed": true,
-      "detail": "page=30"
-    },
-    {
-      "name": "idempotent-017",
-      "passed": true,
-      "detail": "page=31"
-    },
-    {
-      "name": "idempotent-018",
-      "passed": true,
-      "detail": "page=32"
-    },
-    {
       "name": "unknown-000",
       "passed": true,
       "detail": "unknown IDs must stop before transfer"
@@ -476,21 +411,6 @@
     },
     {
       "name": "unknown-015",
-      "passed": true,
-      "detail": "unknown IDs must stop before transfer"
-    },
-    {
-      "name": "unknown-016",
-      "passed": true,
-      "detail": "unknown IDs must stop before transfer"
-    },
-    {
-      "name": "unknown-017",
-      "passed": true,
-      "detail": "unknown IDs must stop before transfer"
-    },
-    {
-      "name": "unknown-018",
       "passed": true,
       "detail": "unknown IDs must stop before transfer"
     }

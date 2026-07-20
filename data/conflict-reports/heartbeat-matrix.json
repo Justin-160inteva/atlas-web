@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
   "generatedAt": "2026-07-20T13:35:00Z",
-  "validationTier": "standard",
-  "requestedChecks": 128,
+  "validationTier": "quick",
+  "requestedChecks": 96,
   "queueItems": 11,
   "maximumConcurrentItems": 1,
   "coverageFamilies": [
@@ -12,7 +12,7 @@
     "terminal-projection",
     "resume-deduplication"
   ],
-  "totalChecks": 128,
+  "totalChecks": 96,
   "passed": true,
   "checks": [
     {
@@ -116,36 +116,6 @@
       "detail": "age=19"
     },
     {
-      "name": "fresh-020",
-      "passed": true,
-      "detail": "age=20"
-    },
-    {
-      "name": "fresh-021",
-      "passed": true,
-      "detail": "age=21"
-    },
-    {
-      "name": "fresh-022",
-      "passed": true,
-      "detail": "age=22"
-    },
-    {
-      "name": "fresh-023",
-      "passed": true,
-      "detail": "age=23"
-    },
-    {
-      "name": "fresh-024",
-      "passed": true,
-      "detail": "age=24"
-    },
-    {
-      "name": "fresh-025",
-      "passed": true,
-      "detail": "age=25"
-    },
-    {
       "name": "soft-000",
       "passed": true,
       "detail": "age=91"
@@ -239,41 +209,6 @@
       "name": "soft-018",
       "passed": true,
       "detail": "age=109"
-    },
-    {
-      "name": "soft-019",
-      "passed": true,
-      "detail": "age=110"
-    },
-    {
-      "name": "soft-020",
-      "passed": true,
-      "detail": "age=111"
-    },
-    {
-      "name": "soft-021",
-      "passed": true,
-      "detail": "age=112"
-    },
-    {
-      "name": "soft-022",
-      "passed": true,
-      "detail": "age=113"
-    },
-    {
-      "name": "soft-023",
-      "passed": true,
-      "detail": "age=114"
-    },
-    {
-      "name": "soft-024",
-      "passed": true,
-      "detail": "age=115"
-    },
-    {
-      "name": "soft-025",
-      "passed": true,
-      "detail": "age=116"
     },
     {
       "name": "hard-000",
@@ -371,41 +306,6 @@
       "detail": "age=198"
     },
     {
-      "name": "hard-019",
-      "passed": true,
-      "detail": "age=199"
-    },
-    {
-      "name": "hard-020",
-      "passed": true,
-      "detail": "age=200"
-    },
-    {
-      "name": "hard-021",
-      "passed": true,
-      "detail": "age=201"
-    },
-    {
-      "name": "hard-022",
-      "passed": true,
-      "detail": "age=202"
-    },
-    {
-      "name": "hard-023",
-      "passed": true,
-      "detail": "age=203"
-    },
-    {
-      "name": "hard-024",
-      "passed": true,
-      "detail": "age=204"
-    },
-    {
-      "name": "hard-025",
-      "passed": true,
-      "detail": "age=205"
-    },
-    {
       "name": "terminal-000",
       "passed": true,
       "detail": "age=0"
@@ -501,36 +401,6 @@
       "detail": "age=18"
     },
     {
-      "name": "terminal-019",
-      "passed": true,
-      "detail": "age=19"
-    },
-    {
-      "name": "terminal-020",
-      "passed": true,
-      "detail": "age=20"
-    },
-    {
-      "name": "terminal-021",
-      "passed": true,
-      "detail": "age=21"
-    },
-    {
-      "name": "terminal-022",
-      "passed": true,
-      "detail": "age=22"
-    },
-    {
-      "name": "terminal-023",
-      "passed": true,
-      "detail": "age=23"
-    },
-    {
-      "name": "terminal-024",
-      "passed": true,
-      "detail": "age=24"
-    },
-    {
       "name": "dedup-000",
       "passed": true,
       "detail": "elapsed=0"
@@ -624,36 +494,6 @@
       "name": "dedup-018",
       "passed": true,
       "detail": "elapsed=18"
-    },
-    {
-      "name": "dedup-019",
-      "passed": true,
-      "detail": "elapsed=19"
-    },
-    {
-      "name": "dedup-020",
-      "passed": true,
-      "detail": "elapsed=20"
-    },
-    {
-      "name": "dedup-021",
-      "passed": true,
-      "detail": "elapsed=21"
-    },
-    {
-      "name": "dedup-022",
-      "passed": true,
-      "detail": "elapsed=22"
-    },
-    {
-      "name": "dedup-023",
-      "passed": true,
-      "detail": "elapsed=23"
-    },
-    {
-      "name": "dedup-024",
-      "passed": true,
-      "detail": "elapsed=24"
     }
   ]
 }

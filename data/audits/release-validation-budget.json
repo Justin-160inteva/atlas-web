@@ -1,29 +1,46 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-20T21:17:06.293718Z",
-  "release": "0.9.4.8",
+  "generatedAt": "2026-07-20T22:20:53.419207Z",
+  "release": "0.9.4.9",
   "policyRevision": "2026.07.20.3",
   "tier": "quick",
   "forcedFull": false,
   "scheduledFull": false,
   "changedFiles": [
-    "tools/p33_v14_hook/sitecustomize.py"
+    "data/rewards/records/location-mapgenie-434361.json",
+    "data/rewards/records/location-mapgenie-434380.json",
+    "data/rewards/records/location-mapgenie-434456.json",
+    "data/rewards/records/location-mapgenie-434582.json",
+    "data/rewards/records/location-mapgenie-434635.json",
+    "data/rewards/reward-records-runtime.json",
+    "release-manifest.json",
+    "tools/reward_evidence_contract_smoke.mjs"
   ],
   "matchedGroups": {
-    "validationFramework": [],
+    "validationFramework": [
+      "release-manifest.json"
+    ],
     "scanCore": [],
     "monitor": [],
     "dataCenter": [],
-    "rewards": [],
+    "rewards": [
+      "data/rewards/records/location-mapgenie-434361.json",
+      "data/rewards/records/location-mapgenie-434380.json",
+      "data/rewards/records/location-mapgenie-434456.json",
+      "data/rewards/records/location-mapgenie-434582.json",
+      "data/rewards/records/location-mapgenie-434635.json",
+      "data/rewards/reward-records-runtime.json",
+      "tools/reward_evidence_contract_smoke.mjs"
+    ],
     "ui": [],
     "highRisk": []
   },
   "run": {
     "data_center": false,
-    "reward": false,
-    "heartbeat": false,
-    "serial": false,
-    "queue_schema": false,
+    "reward": true,
+    "heartbeat": true,
+    "serial": true,
+    "queue_schema": true,
     "browser": false,
     "monitor": false,
     "full_audit": false,
