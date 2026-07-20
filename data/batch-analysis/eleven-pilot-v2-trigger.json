@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 11,
-  "triggerId": "eleven-production-p025-p035-20260720-04-v16",
-  "requestedAt": "2026-07-20T21:32:00Z",
+  "schemaVersion": 12,
+  "triggerId": "eleven-production-p025-p035-20260720-05-v18",
+  "requestedAt": "2026-07-20T22:04:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
@@ -10,9 +10,10 @@
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "mode": "chronological-eleven-queued-one-item-per-run-live-telemetry",
   "queuePages": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
-  "startWithPage": 33,
+  "startWithPage": 35,
   "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
-  "transportOverride": "chunked-tail-v16",
+  "transportOverride": "parallel-chunks-v18",
+  "parallelRangeWorkers": 4,
   "automaticRecovery": true,
   "heartbeatSupervisor": true,
   "runtimeHeartbeat": {
@@ -29,11 +30,11 @@
   },
   "humanReviewOnUnknownFailure": true,
   "manualTransportMigration": {
-    "page": 33,
-    "generation": "v16-chunked-tail",
-    "previousAttemptCount": 8,
+    "page": 35,
+    "generation": "v18-parallel-chunks",
+    "previousAttemptCount": 0,
     "manualAttemptsScheduled": 1,
     "additionalAutomaticRetriesAuthorized": 0
   },
-  "recoveryReason": "Run P33 once using the merged and validated v16 transport. Continue to P34 and P35 only after durable success."
+  "recoveryReason": "Restart the final pending P35 item with the merged four-worker preserved-range transport."
 }
