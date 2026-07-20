@@ -1,40 +1,22 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-20T21:48:24.233790Z",
+  "generatedAt": "2026-07-20T22:04:00.890607Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "finalState": "scan_completed_or_progressed",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-20T21:36:03.601829Z",
-      "finishedAt": "2026-07-20T21:42:24.141034Z",
-      "preflightState": "none",
-      "preflightDictionaryEntryId": null,
-      "scannerReturnCode": 0,
-      "scannerTimeoutSeconds": 5700,
-      "imported": 9,
-      "failed": 1,
-      "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 9, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 2}\n\n",
-      "diagnosisReturnCode": 0,
-      "dictionaryEntryId": "bilibili-http-412",
-      "action": "fast_backoff_public_api_and_adaptive_range",
-      "retryScheduled": true,
-      "requiresHumanReview": false
-    },
-    {
-      "cycle": 2,
-      "startedAt": "2026-07-20T21:42:45.273600Z",
-      "finishedAt": "2026-07-20T21:48:24.233160Z",
+      "startedAt": "2026-07-20T22:03:59.563453Z",
+      "finishedAt": "2026-07-20T22:03:59.827187Z",
       "preflightState": "none",
       "preflightDictionaryEntryId": null,
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
       "imported": 10,
       "failed": 0,
-      "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 10, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 1}\n\n"
+      "running": 1,
+      "scannerOutput": "{\"total\": 11, \"imported\": 10, \"running\": 1, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 1}\n\n"
     }
   ],
   "safety": {
