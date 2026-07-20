@@ -27,6 +27,8 @@
     "markerGeometry": "atlas-ui-fix-0931.js",
     "markerSelectionMotion": "atlas-ui-fix-0931.js",
     "locationDataRecovery": "atlas-data-guard-0939.js",
+    "pageViewportScale": "page-zoom-guard.js",
+    "mapViewport": "page-zoom-guard.js",
     "scanMonitor": "scan-monitor.js",
     "scanBatchAuthority": "scan-monitor.js",
     "heartbeatSupervisor": "tools/supervise_runtime_heartbeat.py",
@@ -35,8 +37,7 @@
     "authorizedSourceTransport": "tools/analyze_authorized_video_v13.py",
     "releaseValidationPolicy": "data/quality/release-validation-policy.json",
     "releaseValidationSelector": "tools/select_release_validation.py",
-    "favorites": "app.js",
-    "mapViewport": "app.js"
+    "favorites": "app.js"
   },
   "releaseAssets": [
     "atlas-bootstrap.js",
@@ -50,6 +51,7 @@
     "atlas-ui-fix-0931.js",
     "atlas-080.js",
     "atlas-rewards-0949.js",
+    "page-zoom-guard.js",
     "scan-monitor.js",
     "data/rewards/reward-evidence-index.json",
     "data/rewards/reward-source-policy.json",
@@ -98,6 +100,11 @@
     "markerSelectedScale": 1.28,
     "markerSelectionDurationMs": 190,
     "markerTipAnchorStable": true,
+    "pageScaleMustNormalizeToOne": true,
+    "viewportUsesVisualViewport": true,
+    "viewportProfileCount": 5,
+    "mapPinchMustRemainEnabled": true,
+    "requiredViewportScaleChecks": 120,
     "requiredBrowserMatrixChecks": 500,
     "requiredDataCenterMatrixChecks": 500,
     "requiredHeartbeatMatrixChecks": 500,
