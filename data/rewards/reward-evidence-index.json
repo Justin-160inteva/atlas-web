@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "targetLocationCount": 3430,
+  "locationSource": "data/locations.json",
+  "recordSchema": "data/rewards/reward-record-schema.json",
+  "sourcePolicy": "data/rewards/reward-source-policy.json",
+  "terminology": "data/rewards/reward-terminology-zh-CN.json",
+  "recordsDirectory": "data/rewards/records",
+  "coverage": {
+    "total": 3430,
+    "officialConfirmed": 0,
+    "multiSourceConfirmed": 0,
+    "highConfidenceInference": 0,
+    "unresolved": 3430,
+    "humanReviewed": 0,
+    "locked": 0,
+    "openConflicts": 0
+  },
+  "productionRules": {
+    "batchSizeMaximum": 100,
+    "requireSchemaValidation": true,
+    "requireDuplicateLocationCheck": true,
+    "requireSourceLocatorCheck": true,
+    "requireChineseTerminologyCheck": true,
+    "requireConfidenceThresholdCheck": true,
+    "requireConflictReport": true,
+    "neverOverwriteLockedRecordAutomatically": true
+  },
+  "batches": [
+    {
+      "id": "reward-batch-001-foundation",
+      "state": "active",
+      "scope": "建立数据结构、来源规则、中文术语和首批研究候选",
+      "targetRecords": 0,
+      "confirmedRecords": 0
+    }
+  ],
+  "lastGeneratedAt": "2026-07-20T17:00:00Z",
+  "noteZhCN": "本索引不代表奖励已确认。未找到可靠证据的点位必须保持 unresolved，不允许使用同类别常见奖励批量填充。"
+}
