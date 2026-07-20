@@ -1,4 +1,4 @@
-name: Scan 11 game world regional batch v10
+name: Scan 11 game world regional batch v11
 
 on:
   push:
@@ -48,7 +48,7 @@ jobs:
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
           python -m py_compile tools/update_analysis_index.py
 
-      - name: Verify authorization and ten-item serial state
+      - name: Verify authorization and eleven-item serial state
         run: |
           python - <<'PY'
           import json
@@ -62,12 +62,12 @@ jobs:
           items=queue['items']
           catalog_by_id={entry['id']:entry for entry in catalog['items']}
           assert record['status']=='active' and record['author']=='11的游戏世界'
-          assert len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']==10
+          assert len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']==11
           assert queue['maximumConcurrentItems']==manifest['maximumConcurrentDownloads']==manifest['maxItemsPerRun']==1
           assert queue['autoContinueAfterDurableSuccess'] is True
           assert manifest['autoContinueAfterDurableSuccess'] is True
-          assert [item['sequence'] for item in items]==sorted(item['sequence'] for item in items)
-          assert len({item['externalSourceId'] for item in items})==10
+          assert [item['sequence'] for item in items]==list(range(25,36))
+          assert len({item['externalSourceId'] for item in items})==11
           assert sum(item.get('state') in {'running','recovery'} for item in items)<=1
           assert all(item['regionGuess']==queue['pilotRegion'] for item in items)
           assert all(item['externalSourceId'] in catalog_by_id for item in items)
@@ -88,7 +88,7 @@ jobs:
           assert manifest['retention']['originalVideo'] is False
           assert manifest['retention']['framePixels'] is False
           assert len({entry['id'] for entry in bugs['entries']})==len(bugs['entries'])
-          print('authorized NEXT10 queue is coherent and strictly serial')
+          print('authorized P25-P35 eleven-item queue is coherent and strictly serial')
           PY
 
       - name: Scan exactly one item with bounded recovery
@@ -156,10 +156,10 @@ jobs:
           for _ in range(400):
               items=queue['items']
               assert status['authorizationId']==queue['authorizationId']==catalog['authorizationId']
-              assert status['summary']['total']==len(items)==10
+              assert status['summary']['total']==len(items)==11
               assert queue['maximumConcurrentItems']==manifest['maximumConcurrentDownloads']==manifest['maxItemsPerRun']==1
               assert sum(item.get('state') in {'running','recovery'} for item in items)<=1
-              assert [item['sequence'] for item in items]==sorted(item['sequence'] for item in items)
+              assert [item['sequence'] for item in items]==list(range(25,36))
               assert all(item['regionGuess']==queue['pilotRegion'] for item in items)
               assert all(item.get('state','pending') in allowed for item in items)
               assert manifest['autoContinueAfterDurableSuccess'] is True
@@ -179,7 +179,7 @@ jobs:
                       assert catalog_state!='imported'
               for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
                   assert not list(pathlib.Path('.').rglob(pattern))
-          print('400/400 ten-item serial integrity and privacy checks passed')
+          print('400/400 eleven-item serial integrity and privacy checks passed')
           PY
 
       - name: Persist durable state
