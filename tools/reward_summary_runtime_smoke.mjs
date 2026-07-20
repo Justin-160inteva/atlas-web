@@ -97,9 +97,9 @@ const hostilePayloads = [
 ];
 for (const payload of hostilePayloads) {
   const escaped = String(payload).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-  check(!escaped.includes('<script>'), 'hostile script tag is escaped');
-  check(!escaped.includes(' onclick='), 'hostile event attribute cannot remain active');
-  check(!escaped.includes('<img '), 'hostile image tag is escaped');
+  check(!escaped.includes('<script') && !escaped.includes('<img') && !escaped.includes('<a '), 'hostile HTML tags are escaped');
+  check(!escaped.includes('"') && !escaped.includes("'"), 'attribute-breaking quotes are escaped');
+  check(escaped.includes('&lt;') || !payload.includes('<'), 'opening angle brackets are neutralized');
 }
 
 check(policy.principles.neverPresentInferenceAsOfficial === true, 'inference cannot be official');
