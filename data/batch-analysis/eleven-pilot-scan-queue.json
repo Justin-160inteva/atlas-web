@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-20T13:35:00Z",
-  "updatedAt": "2026-07-20T20:56:19.792720Z",
-  "status": "retryable_failure",
+  "updatedAt": "2026-07-20T21:18:00Z",
+  "status": "pending",
   "pilotRegion": "顺序批次 P25-P35",
   "strategy": "严格按P25至P35原始顺序处理11期；任何时刻最多下载和分析1期。当前一期完成、验证并持久化后，才自动启动下一期。",
   "maximumQueueItems": 11,
@@ -215,28 +215,27 @@
       "mapUtility": "最高",
       "priority": 100,
       "durationSeconds": 4707,
-      "state": "failed",
+      "state": "pending",
       "attemptCount": 7,
       "lastStartedAt": "2026-07-20T20:49:51.583800Z",
       "lastFinishedAt": "2026-07-20T20:56:19.788775Z",
-      "lastRecoveryAt": "2026-07-20T20:49:00Z",
-      "lastRecoveryAction": "manual_v14_http11_transport_migration",
+      "lastRecoveryAt": "2026-07-20T21:18:00Z",
+      "lastRecoveryAction": "manual_v15_exact_tail_repair",
       "effectiveAttemptLimit": 5,
       "transportMigration": {
-        "generation": "v14-http11-tail-resume",
-        "scheduledAt": "2026-07-20T20:49:00Z",
+        "generation": "v15-exact-tail-preservation",
+        "scheduledAt": "2026-07-20T21:18:00Z",
         "previousState": "failed",
-        "previousAttemptCount": 6,
+        "previousAttemptCount": 7,
         "manualAttemptsScheduled": 1,
         "additionalAutomaticRetriesAuthorized": 0,
         "previousFailureEvidence": {
-          "commit": "0e62b6c7afd4561d38df91bb12f311d070030f35",
+          "commit": "29c6656475243ef8f144a805981b87349b441d76",
           "queuePath": "data/batch-analysis/eleven-pilot-scan-queue.json",
           "resultPath": "data/analysis-results/eleven-p033.json"
         },
-        "reason": "Owner-approved one-time HTTP/1.1 transfer run after the v13 attempt ended with a 378-byte tail gap and HTTP/2 INTERNAL_ERROR."
-      },
-      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (18) end of response with 82477576 bytes missing. See [url-redacted] first for more details.\"}]"
+        "reason": "Owner-approved one-time exact-tail repair after HTTP/1.1 reached 6.12% but the CDN repeatedly ended 378 bytes short."
+      }
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
