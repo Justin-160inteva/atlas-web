@@ -183,8 +183,20 @@
   line-height: 1.5;
 }
 
+.result-copy .atlas-search-reward {
+  display: block;
+  margin-top: 3px;
+  color: #e6bd70;
+  font-size: 11px;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @media (max-width: 640px) {
   .atlas-reward-coverage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .atlas-reward-meta { gap: 6px; }
   .atlas-reward-meta span:not(:last-child)::after { margin-left: 6px; }
+  .result-copy .atlas-search-reward { max-width: min(58vw, 260px); }
 }
