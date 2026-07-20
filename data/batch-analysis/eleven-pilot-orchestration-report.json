@@ -1,23 +1,23 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-20T14:11:22.424362Z",
+  "generatedAt": "2026-07-20T14:17:46.557211Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "finalState": "human_review_required",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-20T14:11:22.351372Z",
-      "finishedAt": "2026-07-20T14:11:22.394827Z",
+      "startedAt": "2026-07-20T14:17:46.478961Z",
+      "finishedAt": "2026-07-20T14:17:46.526584Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
       "imported": 0,
       "failed": 1,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 0, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 11}\n\n",
+      "scannerOutput": "{\"total\": 11, \"imported\": 0, \"running\": 0, \"failed\": 1, \"blocked\": 1, \"retryableFailed\": 0, \"remaining\": 11}\n\n",
       "diagnosisReturnCode": 0,
       "dictionaryEntryId": "schema-authorization-privacy",
-      "action": "human_review_required",
+      "action": "block_after_attempt_limit",
       "retryScheduled": false,
       "requiresHumanReview": true
     }

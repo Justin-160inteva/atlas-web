@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
-  "updatedAt": "2026-07-20T14:11:22.389583Z",
-  "phase": "retryable_failure",
+  "updatedAt": "2026-07-20T14:17:46.521013Z",
+  "phase": "blocked",
   "activeItem": null,
   "complete": false,
   "summary": {
@@ -13,8 +13,8 @@
     "imported": 0,
     "running": 0,
     "failed": 1,
-    "blocked": 0,
-    "retryableFailed": 1,
+    "blocked": 1,
+    "retryableFailed": 0,
     "remaining": 11,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 0
@@ -25,9 +25,9 @@
       "sequence": 25,
       "page": 25,
       "state": "failed",
-      "attemptCount": 2,
-      "lastStartedAt": "2026-07-20T14:11:22.384757Z",
-      "lastFinishedAt": "2026-07-20T14:11:22.385330Z",
+      "attemptCount": 3,
+      "lastStartedAt": "2026-07-20T14:17:46.514499Z",
+      "lastFinishedAt": "2026-07-20T14:17:46.515208Z",
       "resultPath": null,
       "error": "KeyError('title')"
     },
@@ -148,11 +148,11 @@
       "sequence": 25,
       "page": 25,
       "title": null,
-      "startedAt": "2026-07-20T14:11:22.384757Z",
-      "attemptCount": 2,
+      "startedAt": "2026-07-20T14:17:46.514499Z",
+      "attemptCount": 3,
       "completed": false,
       "error": "KeyError('title')",
-      "finishedAt": "2026-07-20T14:11:22.385330Z"
+      "finishedAt": "2026-07-20T14:17:46.515208Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
