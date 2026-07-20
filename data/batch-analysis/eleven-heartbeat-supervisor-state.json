@@ -1,34 +1,34 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-20T20:03:17.042506Z",
+  "generatedAt": "2026-07-20T21:18:52.515179Z",
   "decision": "inactive_stale",
   "dictionaryEntryId": "runtime-heartbeat-inactive-stale",
   "dictionaryEntryKnown": true,
-  "diagnosis": "last runtime state=blocked is 2359s old while durable work remains",
+  "diagnosis": "last runtime state=blocked is 1352s old while durable work remains",
   "repair": "resume_pending_item",
   "resumeWorkflow": true,
   "resumeSuppressedByCooldown": false,
   "resumeTargetExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
-  "lastResumeRequestedAt": "2026-07-20T20:03:17.042506Z",
+  "lastResumeRequestedAt": "2026-07-20T21:18:52.515179Z",
   "resumeCooldownSeconds": 360,
-  "heartbeatAgeSeconds": 2359,
+  "heartbeatAgeSeconds": 1352,
   "softThresholdSeconds": 90,
   "hardThresholdSeconds": 180,
   "durable": {
     "total": 11,
     "imported": 8,
     "pending": 3,
-    "statusUpdatedAt": "2026-07-20T19:23:57.940327Z",
-    "queueUpdatedAt": "2026-07-20T19:23:57.937722Z"
+    "statusUpdatedAt": "2026-07-20T20:56:19.795262Z",
+    "queueUpdatedAt": "2026-07-20T21:18:00Z"
   },
   "runtime": {
     "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
     "page": 33,
     "state": "blocked",
     "stage": "recovery",
-    "updatedAt": "2026-07-20T19:23:57.986914Z",
+    "updatedAt": "2026-07-20T20:56:19.944207Z",
     "heartbeatSequence": null,
-    "durableItemState": "failed"
+    "durableItemState": "pending"
   },
   "projectionWritten": true,
   "queueChanged": false,
