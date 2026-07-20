@@ -46,6 +46,7 @@ jobs:
           python -m py_compile tools/analyze_authorized_video_v13.py
           python -m py_compile tools/bilibili_transport_smoke.py
           python -m py_compile tools/p33_v14_hook/sitecustomize.py
+          python -m py_compile tools/p33_tail_resume_smoke.py
           python -m py_compile tools/scan_catalog_queue_v2.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
@@ -54,6 +55,9 @@ jobs:
 
       - name: Run 96-check signed metadata and CDN failover gate
         run: python tools/bilibili_transport_smoke.py
+
+      - name: Run 12-check exact-tail resume gate
+        run: python tools/p33_tail_resume_smoke.py
 
       - name: Verify conditional HTTP/1.1 hook
         env:
@@ -67,7 +71,7 @@ jobs:
           assert requests._atlas_http11_patched is True
           assert callable(requests._atlas_http11_original_get)
           assert callable(requests._atlas_http11_original_request)
-          print('conditional HTTP/1.1 transport hook is active')
+          print('conditional HTTP/1.1 and exact-tail transport hook is active')
           PY
 
       - name: Verify authorization and eleven-item serial state
