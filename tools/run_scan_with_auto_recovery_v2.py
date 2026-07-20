@@ -95,11 +95,22 @@ def run(command: list[str], timeout: int):
             if str(manifest.get("analyzer", "")).endswith((
                 "analyze_authorized_video_v11.py",
                 "analyze_authorized_video_v12.py",
+                "analyze_authorized_video_v13.py",
             )):
-                manifest["analyzer"] = "tools/analyze_authorized_video_v13.py"
-                manifest.setdefault("compatibilityFixes", {})["preserveDownloadTelemetryAcrossStages"] = True
-                manifest["compatibilityFixes"]["wbiSignedPlayerMetadata"] = True
-                manifest["compatibilityFixes"]["apiProvidedCdnRotation"] = True
+                manifest["analyzer"] = "tools/analyze_authorized_video_v14.py"
+                fixes = manifest.setdefault("compatibilityFixes", {})
+                fixes["preserveDownloadTelemetryAcrossStages"] = True
+                fixes["wbiSignedPlayerMetadata"] = True
+                fixes["apiProvidedCdnRotation"] = True
+                fixes["strictContentRangeResume"] = True
+                fixes["safeRestartOnIgnoredRange"] = True
+                fixes["midStreamTruncationRecovery"] = True
+                fixes["durableChunkAccounting"] = True
+                optimization = manifest.setdefault("downloadOptimization", {})
+                optimization["requireExactContentRangeStart"] = True
+                optimization["safeRestartWhenRangeIgnored"] = True
+                optimization["validateResponseBodyLength"] = True
+                optimization["synchronizeChunkAccounting"] = True
                 _write_json(path, manifest)
         except Exception:
             pass
