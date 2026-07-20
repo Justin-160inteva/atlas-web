@@ -1,36 +1,36 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-20T15:13:35.464243Z",
+  "generatedAt": "2026-07-20T15:27:46.987335Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "finalState": "scan_completed_or_progressed",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-20T14:54:29.980086Z",
-      "finishedAt": "2026-07-20T15:04:46.824157Z",
+      "startedAt": "2026-07-20T15:14:17.450881Z",
+      "finishedAt": "2026-07-20T15:18:48.872671Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
-      "imported": 2,
+      "imported": 3,
       "failed": 1,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 2, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 9}\n\n",
+      "scannerOutput": "{\"total\": 11, \"imported\": 3, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 8}\n\n",
       "diagnosisReturnCode": 0,
-      "dictionaryEntryId": "curl-transport",
-      "action": "enable_adaptive_range_and_retry",
+      "dictionaryEntryId": "bilibili-http-412",
+      "action": "fast_backoff_public_api_and_adaptive_range",
       "retryScheduled": true,
       "requiresHumanReview": false
     },
     {
       "cycle": 2,
-      "startedAt": "2026-07-20T15:04:56.132434Z",
-      "finishedAt": "2026-07-20T15:13:35.463710Z",
+      "startedAt": "2026-07-20T15:19:09.885299Z",
+      "finishedAt": "2026-07-20T15:27:46.986743Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
-      "imported": 3,
+      "imported": 4,
       "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 3, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 8}\n\n"
+      "scannerOutput": "{\"total\": 11, \"imported\": 4, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 7}\n\n"
     }
   ],
   "safety": {
