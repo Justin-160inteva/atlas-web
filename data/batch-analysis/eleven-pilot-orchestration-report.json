@@ -1,20 +1,25 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-20T03:17:07.471249Z",
+  "generatedAt": "2026-07-20T14:02:04.394356Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
-  "finalState": "scan_completed_or_progressed",
+  "finalState": "human_review_required",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-20T03:12:19.206442Z",
-      "finishedAt": "2026-07-20T03:17:06.452248Z",
+      "startedAt": "2026-07-20T14:02:04.281655Z",
+      "finishedAt": "2026-07-20T14:02:04.371731Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
-      "imported": 10,
-      "failed": 0,
+      "imported": 0,
+      "failed": 1,
       "running": 0,
-      "scannerOutput": "{\"total\": 10, \"imported\": 10, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 0}\n\n"
+      "scannerOutput": "{\"total\": 11, \"imported\": 0, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 11}\n\n",
+      "diagnosisReturnCode": 0,
+      "dictionaryEntryId": "schema-authorization-privacy",
+      "action": "human_review_required",
+      "retryScheduled": false,
+      "requiresHumanReview": true
     }
   ],
   "safety": {

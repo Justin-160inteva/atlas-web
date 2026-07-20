@@ -24,11 +24,82 @@
   "forceTranscodeFallback": false,
   "maxAttemptsPerItem": 3,
   "staleRunningAfterSeconds": 600,
-  "runtimeHeartbeat": {"enabled":true,"publishDownloadStageImmediately":true,"publishTerminalAnalyzerState":true,"preserveLastMeasuredDownloadTelemetry":true,"minimumIntervalSeconds":30,"independentTicker":true,"continuesDuringNetworkStall":true,"publicSanitizedProgressOnly":true},
-  "downloadTelemetry": {"enabled":true,"intervalSeconds":30,"speedMode":"rolling-30-second-window","fields":["downloadedBytes","totalBytes","speedBytesPerSecond","averageSpeedBytesPerSecond","segmentIndex","segmentCount","segmentDownloadedBytes","segmentTotalBytes","etaSeconds","downloadElapsedSeconds","speedWindowSeconds","stalledSeconds","heartbeatSequence","transferMode","maxRangeWorkers","telemetryMeasuredAt","telemetryPreserved"]},
-  "downloadOptimization": {"noArtificialRateLimit":true,"adaptiveParallelRanges":true,"maxRangeWorkers":4,"parallelRangeThresholdBytes":16777216,"chunkSizeBytes":2097152,"rangeRetries":3,"heartbeatSeconds":20,"speedWindowSeconds":30,"fallbackToResumableSingleStream":true,"preferBackupUrlOnRepeated412":true},
-  "analysisOptimization": {"policy":"catalog-aware-quality-speed-balance","classAQualitySamples":480,"classBHighUtilitySamples":360,"classBBalancedSamples":300,"classCFastReviewSamples":180,"descriptorResolution":"320x180","preserveNumericDescriptorSchema":true,"qualityFloor":"retain route, scene-change, color, edge, motion and perceptual-hash descriptors"},
-  "compatibilityFixes": {"curlCffiResponseContextManager":true,"adaptiveRangeResume":true,"preserveDownloadTelemetryAcrossStages":true,"fixedBy":"tools/analyze_authorized_video_v12.py"},
-  "recoveryPolicy": {"enabled":true,"maxAttemptsPerItem":3,"automaticallyRetryKnownTransientFailures":true,"fastCooldownCapSeconds":60,"minimumSafeCooldownSeconds":5,"blockUnknownOrIdentityFailures":true,"neverModifySourceCodeAutomatically":true,"neverBroadenAuthorization":true,"neverRetainOriginalMedia":true},
-  "retention": {"originalVideo":false,"framePixels":false,"numericDescriptorsOnly":true}
+  "runtimeHeartbeat": {
+    "enabled": true,
+    "publishDownloadStageImmediately": true,
+    "publishTerminalAnalyzerState": true,
+    "preserveLastMeasuredDownloadTelemetry": true,
+    "minimumIntervalSeconds": 30,
+    "independentTicker": true,
+    "continuesDuringNetworkStall": true,
+    "publicSanitizedProgressOnly": true
+  },
+  "downloadTelemetry": {
+    "enabled": true,
+    "intervalSeconds": 30,
+    "speedMode": "rolling-30-second-window",
+    "fields": [
+      "downloadedBytes",
+      "totalBytes",
+      "speedBytesPerSecond",
+      "averageSpeedBytesPerSecond",
+      "segmentIndex",
+      "segmentCount",
+      "segmentDownloadedBytes",
+      "segmentTotalBytes",
+      "etaSeconds",
+      "downloadElapsedSeconds",
+      "speedWindowSeconds",
+      "stalledSeconds",
+      "heartbeatSequence",
+      "transferMode",
+      "maxRangeWorkers",
+      "telemetryMeasuredAt",
+      "telemetryPreserved"
+    ]
+  },
+  "downloadOptimization": {
+    "noArtificialRateLimit": true,
+    "adaptiveParallelRanges": true,
+    "maxRangeWorkers": 4,
+    "parallelRangeThresholdBytes": 16777216,
+    "chunkSizeBytes": 2097152,
+    "rangeRetries": 3,
+    "heartbeatSeconds": 20,
+    "speedWindowSeconds": 30,
+    "fallbackToResumableSingleStream": true,
+    "preferBackupUrlOnRepeated412": true
+  },
+  "analysisOptimization": {
+    "policy": "catalog-aware-quality-speed-balance",
+    "classAQualitySamples": 480,
+    "classBHighUtilitySamples": 360,
+    "classBBalancedSamples": 300,
+    "classCFastReviewSamples": 180,
+    "descriptorResolution": "320x180",
+    "preserveNumericDescriptorSchema": true,
+    "qualityFloor": "retain route, scene-change, color, edge, motion and perceptual-hash descriptors"
+  },
+  "compatibilityFixes": {
+    "curlCffiResponseContextManager": true,
+    "adaptiveRangeResume": true,
+    "preserveDownloadTelemetryAcrossStages": true,
+    "fixedBy": "tools/analyze_authorized_video_v12.py"
+  },
+  "recoveryPolicy": {
+    "enabled": true,
+    "maxAttemptsPerItem": 3,
+    "automaticallyRetryKnownTransientFailures": true,
+    "fastCooldownCapSeconds": 60,
+    "minimumSafeCooldownSeconds": 5,
+    "blockUnknownOrIdentityFailures": true,
+    "neverModifySourceCodeAutomatically": true,
+    "neverBroadenAuthorization": true,
+    "neverRetainOriginalMedia": true
+  },
+  "retention": {
+    "originalVideo": false,
+    "framePixels": false,
+    "numericDescriptorsOnly": true
+  }
 }
