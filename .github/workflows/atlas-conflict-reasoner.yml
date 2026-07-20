@@ -74,9 +74,11 @@ jobs:
           node --check location-title-polish.js
           node --check atlas-080.js
           node --check atlas-ui-fix-0931.js
+          node --check page-zoom-guard.js
           node --check scan-monitor.js
           node --check tools/data_center_contract_smoke.mjs
           node --check tools/reward_evidence_contract_smoke.mjs
+          node --check tools/viewport_scale_contract_smoke.mjs
           node --check tools/monitor_batch_authority_smoke.mjs
           node --check sw.js
 
@@ -93,6 +95,9 @@ jobs:
 
       - name: Run static conflict reasoner
         run: python tools/atlas_conflict_reasoner_v3.py
+
+      - name: Run cross-device viewport scale matrix
+        run: node tools/viewport_scale_contract_smoke.mjs
 
       - name: Run unified data center matrix when relevant
         if: steps.validation.outputs.run_data_center == 'true'
