@@ -82,11 +82,20 @@
 .evidence-building-editor output{text-align:right;color:var(--text);font-size:9px}
 .evidence-editor-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
 .profile-button#evidenceStudioBtn{font-size:12px;letter-spacing:.08em}
+.settings-evidence-host .evidence-panel{position:relative;z-index:auto;inset:auto;width:100%;min-height:0;display:none;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible;transform:none!important;transition:none;pointer-events:none}
+.settings-evidence-host .evidence-panel.open{display:block;pointer-events:auto}
+.settings-evidence-host .evidence-panel>header{display:none}
+.settings-evidence-host .evidence-scroll{padding:0 0 20px;overflow:visible;overscroll-behavior:auto}
+.settings-evidence-host .evidence-status{position:fixed;bottom:calc(var(--safe-bottom) + 88px);z-index:60}
+.settings-evidence-host .evidence-stats{margin-top:2px}
+.settings-evidence-host .evidence-section{background:linear-gradient(150deg,rgba(255,255,255,.042),rgba(255,255,255,.018));border-color:rgba(255,255,255,.085)}
 @media(max-width:720px){
   .evidence-panel{top:82px;left:8px;right:8px;bottom:calc(var(--safe-bottom) + 70px);width:auto;border-radius:22px;transform:translateY(calc(100% + 100px))}
   .evidence-panel.open{transform:none}
   .evidence-scroll{padding:12px}
   .evidence-stats{grid-template-columns:repeat(2,1fr)}
   .evidence-frames{grid-template-columns:repeat(2,1fr)}
+  .settings-evidence-host .evidence-panel{left:auto;right:auto;top:auto;bottom:auto;width:100%;border-radius:0}
+  .settings-evidence-host .evidence-scroll{padding:0 0 18px}
 }
 @media(prefers-reduced-motion:reduce){.evidence-panel,.evidence-status{transition:none}}

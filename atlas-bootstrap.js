@@ -2,9 +2,9 @@
   'use strict';
 
   const release = Object.freeze({
-    version: '0.9.4.6',
-    versionText: "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.6",
-    cacheNamespace: 'atlas-alpha-0946-pages-v1-monitor-v11',
+    version: '0.9.4.7',
+    versionText: "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.7",
+    cacheNamespace: 'atlas-alpha-0947-pages-v1-monitor-v11',
     owner: 'atlas-bootstrap.js'
   });
 
