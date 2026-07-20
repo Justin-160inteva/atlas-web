@@ -50,6 +50,8 @@ for (const [profileIndex, profile] of profiles.entries()) {
     await page.waitForFunction(minimum => Number(document.getElementById('visibleCount')?.textContent || 0) >= minimum, manifest.invariants.minimumLocationCount, { timeout: 45_000 });
     await page.waitForFunction(version => document.documentElement.dataset.atlasRelease === version, manifest.version, { timeout: 15_000 });
     await page.waitForFunction(() => document.documentElement.dataset.atlasControls && document.documentElement.dataset.atlasLiquidNav && window.AtlasMarkerVisuals, null, { timeout: 15_000 });
+    await page.waitForFunction(() => document.documentElement.dataset.atlasViewportReady === 'true' && document.documentElement.dataset.atlasMapViewportHooks === 'true' && window.AtlasViewport, null, { timeout: 15_000 });
+    await page.waitForTimeout(560);
 
     const versionText = await page.locator('.brand-copy small').textContent();
     check('release label', versionText === manifest.versionText, String(versionText));
@@ -60,7 +62,18 @@ for (const [profileIndex, profile] of profiles.entries()) {
     check('controls dataset', await page.locator('html').getAttribute('data-atlas-controls') === manifest.version && await page.locator('#evidenceStudioBtn').getAttribute('data-icon-design') === manifest.invariants.settingsIconDesign);
     check('liquid dataset', await page.locator('html').getAttribute('data-atlas-liquid-nav') === manifest.version);
 
-    const canvas = await page.locator('#mapCanvas').evaluate(node => ({ width: node.width, height: node.height }));
+    const viewportState = await page.evaluate(() => {
+      const node=document.getElementById('mapCanvas');
+      const rect=node.getBoundingClientRect();
+      const measured=window.AtlasViewport?.measure?.()||{};
+      return {
+        canvas:{width:node.width,height:node.height,cssWidth:rect.width,cssHeight:rect.height},
+        visualScale:Number(window.visualViewport?.scale||1),
+        measured,
+        inner:{width:window.innerWidth,height:window.innerHeight}
+      };
+    });
+    const canvas = viewportState.canvas;
     const markerState = await page.evaluate(async version => {
       const api=window.AtlasMarkerVisuals;
       const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -105,8 +118,10 @@ for (const [profileIndex, profile] of profiles.entries()) {
     const markerPath=markerState.path.curves===4&&markerState.path.arcs===0&&markerState.path.start?.[0]===100&&markerState.path.start?.[1]===200&&markerState.path.end?.[0]===100&&markerState.path.end?.[1]===200&&markerState.api.geometry?.centerOffsetRadius>=.55;
     const markerSource=markerState.source.noEllipse&&markerState.source.noLegacyOuterPin&&markerState.source.noLegacySelectedStroke;
     const settingsIcon=markerState.settings.circles===1&&markerState.settings.paths===1&&markerState.settings.pathLength<180;
-    check('canvas width and marker scale-only contract', canvas.width > 0 && markerCore && markerSource, JSON.stringify({canvas,markerState}));
-    check('canvas height and anchored teardrop motion', canvas.height > 0 && markerMotion && markerPath, JSON.stringify({canvas,markerState}));
+    const viewportScaleNormalized=Math.abs(viewportState.visualScale-1)<=.02;
+    const canvasMatchesViewport=Math.abs(canvas.cssWidth-viewportState.measured.width)<=2&&Math.abs(canvas.cssHeight-viewportState.measured.height)<=2;
+    check('canvas width and marker scale-only contract', canvas.width > 0 && viewportScaleNormalized && canvasMatchesViewport && markerCore && markerSource, JSON.stringify({viewportState,markerState}));
+    check('canvas height and anchored teardrop motion', canvas.height > 0 && viewportScaleNormalized && canvasMatchesViewport && markerMotion && markerPath, JSON.stringify({viewportState,markerState}));
 
     const iconState = await page.evaluate(() => {
       const inspect = (selector, hostSelector) => [...document.querySelectorAll(selector)].map(button => {
