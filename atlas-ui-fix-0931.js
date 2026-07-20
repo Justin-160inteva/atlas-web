@@ -8,7 +8,7 @@
   const panelIds={filter:'filterPanel',route:'routePanel',progress:'progressPanel'};
   const SELECTED_SCALE=1.28;
   const SELECTION_DURATION=190;
-  const MIN_SELECTION_FRAMES=5;
+  const MIN_SELECTION_FRAMES=2;
   const selectionMotions=new Map();
   let lastBrowseMode=state.mode==='favorites'?'all':state.mode;
   let visualSelectedId=state.selected?.id??null;
