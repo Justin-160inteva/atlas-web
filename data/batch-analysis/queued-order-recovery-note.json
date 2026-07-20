@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-07-20T02:03:00Z",
+  "issue": "Supervisor-projected queued state was not claimable by the legacy scanner selection set.",
+  "observedOrder": [13],
+  "requiredRecoveryOrder": [12, 14, 15, 16, 17, 18, 19, 23, 24],
+  "maximumConcurrentItems": 1,
+  "policy": "Allow the earliest queued item to become claimable only when no running or recovery item exists. Never start a second concurrent item.",
+  "status": "hotfix-pending"
+}
