@@ -43,7 +43,7 @@ for (const profile of profiles) {
   try {
     await page.goto(`${baseURL}?reward-search-smoke=1&v=${manifest.version}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForFunction(minimum => Number(document.getElementById('visibleCount')?.textContent || 0) >= minimum, manifest.invariants.minimumLocationCount, { timeout: 45_000 });
-    await page.waitForFunction(() => window.AtlasSearchOwner === 'reward-aware-bilingual-search-v2' && window.AtlasRewards?.ready === true, null, { timeout: 20_000 });
+    await page.waitForFunction(() => window.AtlasSearchOwner === 'reward-aware-bilingual-search-v2' && Boolean(window.AtlasRewards?.getRecord?.('location-mapgenie-434361')), null, { timeout: 20_000 });
 
     check('search owner', await page.evaluate(() => window.AtlasSearchOwner) === 'reward-aware-bilingual-search-v2');
     check('search owner dataset', await page.locator('html').getAttribute('data-atlas-search-owner') === 'reward-aware-bilingual-search-v2');
