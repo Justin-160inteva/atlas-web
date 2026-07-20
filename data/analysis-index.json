@@ -1,6 +1,6 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-20T19:23:57.926665Z",
+  "updatedAt": "2026-07-20T20:10:47.566423Z",
   "items": [
     {
       "id": "analysis-eleven-p001-v2",
@@ -1131,8 +1131,8 @@
       "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P33 第33期：近江（收集1）",
       "status": "failed",
       "resultPath": "data/analysis-results/eleven-p033.json",
-      "resultSha256": "5501878b3b306b7c027aeba20717c0992d0febbe89107cc232050ad9d53af255",
-      "generatedAt": "2026-07-20T19:23:56.437782Z",
+      "resultSha256": "0c90941d05bf926af70c4142bdfb0c713e2f6c78d8e8b8381e29f0dfeae88131",
+      "generatedAt": "2026-07-20T20:10:46.285584Z",
       "media": {
         "durationSeconds": null,
         "width": null,
@@ -1158,7 +1158,7 @@
       "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。",
       "failure": {
         "stage": "download",
-        "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: HTTPError('HTTP Error 503: Service Unavailable')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]"
+        "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:HTTPError:HTTP Error 503: Service Unavailable | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (92) HTTP/2 stream 1 was not closed cleanly: INTERNAL_ERROR (err 2). See [url-redacted] first for more details.\"}]"
       }
     },
     {

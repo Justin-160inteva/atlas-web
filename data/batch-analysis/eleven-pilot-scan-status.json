@@ -4,19 +4,19 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
-  "updatedAt": "2026-07-20T20:01:34Z",
-  "phase": "queued",
+  "updatedAt": "2026-07-20T20:10:47.580383Z",
+  "phase": "retryable_failure",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
     "imported": 8,
     "running": 0,
-    "failed": 1,
-    "blocked": 0,
+    "failed": 2,
+    "blocked": 1,
     "retryableFailed": 1,
     "remaining": 3,
-    "attemptedThisRun": 0,
+    "attemptedThisRun": 1,
     "newlyImportedThisRun": 0
   },
   "items": [
@@ -112,12 +112,12 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
       "sequence": 33,
       "page": 33,
-      "state": "pending",
-      "attemptCount": 5,
-      "lastStartedAt": "2026-07-20T19:17:07.614636Z",
-      "lastFinishedAt": "2026-07-20T19:23:57.933660Z",
+      "state": "failed",
+      "attemptCount": 6,
+      "lastStartedAt": "2026-07-20T20:06:22.918422Z",
+      "lastFinishedAt": "2026-07-20T20:10:47.573589Z",
       "resultPath": null,
-      "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: HTTPError('HTTP Error 503: Service Unavailable')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]"
+      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:HTTPError:HTTP Error 503: Service Unavailable | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (92) HTTP/2 stream 1 was not closed cleanly: INTERNAL_ERROR (err 2). See [url-redacted] first for more details.\"}]"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
@@ -148,15 +148,15 @@
       "sequence": 33,
       "page": 33,
       "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P33 第33期：近江（收集1）",
-      "startedAt": "2026-07-20T19:17:07.614636Z",
-      "attemptCount": 5,
+      "startedAt": "2026-07-20T20:06:22.918422Z",
+      "attemptCount": 6,
       "analyzerReturnCode": 0,
       "analyzerOutput": "analysis result written: data/analysis-results/eleven-p033.json status=failed\n\n",
       "analysisStatus": "failed",
       "indexReturnCode": 0,
       "completed": false,
-      "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: HTTPError('HTTP Error 503: Service Unavailable')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
-      "finishedAt": "2026-07-20T19:23:57.933660Z"
+      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:HTTPError:HTTP Error 503: Service Unavailable | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (92) HTTP/2 stream 1 was not closed cleanly: INTERNAL_ERROR (err 2). See [url-redacted] first for more details.\"}]",
+      "finishedAt": "2026-07-20T20:10:47.573589Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
