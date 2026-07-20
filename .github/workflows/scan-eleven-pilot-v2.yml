@@ -1,4 +1,4 @@
-name: Scan 11 game world regional batch v9
+name: Scan 11 game world regional batch v10
 
 on:
   push:
@@ -55,7 +55,7 @@ jobs:
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
           python -m py_compile tools/update_analysis_index.py
 
-      - name: Verify authorization, adaptive transfer, bug dictionary, and telemetry
+      - name: Verify authorization, ten-item queue, and one-item execution
         run: |
           python - <<'PY'
           import json
@@ -68,10 +68,20 @@ jobs:
           scope=record['scope']
           region=queue['pilotRegion']
           assert record['status']=='active' and record['author']=='11的游戏世界'
-          assert 1<=len(queue['items'])<=5 and manifest['maxItemsPerRun']==1
+          assert len(queue['items'])==10
+          assert queue['maximumQueueItems']==10
+          assert queue['maximumConcurrentItems']==1
+          assert manifest['maximumQueueItems']==10
+          assert manifest['maxItemsPerRun']==1
+          assert manifest['maximumConcurrentDownloads']==1
+          assert manifest['autoContinueAfterDurableSuccess'] is True
+          assert [item['sequence'] for item in queue['items']]==sorted(item['sequence'] for item in queue['items'])
+          assert len({item['externalSourceId'] for item in queue['items']})==10
+          assert sum(item.get('state') in {'running','recovery'} for item in queue['items'])<=1
           assert all(item['regionGuess']==region for item in queue['items'])
-          catalog_ids={entry['id'] for entry in catalog['items']}
-          assert all(item['externalSourceId'] in catalog_ids for item in queue['items'])
+          catalog_by_id={entry['id']:entry for entry in catalog['items']}
+          assert all(item['externalSourceId'] in catalog_by_id for item in queue['items'])
+          assert all(catalog_by_id[item['externalSourceId']]['analysisStatus']!='imported' for item in queue['items'])
           assert scope['localDownloadAndAnalysis'] and scope['computerVisionAnalysis']
           assert scope['privateLowResolutionKeyframes']
           assert scope['nonCommercial'] and scope['commercialUseRequiresSeparateWrittenConsent']
@@ -88,10 +98,10 @@ jobs:
           assert len(bugs['entries'])>=20
           assert len({entry['id'] for entry in bugs['entries']})==len(bugs['entries'])
           assert all(entry['patterns'] for entry in bugs['entries'])
-          print(f'authorization, {region} queue, adaptive transfer, bug dictionary, and telemetry passed')
+          print(f'authorization and serial NEXT10 queue passed: {region}')
           PY
 
-      - name: Scan one item with immediate bounded auto-recovery
+      - name: Scan exactly one item with immediate bounded auto-recovery
         id: scan
         continue-on-error: true
         env:
@@ -140,7 +150,7 @@ jobs:
           print(f"final={final}")
           PY
 
-      - name: Run 400-round integrity and privacy gate
+      - name: Run 400-round serial integrity and privacy gate
         if: always()
         run: |
           python - <<'PY'
@@ -155,10 +165,13 @@ jobs:
           allowed={'pending','queued','running','recovery','failed','imported'}
           for _ in range(400):
               assert status['authorizationId']==queue['authorizationId']==catalog['authorizationId']
-              assert status['summary']['total']==len(queue['items'])
-              assert 1<=len(queue['items'])<=5
+              assert status['summary']['total']==len(queue['items'])==10
+              assert queue['maximumConcurrentItems']==manifest['maximumConcurrentDownloads']==manifest['maxItemsPerRun']==1
+              assert sum(item.get('state') in {'running','recovery'} for item in queue['items'])<=1
+              assert [item['sequence'] for item in queue['items']]==sorted(item['sequence'] for item in queue['items'])
               assert all(item['regionGuess']==queue['pilotRegion'] for item in queue['items'])
               assert all(item.get('state','pending') in allowed for item in queue['items'])
+              assert manifest['autoContinueAfterDurableSuccess'] is True
               assert manifest['analyzer'].endswith('analyze_authorized_video_v12.py')
               assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==30
               assert manifest['downloadOptimization']['noArtificialRateLimit'] is True
@@ -177,7 +190,7 @@ jobs:
               assert not list(pathlib.Path('.').rglob('*.m4a'))
               assert not list(pathlib.Path('.').rglob('*.webm'))
               assert not list(pathlib.Path('.').rglob('*.flv'))
-          print('400/400 integrity and privacy checks passed')
+          print('400/400 ten-item serial integrity and privacy checks passed')
           PY
 
       - name: Read durable regional state
@@ -216,7 +229,7 @@ jobs:
           done
           exit 1
 
-      - name: Continue after one durable successful item
+      - name: Continue with exactly one next item after durable success
         if: always() && steps.state.outputs.complete != 'true' && steps.recovery.outputs.human != 'true' && steps.recovery.outputs.progressed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
