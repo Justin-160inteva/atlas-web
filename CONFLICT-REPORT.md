@@ -1,6 +1,6 @@
 # Atlas Conflict Report
 
-- Release: **0.9.4.5**
+- Release: **0.9.4.8**
 - Status: **pass**
 - Risk score: **56/100**
 - Findings: 28 (0 critical, 0 high, 28 warning)
