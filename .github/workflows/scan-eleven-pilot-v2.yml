@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: scan-eleven-regional-batch
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   scan:
@@ -68,10 +68,11 @@ jobs:
           from curl_cffi import requests
           assert sitecustomize.ATLAS_HTTP11_PATCHED is True
           assert sitecustomize.ATLAS_TAIL_REPAIR_PATCHED is True
+          assert sitecustomize.ATLAS_PARALLEL_CHUNK_PATCHED is True
           assert requests._atlas_http11_patched is True
           assert callable(requests._atlas_http11_original_get)
           assert callable(requests._atlas_http11_original_request)
-          print('conditional HTTP/1.1 and chunked-tail transport hooks are active')
+          print('conditional HTTP/1.1, tail, and parallel chunk hooks are active')
           PY
 
       - name: Verify authorization and eleven-item serial state
@@ -128,6 +129,7 @@ jobs:
         env:
           PYTHONUNBUFFERED: '1'
           ATLAS_FORCE_HTTP11: '1'
+          ATLAS_PARALLEL_RANGE_WORKERS: '4'
           PYTHONPATH: ${{ github.workspace }}/tools/p33_v14_hook
           ATLAS_PROGRESS_TOKEN: ${{ github.token }}
           ATLAS_PROGRESS_REPOSITORY: ${{ github.repository }}
