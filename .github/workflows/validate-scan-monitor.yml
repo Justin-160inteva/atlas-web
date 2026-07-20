@@ -16,6 +16,8 @@ on:
       - 'tools/publish_runtime_progress_v2.py'
       - 'tools/analyze_authorized_video_v*.py'
       - 'tools/bilibili_transport_v13.py'
+      - 'tools/resumable_transport_v14.py'
+      - 'tools/bilibili_transport_v14_smoke.py'
       - 'data/runtime-progress/eleven-pilot-progress.json'
       - '.github/workflows/validate-scan-monitor.yml'
   pull_request:
@@ -30,6 +32,8 @@ on:
       - 'tools/publish_runtime_progress.py'
       - 'tools/publish_runtime_progress_v2.py'
       - 'tools/bilibili_transport_v13.py'
+      - 'tools/resumable_transport_v14.py'
+      - 'tools/bilibili_transport_v14_smoke.py'
       - 'tools/analyze_authorized_video_v*.py'
       - '.github/workflows/validate-scan-monitor.yml'
   workflow_dispatch:
@@ -56,6 +60,9 @@ jobs:
           python -m py_compile tools/analyze_authorized_video_v12.py
           python -m py_compile tools/bilibili_transport_v13.py
           python -m py_compile tools/analyze_authorized_video_v13.py
+          python -m py_compile tools/resumable_transport_v14.py
+          python -m py_compile tools/analyze_authorized_video_v14.py
+          python -m py_compile tools/bilibili_transport_v14_smoke.py
 
       - name: Validate realtime monitor contracts and privacy boundaries
         run: |
@@ -68,6 +75,9 @@ jobs:
           worker=pathlib.Path('sw.js').read_text(encoding='utf-8')
           publisher=pathlib.Path('tools/publish_runtime_progress.py').read_text(encoding='utf-8')
           publisher_v2=pathlib.Path('tools/publish_runtime_progress_v2.py').read_text(encoding='utf-8')
+          analyzer_v14=pathlib.Path('tools/analyze_authorized_video_v14.py').read_text(encoding='utf-8')
+          resume_v14=pathlib.Path('tools/resumable_transport_v14.py').read_text(encoding='utf-8')
+          manifest=json.loads(pathlib.Path('data/batch-analysis/eleven-pilot-scan-manifest.json').read_text(encoding='utf-8'))
           progress=json.loads(pathlib.Path('data/runtime-progress/eleven-pilot-progress.json').read_text(encoding='utf-8'))
           assert 'atlas-settings.js' in index
           assert index.index('atlas-settings.js') < index.index('atlas-evidence-studio.js')
@@ -93,6 +103,9 @@ jobs:
           assert 'chooseDurableBatch' in monitor_js and '批次冲突已自动隔离' in monitor_js
           assert 'ATLAS_PROGRESS_CONFLICT_RETRIES' in publisher
           assert 'PRESERVE_STAGES' in publisher_v2 and 'telemetryMeasuredAt' in publisher_v2
+          assert manifest['analyzer'].endswith('analyze_authorized_video_v14.py')
+          assert '_single_stream_resume_v14' in analyzer_v14
+          assert 'range_start == offset' in resume_v14 and 'mode = "wb"' in resume_v14
           assert './scan-monitor.js' in worker and 'scan-monitor-live-bridge.js' not in worker
           assert 'monitor-v11' in worker
           assert progress['author']=='11的游戏世界'
@@ -108,5 +121,5 @@ jobs:
           for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
               media.extend(pathlib.Path('.').rglob(pattern))
           assert not media, media
-          print('embedded realtime scan monitor v0.6.1 validation passed')
+          print('embedded realtime scan monitor v0.6.1 + transport v14 validation passed')
           PY
