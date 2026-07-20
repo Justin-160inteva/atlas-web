@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "updatedAt": "2026-07-20T16:18:00Z",
+  "locale": "zh-Hans",
+  "targetLocationCount": 3430,
+  "coverage": {
+    "records": 8,
+    "officialConfirmed": 0,
+    "multiSourceConfirmed": 8,
+    "highConfidenceInference": 0,
+    "unresolved": 3422
+  },
+  "confidenceModel": {
+    "official_confirmed": "由育碧官方页面、游戏内官方数据库文本或官方发布材料直接确认。",
+    "multi_source_confirmed": "至少两个相互独立的公开来源一致，且不存在已知冲突。",
+    "high_confidence_inference": "证据强但仍含推断，不得显示为官方事实。",
+    "unresolved": "来源不足、名称冲突或缺少第二来源，继续保留待审核状态。"
+  },
+  "translationPolicy": {
+    "locale": "zh-Hans",
+    "status": "project_standardized",
+    "officialLocalizationRequiredForOfficialLabel": true,
+    "displayOriginalName": true,
+    "note": "本批中文名称为 Atlas 项目标准化简体译名；除非记录明确标注 official_confirmed，否则不代表育碧官方译名。"
+  },
+  "sources": {
+    "game8-all-castles": {
+      "type": "guide_page",
+      "publisher": "Game8",
+      "title": "All Castle Locations and Rewards",
+      "url": "https://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+      "license": "reference_only",
+      "accessedAt": "2026-07-20"
+    },
+    "youtube-bing-mibuno": {
+      "type": "video",
+      "publisher": "Bing! Game guides",
+      "title": "Mibuno Castle stealth walkthrough",
+      "url": "https://www.youtube.com/watch?v=s8e2AT5tkVI",
+      "license": "reference_only",
+      "locator": "06:10",
+      "accessedAt": "2026-07-20"
+    },
+    "youtube-bing-osaka": {
+      "type": "video",
+      "publisher": "Bing! Game guides",
+      "title": "Osaka Castle stealth walkthrough",
+      "url": "https://www.youtube.com/watch?v=a-BcFOkPIQs",
+      "license": "reference_only",
+      "locator": "07:13",
+      "accessedAt": "2026-07-20"
+    }
+  },
+  "records": [
+    {
+      "locationId": "location-mapgenie-434361",
+      "title": "Mibuno Castle",
+      "evidenceStatus": "multi_source_confirmed",
+      "confidence": 0.97,
+      "summaryZhHans": "传奇饰品：蓑龟的庇护；传奇铭文：每个空护甲栏位提高伤害。3,000 经验值与 2 点精通点数目前仅有单一来源。",
+      "translation": {"status": "project_standardized", "official": false},
+      "rewards": [
+        {"kind": "gear", "originalName": "Minogame's Protection", "nameZhHans": "蓑龟的庇护", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.98},
+        {"kind": "engraving", "originalName": "Damage for Empty Armor Pieces", "nameZhHans": "每个空护甲栏位提高伤害", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.96},
+        {"kind": "xp", "amount": 3000, "nameZhHans": "经验值", "evidenceStatus": "unresolved", "confidence": 0.66},
+        {"kind": "mastery_points", "amount": 2, "nameZhHans": "精通点数", "evidenceStatus": "unresolved", "confidence": 0.66}
+      ],
+      "evidence": [
+        {"source": "mapgenie_location_snapshot", "url": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434361", "locator": "地点描述中的 Rewards", "supports": ["gear", "xp", "mastery_points"]},
+        {"source": "game8-all-castles", "locator": "Iga Castles / Mibuno Castle", "supports": ["gear", "engraving"]},
+        {"source": "youtube-bing-mibuno", "locator": "06:10", "supports": ["gear", "engraving"]}
+      ],
+      "reviewedAt": "2026-07-20"
+    },
+    {
+      "locationId": "location-mapgenie-434456",
+      "title": "Osaka Castle",
+      "evidenceStatus": "multi_source_confirmed",
+      "confidence": 0.97,
+      "summaryZhHans": "传奇轻甲：农民服饰；传奇铭文：攻击时可触发刺杀。3,000 经验值与 3 点精通点数目前仅有单一来源。",
+      "translation": {"status": "project_standardized", "official": false},
+      "rewards": [
+        {"kind": "gear", "originalName": "Peasant Clothes", "nameZhHans": "农民服饰", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.98},
+        {"kind": "engraving", "originalName": "Assassination with Attack", "nameZhHans": "攻击时可触发刺杀", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.96},
+        {"kind": "xp", "amount": 3000, "nameZhHans": "经验值", "evidenceStatus": "unresolved", "confidence": 0.66},
+        {"kind": "mastery_points", "amount": 3, "nameZhHans": "精通点数", "evidenceStatus": "unresolved", "confidence": 0.66}
+      ],
+      "evidence": [
+        {"source": "mapgenie_location_snapshot", "url": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434456", "locator": "地点描述中的 Rewards", "supports": ["gear", "xp", "mastery_points"]},
+        {"source": "game8-all-castles", "locator": "Izumi Settsu Castles / Osaka Castle", "supports": ["gear", "engraving"]},
+        {"source": "youtube-bing-osaka", "locator": "07:13", "supports": ["gear", "engraving"]}
+      ],
+      "reviewedAt": "2026-07-20"
+    },
+    {
+      "locationId": "location-mapgenie-434380",
+      "title": "Katano Castle",
+      "evidenceStatus": "multi_source_confirmed",
+      "confidence": 0.91,
+      "summaryZhHans": "传奇轻甲：道具大师服装。铭文“刺杀时投掷苦无”仍待第二来源确认。",
+      "translation": {"status": "project_standardized", "official": false},
+      "rewards": [
+        {"kind": "gear", "originalName": "Tools Master Gear", "nameZhHans": "道具大师服装", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.94},
+        {"kind": "engraving", "originalName": "Kunai Throw on Assassinate", "nameZhHans": "刺杀时投掷苦无", "rarity": "legendary", "evidenceStatus": "unresolved", "confidence": 0.72}
+      ],
+      "evidence": [
+        {"source": "mapgenie_location_snapshot", "url": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434380", "locator": "地点描述中的 Rewards", "supports": ["gear"]},
+        {"source": "game8-all-castles", "locator": "Izumi Settsu Castles / Katano Castle", "supports": ["gear", "engraving"]}
+      ],
+      "reviewedAt": "2026-07-20"
+    },
+    {
+      "locationId": "location-mapgenie-434582",
+      "title": "Amagasaki Castle",
+      "evidenceStatus": "multi_source_confirmed",
+      "confidence": 0.91,
+      "summaryZhHans": "传奇头具：道具大师面具。铭文“手里剑不会损坏”仍待第二来源确认。",
+      "translation": {"status": "project_standardized", "official": false},
+      "rewards": [
+        {"kind": "gear", "originalName": "Tools Master Mask", "nameZhHans": "道具大师面具", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.94},
+        {"kind": "engraving", "originalName": "Unbreakable Shuriken", "nameZhHans": "手里剑不会损坏", "rarity": "legendary", "evidenceStatus": "unresolved", "confidence": 0.72}
+      ],
+      "evidence": [
+        {"source": "mapgenie_location_snapshot", "url": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434582", "locator": "地点描述中的 Rewards", "supports": ["gear"]},
+        {"source": "game8-all-castles", "locator": "Izumi Settsu Castles / Amagasaki Castle", "supports": ["gear", "engraving"]}
+      ],
+      "reviewedAt": "2026-07-20"
+    },
+    {
+      "locationId": "location-mapgenie-434635",
+      "title": "Takatsuki Castle",
+      "evidenceStatus": "multi_source_confirmed",
+      "confidence": 0.91,
+      "summaryZhHans": "传奇头具：农民帽。铭文“进入战斗时获得肾上腺素”仍待第二来源确认。",
+      "translation": {"status": "project_standardized", "official": false},
+      "rewards": [
+        {"kind": "gear", "originalName": "Peasant Hat", "nameZhHans": "农民帽", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.94},
+        {"kind": "engraving", "originalName": "Adrenaline when Entering Combat", "nameZhHans": "进入战斗时获得肾上腺素", "rarity": "legendary", "evidenceStatus": "unresolved", "confidence": 0.72}
+      ],
+      "evidence": [
+        {"source": "mapgenie_location_snapshot", "url": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434635", "locator": "地点描述中的 Rewards", "supports": ["gear"]},
+        {"source": "game8-all-castles", "locator": "Izumi Settsu Castles / Takatsuki Castle", "supports": ["gear", "engraving"]}
+      ],
+      "reviewedAt": "2026-07-20"
+    },
+    {
+      "locationId": "location-mapgenie-434726",
+      "title": "Yamazaki Castle",
+      "evidenceStatus": "multi_source_confirmed",
+      "confidence": 0.91,
+      "summaryZhHans": "传奇头具：幽灵行者兜帽。铭文“在阴影中大幅强化刺杀”仍待第二来源确认。",
+      "translation": {"status": "project_standardized", "official": false},
+      "rewards": [
+        {"kind": "gear", "originalName": "Yurei-Walker Hood", "nameZhHans": "幽灵行者兜帽", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.94},
+        {"kind": "engraving", "originalName": "Greatly Improved Assassinate in Shadow", "nameZhHans": "在阴影中大幅强化刺杀", "rarity": "legendary", "evidenceStatus": "unresolved", "confidence": 0.72}
+      ],
+      "evidence": [
+        {"source": "mapgenie_location_snapshot", "url": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434726", "locator": "地点描述中的 Rewards", "supports": ["gear"]},
+        {"source": "game8-all-castles", "locator": "Yamashiro Castles / Yamazaki Castle", "supports": ["gear", "engraving"]}
+      ],
+      "reviewedAt": "2026-07-20"
+    },
+    {
+      "locationId": "location-mapgenie-434747",
+      "title": "Shoryuji Castle",
+      "evidenceStatus": "multi_source_confirmed",
+      "confidence": 0.91,
+      "summaryZhHans": "传奇轻甲：幽灵行者长袍。铭文“无声脚步”仍待第二来源确认。",
+      "translation": {"status": "project_standardized", "official": false},
+      "rewards": [
+        {"kind": "gear", "originalName": "Yurei-Walker Robes", "nameZhHans": "幽灵行者长袍", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.94},
+        {"kind": "engraving", "originalName": "Silent Footsteps", "nameZhHans": "无声脚步", "rarity": "legendary", "evidenceStatus": "unresolved", "confidence": 0.72}
+      ],
+      "evidence": [
+        {"source": "mapgenie_location_snapshot", "url": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434747", "locator": "地点描述中的 Rewards", "supports": ["gear"]},
+        {"source": "game8-all-castles", "locator": "Yamashiro Castles / Shoryuji Castle", "supports": ["gear", "engraving"]}
+      ],
+      "reviewedAt": "2026-07-20"
+    },
+    {
+      "locationId": "location-mapgenie-434791",
+      "title": "Nijo Palace",
+      "evidenceStatus": "multi_source_confirmed",
+      "confidence": 0.91,
+      "summaryZhHans": "传奇重甲：守护者护甲。铭文“可招架不可格挡攻击”仍待第二来源确认。",
+      "translation": {"status": "project_standardized", "official": false},
+      "rewards": [
+        {"kind": "gear", "originalName": "Protector's Armor", "nameZhHans": "守护者护甲", "rarity": "legendary", "evidenceStatus": "multi_source_confirmed", "confidence": 0.94},
+        {"kind": "engraving", "originalName": "Parry Unblockables", "nameZhHans": "可招架不可格挡攻击", "rarity": "legendary", "evidenceStatus": "unresolved", "confidence": 0.72}
+      ],
+      "evidence": [
+        {"source": "mapgenie_location_snapshot", "url": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434791", "locator": "地点描述中的 Rewards", "supports": ["gear"]},
+        {"source": "game8-all-castles", "locator": "Yamashiro Castles / Nijo Palace", "supports": ["gear", "engraving"]}
+      ],
+      "reviewedAt": "2026-07-20"
+    }
+  ]
+}

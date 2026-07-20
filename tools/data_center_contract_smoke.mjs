@@ -43,7 +43,7 @@ function reduce(state,action){
 }
 
 const staticContract={
-  release:manifest.version==='0.9.4.7',
+  release:manifest.version==='0.9.4.8',
   owner:manifest.runtimeOwners?.dataEvidenceCenter==='atlas-settings.js',
   singleCenter:manifest.invariants?.singleDataEvidenceCenter===true,
   twoViews:manifest.invariants?.dataEvidenceCenterViews===2,
