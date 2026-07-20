@@ -93,7 +93,7 @@ def main() -> int:
             base = pathlib.Path(directory)
 
             target = base / "multi-round.flv"
-            target.write_bytes(b"a" * 400)
+            target.write_bytes(b"a" * 1400)
             heartbeat = Heartbeat()
             plan(received=200)
             plan(received=200)
@@ -101,68 +101,68 @@ def main() -> int:
             repaired = hook._verified_incremental_curl_repair(
                 "https://cdn.invalid/video",
                 target,
-                expected_size=1000,
+                expected_size=2000,
                 heartbeat=heartbeat,
                 downloaded_before=50,
                 segment_index=1,
             )
-            check("repairs-across-three-truncated-rounds", repaired and target.stat().st_size == 1000)
-            check("requests-progressive-offsets", [item[item.index("--range") + 1] for item in calls[-3:]] == ["400-999", "600-999", "800-999"])
+            check("repairs-across-three-truncated-rounds", repaired and target.stat().st_size == 2000)
+            check("requests-progressive-offsets", [item[item.index("--range") + 1] for item in calls[-3:]] == ["1400-1999", "1600-1999", "1800-1999"])
             check("accepts-curl18-when-206-bytes-verified", len(heartbeat.updates) == 3)
-            check("publishes-final-heartbeat-size", heartbeat.updates[-1]["downloaded_bytes"] == 1050)
+            check("publishes-final-heartbeat-size", heartbeat.updates[-1]["downloaded_bytes"] == 2050)
 
             target = base / "status-503.flv"
-            target.write_bytes(b"b" * 400)
+            target.write_bytes(b"b" * 1400)
             plan(status=503, received=100)
             repaired = hook._verified_incremental_curl_repair(
-                "https://cdn.invalid/video", target, expected_size=1000,
+                "https://cdn.invalid/video", target, expected_size=2000,
                 heartbeat=Heartbeat(), downloaded_before=0, segment_index=1,
             )
-            check("rejects-503-without-appending", not repaired and target.stat().st_size == 400)
+            check("rejects-503-without-appending", not repaired and target.stat().st_size == 1400)
 
             target = base / "status-200.flv"
-            target.write_bytes(b"c" * 400)
+            target.write_bytes(b"c" * 1400)
             plan(status=200, received=600, returncode=0)
             repaired = hook._verified_incremental_curl_repair(
-                "https://cdn.invalid/video", target, expected_size=1000,
+                "https://cdn.invalid/video", target, expected_size=2000,
                 heartbeat=Heartbeat(), downloaded_before=0, segment_index=1,
             )
-            check("rejects-range-ignoring-200", not repaired and target.stat().st_size == 400)
+            check("rejects-range-ignoring-200", not repaired and target.stat().st_size == 1400)
 
             target = base / "wrong-start.flv"
-            target.write_bytes(b"d" * 400)
+            target.write_bytes(b"d" * 1400)
             plan(received=100, start_adjust=1)
             repaired = hook._verified_incremental_curl_repair(
-                "https://cdn.invalid/video", target, expected_size=1000,
+                "https://cdn.invalid/video", target, expected_size=2000,
                 heartbeat=Heartbeat(), downloaded_before=0, segment_index=1,
             )
-            check("rejects-wrong-content-range-start", not repaired and target.stat().st_size == 400)
+            check("rejects-wrong-content-range-start", not repaired and target.stat().st_size == 1400)
 
             target = base / "wrong-total.flv"
-            target.write_bytes(b"e" * 400)
+            target.write_bytes(b"e" * 1400)
             plan(received=100, total_adjust=1)
             repaired = hook._verified_incremental_curl_repair(
-                "https://cdn.invalid/video", target, expected_size=1000,
+                "https://cdn.invalid/video", target, expected_size=2000,
                 heartbeat=Heartbeat(), downloaded_before=0, segment_index=1,
             )
-            check("rejects-wrong-content-range-total", not repaired and target.stat().st_size == 400)
+            check("rejects-wrong-content-range-total", not repaired and target.stat().st_size == 1400)
 
             target = base / "empty.flv"
-            target.write_bytes(b"f" * 400)
+            target.write_bytes(b"f" * 1400)
             plan(received=0)
             repaired = hook._verified_incremental_curl_repair(
-                "https://cdn.invalid/video", target, expected_size=1000,
+                "https://cdn.invalid/video", target, expected_size=2000,
                 heartbeat=Heartbeat(), downloaded_before=0, segment_index=1,
             )
-            check("rejects-empty-206-body", not repaired and target.stat().st_size == 400)
+            check("rejects-empty-206-body", not repaired and target.stat().st_size == 1400)
 
             before_calls = len(calls)
             target = base / "over-limit.flv"
-            target.write_bytes(b"g" * 1024)
+            target.write_bytes(b"g" * 1400)
             repaired = hook._verified_incremental_curl_repair(
                 "https://cdn.invalid/video",
                 target,
-                expected_size=1024 + hook._curl_repair_limit() + 1,
+                expected_size=1400 + hook._curl_repair_limit() + 1,
                 heartbeat=Heartbeat(),
                 downloaded_before=0,
                 segment_index=1,
@@ -172,35 +172,35 @@ def main() -> int:
             previous_rounds = os.environ.get("ATLAS_INCREMENTAL_RANGE_ROUNDS")
             os.environ["ATLAS_INCREMENTAL_RANGE_ROUNDS"] = "2"
             target = base / "round-limit.flv"
-            target.write_bytes(b"h" * 400)
+            target.write_bytes(b"h" * 1400)
             plan(received=100)
             plan(received=100)
             repaired = hook._verified_incremental_curl_repair(
-                "https://cdn.invalid/video", target, expected_size=1000,
+                "https://cdn.invalid/video", target, expected_size=2000,
                 heartbeat=Heartbeat(), downloaded_before=0, segment_index=1,
             )
-            check("preserves-progress-at-round-limit", not repaired and target.stat().st_size == 600)
+            check("preserves-progress-at-round-limit", not repaired and target.stat().st_size == 1600)
             if previous_rounds is None:
                 os.environ.pop("ATLAS_INCREMENTAL_RANGE_ROUNDS", None)
             else:
                 os.environ["ATLAS_INCREMENTAL_RANGE_ROUNDS"] = previous_rounds
 
             target = base / "wrapper-fallback.flv"
-            target.write_bytes(b"i" * 400)
+            target.write_bytes(b"i" * 1400)
             plan(received=300)
             plan(received=300)
             hook._preserving_single_stream_resume(
                 "https://cdn.invalid/video",
                 target,
-                expected_size=1000,
+                expected_size=2000,
                 heartbeat=Heartbeat(),
                 downloaded_before=0,
                 segment_index=1,
                 chunk_size=1024,
                 retries=1,
             )
-            check("wrapper-falls-back-after-python-failure", target.stat().st_size == 1000)
-            check("wrapper-never-shrinks-existing-partial", target.read_bytes()[:400] == b"i" * 400)
+            check("wrapper-falls-back-after-python-failure", target.stat().st_size == 2000)
+            check("wrapper-never-shrinks-existing-partial", target.read_bytes()[:1400] == b"i" * 1400)
             check("cleans-fragment-and-header-files", not list(base.glob("*.incremental-range.*")))
             check("uses-http11-curl", all("--http1.1" in command for command in calls))
             check("keeps-media-url-out-of-test-output", True)
