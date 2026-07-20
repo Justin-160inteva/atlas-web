@@ -92,9 +92,14 @@ def run(command: list[str], timeout: int):
         path = (base.ROOT / manifest_arg).resolve()
         try:
             manifest = json.loads(path.read_text(encoding="utf-8"))
-            if str(manifest.get("analyzer", "")).endswith("analyze_authorized_video_v11.py"):
-                manifest["analyzer"] = "tools/analyze_authorized_video_v12.py"
+            if str(manifest.get("analyzer", "")).endswith((
+                "analyze_authorized_video_v11.py",
+                "analyze_authorized_video_v12.py",
+            )):
+                manifest["analyzer"] = "tools/analyze_authorized_video_v13.py"
                 manifest.setdefault("compatibilityFixes", {})["preserveDownloadTelemetryAcrossStages"] = True
+                manifest["compatibilityFixes"]["wbiSignedPlayerMetadata"] = True
+                manifest["compatibilityFixes"]["apiProvidedCdnRotation"] = True
                 _write_json(path, manifest)
         except Exception:
             pass

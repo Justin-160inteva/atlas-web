@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "version": "2026.07.20.1",
+  "version": "2026.07.20.2",
   "project": "Atlas authorized video scan pipeline",
   "scope": "Extensible dictionary of project-observed and primary-source failure signatures for source retrieval, media processing, analysis, GitHub Actions, progress publishing, queue state, authorization, privacy, runtime heartbeat supervision, and adaptive transfer recovery.",
   "defaultPolicy": {
@@ -26,7 +26,9 @@
   "entries": [
     {"id":"bilibili-http-412","layer":"source-download","retryable":true,"autoAction":"fast_backoff_public_api_and_adaptive_range","cooldownSeconds":20,"maximumAttemptsOverride":5,"patterns":["http error 412","status code 412","precondition failed"],"diagnosis":"Request precondition rejection; refresh public metadata, rotate to an approved backup URL, use adaptive range/resume, and apply a short bounded cooldown."},
     {"id":"bilibili-http-403","layer":"source-download","retryable":true,"autoAction":"fast_backoff_public_api_and_adaptive_range","cooldownSeconds":15,"patterns":["http error 403","status code 403","403 forbidden"],"diagnosis":"Media request rejected; refresh metadata, try approved backup URLs, and retry after a short bounded cooldown."},
+    {"id":"bilibili-http-5xx","layer":"source-download","retryable":true,"autoAction":"refresh_wbi_metadata_rotate_cdn","cooldownSeconds":8,"maximumAttemptsOverride":5,"patterns":["http error 500","http error 502","http error 503","http error 504","status code 503","service unavailable","gateway time-out"],"diagnosis":"The selected API or CDN path is temporarily unavailable; refresh WBI-signed metadata and resume across API-provided CDN backups."},
     {"id":"bilibili-http-429","layer":"source-download","retryable":true,"autoAction":"wait_then_retry","cooldownSeconds":60,"patterns":["http error 429","too many requests","rate limit"],"diagnosis":"Request rate limit reached; use the maximum fast-recovery cooldown and avoid a tight retry loop."},
+    {"id":"bilibili-wbi-risk-control","layer":"source-metadata","retryable":true,"autoAction":"refresh_wbi_metadata_rotate_cdn","cooldownSeconds":20,"maximumAttemptsOverride":5,"patterns":["api code=-352","code=352","risk control","v_voucher"],"diagnosis":"Anonymous player metadata hit a temporary WBI risk gate; rotate the bounded player fingerprint, refresh the WBI key, and retry the direct API path."},
     {"id":"bilibili-no-formats","layer":"source-metadata","retryable":true,"autoAction":"refresh_source_metadata_and_retry","cooldownSeconds":5,"patterns":["no video formats found","requested format is not available","no formats found"],"diagnosis":"Extractor returned no usable format; refresh page, CID, and play metadata."},
     {"id":"bilibili-initial-state","layer":"source-metadata","retryable":true,"autoAction":"switch_to_public_api","cooldownSeconds":5,"patterns":["unable to extract initial state","unable to extract play info","playurl api returned no"],"diagnosis":"Page extraction changed or returned incomplete state; use verified API metadata."},
     {"id":"multipart-page-identity","layer":"identity","retryable":false,"autoAction":"human_review_required","cooldownSeconds":0,"patterns":["exceeds multipart page count","cid mismatch","page identity mismatch","returned no pages"],"diagnosis":"BVID, page, CID, or title identity is inconsistent."},

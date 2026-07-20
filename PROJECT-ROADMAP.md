@@ -66,6 +66,8 @@ Updated baseline: **Alpha 0.9.4.8**
 - [x] Add a per-release dynamic validation policy and machine-readable validation-budget report.
 - [x] Parameterise heartbeat, strict serial-order and queue-schema matrices for targeted or full execution.
 - [x] Stop runtime-only scan commits from launching the complete project CI suite.
+- [x] Add the v13 WBI-signed metadata path, API-provided CDN rotation/resume, and a 96-check transport gate.
+- [ ] Resume the blocked P33 item through v13, then continue strict P34 and P35 order after durable success.
 - [ ] Import the first reviewable reward records with source locators.
 - [ ] Add reward summaries to location details.
 - [ ] Report official, multi-source, inferred, unresolved and conflict counts.

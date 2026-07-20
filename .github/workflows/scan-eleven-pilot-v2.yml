@@ -42,11 +42,17 @@ jobs:
           python -m py_compile tools/publish_runtime_progress_v2.py
           python -m py_compile tools/analyze_authorized_video_v11.py
           python -m py_compile tools/analyze_authorized_video_v12.py
+          python -m py_compile tools/bilibili_transport_v13.py
+          python -m py_compile tools/analyze_authorized_video_v13.py
+          python -m py_compile tools/bilibili_transport_smoke.py
           python -m py_compile tools/scan_catalog_queue_v2.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
           python -m py_compile tools/update_analysis_index.py
+
+      - name: Run 96-check signed metadata and CDN failover gate
+        run: python tools/bilibili_transport_smoke.py
 
       - name: Verify authorization and eleven-item serial state
         run: |
@@ -80,11 +86,16 @@ jobs:
           assert scope['localDownloadAndAnalysis'] and scope['computerVisionAnalysis']
           assert scope['privateLowResolutionKeyframes']
           assert scope['nonCommercial'] and scope['commercialUseRequiresSeparateWrittenConsent']
-          assert manifest['analyzer'].endswith('analyze_authorized_video_v12.py')
+          assert manifest['analyzer'].endswith('analyze_authorized_video_v13.py')
           assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==30
           assert manifest['downloadTelemetry']['intervalSeconds']==30
           assert manifest['downloadOptimization']['noArtificialRateLimit'] is True
           assert manifest['downloadOptimization']['adaptiveParallelRanges'] is True
+          assert manifest['downloadOptimization']['metadataRefreshPasses']==2
+          assert manifest['downloadOptimization']['bypassPublicVideoWebpage'] is True
+          assert manifest['downloadOptimization']['preservePartialAcrossCdnCandidates'] is True
+          assert manifest['compatibilityFixes']['wbiSignedPlayerMetadata'] is True
+          assert manifest['compatibilityFixes']['apiProvidedCdnRotation'] is True
           assert manifest['retention']['originalVideo'] is False
           assert manifest['retention']['framePixels'] is False
           assert len({entry['id'] for entry in bugs['entries']})==len(bugs['entries'])

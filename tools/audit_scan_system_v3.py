@@ -5,6 +5,8 @@ from __future__ import annotations
 import importlib.util
 import json
 import pathlib
+import subprocess
+import sys
 import urllib.error
 from datetime import datetime, timezone
 from typing import Any
@@ -55,6 +57,9 @@ def main() -> int:
     publisher_v2 = read_text("tools/publish_runtime_progress_v2.py")
     analyzer_v11 = read_text("tools/analyze_authorized_video_v11.py")
     analyzer_v12 = read_text("tools/analyze_authorized_video_v12.py")
+    analyzer_v13 = read_text("tools/analyze_authorized_video_v13.py")
+    transport_v13 = read_text("tools/bilibili_transport_v13.py")
+    transport_smoke = read_text("tools/bilibili_transport_smoke.py")
     orchestrator = read_text("tools/run_scan_with_auto_recovery.py")
     orchestrator_v2 = read_text("tools/run_scan_with_auto_recovery_v2.py")
     marker_runtime = read_text("atlas-ui-fix-0931.js")
@@ -67,18 +72,19 @@ def main() -> int:
     entries = bugs.get("entries", [])
     ids = [entry.get("id") for entry in entries]
     required_layers = {"source-download", "source-metadata", "identity", "http-client", "network", "media", "analysis", "runner", "progress-publish", "orchestration", "heartbeat", "safety"}
-    check("dictionary_size", len(entries) >= 25, f"{len(entries)} entries")
+    check("dictionary_size", len(entries) >= 27, f"{len(entries)} entries")
     check("dictionary_unique", len(ids) == len(set(ids)), "unique IDs")
     check("dictionary_complete", all(entry.get("patterns") and entry.get("autoAction") for entry in entries), "patterns and actions present")
     check("dictionary_layers", required_layers <= {entry.get("layer") for entry in entries}, "required layers present")
     check("cooldowns_bounded", next(entry for entry in entries if entry["id"] == "bilibili-http-412")["cooldownSeconds"] <= 45 and next(entry for entry in entries if entry["id"] == "bilibili-http-429")["cooldownSeconds"] <= 120, "network cooldowns bounded")
 
     invariants = release.get("invariants", {})
-    check("release_version", release.get("version") == "0.9.4.7", "Alpha 0.9.4.7")
-    check("release_audit_cycle", invariants.get("requireFullAuditAtThisRelease") is False, "next mandatory full audit remains Alpha 0.9.4.8")
+    check("release_version", release.get("version") == "0.9.4.8", "Alpha 0.9.4.8")
+    check("release_audit_cycle", invariants.get("requireFullAuditAtThisRelease") is True and invariants.get("nextRequiredFullAuditVersion") == "0.9.4.11", "Alpha 0.9.4.8 audit completed; next mandatory audit is 0.9.4.11")
     check("release_matrices", all(invariants.get(key) == 500 for key in ("requiredHeartbeatMatrixChecks", "requiredBrowserMatrixChecks", "requiredDataCenterMatrixChecks", "requiredSerialQueueOrderChecks", "requiredMonitorBatchAuthorityChecks", "requiredQueueSchemaChecks")), "six exact 500-check gates")
     check("release_monitor_contract", invariants.get("singleMonitorController") is True and invariants.get("durableScanStateAlwaysWins") is True and invariants.get("monitorBatchIdentityMustMatch") is True, "single batch-authoritative monitor")
     check("release_serial11_contract", invariants.get("heartbeatSupervisorMaximumQueueItems") == 11 and invariants.get("scanMaximumConcurrentDownloads") == 1 and invariants.get("scanAutoContinueAfterDurableSuccess") is True, "eleven queued, one active, auto continue")
+    check("release_transport_contract", invariants.get("requiredSourceTransportChecks") == 96 and invariants.get("sourceTransportUsesSignedWbi") is True and invariants.get("sourceTransportBypassesVideoWebpage") is True and invariants.get("sourceTransportPreservesCdnResume") is True, "signed WBI direct API with resumable CDN rotation")
     check("release_marker_contract", invariants.get("markerSelectionUsesScaleOnly") is True and invariants.get("markerSelectionDecorationLayers") == 0 and invariants.get("markerSelectedScale") == 1.28 and invariants.get("markerSelectionDurationMs") == 190 and invariants.get("markerTipAnchorStable") is True, "anchored scale-only marker selection")
     check("release_marker_runtime", all(token in marker_runtime for token in ("selectionUsesScaleOnly:true", "selectionDecorationLayers:0", "tipAnchorStable:true", "SELECTION_DURATION=190", "SELECTED_SCALE=1.28")) and "ctx.ellipse(" not in marker_runtime and "radius+4.2" not in marker_runtime, "no legacy selection rings or ornaments")
     check("release_settings_icon", invariants.get("settingsIconDesign") == "radial-eight" and "dataset.iconDesign='radial-eight'" in controls_runtime, "simplified radial settings icon")
@@ -128,9 +134,11 @@ def main() -> int:
     check("manifest_serial", manifest.get("maxItemsPerRun") == 1 and manifest.get("maximumConcurrentDownloads") == 1, "one item per run")
     check("manifest_auto_continue", manifest.get("autoContinueAfterDurableSuccess") is True, "auto continuation enabled")
     check("heartbeat_telemetry", manifest.get("runtimeHeartbeat", {}).get("minimumIntervalSeconds") == 30 and manifest.get("downloadTelemetry", {}).get("intervalSeconds") == 30, "30-second heartbeat and telemetry")
-    check("v12_adapter", manifest.get("analyzer", "").endswith("analyze_authorized_video_v12.py") and "analyze_authorized_video_v11" in analyzer_v12, "v12 analyzer selected")
+    check("v13_adapter", manifest.get("analyzer", "").endswith("analyze_authorized_video_v13.py") and "analyze_authorized_video_v12" in analyzer_v13 and "bilibili_transport_v13" in analyzer_v13, "v13 analyzer selected")
     check("adaptive_ranges", "ThreadPoolExecutor" in analyzer_v11 and manifest.get("downloadOptimization", {}).get("adaptiveParallelRanges") is True, "bounded range transfer")
     check("download_policy", manifest.get("downloadOptimization", {}).get("noArtificialRateLimit") is True and 2 <= int(manifest.get("downloadOptimization", {}).get("maxRangeWorkers", 0)) <= 4, "no artificial cap, bounded workers")
+    check("wbi_metadata", all(token in analyzer_v13 + transport_v13 for token in ("x/player/wbi/playurl", "extract_mixin_key", "sign_wbi_params", "verified catalog CID")) and manifest.get("downloadOptimization", {}).get("bypassPublicVideoWebpage") is True, "signed metadata bypasses the blocked webpage")
+    check("cdn_rotation_resume", all(token in analyzer_v13 + transport_v13 for token in ("stream_candidates", "Keep a valid partial target", "backupUrl")) and manifest.get("downloadOptimization", {}).get("preservePartialAcrossCdnCandidates") is True, "partial bytes survive API-provided CDN failover")
     check("retention", manifest.get("retention", {}).get("originalVideo") is False and manifest.get("retention", {}).get("framePixels") is False, "no retained media pixels")
 
     check("workflow_capacity", "len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']==11" in workflow, "eleven-item workflow gate")
@@ -158,12 +166,13 @@ def main() -> int:
 
     check("publisher_conflict", "error.code not in {409, 422}" in publisher and "ATLAS_PROGRESS_CONFLICT_RETRIES" in publisher, "fresh-SHA conflict retry")
     check("telemetry_preservation", "PRESERVE_STAGES" in publisher_v2 and "telemetryMeasuredAt" in publisher_v2, "same-item telemetry preserved")
-    check("same_job_recovery", "diagnose_and_recover_scan_v2.py" in orchestrator and "analyze_authorized_video_v12.py" in orchestrator_v2, "same-job bounded recovery")
+    check("same_job_recovery", "diagnose_and_recover_scan_v2.py" in orchestrator and "analyze_authorized_video_v13.py" in orchestrator_v2, "same-job bounded recovery")
     check("success_projection", "publish_durable_projection(queue)" in orchestrator and "clear_stale_recovery(queue)" in orchestrator, "success projects next item")
 
     recovery = load_module("tools/diagnose_and_recover_scan_v2.py", "atlas_recovery_p25_p35_test")
     examples = {
         "HTTP Error 412: Precondition Failed": "bilibili-http-412",
+        "HTTP Error 503: Service Unavailable": "bilibili-http-5xx",
         "curl: (18) end of response with bytes missing": "curl-transport",
         "range request was not honored": "range-not-supported",
         "content-length mismatch after resumed transfer": "download-truncated",
@@ -191,13 +200,21 @@ def main() -> int:
 
     base_publisher._github_request = fake_request
     check("publisher_409_simulation", base_publisher._publish_github({"stage": "audit", "progressPercent": 1}) is True and calls["put"] == 2, "first conflict recovered")
+    transport_result = subprocess.run(
+        [sys.executable, "tools/bilibili_transport_smoke.py"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    check("transport_gate", transport_result.returncode == 0 and "96/96" in transport_result.stdout and "expected 96 checks" in transport_smoke, "96 deterministic source-transport checks")
     media = [path for pattern in ("*.mp4", "*.m4a", "*.webm", "*.flv") for path in ROOT.rglob(pattern)]
     check("repository_media_clean", not media, f"media files={len(media)}")
     check("release_assets_exist", all((ROOT / path).exists() for path in release.get("releaseAssets", [])), "all release assets exist")
 
     passed = sum(item["passed"] for item in checks)
     report = {
-        "schemaVersion": 9,
+        "schemaVersion": 10,
         "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "status": "pass" if passed == len(checks) else "fail",
         "summary": {"total": len(checks), "passed": passed, "failed": len(checks) - passed},

@@ -2,6 +2,8 @@ name: Validate scan system health
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'index.html'
       - 'atlas-settings.css'
@@ -9,17 +11,40 @@ on:
       - 'data/scan-bug-dictionary.json'
       - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
       - 'data/batch-analysis/eleven-production-order-policy.json'
+      - 'data/quality/release-validation-policy.json'
+      - 'release-manifest.json'
       - 'tools/publish_runtime_progress.py'
       - 'tools/publish_runtime_progress_v2.py'
-      - 'tools/analyze_authorized_video_v11.py'
-      - 'tools/analyze_authorized_video_v12.py'
+      - 'tools/analyze_authorized_video_v*.py'
+      - 'tools/bilibili_transport_v13.py'
+      - 'tools/bilibili_transport_smoke.py'
       - 'tools/diagnose_and_recover_scan_v2.py'
       - 'tools/run_scan_with_auto_recovery.py'
       - 'tools/run_scan_with_auto_recovery_v2.py'
       - 'tools/audit_scan_system_v3.py'
       - 'scan-monitor.html'
       - 'scan-monitor.js'
-      - 'scan-monitor-live-bridge.js'
+      - 'sw.js'
+      - '.github/workflows/scan-eleven-pilot-v2.yml'
+      - '.github/workflows/validate-scan-monitor.yml'
+      - '.github/workflows/validate-scan-system.yml'
+  pull_request:
+    paths:
+      - 'data/scan-bug-dictionary.json'
+      - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
+      - 'data/quality/release-validation-policy.json'
+      - 'release-manifest.json'
+      - 'tools/publish_runtime_progress.py'
+      - 'tools/publish_runtime_progress_v2.py'
+      - 'tools/analyze_authorized_video_v*.py'
+      - 'tools/bilibili_transport_v13.py'
+      - 'tools/bilibili_transport_smoke.py'
+      - 'tools/diagnose_and_recover_scan_v2.py'
+      - 'tools/run_scan_with_auto_recovery.py'
+      - 'tools/run_scan_with_auto_recovery_v2.py'
+      - 'tools/audit_scan_system_v3.py'
+      - 'scan-monitor.html'
+      - 'scan-monitor.js'
       - 'sw.js'
       - '.github/workflows/scan-eleven-pilot-v2.yml'
       - '.github/workflows/validate-scan-monitor.yml'
@@ -40,7 +65,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -53,6 +77,9 @@ jobs:
           python -m py_compile tools/publish_runtime_progress_v2.py
           python -m py_compile tools/analyze_authorized_video_v11.py
           python -m py_compile tools/analyze_authorized_video_v12.py
+          python -m py_compile tools/bilibili_transport_v13.py
+          python -m py_compile tools/analyze_authorized_video_v13.py
+          python -m py_compile tools/bilibili_transport_smoke.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
@@ -62,8 +89,10 @@ jobs:
         run: |
           node --check atlas-settings.js
           node --check scan-monitor.js
-          node --check scan-monitor-live-bridge.js
           node --check sw.js
+
+      - name: Run targeted v13 source transport gate
+        run: python tools/bilibili_transport_smoke.py
 
       - name: Run executable systemic audit and simulated recovery cases
         id: systemic_audit
@@ -71,7 +100,7 @@ jobs:
         run: python tools/audit_scan_system_v3.py
 
       - name: Publish health report even when checks fail
-        if: always()
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           REPORT='data/batch-analysis/scan-system-health.json'
           test -f "$REPORT"
@@ -97,11 +126,12 @@ jobs:
           import json
           report=json.load(open('data/batch-analysis/scan-system-health.json',encoding='utf-8'))
           required={
-              'monitor_poll','monitor_thresholds','monitor_projection','monitor_recovery_retention',
-              'publisher_409_simulation','same_job_recovery','live_recovery',
-              'repository_media_clean','action_412','action_range_fallback',
-              'action_media','action_timeout','v12_adapter','adaptive_ranges',
-              'no_rate_limit','balanced_sampling','telemetry_preservation','bounded_queue'
+              'monitor_poll','monitor_thresholds','monitor_version','monitor_single_controller',
+              'publisher_409_simulation','same_job_recovery','repository_media_clean',
+              'match_bilibili-http-412','match_bilibili-http-5xx','match_range-not-supported',
+              'match_opencv-open-failure','v13_adapter','adaptive_ranges','download_policy',
+              'wbi_metadata','cdn_rotation_resume','transport_gate',
+              'telemetry_preservation','queue_exact_eleven','retention'
           }
           checks={item['name']:item for item in report['checks']}
           assert report['summary']['total']>=35, report['summary']

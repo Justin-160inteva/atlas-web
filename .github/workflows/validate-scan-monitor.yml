@@ -2,6 +2,8 @@ name: Validate embedded scan monitor
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'index.html'
       - 'atlas-settings.css'
@@ -9,12 +11,26 @@ on:
       - 'scan-monitor.html'
       - 'scan-monitor.css'
       - 'scan-monitor.js'
-      - 'scan-monitor-live-bridge.js'
       - 'sw.js'
       - 'tools/publish_runtime_progress.py'
       - 'tools/publish_runtime_progress_v2.py'
-      - 'tools/analyze_authorized_video_v12.py'
+      - 'tools/analyze_authorized_video_v*.py'
+      - 'tools/bilibili_transport_v13.py'
       - 'data/runtime-progress/eleven-pilot-progress.json'
+      - '.github/workflows/validate-scan-monitor.yml'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'atlas-settings.css'
+      - 'atlas-settings.js'
+      - 'scan-monitor.html'
+      - 'scan-monitor.css'
+      - 'scan-monitor.js'
+      - 'sw.js'
+      - 'tools/publish_runtime_progress.py'
+      - 'tools/publish_runtime_progress_v2.py'
+      - 'tools/bilibili_transport_v13.py'
+      - 'tools/analyze_authorized_video_v*.py'
       - '.github/workflows/validate-scan-monitor.yml'
   workflow_dispatch:
 
@@ -31,7 +47,6 @@ jobs:
         run: |
           node --check atlas-settings.js
           node --check scan-monitor.js
-          node --check scan-monitor-live-bridge.js
           node --check sw.js
 
       - name: Validate Python heartbeat pipeline
@@ -39,6 +54,8 @@ jobs:
           python -m py_compile tools/publish_runtime_progress.py
           python -m py_compile tools/publish_runtime_progress_v2.py
           python -m py_compile tools/analyze_authorized_video_v12.py
+          python -m py_compile tools/bilibili_transport_v13.py
+          python -m py_compile tools/analyze_authorized_video_v13.py
 
       - name: Validate realtime monitor contracts and privacy boundaries
         run: |
@@ -48,7 +65,6 @@ jobs:
           settings=pathlib.Path('atlas-settings.js').read_text(encoding='utf-8')
           monitor_html=pathlib.Path('scan-monitor.html').read_text(encoding='utf-8')
           monitor_js=pathlib.Path('scan-monitor.js').read_text(encoding='utf-8')
-          bridge=pathlib.Path('scan-monitor-live-bridge.js').read_text(encoding='utf-8')
           worker=pathlib.Path('sw.js').read_text(encoding='utf-8')
           publisher=pathlib.Path('tools/publish_runtime_progress.py').read_text(encoding='utf-8')
           publisher_v2=pathlib.Path('tools/publish_runtime_progress_v2.py').read_text(encoding='utf-8')
@@ -57,26 +73,28 @@ jobs:
           assert index.index('atlas-settings.js') < index.index('atlas-evidence-studio.js')
           assert 'scan-monitor.html?embedded=1' in settings
           assert 'statusBadge' in monitor_html and 'queueList' in monitor_html and 'recoveryPanel' in monitor_html
-          assert 'scan-monitor.js?v=0.5.0' in monitor_html
-          assert 'scan-monitor-live-bridge.js?v=0.2.1' in monitor_html
+          assert 'scan-monitor.js?v=0.6.1' in monitor_html
+          assert 'scan-monitor-live-bridge.js' not in monitor_html
           assert 'scan-monitor-coherence.js' not in monitor_html
           assert 'scan-monitor-download.js' not in monitor_html
           assert 'scan-monitor-health.js' not in monitor_html
           assert 'downloadHeartbeatMeta' in monitor_html and '任务数据更新时间' in monitor_html
-          assert "const VERSION='0.5.0'" in monitor_js
-          assert 'const POLL_MS=10000' in monitor_js
-          assert 'const TIMEOUT_MS=7000' in monitor_js
-          assert "VERSION='0.2.1'" in bridge
-          assert 'RAW_POLL=5000' in bridge and 'API_POLL=65000' in bridge and 'APPLY_TICK=1000' in bridge
-          assert 'MAX_PROJECT=35' in bridge and '实时估算' in bridge and '最近实测' in bridge
-          assert 'telemetryMeasuredAt' in bridge and '保留最后下载实测' in bridge
-          assert 'heartbeatAge<=75' in bridge and 'heartbeatAge>150' in bridge
-          assert 'Promise.race' in monitor_js and 'state.refreshing=false' in monitor_js
+          assert "const VERSION = '0.6.1'" in monitor_js
+          assert 'const RAW_POLL_MS = 5000' in monitor_js
+          assert 'const API_POLL_MS = 180000' in monitor_js
+          assert 'const APPLY_TICK_MS = 1000' in monitor_js
+          assert 'const TIMEOUT_MS = 6000' in monitor_js
+          assert 'const MAX_PROJECT_SECONDS = 20' in monitor_js
+          assert '短期实时估算' in monitor_js and '最近实测' in monitor_js
+          assert 'telemetryMeasuredAt' in monitor_js and 'state.lastMeasuredRuntime' in monitor_js
+          assert 'HEARTBEAT_WARN = 75' in monitor_js and 'HEARTBEAT_FAIL = 150' in monitor_js
+          assert 'Promise.race' in monitor_js and 'rawRefreshing' in monitor_js and 'apiRefreshing' in monitor_js
           assert 'runtimeNewer' in monitor_js and 'GitHub Contents API' in monitor_js
+          assert 'chooseDurableBatch' in monitor_js and '批次冲突已自动隔离' in monitor_js
           assert 'ATLAS_PROGRESS_CONFLICT_RETRIES' in publisher
           assert 'PRESERVE_STAGES' in publisher_v2 and 'telemetryMeasuredAt' in publisher_v2
-          assert './scan-monitor.js' in worker and './scan-monitor-live-bridge.js' in worker
-          assert 'monitor-v10' in worker
+          assert './scan-monitor.js' in worker and 'scan-monitor-live-bridge.js' not in worker
+          assert 'monitor-v11' in worker
           assert progress['author']=='11的游戏世界'
           assert progress['authorizationId']=='auth-eleven-game-world-20260719'
           match=re.fullmatch(r'bili-eleven-acshadows-BV1FdQ9YdEcN-p(\d{3})',progress['externalSourceId'])
@@ -90,5 +108,5 @@ jobs:
           for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
               media.extend(pathlib.Path('.').rglob(pattern))
           assert not media, media
-          print('embedded realtime scan monitor v0.2.1 validation passed')
+          print('embedded realtime scan monitor v0.6.1 validation passed')
           PY
