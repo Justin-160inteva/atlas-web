@@ -130,10 +130,18 @@
     return scale;
   }
 
+  function pruneSelectionMotions(now=performance.now()){
+    for(const [id,motion] of selectionMotions){
+      if(now-motion.startedAt>=SELECTION_DURATION)selectionMotions.delete(id);
+    }
+  }
+
   function keepSelectionAnimationAlive(){
+    pruneSelectionMotions();
     if(!selectionMotions.size||selectionFrame)return;
     selectionFrame=requestAnimationFrame(()=>{
       selectionFrame=0;
+      pruneSelectionMotions();
       scheduleDraw();
     });
   }
@@ -237,6 +245,7 @@
     tipAnchorStable:true,
     pinCenter,
     scaleFor:id=>resolvedSelectionScale(id),
+    activeMotionCount:()=>selectionMotions.size,
     geometry:{centerOffsetRadius:.58,shoulderRatio:.16,lowerCurveRatio:.58}
   };
   root.dataset.atlasMarkerVisuals=VERSION;
