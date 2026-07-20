@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "revision": "2026.07.20.1",
+  "purpose": "Choose the smallest deterministic validation set that still covers the risk introduced by each release.",
+  "principles": {
+    "userRequirementsFirst": true,
+    "qualityCoverageBeforeRawCheckCount": true,
+    "skipUnrelatedMatrices": true,
+    "recordSelectedTierEveryRelease": true,
+    "preserveAuthorizationPrivacyAndSerialSafety": true,
+    "fullAuditEveryThreePatchVersions": true
+  },
+  "tiers": {
+    "quick": {
+      "heartbeatChecks": 96,
+      "serialQueueChecks": 96,
+      "queueSchemaChecks": 80,
+      "browserChecks": 0,
+      "monitorAuthorityChecks": 0,
+      "dataCenterChecks": 120,
+      "rewardEvidenceChecks": 120,
+      "fullAudit": false
+    },
+    "standard": {
+      "heartbeatChecks": 128,
+      "serialQueueChecks": 128,
+      "queueSchemaChecks": 96,
+      "browserChecks": 240,
+      "monitorAuthorityChecks": 160,
+      "dataCenterChecks": 180,
+      "rewardEvidenceChecks": 180,
+      "fullAudit": false
+    },
+    "full": {
+      "heartbeatChecks": 500,
+      "serialQueueChecks": 500,
+      "queueSchemaChecks": 500,
+      "browserChecks": 500,
+      "monitorAuthorityChecks": 500,
+      "dataCenterChecks": 500,
+      "rewardEvidenceChecks": 500,
+      "fullAudit": true
+    }
+  },
+  "pathGroups": {
+    "validationFramework": [
+      ".github/workflows/atlas-conflict-reasoner.yml",
+      "tools/select_release_validation.py",
+      "data/quality/release-validation-policy.json",
+      "release-manifest.json"
+    ],
+    "scanCore": [
+      "tools/supervise_runtime_heartbeat.py",
+      "tools/run_scan_with_auto_recovery.py",
+      "tools/run_scan_with_auto_recovery_v2.py",
+      "tools/scan_catalog_queue_v2.py",
+      "tools/diagnose_and_recover_scan_v2.py",
+      "tools/heartbeat_system_smoke.py",
+      "tools/serial_queue_order_smoke.py",
+      "tools/queue_schema_smoke.py",
+      "data/scan-bug-dictionary.json",
+      "data/batch-analysis/eleven-heartbeat-supervisor.json",
+      ".github/workflows/scan-eleven-pilot-v2.yml",
+      ".github/workflows/supervise-eleven-heartbeat.yml"
+    ],
+    "monitor": [
+      "scan-monitor.js",
+      "tools/monitor_batch_authority_smoke.mjs"
+    ],
+    "dataCenter": [
+      "atlas-settings.js",
+      "atlas-evidence-studio.js",
+      "tools/data_center_contract_smoke.mjs"
+    ],
+    "rewards": [
+      "data/rewards/**",
+      "tools/reward_evidence_contract_smoke.mjs"
+    ],
+    "ui": [
+      "index.html",
+      "app.js",
+      "sw.js",
+      "atlas-bootstrap.js",
+      "atlas-liquid-nav-0934.js",
+      "atlas-liquid-nav-0934.css",
+      "atlas-controls-0938.js",
+      "atlas-ipad-nav-0940.js",
+      "atlas-ui-fix-0931.js",
+      "atlas-data-guard-0939.js",
+      "atlas-080.js",
+      "styles.css",
+      "tools/browser_conflict_smoke.mjs"
+    ],
+    "highRisk": [
+      "sw.js",
+      "app.js",
+      "atlas-liquid-nav-0934.js",
+      "atlas-ui-fix-0931.js",
+      "atlas-data-guard-0939.js",
+      "tools/run_scan_with_auto_recovery.py",
+      "tools/run_scan_with_auto_recovery_v2.py",
+      "tools/supervise_runtime_heartbeat.py"
+    ]
+  },
+  "scheduledFullAudit": {
+    "lastCompletedVersion": "0.9.4.8",
+    "nextRequiredVersion": "0.9.4.11"
+  }
+}
