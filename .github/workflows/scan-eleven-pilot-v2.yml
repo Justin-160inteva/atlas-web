@@ -46,14 +46,17 @@ jobs:
           python -m py_compile tools/analyze_authorized_video_v13.py
           python -m py_compile tools/bilibili_transport_smoke.py
           python -m py_compile tools/p33_v14_hook/sitecustomize.py
+          python -m py_compile tools/p33_chunked_tail_smoke.py
           python -m py_compile tools/scan_catalog_queue_v2.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
           python -m py_compile tools/update_analysis_index.py
 
-      - name: Run 96-check signed metadata and CDN failover gate
-        run: python tools/bilibili_transport_smoke.py
+      - name: Run source transport gates
+        run: |
+          python tools/bilibili_transport_smoke.py
+          python tools/p33_chunked_tail_smoke.py
 
       - name: Verify conditional HTTP/1.1 hook
         env:
@@ -64,10 +67,11 @@ jobs:
           import sitecustomize
           from curl_cffi import requests
           assert sitecustomize.ATLAS_HTTP11_PATCHED is True
+          assert sitecustomize.ATLAS_TAIL_REPAIR_PATCHED is True
           assert requests._atlas_http11_patched is True
           assert callable(requests._atlas_http11_original_get)
           assert callable(requests._atlas_http11_original_request)
-          print('conditional HTTP/1.1 transport hook is active')
+          print('conditional HTTP/1.1 and chunked-tail transport hooks are active')
           PY
 
       - name: Verify authorization and eleven-item serial state
@@ -213,25 +217,44 @@ jobs:
 
       - name: Persist durable state
         if: always()
+        id: persist
         run: |
+          echo "persisted=false" >> "$GITHUB_OUTPUT"
           TRACKED='data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/eleven-pilot-scan-manifest.json'
-          if [ -z "$(git status --porcelain -- $TRACKED)" ]; then exit 0; fi
+          if [ -z "$(git status --porcelain -- $TRACKED)" ]; then
+            if [ "${{ steps.decision.outputs.progressed }}" = "true" ]; then
+              echo 'progress was reported but no durable state files changed' >&2
+              exit 1
+            fi
+            exit 0
+          fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add $TRACKED
           git commit -m "Scan ${{ steps.decision.outputs.region }}: ${{ steps.decision.outputs.imported }}/${{ steps.decision.outputs.total }} (${{ steps.decision.outputs.action }})"
-          for attempt in 1 2 3; do
-            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              pushed_sha=$(git rev-parse HEAD)
+              git fetch origin main
+              if git merge-base --is-ancestor "$pushed_sha" origin/main; then
+                echo "persisted=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
             git rebase --abort || true
             sleep $((attempt * 4))
           done
           exit 1
 
       - name: Continue with exactly one next item after durable success
-        if: always() && steps.decision.outputs.complete != 'true' && steps.decision.outputs.human != 'true' && steps.decision.outputs.progressed == 'true'
+        if: always() && steps.persist.outputs.persisted == 'true' && steps.decision.outputs.complete != 'true' && steps.decision.outputs.human != 'true' && steps.decision.outputs.progressed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run scan-eleven-pilot-v2.yml --ref main
+
+      - name: Stop when durable success was not persisted
+        if: always() && steps.decision.outputs.progressed == 'true' && steps.persist.outputs.persisted != 'true'
+        run: exit 1
 
       - name: Stop visibly on current unrecoverable failure
         if: always() && steps.decision.outputs.human == 'true'
