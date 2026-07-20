@@ -57,16 +57,23 @@
     }
   }
 
-  function formatQuantity(reward) {
+  function rewardSupportCount(reward, sources) {
+    const token = `reward:${reward.type}:${reward.nameOriginal || reward.nameZhCN}`;
+    return sources.filter(source => Array.isArray(source.supports) && source.supports.includes(token)).length;
+  }
+
+  function formatQuantity(reward, sources) {
     const name = escapeHTML(reward.nameZhCN || '奖励未确认');
-    if (reward.quantityStatus === 'not_applicable') return name;
+    const supportCount = rewardSupportCount(reward, sources);
+    const badge = `<span>${supportCount}个来源</span>`;
+    if (reward.quantityStatus === 'not_applicable') return `${name}${badge}`;
     if (reward.quantityStatus === 'exact' && Number.isFinite(reward.quantity)) {
-      return `${escapeHTML(reward.quantity)} × ${name}`;
+      return `${escapeHTML(reward.quantity)} × ${name}${badge}`;
     }
     if (reward.quantityStatus === 'minimum' && Number.isFinite(reward.quantity)) {
-      return `至少 ${escapeHTML(reward.quantity)} × ${name}`;
+      return `至少 ${escapeHTML(reward.quantity)} × ${name}${badge}`;
     }
-    return `${name}<span>数量未确认</span>`;
+    return `${name}<span>数量未确认 · ${supportCount}个来源</span>`;
   }
 
   function unresolvedMarkup() {
@@ -106,10 +113,10 @@
         <span class="atlas-reward-status ${escapeHTML(record.status)}">${escapeHTML(status)}</span>
       </div>
       <b>${escapeHTML(record.summaryZhCN || '奖励尚未确认')}</b>
-      ${rewards.length ? `<div class="atlas-reward-list">${rewards.map(reward => `<div>${formatQuantity(reward)}</div>`).join('')}</div>` : ''}
+      ${rewards.length ? `<div class="atlas-reward-list">${rewards.map(reward => `<div>${formatQuantity(reward, sources)}</div>`).join('')}</div>` : ''}
       <div class="atlas-reward-meta"><span>置信度 ${confidence}%</span><span>${sources.length} 个来源</span><span>${openConflicts.length} 个未解决冲突</span><span>${acceptedUncertainty.length} 项已接受不确定性</span></div>
       ${openConflicts.length ? `<p class="atlas-reward-conflict">存在未解决证据冲突，当前摘要不可视为最终结论。</p>` : ''}
-      ${record.status === 'high_confidence_inference' ? '<p>该记录是高置信推断，不代表官方确认；需第二独立来源或当前版本游戏内复核。</p>' : ''}
+      ${record.status === 'high_confidence_inference' ? '<p>来源覆盖可能只支持部分奖励；整条记录仍是高置信推断，不代表官方确认。</p>' : ''}
       ${sourceMarkup}
     `;
   }
