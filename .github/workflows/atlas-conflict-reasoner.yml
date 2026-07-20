@@ -6,6 +6,18 @@ on:
     paths-ignore:
       - 'data/conflict-reports/**'
       - 'data/audits/**'
+      - 'data/runtime-progress/**'
+      - 'data/analysis-results/**'
+      - 'data/analysis-jobs/**'
+      - 'data/analysis-index.json'
+      - 'data/eleven-game-world-ac-shadows-catalog.json'
+      - 'data/batch-analysis/eleven-pilot-scan-queue.json'
+      - 'data/batch-analysis/eleven-pilot-scan-status.json'
+      - 'data/batch-analysis/eleven-pilot-recovery-report.json'
+      - 'data/batch-analysis/eleven-pilot-orchestration-report.json'
+      - 'data/batch-analysis/eleven-heartbeat-supervisor-state.json'
+      - 'data/batch-analysis/eleven-pilot-v2-trigger.json'
+      - 'data/batch-analysis/scan-system-health.json'
       - 'CONFLICT-REPORT.md'
   pull_request:
   workflow_dispatch:
@@ -23,12 +35,26 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Compile and select risk-budgeted validation plan
+        id: validation
+        run: |
+          python -m py_compile tools/select_release_validation.py
+          python tools/select_release_validation.py --github-output "$GITHUB_OUTPUT"
+
+      - name: Show validation plan
+        run: |
+          echo "tier=${{ steps.validation.outputs.tier }}"
+          echo "changed=${{ steps.validation.outputs.changed_count }}"
+          cat data/audits/release-validation-budget.json
 
       - name: Verify release manifest synchronization
         run: python tools/sync_release_manifest.py
@@ -68,30 +94,47 @@ jobs:
       - name: Run static conflict reasoner
         run: python tools/atlas_conflict_reasoner_v3.py
 
-      - name: Run 500-scenario unified data center matrix
+      - name: Run unified data center matrix when relevant
+        if: steps.validation.outputs.run_data_center == 'true'
         run: node tools/data_center_contract_smoke.mjs
 
-      - name: Run 500-scenario reward evidence matrix
+      - name: Run reward evidence matrix when relevant
+        if: steps.validation.outputs.run_reward == 'true'
         run: node tools/reward_evidence_contract_smoke.mjs
 
-      - name: Run 500-scenario heartbeat matrix
+      - name: Run risk-budgeted heartbeat matrix
+        if: steps.validation.outputs.run_heartbeat == 'true'
+        env:
+          ATLAS_CHECKS: ${{ steps.validation.outputs.heartbeat_checks }}
+          ATLAS_VALIDATION_TIER: ${{ steps.validation.outputs.tier }}
         run: python tools/heartbeat_system_smoke.py
 
-      - name: Run 500-scenario serial queue order matrix
+      - name: Run risk-budgeted serial queue order matrix
+        if: steps.validation.outputs.run_serial == 'true'
+        env:
+          ATLAS_CHECKS: ${{ steps.validation.outputs.serial_checks }}
+          ATLAS_VALIDATION_TIER: ${{ steps.validation.outputs.tier }}
         run: python tools/serial_queue_order_smoke.py
 
-      - name: Run 500-scenario queue schema matrix
+      - name: Run risk-budgeted queue schema matrix
+        if: steps.validation.outputs.run_queue_schema == 'true'
+        env:
+          ATLAS_CHECKS: ${{ steps.validation.outputs.queue_schema_checks }}
+          ATLAS_VALIDATION_TIER: ${{ steps.validation.outputs.tier }}
         run: python tools/queue_schema_smoke.py
 
-      - name: Run Alpha 0.9.4.8 full project audit
+      - name: Run scheduled full project audit
+        if: steps.validation.outputs.run_full_audit == 'true'
         run: python tools/full_project_audit_0948.py
 
-      - name: Install Playwright Chromium
+      - name: Install Playwright Chromium only when browser validation is required
+        if: steps.validation.outputs.run_playwright == 'true'
         run: |
           npm install --no-save playwright@1.52.0
           npx playwright install --with-deps chromium
 
-      - name: Start local Atlas server
+      - name: Start local Atlas server only for browser validation
+        if: steps.validation.outputs.run_playwright == 'true'
         run: |
           python -m http.server 4173 > /tmp/atlas-server.log 2>&1 &
           echo $! > /tmp/atlas-server.pid
@@ -99,17 +142,19 @@ jobs:
           cat /tmp/atlas-server.log
           exit 1
 
-      - name: Run browser conflict matrix
+      - name: Run browser conflict matrix when UI changes
+        if: steps.validation.outputs.run_browser == 'true'
         env:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/browser_conflict_smoke.mjs
 
-      - name: Run 500-scenario monitor batch authority matrix
+      - name: Run monitor batch authority matrix when monitor changes
+        if: steps.validation.outputs.run_monitor == 'true'
         env:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/monitor_batch_authority_smoke.mjs
 
-      - name: Upload conflict, audit, data-center, reward, heartbeat, order, schema, and batch-authority reports
+      - name: Upload selected validation reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -128,5 +173,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add CONFLICT-REPORT.md data/conflict-reports data/audits data/batch-analysis/scan-system-health.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Update Atlas conflict, audit, reward, heartbeat, order, schema, and batch authority reports [skip ci]'
+          git commit -m 'Update Atlas selected validation reports [skip ci]'
           git push
