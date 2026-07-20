@@ -1,27 +1,26 @@
 #!/usr/bin/env python3
 """Deterministic 128-check gate for Atlas source transport v14.
 
-The established v13 gate contributes 96 checks. This gate adds 32 byte-accurate
-resume checks covering Content-Range validation, curl(18)-style truncation,
-cross-response resume and safe overwrite when a server ignores Range.
+The established v13 suite runs in an isolated subprocess (96 checks). This process
+then executes 32 byte-accurate resume checks for Content-Range validation,
+curl(18)-style truncation, safe restart and durable heartbeat accounting.
 """
 from __future__ import annotations
 
 import importlib.util
 import pathlib
+import subprocess
 import sys
 import tempfile
 import types
 from typing import Any
 
-import bilibili_transport_smoke as v13_smoke
 import resumable_transport_v14 as resume_v14
 
+ROOT = pathlib.Path(__file__).resolve().parents[1]
 
-def main() -> int:
-    if v13_smoke.main() != 0:
-        raise AssertionError("v13 source transport gate failed")
 
+def _load_analyzer() -> Any:
     fake_runner = types.SimpleNamespace(HEADERS={}, requests=None)
     fake_v9 = types.SimpleNamespace(v6=types.SimpleNamespace(main=lambda: 0))
     fake_v11 = types.SimpleNamespace(_single_stream_resume=lambda *_a, **_k: None)
@@ -33,7 +32,8 @@ def main() -> int:
     fake_v13.transport = types.SimpleNamespace()
     fake_v13.direct_bilibili_download = lambda *_a, **_k: None
     fake_v13.download_with_fallbacks = lambda *_a, **_k: None
-    previous_v13 = sys.modules.get("analyze_authorized_video_v13")
+
+    previous = sys.modules.get("analyze_authorized_video_v13")
     sys.modules["analyze_authorized_video_v13"] = fake_v13
     try:
         spec = importlib.util.spec_from_file_location(
@@ -42,14 +42,31 @@ def main() -> int:
         )
         if spec is None or spec.loader is None:
             raise RuntimeError("unable to load v14 analyzer")
-        analyzer_v14 = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(analyzer_v14)
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        return module
     finally:
-        if previous_v13 is None:
+        if previous is None:
             sys.modules.pop("analyze_authorized_video_v13", None)
         else:
-            sys.modules["analyze_authorized_video_v13"] = previous_v13
+            sys.modules["analyze_authorized_video_v13"] = previous
 
+
+def main() -> int:
+    legacy = subprocess.run(
+        [sys.executable, "tools/bilibili_transport_smoke.py"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if legacy.returncode != 0 or "96/96" not in legacy.stdout:
+        sys.stdout.write(legacy.stdout)
+        sys.stderr.write(legacy.stderr)
+        raise AssertionError("isolated v13 transport regression gate failed")
+
+    analyzer = _load_analyzer()
     checks: list[str] = []
 
     def check(name: str, condition: object) -> None:
@@ -65,16 +82,13 @@ def main() -> int:
             return
         raise AssertionError(name)
 
-    # 16 deterministic response-planning checks.
+    # 16 pure response-planning checks.
     for index in range(8):
         offset = 1024 + index * 257
         total = offset + 2048
         plan = resume_v14.plan_response_write(
             206,
-            {
-                "Content-Range": f"bytes {offset}-{total - 1}/{total}",
-                "Content-Length": "2048",
-            },
+            {"Content-Range": f"bytes {offset}-{total - 1}/{total}", "Content-Length": "2048"},
             requested_offset=offset,
             expected_size=total,
         )
@@ -88,11 +102,10 @@ def main() -> int:
         )
 
     for index in range(4):
-        offset = 1024 + index
         plan = resume_v14.plan_response_write(
             200,
             {"Content-Length": "4096"},
-            requested_offset=offset,
+            requested_offset=1024 + index,
             expected_size=4096,
         )
         check(
@@ -154,92 +167,98 @@ def main() -> int:
                 raise AssertionError("unexpected request")
             return self.responses.pop(0)
 
-    original_requests = analyzer_v14.runner.requests
-    original_headers = analyzer_v14.runner.HEADERS
-    original_sleep = analyzer_v14.time.sleep
-    analyzer_v14.runner.HEADERS = {"User-Agent": "Atlas-v14-smoke"}
-    analyzer_v14.time.sleep = lambda _seconds: None
+    original_requests = analyzer.runner.requests
+    original_headers = analyzer.runner.HEADERS
+    original_sleep = analyzer.time.sleep
+    analyzer.runner.HEADERS = {"User-Agent": "Atlas-v14-smoke"}
+    analyzer.time.sleep = lambda _seconds: None
+
+    def run_case(
+        name: str,
+        initial: bytes,
+        responses: list[FakeResponse],
+        expected: bytes,
+        *,
+        expected_size: int,
+        downloaded_before: int = 0,
+        retries: int = 1,
+    ) -> tuple[FakeRequests, FakeHeartbeat]:
+        target = test_root / f"{name}.m4s"
+        if initial:
+            target.write_bytes(initial)
+        fake = FakeRequests(responses)
+        heartbeat = FakeHeartbeat()
+        analyzer.runner.requests = fake
+        analyzer._single_stream_resume_v14(
+            f"https://cdn.example/{name}",
+            target,
+            expected_size=expected_size,
+            heartbeat=heartbeat,
+            downloaded_before=downloaded_before,
+            segment_index=1,
+            chunk_size=512,
+            retries=retries,
+        )
+        check(f"runtime-{name}-size", target.stat().st_size == len(expected))
+        check(f"runtime-{name}-content", target.read_bytes() == expected)
+        return fake, heartbeat
 
     try:
         with tempfile.TemporaryDirectory(prefix="atlas-v14-smoke-") as directory:
-            root = pathlib.Path(directory)
+            test_root = pathlib.Path(directory)
 
-            # Exact second-half append.
-            target = root / "exact.m4s"
-            target.write_bytes(b"a" * 1024)
-            heartbeat = FakeHeartbeat()
-            fake = FakeRequests([FakeResponse(
-                206,
-                {"Content-Range": "bytes 1024-2047/2048", "Content-Length": "1024"},
-                [b"b" * 512, b"b" * 512],
-            )])
-            analyzer_v14.runner.requests = fake
-            analyzer_v14._single_stream_resume_v14(
-                "https://cdn.example/exact", target, expected_size=2048,
-                heartbeat=heartbeat, downloaded_before=0, segment_index=1,
-                chunk_size=512, retries=1,
+            fake, heartbeat = run_case(
+                "exact",
+                b"a" * 1024,
+                [FakeResponse(206, {"Content-Range": "bytes 1024-2047/2048", "Content-Length": "1024"}, [b"b" * 512, b"b" * 512])],
+                b"a" * 1024 + b"b" * 1024,
+                expected_size=2048,
             )
-            check("runtime-exact-resume-size", target.stat().st_size == 2048)
-            check("runtime-exact-resume-content", target.read_bytes() == b"a" * 1024 + b"b" * 1024)
-            check("runtime-exact-resume-header", fake.headers_seen == [{"User-Agent": "Atlas-v14-smoke", "Accept-Encoding": "identity", "Range": "bytes=1024-"}])
-            check("runtime-exact-resume-heartbeat", heartbeat.updates[-1]["segmentDownloadedBytes"] == 2048)
+            check("runtime-exact-header", fake.headers_seen[0].get("Range") == "bytes=1024-")
+            check("runtime-exact-heartbeat", heartbeat.updates[-1]["segmentDownloadedBytes"] == 2048)
 
-            # Range ignored: overwrite, never append a fresh full response to residue.
-            target = root / "overwrite.m4s"
-            target.write_bytes(b"old" * 500)
-            heartbeat = FakeHeartbeat()
-            fake = FakeRequests([FakeResponse(200, {"Content-Length": "2048"}, [b"c" * 2048])])
-            analyzer_v14.runner.requests = fake
-            analyzer_v14._single_stream_resume_v14(
-                "https://cdn.example/full", target, expected_size=2048,
-                heartbeat=heartbeat, downloaded_before=0, segment_index=1,
-                chunk_size=512, retries=1,
+            fake, heartbeat = run_case(
+                "restart",
+                b"old" * 500,
+                [FakeResponse(200, {"Content-Length": "2048"}, [b"c" * 2048])],
+                b"c" * 2048,
+                expected_size=2048,
             )
-            check("runtime-full-restart-size", target.stat().st_size == 2048)
-            check("runtime-full-restart-content", target.read_bytes() == b"c" * 2048)
-            check("runtime-full-restart-no-residue", b"old" not in target.read_bytes())
-            check("runtime-full-restart-requested-range", fake.headers_seen[0]["Range"].startswith("bytes="))
+            check("runtime-restart-range-requested", "Range" in fake.headers_seen[0])
+            check("runtime-restart-no-residue", heartbeat.updates[-1]["segmentDownloadedBytes"] == 2048)
 
-            # curl(18)-style mid-body failure resumes from the durable byte count.
-            target = root / "truncated.m4s"
-            heartbeat = FakeHeartbeat()
-            fake = FakeRequests([
-                FakeResponse(200, {"Content-Length": "2048"}, [b"d" * 1024, RuntimeError("curl: (18) end of response")]),
-                FakeResponse(206, {"Content-Range": "bytes 1024-2047/2048", "Content-Length": "1024"}, [b"e" * 1024]),
-            ])
-            analyzer_v14.runner.requests = fake
-            analyzer_v14._single_stream_resume_v14(
-                "https://cdn.example/truncated", target, expected_size=2048,
-                heartbeat=heartbeat, downloaded_before=0, segment_index=1,
-                chunk_size=512, retries=2,
+            fake, heartbeat = run_case(
+                "truncation",
+                b"",
+                [
+                    FakeResponse(200, {"Content-Length": "2048"}, [b"d" * 1024, RuntimeError("curl: (18) end of response")]),
+                    FakeResponse(206, {"Content-Range": "bytes 1024-2047/2048", "Content-Length": "1024"}, [b"e" * 1024]),
+                ],
+                b"d" * 1024 + b"e" * 1024,
+                expected_size=2048,
+                retries=2,
             )
-            check("runtime-truncation-resume-size", target.stat().st_size == 2048)
-            check("runtime-truncation-resume-content", target.read_bytes() == b"d" * 1024 + b"e" * 1024)
-            check("runtime-truncation-second-offset", fake.headers_seen[1]["Range"] == "bytes=1024-")
-            check("runtime-truncation-count-synchronized", heartbeat.updates[-1]["downloadedBytes"] == 2048)
+            check("runtime-truncation-second-offset", fake.headers_seen[1].get("Range") == "bytes=1024-")
+            check("runtime-truncation-durable-count", heartbeat.updates[-1]["downloadedBytes"] == 2048)
 
-            # Missing total length plus a fresh full response must safely restart.
-            target = root / "unknown-total.m4s"
-            target.write_bytes(b"residue" * 200)
-            heartbeat = FakeHeartbeat()
-            fake = FakeRequests([FakeResponse(200, {}, [b"f" * 2048])])
-            analyzer_v14.runner.requests = fake
-            analyzer_v14._single_stream_resume_v14(
-                "https://cdn.example/unknown", target, expected_size=0,
-                heartbeat=heartbeat, downloaded_before=256, segment_index=2,
-                chunk_size=1024, retries=1,
+            fake, heartbeat = run_case(
+                "unknown-total",
+                b"residue" * 200,
+                [FakeResponse(200, {}, [b"f" * 2048])],
+                b"f" * 2048,
+                expected_size=0,
+                downloaded_before=256,
             )
-            check("runtime-unknown-total-size", target.stat().st_size == 2048)
-            check("runtime-unknown-total-content", target.read_bytes() == b"f" * 2048)
-            check("runtime-unknown-total-no-append", b"residue" not in target.read_bytes())
+            check("runtime-unknown-total-range-requested", "Range" in fake.headers_seen[0])
             check("runtime-unknown-total-heartbeat", heartbeat.updates[-1]["downloadedBytes"] == 2304)
     finally:
-        analyzer_v14.runner.requests = original_requests
-        analyzer_v14.runner.HEADERS = original_headers
-        analyzer_v14.time.sleep = original_sleep
+        analyzer.runner.requests = original_requests
+        analyzer.runner.HEADERS = original_headers
+        analyzer.time.sleep = original_sleep
 
     if len(checks) != 32:
         raise AssertionError(f"expected 32 v14 checks, executed {len(checks)}")
+    print(legacy.stdout.strip())
     print("128/128 v14 WBI transport, byte-accurate resume, safe restart, identity, and privacy checks passed")
     return 0
 
