@@ -4,18 +4,18 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 NEXT10 P12-P24",
-  "updatedAt": "2026-07-20T02:13:31.383210Z",
+  "updatedAt": "2026-07-20T02:16:56.961868Z",
   "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 10,
-    "imported": 1,
+    "imported": 2,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 9,
+    "remaining": 8,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -24,11 +24,11 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p012",
       "sequence": 12,
       "page": 12,
-      "state": "queued",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-20T02:14:17.731522Z",
+      "lastFinishedAt": "2026-07-20T02:16:56.956368Z",
+      "resultPath": "data/analysis-results/eleven-p012.json",
       "error": null
     },
     {
@@ -133,18 +133,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p013",
-      "sequence": 13,
-      "page": 13,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P13 第13期：和泉·摄津（收集1）",
-      "startedAt": "2026-07-20T02:10:37.773771Z",
-      "attemptCount": 2,
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p012",
+      "sequence": 12,
+      "page": 12,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P12 第12期：电闪雷鸣",
+      "startedAt": "2026-07-20T02:14:17.731522Z",
+      "attemptCount": 1,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p013.json status=analyzed\n\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (1543339109 > 1035).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 1039\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (35430537 > 1274).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 1278\n[h264 @ 0x5628d8032640] Invalid NAL unit size (1543339109 > 1035).\n[h264 @ 0x5628d8032640] Error splitting the input into NAL units.\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (-540672776 > 755).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 759\n[h264 @ 0x5628d8052fc0] Invalid NAL unit size (35430537 > 1274).\n[h264 @ 0x5628d8052fc0] Error splitting the input into NAL units.\n[h264 @ 0x5628d7fff500] Invalid NAL unit size (-540672776 > 755).\n[h264 @ 0x5628d7fff500] Error splitting the input into NAL units.\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (-1044805246 > 1112).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 1116\n[h264 @ 0x5628d7f67300] Invalid NAL unit size (-1044805246 > 1112).\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (2147020215 > 4732).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 4736\n[h264 @ 0x5628d7f67300] Error splitting the input into NAL units.\n[h264 @ 0x5628d8032640] Invalid NAL unit size (2147020215 > 4732).\n[h264 @ 0x5628d8032640] Error splitting the input into NAL units.\n",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p012.json status=analyzed\n\n",
       "analysisStatus": "analyzed",
       "indexReturnCode": 0,
       "completed": true,
-      "finishedAt": "2026-07-20T02:13:31.377636Z"
+      "finishedAt": "2026-07-20T02:16:56.956368Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
