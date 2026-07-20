@@ -25,6 +25,30 @@
     return response.json();
   }
 
+  async function loadRuntimeRecords(recordIndex) {
+    const records = new Map(Object.entries(recordIndex.records || {}));
+    const fileEntries = Object.entries(recordIndex.recordFiles || {});
+    const results = await Promise.allSettled(fileEntries.map(async ([locationId, path]) => {
+      const record = await loadJSON(path);
+      if (String(record.locationId) !== String(locationId)) {
+        throw new Error(`${path}: locationId 与运行时索引不一致`);
+      }
+      return [String(locationId), record];
+    }));
+    results.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
+        records.set(result.value[0], result.value[1]);
+      } else {
+        console.warn('[Atlas Rewards] 奖励记录加载失败', fileEntries[index]?.[1], result.reason);
+      }
+    });
+    const expected = Number(recordIndex.recordCount || records.size);
+    if (records.size !== expected) {
+      console.warn(`[Atlas Rewards] 奖励记录数量不完整：${records.size}/${expected}`);
+    }
+    return records;
+  }
+
   function selectedLocationId() {
     try {
       return typeof state !== 'undefined' && state.selected ? String(state.selected.id) : null;
@@ -61,8 +85,9 @@
     const confidence = Math.round(Math.max(0, Math.min(1, Number(record.confidence) || 0)) * 100);
     const rewards = Array.isArray(record.rewards) ? record.rewards : [];
     const sources = Array.isArray(record.sources) ? record.sources : [];
-    const openConflicts = (Array.isArray(record.conflicts) ? record.conflicts : [])
-      .filter(conflict => conflict.status === 'open');
+    const conflicts = Array.isArray(record.conflicts) ? record.conflicts : [];
+    const openConflicts = conflicts.filter(conflict => conflict.status === 'open');
+    const acceptedUncertainty = conflicts.filter(conflict => conflict.status === 'accepted_uncertainty');
     const sourceMarkup = sources.length ? `
       <details class="atlas-reward-evidence">
         <summary>${sources.length} 个可复查来源</summary>
@@ -82,8 +107,9 @@
       </div>
       <b>${escapeHTML(record.summaryZhCN || '奖励尚未确认')}</b>
       ${rewards.length ? `<div class="atlas-reward-list">${rewards.map(reward => `<div>${formatQuantity(reward)}</div>`).join('')}</div>` : ''}
-      <div class="atlas-reward-meta"><span>置信度 ${confidence}%</span><span>${sources.length} 个来源</span><span>${openConflicts.length} 个未解决冲突</span></div>
+      <div class="atlas-reward-meta"><span>置信度 ${confidence}%</span><span>${sources.length} 个来源</span><span>${openConflicts.length} 个未解决冲突</span><span>${acceptedUncertainty.length} 项已接受不确定性</span></div>
       ${openConflicts.length ? `<p class="atlas-reward-conflict">存在未解决证据冲突，当前摘要不可视为最终结论。</p>` : ''}
+      ${record.status === 'high_confidence_inference' ? '<p>该记录是高置信推断，不代表官方确认；需第二独立来源或当前版本游戏内复核。</p>' : ''}
       ${sourceMarkup}
     `;
   }
@@ -143,9 +169,9 @@
   async function refresh() {
     if (runtime.loading) return runtime.loading;
     runtime.loading = Promise.all([loadJSON(INDEX_URL), loadJSON(RECORDS_URL)])
-      .then(([index, recordIndex]) => {
+      .then(async ([index, recordIndex]) => {
         runtime.coverage = index.coverage || null;
-        runtime.records = new Map(Object.entries(recordIndex.records || {}));
+        runtime.records = await loadRuntimeRecords(recordIndex);
         runtime.ready = true;
         renderCoverage();
         renderSelectedReward();
