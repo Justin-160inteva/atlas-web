@@ -1,20 +1,20 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-07-19T23:13:38.055041Z",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-20T01:32:19.875416Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "finalState": "scan_completed_or_progressed",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-19T23:12:24.020974Z",
-      "finishedAt": "2026-07-19T23:13:38.054674Z",
+      "startedAt": "2026-07-20T01:26:11.392983Z",
+      "finishedAt": "2026-07-20T01:32:17.349509Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
-      "imported": 4,
+      "imported": 5,
       "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 5, \"imported\": 4, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 1}\n\n"
+      "scannerOutput": "{\"total\": 5, \"imported\": 5, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 0}\n\n"
     }
   ],
   "safety": {

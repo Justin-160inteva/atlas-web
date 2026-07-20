@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-19T21:52:00Z",
-  "updatedAt": "2026-07-19T23:13:38.045032Z",
-  "status": "progress",
+  "updatedAt": "2026-07-20T01:32:17.339460Z",
+  "status": "complete",
   "pilotRegion": "顺序批次 P07-P11",
   "strategy": "严格保留原合集顺序；本批包含P07-P11共5期，但每次工作流只处理一期。当前一期完成、验证并持久化后，才自动启动下一期。",
   "items": [
@@ -103,8 +103,11 @@
       "mapUtility": "中高",
       "priority": 74,
       "durationSeconds": 2498,
-      "state": "pending",
-      "attemptCount": 0
+      "state": "imported",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-20T01:26:11.436041Z",
+      "resultPath": "data/analysis-results/eleven-p011.json",
+      "lastFinishedAt": "2026-07-20T01:32:17.336194Z"
     }
   ]
 }
