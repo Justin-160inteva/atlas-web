@@ -65,7 +65,8 @@
   function formatQuantity(reward, sources) {
     const name = escapeHTML(reward.nameZhCN || '奖励未确认');
     const supportCount = rewardSupportCount(reward, sources);
-    const badge = `<span>${supportCount}个来源</span>`;
+    const sourceBadgeText = `${supportCount}个来源`;
+    const badge = `<span title="可复查来源数量">${sourceBadgeText}</span>`;
     if (reward.quantityStatus === 'not_applicable') return `${name}${badge}`;
     if (reward.quantityStatus === 'exact' && Number.isFinite(reward.quantity)) {
       return `${escapeHTML(reward.quantity)} × ${name}${badge}`;
@@ -73,7 +74,7 @@
     if (reward.quantityStatus === 'minimum' && Number.isFinite(reward.quantity)) {
       return `至少 ${escapeHTML(reward.quantity)} × ${name}${badge}`;
     }
-    return `${name}<span>数量未确认 · ${supportCount}个来源</span>`;
+    return `${name}<span title="可复查来源数量">数量未确认 · ${sourceBadgeText}</span>`;
   }
 
   function unresolvedMarkup() {
