@@ -1,29 +1,162 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 2,
   "batchId": "eleven-production-p025-p035-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
-  "updatedAt": "2026-07-20T14:20:00Z",
-  "phase": "queued",
-  "activeItem": {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p025","sequence":25,"page":25,"state":"queued","attemptCount":0,"configurationAttemptCount":3},
+  "updatedAt": "2026-07-20T14:34:41.443491Z",
+  "phase": "progress",
+  "activeItem": null,
   "complete": false,
-  "summary": {"total":11,"imported":0,"running":0,"failed":0,"blocked":0,"retryableFailed":0,"remaining":11,"attemptedThisRun":0,"newlyImportedThisRun":0},
+  "summary": {
+    "total": 11,
+    "imported": 1,
+    "running": 0,
+    "failed": 0,
+    "blocked": 0,
+    "retryableFailed": 0,
+    "remaining": 10,
+    "attemptedThisRun": 1,
+    "newlyImportedThisRun": 1
+  },
   "items": [
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p025","sequence":25,"page":25,"state":"queued","attemptCount":0,"configurationAttemptCount":3,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p026","sequence":26,"page":26,"state":"pending","attemptCount":0,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p027","sequence":27,"page":27,"state":"pending","attemptCount":0,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p028","sequence":28,"page":28,"state":"pending","attemptCount":0,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p029","sequence":29,"page":29,"state":"pending","attemptCount":0,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p030","sequence":30,"page":30,"state":"pending","attemptCount":0,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p031","sequence":31,"page":31,"state":"pending","attemptCount":0,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p032","sequence":32,"page":32,"state":"pending","attemptCount":0,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p033","sequence":33,"page":33,"state":"pending","attemptCount":0,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p034","sequence":34,"page":34,"state":"pending","attemptCount":0,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p035","sequence":35,"page":35,"state":"pending","attemptCount":0,"resultPath":null,"error":null}
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p025",
+      "sequence": 25,
+      "page": 25,
+      "state": "imported",
+      "attemptCount": 2,
+      "lastStartedAt": "2026-07-20T14:29:42.755293Z",
+      "lastFinishedAt": "2026-07-20T14:34:41.437792Z",
+      "resultPath": "data/analysis-results/eleven-p025.json",
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p026",
+      "sequence": 26,
+      "page": 26,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p027",
+      "sequence": 27,
+      "page": 27,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p028",
+      "sequence": 28,
+      "page": 28,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p029",
+      "sequence": 29,
+      "page": 29,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p030",
+      "sequence": 30,
+      "page": 30,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p031",
+      "sequence": 31,
+      "page": 31,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p032",
+      "sequence": 32,
+      "page": 32,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
+      "sequence": 33,
+      "page": 33,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
+      "sequence": 34,
+      "page": 34,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p035",
+      "sequence": 35,
+      "page": 35,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    }
   ],
   "events": [
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p025","sequence":25,"page":25,"configurationAttemptCount":3,"completed":false,"error":"Three pre-transfer configuration attempts failed because title metadata was missing; metadata is now repaired and media attempt counter reset.","finishedAt":"2026-07-20T14:20:00Z"}
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p025",
+      "sequence": 25,
+      "page": 25,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P25 第25期：倾奇者",
+      "startedAt": "2026-07-20T14:29:42.755293Z",
+      "attemptCount": 2,
+      "analyzerReturnCode": 0,
+      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.91s\nanalysis result written: data/analysis-results/eleven-p025.json status=analyzed\n\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (216992766 > 2297).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 2301\n[h264 @ 0x55ddcdc46200] Invalid NAL unit size (216992766 > 2297).\n[h264 @ 0x55ddcdc46200] Error splitting the input into NAL units.\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (1489335986 > 1363).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 1367\n[h264 @ 0x55ddcde97a40] Invalid NAL unit size (1489335986 > 1363).\n[h264 @ 0x55ddcde97a40] Error splitting the input into NAL units.\n[h264 @ 0x55ddcdcbf980] error while decoding MB 6 16, bytestream -5\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (663429784 > 2713).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 2717\n[h264 @ 0x55ddcdcb6740] Invalid NAL unit size (663429784 > 2713).\n[h264 @ 0x55ddcdcb6740] Error splitting the input into NAL units.\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (583398257 > 766).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 770\n[h264 @ 0x55ddcdcbf980] Invalid NAL unit size (583398257 > 766).\n[h264 @ 0x55ddcdcbf980] Error splitting the input into NAL units.\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (429475454 > 1222).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 1226\n[h264 @ 0x55ddcdc46200] Invalid NAL unit size (429475454 > 1222).\n[h264 @ 0x55ddcdc46200] Error splitting the input into NAL units.\n",
+      "analysisStatus": "analyzed",
+      "indexReturnCode": 0,
+      "completed": true,
+      "finishedAt": "2026-07-20T14:34:41.437792Z"
+    }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
 }
