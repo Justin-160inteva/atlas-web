@@ -4,7 +4,7 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
-  "updatedAt": "2026-07-20T20:10:47.580383Z",
+  "updatedAt": "2026-07-20T20:56:19.795262Z",
   "phase": "retryable_failure",
   "activeItem": null,
   "complete": false,
@@ -113,11 +113,11 @@
       "sequence": 33,
       "page": 33,
       "state": "failed",
-      "attemptCount": 6,
-      "lastStartedAt": "2026-07-20T20:06:22.918422Z",
-      "lastFinishedAt": "2026-07-20T20:10:47.573589Z",
+      "attemptCount": 7,
+      "lastStartedAt": "2026-07-20T20:49:51.583800Z",
+      "lastFinishedAt": "2026-07-20T20:56:19.788775Z",
       "resultPath": null,
-      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:HTTPError:HTTP Error 503: Service Unavailable | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (92) HTTP/2 stream 1 was not closed cleanly: INTERNAL_ERROR (err 2). See [url-redacted] first for more details.\"}]"
+      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (18) end of response with 82477576 bytes missing. See [url-redacted] first for more details.\"}]"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
@@ -148,15 +148,15 @@
       "sequence": 33,
       "page": 33,
       "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P33 第33期：近江（收集1）",
-      "startedAt": "2026-07-20T20:06:22.918422Z",
-      "attemptCount": 6,
+      "startedAt": "2026-07-20T20:49:51.583800Z",
+      "attemptCount": 7,
       "analyzerReturnCode": 0,
       "analyzerOutput": "analysis result written: data/analysis-results/eleven-p033.json status=failed\n\n",
       "analysisStatus": "failed",
       "indexReturnCode": 0,
       "completed": false,
-      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:HTTPError:HTTP Error 503: Service Unavailable | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (92) HTTP/2 stream 1 was not closed cleanly: INTERNAL_ERROR (err 2). See [url-redacted] first for more details.\"}]",
-      "finishedAt": "2026-07-20T20:10:47.573589Z"
+      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (18) end of response with 82477576 bytes missing. See [url-redacted] first for more details.\"}]",
+      "finishedAt": "2026-07-20T20:56:19.788775Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
