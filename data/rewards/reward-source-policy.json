@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "language": "zh-CN",
+  "targetLocationCount": 3430,
+  "principles": {
+    "neverPresentInferenceAsOfficial": true,
+    "requireSourceLocator": true,
+    "requireConflictTracking": true,
+    "requireStandardSimplifiedChinese": true,
+    "allowEmptyRewardWhenUnresolved": true
+  },
+  "evidenceLevels": [
+    {
+      "id": "official_confirmed",
+      "label": "官方确认",
+      "minimumConfidence": 0.98,
+      "requirements": [
+        "官方游戏内文本、官方指南、官方补丁说明或官方发布资料明确说明奖励",
+        "记录可复查的来源定位"
+      ]
+    },
+    {
+      "id": "multi_source_confirmed",
+      "label": "多来源确认",
+      "minimumConfidence": 0.90,
+      "requirements": [
+        "至少两个相互独立的有效来源结论一致",
+        "至少一个来源必须是游戏内画面、授权视频或可信数据库",
+        "不存在未解决的奖励名称或数量冲突"
+      ]
+    },
+    {
+      "id": "high_confidence_inference",
+      "label": "高置信推断",
+      "minimumConfidence": 0.75,
+      "requirements": [
+        "证据不足以标记为官方或多来源确认",
+        "推断依据和不确定性必须显式记录",
+        "前端必须显示推断标记"
+      ]
+    },
+    {
+      "id": "unresolved",
+      "label": "尚未解决",
+      "minimumConfidence": 0.0,
+      "requirements": [
+        "证据缺失、相互冲突或无法可靠关联到具体点位",
+        "不得生成看似确定的奖励摘要"
+      ]
+    }
+  ],
+  "sourceTypes": [
+    "official_game_text",
+    "official_website",
+    "official_patch_notes",
+    "gameplay_video_authorized",
+    "gameplay_video_public_reference",
+    "game_screenshot",
+    "community_database",
+    "guide_article",
+    "manual_review"
+  ],
+  "conflictTypes": [
+    "reward_name_mismatch",
+    "reward_quantity_mismatch",
+    "location_identity_mismatch",
+    "version_or_patch_mismatch",
+    "translation_mismatch",
+    "source_timestamp_mismatch"
+  ],
+  "forbiddenBehaviors": [
+    "把类别常见奖励自动复制到所有同类点位",
+    "将没有证据的猜测标记为官方确认",
+    "仅凭模糊画面确定精确数量",
+    "覆盖已有冲突而不保留审计记录",
+    "为了提高覆盖率伪造中文物品名称"
+  ]
+}
