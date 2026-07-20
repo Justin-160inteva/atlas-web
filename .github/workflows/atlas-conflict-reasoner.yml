@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths-ignore:
       - 'data/conflict-reports/**'
+      - 'data/audits/**'
       - 'CONFLICT-REPORT.md'
   pull_request:
   workflow_dispatch:
@@ -62,6 +63,7 @@ jobs:
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
           python -m py_compile tools/audit_scan_system_v3.py
+          python -m py_compile tools/full_project_audit_0948.py
 
       - name: Run static conflict reasoner
         run: python tools/atlas_conflict_reasoner_v3.py
@@ -81,8 +83,8 @@ jobs:
       - name: Run 500-scenario queue schema matrix
         run: python tools/queue_schema_smoke.py
 
-      - name: Run full scan, monitor, reward, and project audit
-        run: python tools/audit_scan_system_v3.py
+      - name: Run Alpha 0.9.4.8 full project audit
+        run: python tools/full_project_audit_0948.py
 
       - name: Install Playwright Chromium
         run: |
@@ -107,7 +109,7 @@ jobs:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/monitor_batch_authority_smoke.mjs
 
-      - name: Upload conflict, data-center, reward, heartbeat, order, schema, and batch-authority reports
+      - name: Upload conflict, audit, data-center, reward, heartbeat, order, schema, and batch-authority reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -115,6 +117,7 @@ jobs:
           path: |
             CONFLICT-REPORT.md
             data/conflict-reports/*.json
+            data/audits/*.json
             data/batch-analysis/scan-system-health.json
           if-no-files-found: warn
 
@@ -123,7 +126,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add CONFLICT-REPORT.md data/conflict-reports data/batch-analysis/scan-system-health.json
+          git add CONFLICT-REPORT.md data/conflict-reports data/audits data/batch-analysis/scan-system-health.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Update Atlas conflict, data-center, reward, heartbeat, order, schema, and batch authority reports [skip ci]'
+          git commit -m 'Update Atlas conflict, audit, reward, heartbeat, order, schema, and batch authority reports [skip ci]'
           git push
