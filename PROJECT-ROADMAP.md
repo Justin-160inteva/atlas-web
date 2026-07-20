@@ -46,7 +46,7 @@ Updated baseline: **Alpha 0.9.4.8**
 
 ## Alpha 0.9.4.8 — active work
 
-### Reward evidence pipeline: 3430 locations
+### 3430 个点位奖励证据管线
 
 - [x] Define a reward evidence policy with four states:
   - official confirmed;
