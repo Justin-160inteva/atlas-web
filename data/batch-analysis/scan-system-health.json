@@ -1,14 +1,29 @@
 {
-  "schemaVersion": 4,
-  "generatedAt": "2026-07-20T01:23:19.881014Z",
+  "schemaVersion": 6,
+  "generatedAt": "2026-07-20T13:12:42.674827Z",
   "status": "pass",
   "summary": {
-    "total": 59,
-    "passed": 59,
+    "total": 62,
+    "passed": 62,
     "failed": 0
   },
   "dictionaryVersion": "2026.07.19.5",
   "release": "0.9.4.5",
+  "queueItems": 10,
+  "maximumConcurrentItems": 1,
+  "batchId": "eleven-production-next-10-p012-p024-v1",
+  "catalogProjectionLag": [
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p012",
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p013",
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p014",
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p015",
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p016",
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p017",
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p018",
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p019",
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p023",
+    "bili-eleven-acshadows-BV1FdQ9YdEcN-p024"
+  ],
   "checks": [
     {
       "name": "dictionary_size",
@@ -21,59 +36,119 @@
       "detail": "unique IDs"
     },
     {
-      "name": "dictionary_patterns",
+      "name": "dictionary_complete",
       "passed": true,
-      "detail": "all signatures present"
-    },
-    {
-      "name": "dictionary_actions",
-      "passed": true,
-      "detail": "all actions present"
+      "detail": "patterns and actions present"
     },
     {
       "name": "dictionary_layers",
       "passed": true,
-      "detail": "layers=['analysis', 'heartbeat', 'http-client', 'identity', 'media', 'network', 'orchestration', 'progress-publish', 'runner', 'safety', 'source-download', 'source-metadata']"
+      "detail": "required layers present"
     },
     {
-      "name": "fast_412_cooldown",
+      "name": "cooldowns_bounded",
       "passed": true,
-      "detail": "412 cooldown <=45s"
+      "detail": "network cooldowns bounded"
     },
     {
-      "name": "bounded_429_cooldown",
+      "name": "release_version",
       "passed": true,
-      "detail": "429 cooldown <=120s"
+      "detail": "Alpha 0.9.4.5"
     },
     {
-      "name": "release_0945",
+      "name": "release_full_audit",
       "passed": true,
-      "detail": "Alpha 0.9.4.5 full audit required"
+      "detail": "full audit required"
     },
     {
-      "name": "release_heartbeat_matrix",
+      "name": "release_matrices",
       "passed": true,
-      "detail": "exact heartbeat matrix contract"
+      "detail": "two exact 500-check gates"
     },
     {
-      "name": "release_single_monitor",
+      "name": "release_monitor_contract",
       "passed": true,
-      "detail": "single monitor owner"
+      "detail": "single durable monitor"
     },
     {
-      "name": "release_durable_priority",
+      "name": "release_next10_contract",
       "passed": true,
-      "detail": "durable state wins"
+      "detail": "ten queued, one active, auto continue"
     },
     {
-      "name": "heartbeat_30_seconds",
+      "name": "queue_exact_ten",
       "passed": true,
-      "detail": "30-second worker heartbeat"
+      "detail": "exactly ten bounded items"
     },
     {
-      "name": "telemetry_30_seconds",
+      "name": "queue_unique",
       "passed": true,
-      "detail": "30-second download telemetry"
+      "detail": "ten unique sources"
+    },
+    {
+      "name": "queue_chronological",
+      "passed": true,
+      "detail": "sequence=[12, 13, 14, 15, 16, 17, 18, 19, 23, 24]"
+    },
+    {
+      "name": "queue_skips_imported",
+      "passed": true,
+      "detail": "P20-P22 do not consume slots"
+    },
+    {
+      "name": "queue_region",
+      "passed": true,
+      "detail": "bounded batch label"
+    },
+    {
+      "name": "queue_serial",
+      "passed": true,
+      "detail": "maximum one active item"
+    },
+    {
+      "name": "queue_auto_continue",
+      "passed": true,
+      "detail": "durable-success continuation"
+    },
+    {
+      "name": "queue_status_batch_identity",
+      "passed": true,
+      "detail": "queue=eleven-production-next-10-p012-p024-v1, status=eleven-production-next-10-p012-p024-v1"
+    },
+    {
+      "name": "queue_terminal_authority",
+      "passed": true,
+      "detail": "terminal status protects completed queue"
+    },
+    {
+      "name": "status_coherent",
+      "passed": true,
+      "detail": "status matches queue"
+    },
+    {
+      "name": "queue_catalog_state",
+      "passed": true,
+      "detail": "durable status wins; catalog lagged=10"
+    },
+    {
+      "name": "catalog_lag_is_bounded",
+      "passed": true,
+      "detail": "lagged projections=10"
+    },
+    {
+      "name": "manifest_serial",
+      "passed": true,
+      "detail": "one item per run"
+    },
+    {
+      "name": "manifest_auto_continue",
+      "passed": true,
+      "detail": "auto continuation enabled"
+    },
+    {
+      "name": "heartbeat_telemetry",
+      "passed": true,
+      "detail": "30-second heartbeat and telemetry"
     },
     {
       "name": "v12_adapter",
@@ -83,37 +158,42 @@
     {
       "name": "adaptive_ranges",
       "passed": true,
-      "detail": "bounded HTTP range transfer"
+      "detail": "bounded range transfer"
     },
     {
-      "name": "no_rate_limit",
+      "name": "download_policy",
       "passed": true,
-      "detail": "no artificial bandwidth cap"
-    },
-    {
-      "name": "range_workers",
-      "passed": true,
-      "detail": "bounded parallel workers"
-    },
-    {
-      "name": "range_resume",
-      "passed": true,
-      "detail": "range resume and single-stream fallback"
-    },
-    {
-      "name": "balanced_sampling",
-      "passed": true,
-      "detail": "catalog-aware sample profiles"
-    },
-    {
-      "name": "bounded_queue",
-      "passed": true,
-      "detail": "up to five queued, one item per run"
+      "detail": "no artificial cap, bounded workers"
     },
     {
       "name": "retention",
       "passed": true,
       "detail": "no retained media pixels"
+    },
+    {
+      "name": "workflow_capacity",
+      "passed": true,
+      "detail": "ten-item workflow gate"
+    },
+    {
+      "name": "workflow_serial",
+      "passed": true,
+      "detail": "one active scan"
+    },
+    {
+      "name": "workflow_catalog_state",
+      "passed": true,
+      "detail": "catalog state remains coherent after each run"
+    },
+    {
+      "name": "workflow_400_gate",
+      "passed": true,
+      "detail": "400-round scan gate"
+    },
+    {
+      "name": "workflow_auto_continue",
+      "passed": true,
+      "detail": "next run only after durable success"
     },
     {
       "name": "monitor_poll",
@@ -123,117 +203,87 @@
     {
       "name": "monitor_thresholds",
       "passed": true,
-      "detail": "30/75/150-second monitor thresholds"
+      "detail": "heartbeat thresholds"
     },
     {
       "name": "monitor_version",
       "passed": true,
-      "detail": "monitor v0.6.0 pinned"
+      "detail": "monitor v0.6.1"
     },
     {
       "name": "monitor_single_controller",
       "passed": true,
-      "detail": "obsolete competing controller removed"
-    },
-    {
-      "name": "monitor_authoritative_api",
-      "passed": true,
-      "detail": "bounded authoritative calibration"
+      "detail": "one monitor controller"
     },
     {
       "name": "monitor_durable_priority",
       "passed": true,
-      "detail": "imported state rejects stale runtime"
+      "detail": "durable state wins"
     },
     {
-      "name": "monitor_terminal_telemetry",
+      "name": "monitor_batch_authority",
       "passed": true,
-      "detail": "historical telemetry cannot become active heartbeat"
-    },
-    {
-      "name": "monitor_supervisor_visibility",
-      "passed": true,
-      "detail": "supervisor state is visible"
+      "detail": "mismatched legacy queues are isolated"
     },
     {
       "name": "monitor_cache",
       "passed": true,
-      "detail": "monitor cache generation v11"
+      "detail": "single-monitor cache"
+    },
+    {
+      "name": "supervisor_capacity",
+      "passed": true,
+      "detail": "ten-item supervisor gate"
+    },
+    {
+      "name": "supervisor_serial",
+      "passed": true,
+      "detail": "one-item supervisor policy"
+    },
+    {
+      "name": "supervisor_auto_continue",
+      "passed": true,
+      "detail": "supervisor continuation policy"
     },
     {
       "name": "supervisor_thresholds",
       "passed": true,
-      "detail": "90/180-second supervisor thresholds"
+      "detail": "90/180-second thresholds"
     },
     {
-      "name": "supervisor_dedup_policy",
+      "name": "supervisor_dedup",
       "passed": true,
-      "detail": "360-second resume deduplication"
+      "detail": "resume deduplication"
     },
     {
-      "name": "supervisor_durable_policy",
+      "name": "supervisor_durable",
       "passed": true,
-      "detail": "durable terminal projection policy"
-    },
-    {
-      "name": "supervisor_five_item_gate",
-      "passed": true,
-      "detail": "five-item safety gate"
-    },
-    {
-      "name": "supervisor_persists_projection",
-      "passed": true,
-      "detail": "runtime projection persisted"
-    },
-    {
-      "name": "supervisor_terminal_logic",
-      "passed": true,
-      "detail": "terminal runtime reconciliation"
-    },
-    {
-      "name": "supervisor_resume_dedup",
-      "passed": true,
-      "detail": "duplicate dispatch suppression"
+      "detail": "durable reconciliation"
     },
     {
       "name": "supervisor_safety",
       "passed": true,
-      "detail": "repair safety invariants"
+      "detail": "bounded repair safety"
     },
     {
-      "name": "publisher_conflict_logic",
+      "name": "publisher_conflict",
       "passed": true,
       "detail": "fresh-SHA conflict retry"
     },
     {
       "name": "telemetry_preservation",
       "passed": true,
-      "detail": "same-item metrics preserved across stages"
+      "detail": "same-item telemetry preserved"
     },
     {
       "name": "same_job_recovery",
       "passed": true,
-      "detail": "same-job diagnosis"
-    },
-    {
-      "name": "v12_recovery_normalization",
-      "passed": true,
-      "detail": "retries remain on v12"
+      "detail": "same-job bounded recovery"
     },
     {
       "name": "success_projection",
       "passed": true,
-      "detail": "success clears stale recovery and publishes terminal projection"
-    },
-    {
-      "name": "generic_region",
-      "passed": true,
-      "detail": "not hard-coded to one region"
-    },
-    {
-      "name": "live_recovery",
-      "passed": true,
-      "detail": "live recovery state published"
+      "detail": "success projects next item"
     },
     {
       "name": "match_bilibili-http-412",
@@ -271,29 +321,9 @@
       "detail": "OpenCV could not open the downloaded video"
     },
     {
-      "name": "action_412",
-      "passed": true,
-      "detail": "bounded public API plus adaptive ranges"
-    },
-    {
-      "name": "action_range_fallback",
-      "passed": true,
-      "detail": "single-stream fallback"
-    },
-    {
-      "name": "action_media",
-      "passed": true,
-      "detail": "transcode fallback"
-    },
-    {
-      "name": "action_timeout",
-      "passed": true,
-      "detail": "timeout quality/speed recovery"
-    },
-    {
       "name": "publisher_409_simulation",
       "passed": true,
-      "detail": "first conflict recovered on second write"
+      "detail": "first conflict recovered"
     },
     {
       "name": "repository_media_clean",
