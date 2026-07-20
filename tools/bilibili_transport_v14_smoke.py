@@ -7,8 +7,11 @@ cross-response resume and safe overwrite when a server ignores Range.
 """
 from __future__ import annotations
 
+import importlib.util
 import pathlib
+import sys
 import tempfile
+import types
 from typing import Any
 
 import bilibili_transport_smoke as v13_smoke
@@ -19,7 +22,33 @@ def main() -> int:
     if v13_smoke.main() != 0:
         raise AssertionError("v13 source transport gate failed")
 
-    import analyze_authorized_video_v14 as analyzer_v14
+    fake_runner = types.SimpleNamespace(HEADERS={}, requests=None)
+    fake_v9 = types.SimpleNamespace(v6=types.SimpleNamespace(main=lambda: 0))
+    fake_v11 = types.SimpleNamespace(_single_stream_resume=lambda *_a, **_k: None)
+    fake_v13 = types.ModuleType("analyze_authorized_video_v13")
+    fake_v13.v12 = types.SimpleNamespace()
+    fake_v13.v11 = fake_v11
+    fake_v13.v9 = fake_v9
+    fake_v13.runner = fake_runner
+    fake_v13.transport = types.SimpleNamespace()
+    fake_v13.direct_bilibili_download = lambda *_a, **_k: None
+    fake_v13.download_with_fallbacks = lambda *_a, **_k: None
+    previous_v13 = sys.modules.get("analyze_authorized_video_v13")
+    sys.modules["analyze_authorized_video_v13"] = fake_v13
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "atlas_analyzer_v14_smoke",
+            pathlib.Path(__file__).with_name("analyze_authorized_video_v14.py"),
+        )
+        if spec is None or spec.loader is None:
+            raise RuntimeError("unable to load v14 analyzer")
+        analyzer_v14 = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(analyzer_v14)
+    finally:
+        if previous_v13 is None:
+            sys.modules.pop("analyze_authorized_video_v13", None)
+        else:
+            sys.modules["analyze_authorized_video_v13"] = previous_v13
 
     checks: list[str] = []
 
