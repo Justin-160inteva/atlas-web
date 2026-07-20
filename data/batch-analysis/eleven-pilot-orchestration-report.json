@@ -1,20 +1,36 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-20T15:46:53.859023Z",
+  "generatedAt": "2026-07-20T16:06:24.723859Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "finalState": "scan_completed_or_progressed",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-20T15:39:21.344920Z",
-      "finishedAt": "2026-07-20T15:46:53.858106Z",
+      "startedAt": "2026-07-20T15:47:44.613450Z",
+      "finishedAt": "2026-07-20T16:03:31.757284Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
       "imported": 6,
+      "failed": 1,
+      "running": 0,
+      "scannerOutput": "{\"total\": 11, \"imported\": 6, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 5}\n\n",
+      "diagnosisReturnCode": 0,
+      "dictionaryEntryId": "bilibili-http-412",
+      "action": "fast_backoff_public_api_and_adaptive_range",
+      "retryScheduled": true,
+      "requiresHumanReview": false
+    },
+    {
+      "cycle": 2,
+      "startedAt": "2026-07-20T16:03:53.416401Z",
+      "finishedAt": "2026-07-20T16:06:24.723508Z",
+      "scannerReturnCode": 0,
+      "scannerTimeoutSeconds": 5700,
+      "imported": 7,
       "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 6, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 5}\n\n"
+      "scannerOutput": "{\"total\": 11, \"imported\": 7, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 4}\n\n"
     }
   ],
   "safety": {
