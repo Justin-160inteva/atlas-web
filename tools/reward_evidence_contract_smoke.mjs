@@ -1,12 +1,14 @@
 import fs from 'node:fs/promises';
 
 const readJson=async path=>JSON.parse(await fs.readFile(new URL(`../${path}`,import.meta.url),'utf8'));
-const [manifest,policy,schema,terms,index]=await Promise.all([
+const [manifest,policy,schema,terms,index,runtimeIndex,runtimeSource]=await Promise.all([
   readJson('release-manifest.json'),
   readJson('data/rewards/reward-source-policy.json'),
   readJson('data/rewards/reward-record-schema.json'),
   readJson('data/rewards/reward-terminology-zh-CN.json'),
-  readJson('data/rewards/reward-evidence-index.json')
+  readJson('data/rewards/reward-evidence-index.json'),
+  readJson('data/rewards/reward-records-runtime.json'),
+  fs.readFile(new URL('../atlas-rewards-0949.js',import.meta.url),'utf8')
 ]);
 
 const profiles=[
@@ -15,11 +17,13 @@ const profiles=[
 ];
 
 const forbidden=policy.forbiddenBehaviors||[];
+const nextFullAudit=manifest.invariants?.nextRequiredFullAuditVersion;
+const fullAuditRequired=manifest.version===nextFullAudit;
 const contracts={
-  release:manifest.version==='0.9.4.8',
-  fullAudit:manifest.invariants?.requireFullAuditAtThisRelease===true,
-  rewardOwner:manifest.runtimeOwners?.rewardEvidenceIndex==='data/rewards/reward-evidence-index.json',
-  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500,
+  release:index.release===manifest.version&&runtimeIndex.release===manifest.version,
+  fullAudit:manifest.invariants?.requireFullAuditAtThisRelease===fullAuditRequired,
+  rewardOwner:manifest.runtimeOwners?.rewardEvidenceIndex==='data/rewards/reward-evidence-index.json'&&manifest.runtimeOwners?.rewardSummaryRuntime==='atlas-rewards-0949.js'&&manifest.runtimeOwners?.rewardRuntimeRecords==='data/rewards/reward-records-runtime.json',
+  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500&&manifest.invariants?.rewardUnresolvedNeverFabricated===true&&runtimeSource.includes('旧描述不会被当作已确认事实'),
   targetCount:index.targetLocationCount===3430,
   coverageTotal:index.coverage?.total===3430,
   coverageConserved:['officialConfirmed','multiSourceConfirmed','highConfidenceInference','unresolved'].reduce((sum,key)=>sum+Number(index.coverage?.[key]||0),0)===3430,

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "version": "0.9.4.8",
-  "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8",
-  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11",
+  "version": "0.9.4.9",
+  "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.9",
+  "cacheNamespace": "atlas-alpha-0949-pages-v1-monitor-v11-rewards-v1",
   "entrypoint": "index.html",
   "releaseOwner": "atlas-bootstrap.js",
   "serviceWorker": "sw.js",
@@ -22,6 +22,8 @@
     "rewardEvidencePolicy": "data/rewards/reward-source-policy.json",
     "rewardRecordSchema": "data/rewards/reward-record-schema.json",
     "rewardTerminology": "data/rewards/reward-terminology-zh-CN.json",
+    "rewardSummaryRuntime": "atlas-rewards-0949.js",
+    "rewardRuntimeRecords": "data/rewards/reward-records-runtime.json",
     "markerGeometry": "atlas-ui-fix-0931.js",
     "markerSelectionMotion": "atlas-ui-fix-0931.js",
     "locationDataRecovery": "atlas-data-guard-0939.js",
@@ -47,11 +49,13 @@
     "atlas-data-guard-0939.js",
     "atlas-ui-fix-0931.js",
     "atlas-080.js",
+    "atlas-rewards-0949.js",
     "scan-monitor.js",
     "data/rewards/reward-evidence-index.json",
     "data/rewards/reward-source-policy.json",
     "data/rewards/reward-record-schema.json",
-    "data/rewards/reward-terminology-zh-CN.json"
+    "data/rewards/reward-terminology-zh-CN.json",
+    "data/rewards/reward-records-runtime.json"
   ],
   "invariants": {
     "minimumLocationCount": 3000,
@@ -59,6 +63,8 @@
     "rewardEvidenceLevels": 4,
     "rewardInferenceMustBeLabeled": true,
     "rewardLockedRecordsProtected": true,
+    "rewardUnresolvedNeverFabricated": true,
+    "rewardRuntimeIndexRequired": true,
     "navigationSvgPerButton": 1,
     "navigationMinimumVisibleInsetPixels": 4,
     "closedPanelsMustBeInert": true,
@@ -105,6 +111,6 @@
     "allowMultipleFetchOverrides": false,
     "requireIpadCompositorPath": true,
     "requireServiceWorkerUpgradeSimulation": true,
-    "requireFullAuditAtThisRelease": true
+    "requireFullAuditAtThisRelease": false
   }
 }
