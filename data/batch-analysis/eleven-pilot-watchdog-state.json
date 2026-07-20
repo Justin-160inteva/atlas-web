@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-19T21:34:25.004391Z",
-  "decision": "pending_grace_period",
-  "reason": "pending queue is within 7200-second startup grace period",
-  "resumeWorkflow": false,
-  "changedExternalSourceId": null,
+  "generatedAt": "2026-07-20T08:17:45.793810Z",
+  "decision": "resume_idle_pending",
+  "reason": "pending queue has had no durable progress within watchdog threshold",
+  "resumeWorkflow": true,
+  "changedExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p020",
   "staleAfterSeconds": 7200,
   "safety": {
     "sourceCodeModified": false,
