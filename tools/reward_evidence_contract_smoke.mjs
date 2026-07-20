@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 
 const readJson=async path=>JSON.parse(await fs.readFile(new URL(`../${path}`,import.meta.url),'utf8'));
-const [manifest,policy,schema,terms,index,runtimeIndex,runtimeSource,serviceWorker]=await Promise.all([
+const [manifest,policy,schema,terms,index,runtimeIndex,runtimeSource,serviceWorker,html,rewardCss,locationSearchPatch]=await Promise.all([
   readJson('release-manifest.json'),
   readJson('data/rewards/reward-source-policy.json'),
   readJson('data/rewards/reward-record-schema.json'),
@@ -9,7 +9,10 @@ const [manifest,policy,schema,terms,index,runtimeIndex,runtimeSource,serviceWork
   readJson('data/rewards/reward-evidence-index.json'),
   readJson('data/rewards/reward-records-runtime.json'),
   fs.readFile(new URL('../atlas-rewards-0949.js',import.meta.url),'utf8'),
-  fs.readFile(new URL('../sw.js',import.meta.url),'utf8')
+  fs.readFile(new URL('../sw.js',import.meta.url),'utf8'),
+  fs.readFile(new URL('../index.html',import.meta.url),'utf8'),
+  fs.readFile(new URL('../atlas-rewards-0949.css',import.meta.url),'utf8'),
+  fs.readFile(new URL('../location-search-patch.js',import.meta.url),'utf8')
 ]);
 
 const profiles=[
@@ -45,6 +48,7 @@ const runtimeRecordsValid=recordPairs.length===runtimeIndex.recordCount&&recordP
 });
 const reviewQueueValid=Array.isArray(runtimeIndex.reviewQueue)&&runtimeIndex.reviewQueue.length===runtimeIndex.recordCount&&new Set(runtimeIndex.reviewQueue).size===runtimeIndex.recordCount&&runtimeIndex.reviewQueue.every(id=>runtimeIndex.recordFiles?.[id]);
 const runtimeCoverageValid=index.coverage?.highConfidenceInference===runtimeIndex.recordCount&&index.coverage?.unresolved===index.targetLocationCount-runtimeIndex.recordCount&&index.coverage?.officialConfirmed===0&&index.coverage?.multiSourceConfirmed===0&&index.coverage?.openConflicts===0;
+const rewardSearchValid=runtimeSource.includes('function rewardAwareSearch')&&runtimeSource.includes('function rewardSearchDocument')&&runtimeSource.includes('window.runSearch = rewardAwareSearch')&&runtimeSource.includes('score += 10')&&runtimeSource.includes('atlas-search-reward')&&runtimeSource.includes('奖励：')&&runtimeSource.includes('escapeHTML(item.rewardNames')&&runtimeSource.includes('focusLocation(location)')&&locationSearchPatch.includes('function rewardDocument')&&locationSearchPatch.includes('location.title_zh')&&locationSearchPatch.includes('location.title_en')&&locationSearchPatch.includes('category.title_en')&&locationSearchPatch.includes('region.title_en')&&locationSearchPatch.includes('score += 10')&&locationSearchPatch.includes('AtlasSearchOwner')&&locationSearchPatch.includes("window.AtlasRewards.refresh().then(install, install)")&&html.includes('搜索地点、区域、奖励或类别')&&rewardCss.includes('.atlas-search-reward');
 
 const forbidden=policy.forbiddenBehaviors||[];
 const nextFullAudit=manifest.invariants?.nextRequiredFullAuditVersion;
@@ -53,7 +57,7 @@ const contracts={
   release:index.release===manifest.version&&runtimeIndex.release===manifest.version,
   fullAudit:manifest.invariants?.requireFullAuditAtThisRelease===fullAuditRequired,
   rewardOwner:manifest.runtimeOwners?.rewardEvidenceIndex==='data/rewards/reward-evidence-index.json'&&manifest.runtimeOwners?.rewardSummaryRuntime==='atlas-rewards-0949.js'&&manifest.runtimeOwners?.rewardRuntimeRecords==='data/rewards/reward-records-runtime.json',
-  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500&&manifest.invariants?.rewardUnresolvedNeverFabricated===true&&manifest.invariants?.rewardRuntimeRecordCount===runtimeIndex.recordCount&&manifest.invariants?.rewardSingleSourceMustRemainInference===true&&manifest.invariants?.rewardPartialSourceCoverageMustRemainInference===true&&manifest.invariants?.rewardSourceLineageMustBeQualified===true&&manifest.invariants?.rewardCandidateRecordsMachineChecked===true&&runtimeRecordsValid&&reviewQueueValid&&runtimeCoverageValid&&runtimeIndex.noteZhCN.includes('数据链独立性')&&runtimeSource.includes('旧描述不会被当作已确认事实')&&runtimeSource.includes('loadRuntimeRecords')&&runtimeSource.includes('Promise.allSettled')&&runtimeSource.includes('rewardSupportCount')&&runtimeSource.includes('个来源')&&serviceWorker.includes(String.raw`records\/[^?]+\.json`),
+  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500&&manifest.invariants?.rewardUnresolvedNeverFabricated===true&&manifest.invariants?.rewardRuntimeRecordCount===runtimeIndex.recordCount&&manifest.invariants?.rewardSingleSourceMustRemainInference===true&&manifest.invariants?.rewardPartialSourceCoverageMustRemainInference===true&&manifest.invariants?.rewardSourceLineageMustBeQualified===true&&manifest.invariants?.rewardCandidateRecordsMachineChecked===true&&runtimeRecordsValid&&reviewQueueValid&&runtimeCoverageValid&&rewardSearchValid&&runtimeIndex.noteZhCN.includes('数据链独立性')&&runtimeSource.includes('旧描述不会被当作已确认事实')&&runtimeSource.includes('loadRuntimeRecords')&&runtimeSource.includes('Promise.allSettled')&&runtimeSource.includes('rewardSupportCount')&&runtimeSource.includes('个来源')&&serviceWorker.includes(String.raw`records\/[^?]+\.json`),
   targetCount:index.targetLocationCount===3430,
   coverageTotal:index.coverage?.total===3430,
   coverageConserved:['officialConfirmed','multiSourceConfirmed','highConfidenceInference','unresolved'].reduce((sum,key)=>sum+Number(index.coverage?.[key]||0),0)===3430,
@@ -115,9 +119,9 @@ for(const profile of profiles){
 
 const totalChecks=results.length;
 const failedContracts=[...new Set(results.filter(item=>!item.passed).map(item=>item.name))];
-const report={schemaVersion:1,release:manifest.version,generatedAt:new Date().toISOString(),passed:!failed&&totalChecks===500,totalChecks,contractCount:entries.length,failedContracts,runtimeRecordCount:runtimeIndex.recordCount,profiles:profiles.map(profile=>({profile,checks:results.filter(item=>item.profile===profile)}))};
+const report={schemaVersion:1,release:manifest.version,generatedAt:new Date().toISOString(),passed:!failed&&totalChecks===500,totalChecks,contractCount:entries.length,failedContracts,runtimeRecordCount:runtimeIndex.recordCount,rewardSearchValid,searchOwner:'reward-aware-bilingual-search',profiles:profiles.map(profile=>({profile,checks:results.filter(item=>item.profile===profile)}))};
 await fs.mkdir(new URL('../data/conflict-reports/',import.meta.url),{recursive:true});
 await fs.writeFile(new URL('../data/conflict-reports/reward-evidence-matrix.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
-console.log(`Reward evidence contract matrix: ${results.filter(item=>item.passed).length}/${totalChecks}; records=${runtimeIndex.recordCount}; contracts=${entries.length}; failed=${failedContracts.join(',')||'none'}`);
+console.log(`Reward evidence contract matrix: ${results.filter(item=>item.passed).length}/${totalChecks}; records=${runtimeIndex.recordCount}; search=${rewardSearchValid?'pass':'fail'}; contracts=${entries.length}; failed=${failedContracts.join(',')||'none'}`);
 if(entries.length!==50||totalChecks!==500)process.exit(3);
 if(failed)process.exit(2);
