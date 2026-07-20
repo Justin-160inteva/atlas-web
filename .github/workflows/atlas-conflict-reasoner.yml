@@ -62,7 +62,7 @@ jobs:
           python -m py_compile tools/queue_schema_smoke.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
-          python -m py_compile tools/audit_scan_system_v3.py
+          python -m py_compile tools/audit_scan_system_v4.py
           python -m py_compile tools/full_project_audit_0948.py
 
       - name: Run static conflict reasoner
@@ -84,7 +84,7 @@ jobs:
         run: python tools/queue_schema_smoke.py
 
       - name: Run full scan, monitor, data center, and reward audit
-        run: python tools/audit_scan_system_v3.py
+        run: python tools/audit_scan_system_v4.py
 
       - name: Run mandatory 500-check full project audit
         run: python tools/full_project_audit_0948.py
