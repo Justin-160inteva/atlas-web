@@ -1,4 +1,4 @@
-/* Atlas Alpha 0.9.3.8 — unified icons, settings and favourite feedback */
+/* Atlas Alpha 0.9.4.6 — unified icons, settings and favourite feedback */
 .atlas-control-icon{width:24px;height:24px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .bottom-nav .nav-item>span{width:28px;height:28px;display:grid;place-items:center;font-size:0!important}
 .bottom-nav .nav-item .atlas-control-icon{width:22px;height:22px}
@@ -14,7 +14,10 @@
 .top-actions .icon-button,.top-actions .profile-button{display:grid;place-items:center}
 .top-actions .atlas-control-icon{width:22px;height:22px}
 .profile-button.atlas-settings-button{font-size:0;background:rgba(255,255,255,.055);color:var(--text)}
+.profile-button.atlas-settings-button .atlas-control-icon{transform:translateZ(0) scale(1);transition:transform .18s cubic-bezier(.2,.8,.2,1),opacity .18s ease}
+.profile-button.atlas-settings-button:active .atlas-control-icon{transform:translateZ(0) scale(.91)}
 .profile-button.atlas-settings-button[aria-expanded="true"]{background:linear-gradient(145deg,rgba(178,42,55,.55),rgba(67,18,24,.72))}
+.profile-button.atlas-settings-button[aria-expanded="true"] .atlas-control-icon{transform:translateZ(0) rotate(22.5deg) scale(1.03)}
 .atlas-settings-overlay{position:absolute;z-index:40;inset:0;display:none;background:rgba(5,5,5,.48);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:calc(var(--atlas-topbar-height) + env(safe-area-inset-top,0px) + 12px) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px))}
 .atlas-settings-overlay.open{display:flex;justify-content:flex-end;align-items:flex-start}
 .atlas-settings-card{width:min(390px,100%);max-height:calc(100vh - var(--atlas-topbar-height) - env(safe-area-inset-top,0px) - 28px);overflow:auto;border-radius:24px;padding:18px;background:linear-gradient(150deg,rgba(39,36,33,.94),rgba(14,13,12,.92));border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 80px rgba(0,0,0,.42);color:var(--text)}
@@ -31,4 +34,4 @@
 @keyframes atlas-heart-float{0%{opacity:0;transform:translate3d(0,4px,0) scale(.55) rotate(-8deg)}18%{opacity:1}100%{opacity:0;transform:translate3d(var(--heart-x,0px),var(--heart-y,-58px),0) scale(1.08) rotate(var(--heart-rotate,8deg))}}
 @keyframes atlas-favourite-pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}70%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}100%{transform:translate(-50%,-50%) scale(1)}}
 @media(max-width:720px){.atlas-settings-overlay{padding-left:8px;padding-right:8px}.atlas-settings-card{width:100%;border-radius:22px}}
-@media(prefers-reduced-motion:reduce){.atlas-heart-particle{display:none}.atlas-favourite-badge{animation:none}.atlas-toggle::after{transition:none}}
+@media(prefers-reduced-motion:reduce){.atlas-heart-particle{display:none}.atlas-favourite-badge{animation:none}.atlas-toggle::after,.profile-button.atlas-settings-button .atlas-control-icon{transition:none}}

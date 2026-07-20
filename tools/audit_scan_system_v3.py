@@ -57,6 +57,8 @@ def main() -> int:
     analyzer_v12 = read_text("tools/analyze_authorized_video_v12.py")
     orchestrator = read_text("tools/run_scan_with_auto_recovery.py")
     orchestrator_v2 = read_text("tools/run_scan_with_auto_recovery_v2.py")
+    marker_runtime = read_text("atlas-ui-fix-0931.js")
+    controls_runtime = read_text("atlas-controls-0938.js")
 
     entries = bugs.get("entries", [])
     ids = [entry.get("id") for entry in entries]
@@ -68,11 +70,14 @@ def main() -> int:
     check("cooldowns_bounded", next(entry for entry in entries if entry["id"] == "bilibili-http-412")["cooldownSeconds"] <= 45 and next(entry for entry in entries if entry["id"] == "bilibili-http-429")["cooldownSeconds"] <= 120, "network cooldowns bounded")
 
     invariants = release.get("invariants", {})
-    check("release_version", release.get("version") == "0.9.4.5", "Alpha 0.9.4.5")
-    check("release_full_audit", invariants.get("requireFullAuditAtThisRelease") is True, "full audit required")
-    check("release_matrices", all(invariants.get(key) == 500 for key in ("requiredHeartbeatMatrixChecks", "requiredBrowserMatrixChecks", "requiredSerialQueueOrderChecks", "requiredMonitorBatchAuthorityChecks")), "four exact 500-check gates")
+    check("release_version", release.get("version") == "0.9.4.6", "Alpha 0.9.4.6")
+    check("release_audit_cycle", invariants.get("requireFullAuditAtThisRelease") is False, "next mandatory full audit remains Alpha 0.9.4.8")
+    check("release_matrices", all(invariants.get(key) == 500 for key in ("requiredHeartbeatMatrixChecks", "requiredBrowserMatrixChecks", "requiredSerialQueueOrderChecks", "requiredMonitorBatchAuthorityChecks", "requiredQueueSchemaChecks")), "five exact 500-check gates")
     check("release_monitor_contract", invariants.get("singleMonitorController") is True and invariants.get("durableScanStateAlwaysWins") is True and invariants.get("monitorBatchIdentityMustMatch") is True, "single batch-authoritative monitor")
     check("release_serial11_contract", invariants.get("heartbeatSupervisorMaximumQueueItems") == 11 and invariants.get("scanMaximumConcurrentDownloads") == 1 and invariants.get("scanAutoContinueAfterDurableSuccess") is True, "eleven queued, one active, auto continue")
+    check("release_marker_contract", invariants.get("markerSelectionUsesScaleOnly") is True and invariants.get("markerSelectionDecorationLayers") == 0 and invariants.get("markerSelectedScale") == 1.28 and invariants.get("markerSelectionDurationMs") == 190 and invariants.get("markerTipAnchorStable") is True, "anchored scale-only marker selection")
+    check("release_marker_runtime", all(token in marker_runtime for token in ("selectionUsesScaleOnly:true", "selectionDecorationLayers:0", "tipAnchorStable:true", "SELECTION_DURATION=190", "SELECTED_SCALE=1.28")) and "ctx.ellipse(" not in marker_runtime and "radius+4.2" not in marker_runtime, "no legacy selection rings or ornaments")
+    check("release_settings_icon", invariants.get("settingsIconDesign") == "radial-eight" and "dataset.iconDesign='radial-eight'" in controls_runtime, "simplified radial settings icon")
 
     items = queue.get("items", [])
     sequences = [item.get("sequence") for item in items]
@@ -183,7 +188,7 @@ def main() -> int:
 
     passed = sum(item["passed"] for item in checks)
     report = {
-        "schemaVersion": 7,
+        "schemaVersion": 8,
         "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "status": "pass" if passed == len(checks) else "fail",
         "summary": {"total": len(checks), "passed": passed, "failed": len(checks) - passed},

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "version": "0.9.4.5",
-  "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.5",
-  "cacheNamespace": "atlas-alpha-0945-pages-v1-monitor-v11",
+  "version": "0.9.4.6",
+  "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.6",
+  "cacheNamespace": "atlas-alpha-0946-pages-v1-monitor-v11",
   "entrypoint": "index.html",
   "releaseOwner": "atlas-bootstrap.js",
   "serviceWorker": "sw.js",
@@ -14,7 +14,10 @@
     "navigationInteractionGuard": "atlas-liquid-nav-0934.js",
     "quickRailMediumRecovery": "atlas-liquid-nav-0934.js",
     "controlIcons": "atlas-controls-0938.js",
+    "settingsIcon": "atlas-controls-0938.js",
     "settingsPanel": "atlas-settings.js",
+    "markerGeometry": "atlas-ui-fix-0931.js",
+    "markerSelectionMotion": "atlas-ui-fix-0931.js",
     "locationDataRecovery": "atlas-data-guard-0939.js",
     "scanMonitor": "scan-monitor.js",
     "scanBatchAuthority": "scan-monitor.js",
@@ -32,6 +35,8 @@
     "atlas-ipad-nav-0940.js",
     "atlas-settings.js",
     "atlas-data-guard-0939.js",
+    "atlas-ui-fix-0931.js",
+    "atlas-080.js",
     "scan-monitor.js"
   ],
   "invariants": {
@@ -50,6 +55,12 @@
     "scanAutoContinueAfterDurableSuccess": true,
     "supervisorQueuedItemMustBeClaimable": true,
     "queueRequiredMetadataMustHydrateFromCatalog": true,
+    "settingsIconDesign": "radial-eight",
+    "markerSelectionUsesScaleOnly": true,
+    "markerSelectionDecorationLayers": 0,
+    "markerSelectedScale": 1.28,
+    "markerSelectionDurationMs": 190,
+    "markerTipAnchorStable": true,
     "requiredBrowserMatrixChecks": 500,
     "requiredHeartbeatMatrixChecks": 500,
     "requiredSerialQueueOrderChecks": 500,
@@ -59,6 +70,6 @@
     "allowMultipleFetchOverrides": false,
     "requireIpadCompositorPath": true,
     "requireServiceWorkerUpgradeSimulation": true,
-    "requireFullAuditAtThisRelease": true
+    "requireFullAuditAtThisRelease": false
   }
 }
