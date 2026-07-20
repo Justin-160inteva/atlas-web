@@ -4,18 +4,18 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
-  "updatedAt": "2026-07-20T14:34:41.443491Z",
+  "updatedAt": "2026-07-20T14:53:40.451566Z",
   "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
-    "imported": 1,
+    "imported": 2,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 10,
+    "remaining": 9,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -35,11 +35,11 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p026",
       "sequence": 26,
       "page": 26,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 2,
+      "lastStartedAt": "2026-07-20T14:47:07.983050Z",
+      "lastFinishedAt": "2026-07-20T14:53:40.445671Z",
+      "resultPath": "data/analysis-results/eleven-p026.json",
       "error": null
     },
     {
@@ -144,18 +144,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p025",
-      "sequence": 25,
-      "page": 25,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P25 第25期：倾奇者",
-      "startedAt": "2026-07-20T14:29:42.755293Z",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p026",
+      "sequence": 26,
+      "page": 26,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P26 第26期：愤怒之声",
+      "startedAt": "2026-07-20T14:47:07.983050Z",
       "attemptCount": 2,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.91s\nanalysis result written: data/analysis-results/eleven-p025.json status=analyzed\n\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (216992766 > 2297).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 2301\n[h264 @ 0x55ddcdc46200] Invalid NAL unit size (216992766 > 2297).\n[h264 @ 0x55ddcdc46200] Error splitting the input into NAL units.\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (1489335986 > 1363).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 1367\n[h264 @ 0x55ddcde97a40] Invalid NAL unit size (1489335986 > 1363).\n[h264 @ 0x55ddcde97a40] Error splitting the input into NAL units.\n[h264 @ 0x55ddcdcbf980] error while decoding MB 6 16, bytestream -5\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (663429784 > 2713).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 2717\n[h264 @ 0x55ddcdcb6740] Invalid NAL unit size (663429784 > 2713).\n[h264 @ 0x55ddcdcb6740] Error splitting the input into NAL units.\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (583398257 > 766).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 770\n[h264 @ 0x55ddcdcbf980] Invalid NAL unit size (583398257 > 766).\n[h264 @ 0x55ddcdcbf980] Error splitting the input into NAL units.\n[h264 @ 0x55ddcdc86240] Invalid NAL unit size (429475454 > 1222).\n[h264 @ 0x55ddcdc86240] missing picture in access unit with size 1226\n[h264 @ 0x55ddcdc46200] Invalid NAL unit size (429475454 > 1222).\n[h264 @ 0x55ddcdc46200] Error splitting the input into NAL units.\n",
+      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.90s\nruntime progress conflict; refetching SHA and retrying in 1.14s\nanalysis result written: data/analysis-results/eleven-p026.json status=analyzed\n\n",
       "analysisStatus": "analyzed",
       "indexReturnCode": 0,
       "completed": true,
-      "finishedAt": "2026-07-20T14:34:41.437792Z"
+      "finishedAt": "2026-07-20T14:53:40.445671Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
