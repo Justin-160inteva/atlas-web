@@ -1,17 +1,17 @@
 {
-  "schemaVersion": 7,
-  "triggerId": "eleven-production-p007-p011-20260719-02-opencv-recovery",
-  "requestedAt": "2026-07-19T22:59:57Z",
+  "schemaVersion": 8,
+  "triggerId": "eleven-production-p025-p035-20260720-01-wbi-cdn-v13",
+  "requestedAt": "2026-07-20T20:01:34Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
-  "pilotRegion": "顺序批次 P07-P11",
+  "pilotRegion": "顺序批次 P25-P35",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
-  "mode": "chronological-five-queued-one-item-per-run-live-telemetry",
-  "queuePages": [7, 8, 9, 10, 11],
-  "startWithPage": 9,
-  "requiredAnalyzer": "tools/analyze_authorized_video_v12.py",
+  "mode": "chronological-eleven-queued-one-item-per-run-live-telemetry",
+  "queuePages": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
+  "startWithPage": 33,
+  "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
   "automaticRecovery": true,
   "heartbeatSupervisor": true,
   "runtimeHeartbeat": {
@@ -27,5 +27,12 @@
     "etaSeconds": true
   },
   "humanReviewOnUnknownFailure": true,
-  "recoveryReason": "Known OpenCV downloaded-container open failure now maps to the approved transcode fallback and bounded retry."
+  "manualTransportMigration": {
+    "page": 33,
+    "generation": "v13-wbi-cdn",
+    "previousAttemptCount": 5,
+    "manualAttemptsScheduled": 1,
+    "additionalAutomaticRetriesAuthorized": 0
+  },
+  "recoveryReason": "Run P33 once on the newly merged signed-WBI metadata path with API-provided CDN rotation and cross-CDN byte resume; continue strictly to P34 and P35 only after durable success."
 }
