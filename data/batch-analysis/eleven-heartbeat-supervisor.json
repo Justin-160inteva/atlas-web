@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 3,
-  "id": "eleven-runtime-heartbeat-supervisor-v3-next10",
+  "schemaVersion": 4,
+  "id": "eleven-runtime-heartbeat-supervisor-v4-p025-p035",
   "enabled": true,
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "runtimeProgress": "data/runtime-progress/eleven-pilot-progress.json",
@@ -10,7 +10,7 @@
   "staleAfterSeconds": 90,
   "hardStaleAfterSeconds": 180,
   "resumeCooldownSeconds": 360,
-  "maximumQueueItems": 10,
+  "maximumQueueItems": 11,
   "policy": {
     "checkEveryMinutes": 5,
     "oneItemPerRun": true,
