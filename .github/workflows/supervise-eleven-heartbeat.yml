@@ -39,12 +39,12 @@ jobs:
           config=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor.json',encoding='utf-8'))
           manifest=json.load(open(config['manifest'],encoding='utf-8'))
           policy=config['policy']
-          assert config['schemaVersion']>=3
+          assert config['schemaVersion']>=4
           assert config['staleAfterSeconds']==90
           assert config['hardStaleAfterSeconds']==180
           assert config['resumeCooldownSeconds']==360
-          assert config['maximumQueueItems']==10
-          assert manifest['maximumQueueItems']==10
+          assert config['maximumQueueItems']==11
+          assert manifest['maximumQueueItems']==11
           assert manifest['maxItemsPerRun']==1
           assert manifest['maximumConcurrentDownloads']==1
           assert policy['oneItemPerRun']
@@ -59,7 +59,7 @@ jobs:
           assert policy['neverBroadenAuthorization']
           assert policy['neverRetainOriginalMedia']
           assert policy['neverExpandQueueScope']
-          print('heartbeat supervisor v3 ten-item serial policy passed')
+          print('heartbeat supervisor v4 eleven-item serial policy passed')
           PY
 
       - name: Inspect heartbeat and apply bounded durable-state repair
@@ -85,10 +85,10 @@ jobs:
           runtime=json.load(open('data/runtime-progress/eleven-pilot-progress.json',encoding='utf-8'))
           dictionary=json.load(open('data/scan-bug-dictionary.json',encoding='utf-8'))
           ids={entry['id'] for entry in dictionary['entries']}
-          assert len(queue['items'])==10
+          assert len(queue['items'])==11
           assert queue['maximumConcurrentItems']==1
-          assert len({item['externalSourceId'] for item in queue['items']})==10
-          assert [item['sequence'] for item in queue['items']]==sorted(item['sequence'] for item in queue['items'])
+          assert len({item['externalSourceId'] for item in queue['items']})==11
+          assert [item['sequence'] for item in queue['items']]==list(range(25,36))
           assert sum(item.get('state') in {'running','recovery'} for item in queue['items'])<=1
           assert report['schemaVersion']>=2
           assert report['dictionaryEntryId'] in ids or report['dictionaryEntryId'] in {'heartbeat-healthy','heartbeat-complete'}
@@ -102,7 +102,7 @@ jobs:
               assert runtime.get('state') in {'queued','complete'}
           for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
               assert not list(pathlib.Path('.').rglob(pattern))
-          print('heartbeat supervisor v3 ten-item serial safety gate passed')
+          print('heartbeat supervisor v4 eleven-item serial safety gate passed')
           PY
 
       - name: Persist supervisor diagnosis and projection
