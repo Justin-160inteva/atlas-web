@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 10,
-  "triggerId": "eleven-production-p025-p035-20260720-03-exact-tail-v15",
-  "requestedAt": "2026-07-20T21:19:00Z",
+  "schemaVersion": 11,
+  "triggerId": "eleven-production-p025-p035-20260720-04-v16",
+  "requestedAt": "2026-07-20T21:32:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
@@ -12,7 +12,7 @@
   "queuePages": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
   "startWithPage": 33,
   "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
-  "transportOverride": "conditional-http11-exact-tail-v15",
+  "transportOverride": "chunked-tail-v16",
   "automaticRecovery": true,
   "heartbeatSupervisor": true,
   "runtimeHeartbeat": {
@@ -30,10 +30,10 @@
   "humanReviewOnUnknownFailure": true,
   "manualTransportMigration": {
     "page": 33,
-    "generation": "v15-exact-tail-preservation",
-    "previousAttemptCount": 7,
+    "generation": "v16-chunked-tail",
+    "previousAttemptCount": 8,
     "manualAttemptsScheduled": 1,
     "additionalAutomaticRetriesAuthorized": 0
   },
-  "recoveryReason": "Run P33 once with exact Content-Range validation and partial-file preservation; a CDN that ignores Range cannot erase downloaded bytes. Continue strictly to P34 and P35 only after durable success."
+  "recoveryReason": "Run P33 once using the merged and validated v16 transport. Continue to P34 and P35 only after durable success."
 }
