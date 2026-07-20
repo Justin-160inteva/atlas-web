@@ -19,7 +19,7 @@ concurrency:
 jobs:
   reason-and-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -43,10 +43,25 @@ jobs:
           node --check atlas-i18n.js
           node --check location-names.js
           node --check location-title-polish.js
+          node --check scan-monitor.js
           node --check sw.js
+
+      - name: Compile heartbeat and recovery tools
+        run: |
+          python -m py_compile tools/supervise_runtime_heartbeat.py
+          python -m py_compile tools/heartbeat_system_smoke.py
+          python -m py_compile tools/run_scan_with_auto_recovery.py
+          python -m py_compile tools/run_scan_with_auto_recovery_v2.py
+          python -m py_compile tools/audit_scan_system_v3.py
 
       - name: Run static conflict reasoner
         run: python tools/atlas_conflict_reasoner_v3.py
+
+      - name: Run 500-scenario heartbeat matrix
+        run: python tools/heartbeat_system_smoke.py
+
+      - name: Run full scan and monitor audit
+        run: python tools/audit_scan_system_v3.py
 
       - name: Install Playwright Chromium
         run: |
@@ -66,7 +81,7 @@ jobs:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/browser_conflict_smoke.mjs
 
-      - name: Upload conflict reports
+      - name: Upload conflict and heartbeat reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -74,6 +89,7 @@ jobs:
           path: |
             CONFLICT-REPORT.md
             data/conflict-reports/*.json
+            data/batch-analysis/scan-system-health.json
           if-no-files-found: warn
 
       - name: Persist reports on main
@@ -81,7 +97,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add CONFLICT-REPORT.md data/conflict-reports
+          git add CONFLICT-REPORT.md data/conflict-reports data/batch-analysis/scan-system-health.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Update Atlas conflict reports [skip ci]'
+          git commit -m 'Update Atlas conflict and heartbeat reports [skip ci]'
           git push

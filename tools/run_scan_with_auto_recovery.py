@@ -3,7 +3,7 @@
 
 A failure is diagnosed in the same GitHub Actions job. Safe deterministic failures are
 retried after their prescribed cooldown; unsafe or unknown failures stop for review.
-Recovery decisions are published immediately as sanitized runtime progress.
+Recovery decisions and durable terminal projections are published immediately.
 """
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ from publish_runtime_progress import emit as emit_runtime_progress
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 REPORT_PATH = ROOT / "data/batch-analysis/eleven-pilot-orchestration-report.json"
 RECOVERY_PATH = ROOT / "data/batch-analysis/eleven-pilot-recovery-report.json"
+DICTIONARY_PATH = ROOT / "data/scan-bug-dictionary.json"
 
 
 def now() -> str:
@@ -52,13 +53,15 @@ def run(command: list[str], timeout: int) -> subprocess.CompletedProcess[str]:
     return subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=timeout)
 
 
+def item_job(item: dict[str, Any]) -> dict[str, Any]:
+    page = int(item.get("page") or item.get("sequence") or 0)
+    return load(ROOT / f"data/analysis-jobs/eleven-p{page:03d}.json", {})
+
+
 def recovery_job(queue: dict[str, Any], recovery: dict[str, Any]) -> dict[str, Any]:
     external_id = recovery.get("activeExternalSourceId")
     item = next((entry for entry in queue.get("items", []) if entry.get("externalSourceId") == external_id), None)
-    if not item:
-        return {}
-    page = int(item.get("page") or item.get("sequence") or 0)
-    return load(ROOT / f"data/analysis-jobs/eleven-p{page:03d}.json", {})
+    return item_job(item) if item else {}
 
 
 def publish_recovery(queue: dict[str, Any], recovery: dict[str, Any], *, terminal: bool = False) -> None:
@@ -85,6 +88,74 @@ def publish_recovery(queue: dict[str, Any], recovery: dict[str, Any], *, termina
         state=state,
         force=True,
     )
+
+
+def clear_stale_recovery(queue: dict[str, Any]) -> None:
+    recovery = load(RECOVERY_PATH, {})
+    external_id = recovery.get("activeExternalSourceId")
+    item = next((entry for entry in queue.get("items", []) if entry.get("externalSourceId") == external_id), None)
+    if not item or item.get("state") != "imported":
+        return
+    dictionary = load(DICTIONARY_PATH, {})
+    write(RECOVERY_PATH, {
+        "schemaVersion": 5,
+        "generatedAt": now(),
+        "dictionaryVersion": dictionary.get("version"),
+        "dictionaryEntryId": "runtime-heartbeat-terminal-stale",
+        "manifest": recovery.get("manifest", "data/batch-analysis/eleven-pilot-scan-manifest.json"),
+        "activeExternalSourceId": external_id,
+        "category": "resolved",
+        "matchedSignature": recovery.get("matchedSignature", "durable import confirmed"),
+        "diagnosis": "Durable queue state confirms that the previously failed item was imported successfully.",
+        "action": "none",
+        "retryScheduled": False,
+        "retryDelaySeconds": 0,
+        "requiresHumanReview": False,
+        "attemptCount": int(item.get("attemptCount", 0)),
+        "maxAttempts": int(recovery.get("maxAttempts", 3)),
+        "changedRuntimeSettings": {},
+        "resolution": "durable_import_confirmed",
+        "safety": {
+            "sourceCodeModified": False,
+            "authorizationBroadened": False,
+            "mediaRetentionChanged": False,
+            "queueScopeExpanded": False,
+        },
+    })
+
+
+def publish_durable_projection(queue: dict[str, Any]) -> None:
+    items = queue.get("items", [])
+    pending = next((entry for entry in items if entry.get("state", "pending") in {"pending", "queued"}), None)
+    if pending:
+        job = item_job(pending)
+        if job:
+            page = pending.get("page") or pending.get("sequence") or "—"
+            emit_runtime_progress(
+                job,
+                stage="queued",
+                progress_percent=0,
+                message=f"上一任务已持久化；P{page} 已排队，等待下一工作流领取",
+                sampled_frames=0,
+                target_frames=int(job.get("maxSamples") or 1),
+                state="queued",
+                force=True,
+            )
+        return
+    imported = [entry for entry in items if entry.get("state") == "imported"]
+    if imported:
+        job = item_job(imported[-1])
+        if job:
+            emit_runtime_progress(
+                job,
+                stage="complete",
+                progress_percent=100,
+                message="当前有界批次已全部完成并持久化",
+                sampled_frames=int(job.get("maxSamples") or 0),
+                target_frames=int(job.get("maxSamples") or 1),
+                state="complete",
+                force=True,
+            )
 
 
 def main() -> int:
@@ -118,10 +189,12 @@ def main() -> int:
             "imported": imported,
             "failed": len(failed),
             "running": running,
-            "scannerOutput": safe_output(scanner.stdout + "\n" + scanner.stderr)
+            "scannerOutput": safe_output(scanner.stdout + "\n" + scanner.stderr),
         }
 
         if not failed:
+            clear_stale_recovery(queue)
+            publish_durable_projection(queue)
             final_state = "scan_completed_or_progressed"
             cycles.append(cycle_report)
             break
@@ -151,7 +224,7 @@ def main() -> int:
         final_state = "attempt_limit_reached"
 
     report = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "generatedAt": now(),
         "manifest": manifest_arg,
         "dictionary": "data/scan-bug-dictionary.json",
@@ -162,8 +235,8 @@ def main() -> int:
             "sourceCodeModifiedAutomatically": False,
             "authorizationBroadened": False,
             "mediaRetentionChanged": False,
-            "queueScopeExpanded": False
-        }
+            "queueScopeExpanded": False,
+        },
     }
     write(REPORT_PATH, report)
     print(json.dumps(report, ensure_ascii=False))

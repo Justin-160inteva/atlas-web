@@ -1,4 +1,4 @@
-name: Scan 11 game world regional batch v8
+name: Scan 11 game world regional batch v9
 
 on:
   push:
@@ -111,7 +111,7 @@ jobs:
           find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
           find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' \) -delete
 
-      - name: Read recovery and orchestration decision
+      - name: Read durable recovery and orchestration decision
         if: always()
         id: recovery
         run: |
@@ -121,12 +121,23 @@ jobs:
           orchestration_path=pathlib.Path('data/batch-analysis/eleven-pilot-orchestration-report.json')
           recovery=json.load(recovery_path.open(encoding='utf-8')) if recovery_path.exists() else {}
           orchestration=json.load(orchestration_path.open(encoding='utf-8')) if orchestration_path.exists() else {}
-          human=recovery.get('requiresHumanReview',False) or orchestration.get('finalState') in {'human_review_required','unrecoverable','attempt_limit_reached'}
-          print(f"retry={'true' if recovery.get('retryScheduled') else 'false'}")
+          status=json.load(open('data/batch-analysis/eleven-pilot-scan-status.json',encoding='utf-8'))
+          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          final=orchestration.get('finalState','unknown')
+          progressed=final=='scan_completed_or_progressed' or int(status.get('summary',{}).get('newlyImportedThisRun',0))>0
+          target_id=recovery.get('activeExternalSourceId')
+          target=next((item for item in queue.get('items',[]) if item.get('externalSourceId')==target_id),None)
+          relevant=bool(target and target.get('state') in {'failed','blocked','recovery'})
+          terminal_failure=final in {'human_review_required','unrecoverable','attempt_limit_reached'}
+          human=terminal_failure or (not progressed and relevant and recovery.get('requiresHumanReview',False))
+          retry=not progressed and relevant and recovery.get('retryScheduled',False)
+          print(f"retry={'true' if retry else 'false'}")
           print(f"human={'true' if human else 'false'}")
-          print(f"category={recovery.get('category','none')}")
-          print(f"action={recovery.get('action','none')}")
-          print(f"final={orchestration.get('finalState','unknown')}")
+          print(f"progressed={'true' if progressed else 'false'}")
+          print(f"relevant={'true' if relevant else 'false'}")
+          print(f"category={recovery.get('category','none') if relevant else 'resolved'}")
+          print(f"action={recovery.get('action','none') if relevant else 'none'}")
+          print(f"final={final}")
           PY
 
       - name: Run 400-round integrity and privacy gate
@@ -141,7 +152,7 @@ jobs:
           bugs=json.load(open('data/scan-bug-dictionary.json',encoding='utf-8'))
           index=json.load(open('data/analysis-index.json',encoding='utf-8'))
           indexed={item['externalSourceId']:item for item in index['items']}
-          allowed={'pending','running','failed','imported'}
+          allowed={'pending','queued','running','recovery','failed','imported'}
           for _ in range(400):
               assert status['authorizationId']==queue['authorizationId']==catalog['authorizationId']
               assert status['summary']['total']==len(queue['items'])
@@ -205,13 +216,13 @@ jobs:
           done
           exit 1
 
-      - name: Continue after one successful item
-        if: always() && steps.state.outputs.complete != 'true' && steps.recovery.outputs.human != 'true' && steps.state.outputs.progress != '0'
+      - name: Continue after one durable successful item
+        if: always() && steps.state.outputs.complete != 'true' && steps.recovery.outputs.human != 'true' && steps.recovery.outputs.progressed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run scan-eleven-pilot-v2.yml --ref main
 
-      - name: Stop visibly when human review is required
+      - name: Stop visibly on a current unrecoverable failure
         if: always() && steps.recovery.outputs.human == 'true'
         run: |
           echo "Automatic recovery stopped: ${{ steps.recovery.outputs.category }} / ${{ steps.recovery.outputs.action }}"
