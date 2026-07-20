@@ -55,7 +55,12 @@
     "data/rewards/reward-source-policy.json",
     "data/rewards/reward-record-schema.json",
     "data/rewards/reward-terminology-zh-CN.json",
-    "data/rewards/reward-records-runtime.json"
+    "data/rewards/reward-records-runtime.json",
+    "data/rewards/records/location-mapgenie-434361.json",
+    "data/rewards/records/location-mapgenie-434380.json",
+    "data/rewards/records/location-mapgenie-434456.json",
+    "data/rewards/records/location-mapgenie-434582.json",
+    "data/rewards/records/location-mapgenie-434635.json"
   ],
   "invariants": {
     "minimumLocationCount": 3000,
@@ -65,6 +70,9 @@
     "rewardLockedRecordsProtected": true,
     "rewardUnresolvedNeverFabricated": true,
     "rewardRuntimeIndexRequired": true,
+    "rewardRuntimeRecordCount": 5,
+    "rewardSingleSourceMustRemainInference": true,
+    "rewardCandidateRecordsMachineChecked": true,
     "navigationSvgPerButton": 1,
     "navigationMinimumVisibleInsetPixels": 4,
     "closedPanelsMustBeInert": true,

@@ -1,20 +1,42 @@
 import fs from 'node:fs/promises';
 
 const readJson=async path=>JSON.parse(await fs.readFile(new URL(`../${path}`,import.meta.url),'utf8'));
-const [manifest,policy,schema,terms,index,runtimeIndex,runtimeSource]=await Promise.all([
+const [manifest,policy,schema,terms,index,runtimeIndex,runtimeSource,serviceWorker]=await Promise.all([
   readJson('release-manifest.json'),
   readJson('data/rewards/reward-source-policy.json'),
   readJson('data/rewards/reward-record-schema.json'),
   readJson('data/rewards/reward-terminology-zh-CN.json'),
   readJson('data/rewards/reward-evidence-index.json'),
   readJson('data/rewards/reward-records-runtime.json'),
-  fs.readFile(new URL('../atlas-rewards-0949.js',import.meta.url),'utf8')
+  fs.readFile(new URL('../atlas-rewards-0949.js',import.meta.url),'utf8'),
+  fs.readFile(new URL('../sw.js',import.meta.url),'utf8')
 ]);
 
 const profiles=[
   'official-text','official-web','official-patch','authorized-video','public-video',
   'screenshot','community-database','guide-article','manual-review','conflict-recovery'
 ];
+
+const recordFileEntries=Object.entries(runtimeIndex.recordFiles||{});
+const recordPairs=await Promise.all(recordFileEntries.map(async([locationId,path])=>[locationId,path,await readJson(path)]));
+const allowedStatuses=new Set(schema.properties?.status?.enum||[]);
+const allowedRewardTypes=new Set(schema.properties?.rewards?.items?.properties?.type?.enum||[]);
+const allowedQuantityStatuses=new Set(schema.properties?.rewards?.items?.properties?.quantityStatus?.enum||[]);
+const allowedReviewStates=new Set(schema.properties?.review?.properties?.state?.enum||[]);
+const inferenceThreshold=policy.evidenceLevels?.find(level=>level.id==='high_confidence_inference')?.minimumConfidence;
+const runtimeRecordsValid=recordPairs.length===runtimeIndex.recordCount&&recordPairs.every(([locationId,path,record])=>{
+  const sources=Array.isArray(record.sources)?record.sources:[];
+  const rewards=Array.isArray(record.rewards)?record.rewards:[];
+  const conflicts=Array.isArray(record.conflicts)?record.conflicts:[];
+  const singleSourceInference=sources.length===1&&record.status==='high_confidence_inference'&&record.confidence>=inferenceThreshold;
+  const sourceValid=sources.every(source=>policy.sourceTypes.includes(source.sourceType)&&typeof source.locator==='string'&&source.locator.startsWith('https://')&&Array.isArray(source.supports)&&source.supports.length>0);
+  const rewardsValid=rewards.length>0&&rewards.every(reward=>allowedRewardTypes.has(reward.type)&&allowedQuantityStatuses.has(reward.quantityStatus)&&typeof reward.nameZhCN==='string'&&reward.nameZhCN.length>0&&(reward.quantityStatus!=='exact'||Number.isFinite(reward.quantity)));
+  const conflictsValid=conflicts.length>0&&conflicts.every(conflict=>policy.conflictTypes.includes(conflict.type)&&['open','resolved','accepted_uncertainty'].includes(conflict.status)&&typeof conflict.detailZhCN==='string');
+  const reviewValid=allowedReviewStates.has(record.review?.state)&&record.review?.state==='machine_checked'&&typeof record.review?.method==='string';
+  return locationId===record.locationId&&path===`data/rewards/records/${locationId}.json`&&allowedStatuses.has(record.status)&&singleSourceInference&&sourceValid&&rewardsValid&&conflictsValid&&reviewValid&&record.summaryZhCN.includes('高置信推断')&&manifest.releaseAssets.includes(path)&&serviceWorker.includes(`'./${path}'`);
+});
+const reviewQueueValid=Array.isArray(runtimeIndex.reviewQueue)&&runtimeIndex.reviewQueue.length===runtimeIndex.recordCount&&new Set(runtimeIndex.reviewQueue).size===runtimeIndex.recordCount&&runtimeIndex.reviewQueue.every(id=>runtimeIndex.recordFiles?.[id]);
+const runtimeCoverageValid=index.coverage?.highConfidenceInference===runtimeIndex.recordCount&&index.coverage?.unresolved===index.targetLocationCount-runtimeIndex.recordCount&&index.coverage?.officialConfirmed===0&&index.coverage?.multiSourceConfirmed===0&&index.coverage?.openConflicts===0;
 
 const forbidden=policy.forbiddenBehaviors||[];
 const nextFullAudit=manifest.invariants?.nextRequiredFullAuditVersion;
@@ -23,7 +45,7 @@ const contracts={
   release:index.release===manifest.version&&runtimeIndex.release===manifest.version,
   fullAudit:manifest.invariants?.requireFullAuditAtThisRelease===fullAuditRequired,
   rewardOwner:manifest.runtimeOwners?.rewardEvidenceIndex==='data/rewards/reward-evidence-index.json'&&manifest.runtimeOwners?.rewardSummaryRuntime==='atlas-rewards-0949.js'&&manifest.runtimeOwners?.rewardRuntimeRecords==='data/rewards/reward-records-runtime.json',
-  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500&&manifest.invariants?.rewardUnresolvedNeverFabricated===true&&runtimeSource.includes('旧描述不会被当作已确认事实'),
+  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500&&manifest.invariants?.rewardUnresolvedNeverFabricated===true&&manifest.invariants?.rewardRuntimeRecordCount===runtimeIndex.recordCount&&manifest.invariants?.rewardSingleSourceMustRemainInference===true&&manifest.invariants?.rewardCandidateRecordsMachineChecked===true&&runtimeRecordsValid&&reviewQueueValid&&runtimeCoverageValid&&runtimeSource.includes('旧描述不会被当作已确认事实')&&runtimeSource.includes('loadRuntimeRecords')&&runtimeSource.includes('Promise.allSettled')&&serviceWorker.includes('records\\/[^?]+\\.json'),
   targetCount:index.targetLocationCount===3430,
   coverageTotal:index.coverage?.total===3430,
   coverageConserved:['officialConfirmed','multiSourceConfirmed','highConfidenceInference','unresolved'].reduce((sum,key)=>sum+Number(index.coverage?.[key]||0),0)===3430,
@@ -35,7 +57,7 @@ const contracts={
   fourEvidenceLevels:Array.isArray(policy.evidenceLevels)&&policy.evidenceLevels.length===4,
   officialThreshold:policy.evidenceLevels?.find(level=>level.id==='official_confirmed')?.minimumConfidence===0.98,
   multiThreshold:policy.evidenceLevels?.find(level=>level.id==='multi_source_confirmed')?.minimumConfidence===0.90,
-  inferenceThreshold:policy.evidenceLevels?.find(level=>level.id==='high_confidence_inference')?.minimumConfidence===0.75,
+  inferenceThreshold:inferenceThreshold===0.75,
   unresolvedThreshold:policy.evidenceLevels?.find(level=>level.id==='unresolved')?.minimumConfidence===0,
   sourceTypes:Array.isArray(policy.sourceTypes)&&policy.sourceTypes.length>=8,
   conflictTypes:Array.isArray(policy.conflictTypes)&&policy.conflictTypes.length>=5,
@@ -85,9 +107,9 @@ for(const profile of profiles){
 
 const totalChecks=results.length;
 const failedContracts=[...new Set(results.filter(item=>!item.passed).map(item=>item.name))];
-const report={schemaVersion:1,release:manifest.version,generatedAt:new Date().toISOString(),passed:!failed&&totalChecks===500,totalChecks,contractCount:entries.length,failedContracts,profiles:profiles.map(profile=>({profile,checks:results.filter(item=>item.profile===profile)}))};
+const report={schemaVersion:1,release:manifest.version,generatedAt:new Date().toISOString(),passed:!failed&&totalChecks===500,totalChecks,contractCount:entries.length,failedContracts,runtimeRecordCount:runtimeIndex.recordCount,profiles:profiles.map(profile=>({profile,checks:results.filter(item=>item.profile===profile)}))};
 await fs.mkdir(new URL('../data/conflict-reports/',import.meta.url),{recursive:true});
 await fs.writeFile(new URL('../data/conflict-reports/reward-evidence-matrix.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
-console.log(`Reward evidence contract matrix: ${results.filter(item=>item.passed).length}/${totalChecks}; contracts=${entries.length}; failed=${failedContracts.join(',')||'none'}`);
+console.log(`Reward evidence contract matrix: ${results.filter(item=>item.passed).length}/${totalChecks}; records=${runtimeIndex.recordCount}; contracts=${entries.length}; failed=${failedContracts.join(',')||'none'}`);
 if(entries.length!==50||totalChecks!==500)process.exit(3);
 if(failed)process.exit(2);

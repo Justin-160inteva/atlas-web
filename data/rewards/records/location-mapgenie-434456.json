@@ -1,0 +1,76 @@
+{
+  "locationId": "location-mapgenie-434456",
+  "sourceLocationId": 434456,
+  "categoryId": "category-12312-castle",
+  "status": "high_confidence_inference",
+  "confidence": 0.78,
+  "summaryZhCN": "来源数据库记录：3,000经验值、3技能点及 Peasant Clothes（传奇轻型护甲）（高置信推断）",
+  "rewards": [
+    {
+      "type": "experience",
+      "nameOriginal": "XP",
+      "nameZhCN": "经验值",
+      "quantity": 3000,
+      "quantityStatus": "exact",
+      "rarity": null,
+      "notesZhCN": "来源原文为 3000 XP。"
+    },
+    {
+      "type": "skill_point",
+      "nameOriginal": "Mastery Points",
+      "nameZhCN": "技能点",
+      "quantity": 3,
+      "quantityStatus": "exact",
+      "rarity": null,
+      "notesZhCN": "来源原文为 3 Mastery Points；官方简中术语待游戏内复核。"
+    },
+    {
+      "type": "armor",
+      "nameOriginal": "Peasant Clothes",
+      "nameZhCN": "Peasant Clothes（传奇轻型护甲）",
+      "quantity": null,
+      "quantityStatus": "not_applicable",
+      "rarity": "Legendary",
+      "notesZhCN": "保留来源英文专有名词；官方简中译名待核实。"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "mapgenie-location-434456",
+      "sourceType": "community_database",
+      "title": "MapGenie · Osaka Castle",
+      "publisherOrAuthor": "MapGenie",
+      "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434456",
+      "capturedAt": null,
+      "gameVersion": null,
+      "supports": [
+        "地点身份：Osaka Castle",
+        "奖励：3000 XP",
+        "奖励：3 Mastery Points",
+        "奖励：Peasant Clothes - Legendary Light Armor"
+      ],
+      "limitationsZhCN": "单一社区数据库来源；来源快照未记录游戏版本，尚无第二独立来源或游戏内画面复核。"
+    }
+  ],
+  "conflicts": [
+    {
+      "type": "version_or_patch_mismatch",
+      "status": "accepted_uncertainty",
+      "detailZhCN": "来源未记录对应游戏版本，后续补丁可能改变奖励。",
+      "resolutionZhCN": "暂以高置信推断展示，等待当前版本游戏内复核。"
+    },
+    {
+      "type": "translation_mismatch",
+      "status": "accepted_uncertainty",
+      "detailZhCN": "装备仅有英文名称，官方简中译名尚未确认。",
+      "resolutionZhCN": "保留英文专有名词，不自行创造中文名称。"
+    }
+  ],
+  "review": {
+    "state": "machine_checked",
+    "lastReviewedAt": "2026-07-20T20:30:00Z",
+    "method": "reward-policy-v1 + source-snapshot-cross-check",
+    "reviewer": null,
+    "changeReasonZhCN": "首批城堡奖励候选；通过 schema、来源定位和术语规则机器检查。"
+  }
+}

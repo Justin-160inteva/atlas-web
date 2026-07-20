@@ -11,8 +11,8 @@
     "total": 3430,
     "officialConfirmed": 0,
     "multiSourceConfirmed": 0,
-    "highConfidenceInference": 0,
-    "unresolved": 3430,
+    "highConfidenceInference": 5,
+    "unresolved": 3425,
     "humanReviewed": 0,
     "locked": 0,
     "openConflicts": 0
@@ -32,10 +32,12 @@
       "id": "reward-batch-001-foundation",
       "state": "active",
       "scope": "建立数据结构、来源规则、中文术语和首批研究候选",
-      "targetRecords": 0,
-      "confirmedRecords": 0
+      "targetRecords": 5,
+      "reviewableRecords": 5,
+      "confirmedRecords": 0,
+      "sourceProfile": "single-community-database-with-explicit-uncertainty"
     }
   ],
-  "lastGeneratedAt": "2026-07-20T21:20:00Z",
-  "noteZhCN": "本索引不代表奖励已确认。未找到可靠证据的点位必须保持 unresolved，不允许使用同类别常见奖励批量填充。"
+  "lastGeneratedAt": "2026-07-20T20:35:00Z",
+  "noteZhCN": "首批5条城堡记录仅为高置信推断，来源为单一社区数据库快照；没有任何记录被标记为官方确认或多来源确认。其余3425个点位保持 unresolved。"
 }
