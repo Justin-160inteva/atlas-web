@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const VERSION=window.AtlasRelease?.version||'0.9.4.4';
+  const VERSION=window.AtlasRelease?.version||'0.9.4.6';
   const root=document.documentElement;
   let lastMapPoint={x:innerWidth/2,y:innerHeight/2};
   let activeBurst=null;
@@ -17,7 +17,7 @@
     collectibles:svg('<path d="m12 3 7 6-7 12L5 9Z"/><path d="m5 9 7 4 7-4M9 5l3 8 3-8"/>'),
     activities:svg('<path d="m5 4 15 15M19 4 4 19"/><path d="m4 4 4 1-3 3m15-4-4 1 3 3M4 20l1-4 3 3m12 1-1-4-3 3"/>'),
     locate:svg('<path d="M12 3v3m0 12v3M3 12h3m12 0h3"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'),
-    settings:svg('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.12 2.12-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.04 1.56V20h-3v-.08a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-2.12-2.12.06-.06A1.7 1.7 0 0 0 7 14.7a1.7 1.7 0 0 0-1.56-1.04H5v-3h.44A1.7 1.7 0 0 0 7 9.62a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.12-2.12.06.06A1.7 1.7 0 0 0 10.66 6a1.7 1.7 0 0 0 1.04-1.56V4h3v.44A1.7 1.7 0 0 0 15.74 6a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.12 2.12-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.04H21v3h-.04A1.7 1.7 0 0 0 19.4 15Z"/>'),
+    settings:svg('<circle cx="12" cy="12" r="3.2"/><path d="M12 4v2.2m0 11.6V20M4 12h2.2m11.6 0H20M6.35 6.35l1.55 1.55m8.2 8.2 1.55 1.55m0-11.3-1.55 1.55m-8.2 8.2-1.55 1.55"/>'),
     heart:svg('<path d="M12 20s-7-4.1-7-9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 7 3.5C19 15.9 12 20 12 20Z"/>','currentColor')
   };
 
@@ -27,7 +27,7 @@
     const rail={all:'all',locations:'locations',collectibles:'collectibles',activities:'activities',favorites:'favorite'};
     document.querySelectorAll('.quick-rail .rail-button').forEach(button=>{const slot=button.querySelector('.rail-icon');if(slot)slot.innerHTML=icons[rail[button.dataset.mode]]||icons.locations});
     const locate=document.getElementById('locateBtn');if(locate)locate.innerHTML=icons.locate;
-    const settings=document.getElementById('evidenceStudioBtn');if(settings){settings.innerHTML=icons.settings;settings.classList.add('atlas-settings-button');settings.setAttribute('aria-label','打开设置');settings.setAttribute('aria-expanded','false')}
+    const settings=document.getElementById('evidenceStudioBtn');if(settings){settings.innerHTML=icons.settings;settings.classList.add('atlas-settings-button');settings.setAttribute('aria-label','打开设置');settings.setAttribute('aria-expanded','false');settings.dataset.iconDesign='radial-eight'}
   }
 
   function rememberPoint(){document.getElementById('mapCanvas')?.addEventListener('pointerup',event=>{lastMapPoint={x:event.clientX,y:event.clientY}},{capture:true,passive:true})}
