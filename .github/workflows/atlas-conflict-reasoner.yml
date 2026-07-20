@@ -39,6 +39,8 @@ jobs:
           node --check atlas-liquid-nav-0934.js
           node --check atlas-controls-0938.js
           node --check atlas-ipad-nav-0940.js
+          node --check atlas-settings.js
+          node --check atlas-evidence-studio.js
           node --check atlas-data-guard-0939.js
           node --check atlas-i18n.js
           node --check location-names.js
@@ -46,6 +48,7 @@ jobs:
           node --check atlas-080.js
           node --check atlas-ui-fix-0931.js
           node --check scan-monitor.js
+          node --check tools/data_center_contract_smoke.mjs
           node --check tools/monitor_batch_authority_smoke.mjs
           node --check sw.js
 
@@ -62,6 +65,9 @@ jobs:
       - name: Run static conflict reasoner
         run: python tools/atlas_conflict_reasoner_v3.py
 
+      - name: Run 500-scenario unified data center matrix
+        run: node tools/data_center_contract_smoke.mjs
+
       - name: Run 500-scenario heartbeat matrix
         run: python tools/heartbeat_system_smoke.py
 
@@ -71,7 +77,7 @@ jobs:
       - name: Run 500-scenario queue schema matrix
         run: python tools/queue_schema_smoke.py
 
-      - name: Run full scan and monitor audit
+      - name: Run full scan, monitor, and data center audit
         run: python tools/audit_scan_system_v3.py
 
       - name: Install Playwright Chromium
@@ -97,7 +103,7 @@ jobs:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/monitor_batch_authority_smoke.mjs
 
-      - name: Upload conflict, heartbeat, order, schema, and batch-authority reports
+      - name: Upload conflict, data-center, heartbeat, order, schema, and batch-authority reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -115,5 +121,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add CONFLICT-REPORT.md data/conflict-reports data/batch-analysis/scan-system-health.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Update Atlas conflict, heartbeat, order, schema, and batch authority reports [skip ci]'
+          git commit -m 'Update Atlas conflict, data-center, heartbeat, order, schema, and batch authority reports [skip ci]'
           git push
