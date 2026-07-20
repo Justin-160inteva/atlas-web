@@ -19,7 +19,7 @@
       <p id="activeDetail">读取持久队列、实时心跳、监督器和自动恢复状态。</p>
       <div class="progress-track"><i id="heroBar"></i></div>
       <div class="stats">
-        <div class="stat"><b id="pilotProgress">0 / 3</b><small>区域批次导入</small></div>
+        <div class="stat"><b id="pilotProgress">0 / 10</b><small>当前批次导入</small></div>
         <div class="stat"><b id="catalogProgress">0 / 80</b><small>作者目录导入</small></div>
         <div class="stat"><b id="attemptCount">0 / 3</b><small>当前尝试次数</small></div>
         <div class="stat"><b id="heartbeatAge">—</b><small>任务数据更新时间</small></div>
@@ -40,13 +40,13 @@
       <p id="downloadDetail">等待下载遥测</p>
     </section>
     <div class="grid">
-      <section class="card"><div class="card-title"><b>当前区域队列</b><small id="queueSummary">正在读取任务</small></div><div class="queue" id="queueList"><div class="empty">正在载入队列…</div></div></section>
-      <section class="card"><div class="card-title"><b>当前处理阶段</b><small>持久状态优先</small></div><div class="stage-list" id="stageList"></div><div class="warning" id="freshnessNotice" data-level="info">正在核对 GitHub main、任务心跳与监督器。</div><div class="poll-row"><span id="dataOrigin">数据源：连接中</span><span id="nextPoll">下次核对 —</span><button id="forceRefresh" type="button">立即核对</button></div></section>
+      <section class="card"><div class="card-title"><b>当前批次队列</b><small id="queueSummary">正在读取任务</small></div><div class="queue" id="queueList"><div class="empty">正在载入队列…</div></div></section>
+      <section class="card"><div class="card-title"><b>当前处理阶段</b><small>批次权威状态优先</small></div><div class="stage-list" id="stageList"></div><div class="warning" id="freshnessNotice" data-level="info">正在核对 GitHub main、任务心跳与监督器。</div><div class="poll-row"><span id="dataOrigin">数据源：连接中</span><span id="nextPoll">下次核对 —</span><button id="forceRefresh" type="button">立即核对</button></div></section>
       <section class="card"><div class="card-title"><b>自动恢复</b><small id="recoveryCategory">未触发</small></div><div id="recoveryPanel"><div class="empty">当前没有恢复事件。</div></div></section>
       <section class="card"><div class="card-title"><b>最近事件</b><small>脱敏摘要</small></div><div id="eventList"><div class="empty">等待扫描事件。</div></div></section>
     </div>
-    <p class="footer">单一状态控制器每5秒读取持久队列与实时心跳、每180秒用 Contents API 权威校准、每秒刷新界面。已导入结果始终优先于旧运行心跳；终态会自动投影为下一任务排队或批次完成，旧下载遥测只作为历史实测保留。</p>
+    <p class="footer">单一状态控制器每5秒读取持久队列与实时心跳、每180秒用 Contents API 权威校准、每秒刷新界面。完成状态与当前运行批次优先于不同批次的旧队列；检测到 queueId 冲突时会自动隔离旧投影，不再让旧三项队列覆盖真实十项结果。</p>
   </main>
-  <script src="scan-monitor.js?v=0.6.0" defer></script>
+  <script src="scan-monitor.js?v=0.6.1" defer></script>
 </body>
 </html>
