@@ -1,11 +1,18 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-07-20T11:27:49.573407Z",
-  "decision": "resume_idle_pending",
-  "reason": "pending queue has had no durable progress within watchdog threshold",
-  "resumeWorkflow": true,
-  "changedExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p020",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-20T03:17:06.453058Z",
+  "decision": "complete",
+  "reason": "authoritative 10-item batch is durably complete; a later legacy three-item queue projection was rejected",
+  "resumeWorkflow": false,
+  "changedExternalSourceId": null,
   "staleAfterSeconds": 7200,
+  "authority": {
+    "batchId": "eleven-production-next-10-p012-p024-v1",
+    "statusPath": "data/batch-analysis/eleven-pilot-scan-status.json",
+    "total": 10,
+    "imported": 10,
+    "legacyQueueRejected": "eleven-ac-shadows-pilot-v2"
+  },
   "safety": {
     "sourceCodeModified": false,
     "authorizationBroadened": false,
