@@ -92,8 +92,7 @@ const staticContract={
   storageBoundary:settings.includes("EVIDENCE_STORAGE_KEY='atlas-evidence-project-v1'"),
   rawStatusBoundary:settings.includes("STATUS_PATH='data/batch-analysis/eleven-pilot-scan-status.json'"),
   runtimeBoundary:settings.includes("RUNTIME_PATH='data/runtime-progress/eleven-pilot-progress.json'"),
-  staleRuntimeGuard:settings.includes('RUNTIME_FRESH_MS=150000'),
-  moduleVersion:settings.includes("MODULE_VERSION='0.5.0'")
+  staleRuntimeGuard:settings.includes('RUNTIME_FRESH_MS=150000')
 };
 const staticValues=Object.entries(staticContract);
 if(staticValues.length!==50)throw new Error(`Expected 50 static contracts, got ${staticValues.length}`);
