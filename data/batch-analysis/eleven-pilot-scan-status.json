@@ -1,36 +1,151 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 2,
   "batchId": "eleven-production-next-10-p012-p024-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 NEXT10 P12-P24",
-  "updatedAt": "2026-07-20T01:39:00Z",
-  "phase": "queued",
+  "updatedAt": "2026-07-20T02:13:31.383210Z",
+  "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 10,
-    "imported": 0,
+    "imported": 1,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 10,
-    "attemptedThisRun": 0,
-    "newlyImportedThisRun": 0
+    "remaining": 9,
+    "attemptedThisRun": 1,
+    "newlyImportedThisRun": 1
   },
   "items": [
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p012","sequence":12,"page":12,"state":"queued","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p013","sequence":13,"page":13,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p014","sequence":14,"page":14,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p015","sequence":15,"page":15,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p016","sequence":16,"page":16,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p017","sequence":17,"page":17,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p018","sequence":18,"page":18,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p019","sequence":19,"page":19,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p023","sequence":23,"page":23,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
-    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p024","sequence":24,"page":24,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null}
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p012",
+      "sequence": 12,
+      "page": 12,
+      "state": "queued",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p013",
+      "sequence": 13,
+      "page": 13,
+      "state": "imported",
+      "attemptCount": 2,
+      "lastStartedAt": "2026-07-20T02:10:37.773771Z",
+      "lastFinishedAt": "2026-07-20T02:13:31.377636Z",
+      "resultPath": "data/analysis-results/eleven-p013.json",
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p014",
+      "sequence": 14,
+      "page": 14,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p015",
+      "sequence": 15,
+      "page": 15,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p016",
+      "sequence": 16,
+      "page": 16,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p017",
+      "sequence": 17,
+      "page": 17,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p018",
+      "sequence": 18,
+      "page": 18,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p019",
+      "sequence": 19,
+      "page": 19,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p023",
+      "sequence": 23,
+      "page": 23,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    },
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p024",
+      "sequence": 24,
+      "page": 24,
+      "state": "pending",
+      "attemptCount": 0,
+      "lastStartedAt": null,
+      "lastFinishedAt": null,
+      "resultPath": null,
+      "error": null
+    }
   ],
-  "events": [],
+  "events": [
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p013",
+      "sequence": 13,
+      "page": 13,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P13 第13期：和泉·摄津（收集1）",
+      "startedAt": "2026-07-20T02:10:37.773771Z",
+      "attemptCount": 2,
+      "analyzerReturnCode": 0,
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p013.json status=analyzed\n\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (1543339109 > 1035).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 1039\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (35430537 > 1274).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 1278\n[h264 @ 0x5628d8032640] Invalid NAL unit size (1543339109 > 1035).\n[h264 @ 0x5628d8032640] Error splitting the input into NAL units.\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (-540672776 > 755).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 759\n[h264 @ 0x5628d8052fc0] Invalid NAL unit size (35430537 > 1274).\n[h264 @ 0x5628d8052fc0] Error splitting the input into NAL units.\n[h264 @ 0x5628d7fff500] Invalid NAL unit size (-540672776 > 755).\n[h264 @ 0x5628d7fff500] Error splitting the input into NAL units.\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (-1044805246 > 1112).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 1116\n[h264 @ 0x5628d7f67300] Invalid NAL unit size (-1044805246 > 1112).\n[h264 @ 0x5628d7fad7c0] Invalid NAL unit size (2147020215 > 4732).\n[h264 @ 0x5628d7fad7c0] missing picture in access unit with size 4736\n[h264 @ 0x5628d7f67300] Error splitting the input into NAL units.\n[h264 @ 0x5628d8032640] Invalid NAL unit size (2147020215 > 4732).\n[h264 @ 0x5628d8032640] Error splitting the input into NAL units.\n",
+      "analysisStatus": "analyzed",
+      "indexReturnCode": 0,
+      "completed": true,
+      "finishedAt": "2026-07-20T02:13:31.377636Z"
+    }
+  ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
 }
