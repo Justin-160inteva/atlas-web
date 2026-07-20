@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Run exactly 500 queue-schema hydration checks."""
+"""Run a risk-budgeted queue-schema hydration matrix."""
 from __future__ import annotations
 
 import copy
 import json
+import os
 import pathlib
 
 import run_scan_with_auto_recovery_v2 as wrapper
@@ -13,6 +14,13 @@ catalog = json.loads((ROOT / "data/eleven-game-world-ac-shadows-catalog.json").r
 source_items = [item for item in catalog.get("items", []) if 25 <= int(item.get("page", 0)) <= 35]
 source_by_id = {item["id"]: item for item in source_items}
 results: list[dict[str, object]] = []
+REQUESTED_CHECKS = max(5, int(os.environ.get("ATLAS_CHECKS", "500")))
+VALIDATION_TIER = os.environ.get("ATLAS_VALIDATION_TIER", "full" if REQUESTED_CHECKS >= 500 else "targeted")
+
+
+def group_sizes(total: int, groups: int) -> list[int]:
+    base, remainder = divmod(total, groups)
+    return [base + (1 if index < remainder else 0) for index in range(groups)]
 
 
 def queue_item(page: int) -> dict:
@@ -40,7 +48,9 @@ def record(name: str, passed: bool, detail: str) -> None:
         raise AssertionError(f"{name}: {detail}")
 
 
-for index in range(100):
+title_count, identity_count, analysis_count, idempotent_count, unknown_count = group_sizes(REQUESTED_CHECKS, 5)
+
+for index in range(title_count):
     page = 25 + index % 11
     item = queue_item(page)
     item.pop("title")
@@ -48,7 +58,7 @@ for index in range(100):
     changed = wrapper.hydrate_queue_from_catalog(queue, catalog)
     record(f"title-{index:03d}", changed and queue["items"][0]["title"] == source_by_id[item["externalSourceId"]]["title"], f"page={page}")
 
-for index in range(100):
+for index in range(identity_count):
     page = 25 + index % 11
     item = queue_item(page)
     for field in ("url", "bvid", "cid"):
@@ -57,7 +67,7 @@ for index in range(100):
     changed = wrapper.hydrate_queue_from_catalog(queue, catalog)
     record(f"identity-{index:03d}", changed and all(queue["items"][0].get(field) not in (None, "") for field in ("url", "bvid", "cid")), f"page={page}")
 
-for index in range(100):
+for index in range(analysis_count):
     page = 25 + index % 11
     item = queue_item(page)
     for field in ("durationSeconds", "scanClass", "mapUtility", "priority", "partTitle"):
@@ -66,14 +76,14 @@ for index in range(100):
     changed = wrapper.hydrate_queue_from_catalog(queue, catalog)
     record(f"analysis-{index:03d}", changed and all(queue["items"][0].get(field) not in (None, "") for field in ("durationSeconds", "scanClass", "mapUtility", "priority", "partTitle")), f"page={page}")
 
-for index in range(100):
+for index in range(idempotent_count):
     page = 25 + index % 11
     original = queue_item(page)
     queue = {"items": [copy.deepcopy(original)]}
     changed = wrapper.hydrate_queue_from_catalog(queue, catalog)
     record(f"idempotent-{index:03d}", not changed and queue["items"][0] == original, f"page={page}")
 
-for index in range(100):
+for index in range(unknown_count):
     queue = {"items": [{"externalSourceId": f"unknown-{index}", "state": "pending"}]}
     failed = False
     try:
@@ -82,12 +92,15 @@ for index in range(100):
         failed = True
     record(f"unknown-{index:03d}", failed and queue["items"][0]["externalSourceId"] == f"unknown-{index}", "unknown IDs must stop before transfer")
 
-if len(results) != 500:
-    raise SystemExit(f"expected exactly 500 queue-schema checks, got {len(results)}")
+if len(results) != REQUESTED_CHECKS:
+    raise SystemExit(f"expected exactly {REQUESTED_CHECKS} queue-schema checks, got {len(results)}")
 report = {
-    "schemaVersion": 1,
+    "schemaVersion": 2,
+    "validationTier": VALIDATION_TIER,
+    "requestedChecks": REQUESTED_CHECKS,
     "queueItems": 11,
     "maximumConcurrentItems": 1,
+    "coverageFamilies": ["title", "identity", "analysis", "idempotent", "unknown-id-stop"],
     "totalChecks": len(results),
     "passed": all(item["passed"] for item in results),
     "checks": results,
@@ -95,4 +108,4 @@ report = {
 out = ROOT / "data/conflict-reports/queue-schema-matrix.json"
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print("Queue schema hydration matrix: 500/500 checks passed")
+print(f"Queue schema hydration matrix: {len(results)}/{REQUESTED_CHECKS} checks passed ({VALIDATION_TIER})")
