@@ -2,14 +2,14 @@
   "schemaVersion": 2,
   "jobId": "eleven-p033-v2",
   "status": "failed",
-  "generatedAt": "2026-07-20T20:56:18.517033Z",
+  "generatedAt": "2026-07-20T21:24:27.749610Z",
   "stage": "download",
-  "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (18) end of response with 82477576 bytes missing. See [url-redacted] first for more details.\"}]",
+  "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:HTTPError:HTTP Error 503: Service Unavailable | cdn-1-transfer:RuntimeError:range request was not honored; partial preserved (status=503) | cdn-2-transfer:RequestException:Failed to perform, curl: (18) end of response with 73956683 bytes missing. See [url-redacted] first for more details.\"}]",
   "attempts": [
     {
       "strategy": "wbi-signed-api-cdn-rotation",
       "success": false,
-      "diagnostic": "RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-1-transfer:RequestException:Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details. | cdn-2-transfer:RequestException:Failed to perform, curl: (18) end of response with 82477576 bytes missing. See [url-redacted] first for more details."
+      "diagnostic": "RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:HTTPError:HTTP Error 503: Service Unavailable | cdn-1-transfer:RuntimeError:range request was not honored; partial preserved (status=503) | cdn-2-transfer:RequestException:Failed to perform, curl: (18) end of response with 73956683 bytes missing. See [url-redacted] first for more details."
     }
   ],
   "source": {

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-20T20:56:21.126386Z",
+  "generatedAt": "2026-07-20T21:24:30.459738Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "finalState": "human_review_required",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-20T20:49:51.464071Z",
-      "finishedAt": "2026-07-20T20:56:19.813029Z",
+      "startedAt": "2026-07-20T21:19:40.462129Z",
+      "finishedAt": "2026-07-20T21:24:29.176404Z",
       "preflightState": "none",
       "preflightDictionaryEntryId": null,
       "scannerReturnCode": 0,
@@ -18,7 +18,7 @@
       "running": 0,
       "scannerOutput": "{\"total\": 11, \"imported\": 8, \"running\": 0, \"failed\": 2, \"blocked\": 1, \"retryableFailed\": 1, \"remaining\": 3}\n\n",
       "diagnosisReturnCode": 0,
-      "dictionaryEntryId": "curl-transport",
+      "dictionaryEntryId": "range-not-supported",
       "action": "block_after_attempt_limit",
       "retryScheduled": false,
       "requiresHumanReview": true
