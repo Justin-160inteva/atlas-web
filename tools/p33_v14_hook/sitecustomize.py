@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Conditional HTTP/1.1 and exact-tail repair for the bounded P33 retry.
+"""Conditional HTTP/1.1 and chunked-tail repair for the bounded P33 retry.
 
 Python imports ``sitecustomize`` automatically when this directory is placed on
 ``PYTHONPATH``. The hook is inert unless ``ATLAS_FORCE_HTTP11=1`` is present.
 It keeps every verified partial byte, rejects servers that ignore ``Range``, and
-requests only the missing tail. Authorization, queue order, retention, and
-analysis behavior are not changed.
+requests the missing tail in small independently verified ranges. Authorization,
+queue order, retention, and analysis behavior are not changed.
 """
 from __future__ import annotations
 
+import math
 import os
 import pathlib
 import re
@@ -19,6 +20,10 @@ from typing import Any
 ATLAS_HTTP11_PATCHED = False
 ATLAS_TAIL_REPAIR_PATCHED = False
 _CONTENT_RANGE = re.compile(r"^bytes\s+(\d+)-(\d+)/(\d+|\*)$", re.IGNORECASE)
+_TAIL_REQUEST_BYTES = max(
+    1024,
+    min(8 * 1024 * 1024, int(os.environ.get("ATLAS_TAIL_REQUEST_BYTES", 2 * 1024 * 1024))),
+)
 
 
 def _preserving_single_stream_resume(
@@ -32,31 +37,55 @@ def _preserving_single_stream_resume(
     chunk_size: int,
     retries: int,
 ) -> None:
-    """Resume without ever deleting a valid partial target.
+    """Fetch only missing bytes, in bounded ranges, without shrinking the target.
 
-    A response to a resumed request must be HTTP 206 and its Content-Range must
-    begin at the current file size. HTTP 200 is rejected without opening the
-    target, so a CDN that ignores Range cannot erase previously downloaded data.
-    If a transfer ends early, received bytes remain appended and the next bounded
-    attempt requests only the new missing tail.
+    Every request is capped to ``_TAIL_REQUEST_BYTES``. A response must be HTTP
+    206 and begin exactly at the current file size. If a connection breaks after
+    delivering some bytes, those bytes remain durable and the next request starts
+    from the new file size. A CDN returning HTTP 200/5xx cannot open or truncate
+    the target and is abandoned after a bounded no-progress budget.
     """
-    from analyze_authorized_video_v11 import runner
+    import analyze_authorized_video_v11 as v11
 
-    attempts = max(1, int(retries))
-    last_error: Exception = RuntimeError("single-stream retry limit reached")
+    if expected_size <= 0:
+        return v11._atlas_original_single_stream_resume(
+            candidate,
+            target,
+            expected_size=expected_size,
+            heartbeat=heartbeat,
+            downloaded_before=downloaded_before,
+            segment_index=segment_index,
+            chunk_size=chunk_size,
+            retries=retries,
+        )
 
-    for attempt in range(attempts):
+    runner = v11.runner
+    initial = target.stat().st_size if target.exists() else 0
+    if initial > expected_size:
+        raise RuntimeError("partial target exceeds expected media size")
+    if initial == expected_size and initial >= 1024:
+        return
+
+    remaining_at_start = max(0, expected_size - initial)
+    required_chunks = max(1, math.ceil(remaining_at_start / _TAIL_REQUEST_BYTES))
+    no_progress_budget = max(2, min(12, int(retries) * 3))
+    maximum_requests = required_chunks * 3 + no_progress_budget
+    consecutive_no_progress = 0
+    last_error: Exception = RuntimeError("chunked tail retry limit reached")
+
+    for request_index in range(maximum_requests):
         existing = target.stat().st_size if target.exists() else 0
-        if expected_size and existing == expected_size and existing >= 1024:
+        if existing == expected_size and existing >= 1024:
             return
-        if expected_size and existing > expected_size:
+        if existing > expected_size:
             raise RuntimeError("partial target exceeds expected media size")
 
+        requested_end = min(expected_size - 1, existing + _TAIL_REQUEST_BYTES - 1)
         headers = dict(runner.HEADERS)
-        headers["Accept-Encoding"] = "identity"
-        if existing:
-            end = expected_size - 1 if expected_size else ""
-            headers["Range"] = f"bytes={existing}-{end}"
+        headers.update({
+            "Accept-Encoding": "identity",
+            "Range": f"bytes={existing}-{requested_end}",
+        })
 
         try:
             with runner.requests.get(
@@ -64,71 +93,75 @@ def _preserving_single_stream_resume(
                 headers=headers,
                 impersonate="chrome",
                 stream=True,
-                timeout=90,
+                timeout=45,
             ) as response:
                 status = int(getattr(response, "status_code", 0) or 0)
-                if existing:
-                    if status != 206:
-                        raise RuntimeError(
-                            f"range request was not honored; partial preserved (status={status})"
-                        )
-                    content_range = str(response.headers.get("content-range") or "").strip()
-                    match = _CONTENT_RANGE.fullmatch(content_range)
-                    if not match or int(match.group(1)) != existing:
-                        raise RuntimeError("range response start does not match partial size")
-                    returned_end = int(match.group(2))
-                    returned_total = match.group(3)
-                    if returned_end < existing:
-                        raise RuntimeError("range response end precedes requested start")
-                    if (
-                        expected_size
-                        and returned_total != "*"
-                        and int(returned_total) != expected_size
-                    ):
-                        raise RuntimeError("range response total does not match expected size")
+                if status != 206:
+                    raise RuntimeError(
+                        f"range request was not honored; partial preserved (status={status})"
+                    )
+
+                content_range = str(response.headers.get("content-range") or "").strip()
+                match = _CONTENT_RANGE.fullmatch(content_range)
+                if not match:
+                    raise RuntimeError("range response omitted a valid Content-Range")
+                returned_start = int(match.group(1))
+                returned_end = int(match.group(2))
+                returned_total = match.group(3)
+                if returned_start != existing:
+                    raise RuntimeError("range response start does not match partial size")
+                if returned_end < returned_start or returned_end > requested_end:
+                    raise RuntimeError("range response end exceeds the requested chunk")
+                if returned_total != "*" and int(returned_total) != expected_size:
+                    raise RuntimeError("range response total does not match expected size")
                 response.raise_for_status()
 
-                header_size = int(response.headers.get("content-length") or 0)
-                total = expected_size or (existing + header_size if header_size else 0)
+                allowed = requested_end + 1 - existing
                 written = existing
                 mode = "ab" if existing else "wb"
                 with target.open(mode) as handle:
-                    for chunk in response.iter_content(chunk_size=max(1024, int(chunk_size))):
+                    for chunk in response.iter_content(chunk_size=max(1024, min(int(chunk_size), _TAIL_REQUEST_BYTES))):
                         if not chunk:
                             continue
-                        if expected_size:
-                            remaining = expected_size - written
-                            if remaining <= 0:
-                                break
-                            chunk = chunk[:remaining]
+                        remaining_in_request = allowed - (written - existing)
+                        if remaining_in_request <= 0:
+                            break
+                        chunk = chunk[:remaining_in_request]
                         handle.write(chunk)
                         written += len(chunk)
                         heartbeat.update(
                             downloaded_bytes=downloaded_before + written,
                             segment_downloaded_bytes=written,
-                            segment_total_bytes=total,
+                            segment_total_bytes=expected_size,
                             segment_index=segment_index,
                         )
 
             current = target.stat().st_size if target.exists() else 0
-            if expected_size:
-                if current == expected_size and current >= 1024:
-                    return
-                raise RuntimeError(
-                    f"exact tail incomplete: {max(0, expected_size - current)} bytes missing"
-                )
-            if current >= 1024:
+            if current < existing:
+                raise RuntimeError("partial target unexpectedly shrank during tail repair")
+            if current > requested_end + 1:
+                raise RuntimeError("tail request appended beyond its verified boundary")
+            if current == expected_size and current >= 1024:
                 return
-            raise RuntimeError("downloaded media stream is unexpectedly small")
+            if current > existing:
+                consecutive_no_progress = 0
+                continue
+            raise RuntimeError("verified range returned no new bytes")
         except Exception as exc:
             last_error = exc
             current = target.stat().st_size if target.exists() else 0
-            if expected_size and current == expected_size and current >= 1024:
-                return
             if current < existing:
                 raise RuntimeError("partial target unexpectedly shrank during tail repair") from exc
-            if attempt + 1 < attempts:
-                time.sleep(min(6, 1 + attempt * 2))
+            if current == expected_size and current >= 1024:
+                return
+            if current > existing:
+                consecutive_no_progress = 0
+                continue
+
+            consecutive_no_progress += 1
+            if consecutive_no_progress >= no_progress_budget:
+                raise last_error
+            time.sleep(min(4, 1 + consecutive_no_progress))
 
     raise last_error
 
