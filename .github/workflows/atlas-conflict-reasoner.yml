@@ -43,6 +43,8 @@ jobs:
           node --check atlas-i18n.js
           node --check location-names.js
           node --check location-title-polish.js
+          node --check atlas-080.js
+          node --check atlas-ui-fix-0931.js
           node --check scan-monitor.js
           node --check tools/monitor_batch_authority_smoke.mjs
           node --check sw.js
