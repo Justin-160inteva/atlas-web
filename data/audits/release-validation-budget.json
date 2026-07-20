@@ -1,70 +1,40 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-20T19:52:06.521615Z",
+  "generatedAt": "2026-07-20T21:17:06.293718Z",
   "release": "0.9.4.8",
   "policyRevision": "2026.07.20.3",
-  "tier": "standard",
+  "tier": "quick",
   "forcedFull": false,
   "scheduledFull": false,
   "changedFiles": [
-    ".github/workflows/scan-eleven-pilot-v2.yml",
-    ".github/workflows/validate-scan-monitor.yml",
-    ".github/workflows/validate-scan-system.yml",
-    "PROJECT-ROADMAP.md",
-    "data/audits/release-validation-budget.json",
-    "data/batch-analysis/eleven-pilot-scan-manifest.json",
-    "data/batch-analysis/scan-system-health.json",
-    "data/quality/release-validation-policy.json",
-    "data/scan-bug-dictionary.json",
-    "release-manifest.json",
-    "tools/analyze_authorized_video_v11.py",
-    "tools/analyze_authorized_video_v13.py",
-    "tools/audit_scan_system_v3.py",
-    "tools/bilibili_transport_smoke.py",
-    "tools/bilibili_transport_v13.py",
-    "tools/diagnose_and_recover_scan_v2.py",
-    "tools/run_scan_with_auto_recovery_v2.py"
+    "tools/p33_v14_hook/sitecustomize.py"
   ],
   "matchedGroups": {
-    "validationFramework": [
-      "data/quality/release-validation-policy.json",
-      "release-manifest.json"
-    ],
-    "scanCore": [
-      ".github/workflows/scan-eleven-pilot-v2.yml",
-      "data/scan-bug-dictionary.json",
-      "tools/analyze_authorized_video_v11.py",
-      "tools/analyze_authorized_video_v13.py",
-      "tools/bilibili_transport_smoke.py",
-      "tools/bilibili_transport_v13.py",
-      "tools/diagnose_and_recover_scan_v2.py",
-      "tools/run_scan_with_auto_recovery_v2.py"
-    ],
+    "validationFramework": [],
+    "scanCore": [],
     "monitor": [],
     "dataCenter": [],
     "rewards": [],
     "ui": [],
-    "highRisk": [
-      "tools/run_scan_with_auto_recovery_v2.py"
-    ]
+    "highRisk": []
   },
   "run": {
     "data_center": false,
     "reward": false,
-    "heartbeat": true,
-    "serial": true,
-    "queue_schema": true,
+    "heartbeat": false,
+    "serial": false,
+    "queue_schema": false,
     "browser": false,
     "monitor": false,
     "full_audit": false,
     "playwright": false
   },
   "budget": {
-    "heartbeatChecks": 128,
-    "serialQueueChecks": 128,
-    "queueSchemaChecks": 96,
-    "browserChecks": 500,
-    "monitorAuthorityChecks": 500,
+    "heartbeatChecks": 96,
+    "serialQueueChecks": 96,
+    "queueSchemaChecks": 80,
+    "browserChecks": 0,
+    "monitorAuthorityChecks": 0,
     "dataCenterChecks": 500,
     "rewardEvidenceChecks": 500,
     "fullAudit": false
