@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "locale": "zh-CN",
+  "rules": {
+    "useOfficialChineseWhenAvailable": true,
+    "preserveOriginalName": true,
+    "doNotInventProperNouns": true,
+    "quantityBeforeUnit": true,
+    "unknownQuantityLabel": "数量未确认",
+    "inferenceSuffix": "（高置信推断）"
+  },
+  "rewardTypes": {
+    "currency": "货币",
+    "resource": "资源",
+    "gear": "装备",
+    "weapon": "武器",
+    "armor": "护甲",
+    "trinket": "饰品",
+    "engraving": "铭刻",
+    "skill_point": "技能点",
+    "knowledge_point": "知识点",
+    "experience": "经验值",
+    "ability": "能力",
+    "cosmetic": "外观物品",
+    "quest_item": "任务物品",
+    "collectible": "收集品",
+    "service_unlock": "功能解锁",
+    "unknown": "奖励未确认"
+  },
+  "evidenceLabels": {
+    "official_confirmed": "官方确认",
+    "multi_source_confirmed": "多来源确认",
+    "high_confidence_inference": "高置信推断",
+    "unresolved": "尚未解决"
+  },
+  "quantityStatus": {
+    "exact": "精确数量",
+    "minimum": "至少",
+    "range": "数量范围",
+    "unknown": "数量未确认",
+    "not_applicable": "不适用"
+  },
+  "preferredPatterns": [
+    "获得{quantity}{unit}{name}",
+    "解锁{name}",
+    "获得{name}，数量未确认",
+    "奖励尚未确认"
+  ],
+  "normalization": [
+    {"avoid": "XP", "prefer": "经验值", "exceptWhenOfficialName": true},
+    {"avoid": "Skill Point", "prefer": "技能点", "exceptWhenOfficialName": true},
+    {"avoid": "Knowledge Point", "prefer": "知识点", "exceptWhenOfficialName": true},
+    {"avoid": "Material", "prefer": "材料", "exceptWhenOfficialName": true},
+    {"avoid": "Loot", "prefer": "战利品", "exceptWhenOfficialName": true},
+    {"avoid": "Unknown Reward", "prefer": "奖励尚未确认", "exceptWhenOfficialName": false}
+  ]
+}
