@@ -60,22 +60,15 @@ class RoutedParallelRequests:
         self.mode = mode
         self.calls: list[str] = []
         self._lock = threading.Lock()
-        self._range_attempts: dict[str, int] = {}
 
     def get(self, _url: str, **kwargs: Any) -> FakeResponse:
         range_header = kwargs["headers"]["Range"]
         with self._lock:
             self.calls.append(range_header)
-            attempt = self._range_attempts.get(range_header, 0)
-            self._range_attempts[range_header] = attempt + 1
 
         if self.mode == "first-cdn":
             if range_header == "bytes=0-2047":
-                return FakeResponse(
-                    206,
-                    {"content-range": "bytes 0-2047/8192"},
-                    [b"P" * 2048],
-                )
+                return FakeResponse(206, {"content-range": "bytes 0-2047/8192"}, [b"P" * 2048])
             return FakeResponse(503, {}, [])
 
         mapping: dict[str, FakeResponse] = {
@@ -207,7 +200,9 @@ def main() -> int:
                 (part for part in preserved_parts if part.name.endswith("00000.part")),
                 None,
             )
+            preserved_zero_size = preserved_zero.stat().st_size if preserved_zero is not None else -1
             marker = pathlib.Path(directory) / "parallel.flv.atlas-parallel-candidate"
+            marker_before_second = marker.exists()
 
             second_cdn = RoutedParallelRequests("second-cdn")
             fake_v11.runner.requests = second_cdn
@@ -247,8 +242,8 @@ def main() -> int:
         "sequential-disconnect-preserved": sequential_payload[2048:3072] == b"B" * 1024,
         "sequential-http11": all(call.get("http_version") == "HTTP/1.1" for call in sequential.calls),
         "first-cdn-failed": first_failed,
-        "first-cdn-part-preserved": preserved_zero is not None and preserved_zero.stat().st_size == 2048,
-        "first-cdn-marker-preserved": marker.exists() or not marker_remaining,
+        "first-cdn-part-preserved": preserved_zero_size == 2048,
+        "first-cdn-marker-preserved": marker_before_second,
         "second-cdn-skipped-complete-part": "bytes=0-2047" not in second_cdn.calls,
         "parallel-final-size": len(parallel_payload) == 8192,
         "parallel-final-content": parallel_payload == b"P" * 2048 + b"Q" * 1024 + b"R" * 1024 + b"S" * 2048 + b"T" * 2048,
