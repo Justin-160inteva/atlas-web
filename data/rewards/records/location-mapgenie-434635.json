@@ -3,8 +3,8 @@
   "sourceLocationId": 434635,
   "categoryId": "category-12312-castle",
   "status": "high_confidence_inference",
-  "confidence": 0.84,
-  "summaryZhCN": "装备奖励 Peasant Hat 已获两个独立来源一致支持；3,000经验值与3技能点仍为单一来源（整体保持高置信推断）",
+  "confidence": 0.88,
+  "summaryZhCN": "3,000经验值、3技能点和 Peasant Hat 均获 MapGenie 与 MapMaster 一致支持；装备另有 Game8 支持（来源链独立性未完全确认，整体保持高置信推断）",
   "rewards": [
     {
       "type": "experience",
@@ -13,7 +13,7 @@
       "quantity": 3000,
       "quantityStatus": "exact",
       "rarity": null,
-      "notesZhCN": "来源原文为 3,000 XP；当前仅由 MapGenie 支持。"
+      "notesZhCN": "MapGenie 与 MapMaster 均记录 3,000 XP。"
     },
     {
       "type": "skill_point",
@@ -22,7 +22,7 @@
       "quantity": 3,
       "quantityStatus": "exact",
       "rarity": null,
-      "notesZhCN": "来源原文为 3 Mastery Points；官方简中术语待游戏内复核，当前仅由 MapGenie 支持。"
+      "notesZhCN": "MapGenie 与 MapMaster 均记录 3 Mastery Points；官方简中术语待游戏内复核。"
     },
     {
       "type": "armor",
@@ -31,7 +31,7 @@
       "quantity": null,
       "quantityStatus": "not_applicable",
       "rarity": "Legendary",
-      "notesZhCN": "Game8 使用 Peasant Hat；MapGenie 写作 Legendary Peasant Hat，其中 Legendary 作为稀有度前缀处理。"
+      "notesZhCN": "Game8 使用 Peasant Hat；MapGenie 与 MapMaster 使用 Legendary Peasant Hat，其中 Legendary 作为稀有度前缀处理。"
     }
   ],
   "sources": [
@@ -68,19 +68,38 @@
         "reward:armor:Peasant Hat"
       ],
       "limitationsZhCN": "仅支持装备奖励及获取地点，不支持3,000 XP或3 Mastery Points；页面未标注游戏版本。"
+    },
+    {
+      "sourceId": "mapmaster-castle-guide-takatsuki",
+      "sourceType": "community_database",
+      "title": "MapMaster · Castle Locations & 100% Completion Guide · Takatsuki Castle",
+      "publisherOrAuthor": "MapMaster",
+      "locator": "https://mapmaster.io/games/assassin-s-creed-shadows/guides/Castle",
+      "capturedAt": "2026-07-20T22:00:00Z",
+      "gameVersion": null,
+      "supports": [
+        "地点身份：Takatsuki Castle",
+        "奖励：3000 XP",
+        "奖励：Mastery Point x3",
+        "奖励：Legendary Peasant Hat Legendary Headgear",
+        "reward:experience:XP",
+        "reward:skill_point:Mastery Points",
+        "reward:armor:Peasant Hat"
+      ],
+      "limitationsZhCN": "聚合式社区地图；无法确认其奖励数据是否独立于 MapGenie，页面未标注游戏版本。"
     }
   ],
   "conflicts": [
     {
       "type": "version_or_patch_mismatch",
       "status": "accepted_uncertainty",
-      "detailZhCN": "两项来源均未记录对应游戏版本，且第二来源不覆盖经验值与技能点。",
-      "resolutionZhCN": "整条记录继续保持高置信推断，等待当前版本游戏内复核。"
+      "detailZhCN": "来源均未记录对应游戏版本，且两个社区地图之间的数据链独立性无法完全确认。",
+      "resolutionZhCN": "提高置信度但不升级为多来源确认，等待当前版本游戏内复核或官方来源。"
     },
     {
       "type": "reward_name_mismatch",
       "status": "resolved",
-      "detailZhCN": "MapGenie 写作 Legendary Peasant Hat，Game8 写作 Peasant Hat。",
+      "detailZhCN": "MapGenie 与 MapMaster 写作 Legendary Peasant Hat，Game8 写作 Peasant Hat。",
       "resolutionZhCN": "把 Legendary 规范为稀有度字段，物品原名记录为 Peasant Hat。"
     },
     {
@@ -92,9 +111,9 @@
   ],
   "review": {
     "state": "machine_checked",
-    "lastReviewedAt": "2026-07-20T21:40:00Z",
-    "method": "reward-policy-v1 + per-reward-source-coverage",
+    "lastReviewedAt": "2026-07-20T22:00:00Z",
+    "method": "reward-policy-v1 + source-lineage-qualified-coverage",
     "reviewer": null,
-    "changeReasonZhCN": "加入独立指南来源；装备奖励达到两来源一致并规范稀有度前缀，数值奖励仍为单一来源。"
+    "changeReasonZhCN": "加入 MapMaster 完整奖励交叉来源并保留名称规范化审计；整体继续保持高置信推断。"
   }
 }
