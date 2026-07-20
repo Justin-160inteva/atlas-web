@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "2026.07.20.3",
+  "revision": "2026.07.20.4",
   "purpose": "Choose the smallest deterministic validation set that still covers the risk introduced by each release.",
   "principles": {
     "userRequirementsFirst": true,
@@ -57,7 +57,10 @@
     "scanCore": [
       "tools/analyze_authorized_video_v*.py",
       "tools/bilibili_transport_v13.py",
+      "tools/resumable_transport_v14.py",
       "tools/bilibili_transport_smoke.py",
+      "tools/bilibili_transport_v14_smoke.py",
+      "tools/audit_scan_system_v4.py",
       "tools/supervise_runtime_heartbeat.py",
       "tools/run_scan_with_auto_recovery.py",
       "tools/run_scan_with_auto_recovery_v2.py",
