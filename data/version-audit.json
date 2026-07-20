@@ -1,24 +1,32 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "1.2",
   "project": "Atlas - Assassin's Creed Shadows Interactive Map",
-  "currentVersion": "0.9.3.5",
-  "lastAuditedVersion": "0.9.3.5",
+  "currentVersion": "0.9.4.4",
+  "lastAuditedVersion": "0.9.4.4",
   "auditEveryPatchReleases": 3,
-  "nextScheduledAuditVersion": "0.9.3.8",
+  "nextScheduledAuditVersion": "0.9.4.7",
   "stageGate": {
     "id": "ultra-hd-original-map",
     "title": "超高清自创地图成型",
     "status": "pending",
-    "unlocksDeferredBacklog": true
+    "firstCompletedAtVersion": null,
+    "unlocksDeferredBacklog": true,
+    "evidenceRequired": [
+      "final original ultra-HD map base",
+      "coordinate and overlay calibration",
+      "responsive mobile and desktop rendering",
+      "accepted feature compatibility",
+      "iPad Safari and desktop verification"
+    ]
   },
   "deploymentState": {
-    "status": "regressed",
-    "detectedAt": "2026-07-19",
-    "intendedVersion": "0.9.3.5",
-    "entryPageFallbackVersion": "0.9.1.4",
-    "serviceWorkerCacheVersion": "0.9.3.5",
+    "status": "version_synchronized_runtime_loading_unproven",
+    "detectedAt": "2026-07-20",
+    "intendedVersion": "0.9.4.4",
+    "entryPageVersion": "0.9.4.4",
+    "serviceWorkerCacheVersion": "atlas-alpha-0944-pages-v1",
     "publicVerificationRequired": true,
-    "summary": "The default-branch entry page remains stamped and cache-busted as 0.9.1.4 and does not explicitly load the cumulative liquid-navigation patch layers, while the service worker and audit ledger claim 0.9.3.5."
+    "summary": "The release manifest, entry page, bootstrap and service-worker version are synchronized at 0.9.4.4. However, repository evidence does not yet prove that every declared cumulative runtime owner is loaded and executed by the public production path, and post-deployment public/device verification remains required."
   },
   "auditPolicy": {
     "checkConversationRequests": true,
@@ -32,16 +40,82 @@
     "requireAutomatedValidation": true,
     "requireDeviceVerificationWhenApplicable": true,
     "requirePublicDeploymentVerification": true,
-    "requireCrossFileVersionConsistency": true
+    "requireCrossFileVersionConsistency": true,
+    "requireLoadedResourceGraphVerification": true
   },
+  "conversationHistoryCoverage": {
+    "status": "partial",
+    "sourcesUsed": [
+      "PROJECT-ROADMAP.md",
+      "data/version-audit.json",
+      "accessible recent project context",
+      "repository implementation and runtime records"
+    ],
+    "limitation": "No additional retrievable project conversation archive was available during this run; previously recorded requests and commitments remain authoritative."
+  },
+  "completedEvidence": [
+    {
+      "item": "Cross-file release version synchronization",
+      "status": "implemented",
+      "evidence": [
+        "release-manifest.json version is 0.9.4.4",
+        "index.html visible version and asset query strings are 0.9.4.4",
+        "atlas-bootstrap.js version is 0.9.4.4",
+        "service-worker cache namespace is atlas-alpha-0944-pages-v1"
+      ]
+    },
+    {
+      "item": "Central release bootstrap ownership",
+      "status": "implemented",
+      "evidence": [
+        "atlas-bootstrap.js owns visible version stamping",
+        "atlas-bootstrap.js checks release-manifest compatibility",
+        "atlas-bootstrap.js owns service-worker registration and update"
+      ]
+    },
+    {
+      "item": "Authorised scan pipeline progress",
+      "status": "partial",
+      "evidence": [
+        "current P07-P11 batch reached 4/5 imported",
+        "automatic recovery stopped safely for one unknown OpenCV media-open failure",
+        "original media retention and authorisation scope were not broadened"
+      ]
+    }
+  ],
+  "incompleteItems": [
+    "Ultra-HD original map completion and device verification",
+    "Browser proof that all releaseAssets/runtimeOwners load and execute exactly once",
+    "Public GitHub Pages response and active service-worker verification for 0.9.4.4",
+    "Machine-readable 500-check release verification evidence for 0.9.4.4",
+    "Physical iPad and desktop verification record",
+    "All 23 authorised 达达猪 scans and imports",
+    "Conversion of scanned descriptors into validated map anchors",
+    "End-to-end 完整版 / 终极完整版 completeness audit",
+    "3430-location data quality and coordinate audit",
+    "Original Atlas display font assets beyond aliases and fallbacks"
+  ],
+  "blockedItems": [
+    {
+      "item": "Current authorised scan queue completion",
+      "blockedBy": "Unknown OpenCV media-open failure requiring human review"
+    },
+    {
+      "item": "Full evidence-based anchoring and final route refinement",
+      "blockedBy": "Ultra-HD original map stage gate"
+    },
+    {
+      "item": "Next creator intake",
+      "blockedBy": "Completion of current 达达猪 scope and explicit new authorisation"
+    }
+  ],
   "currentHighPriority": [
-    "0.9.3.6: repair production index version and cumulative asset loading",
-    "0.9.3.6: verify the public GitHub Pages response after deployment",
-    "0.9.3.7: add a single release manifest and cross-file version checks",
-    "0.9.3.7: add regression tests for liquid-navigation base and refinements",
-    "0.9.3.8: perform the scheduled full audit and resume ultra-HD map work",
-    "Finish all 23 authorised 达达猪 video scans and imports",
-    "Convert scanned evidence descriptors into map anchors"
+    "0.9.4.5: prove the public production loaded-resource graph and exactly-once runtime ownership",
+    "0.9.4.5: create a machine-readable release verification evidence index",
+    "0.9.4.5: resolve or formally isolate the current human-review scan blocker",
+    "0.9.4.6: run the 500-scenario navigation, rendering, cache, persistence and service-worker matrix",
+    "0.9.4.6: verify public deployment and physical iPad/desktop behaviour",
+    "0.9.4.7: perform the scheduled full audit and reassess the ultra-HD map gate"
   ],
   "knownDeferred": [
     "Next creator intake after 达达猪 completion and explicit authorisation",
@@ -52,17 +126,35 @@
   "knownRegressions": [
     {
       "id": "deployment-version-source-mismatch-0935",
+      "status": "implementation_repaired_public_verification_pending",
+      "severity": "high",
+      "acceptedBehaviourAffected": "The public release must display and load one consistent intended Atlas version.",
+      "evidence": [
+        "release manifest, entry page and bootstrap now report 0.9.4.4",
+        "service-worker cache namespace now reports 0.9.4.4",
+        "public response and active controller still require post-deployment verification"
+      ],
+      "requiredFixVersion": "0.9.4.5"
+    },
+    {
+      "id": "declared-runtime-assets-loading-unproven-0944",
       "status": "open",
       "severity": "high",
-      "acceptedBehaviourAffected": "The public release should load and display the intended Alpha 0.9.3.5 cumulative liquid-navigation implementation.",
+      "acceptedBehaviourAffected": "Previously accepted liquid navigation, controls and iPad-specific behaviour must remain present after release changes.",
       "evidence": [
-        "index.html visible version and primary asset query strings remain 0.9.1.4",
-        "index.html does not explicitly reference atlas-liquid-nav-0933/0934 CSS or JavaScript",
-        "atlas-liquid-nav-0934.js contains runtime 0.9.3.5 stamping but entry-page loading is unproven",
-        "sw.js cache name is atlas-alpha-0935-pages-v1"
+        "release-manifest.json declares atlas-liquid-nav-0934.js, atlas-controls-0938.js and atlas-ipad-nav-0940.js as release assets/runtime owners",
+        "index.html does not explicitly reference those three files",
+        "no inspected browser-resource evidence proves that the production path loads and executes each owner exactly once"
       ],
-      "requiredFixVersion": "0.9.3.6"
+      "requiredFixVersion": "0.9.4.5"
     }
+  ],
+  "technicalDebt": [
+    "Verification evidence is not indexed from release to checks, workflow, deployment and devices",
+    "Release asset declarations are not yet validated against the browser loaded-resource graph",
+    "Unknown media-open failures lack a documented deterministic human-resolution path",
+    "Ultra-HD map files exist before the stage completion evidence contract is satisfied",
+    "Product-completeness and 3430-location quality audits remain outstanding"
   ],
   "auditHistory": [
     {
@@ -82,6 +174,23 @@
         "0.9.3.6": "Repair production entry page, cumulative asset loading and public deployment verification.",
         "0.9.3.7": "Create a single release manifest and automated cross-file/version regression checks.",
         "0.9.3.8": "Run the next scheduled audit and continue ultra-HD original map work after deployment stability is proven."
+      },
+      "roadmap": "PROJECT-ROADMAP.md"
+    },
+    {
+      "version": "0.9.4.4",
+      "date": "2026-07-20",
+      "type": "scheduled-and-minor-line-full-audit",
+      "trigger": [
+        "current version exceeded nextScheduledAuditVersion 0.9.3.8",
+        "new 0.9.4 minor patch line",
+        "open accepted-feature runtime-loading regression risk"
+      ],
+      "result": "Version sources are synchronized, but public/device verification and cumulative runtime asset loading proof remain incomplete. Ultra-HD map gate stays pending; scan pipeline remains partially blocked.",
+      "nextThreeReleasePriorities": {
+        "0.9.4.5": "Prove production runtime resource ownership, index release evidence, and resolve or isolate the scan blocker.",
+        "0.9.4.6": "Complete 500-scenario regression validation plus public and physical-device verification.",
+        "0.9.4.7": "Run the next scheduled audit and reassess the ultra-HD map completion gate."
       },
       "roadmap": "PROJECT-ROADMAP.md"
     }
