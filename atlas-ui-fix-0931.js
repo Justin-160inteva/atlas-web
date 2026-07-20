@@ -8,6 +8,7 @@
   const panelIds={filter:'filterPanel',route:'routePanel',progress:'progressPanel'};
   const SELECTED_SCALE=1.28;
   const SELECTION_DURATION=190;
+  const MIN_SELECTION_FRAMES=5;
   const selectionMotions=new Map();
   let lastBrowseMode=state.mode==='favorites'?'all':state.mode;
   let visualSelectedId=state.selected?.id??null;
@@ -121,10 +122,16 @@
     return centerY;
   }
 
+  function motionProgress(motion,now=performance.now()){
+    const timeProgress=clampValue((now-motion.startedAt)/SELECTION_DURATION,0,1);
+    const frameProgress=clampValue((motion.frames||0)/MIN_SELECTION_FRAMES,0,1);
+    return Math.min(timeProgress,frameProgress);
+  }
+
   function resolvedSelectionScale(id,now=performance.now()){
     const motion=selectionMotions.get(id);
     if(!motion)return id===visualSelectedId?SELECTED_SCALE:1;
-    const progress=clampValue((now-motion.startedAt)/SELECTION_DURATION,0,1);
+    const progress=motionProgress(motion,now);
     const scale=motion.from+(motion.to-motion.from)*easeOutCubic(progress);
     if(progress>=1)selectionMotions.delete(id);
     return scale;
@@ -132,7 +139,7 @@
 
   function pruneSelectionMotions(now=performance.now()){
     for(const [id,motion] of selectionMotions){
-      if(now-motion.startedAt>=SELECTION_DURATION)selectionMotions.delete(id);
+      if(motionProgress(motion,now)>=1)selectionMotions.delete(id);
     }
   }
 
@@ -141,6 +148,7 @@
     if(!selectionMotions.size||selectionFrame)return;
     selectionFrame=requestAnimationFrame(()=>{
       selectionFrame=0;
+      for(const motion of selectionMotions.values())motion.frames=(motion.frames||0)+1;
       pruneSelectionMotions();
       scheduleDraw();
     });
@@ -154,10 +162,10 @@
     }
     const previousId=visualSelectedId;
     if(previousId!==null){
-      selectionMotions.set(previousId,{from:resolvedSelectionScale(previousId,now),to:1,startedAt:now});
+      selectionMotions.set(previousId,{from:resolvedSelectionScale(previousId,now),to:1,startedAt:now,frames:0});
     }
     if(nextId!==null){
-      selectionMotions.set(nextId,{from:resolvedSelectionScale(nextId,now),to:SELECTED_SCALE,startedAt:now});
+      selectionMotions.set(nextId,{from:resolvedSelectionScale(nextId,now),to:SELECTED_SCALE,startedAt:now,frames:0});
     }
     visualSelectedId=nextId;
     keepSelectionAnimationAlive();
@@ -240,6 +248,7 @@
     version:VERSION,
     selectedScale:SELECTED_SCALE,
     selectionDuration:SELECTION_DURATION,
+    minimumSelectionFrames:MIN_SELECTION_FRAMES,
     selectionUsesScaleOnly:true,
     selectionDecorationLayers:0,
     tipAnchorStable:true,
