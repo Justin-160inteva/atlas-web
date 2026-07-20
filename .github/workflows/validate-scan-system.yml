@@ -17,11 +17,14 @@ on:
       - 'tools/publish_runtime_progress_v2.py'
       - 'tools/analyze_authorized_video_v*.py'
       - 'tools/bilibili_transport_v13.py'
+      - 'tools/resumable_transport_v14.py'
       - 'tools/bilibili_transport_smoke.py'
+      - 'tools/bilibili_transport_v14_smoke.py'
       - 'tools/diagnose_and_recover_scan_v2.py'
       - 'tools/run_scan_with_auto_recovery.py'
       - 'tools/run_scan_with_auto_recovery_v2.py'
       - 'tools/audit_scan_system_v3.py'
+      - 'tools/audit_scan_system_v4.py'
       - 'scan-monitor.html'
       - 'scan-monitor.js'
       - 'sw.js'
@@ -38,11 +41,14 @@ on:
       - 'tools/publish_runtime_progress_v2.py'
       - 'tools/analyze_authorized_video_v*.py'
       - 'tools/bilibili_transport_v13.py'
+      - 'tools/resumable_transport_v14.py'
       - 'tools/bilibili_transport_smoke.py'
+      - 'tools/bilibili_transport_v14_smoke.py'
       - 'tools/diagnose_and_recover_scan_v2.py'
       - 'tools/run_scan_with_auto_recovery.py'
       - 'tools/run_scan_with_auto_recovery_v2.py'
       - 'tools/audit_scan_system_v3.py'
+      - 'tools/audit_scan_system_v4.py'
       - 'scan-monitor.html'
       - 'scan-monitor.js'
       - 'sw.js'
@@ -79,11 +85,14 @@ jobs:
           python -m py_compile tools/analyze_authorized_video_v12.py
           python -m py_compile tools/bilibili_transport_v13.py
           python -m py_compile tools/analyze_authorized_video_v13.py
+          python -m py_compile tools/resumable_transport_v14.py
+          python -m py_compile tools/analyze_authorized_video_v14.py
           python -m py_compile tools/bilibili_transport_smoke.py
+          python -m py_compile tools/bilibili_transport_v14_smoke.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
-          python -m py_compile tools/audit_scan_system_v3.py
+          python -m py_compile tools/audit_scan_system_v4.py
 
       - name: Validate JavaScript monitor
         run: |
@@ -91,13 +100,13 @@ jobs:
           node --check scan-monitor.js
           node --check sw.js
 
-      - name: Run targeted v13 source transport gate
-        run: python tools/bilibili_transport_smoke.py
+      - name: Run targeted v14 source transport gate
+        run: python tools/bilibili_transport_v14_smoke.py
 
       - name: Run executable systemic audit and simulated recovery cases
         id: systemic_audit
         continue-on-error: true
-        run: python tools/audit_scan_system_v3.py
+        run: python tools/audit_scan_system_v4.py
 
       - name: Publish health report even when checks fail
         if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -129,12 +138,15 @@ jobs:
               'monitor_poll','monitor_thresholds','monitor_version','monitor_single_controller',
               'publisher_409_simulation','same_job_recovery','repository_media_clean',
               'match_bilibili-http-412','match_bilibili-http-5xx','match_range-not-supported',
-              'match_opencv-open-failure','v13_adapter','adaptive_ranges','download_policy',
-              'wbi_metadata','cdn_rotation_resume','transport_gate',
-              'telemetry_preservation','queue_exact_eleven','retention'
+              'match_curl-transport','match_download-truncated','match_opencv-open-failure',
+              'v13_adapter','v14_adapter','adaptive_ranges','download_policy',
+              'wbi_metadata','cdn_rotation_resume','strict_content_range','safe_restart',
+              'body_length_validation','durable_chunk_accounting','transport_gate',
+              'telemetry_preservation','queue_exact_eleven','retention',
+              'validation_review_contract','supervisor_serial'
           }
           checks={item['name']:item for item in report['checks']}
-          assert report['summary']['total']>=35, report['summary']
+          assert report['summary']['total']==78, report['summary']
           assert required <= checks.keys(), sorted(required-checks.keys())
           assert report['status']=='pass', [item for item in report['checks'] if not item['passed']]
           assert report['summary']['failed']==0, report['summary']
