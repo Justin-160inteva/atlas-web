@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Run one queue item with immediate dictionary-driven investigation and retry.
 
-A failure is diagnosed in the same GitHub Actions job. Safe deterministic failures are
-retried after their prescribed cooldown; unsafe or unknown failures stop for review.
+The earliest durable non-imported queue item always owns execution order. A failed item is
+diagnosed before the scanner may select any later pending item. Safe deterministic failures
+are retried after their prescribed cooldown; unsafe or unknown failures stop for review.
 Recovery decisions and durable terminal projections are published immediately.
 """
 from __future__ import annotations
@@ -126,7 +127,7 @@ def clear_stale_recovery(queue: dict[str, Any]) -> None:
 
 def publish_durable_projection(queue: dict[str, Any]) -> None:
     items = queue.get("items", [])
-    pending = next((entry for entry in items if entry.get("state", "pending") in {"pending", "queued"}), None)
+    pending = next((entry for entry in items if entry.get("state", "pending") in {"pending", "queued", "failed"}), None)
     if pending:
         job = item_job(pending)
         if job:
@@ -158,6 +159,36 @@ def publish_durable_projection(queue: dict[str, Any]) -> None:
             )
 
 
+def earliest_unresolved(queue: dict[str, Any]) -> dict[str, Any] | None:
+    return next((item for item in queue.get("items", []) if item.get("state", "pending") != "imported"), None)
+
+
+def preflight_failed_head(manifest_arg: str, queue_path: pathlib.Path) -> tuple[bool, str, dict[str, Any]]:
+    """Diagnose the earliest unresolved failed item before any later item may run."""
+    queue = load(queue_path, {"items": []})
+    head = earliest_unresolved(queue)
+    if not head or head.get("state") != "failed":
+        return True, "none", {}
+
+    diagnosis = run([sys.executable, "tools/diagnose_and_recover_scan_v2.py", manifest_arg], 180)
+    recovery = load(RECOVERY_PATH, {})
+    queue = load(queue_path, queue)
+    if recovery.get("activeExternalSourceId") != head.get("externalSourceId"):
+        return False, "diagnosis_target_mismatch", recovery
+
+    if not recovery.get("retryScheduled"):
+        publish_recovery(queue, recovery, terminal=True)
+        state = "human_review_required" if recovery.get("requiresHumanReview") else "unrecoverable"
+        return False, state, recovery
+
+    publish_recovery(queue, recovery)
+    delay = min(900, max(0, int(recovery.get("retryDelaySeconds") or 0)))
+    if delay:
+        print(f"safe preflight recovery cooldown: {delay} seconds", flush=True)
+        time.sleep(delay)
+    return diagnosis.returncode == 0, "retry_prepared", recovery
+
+
 def main() -> int:
     if len(sys.argv) != 2:
         print("usage: run_scan_with_auto_recovery.py MANIFEST_JSON", file=sys.stderr)
@@ -172,6 +203,21 @@ def main() -> int:
     final_state = "unknown"
 
     for cycle in range(1, max_attempts + 1):
+        prepared, preflight_state, preflight = preflight_failed_head(manifest_arg, queue_path)
+        if not prepared:
+            cycles.append({
+                "cycle": cycle,
+                "startedAt": now(),
+                "finishedAt": now(),
+                "preflightState": preflight_state,
+                "dictionaryEntryId": preflight.get("dictionaryEntryId"),
+                "action": preflight.get("action"),
+                "retryScheduled": preflight.get("retryScheduled"),
+                "requiresHumanReview": preflight.get("requiresHumanReview"),
+            })
+            final_state = preflight_state
+            break
+
         manifest = load(manifest_path)
         started = now()
         timeout = int(manifest.get("perItemTimeoutSeconds", 5400)) + 300
@@ -184,6 +230,8 @@ def main() -> int:
             "cycle": cycle,
             "startedAt": started,
             "finishedAt": now(),
+            "preflightState": preflight_state,
+            "preflightDictionaryEntryId": preflight.get("dictionaryEntryId"),
             "scannerReturnCode": scanner.returncode,
             "scannerTimeoutSeconds": timeout,
             "imported": imported,
@@ -224,7 +272,7 @@ def main() -> int:
         final_state = "attempt_limit_reached"
 
     report = {
-        "schemaVersion": 2,
+        "schemaVersion": 3,
         "generatedAt": now(),
         "manifest": manifest_arg,
         "dictionary": "data/scan-bug-dictionary.json",
@@ -232,6 +280,7 @@ def main() -> int:
         "cycles": cycles,
         "safety": {
             "maximumCycles": max_attempts,
+            "strictEarliestUnresolvedOrder": True,
             "sourceCodeModifiedAutomatically": False,
             "authorizationBroadened": False,
             "mediaRetentionChanged": False,
@@ -240,7 +289,7 @@ def main() -> int:
     }
     write(REPORT_PATH, report)
     print(json.dumps(report, ensure_ascii=False))
-    return 1 if final_state in {"human_review_required", "unrecoverable", "attempt_limit_reached"} else 0
+    return 1 if final_state in {"human_review_required", "unrecoverable", "attempt_limit_reached", "diagnosis_target_mismatch"} else 0
 
 
 if __name__ == "__main__":
