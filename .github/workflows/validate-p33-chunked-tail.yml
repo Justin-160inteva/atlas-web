@@ -1,0 +1,35 @@
+name: Validate P33 chunked tail repair
+
+on:
+  pull_request:
+    paths:
+      - 'tools/p33_v14_hook/sitecustomize.py'
+      - 'tools/p33_chunked_tail_smoke.py'
+      - '.github/workflows/validate-p33-chunked-tail.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/p33_v14_hook/sitecustomize.py'
+      - 'tools/p33_chunked_tail_smoke.py'
+      - '.github/workflows/validate-p33-chunked-tail.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile chunked-tail transport
+        run: |
+          python -m py_compile tools/p33_v14_hook/sitecustomize.py
+          python -m py_compile tools/p33_chunked_tail_smoke.py
+      - name: Run deterministic no-network gate
+        run: python tools/p33_chunked_tail_smoke.py
