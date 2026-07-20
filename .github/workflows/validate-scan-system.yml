@@ -18,6 +18,8 @@ on:
       - 'tools/analyze_authorized_video_v*.py'
       - 'tools/bilibili_transport_v13.py'
       - 'tools/bilibili_transport_smoke.py'
+      - 'tools/p33_v14_hook/*.py'
+      - 'tools/p33_incremental_range_smoke.py'
       - 'tools/diagnose_and_recover_scan_v2.py'
       - 'tools/run_scan_with_auto_recovery.py'
       - 'tools/run_scan_with_auto_recovery_v2.py'
@@ -39,6 +41,8 @@ on:
       - 'tools/analyze_authorized_video_v*.py'
       - 'tools/bilibili_transport_v13.py'
       - 'tools/bilibili_transport_smoke.py'
+      - 'tools/p33_v14_hook/*.py'
+      - 'tools/p33_incremental_range_smoke.py'
       - 'tools/diagnose_and_recover_scan_v2.py'
       - 'tools/run_scan_with_auto_recovery.py'
       - 'tools/run_scan_with_auto_recovery_v2.py'
@@ -80,6 +84,8 @@ jobs:
           python -m py_compile tools/bilibili_transport_v13.py
           python -m py_compile tools/analyze_authorized_video_v13.py
           python -m py_compile tools/bilibili_transport_smoke.py
+          python -m py_compile tools/p33_v14_hook/sitecustomize.py
+          python -m py_compile tools/p33_incremental_range_smoke.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
@@ -93,6 +99,9 @@ jobs:
 
       - name: Run targeted v13 source transport gate
         run: python tools/bilibili_transport_smoke.py
+
+      - name: Run incremental HTTP 206 range repair gate
+        run: python tools/p33_incremental_range_smoke.py
 
       - name: Run executable systemic audit and simulated recovery cases
         id: systemic_audit
