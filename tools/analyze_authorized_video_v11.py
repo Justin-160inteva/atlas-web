@@ -248,7 +248,7 @@ def _single_stream_resume(
                             segment_index=segment_index,
                         )
             if target.exists() and target.stat().st_size >= 1024:
-                if expected_size and target.stat().st_size != expected_size:
+                if total and target.stat().st_size != total:
                     raise RuntimeError("content-length mismatch after resumed transfer")
                 return
         except Exception:

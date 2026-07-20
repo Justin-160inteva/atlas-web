@@ -1,12 +1,12 @@
 {
-  "schemaVersion": 15,
+  "schemaVersion": 16,
   "id": "eleven-production-p025-p035-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "statusOutput": "data/batch-analysis/eleven-pilot-scan-status.json",
-  "analyzer": "tools/analyze_authorized_video_v12.py",
+  "analyzer": "tools/analyze_authorized_video_v13.py",
   "outputPrefix": "eleven",
   "maximumQueueItems": 11,
   "maxItemsPerRun": 1,
@@ -65,10 +65,16 @@
     "parallelRangeThresholdBytes": 16777216,
     "chunkSizeBytes": 2097152,
     "rangeRetries": 3,
+    "rangeRetriesPerCdn": 2,
     "heartbeatSeconds": 20,
     "speedWindowSeconds": 30,
     "fallbackToResumableSingleStream": true,
-    "preferBackupUrlOnRepeated412": true
+    "preferBackupUrlOnRepeated412": true,
+    "metadataRefreshPasses": 2,
+    "analysisVideoMaxHeight": 480,
+    "allowLegacyProgressiveFallback": true,
+    "bypassPublicVideoWebpage": true,
+    "preservePartialAcrossCdnCandidates": true
   },
   "analysisOptimization": {
     "policy": "catalog-aware-quality-speed-balance",
@@ -84,7 +90,11 @@
     "curlCffiResponseContextManager": true,
     "adaptiveRangeResume": true,
     "preserveDownloadTelemetryAcrossStages": true,
-    "fixedBy": "tools/analyze_authorized_video_v12.py"
+    "wbiSignedPlayerMetadata": true,
+    "verifiedCatalogCidFirst": true,
+    "apiProvidedCdnRotation": true,
+    "publicVideoWebpageBypassed": true,
+    "fixedBy": "tools/analyze_authorized_video_v13.py"
   },
   "recoveryPolicy": {
     "enabled": true,
