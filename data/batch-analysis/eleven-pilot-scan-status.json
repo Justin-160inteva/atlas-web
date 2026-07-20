@@ -4,20 +4,20 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
-  "updatedAt": "2026-07-20T21:24:29.151565Z",
-  "phase": "retryable_failure",
+  "updatedAt": "2026-07-20T21:48:24.206911Z",
+  "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
-    "imported": 8,
+    "imported": 10,
     "running": 0,
-    "failed": 2,
-    "blocked": 1,
-    "retryableFailed": 1,
-    "remaining": 3,
+    "failed": 0,
+    "blocked": 0,
+    "retryableFailed": 0,
+    "remaining": 1,
     "attemptedThisRun": 1,
-    "newlyImportedThisRun": 0
+    "newlyImportedThisRun": 1
   },
   "items": [
     {
@@ -112,23 +112,23 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
       "sequence": 33,
       "page": 33,
-      "state": "failed",
-      "attemptCount": 8,
-      "lastStartedAt": "2026-07-20T21:19:40.715221Z",
-      "lastFinishedAt": "2026-07-20T21:24:29.144815Z",
-      "resultPath": null,
-      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:HTTPError:HTTP Error 503: Service Unavailable | cdn-1-transfer:RuntimeError:range request was not honored; partial preserved (status=503) | cdn-2-transfer:RequestException:Failed to perform, curl: (18) end of response with 73956683 bytes missing. See [url-redacted] first for more details.\"}]"
+      "state": "imported",
+      "attemptCount": 9,
+      "lastStartedAt": "2026-07-20T21:36:03.822909Z",
+      "lastFinishedAt": "2026-07-20T21:42:24.107897Z",
+      "resultPath": "data/analysis-results/eleven-p033.json",
+      "error": null
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
       "sequence": 34,
       "page": 34,
-      "state": "failed",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-20T18:24:49.076277Z",
-      "lastFinishedAt": "2026-07-20T18:50:42.904096Z",
-      "resultPath": null,
-      "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 34 media part 0: HTTPError('HTTP Error 504: Gateway Time-out')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]"
+      "state": "imported",
+      "attemptCount": 2,
+      "lastStartedAt": "2026-07-20T21:42:45.476264Z",
+      "lastFinishedAt": "2026-07-20T21:48:24.200689Z",
+      "resultPath": "data/analysis-results/eleven-p034.json",
+      "error": null
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p035",
@@ -144,19 +144,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
-      "sequence": 33,
-      "page": 33,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P33 第33期：近江（收集1）",
-      "startedAt": "2026-07-20T21:19:40.715221Z",
-      "attemptCount": 8,
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
+      "sequence": 34,
+      "page": 34,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P34 第34期：近江（收集2）",
+      "startedAt": "2026-07-20T21:42:45.476264Z",
+      "attemptCount": 2,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p033.json status=failed\n\n",
-      "analysisStatus": "failed",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p034.json status=analyzed\n\n",
+      "analysisStatus": "analyzed",
       "indexReturnCode": 0,
-      "completed": false,
-      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"RuntimeError:v13 metadata/CDN routes exhausted: wbi-signed-dash-refresh-1:RuntimeError:Bilibili API code=-101 message=账号未登录 | wbi-signed-dash-refresh-2:RuntimeError:Bilibili API code=-101 message=账号未登录 | legacy-progressive-api:RuntimeError:all API-provided CDN candidates failed: cdn-1-range:HTTPError:HTTP Error 503: Service Unavailable | cdn-1-transfer:RuntimeError:range request was not honored; partial preserved (status=503) | cdn-2-transfer:RequestException:Failed to perform, curl: (18) end of response with 73956683 bytes missing. See [url-redacted] first for more details.\"}]",
-      "finishedAt": "2026-07-20T21:24:29.144815Z"
+      "completed": true,
+      "finishedAt": "2026-07-20T21:48:24.200689Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."

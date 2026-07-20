@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-20T13:35:00Z",
-  "updatedAt": "2026-07-20T21:31:00Z",
-  "status": "pending",
+  "updatedAt": "2026-07-20T21:48:24.204482Z",
+  "status": "progress",
   "pilotRegion": "顺序批次 P25-P35",
   "strategy": "严格按P25至P35原始顺序处理11期；任何时刻最多下载和分析1期。当前一期完成、验证并持久化后，才自动启动下一期。",
   "maximumQueueItems": 11,
@@ -215,10 +215,10 @@
       "mapUtility": "最高",
       "priority": 100,
       "durationSeconds": 4707,
-      "state": "pending",
-      "attemptCount": 8,
-      "lastStartedAt": "2026-07-20T21:19:40.715221Z",
-      "lastFinishedAt": "2026-07-20T21:24:29.144815Z",
+      "state": "imported",
+      "attemptCount": 9,
+      "lastStartedAt": "2026-07-20T21:36:03.822909Z",
+      "lastFinishedAt": "2026-07-20T21:42:24.107897Z",
       "lastRecoveryAt": "2026-07-20T21:31:00Z",
       "lastRecoveryAction": "manual_v16_chunked_tail_repair",
       "effectiveAttemptLimit": 5,
@@ -235,7 +235,8 @@
           "resultPath": "data/analysis-results/eleven-p033.json"
         },
         "reason": "Owner-approved one-time run using verified 2 MiB Range chunks after the preserved 180 MB partial file could not finish a single 70.5 MB tail request."
-      }
+      },
+      "resultPath": "data/analysis-results/eleven-p033.json"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
@@ -251,11 +252,14 @@
       "mapUtility": "最高",
       "priority": 100,
       "durationSeconds": 5547,
-      "state": "failed",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-20T18:24:49.076277Z",
-      "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 34 media part 0: HTTPError('HTTP Error 504: Gateway Time-out')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
-      "lastFinishedAt": "2026-07-20T18:50:42.904096Z"
+      "state": "imported",
+      "attemptCount": 2,
+      "lastStartedAt": "2026-07-20T21:42:45.476264Z",
+      "lastFinishedAt": "2026-07-20T21:48:24.200689Z",
+      "lastRecoveryAt": "2026-07-20T21:42:24.342987Z",
+      "lastRecoveryAction": "fast_backoff_public_api_and_adaptive_range",
+      "effectiveAttemptLimit": 5,
+      "resultPath": "data/analysis-results/eleven-p034.json"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p035",
