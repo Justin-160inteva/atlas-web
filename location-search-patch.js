@@ -37,9 +37,14 @@
     return {
       items: rewards.map(reward => {
         const displayName = reward.nameZhCN || reward.nameOriginal || '奖励未确认';
-        const nameText = normalizeSearchText([reward.nameOriginal, reward.nameZhCN].filter(Boolean).join(' '));
+        const aliases = [reward.nameOriginal, reward.nameZhCN]
+          .filter(Boolean)
+          .map(normalizeSearchText)
+          .filter(Boolean);
+        const nameText = aliases.join(' ');
         return {
           displayName,
+          aliases,
           nameText,
           text: normalizeSearchText([
             reward.nameOriginal,
@@ -63,6 +68,10 @@
     return {
       category,
       region,
+      titleAliases: [location.title_zh, location.title, location.title_en]
+        .filter(Boolean)
+        .map(normalizeSearchText)
+        .filter(Boolean),
       title: normalizeSearchText([location.title_zh, location.title, location.title_en].filter(Boolean).join(' ')),
       titleZh: String(location.title_zh || location.title || ''),
       categoryText: normalizeSearchText([category.title, category.title_en].filter(Boolean).join(' ')),
@@ -78,10 +87,12 @@
       return { location, index, score: 0, tier: 0, kind: '', label: '', rewardNames: [], document };
     }
 
-    const exactTitle = document.title === query.normalized;
-    const prefixTitle = !exactTitle && document.title.startsWith(query.normalized);
-    const exactRewardItems = document.reward.items.filter(item => item.nameText === query.normalized);
-    const prefixRewardItems = exactRewardItems.length ? [] : document.reward.items.filter(item => item.nameText.startsWith(query.normalized));
+    const exactTitle = document.titleAliases.includes(query.normalized);
+    const prefixTitle = !exactTitle && document.titleAliases.some(alias => alias.startsWith(query.normalized));
+    const exactRewardItems = document.reward.items.filter(item => item.aliases.includes(query.normalized));
+    const prefixRewardItems = exactRewardItems.length
+      ? []
+      : document.reward.items.filter(item => item.aliases.some(alias => alias.startsWith(query.normalized)));
     const matchedRewards = new Map();
     let score = exactTitle ? 150 : prefixTitle ? 82 : 0;
     if (exactRewardItems.length) score += 145;
