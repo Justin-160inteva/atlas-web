@@ -3,11 +3,12 @@
 
   if(typeof state==='undefined'||typeof ctx==='undefined')return;
 
-  const VERSION=window.AtlasRelease?.version||'0.9.4.6';
+  const VERSION=window.AtlasRelease?.version||'0.9.4.8';
   const root=document.documentElement;
   const panelIds={filter:'filterPanel',route:'routePanel',progress:'progressPanel'};
   const SELECTED_SCALE=1.28;
   const SELECTION_DURATION=190;
+  const SELECTION_HARD_LIMIT=222;
   const MIN_SELECTION_FRAMES=2;
   const selectionMotions=new Map();
   let lastBrowseMode=state.mode==='favorites'?'all':state.mode;
@@ -123,7 +124,9 @@
   }
 
   function motionProgress(motion,now=performance.now()){
-    const timeProgress=clampValue((now-motion.startedAt)/SELECTION_DURATION,0,1);
+    const elapsed=now-motion.startedAt;
+    if(elapsed>=SELECTION_HARD_LIMIT)return 1;
+    const timeProgress=clampValue(elapsed/SELECTION_DURATION,0,1);
     const frameProgress=clampValue((motion.frames||0)/MIN_SELECTION_FRAMES,0,1);
     return Math.min(timeProgress,frameProgress);
   }
@@ -132,9 +135,8 @@
     const motion=selectionMotions.get(id);
     if(!motion)return id===visualSelectedId?SELECTED_SCALE:1;
     const progress=motionProgress(motion,now);
-    const scale=motion.from+(motion.to-motion.from)*easeOutCubic(progress);
-    if(progress>=1)selectionMotions.delete(id);
-    return scale;
+    if(progress>=1){selectionMotions.delete(id);return motion.to;}
+    return motion.from+(motion.to-motion.from)*easeOutCubic(progress);
   }
 
   function pruneSelectionMotions(now=performance.now()){
@@ -248,6 +250,7 @@
     version:VERSION,
     selectedScale:SELECTED_SCALE,
     selectionDuration:SELECTION_DURATION,
+    selectionHardLimit:SELECTION_HARD_LIMIT,
     minimumSelectionFrames:MIN_SELECTION_FRAMES,
     selectionUsesScaleOnly:true,
     selectionDecorationLayers:0,
@@ -258,8 +261,4 @@
     geometry:{centerOffsetRadius:.58,shoulderRatio:.16,lowerCurveRatio:.58}
   };
   root.dataset.atlasMarkerVisuals=VERSION;
-  setBottomActive('map');
-  setRailActive(lastBrowseMode);
-  root.dataset.atlasUiFix=VERSION;
-  scheduleDraw();
 })();

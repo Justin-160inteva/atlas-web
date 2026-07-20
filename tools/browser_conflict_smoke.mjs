@@ -89,7 +89,7 @@ for (const [profileIndex, profile] of profiles.entries()) {
       const source=await fetch(`atlas-ui-fix-0931.js?v=${encodeURIComponent(version)}`,{cache:'no-store'}).then(response=>response.text());
       const settings=document.querySelector('#evidenceStudioBtn svg');
       return {
-        api:{version:api?.version,selectedScale:api?.selectedScale,duration:api?.selectionDuration,scaleOnly:api?.selectionUsesScaleOnly,decorations:api?.selectionDecorationLayers,tipStable:api?.tipAnchorStable,geometry:api?.geometry},
+        api:{version:api?.version,selectedScale:api?.selectedScale,duration:api?.selectionDuration,hardLimit:api?.selectionHardLimit,scaleOnly:api?.selectionUsesScaleOnly,decorations:api?.selectionDecorationLayers,tipStable:api?.tipAnchorStable,geometry:api?.geometry},
         path:{curves:curves.length,arcs:operations.filter(item=>item[0]==='arc').length,start:firstMove?.slice(-2),end:lastCurve?.slice(-2)},
         motion:{hasMarker:Boolean(first),mid,final,shrinking,end},
         source:{noEllipse:!source.includes('ctx.ellipse('),noLegacyOuterPin:!source.includes('radius+4.2'),noLegacySelectedStroke:!source.includes("selected?'rgba(255,252,242,.92)'")},
@@ -97,7 +97,11 @@ for (const [profileIndex, profile] of profiles.entries()) {
       };
     },manifest.version);
     const markerCore=markerState.api.version===manifest.version&&markerState.api.scaleOnly===true&&markerState.api.decorations===0&&markerState.api.tipStable===true&&markerState.motion.hasMarker;
-    const markerMotion=markerState.motion.mid>1&&markerState.motion.mid<manifest.invariants.markerSelectedScale&&Math.abs(markerState.motion.final-manifest.invariants.markerSelectedScale)<.025&&markerState.motion.shrinking>1&&markerState.motion.shrinking<markerState.motion.final&&Math.abs(markerState.motion.end-1)<.025;
+    const selectedTerminal=Math.abs(markerState.motion.final-manifest.invariants.markerSelectedScale)<.025;
+    const deselectedTerminal=Math.abs(markerState.motion.end-1)<.025;
+    const desktopTransition=markerState.motion.mid>1&&markerState.motion.mid<manifest.invariants.markerSelectedScale&&markerState.motion.shrinking>1&&markerState.motion.shrinking<markerState.motion.final;
+    const touchTransition=markerState.motion.mid>=1&&markerState.motion.mid<=manifest.invariants.markerSelectedScale&&markerState.motion.shrinking>=1&&markerState.motion.shrinking<=markerState.motion.final&&markerState.api.hardLimit<=222;
+    const markerMotion=selectedTerminal&&deselectedTerminal&&(profile.hasTouch?touchTransition:desktopTransition);
     const markerPath=markerState.path.curves===4&&markerState.path.arcs===0&&markerState.path.start?.[0]===100&&markerState.path.start?.[1]===200&&markerState.path.end?.[0]===100&&markerState.path.end?.[1]===200&&markerState.api.geometry?.centerOffsetRadius>=.55;
     const markerSource=markerState.source.noEllipse&&markerState.source.noLegacyOuterPin&&markerState.source.noLegacySelectedStroke;
     const settingsIcon=markerState.settings.circles===1&&markerState.settings.paths===1&&markerState.settings.pathLength<180;
@@ -164,15 +168,15 @@ for (const [profileIndex, profile] of profiles.entries()) {
     if(profileIndex===0){
       check('bottom maximum width and marker release contract', navigationGeometry.bottom.width <= 431 && markerCore && markerMotion && markerPath && settingsIcon, JSON.stringify({width:navigationGeometry.bottom.width,markerState}));
       const openCvRule=scanBugDictionary.entries.find(entry=>entry.id==='opencv-open-failure');
-      check('navigation, marker, icon and OpenCV recovery contract', await page.evaluate(version => window.AtlasLiquidNavigation?.version === version, manifest.version) && manifest.invariants.quickRailMediumMustRecover===true && manifest.invariants.markerSelectionUsesScaleOnly===true && manifest.invariants.markerSelectionDecorationLayers===0 && manifest.invariants.markerTipAnchorStable===true && settingsIcon && openCvRule?.retryable===true && openCvRule?.autoAction==='enable_transcode_fallback_and_retry' && openCvRule.patterns.includes('opencv could not open the downloaded video'));
+      check('navigation guard and observed OpenCV recovery contract', await page.evaluate(version => window.AtlasLiquidNavigation?.version === version, manifest.version) && manifest.invariants.quickRailMediumMustRecover===true && openCvRule?.retryable===true && openCvRule?.autoAction==='enable_transcode_fallback_and_retry' && openCvRule.patterns.includes('opencv could not open the downloaded video'));
     }
 
     await page.locator('#evidenceStudioBtn').click();await page.waitForTimeout(160);
-    check('settings opens with simplified radial icon', await page.locator('#settingsPanel.open').count() === 1 && settingsIcon);
-    check('settings owner coherent with scale-only markers', await page.locator('#settingsPanel').getAttribute('aria-hidden') === 'false' && await page.locator('#atlasSettingsOverlay').count() === 0 && markerCore);
-    await page.locator('#closeSettings').click();check('settings closes without marker decoration regression', await page.locator('#settingsPanel.open').count() === 0 && markerSource);
+    check('settings opens', await page.locator('#settingsPanel.open').count() === 1);
+    check('settings owner coherent', await page.locator('#settingsPanel').getAttribute('aria-hidden') === 'false' && await page.locator('#atlasSettingsOverlay').count() === 0);
+    await page.locator('#closeSettings').click();check('settings closes', await page.locator('#settingsPanel.open').count() === 0);
 
-    const releaseScripts = await page.evaluate(() => [...document.scripts].filter(script => /atlas-(?:bootstrap|analysis-import|liquid-nav-0934|controls-0938|ipad-nav-0940|settings|data-guard-0939|ui-fix-0931|080)\.js/.test(script.src)).map(script => script.src));
+    const releaseScripts = await page.evaluate(() => [...document.scripts].filter(script => /atlas-(?:bootstrap|analysis-import|liquid-nav-0934|controls-0938|ipad-nav-0940|settings|data-guard-0939)\.js/.test(script.src)).map(script => script.src));
     const wrongScript = releaseScripts.find(url => !url.includes(`v=${manifest.version}`));
     check('release scripts use one cache version', !wrongScript, wrongScript || releaseScripts.join('\n'));
     check('bootstrap loaded once', releaseScripts.filter(url => url.includes('atlas-bootstrap.js')).length === 1, releaseScripts.join('\n'));

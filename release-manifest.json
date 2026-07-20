@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "version": "0.9.4.7",
-  "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.7",
-  "cacheNamespace": "atlas-alpha-0947-pages-v1-monitor-v11",
+  "version": "0.9.4.8",
+  "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8",
+  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11",
   "entrypoint": "index.html",
   "releaseOwner": "atlas-bootstrap.js",
   "serviceWorker": "sw.js",
@@ -18,6 +18,10 @@
     "settingsPanel": "atlas-settings.js",
     "dataEvidenceCenter": "atlas-settings.js",
     "evidenceDataEngine": "atlas-evidence-studio.js",
+    "rewardEvidenceIndex": "data/rewards/reward-evidence-index.json",
+    "rewardEvidencePolicy": "data/rewards/reward-source-policy.json",
+    "rewardRecordSchema": "data/rewards/reward-record-schema.json",
+    "rewardTerminology": "data/rewards/reward-terminology-zh-CN.json",
     "markerGeometry": "atlas-ui-fix-0931.js",
     "markerSelectionMotion": "atlas-ui-fix-0931.js",
     "locationDataRecovery": "atlas-data-guard-0939.js",
@@ -40,10 +44,18 @@
     "atlas-data-guard-0939.js",
     "atlas-ui-fix-0931.js",
     "atlas-080.js",
-    "scan-monitor.js"
+    "scan-monitor.js",
+    "data/rewards/reward-evidence-index.json",
+    "data/rewards/reward-source-policy.json",
+    "data/rewards/reward-record-schema.json",
+    "data/rewards/reward-terminology-zh-CN.json"
   ],
   "invariants": {
     "minimumLocationCount": 3000,
+    "rewardTargetLocationCount": 3430,
+    "rewardEvidenceLevels": 4,
+    "rewardInferenceMustBeLabeled": true,
+    "rewardLockedRecordsProtected": true,
     "navigationSvgPerButton": 1,
     "navigationMinimumVisibleInsetPixels": 4,
     "closedPanelsMustBeInert": true,
@@ -73,10 +85,11 @@
     "requiredSerialQueueOrderChecks": 500,
     "requiredMonitorBatchAuthorityChecks": 500,
     "requiredQueueSchemaChecks": 500,
+    "requiredRewardEvidenceChecks": 500,
     "allowLegacyVersionWriters": false,
     "allowMultipleFetchOverrides": false,
     "requireIpadCompositorPath": true,
     "requireServiceWorkerUpgradeSimulation": true,
-    "requireFullAuditAtThisRelease": false
+    "requireFullAuditAtThisRelease": true
   }
 }
