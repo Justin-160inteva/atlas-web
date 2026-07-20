@@ -119,6 +119,8 @@
         <div><b>${Number(coverage.highConfidenceInference || 0)}</b><small>高置信推断</small></div>
         <div><b>${Number(coverage.unresolved || 0)}</b><small>尚未解决</small></div>
         <div><b>${Number(coverage.openConflicts || 0)}</b><small>开放冲突</small></div>
+        <div><b>${Number(coverage.humanReviewed || 0)}</b><small>人工复核</small></div>
+        <div><b>${Number(coverage.locked || 0)}</b><small>锁定记录</small></div>
       </div>
       <p>总计 ${Number(coverage.total || 0)} 个点位；未找到可靠证据的点位不会自动生成奖励。</p>
     `;
