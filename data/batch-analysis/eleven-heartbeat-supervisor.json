@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 5,
-  "id": "eleven-runtime-heartbeat-supervisor-v5-p025-p035-schema-safe",
+  "schemaVersion": 6,
+  "id": "eleven-runtime-heartbeat-supervisor-v6-targeted-p025-p035",
   "enabled": true,
-  "configurationRevision": "queue-schema-hydration-20260720-01",
+  "configurationRevision": "targeted-watchdog-20260720-01",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "runtimeProgress": "data/runtime-progress/eleven-pilot-progress.json",
   "dictionary": "data/scan-bug-dictionary.json",
@@ -12,12 +12,20 @@
   "hardStaleAfterSeconds": 180,
   "resumeCooldownSeconds": 360,
   "maximumQueueItems": 11,
+  "validation": {
+    "mode": "targeted-state-transitions",
+    "requiredChecks": 96,
+    "fullMatrixOnlyForSchedulerOrSchemaChanges": true,
+    "inspectOnlyActiveEarliestAndNext": true
+  },
   "policy": {
     "checkEveryMinutes": 5,
     "oneItemPerRun": true,
     "maximumConcurrentDownloads": 1,
     "automaticContinuationAfterDurableSuccess": true,
     "maximumAttemptsPerItem": 3,
+    "attemptLimitSource": "dictionary-with-safe-default",
+    "knownRetryOverrideMaximum": 5,
     "durableStateAlwaysWins": true,
     "terminalProjectionRequired": true,
     "deduplicateResumeRequests": true,
