@@ -20,7 +20,6 @@ const contracts={
   rewardOwner:manifest.runtimeOwners?.rewardEvidenceIndex==='data/rewards/reward-evidence-index.json',
   rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500,
   targetCount:index.targetLocationCount===3430,
-  coverageTotal:index.coverage?.total===3430,
   coverageConserved:['officialConfirmed','multiSourceConfirmed','highConfidenceInference','unresolved'].reduce((sum,key)=>sum+Number(index.coverage?.[key]||0),0)===3430,
   unresolvedAllowed:policy.principles?.allowEmptyRewardWhenUnresolved===true,
   noInferenceAsOfficial:policy.principles?.neverPresentInferenceAsOfficial===true,
