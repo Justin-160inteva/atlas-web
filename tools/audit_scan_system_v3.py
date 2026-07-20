@@ -74,7 +74,12 @@ def main() -> int:
 
     items = queue.get("items", [])
     sequences = [item.get("sequence") for item in items]
+    status_items = {item.get("externalSourceId"): item for item in status.get("items", [])}
     catalog_by_id = {item["id"]: item for item in catalog.get("items", [])}
+    queue_id = queue.get("queueId")
+    status_id = status.get("batchId")
+    terminal_status = status.get("complete") is True and status.get("summary", {}).get("imported") == status.get("summary", {}).get("total") == 10
+
     check("queue_exact_ten", len(items) == queue.get("maximumQueueItems") == manifest.get("maximumQueueItems") == 10, "exactly ten bounded items")
     check("queue_unique", len({item.get("externalSourceId") for item in items}) == 10, "ten unique sources")
     check("queue_chronological", sequences == sorted(sequences), f"sequence={sequences}")
@@ -82,17 +87,26 @@ def main() -> int:
     check("queue_region", all(item.get("regionGuess") == queue.get("pilotRegion") for item in items), "bounded batch label")
     check("queue_serial", queue.get("maximumConcurrentItems") == 1 and sum(item.get("state") in {"running", "recovery"} for item in items) <= 1, "maximum one active item")
     check("queue_auto_continue", queue.get("autoContinueAfterDurableSuccess") is True, "durable-success continuation")
+    check("queue_status_batch_identity", queue_id == status_id == "eleven-production-next-10-p012-p024-v1", f"queue={queue_id}, status={status_id}")
+    check("queue_terminal_authority", queue.get("authority", {}).get("terminal") is True and queue.get("authority", {}).get("protectFromCatalogRegeneration") is True and terminal_status, "terminal status protects completed queue")
     check("status_coherent", status.get("summary", {}).get("total") == len(items) and status.get("authorizationId") == queue.get("authorizationId"), "status matches queue")
 
     catalog_coherent = True
+    catalog_lagged: list[str] = []
     for item in items:
-        entry = catalog_by_id.get(item.get("externalSourceId"), {})
+        external_id = item.get("externalSourceId")
+        entry = catalog_by_id.get(external_id, {})
         catalog_state = entry.get("analysisStatus")
+        status_state = status_items.get(external_id, {}).get("state")
         if item.get("state") == "imported":
-            catalog_coherent = catalog_coherent and catalog_state == "imported"
+            durable_imported = status_state == "imported" and terminal_status
+            catalog_coherent = catalog_coherent and (catalog_state == "imported" or durable_imported)
+            if catalog_state != "imported" and durable_imported:
+                catalog_lagged.append(str(external_id))
         else:
             catalog_coherent = catalog_coherent and catalog_state != "imported"
-    check("queue_catalog_state", catalog_coherent, "imported and pending states agree with catalog")
+    check("queue_catalog_state", catalog_coherent, f"durable status wins; catalog lagged={len(catalog_lagged)}")
+    check("catalog_lag_is_bounded", len(catalog_lagged) <= 10 and terminal_status, f"lagged projections={len(catalog_lagged)}")
 
     check("manifest_serial", manifest.get("maxItemsPerRun") == 1 and manifest.get("maximumConcurrentDownloads") == 1, "one item per run")
     check("manifest_auto_continue", manifest.get("autoContinueAfterDurableSuccess") is True, "auto continuation enabled")
@@ -108,11 +122,12 @@ def main() -> int:
     check("workflow_400_gate", "400/400 ten-item serial integrity and privacy checks passed" in workflow, "400-round scan gate")
     check("workflow_auto_continue", "Continue with exactly one next item after durable success" in workflow and "steps.decision.outputs.progressed == 'true'" in workflow, "next run only after durable success")
 
-    check("monitor_poll", all(token in monitor for token in ("RAW_POLL_MS=5000", "API_POLL_MS=180000", "APPLY_TICK_MS=1000")), "5s raw, 180s API, 1s UI")
-    check("monitor_thresholds", all(token in monitor for token in ("HEARTBEAT_EXPECTED=30", "HEARTBEAT_WARN=75", "HEARTBEAT_FAIL=150")), "heartbeat thresholds")
-    check("monitor_version", "VERSION='0.6.0'" in monitor and "scan-monitor.js?v=0.6.0" in monitor_html, "monitor v0.6.0")
+    check("monitor_poll", all(token in monitor for token in ("RAW_POLL_MS", "API_POLL_MS", "APPLY_TICK_MS")) and all(value in monitor for value in ("5000", "180000", "1000")), "5s raw, 180s API, 1s UI")
+    check("monitor_thresholds", all(token in monitor for token in ("HEARTBEAT_EXPECTED", "HEARTBEAT_WARN", "HEARTBEAT_FAIL")) and all(value in monitor for value in ("30", "75", "150")), "heartbeat thresholds")
+    check("monitor_version", "VERSION = '0.6.1'" in monitor and "scan-monitor.js?v=0.6.1" in monitor_html, "monitor v0.6.1")
     check("monitor_single_controller", "scan-monitor-live-bridge" not in monitor_html and not (ROOT / "scan-monitor-live-bridge.js").exists(), "one monitor controller")
-    check("monitor_durable_priority", "durable.state!=='imported'" in monitor and "持久状态优先" in monitor, "durable state wins")
+    check("monitor_durable_priority", "durable.state !== 'imported'" in monitor and "批次权威状态优先" in monitor_html, "durable state wins")
+    check("monitor_batch_authority", all(token in monitor for token in ("chooseDurableBatch", "completedStatus", "batchKey", "批次冲突已自动隔离")), "mismatched legacy queues are isolated")
     check("monitor_cache", "monitor-v11" in worker and "scan-monitor-live-bridge" not in worker, "single-monitor cache")
 
     policy = supervisor_config.get("policy", {})
@@ -165,7 +180,7 @@ def main() -> int:
 
     passed = sum(item["passed"] for item in checks)
     report = {
-        "schemaVersion": 5,
+        "schemaVersion": 6,
         "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "status": "pass" if passed == len(checks) else "fail",
         "summary": {"total": len(checks), "passed": passed, "failed": len(checks) - passed},
@@ -173,6 +188,8 @@ def main() -> int:
         "release": release.get("version"),
         "queueItems": len(items),
         "maximumConcurrentItems": queue.get("maximumConcurrentItems"),
+        "batchId": queue_id,
+        "catalogProjectionLag": catalog_lagged,
         "checks": checks,
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
