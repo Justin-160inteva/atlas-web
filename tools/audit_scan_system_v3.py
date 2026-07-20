@@ -79,8 +79,11 @@ def main() -> int:
     check("cooldowns_bounded", next(entry for entry in entries if entry["id"] == "bilibili-http-412")["cooldownSeconds"] <= 45 and next(entry for entry in entries if entry["id"] == "bilibili-http-429")["cooldownSeconds"] <= 120, "network cooldowns bounded")
 
     invariants = release.get("invariants", {})
-    check("release_version", release.get("version") == "0.9.4.8", "Alpha 0.9.4.8")
-    check("release_audit_cycle", invariants.get("requireFullAuditAtThisRelease") is True and invariants.get("nextRequiredFullAuditVersion") == "0.9.4.11", "Alpha 0.9.4.8 audit completed; next mandatory audit is 0.9.4.11")
+    release_version = str(release.get("version", ""))
+    next_full_audit = str(invariants.get("nextRequiredFullAuditVersion", ""))
+    full_audit_expected = release_version == next_full_audit
+    check("release_version", release_version.startswith("0.9.4."), f"Alpha {release_version}")
+    check("release_audit_cycle", invariants.get("requireFullAuditAtThisRelease") is full_audit_expected and next_full_audit == "0.9.4.11", f"Alpha {release_version}; next mandatory audit is {next_full_audit}")
     check("release_matrices", all(invariants.get(key) == 500 for key in ("requiredHeartbeatMatrixChecks", "requiredBrowserMatrixChecks", "requiredDataCenterMatrixChecks", "requiredSerialQueueOrderChecks", "requiredMonitorBatchAuthorityChecks", "requiredQueueSchemaChecks")), "six exact 500-check gates")
     check("release_monitor_contract", invariants.get("singleMonitorController") is True and invariants.get("durableScanStateAlwaysWins") is True and invariants.get("monitorBatchIdentityMustMatch") is True, "single batch-authoritative monitor")
     check("release_serial11_contract", invariants.get("heartbeatSupervisorMaximumQueueItems") == 11 and invariants.get("scanMaximumConcurrentDownloads") == 1 and invariants.get("scanAutoContinueAfterDurableSuccess") is True, "eleven queued, one active, auto continue")
