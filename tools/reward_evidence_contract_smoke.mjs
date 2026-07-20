@@ -21,6 +21,7 @@ const contracts={
   rewardOwner:manifest.runtimeOwners?.rewardEvidenceIndex==='data/rewards/reward-evidence-index.json',
   rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500,
   targetCount:index.targetLocationCount===3430,
+  coverageTotal:index.coverage?.total===3430,
   coverageConserved:['officialConfirmed','multiSourceConfirmed','highConfidenceInference','unresolved'].reduce((sum,key)=>sum+Number(index.coverage?.[key]||0),0)===3430,
   unresolvedAllowed:policy.principles?.allowEmptyRewardWhenUnresolved===true,
   noInferenceAsOfficial:policy.principles?.neverPresentInferenceAsOfficial===true,
@@ -36,8 +37,7 @@ const contracts={
   conflictTypes:Array.isArray(policy.conflictTypes)&&policy.conflictTypes.length>=5,
   forbiddenBulkCopy:forbidden.some(text=>text.includes('类别')&&text.includes('复制')&&text.includes('同类点位')),
   forbiddenFakeOfficial:forbidden.some(text=>text.includes('没有证据')&&text.includes('官方确认')),
-  schemaObject:schema.type==='object',
-  schemaLocationRequired:schema.required?.includes('locationId'),
+  schemaLocationRequired:schema.type==='object'&&schema.required?.includes('locationId'),
   schemaStatusRequired:schema.required?.includes('status'),
   schemaConfidenceRequired:schema.required?.includes('confidence'),
   schemaSummaryRequired:schema.required?.includes('summaryZhCN'),
@@ -69,10 +69,8 @@ const contracts={
 };
 
 const entries=Object.entries(contracts);
-if(entries.length!==50)throw new Error(`Expected 50 reward contracts, got ${entries.length}`);
-
 const results=[];
-let failed=false;
+let failed=entries.length!==50;
 for(const profile of profiles){
   for(const [name,passed] of entries){
     const item={profile,name,passed:Boolean(passed)};
@@ -82,9 +80,10 @@ for(const profile of profiles){
 }
 
 const totalChecks=results.length;
-const report={schemaVersion:1,release:manifest.version,generatedAt:new Date().toISOString(),passed:!failed,totalChecks,profiles:profiles.map(profile=>({profile,checks:results.filter(item=>item.profile===profile)}))};
+const failedContracts=[...new Set(results.filter(item=>!item.passed).map(item=>item.name))];
+const report={schemaVersion:1,release:manifest.version,generatedAt:new Date().toISOString(),passed:!failed&&totalChecks===500,totalChecks,contractCount:entries.length,failedContracts,profiles:profiles.map(profile=>({profile,checks:results.filter(item=>item.profile===profile)}))};
 await fs.mkdir(new URL('../data/conflict-reports/',import.meta.url),{recursive:true});
 await fs.writeFile(new URL('../data/conflict-reports/reward-evidence-matrix.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
-console.log(`Reward evidence contract matrix: ${results.filter(item=>item.passed).length}/${totalChecks}`);
-if(totalChecks!==500)process.exit(3);
+console.log(`Reward evidence contract matrix: ${results.filter(item=>item.passed).length}/${totalChecks}; contracts=${entries.length}; failed=${failedContracts.join(',')||'none'}`);
+if(entries.length!==50||totalChecks!==500)process.exit(3);
 if(failed)process.exit(2);
