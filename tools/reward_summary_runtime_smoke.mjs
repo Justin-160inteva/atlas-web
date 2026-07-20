@@ -11,6 +11,7 @@ const check = (condition, message) => {
 };
 
 const html = read('index.html');
+const bootstrap = read('atlas-bootstrap.js');
 const script = read('atlas-rewards-0949.js');
 const css = read('atlas-rewards-0949.css');
 const sw = read('sw.js');
@@ -22,9 +23,14 @@ const policy = json('data/rewards/reward-source-policy.json');
 const terms = json('data/rewards/reward-terminology-zh-CN.json');
 
 new vm.Script(script, { filename: 'atlas-rewards-0949.js' });
+check(manifest.version === '0.9.4.9', 'release is Alpha 0.9.4.9');
+check(html.includes("ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.9"), 'visible release label is synchronized');
+check(bootstrap.includes("version: '0.9.4.9'"), 'bootstrap release is synchronized');
+check(bootstrap.includes(`cacheNamespace: '${manifest.cacheNamespace}'`), 'bootstrap cache matches manifest');
+check(sw.includes(`const CACHE='${manifest.cacheNamespace}'`), 'service worker cache matches manifest');
 check(html.includes('atlas-rewards-0949.css?v=0.9.4.9'), 'reward stylesheet is loaded');
 check(html.includes('atlas-rewards-0949.js?v=0.9.4.9'), 'reward runtime is loaded');
-check(html.indexOf('app.js?v=0.9.4.8') < html.indexOf('atlas-rewards-0949.js?v=0.9.4.9'), 'reward runtime executes after app');
+check(html.indexOf('app.js?v=0.9.4.9') < html.indexOf('atlas-rewards-0949.js?v=0.9.4.9'), 'reward runtime executes after app');
 check((html.match(/atlas-rewards-0949\.js/g) || []).length === 1, 'reward runtime is loaded once');
 check((html.match(/atlas-rewards-0949\.css/g) || []).length === 1, 'reward stylesheet is loaded once');
 check(manifest.runtimeOwners.rewardSummaryRuntime === 'atlas-rewards-0949.js', 'runtime owner is declared');
