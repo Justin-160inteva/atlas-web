@@ -46,10 +46,11 @@ jobs:
           node --check scan-monitor.js
           node --check sw.js
 
-      - name: Compile heartbeat and recovery tools
+      - name: Compile heartbeat, ordering, and recovery tools
         run: |
           python -m py_compile tools/supervise_runtime_heartbeat.py
           python -m py_compile tools/heartbeat_system_smoke.py
+          python -m py_compile tools/serial_queue_order_smoke.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
           python -m py_compile tools/audit_scan_system_v3.py
@@ -59,6 +60,9 @@ jobs:
 
       - name: Run 500-scenario heartbeat matrix
         run: python tools/heartbeat_system_smoke.py
+
+      - name: Run 500-scenario serial queue order matrix
+        run: python tools/serial_queue_order_smoke.py
 
       - name: Run full scan and monitor audit
         run: python tools/audit_scan_system_v3.py
@@ -81,7 +85,7 @@ jobs:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/browser_conflict_smoke.mjs
 
-      - name: Upload conflict and heartbeat reports
+      - name: Upload conflict, heartbeat, and order reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -99,5 +103,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add CONFLICT-REPORT.md data/conflict-reports data/batch-analysis/scan-system-health.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Update Atlas conflict and heartbeat reports [skip ci]'
+          git commit -m 'Update Atlas conflict, heartbeat, and order reports [skip ci]'
           git push
