@@ -1,52 +1,20 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-20T15:38:37.587186Z",
+  "generatedAt": "2026-07-20T15:46:53.859023Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "finalState": "scan_completed_or_progressed",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-20T15:28:41.218765Z",
-      "finishedAt": "2026-07-20T15:33:06.849028Z",
+      "startedAt": "2026-07-20T15:39:21.344920Z",
+      "finishedAt": "2026-07-20T15:46:53.858106Z",
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 5700,
-      "imported": 4,
-      "failed": 1,
-      "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 4, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 7}\n\n",
-      "diagnosisReturnCode": 0,
-      "dictionaryEntryId": "curl-transport",
-      "action": "enable_adaptive_range_and_retry",
-      "retryScheduled": true,
-      "requiresHumanReview": false
-    },
-    {
-      "cycle": 2,
-      "startedAt": "2026-07-20T15:33:16.507184Z",
-      "finishedAt": "2026-07-20T15:36:15.921362Z",
-      "scannerReturnCode": 0,
-      "scannerTimeoutSeconds": 5700,
-      "imported": 4,
-      "failed": 1,
-      "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 4, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 7}\n\n",
-      "diagnosisReturnCode": 0,
-      "dictionaryEntryId": "bilibili-http-412",
-      "action": "fast_backoff_public_api_and_adaptive_range",
-      "retryScheduled": true,
-      "requiresHumanReview": false
-    },
-    {
-      "cycle": 3,
-      "startedAt": "2026-07-20T15:36:37.668957Z",
-      "finishedAt": "2026-07-20T15:38:37.586574Z",
-      "scannerReturnCode": 0,
-      "scannerTimeoutSeconds": 5700,
-      "imported": 5,
+      "imported": 6,
       "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 5, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 6}\n\n"
+      "scannerOutput": "{\"total\": 11, \"imported\": 6, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 5}\n\n"
     }
   ],
   "safety": {
