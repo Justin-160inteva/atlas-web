@@ -31,17 +31,17 @@ const runtimeRecordsValid=recordPairs.length===runtimeIndex.recordCount&&recordP
   const rewards=Array.isArray(record.rewards)?record.rewards:[];
   const conflicts=Array.isArray(record.conflicts)?record.conflicts:[];
   const sourceTypes=new Set(sources.map(source=>source.sourceType));
-  const partialCoverageInference=sources.length>=2&&sourceTypes.has('community_database')&&sourceTypes.has('guide_article')&&record.status==='high_confidence_inference'&&record.confidence>=inferenceThreshold&&record.confidence<multiThreshold;
+  const qualifiedLineageInference=sources.length>=3&&sourceTypes.has('community_database')&&sourceTypes.has('guide_article')&&record.status==='high_confidence_inference'&&record.confidence>=inferenceThreshold&&record.confidence<multiThreshold;
   const sourceValid=sources.every(source=>policy.sourceTypes.includes(source.sourceType)&&typeof source.locator==='string'&&source.locator.startsWith('https://')&&Array.isArray(source.supports)&&source.supports.length>0);
   const rewardsValid=rewards.length>0&&rewards.every(reward=>{
     const token=`reward:${reward.type}:${reward.nameOriginal||reward.nameZhCN}`;
     const supportCount=sources.filter(source=>Array.isArray(source.supports)&&source.supports.includes(token)).length;
-    const expectedCoverage=numericRewardTypes.has(reward.type)?supportCount===1:supportCount>=2;
+    const expectedCoverage=numericRewardTypes.has(reward.type)?supportCount>=2:supportCount>=3;
     return allowedRewardTypes.has(reward.type)&&allowedQuantityStatuses.has(reward.quantityStatus)&&typeof reward.nameZhCN==='string'&&reward.nameZhCN.length>0&&(reward.quantityStatus!=='exact'||Number.isFinite(reward.quantity))&&expectedCoverage;
   });
   const conflictsValid=conflicts.length>0&&conflicts.every(conflict=>policy.conflictTypes.includes(conflict.type)&&['open','resolved','accepted_uncertainty'].includes(conflict.status)&&typeof conflict.detailZhCN==='string');
-  const reviewValid=allowedReviewStates.has(record.review?.state)&&record.review?.state==='machine_checked'&&record.review?.method==='reward-policy-v1 + per-reward-source-coverage';
-  return locationId===record.locationId&&path===`data/rewards/records/${locationId}.json`&&allowedStatuses.has(record.status)&&partialCoverageInference&&sourceValid&&rewardsValid&&conflictsValid&&reviewValid&&record.summaryZhCN.includes('整体保持高置信推断')&&manifest.releaseAssets.includes(path)&&serviceWorker.includes(`'./${path}'`);
+  const reviewValid=allowedReviewStates.has(record.review?.state)&&record.review?.state==='machine_checked'&&record.review?.method==='reward-policy-v1 + source-lineage-qualified-coverage';
+  return locationId===record.locationId&&path===`data/rewards/records/${locationId}.json`&&allowedStatuses.has(record.status)&&qualifiedLineageInference&&sourceValid&&rewardsValid&&conflictsValid&&reviewValid&&record.summaryZhCN.includes('高置信推断')&&record.conflicts.some(conflict=>conflict.status==='accepted_uncertainty'&&conflict.detailZhCN.includes('数据链独立性'))&&manifest.releaseAssets.includes(path)&&serviceWorker.includes(`'./${path}'`);
 });
 const reviewQueueValid=Array.isArray(runtimeIndex.reviewQueue)&&runtimeIndex.reviewQueue.length===runtimeIndex.recordCount&&new Set(runtimeIndex.reviewQueue).size===runtimeIndex.recordCount&&runtimeIndex.reviewQueue.every(id=>runtimeIndex.recordFiles?.[id]);
 const runtimeCoverageValid=index.coverage?.highConfidenceInference===runtimeIndex.recordCount&&index.coverage?.unresolved===index.targetLocationCount-runtimeIndex.recordCount&&index.coverage?.officialConfirmed===0&&index.coverage?.multiSourceConfirmed===0&&index.coverage?.openConflicts===0;
@@ -53,7 +53,7 @@ const contracts={
   release:index.release===manifest.version&&runtimeIndex.release===manifest.version,
   fullAudit:manifest.invariants?.requireFullAuditAtThisRelease===fullAuditRequired,
   rewardOwner:manifest.runtimeOwners?.rewardEvidenceIndex==='data/rewards/reward-evidence-index.json'&&manifest.runtimeOwners?.rewardSummaryRuntime==='atlas-rewards-0949.js'&&manifest.runtimeOwners?.rewardRuntimeRecords==='data/rewards/reward-records-runtime.json',
-  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500&&manifest.invariants?.rewardUnresolvedNeverFabricated===true&&manifest.invariants?.rewardRuntimeRecordCount===runtimeIndex.recordCount&&manifest.invariants?.rewardSingleSourceMustRemainInference===true&&manifest.invariants?.rewardPartialSourceCoverageMustRemainInference===true&&manifest.invariants?.rewardCandidateRecordsMachineChecked===true&&runtimeRecordsValid&&reviewQueueValid&&runtimeCoverageValid&&runtimeSource.includes('旧描述不会被当作已确认事实')&&runtimeSource.includes('loadRuntimeRecords')&&runtimeSource.includes('Promise.allSettled')&&runtimeSource.includes('rewardSupportCount')&&runtimeSource.includes('个来源')&&serviceWorker.includes(String.raw`records\/[^?]+\.json`),
+  rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500&&manifest.invariants?.rewardUnresolvedNeverFabricated===true&&manifest.invariants?.rewardRuntimeRecordCount===runtimeIndex.recordCount&&manifest.invariants?.rewardSingleSourceMustRemainInference===true&&manifest.invariants?.rewardPartialSourceCoverageMustRemainInference===true&&manifest.invariants?.rewardSourceLineageMustBeQualified===true&&manifest.invariants?.rewardCandidateRecordsMachineChecked===true&&runtimeRecordsValid&&reviewQueueValid&&runtimeCoverageValid&&runtimeIndex.noteZhCN.includes('数据链独立性')&&runtimeSource.includes('旧描述不会被当作已确认事实')&&runtimeSource.includes('loadRuntimeRecords')&&runtimeSource.includes('Promise.allSettled')&&runtimeSource.includes('rewardSupportCount')&&runtimeSource.includes('个来源')&&serviceWorker.includes(String.raw`records\/[^?]+\.json`),
   targetCount:index.targetLocationCount===3430,
   coverageTotal:index.coverage?.total===3430,
   coverageConserved:['officialConfirmed','multiSourceConfirmed','highConfidenceInference','unresolved'].reduce((sum,key)=>sum+Number(index.coverage?.[key]||0),0)===3430,
