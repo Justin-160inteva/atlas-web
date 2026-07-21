@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
-  "validationTier": "quick",
-  "requestedChecks": 96,
+  "validationTier": "standard",
+  "requestedChecks": 128,
   "queueItems": 11,
   "maximumConcurrentItems": 1,
   "coverageFamilies": [
@@ -11,7 +11,7 @@
     "idempotent",
     "no-queued"
   ],
-  "totalChecks": 96,
+  "totalChecks": 128,
   "passed": true,
   "checks": [
     {
@@ -115,6 +115,36 @@
       "detail": "prefix=8, target=p033"
     },
     {
+      "name": "queued-prefix-020",
+      "passed": true,
+      "detail": "prefix=9, target=p034"
+    },
+    {
+      "name": "queued-prefix-021",
+      "passed": true,
+      "detail": "prefix=10, target=p035"
+    },
+    {
+      "name": "queued-prefix-022",
+      "passed": true,
+      "detail": "prefix=0, target=p025"
+    },
+    {
+      "name": "queued-prefix-023",
+      "passed": true,
+      "detail": "prefix=1, target=p026"
+    },
+    {
+      "name": "queued-prefix-024",
+      "passed": true,
+      "detail": "prefix=2, target=p027"
+    },
+    {
+      "name": "queued-prefix-025",
+      "passed": true,
+      "detail": "prefix=3, target=p028"
+    },
+    {
       "name": "active-block-000",
       "passed": true,
       "detail": "active=1:running"
@@ -208,6 +238,41 @@
       "name": "active-block-018",
       "passed": true,
       "detail": "active=9:running"
+    },
+    {
+      "name": "active-block-019",
+      "passed": true,
+      "detail": "active=10:recovery"
+    },
+    {
+      "name": "active-block-020",
+      "passed": true,
+      "detail": "active=1:running"
+    },
+    {
+      "name": "active-block-021",
+      "passed": true,
+      "detail": "active=2:recovery"
+    },
+    {
+      "name": "active-block-022",
+      "passed": true,
+      "detail": "active=3:running"
+    },
+    {
+      "name": "active-block-023",
+      "passed": true,
+      "detail": "active=4:recovery"
+    },
+    {
+      "name": "active-block-024",
+      "passed": true,
+      "detail": "active=5:running"
+    },
+    {
+      "name": "active-block-025",
+      "passed": true,
+      "detail": "active=6:recovery"
     },
     {
       "name": "pending-first-000",
@@ -305,6 +370,41 @@
       "detail": "laterQueued=9"
     },
     {
+      "name": "pending-first-019",
+      "passed": true,
+      "detail": "laterQueued=10"
+    },
+    {
+      "name": "pending-first-020",
+      "passed": true,
+      "detail": "laterQueued=1"
+    },
+    {
+      "name": "pending-first-021",
+      "passed": true,
+      "detail": "laterQueued=2"
+    },
+    {
+      "name": "pending-first-022",
+      "passed": true,
+      "detail": "laterQueued=3"
+    },
+    {
+      "name": "pending-first-023",
+      "passed": true,
+      "detail": "laterQueued=4"
+    },
+    {
+      "name": "pending-first-024",
+      "passed": true,
+      "detail": "laterQueued=5"
+    },
+    {
+      "name": "pending-first-025",
+      "passed": true,
+      "detail": "laterQueued=6"
+    },
+    {
       "name": "idempotent-000",
       "passed": true,
       "detail": "prefix=0"
@@ -400,6 +500,36 @@
       "detail": "prefix=7"
     },
     {
+      "name": "idempotent-019",
+      "passed": true,
+      "detail": "prefix=8"
+    },
+    {
+      "name": "idempotent-020",
+      "passed": true,
+      "detail": "prefix=9"
+    },
+    {
+      "name": "idempotent-021",
+      "passed": true,
+      "detail": "prefix=10"
+    },
+    {
+      "name": "idempotent-022",
+      "passed": true,
+      "detail": "prefix=0"
+    },
+    {
+      "name": "idempotent-023",
+      "passed": true,
+      "detail": "prefix=1"
+    },
+    {
+      "name": "idempotent-024",
+      "passed": true,
+      "detail": "prefix=2"
+    },
+    {
       "name": "no-queued-000",
       "passed": true,
       "detail": "mode=0"
@@ -493,6 +623,36 @@
       "name": "no-queued-018",
       "passed": true,
       "detail": "mode=2"
+    },
+    {
+      "name": "no-queued-019",
+      "passed": true,
+      "detail": "mode=3"
+    },
+    {
+      "name": "no-queued-020",
+      "passed": true,
+      "detail": "mode=0"
+    },
+    {
+      "name": "no-queued-021",
+      "passed": true,
+      "detail": "mode=1"
+    },
+    {
+      "name": "no-queued-022",
+      "passed": true,
+      "detail": "mode=2"
+    },
+    {
+      "name": "no-queued-023",
+      "passed": true,
+      "detail": "mode=3"
+    },
+    {
+      "name": "no-queued-024",
+      "passed": true,
+      "detail": "mode=0"
     }
   ]
 }
