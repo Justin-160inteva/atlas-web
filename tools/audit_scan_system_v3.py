@@ -104,6 +104,9 @@ def main() -> int:
     queue_id = queue.get("queueId")
     status_id = status.get("batchId")
     terminal_status = status.get("complete") is True and status.get("summary", {}).get("imported") == status.get("summary", {}).get("total") == 11
+    queue_projection_complete = queue.get("status") == "complete" and all(item.get("state") == "imported" for item in items)
+    authority = queue.get("authority", {})
+    terminal_projection_coherent = authority.get("terminal") is terminal_status or (terminal_status and queue_projection_complete)
 
     check("queue_exact_eleven", len(items) == queue.get("maximumQueueItems") == manifest.get("maximumQueueItems") == 11, "exactly eleven bounded items")
     check("queue_unique", len({item.get("externalSourceId") for item in items}) == 11, "eleven unique sources")
@@ -113,7 +116,7 @@ def main() -> int:
     check("queue_serial", queue.get("maximumConcurrentItems") == 1 and sum(item.get("state") in {"running", "recovery"} for item in items) <= 1, "maximum one active item")
     check("queue_auto_continue", queue.get("autoContinueAfterDurableSuccess") is True, "durable-success continuation")
     check("queue_status_batch_identity", queue_id == status_id == EXPECTED_BATCH, f"queue={queue_id}, status={status_id}")
-    check("queue_authority", queue.get("authority", {}).get("protectFromCatalogRegeneration") is True and queue.get("authority", {}).get("batchId") == EXPECTED_BATCH and queue.get("authority", {}).get("terminal") is terminal_status, "active/terminal authority stays coherent")
+    check("queue_authority", authority.get("owner") == "data/batch-analysis/eleven-pilot-scan-status.json" and authority.get("protectFromCatalogRegeneration") is True and authority.get("batchId") == EXPECTED_BATCH and terminal_projection_coherent, "durable status authority wins over a stale terminal projection")
     check("status_coherent", status.get("summary", {}).get("total") == len(items) and status.get("authorizationId") == queue.get("authorizationId") and len(status_items) == 11, "status matches queue")
 
     catalog_coherent = True
