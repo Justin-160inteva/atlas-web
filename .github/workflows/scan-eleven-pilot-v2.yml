@@ -9,6 +9,8 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write
+  models: read
 
 concurrency:
   group: scan-eleven-regional-batch
@@ -36,7 +38,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg curl
 
-      - name: Compile active scan and recovery stack
+      - name: Compile active scan, recovery, and autonomous repair stack
         run: |
           python -m py_compile tools/publish_runtime_progress.py
           python -m py_compile tools/publish_runtime_progress_v2.py
@@ -49,9 +51,12 @@ jobs:
           python -m py_compile tools/p33_chunked_tail_smoke.py
           python -m py_compile tools/scan_catalog_queue_v2.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
+          python -m py_compile tools/scan_autonomous_repair.py
+          python -m py_compile tools/autonomous_scan_repair_smoke.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
           python -m py_compile tools/update_analysis_index.py
+          python tools/autonomous_scan_repair_smoke.py
 
       - name: Run source transport gates
         run: |
@@ -75,7 +80,7 @@ jobs:
           print('conditional HTTP/1.1, tail, and parallel chunk hooks are active')
           PY
 
-      - name: Verify authorization and eleven-item serial state
+      - name: Verify authorization, autonomy, and eleven-item serial state
         run: |
           python - <<'PY'
           import json
@@ -84,6 +89,7 @@ jobs:
           catalog=json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))
           manifest=json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json',encoding='utf-8'))
           bugs=json.load(open('data/scan-bug-dictionary.json',encoding='utf-8'))
+          autonomy=json.load(open('data/scan-autonomy-policy.json',encoding='utf-8'))
           record=next(item for item in auth['records'] if item['id']==queue['authorizationId'])
           scope=record['scope']
           items=queue['items']
@@ -100,10 +106,8 @@ jobs:
           assert all(item['externalSourceId'] in catalog_by_id for item in items)
           for item in items:
               catalog_state=catalog_by_id[item['externalSourceId']]['analysisStatus']
-              if item.get('state')=='imported':
-                  assert catalog_state=='imported'
-              else:
-                  assert catalog_state!='imported'
+              if item.get('state')=='imported': assert catalog_state=='imported'
+              else: assert catalog_state!='imported'
           assert scope['localDownloadAndAnalysis'] and scope['computerVisionAnalysis']
           assert scope['privateLowResolutionKeyframes']
           assert scope['nonCommercial'] and scope['commercialUseRequiresSeparateWrittenConsent']
@@ -120,10 +124,15 @@ jobs:
           assert manifest['retention']['originalVideo'] is False
           assert manifest['retention']['framePixels'] is False
           assert len({entry['id'] for entry in bugs['entries']})==len(bugs['entries'])
-          print('authorized P25-P35 eleven-item queue is coherent and strictly serial')
+          assert autonomy['enabled'] is True
+          assert autonomy['authorization']['confirmationRequired'] is False
+          assert autonomy['mandatorySafety']['neverBroadenAuthorization'] is True
+          assert autonomy['mandatorySafety']['neverRetainOriginalMedia'] is True
+          assert autonomy['mandatorySafety']['maximumConcurrentDownloads']==1
+          print('authorized P25-P35 queue and bounded autonomous repair policy are coherent')
           PY
 
-      - name: Scan exactly one item with bounded recovery
+      - name: Scan exactly one item with deterministic recovery and AI repair
         id: scan
         continue-on-error: true
         env:
@@ -131,6 +140,8 @@ jobs:
           ATLAS_FORCE_HTTP11: '1'
           ATLAS_PARALLEL_RANGE_WORKERS: '4'
           PYTHONPATH: ${{ github.workspace }}/tools/p33_v14_hook
+          ATLAS_AI_REPAIR_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           ATLAS_PROGRESS_TOKEN: ${{ github.token }}
           ATLAS_PROGRESS_REPOSITORY: ${{ github.repository }}
           ATLAS_PROGRESS_BRANCH: main
@@ -154,24 +165,26 @@ jobs:
           import json, pathlib
           recovery_path=pathlib.Path('data/batch-analysis/eleven-pilot-recovery-report.json')
           orchestration_path=pathlib.Path('data/batch-analysis/eleven-pilot-orchestration-report.json')
+          auto_path=pathlib.Path('data/batch-analysis/scan-autonomous-repair-report.json')
           recovery=json.load(recovery_path.open(encoding='utf-8')) if recovery_path.exists() else {}
           orchestration=json.load(orchestration_path.open(encoding='utf-8')) if orchestration_path.exists() else {}
+          auto=json.load(auto_path.open(encoding='utf-8')) if auto_path.exists() else {}
           status=json.load(open('data/batch-analysis/eleven-pilot-scan-status.json',encoding='utf-8'))
           queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
           final=orchestration.get('finalState','unknown')
           progressed=final=='scan_completed_or_progressed' or int(status.get('summary',{}).get('newlyImportedThisRun',0))>0
-          target_id=recovery.get('activeExternalSourceId')
+          target_id=recovery.get('activeExternalSourceId') or auto.get('targetExternalSourceId')
           target=next((item for item in queue.get('items',[]) if item.get('externalSourceId')==target_id),None)
           relevant=bool(target and target.get('state') in {'failed','blocked','recovery'})
-          terminal=final in {'human_review_required','unrecoverable','attempt_limit_reached'}
-          human=terminal or (not progressed and relevant and recovery.get('requiresHumanReview',False))
+          terminal=final in {'protected_failure','unrecoverable','attempt_limit_reached'}
+          human=terminal or (not progressed and relevant and recovery.get('requiresHumanReview',False) and auto.get('outcome')!='repaired')
           print(f"complete={'true' if status.get('complete') else 'false'}")
           print(f"progressed={'true' if progressed else 'false'}")
           print(f"human={'true' if human else 'false'}")
           print(f"imported={status.get('summary',{}).get('imported',0)}")
           print(f"total={status.get('summary',{}).get('total',0)}")
           print(f"region={queue['pilotRegion']}")
-          print(f"action={recovery.get('action','none') if relevant else 'none'}")
+          print(f"action={auto.get('outcome') if auto.get('outcome')=='repaired' else recovery.get('action','none') if relevant else 'none'}")
           PY
 
       - name: Run 400-round serial integrity and privacy gate
@@ -184,6 +197,7 @@ jobs:
           catalog=json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))
           manifest=json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json',encoding='utf-8'))
           bugs=json.load(open('data/scan-bug-dictionary.json',encoding='utf-8'))
+          autonomy=json.load(open('data/scan-autonomy-policy.json',encoding='utf-8'))
           index=json.load(open('data/analysis-index.json',encoding='utf-8'))
           indexed={item['externalSourceId']:item for item in index['items']}
           catalog_by_id={item['id']:item for item in catalog['items']}
@@ -202,6 +216,8 @@ jobs:
               assert manifest['retention']['framePixels'] is False
               assert bugs['defaultPolicy']['neverBroadenAuthorization'] is True
               assert bugs['defaultPolicy']['neverRetainOriginalMedia'] is True
+              assert autonomy['mandatorySafety']['neverChangeQueueScope'] is True
+              assert autonomy['mandatorySafety']['strictSerialOrder'] is True
               for item in items:
                   catalog_state=catalog_by_id[item['externalSourceId']]['analysisStatus']
                   if item.get('state')=='imported':
@@ -214,15 +230,15 @@ jobs:
                       assert catalog_state!='imported'
               for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
                   assert not list(pathlib.Path('.').rglob(pattern))
-          print('400/400 eleven-item serial integrity and privacy checks passed')
+          print('400/400 serial integrity, autonomy safety, and privacy checks passed')
           PY
 
-      - name: Persist durable state
+      - name: Persist durable state and passing autonomous source repair
         if: always()
         id: persist
         run: |
           echo "persisted=false" >> "$GITHUB_OUTPUT"
-          TRACKED='data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/eleven-pilot-scan-manifest.json'
+          TRACKED='data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/scan-autonomous-repair-report.json data/batch-analysis/eleven-pilot-scan-manifest.json data/scan-bug-dictionary.json data/scan-autonomy-policy.json tools'
           if [ -z "$(git status --porcelain -- $TRACKED)" ]; then
             if [ "${{ steps.decision.outputs.progressed }}" = "true" ]; then
               echo 'progress was reported but no durable state files changed' >&2
@@ -230,7 +246,7 @@ jobs:
             fi
             exit 0
           fi
-          git config user.name 'github-actions[bot]'
+          git config user.name 'atlas-autonomous-scan[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add $TRACKED
           git commit -m "Scan ${{ steps.decision.outputs.region }}: ${{ steps.decision.outputs.imported }}/${{ steps.decision.outputs.total }} (${{ steps.decision.outputs.action }})"
@@ -258,6 +274,6 @@ jobs:
         if: always() && steps.decision.outputs.progressed == 'true' && steps.persist.outputs.persisted != 'true'
         run: exit 1
 
-      - name: Stop visibly on current unrecoverable failure
+      - name: Stop visibly only on protected or unrepaired failure
         if: always() && steps.decision.outputs.human == 'true'
         run: exit 1
