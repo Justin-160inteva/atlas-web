@@ -15,6 +15,7 @@ on:
       - 'data/batch-analysis/eleven-pilot-scan-status.json'
       - 'data/batch-analysis/eleven-pilot-recovery-report.json'
       - 'data/batch-analysis/eleven-pilot-orchestration-report.json'
+      - 'data/batch-analysis/scan-autonomous-repair-report.json'
       - 'data/batch-analysis/eleven-heartbeat-supervisor-state.json'
       - 'data/batch-analysis/eleven-pilot-v2-trigger.json'
       - 'data/batch-analysis/scan-system-health.json'
@@ -54,6 +55,7 @@ jobs:
         run: |
           echo "tier=${{ steps.validation.outputs.tier }}"
           echo "changed=${{ steps.validation.outputs.changed_count }}"
+          echo "target_minutes=${{ steps.validation.outputs.target_minutes }}"
           cat data/audits/release-validation-budget.json
 
       - name: Verify release manifest synchronization
@@ -76,6 +78,7 @@ jobs:
           node --check atlas-080.js
           node --check atlas-ui-fix-0931.js
           node --check page-zoom-guard.js
+          node --check atlas-map-cover-0950.js
           node --check scan-monitor.js
           node --check tools/data_center_contract_smoke.mjs
           node --check tools/reward_evidence_contract_smoke.mjs
@@ -86,12 +89,14 @@ jobs:
           node --check tools/monitor_batch_authority_smoke.mjs
           node --check sw.js
 
-      - name: Compile heartbeat, ordering, schema, audit, and recovery tools
+      - name: Compile heartbeat, ordering, schema, audit, recovery, and autonomy tools
         run: |
           python -m py_compile tools/supervise_runtime_heartbeat.py
           python -m py_compile tools/heartbeat_system_smoke.py
           python -m py_compile tools/serial_queue_order_smoke.py
           python -m py_compile tools/queue_schema_smoke.py
+          python -m py_compile tools/scan_autonomous_repair.py
+          python -m py_compile tools/autonomous_scan_repair_smoke.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
           python -m py_compile tools/audit_scan_system_v3.py
@@ -105,6 +110,10 @@ jobs:
 
       - name: Run cross-device viewport scale matrix
         run: node tools/viewport_scale_contract_smoke.mjs
+
+      - name: Run autonomous scan repair safety contract when relevant
+        if: steps.validation.outputs.run_autonomous_repair == 'true'
+        run: python tools/autonomous_scan_repair_smoke.py
 
       - name: Run unified data center matrix when relevant
         if: steps.validation.outputs.run_data_center == 'true'
@@ -139,11 +148,28 @@ jobs:
         if: steps.validation.outputs.run_full_audit == 'true'
         run: python tools/full_project_audit_0948.py
 
-      - name: Install Playwright Chromium only when browser validation is required
+      - name: Cache Playwright Chromium
+        if: steps.validation.outputs.run_playwright == 'true'
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-1.52.0-chromium
+
+      - name: Install Playwright package and Chromium only when needed
         if: steps.validation.outputs.run_playwright == 'true'
         run: |
           npm install --no-save playwright@1.52.0
-          npx playwright install --with-deps chromium
+          if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != 'true' ]; then
+            npx playwright install --with-deps chromium
+          fi
+          node - <<'NODE' || (npx playwright install --with-deps chromium && node - <<'NODE2')
+          const { chromium } = require('playwright');
+          chromium.launch({headless:true}).then(async b=>{await b.close(); console.log('cached Chromium ready')});
+          NODE
+          const { chromium } = require('playwright');
+          chromium.launch({headless:true}).then(async b=>{await b.close(); console.log('Chromium fallback ready')});
+          NODE2
 
       - name: Start local Atlas server only for browser validation
         if: steps.validation.outputs.run_playwright == 'true'
@@ -154,20 +180,20 @@ jobs:
           cat /tmp/atlas-server.log
           exit 1
 
-      - name: Run browser conflict matrix when UI changes
-        if: steps.validation.outputs.run_browser == 'true'
+      - name: Run full browser conflict matrix only for broad or post-merge UI changes
+        if: steps.validation.outputs.run_browser_matrix == 'true'
         env:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/browser_conflict_smoke.mjs
 
-      - name: Run iPad portrait-to-landscape viewport stability gate
-        if: steps.validation.outputs.run_browser == 'true'
+      - name: Run targeted iPad viewport gate
+        if: steps.validation.outputs.run_ipad == 'true'
         env:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/ipad_landscape_viewport_smoke.mjs
 
-      - name: Run mobile and iPad reward search matrix
-        if: steps.validation.outputs.run_browser == 'true'
+      - name: Run targeted mobile and iPad reward search gate
+        if: steps.validation.outputs.run_reward_search == 'true'
         env:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/reward_search_browser_smoke.mjs
@@ -188,6 +214,7 @@ jobs:
             data/conflict-reports/*.json
             data/audits/*.json
             data/batch-analysis/scan-system-health.json
+            data/batch-analysis/scan-autonomous-repair-report.json
           if-no-files-found: warn
 
       - name: Persist reports on main
@@ -195,7 +222,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add CONFLICT-REPORT.md data/conflict-reports data/audits data/batch-analysis/scan-system-health.json
+          git add CONFLICT-REPORT.md data/conflict-reports data/audits data/batch-analysis/scan-system-health.json data/batch-analysis/scan-autonomous-repair-report.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Update Atlas selected validation reports [skip ci]'
           git push
