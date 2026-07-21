@@ -26,7 +26,64 @@
   <link rel="stylesheet" href="detail-sheet-gesture.css?v=0.9.4.10&build=sheet-gesture-2" />
   <link rel="stylesheet" href="atlas-navigation-09411a.css?v=0.9.4.10&build=navigation-09412a-1" />
   <link rel="stylesheet" href="atlas-ipad-ultra-09412c.css?v=0.9.4.10&build=ipad-ultra-09412c-1" />
-  <style>.app-shell:has(.search-overlay.open)>:not(.search-overlay){pointer-events:none!important}.app-shell:has(.search-overlay.open)>.search-overlay,.app-shell:has(.search-overlay.open)>.search-overlay *{pointer-events:auto!important}</style>
+  <style>
+    .app-shell:has(.search-overlay.open)>:not(.search-overlay){pointer-events:none!important}
+    .app-shell:has(.search-overlay.open)>.search-overlay,.app-shell:has(.search-overlay.open)>.search-overlay *{pointer-events:auto!important}
+    :root{
+      --atlas-red-light:#fffafb;
+      --atlas-red-mid:#fdecef;
+      --atlas-red-deep:#f7d4da;
+      --atlas-red-deeper:#edb4bf;
+      --atlas-red-line:rgba(255,239,242,.92);
+      --atlas-red-glow:inset 0 1px 0 rgba(255,255,255,.94),inset 0 -1px 0 rgba(174,79,96,.12),0 9px 22px rgba(137,55,72,.16);
+      --atlas-red-ink:#6b2b37;
+    }
+    html body .bottom-nav .nav-item.active,
+    html body .quick-rail .rail-button.active,
+    html.atlas-ipad-ultra body .bottom-nav .nav-item.active,
+    html.atlas-ipad-ultra body .quick-rail .rail-button.active,
+    html body :where(.sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,.data-center-tabs button.active,.evidence-season-tabs button.active,.evidence-tool-grid button.active,.settings-primary-card,.category-chip:not(.off).active,.region-progress.active),
+    html.atlas-ipad-ultra body :where(.sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,.data-center-tabs button.active,.evidence-season-tabs button.active,.evidence-tool-grid button.active,.settings-primary-card,.category-chip:not(.off).active,.region-progress.active),
+    html body .profile-button.atlas-settings-button[aria-expanded="true"]{
+      border-color:var(--atlas-red-line)!important;
+      background:linear-gradient(145deg,#fff 0%,var(--atlas-red-light) 24%,var(--atlas-red-mid) 52%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper) 100%)!important;
+      color:var(--atlas-red-ink)!important;
+      box-shadow:var(--atlas-red-glow)!important;
+    }
+    html body .map-controls,
+    html.atlas-ipad-ultra body .map-controls,
+    html.atlas-ipad-ultra.atlas-ultra-interacting body .map-controls,
+    html.atlas-ipad-ultra.atlas-interacting body .map-controls{
+      padding:0!important;
+      gap:4px!important;
+      overflow:visible!important;
+      border:0!important;
+      border-radius:0!important;
+      background:transparent!important;
+      -webkit-backdrop-filter:none!important;
+      backdrop-filter:none!important;
+      box-shadow:none!important;
+    }
+    html body .map-controls button,
+    html.atlas-ipad-ultra body .map-controls button{
+      border:0!important;
+      border-bottom:0!important;
+      border-radius:12px!important;
+      background:transparent!important;
+      -webkit-backdrop-filter:none!important;
+      backdrop-filter:none!important;
+      box-shadow:none!important;
+      color:rgba(255,255,255,.96)!important;
+    }
+    html body .map-controls button .atlas-control-icon{
+      filter:drop-shadow(0 2px 4px rgba(0,0,0,.48));
+    }
+    html body .map-controls button:active{
+      background:transparent!important;
+      transform:scale(.91)!important;
+      opacity:.78!important;
+    }
+  </style>
 </head>
 <body>
   <main class="app-shell" aria-label="Atlas 互动地图">
