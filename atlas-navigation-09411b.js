@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = '0.9.4.12h';
+  const VERSION = '0.9.4.12i';
   const ICON_DESIGN = 'clean-radial-09411a';
   const root = document.documentElement;
   const rail = document.querySelector('.quick-rail');
@@ -17,25 +17,36 @@
     </svg>`;
 
   const navigationCss = `
+    :root{
+      --atlas-nav-medium-size:88px;
+      --atlas-nav-surface:linear-gradient(180deg,rgba(47,41,43,.88),rgba(24,22,23,.9));
+      --atlas-nav-border:rgba(255,255,255,.13);
+      --atlas-nav-active:rgba(248,248,249,.96);
+      --atlas-nav-muted:rgba(220,220,223,.56);
+    }
+
     html body .app-shell .quick-rail.quick-rail,
     html.atlas-ipad body .app-shell .quick-rail.quick-rail,
     html.atlas-ipad-ultra body .app-shell .quick-rail.quick-rail{
       left:max(14px,env(safe-area-inset-left,0px))!important;
-      width:88px!important;
+      right:auto!important;
+      top:50%!important;
+      bottom:auto!important;
+      width:var(--atlas-nav-medium-size)!important;
       height:auto!important;
       min-height:0!important;
       padding:8px!important;
       display:flex!important;
       flex-direction:column!important;
       gap:4px!important;
-      border:1px solid rgba(255,255,255,.12)!important;
+      border:1px solid var(--atlas-nav-border)!important;
       border-radius:26px!important;
       overflow:hidden!important;
-      background:rgba(5,5,6,.78)!important;
+      background:var(--atlas-nav-surface)!important;
       -webkit-backdrop-filter:none!important;
       backdrop-filter:none!important;
       box-shadow:none!important;
-      transform:none!important;
+      transform:translateY(-50%)!important;
       translate:none!important;
       contain:layout paint!important;
       isolation:isolate!important;
@@ -70,7 +81,7 @@
       box-shadow:none!important;
       transform:none!important;
       translate:none!important;
-      color:rgba(228,228,230,.58)!important;
+      color:var(--atlas-nav-muted)!important;
       opacity:1!important;
       transition:none!important;
       contain:layout paint!important;
@@ -79,7 +90,7 @@
     html body .app-shell .quick-rail.quick-rail .rail-button.active{
       border:0!important;
       background:transparent!important;
-      color:rgba(248,248,249,.96)!important;
+      color:var(--atlas-nav-active)!important;
       box-shadow:none!important;
       transform:none!important;
       translate:none!important;
@@ -107,16 +118,19 @@
     html.atlas-ipad-ultra body .app-shell .bottom-nav.bottom-nav{
       left:0!important;
       right:0!important;
+      bottom:max(8px,env(safe-area-inset-bottom,0px))!important;
+      width:min(520px,calc(100% - 24px))!important;
+      height:var(--atlas-nav-medium-size)!important;
       margin-left:auto!important;
       margin-right:auto!important;
-      padding:6px!important;
+      padding:8px!important;
       display:grid!important;
       grid-template-columns:repeat(5,minmax(0,1fr))!important;
       gap:0!important;
-      border:1px solid rgba(255,255,255,.12)!important;
-      border-radius:24px!important;
+      border:1px solid var(--atlas-nav-border)!important;
+      border-radius:26px!important;
       overflow:hidden!important;
-      background:rgba(5,5,6,.8)!important;
+      background:var(--atlas-nav-surface)!important;
       -webkit-backdrop-filter:none!important;
       backdrop-filter:none!important;
       box-shadow:none!important;
@@ -124,6 +138,7 @@
       translate:none!important;
       contain:layout paint!important;
       isolation:isolate!important;
+      box-sizing:border-box!important;
     }
 
     html body .app-shell .bottom-nav.bottom-nav::before,
@@ -137,11 +152,11 @@
     html body .app-shell .bottom-nav.bottom-nav .nav-item{
       min-width:0!important;
       width:100%!important;
-      height:64px!important;
+      height:72px!important;
       margin:0!important;
       padding:0!important;
       border:0!important;
-      border-radius:16px!important;
+      border-radius:18px!important;
       overflow:hidden!important;
       background:transparent!important;
       -webkit-backdrop-filter:none!important;
@@ -149,7 +164,7 @@
       box-shadow:none!important;
       transform:none!important;
       translate:none!important;
-      color:rgba(228,228,230,.58)!important;
+      color:var(--atlas-nav-muted)!important;
       opacity:1!important;
       transition:none!important;
       contain:layout paint!important;
@@ -158,7 +173,7 @@
     html body .app-shell .bottom-nav.bottom-nav .nav-item.active{
       border:0!important;
       background:transparent!important;
-      color:rgba(248,248,249,.96)!important;
+      color:var(--atlas-nav-active)!important;
       box-shadow:none!important;
       transform:none!important;
       translate:none!important;
@@ -185,9 +200,10 @@
     html.atlas-ipad-ultra body .vignette{display:none!important}
 
     @media(max-width:720px){
+      :root{--atlas-nav-medium-size:80px}
       html body .app-shell .quick-rail.quick-rail{
         left:max(10px,env(safe-area-inset-left,0px))!important;
-        width:80px!important;
+        width:var(--atlas-nav-medium-size)!important;
         padding:7px!important;
         border-radius:23px!important;
       }
@@ -197,7 +213,13 @@
         height:64px!important;
         min-height:64px!important;
       }
-      html body .app-shell .bottom-nav.bottom-nav .nav-item{height:60px!important}
+      html body .app-shell .bottom-nav.bottom-nav{
+        width:calc(100% - 20px)!important;
+        height:var(--atlas-nav-medium-size)!important;
+        padding:7px!important;
+        border-radius:23px!important;
+      }
+      html body .app-shell .bottom-nav.bottom-nav .nav-item{height:66px!important}
     }
   `;
 
@@ -222,11 +244,11 @@
   }
 
   function installNavigationStyle() {
-    const oldStyle = document.getElementById('atlas-navigation-lite-09412g');
-    oldStyle?.remove();
-    if (document.getElementById('atlas-navigation-lite-09412h')) return;
+    document.getElementById('atlas-navigation-lite-09412g')?.remove();
+    document.getElementById('atlas-navigation-lite-09412h')?.remove();
+    if (document.getElementById('atlas-navigation-lite-09412i')) return;
     const style = document.createElement('style');
-    style.id = 'atlas-navigation-lite-09412h';
+    style.id = 'atlas-navigation-lite-09412i';
     style.textContent = navigationCss;
     document.head.appendChild(style);
   }
