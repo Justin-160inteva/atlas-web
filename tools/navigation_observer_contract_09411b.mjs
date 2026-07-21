@@ -1,11 +1,12 @@
 import fs from 'node:fs/promises';
 
 const read = path => fs.readFile(new URL(`../${path}`, import.meta.url), 'utf8');
-const [html, css, controller, marker, manifestText, worker] = await Promise.all([
+const [html, css, controller, marker, legacyMarker, manifestText, worker] = await Promise.all([
   read('index.html'),
   read('atlas-navigation-09411a.css'),
   read('atlas-navigation-09411b.js'),
   read('marker-state.js'),
+  read('atlas-ui-fix-0931.js'),
   read('release-manifest.json'),
   read('sw.js')
 ]);
@@ -84,6 +85,10 @@ check('legacy selected ring is absent', !/if\(selected\)\{ctx\.beginPath\(\);ctx
 check('legacy selected shadow branch is absent', !/shadowColor=selected\?/.test(marker));
 check('marker animation is frame coalesced by scheduleDraw', /if\(t>=1\)atlasMarkerAnimations\.delete\(id\);else scheduleDraw\(\)/.test(marker));
 check('marker runtime audit is exposed', /window\.AtlasMarkerDesign=Object\.freeze/.test(marker));
+const markerHandoffIndex = legacyMarker.indexOf("if(window.AtlasMarkerDesign?.version==='0.9.4.12b-1')");
+const legacyOverrideIndex = legacyMarker.indexOf('drawMarker=function');
+check('legacy marker controller hands off to marker-state', /if\(window\.AtlasMarkerDesign\?\.version==='0\.9\.4\.12b-1'\)[\s\S]*root\.dataset\.atlasMarkerOwner='marker-state\.js';[\s\S]*return;/.test(legacyMarker));
+check('marker handoff precedes legacy draw override', markerHandoffIndex >= 0 && legacyOverrideIndex >= 0 && markerHandoffIndex < legacyOverrideIndex);
 
 check('service worker caches new controller', worker.includes("'./atlas-navigation-09411b.js'"));
 check('service worker excludes old observer controller', !worker.includes("'./atlas-navigation-09411a.js'"));
