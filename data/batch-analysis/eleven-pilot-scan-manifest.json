@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 18,
+  "schemaVersion": 19,
   "id": "eleven-production-p036-p046-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
@@ -77,8 +77,9 @@
     "preservePartialAcrossCdnCandidates": true,
     "cdnSpeedProbeEnabled": true,
     "cdnSpeedProbeCandidates": 4,
-    "cdnSpeedProbeBytes": 262144,
-    "cdnSpeedProbeTimeoutSeconds": 6
+    "cdnSpeedProbeBytes": 524288,
+    "cdnSpeedProbeTimeoutSeconds": 6,
+    "preferRangeCapableCdn": true
   },
   "analysisOptimization": {
     "policy": "catalog-aware-quality-speed-balance",
@@ -99,6 +100,7 @@
     "apiProvidedCdnRotation": true,
     "publicVideoWebpageBypassed": true,
     "fastestAuthorizedCdnProbe": true,
+    "preferRangeCapableCdn": true,
     "fixedBy": "tools/analyze_authorized_video_v14.py"
   },
   "recoveryPolicy": {
