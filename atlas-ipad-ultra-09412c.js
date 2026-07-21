@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = '0.9.4.13a';
+  const VERSION = '0.9.4.13b';
   const WORLD_SIZE = 4096;
   const root = document.documentElement;
   const ua = navigator.userAgent || '';
@@ -13,9 +13,8 @@
   if (!canvas || typeof draw !== 'function' || typeof mapToScreen !== 'function') return;
 
   root.classList.add('atlas-ipad-ultra', 'atlas-solid-glass');
+  window.AtlasPerf092?.setQuality?.(2);
 
-  const nativeDetailedMarker = window.AtlasMarkerDesign?.render || drawMarker;
-  const mobilePerf = window.AtlasMobilePerf || {};
   const perf = {
     version: VERSION,
     interacting: false,
@@ -24,7 +23,7 @@
     raf: 0,
     settleTimer: 0,
     resizeTimer: 0,
-    maxCanvasPixels: 2_400_000,
+    maxCanvasPixels: 2_200_000,
     dpr: 1,
     gridSize: 64,
     grid: null,
@@ -73,10 +72,22 @@
     root.dataset.atlasMapFit = 'full-overview';
   }
 
-  function zoomOverviewAt(factor, x = innerWidth / 2, y = innerHeight / 2) {
-    const oldScale = state.scale;
+  function clampToOverview(anchorX = innerWidth / 2, anchorY = innerHeight / 2) {
     const minimum = overviewScale();
-    const nextScale = clampValue(oldScale * factor, minimum, state.maxScale);
+    if (!Number.isFinite(state.scale) || state.scale >= minimum) return false;
+    const oldScale = Math.max(state.scale, 0.000001);
+    const mapX = (anchorX - state.offsetX) / oldScale;
+    const mapY = (anchorY - state.offsetY) / oldScale;
+    state.scale = minimum;
+    state.offsetX = anchorX - mapX * minimum;
+    state.offsetY = anchorY - mapY * minimum;
+    updateLabel();
+    return true;
+  }
+
+  function zoomOverviewAt(factor, x = innerWidth / 2, y = innerHeight / 2) {
+    const oldScale = Math.max(state.scale, overviewScale());
+    const nextScale = clampValue(oldScale * factor, overviewScale(), state.maxScale);
     if (Math.abs(nextScale - oldScale) < 1e-8) {
       updateLabel();
       return;
@@ -90,14 +101,13 @@
     scheduleDraw();
   }
 
-  window.minScale = overviewScale;
   window.fitMap = fitOverview;
   window.updateZoomLabel = updateLabel;
   window.zoomAt = zoomOverviewAt;
 
-  function setInteracting(value, settle = 90) {
+  function setInteracting(value, settle = 80) {
     perf.interacting = value;
-    mobilePerf.interacting = value;
+    if (window.AtlasMobilePerf) window.AtlasMobilePerf.interacting = value;
     root.classList.toggle('atlas-ultra-interacting', value);
     root.classList.toggle('atlas-interacting', value);
     clearTimeout(perf.settleTimer);
@@ -105,13 +115,20 @@
   }
 
   canvas.addEventListener('pointerdown', () => setInteracting(true), { capture: true, passive: true });
-  canvas.addEventListener('pointerup', () => setInteracting(false, 70), { capture: true, passive: true });
-  canvas.addEventListener('pointercancel', () => setInteracting(false, 70), { capture: true, passive: true });
-  canvas.addEventListener('touchend', () => setInteracting(false, 70), { capture: true, passive: true });
-  canvas.addEventListener('wheel', () => {
+  canvas.addEventListener('pointerup', () => setInteracting(false, 60), { capture: true, passive: true });
+  canvas.addEventListener('pointercancel', () => setInteracting(false, 60), { capture: true, passive: true });
+  canvas.addEventListener('touchend', () => {
+    clampToOverview();
+    setInteracting(false, 60);
+  }, { capture: true, passive: true });
+  canvas.addEventListener('pointermove', event => {
+    if (state.pointers?.size === 2 && clampToOverview(event.clientX, event.clientY)) scheduleDraw();
+  }, { capture: true, passive: true });
+  canvas.addEventListener('wheel', event => {
     setInteracting(true);
+    if (clampToOverview(event.clientX, event.clientY)) scheduleDraw();
     clearTimeout(perf.settleTimer);
-    perf.settleTimer = setTimeout(() => setInteracting(false, 60), 130);
+    perf.settleTimer = setTimeout(() => setInteracting(false, 50), 120);
   }, { capture: true, passive: true });
   addEventListener('blur', () => setInteracting(false, 0), { passive: true });
 
@@ -166,7 +183,7 @@
   buildMarkers = function buildAllVisibleMarkers() {
     buildGrid();
     const size = perf.gridSize;
-    const margin = perf.interacting ? 18 : 30;
+    const margin = perf.interacting ? 16 : 28;
     const left = (-margin - state.offsetX) / (WORLD_SIZE * state.scale);
     const right = (innerWidth + margin - state.offsetX) / (WORLD_SIZE * state.scale);
     const top = (-margin - state.offsetY) / (WORLD_SIZE * state.scale);
@@ -198,9 +215,9 @@
     return AtlasIcons.color(iconType(category));
   }
 
-  function drawEdgeExtension(destinationX, destinationY, destinationWidth, destinationHeight) {
+  function drawEdgeExtension() {
     if (!state.imageReady) return;
-    const strip = 112;
+    const strip = 96;
     const mapWidth = WORLD_SIZE * state.scale;
     const mapHeight = WORLD_SIZE * state.scale;
     const mapLeft = state.offsetX;
@@ -216,17 +233,14 @@
     if (!perf.edgeFill) return;
 
     ctx.save();
-    ctx.globalAlpha = perf.interacting ? .24 : .32;
+    ctx.globalAlpha = .26;
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'low';
-
     if (leftGap > .5) ctx.drawImage(state.image, 0, 0, strip, WORLD_SIZE, 0, 0, Math.ceil(leftGap), innerHeight);
     if (rightGap > .5) ctx.drawImage(state.image, WORLD_SIZE - strip, 0, strip, WORLD_SIZE, Math.floor(mapRight), 0, Math.ceil(rightGap), innerHeight);
     if (topGap > .5) ctx.drawImage(state.image, 0, 0, WORLD_SIZE, strip, 0, 0, innerWidth, Math.ceil(topGap));
     if (bottomGap > .5) ctx.drawImage(state.image, 0, WORLD_SIZE - strip, WORLD_SIZE, strip, 0, Math.floor(mapBottom), innerWidth, Math.ceil(bottomGap));
-
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = 'rgba(8,7,8,.46)';
+    ctx.fillStyle = 'rgba(12,10,11,.5)';
     if (leftGap > .5) ctx.fillRect(0, 0, Math.ceil(leftGap), innerHeight);
     if (rightGap > .5) ctx.fillRect(Math.floor(mapRight), 0, Math.ceil(rightGap), innerHeight);
     if (topGap > .5) ctx.fillRect(0, 0, innerWidth, Math.ceil(topGap));
@@ -238,7 +252,6 @@
     ctx.fillStyle = '#171415';
     ctx.fillRect(0, 0, innerWidth, innerHeight);
     if (!state.imageReady) return;
-
     drawEdgeExtension();
 
     const scale = state.scale;
@@ -250,68 +263,56 @@
     const sourceHeight = sourceBottom - sourceY;
     if (sourceWidth <= 0 || sourceHeight <= 0) return;
 
-    const screenX = Math.round(state.offsetX + sourceX * scale);
-    const screenY = Math.round(state.offsetY + sourceY * scale);
-    const screenWidth = Math.ceil(sourceWidth * scale);
-    const screenHeight = Math.ceil(sourceHeight * scale);
-
     ctx.save();
     ctx.globalAlpha = .94;
     ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = perf.interacting ? 'low' : 'high';
+    ctx.imageSmoothingQuality = perf.interacting ? 'low' : 'medium';
     ctx.drawImage(
       state.image,
       Math.floor(sourceX), Math.floor(sourceY), Math.ceil(sourceWidth), Math.ceil(sourceHeight),
-      screenX, screenY, screenWidth, screenHeight
+      Math.round(state.offsetX + sourceX * scale), Math.round(state.offsetY + sourceY * scale),
+      Math.ceil(sourceWidth * scale), Math.ceil(sourceHeight * scale)
     );
     ctx.restore();
   }
 
   function drawPointBatches(markers, relative) {
-    const radius = perf.interacting ? 1.55 : relative < 1.05 ? 2.15 : 2.65;
-    const paths = new Map();
-    const fallback = typeof Path2D !== 'function';
-
-    if (fallback) {
-      let previousColor = '';
-      for (const marker of markers) {
-        const location = marker.items[0];
-        const color = markerColor(location);
-        if (color !== previousColor) {
-          previousColor = color;
-          ctx.fillStyle = color;
-        }
-        const size = location.id === state.selected?.id ? radius * 3 : radius * 2;
-        ctx.globalAlpha = state.discovered.has(location.id) ? .45 : .9;
-        ctx.fillRect(Math.round(marker.x - size / 2), Math.round(marker.y - size / 2), Math.ceil(size), Math.ceil(size));
-      }
-      ctx.globalAlpha = 1;
-      return;
-    }
+    const baseRadius = perf.interacting ? 1.45 : relative < 1.05 ? 2.05 : 2.5;
+    const groups = new Map();
 
     for (const marker of markers) {
       const location = marker.items[0];
       const discovered = state.discovered.has(location.id);
       const selected = location.id === state.selected?.id;
-      const key = `${markerColor(location)}|${discovered ? 1 : 0}|${selected ? 1 : 0}`;
-      let entry = paths.get(key);
-      if (!entry) {
-        entry = {
-          color: markerColor(location),
-          alpha: discovered ? .45 : .9,
-          path: new Path2D()
-        };
-        paths.set(key, entry);
+      const color = markerColor(location);
+      const key = `${color}|${discovered ? 1 : 0}|${selected ? 1 : 0}`;
+      let group = groups.get(key);
+      if (!group) {
+        group = { color, alpha: discovered ? .45 : .9, selected, markers: [] };
+        groups.set(key, group);
       }
-      const pointRadius = selected ? radius * 1.65 : radius;
-      entry.path.arc(Math.round(marker.x), Math.round(marker.y), pointRadius, 0, Math.PI * 2);
+      group.markers.push(marker);
     }
 
     ctx.save();
-    for (const entry of paths.values()) {
-      ctx.globalAlpha = entry.alpha;
-      ctx.fillStyle = entry.color;
-      ctx.fill(entry.path);
+    for (const group of groups.values()) {
+      ctx.beginPath();
+      const radius = group.selected ? baseRadius * 1.75 : baseRadius;
+      for (const marker of group.markers) {
+        const x = Math.round(marker.x);
+        const y = Math.round(marker.y);
+        ctx.moveTo(x + radius, y);
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+      }
+      ctx.globalAlpha = group.alpha;
+      ctx.fillStyle = group.color;
+      ctx.fill();
+      if (group.selected) {
+        ctx.globalAlpha = 1;
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = 'rgba(255,255,255,.9)';
+        ctx.stroke();
+      }
     }
     ctx.restore();
   }
@@ -321,8 +322,8 @@
     if (!location) return;
     const selected = location.id === state.selected?.id;
     const discovered = state.discovered.has(location.id);
-    const radius = selected ? 9.5 : clampValue(5.6 + relative * 1.05, 6, 8);
-    const centerY = marker.y - radius * 1.02;
+    const radius = selected ? 9.5 : clampValue(5.5 + relative, 6, 8);
+    const centerY = marker.y - radius;
     const color = markerColor(location);
 
     ctx.save();
@@ -336,27 +337,18 @@
     ctx.fill();
     ctx.beginPath();
     ctx.arc(marker.x, centerY, radius, 0, Math.PI * 2);
-    ctx.fillStyle = color;
     ctx.fill();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'rgba(255,247,244,.62)';
+    ctx.lineWidth = selected ? 1.6 : 1;
+    ctx.strokeStyle = selected ? 'rgba(255,255,255,.92)' : 'rgba(255,247,244,.62)';
     ctx.stroke();
-    if (!perf.interacting && state.markers.length < 560) {
+    if (!perf.interacting && state.markers.length < 520) {
       const category = state.categoryMap.get(location.category_id)?.title || '';
-      AtlasIcons.draw(ctx, iconType(category), marker.x, centerY, selected ? 12 : 9.5, { alpha: 1 });
+      AtlasIcons.draw(ctx, iconType(category), marker.x, centerY, selected ? 12 : 9.25, { alpha: 1 });
     }
     ctx.restore();
   }
 
-  drawMarker = function drawIpadMarker(marker, relative) {
-    if (!perf.interacting && relative > 1.55 && state.markers.length < 420) {
-      nativeDetailedMarker(marker, relative);
-      return;
-    }
-    drawSimpleMarker(marker, relative);
-  };
-
-  drawRoute = function drawIpadRoute() {
+  function drawStaticRoute() {
     if (state.route.length < 2) return;
     const points = state.route.map(mapToScreen);
     ctx.save();
@@ -371,25 +363,26 @@
     ctx.lineWidth = 2.5;
     ctx.stroke();
     ctx.restore();
-  };
+  }
 
   draw = function drawIpadOptimized() {
+    clampToOverview();
     drawBaseMap();
-    drawRoute();
+    drawStaticRoute();
 
     const list = visibleLocations();
     const relative = state.scale / overviewScale();
     state.markers = buildMarkers(list);
 
-    if (relative < 1.28 || state.markers.length > 1450) {
+    if (relative < 1.35 || state.markers.length > 1200) {
       perf.lastLod = 'overview-all-points';
       drawPointBatches(state.markers, relative);
-    } else if (relative < 1.7 || state.markers.length > 760) {
-      perf.lastLod = 'mid-all-points';
-      drawPointBatches(state.markers, relative);
+    } else if (relative < 1.75 || state.markers.length > 700) {
+      perf.lastLod = 'mid-simple-markers';
+      for (const marker of state.markers) drawSimpleMarker(marker, relative);
     } else {
-      perf.lastLod = 'detail-markers';
-      for (const marker of state.markers) drawMarker(marker, relative);
+      perf.lastLod = 'detail-simple-markers';
+      for (const marker of state.markers) drawSimpleMarker(marker, relative);
     }
 
     const count = document.getElementById('visibleCount');
@@ -403,8 +396,7 @@
     const area = Math.max(1, viewport.width * viewport.height);
     const hardwareDpr = devicePixelRatio || 1;
     const pixelLimitedDpr = Math.sqrt(perf.maxCanvasPixels / area);
-    const target = Math.max(1, Math.min(hardwareDpr, pixelLimitedDpr, 1.3));
-    const dpr = Math.round(target * 20) / 20;
+    const dpr = Math.round(Math.max(1, Math.min(hardwareDpr, pixelLimitedDpr, 1.25)) * 20) / 20;
     const width = Math.floor(viewport.width * dpr);
     const height = Math.floor(viewport.height * dpr);
     perf.dpr = dpr;
@@ -474,7 +466,9 @@
   });
 
   root.dataset.atlasIpadUltra = VERSION;
-  root.dataset.atlasPointRepresentation = 'all-points-lod';
+  root.dataset.atlasPointRepresentation = 'all-points-safe-batching';
   tuneCanvas(true);
-  setTimeout(() => tuneCanvas(false), 320);
+  setTimeout(() => tuneCanvas(false), 420);
+  setTimeout(() => tuneCanvas(false), 820);
+  setTimeout(() => tuneCanvas(false), 1500);
 })();
