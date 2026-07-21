@@ -1,11 +1,11 @@
 {
   "schemaVersion": 12,
-  "generatedAt": "2026-07-21T20:47:21.958332Z",
-  "status": "pass",
+  "generatedAt": "2026-07-21T21:18:02.905425Z",
+  "status": "fail",
   "summary": {
     "total": 55,
-    "passed": 55,
-    "failed": 0
+    "passed": 54,
+    "failed": 1
   },
   "dictionaryVersion": "2026.07.21.2",
   "release": "0.9.4.10",
@@ -90,13 +90,13 @@
     },
     {
       "name": "queue_authority",
-      "passed": true,
-      "detail": "terminal=False"
+      "passed": false,
+      "detail": "terminal=True"
     },
     {
       "name": "status_coherent",
       "passed": true,
-      "detail": "summary={'total': 11, 'imported': 7, 'running': 0, 'failed': 0, 'blocked': 0, 'retryableFailed': 0, 'remaining': 4, 'attemptedThisRun': 1, 'newlyImportedThisRun': 1}"
+      "detail": "summary={'total': 11, 'imported': 11, 'running': 0, 'failed': 0, 'blocked': 0, 'retryableFailed': 0, 'remaining': 0, 'attemptedThisRun': 1, 'newlyImportedThisRun': 1}"
     },
     {
       "name": "active_item_coherent",
