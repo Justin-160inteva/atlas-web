@@ -4,18 +4,18 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P47-P57",
-  "updatedAt": "2026-07-21T20:48:04.705956Z",
+  "updatedAt": "2026-07-21T20:50:41.305428Z",
   "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
-    "imported": 8,
+    "imported": 9,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 3,
+    "remaining": 2,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -112,11 +112,11 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p055",
       "sequence": 44,
       "page": 55,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-21T20:49:00.776220Z",
+      "lastFinishedAt": "2026-07-21T20:50:41.299086Z",
+      "resultPath": "data/analysis-results/eleven-p055.json",
       "error": null
     },
     {
@@ -144,18 +144,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p054",
-      "sequence": 43,
-      "page": 54,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P54 第54期：白银私贩",
-      "startedAt": "2026-07-21T20:43:35.936950Z",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p055",
+      "sequence": 44,
+      "page": 55,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P55 第55期：美食点亮灵感",
+      "startedAt": "2026-07-21T20:49:00.776220Z",
       "attemptCount": 1,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.65s\nruntime progress conflict; refetching SHA and retrying in 0.60s\nanalysis result written: data/analysis-results/eleven-p054.json status=analyzed\n\n",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p055.json status=analyzed\n\n",
       "analysisStatus": "analyzed",
       "indexReturnCode": 0,
       "completed": true,
-      "finishedAt": "2026-07-21T20:48:04.699849Z"
+      "finishedAt": "2026-07-21T20:50:41.299086Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
