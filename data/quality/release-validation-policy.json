@@ -1,22 +1,32 @@
 {
-  "schemaVersion": 1,
-  "revision": "2026.07.20.3",
-  "purpose": "Choose the smallest deterministic validation set that still covers the risk introduced by each release.",
+  "schemaVersion": 2,
+  "revision": "2026.07.21.1",
+  "purpose": "Choose the smallest deterministic validation set that covers each changed risk surface, targeting under five minutes for isolated fixes and under ten minutes for bounded scan repairs.",
   "principles": {
     "userRequirementsFirst": true,
     "qualityCoverageBeforeRawCheckCount": true,
     "skipUnrelatedMatrices": true,
+    "targetedPullRequestFastLane": true,
+    "fullUiMatrixAfterMerge": true,
     "recordSelectedTierEveryRelease": true,
     "preserveAuthorizationPrivacyAndSerialSafety": true,
     "fullAuditEveryThreePatchVersions": true
   },
-  "parameterizedMatrices": [
-    "heartbeat",
-    "serialQueue",
-    "queueSchema"
-  ],
+  "parameterizedMatrices": ["heartbeat", "serialQueue", "queueSchema"],
   "tiers": {
+    "fast": {
+      "targetMinutes": 5,
+      "heartbeatChecks": 24,
+      "serialQueueChecks": 24,
+      "queueSchemaChecks": 24,
+      "browserChecks": 0,
+      "monitorAuthorityChecks": 0,
+      "dataCenterChecks": 0,
+      "rewardEvidenceChecks": 0,
+      "fullAudit": false
+    },
     "quick": {
+      "targetMinutes": 7,
       "heartbeatChecks": 96,
       "serialQueueChecks": 96,
       "queueSchemaChecks": 80,
@@ -27,6 +37,7 @@
       "fullAudit": false
     },
     "standard": {
+      "targetMinutes": 10,
       "heartbeatChecks": 128,
       "serialQueueChecks": 128,
       "queueSchemaChecks": 96,
@@ -37,6 +48,7 @@
       "fullAudit": false
     },
     "full": {
+      "targetMinutes": 25,
       "heartbeatChecks": 500,
       "serialQueueChecks": 500,
       "queueSchemaChecks": 500,
@@ -53,6 +65,12 @@
       "tools/select_release_validation.py",
       "data/quality/release-validation-policy.json",
       "release-manifest.json"
+    ],
+    "scanAutonomy": [
+      "tools/scan_autonomous_repair.py",
+      "tools/autonomous_scan_repair_smoke.py",
+      "data/scan-autonomy-policy.json",
+      ".github/workflows/atlas-autonomous-scan-repair.yml"
     ],
     "scanCore": [
       "tools/analyze_authorized_video_v*.py",
@@ -71,21 +89,22 @@
       ".github/workflows/scan-eleven-pilot-v2.yml",
       ".github/workflows/supervise-eleven-heartbeat.yml"
     ],
-    "monitor": [
-      "scan-monitor.js",
-      "tools/monitor_batch_authority_smoke.mjs"
+    "monitor": ["scan-monitor.js", "tools/monitor_batch_authority_smoke.mjs"],
+    "dataCenter": ["atlas-settings.js", "atlas-evidence-studio.js", "tools/data_center_contract_smoke.mjs"],
+    "rewards": ["data/rewards/**", "tools/reward_evidence_contract_smoke.mjs"],
+    "viewportTargeted": [
+      "page-zoom-guard.js",
+      "atlas-map-cover-0950.js",
+      "tools/viewport_scale_contract_smoke.mjs",
+      "tools/ipad_landscape_viewport_smoke.mjs"
     ],
-    "dataCenter": [
-      "atlas-settings.js",
-      "atlas-evidence-studio.js",
-      "tools/data_center_contract_smoke.mjs"
+    "searchTargeted": [
+      "location-search-patch.js",
+      "atlas-rewards-0949.js",
+      "tools/reward_search_contract_smoke.mjs",
+      "tools/reward_search_browser_smoke.mjs"
     ],
-    "rewards": [
-      "data/rewards/**",
-      "tools/reward_evidence_contract_smoke.mjs"
-    ],
-    "ui": [
-      "index.html",
+    "uiFull": [
       "app.js",
       "sw.js",
       "atlas-bootstrap.js",
@@ -99,6 +118,27 @@
       "styles.css",
       "tools/browser_conflict_smoke.mjs"
     ],
+    "ui": [
+      "index.html",
+      "app.js",
+      "sw.js",
+      "atlas-bootstrap.js",
+      "atlas-liquid-nav-0934.js",
+      "atlas-liquid-nav-0934.css",
+      "atlas-controls-0938.js",
+      "atlas-ipad-nav-0940.js",
+      "atlas-ui-fix-0931.js",
+      "atlas-data-guard-0939.js",
+      "atlas-080.js",
+      "page-zoom-guard.js",
+      "atlas-map-cover-0950.js",
+      "location-search-patch.js",
+      "atlas-rewards-0949.js",
+      "styles.css",
+      "tools/browser_conflict_smoke.mjs",
+      "tools/ipad_landscape_viewport_smoke.mjs",
+      "tools/reward_search_browser_smoke.mjs"
+    ],
     "highRisk": [
       "sw.js",
       "app.js",
@@ -109,6 +149,10 @@
       "tools/run_scan_with_auto_recovery_v2.py",
       "tools/supervise_runtime_heartbeat.py"
     ]
+  },
+  "playwrightCache": {
+    "version": "1.52.0",
+    "path": "~/.cache/ms-playwright"
   },
   "scheduledFullAudit": {
     "lastCompletedVersion": "0.9.4.8",
