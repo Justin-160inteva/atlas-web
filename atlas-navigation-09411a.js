@@ -57,7 +57,9 @@
 
   function installSettingsIcon() {
     if (!settings) return;
-    settings.innerHTML = settingsIcon;
+    if (!settings.querySelector('.atlas-settings-icon-09411a') || settings.children.length !== 1) {
+      settings.innerHTML = settingsIcon;
+    }
     settings.classList.add('atlas-settings-button');
     settings.dataset.iconDesign = 'clean-radial-09411a';
     settings.setAttribute('aria-label', '打开设置与数据中心');
@@ -95,15 +97,25 @@
       });
     }
 
+    if (settings) {
+      new MutationObserver(installSettingsIcon).observe(settings, {
+        childList: true,
+        attributes: true,
+        attributeFilter: ['data-icon-design']
+      });
+    }
+
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) {
         restoreRail();
         closeDetachedLayers();
+        installSettingsIcon();
       }
     }, { passive: true });
     window.addEventListener('pageshow', () => {
       restoreRail();
       closeDetachedLayers();
+      installSettingsIcon();
     }, { passive: true });
   }
 
