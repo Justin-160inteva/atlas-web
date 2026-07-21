@@ -119,11 +119,10 @@ try {
   check('no post-rotation commit loop', commitsStable && first.commitCount <= manifest.invariants.viewportMaximumStartupCommits, JSON.stringify(samples));
   check('viewport remains stable after observation', last.stats?.settling === false, JSON.stringify(last));
 
-  await page.evaluate(() => {
-    const button = document.getElementById('zoomOut');
-    for (let index = 0; index < 12; index += 1) button?.click();
-  });
-  await page.waitForTimeout(250);
+  for (let index = 0; index < 12; index += 1) {
+    await page.click('#zoomOut');
+    await page.waitForTimeout(90);
+  }
   const manualZoom = await inspect();
   check('manual zoom can go below 1.0x cover', manualZoom.map.ratio < 0.95 && manualZoom.map.zoomLabel !== '×1.00', JSON.stringify(manualZoom));
   check('manual zoom reaches configured minimum', manualZoom.map.ratio <= 0.27 && manualZoom.map.ratio >= 0.249 && manualZoom.map.scale + 0.00001 >= manualZoom.map.manualMinimumScale, JSON.stringify(manualZoom));
