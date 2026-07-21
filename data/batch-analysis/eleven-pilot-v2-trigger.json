@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 15,
-  "triggerId": "eleven-production-p036-p046-recovery-20260721-02",
-  "requestedAt": "2026-07-21T13:54:18Z",
+  "schemaVersion": 16,
+  "triggerId": "eleven-production-p036-p046-p038-autorecover-20260721-01",
+  "requestedAt": "2026-07-21T15:46:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P36-P46",
@@ -10,8 +10,8 @@
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "mode": "chronological-eleven-queued-one-item-per-run",
   "queuePages": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46],
-  "startWithPage": 36,
-  "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
+  "startWithPage": 38,
+  "requiredAnalyzer": "tools/analyze_authorized_video_v14.py",
   "automaticRecovery": true,
   "autonomousRepair": true,
   "heartbeatSupervisor": true,
@@ -28,7 +28,7 @@
     "etaSeconds": true
   },
   "humanReviewOnUnknownFailure": false,
-  "expectedDownloadCount": 11,
-  "expectedAnalysisCount": 11,
-  "reason": "Recover P36 after a stale persisting heartbeat; keep strict one-at-a-time processing and publish P36-P46 to the web monitor."
+  "expectedDownloadCount": 9,
+  "expectedAnalysisCount": 9,
+  "reason": "P38 reached analysis completion but the heartbeat supervisor marked the persisting stage stale. Run deterministic recovery first, invoke bounded AI repair only if necessary, retry P38, then continue strictly through P46."
 }
