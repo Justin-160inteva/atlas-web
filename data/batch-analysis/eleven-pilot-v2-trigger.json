@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 18,
-  "triggerId": "eleven-production-p036-p046-p038-fresh-run-baseline-20260721-05",
-  "requestedAt": "2026-07-21T16:23:19Z",
+  "schemaVersion": 19,
+  "triggerId": "eleven-production-p036-p046-p046-resume-20260721-01",
+  "requestedAt": "2026-07-21T19:44:33Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P36-P46",
@@ -10,8 +10,8 @@
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "mode": "chronological-eleven-queued-one-item-per-run",
   "queuePages": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46],
-  "startWithPage": 38,
-  "requiredAnalyzer": "tools/analyze_authorized_video_v14.py",
+  "startWithPage": 46,
+  "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
   "automaticRecovery": true,
   "autonomousRepair": true,
   "heartbeatSupervisor": true,
@@ -28,7 +28,7 @@
     "etaSeconds": true
   },
   "humanReviewOnUnknownFailure": false,
-  "expectedDownloadCount": 9,
-  "expectedAnalysisCount": 9,
-  "reason": "Run P38 through the merged v12 workflow using a current-run baseline, fresh decision reports, dynamic analyzer validation, non-cancelling serial concurrency, and pycache cleanup; continue only after a durable import increase."
+  "expectedDownloadCount": 1,
+  "expectedAnalysisCount": 1,
+  "reason": "Resume the sole pending P46 item after repairing the stale parallel-range-only preflight contract. Keep strict one-item serial execution, use the authorized v13 analyzer, allow the existing resumable single-stream fallback, preserve the P36-P46 queue scope, and retain no original media or frame pixels."
 }
