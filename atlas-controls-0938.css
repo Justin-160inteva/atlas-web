@@ -1,23 +1,34 @@
-/* Atlas Alpha 0.9.4.6 — unified icons, settings and favourite feedback */
-.atlas-control-icon{width:24px;height:24px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.bottom-nav .nav-item>span{width:28px;height:28px;display:grid;place-items:center;font-size:0!important}
+/* Atlas Alpha 0.9.4.12b-2 — precision control icon system */
+:root{--atlas-icon-motion:transform .18s cubic-bezier(.2,.82,.2,1),opacity .16s ease,color .16s ease}
+.atlas-control-icon{width:24px;height:24px;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision;transform:translateZ(0);transform-origin:center;transition:var(--atlas-icon-motion);pointer-events:none}
+.bottom-nav .nav-item>span,.quick-rail .rail-icon{display:grid!important;place-items:center!important;font-size:0!important;line-height:0!important}
+.bottom-nav .nav-item>span{width:28px;height:28px}
 .bottom-nav .nav-item .atlas-control-icon{width:22px;height:22px}
 .quick-rail .rail-button{grid-template-rows:30px 15px;align-content:center;justify-items:center;row-gap:4px}
-.quick-rail .rail-icon{width:28px!important;height:28px!important;display:grid!important;place-items:center!important;transform:none!important}
-.quick-rail .rail-icon svg{width:22px!important;height:22px!important;display:block;transform:translate(var(--icon-nudge-x,0),var(--icon-nudge-y,0)) scale(var(--icon-scale,1));transform-origin:center}
-.quick-rail .rail-button[data-mode="all"]{--icon-nudge-y:-.5px}
+.quick-rail .rail-icon{width:28px!important;height:28px!important;transform:none!important}
+.quick-rail .rail-icon .atlas-control-icon{width:22px!important;height:22px!important;transform:translate(var(--icon-nudge-x,0),var(--icon-nudge-y,0)) scale(var(--icon-scale,1))}
+.quick-rail .rail-button[data-mode="all"]{--icon-scale:.9}
 .quick-rail .rail-button[data-mode="locations"]{--icon-nudge-y:-.25px;--icon-scale:.97}
-.quick-rail .rail-button[data-mode="collectibles"]{--icon-nudge-y:.25px;--icon-scale:.94}
-.quick-rail .rail-button[data-mode="activities"]{--icon-scale:.93}
-.quick-rail .rail-button[data-mode="favorites"]{--icon-nudge-y:.4px;--icon-scale:.95}
-.quick-rail .rail-button.active .rail-icon svg{transform:translate(var(--icon-nudge-x,0),var(--icon-nudge-y,0)) scale(calc(var(--icon-scale,1) * 1.04))}
-.top-actions .icon-button,.top-actions .profile-button{display:grid;place-items:center}
+.quick-rail .rail-button[data-mode="collectibles"]{--icon-nudge-y:.2px;--icon-scale:.94}
+.quick-rail .rail-button[data-mode="activities"]{--icon-scale:.92}
+.quick-rail .rail-button[data-mode="favorites"]{--icon-nudge-y:.35px;--icon-scale:.94}
+.bottom-nav .nav-item.active .atlas-control-icon{transform:translateZ(0) scale(1.065)}
+.quick-rail .rail-button.active .atlas-control-icon{transform:translate(var(--icon-nudge-x,0),var(--icon-nudge-y,0)) scale(calc(var(--icon-scale,1) * 1.065))}
+.bottom-nav .nav-item:not(.active) .atlas-control-icon,.quick-rail .rail-button:not(.active) .atlas-control-icon{opacity:.76}
+.top-actions .icon-button,.top-actions .profile-button,.map-controls button{display:grid!important;place-items:center!important;font-size:0!important;line-height:0!important}
 .top-actions .atlas-control-icon{width:22px;height:22px}
-.profile-button.atlas-settings-button{font-size:0;background:rgba(255,255,255,.055);color:var(--text)}
-.profile-button.atlas-settings-button .atlas-control-icon{transform:translateZ(0) scale(1);transition:transform .18s cubic-bezier(.2,.8,.2,1),opacity .18s ease}
+.map-controls button .atlas-control-icon{width:20px;height:20px}
+.map-controls #resetView .atlas-control-icon{width:19px;height:19px}
+.search-trigger>.icon,.search-input-row>span:first-child{display:grid!important;place-items:center!important;font-size:0!important;line-height:0!important}
+.search-trigger>.icon .atlas-control-icon{width:19px;height:19px}
+.search-input-row>span:first-child .atlas-control-icon{width:20px;height:20px}
+.profile-button.atlas-settings-button{font-size:0;color:var(--text)}
+.profile-button.atlas-settings-button .atlas-control-icon{width:22px;height:22px;transition:transform .2s cubic-bezier(.2,.82,.2,1),opacity .16s ease}
 .profile-button.atlas-settings-button:active .atlas-control-icon{transform:translateZ(0) scale(.91)}
-.profile-button.atlas-settings-button[aria-expanded="true"]{background:linear-gradient(145deg,rgba(178,42,55,.55),rgba(67,18,24,.72))}
-.profile-button.atlas-settings-button[aria-expanded="true"] .atlas-control-icon{transform:translateZ(0) rotate(22.5deg) scale(1.03)}
+.profile-button.atlas-settings-button[aria-expanded="true"] .atlas-control-icon{transform:translateZ(0) rotate(18deg) scale(1.025)}
+.close-panel,.close-route,.close-progress{display:grid!important;place-items:center!important;font-size:0!important;line-height:0!important}
+.close-panel .atlas-control-icon,.close-route .atlas-control-icon,.close-progress .atlas-control-icon{width:18px;height:18px}
+@media(hover:hover) and (pointer:fine){.bottom-nav .nav-item:hover .atlas-control-icon,.quick-rail .rail-button:hover .atlas-control-icon,.map-controls button:hover .atlas-control-icon,.top-actions button:hover .atlas-control-icon{opacity:1;transform:translateZ(0) scale(1.045)}.quick-rail .rail-button:hover .atlas-control-icon{transform:translate(var(--icon-nudge-x,0),var(--icon-nudge-y,0)) scale(calc(var(--icon-scale,1) * 1.045))}}
 .atlas-settings-overlay{position:absolute;z-index:40;inset:0;display:none;background:rgba(5,5,5,.48);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:calc(var(--atlas-topbar-height) + env(safe-area-inset-top,0px) + 12px) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px))}
 .atlas-settings-overlay.open{display:flex;justify-content:flex-end;align-items:flex-start}
 .atlas-settings-card{width:min(390px,100%);max-height:calc(100vh - var(--atlas-topbar-height) - env(safe-area-inset-top,0px) - 28px);overflow:auto;border-radius:24px;padding:18px;background:linear-gradient(150deg,rgba(39,36,33,.94),rgba(14,13,12,.92));border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 80px rgba(0,0,0,.42);color:var(--text)}
@@ -27,11 +38,7 @@
 .atlas-toggle{width:42px;height:24px;border-radius:999px;background:#393532;padding:3px;margin-left:auto;transition:background .18s ease}.atlas-toggle::after{content:"";display:block;width:18px;height:18px;border-radius:50%;background:#eee7dd;transition:transform .2s cubic-bezier(.2,.8,.2,1)}.atlas-toggle.on{background:#a52230}.atlas-toggle.on::after{transform:translateX(18px)}
 .atlas-dev-only{display:none}.atlas-developer-enabled .atlas-dev-only{display:flex}
 .atlas-favourite-badge{position:absolute;z-index:18;pointer-events:none;width:20px;height:20px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#f1c46c,#a71e2c);color:white;box-shadow:0 4px 12px rgba(101,17,27,.35);transform:translate(-50%,-50%);animation:atlas-favourite-pop .42s cubic-bezier(.2,.9,.25,1.2)}
-.atlas-favourite-badge svg{width:12px;height:12px;fill:currentColor;stroke:currentColor}
-.atlas-heart-burst{position:absolute;z-index:19;pointer-events:none;transform:translate(-50%,-50%);width:1px;height:1px}
-.atlas-heart-particle{position:absolute;left:0;top:0;color:#e44d62;opacity:0;animation:atlas-heart-float var(--heart-duration,900ms) cubic-bezier(.18,.72,.22,1) forwards;animation-delay:var(--heart-delay,0ms)}
-.atlas-heart-particle svg{width:var(--heart-size,14px);height:var(--heart-size,14px);fill:currentColor;stroke:rgba(255,244,231,.85);stroke-width:1}
-@keyframes atlas-heart-float{0%{opacity:0;transform:translate3d(0,4px,0) scale(.55) rotate(-8deg)}18%{opacity:1}100%{opacity:0;transform:translate3d(var(--heart-x,0px),var(--heart-y,-58px),0) scale(1.08) rotate(var(--heart-rotate,8deg))}}
-@keyframes atlas-favourite-pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}70%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}100%{transform:translate(-50%,-50%) scale(1)}}
-@media(max-width:720px){.atlas-settings-overlay{padding-left:8px;padding-right:8px}.atlas-settings-card{width:100%;border-radius:22px}}
-@media(prefers-reduced-motion:reduce){.atlas-heart-particle{display:none}.atlas-favourite-badge{animation:none}.atlas-toggle::after,.profile-button.atlas-settings-button .atlas-control-icon{transition:none}}
+.atlas-favourite-badge svg{width:12px;height:12px;fill:currentColor;stroke:currentColor}.atlas-heart-burst{position:absolute;z-index:19;pointer-events:none;transform:translate(-50%,-50%);width:1px;height:1px}.atlas-heart-particle{position:absolute;left:0;top:0;color:#e44d62;opacity:0;animation:atlas-heart-float var(--heart-duration,900ms) cubic-bezier(.18,.72,.22,1) forwards;animation-delay:var(--heart-delay,0ms)}.atlas-heart-particle svg{width:var(--heart-size,14px);height:var(--heart-size,14px);fill:currentColor;stroke:rgba(255,244,231,.85);stroke-width:1}
+@keyframes atlas-heart-float{0%{opacity:0;transform:translate3d(0,4px,0) scale(.55) rotate(-8deg)}18%{opacity:1}100%{opacity:0;transform:translate3d(var(--heart-x,0px),var(--heart-y,-58px),0) scale(1.08) rotate(var(--heart-rotate,8deg))}}@keyframes atlas-favourite-pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}70%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}100%{transform:translate(-50%,-50%) scale(1)}}
+@media(max-width:720px){.atlas-settings-overlay{padding-left:8px;padding-right:8px}.atlas-settings-card{width:100%;border-radius:22px}.bottom-nav .nav-item .atlas-control-icon{width:21px;height:21px}.quick-rail .rail-icon .atlas-control-icon{width:21px!important;height:21px!important}}
+@media(prefers-reduced-motion:reduce){.atlas-control-icon,.profile-button.atlas-settings-button .atlas-control-icon{transition:none!important}.atlas-heart-particle{display:none}.atlas-favourite-badge{animation:none}.atlas-toggle::after{transition:none}}
