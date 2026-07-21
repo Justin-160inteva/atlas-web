@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = '0.9.4.12i';
+  const VERSION = '0.9.4.12j';
   const ICON_DESIGN = 'clean-radial-09411a';
   const root = document.documentElement;
   const rail = document.querySelector('.quick-rail');
@@ -23,6 +23,9 @@
       --atlas-nav-border:rgba(255,255,255,.13);
       --atlas-nav-active:rgba(248,248,249,.96);
       --atlas-nav-muted:rgba(220,220,223,.56);
+      --atlas-radius-panel:28px;
+      --atlas-radius-card:20px;
+      --atlas-radius-control:16px;
     }
 
     html body .app-shell .quick-rail.quick-rail,
@@ -189,8 +192,123 @@
       opacity:.84!important;
     }
 
-    html.atlas-ipad body :where(.top-bar,.search-trigger,.icon-button,.profile-button,.status-pill,.quick-rail,.bottom-nav),
-    html.atlas-ipad-ultra body :where(.top-bar,.search-trigger,.icon-button,.profile-button,.status-pill,.quick-rail,.bottom-nav){
+    html body .app-shell .map-controls.map-controls,
+    html.atlas-ipad body .app-shell .map-controls.map-controls,
+    html.atlas-ipad-ultra body .app-shell .map-controls.map-controls{
+      padding:6px!important;
+      display:flex!important;
+      flex-direction:column!important;
+      gap:4px!important;
+      overflow:hidden!important;
+      border:1px solid var(--atlas-nav-border)!important;
+      border-radius:22px!important;
+      background:var(--atlas-nav-surface)!important;
+      -webkit-backdrop-filter:none!important;
+      backdrop-filter:none!important;
+      box-shadow:none!important;
+      contain:layout paint!important;
+      isolation:isolate!important;
+    }
+
+    html body .app-shell .map-controls.map-controls::before,
+    html body .app-shell .map-controls.map-controls::after,
+    html body .app-shell .map-controls.map-controls button::before,
+    html body .app-shell .map-controls.map-controls button::after{
+      display:none!important;
+      content:none!important;
+    }
+
+    html body .app-shell .map-controls.map-controls button{
+      width:48px!important;
+      height:48px!important;
+      min-width:48px!important;
+      min-height:48px!important;
+      margin:0!important;
+      padding:0!important;
+      border:0!important;
+      border-radius:15px!important;
+      background:transparent!important;
+      -webkit-backdrop-filter:none!important;
+      backdrop-filter:none!important;
+      box-shadow:none!important;
+      color:rgba(245,245,247,.92)!important;
+      transform:none!important;
+      transition:none!important;
+    }
+
+    html body .app-shell .map-controls.map-controls button:active{
+      background:rgba(255,255,255,.08)!important;
+      transform:none!important;
+      opacity:.82!important;
+    }
+
+    html body .app-shell :where(.panel,.route-panel,.progress-panel,.evidence-panel,.search-modal,.sheet,.atlas-settings-panel,.data-center-panel){
+      border-radius:var(--atlas-radius-panel)!important;
+    }
+
+    html body .app-shell :where(.panel,.evidence-panel,.search-modal,.atlas-settings-overlay,.data-center-panel) button{
+      border-radius:var(--atlas-radius-control)!important;
+    }
+
+    html body .app-shell :where(
+      .panel header button,
+      .evidence-panel header button,
+      .close-panel,
+      .close-route,
+      .close-progress,
+      #closeSearch,
+      #closeEvidenceStudio
+    ){
+      width:44px!important;
+      height:44px!important;
+      min-width:44px!important;
+      min-height:44px!important;
+      padding:0!important;
+      border-radius:15px!important;
+    }
+
+    html body .app-shell :where(
+      .filter-summary,
+      .overall-progress,
+      .route-stat,
+      .route-list > *,
+      .category-grid > *,
+      .region-progress-list > *,
+      .evidence-stat,
+      .evidence-tool-grid > *,
+      .settings-primary-card,
+      .reward-coverage-summary,
+      .search-input-row,
+      .data-center-tabs
+    ){
+      border-radius:var(--atlas-radius-card)!important;
+    }
+
+    html body .app-shell :where(
+      .route-actions button,
+      .sheet-actions button,
+      .evidence-actions button,
+      .filter-summary button,
+      .category-grid button,
+      .region-progress-list button,
+      .data-center-tabs button,
+      .evidence-season-tabs button,
+      .evidence-tool-grid button
+    ){
+      border-radius:16px!important;
+    }
+
+    html body .app-shell #toggleAll{
+      border-radius:999px!important;
+      padding-inline:16px!important;
+    }
+
+    html body .app-shell :where(.route-summary,.evidence-stats){
+      gap:10px!important;
+    }
+
+    html.atlas-ipad body :where(.top-bar,.search-trigger,.icon-button,.profile-button,.status-pill,.quick-rail,.bottom-nav,.map-controls),
+    html.atlas-ipad-ultra body :where(.top-bar,.search-trigger,.icon-button,.profile-button,.status-pill,.quick-rail,.bottom-nav,.map-controls){
       -webkit-backdrop-filter:none!important;
       backdrop-filter:none!important;
       box-shadow:none!important;
@@ -220,6 +338,8 @@
         border-radius:23px!important;
       }
       html body .app-shell .bottom-nav.bottom-nav .nav-item{height:66px!important}
+      html body .app-shell .map-controls.map-controls{padding:5px!important;border-radius:20px!important}
+      html body .app-shell .map-controls.map-controls button{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;border-radius:14px!important}
     }
   `;
 
@@ -246,9 +366,10 @@
   function installNavigationStyle() {
     document.getElementById('atlas-navigation-lite-09412g')?.remove();
     document.getElementById('atlas-navigation-lite-09412h')?.remove();
-    if (document.getElementById('atlas-navigation-lite-09412i')) return;
+    document.getElementById('atlas-navigation-lite-09412i')?.remove();
+    if (document.getElementById('atlas-navigation-lite-09412j')) return;
     const style = document.createElement('style');
-    style.id = 'atlas-navigation-lite-09412i';
+    style.id = 'atlas-navigation-lite-09412j';
     style.textContent = navigationCss;
     document.head.appendChild(style);
   }
