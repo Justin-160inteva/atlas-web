@@ -1,16 +1,17 @@
-/* Atlas Alpha 0.9.4.11b — complete Apple-inspired navigation media */
+/* Atlas Alpha 0.9.4.11c — complete Apple-inspired navigation media */
 :root{
   --atlas-nav-edge:max(12px,env(safe-area-inset-left,0px));
   --atlas-nav-edge-right:max(12px,env(safe-area-inset-right,0px));
-  --atlas-nav-floor:max(7px,env(safe-area-inset-bottom,0px));
+  --atlas-nav-safe-inline:max(12px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));
+  --atlas-nav-floor:max(8px,env(safe-area-inset-bottom,0px));
   --atlas-nav-glass:linear-gradient(145deg,rgba(255,255,255,.135),rgba(255,255,255,.045) 38%,rgba(18,18,19,.72) 100%);
   --atlas-nav-line:rgba(255,255,255,.2);
   --atlas-nav-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(255,255,255,.035),0 14px 34px rgba(0,0,0,.28);
 }
 
 /* The complete left medium stays inside the visible device viewport. */
-.quick-rail{
-  left:var(--atlas-nav-edge)!important;
+html body .quick-rail{
+  left:max(12px,env(safe-area-inset-left,0px))!important;
   right:auto!important;
   width:76px!important;
   padding:8px!important;
@@ -22,6 +23,7 @@
   backdrop-filter:blur(20px) saturate(142%)!important;
   box-shadow:var(--atlas-nav-shadow)!important;
   transform:translate3d(0,0,0)!important;
+  translate:none!important;
   pointer-events:auto!important;
   visibility:visible!important;
   opacity:1!important;
@@ -29,14 +31,15 @@
   contain:layout paint style;
 }
 
-/* Keep the medium centred on the physical viewport without transform-matrix drift. */
-.bottom-nav{
-  left:50%!important;
-  right:auto!important;
-  bottom:var(--atlas-nav-floor)!important;
-  width:min(430px,calc(100% - var(--atlas-nav-edge) - var(--atlas-nav-edge-right)))!important;
+/* Native auto margins provide one physical-viewport centre with no transform layer. */
+html body .bottom-nav{
+  left:0!important;
+  right:0!important;
+  bottom:max(8px,env(safe-area-inset-bottom,0px))!important;
+  width:min(430px,calc(100% - var(--atlas-nav-safe-inline) - var(--atlas-nav-safe-inline)))!important;
   max-width:none!important;
-  margin:0!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
   padding:6px!important;
   border:1px solid var(--atlas-nav-line)!important;
   border-radius:25px!important;
@@ -46,7 +49,7 @@
   backdrop-filter:blur(20px) saturate(142%)!important;
   box-shadow:var(--atlas-nav-shadow)!important;
   transform:none!important;
-  translate:-50% 0;
+  translate:none!important;
   pointer-events:auto!important;
   visibility:visible!important;
   opacity:1!important;
@@ -98,9 +101,9 @@ html.atlas-ipad .quick-rail,html.atlas-ipad .bottom-nav{
 }
 
 @media(max-width:720px){
-  :root{--atlas-nav-edge:max(8px,env(safe-area-inset-left,0px));--atlas-nav-edge-right:max(8px,env(safe-area-inset-right,0px));--atlas-nav-floor:max(5px,env(safe-area-inset-bottom,0px))}
-  .quick-rail{width:64px!important;padding:7px!important;border-radius:22px!important}
-  .bottom-nav{width:calc(100% - var(--atlas-nav-edge) - var(--atlas-nav-edge-right))!important;border-radius:23px!important}
+  :root{--atlas-nav-edge:max(8px,env(safe-area-inset-left,0px));--atlas-nav-edge-right:max(8px,env(safe-area-inset-right,0px));--atlas-nav-safe-inline:max(8px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));--atlas-nav-floor:max(8px,env(safe-area-inset-bottom,0px))}
+  html body .quick-rail{left:max(8px,env(safe-area-inset-left,0px))!important;width:64px!important;padding:7px!important;border-radius:22px!important}
+  html body .bottom-nav{bottom:max(8px,env(safe-area-inset-bottom,0px))!important;width:calc(100% - var(--atlas-nav-safe-inline) - var(--atlas-nav-safe-inline))!important;border-radius:23px!important}
 }
 
 @media(prefers-reduced-motion:reduce){.quick-rail .rail-button,.bottom-nav .nav-item{transition:none!important}}

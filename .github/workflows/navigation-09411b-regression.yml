@@ -1,4 +1,4 @@
-name: Navigation 0.9.4.11b regression
+name: Navigation 0.9.4.11c regression
 
 on:
   pull_request:
@@ -10,6 +10,7 @@ on:
       - 'atlas-bootstrap.js'
       - 'sw.js'
       - 'tools/navigation_observer_contract_09411b.mjs'
+      - 'tools/navigation_browser_smoke_09411c.mjs'
       - '.github/workflows/navigation-09411b-regression.yml'
   push:
     branches: [main]
@@ -21,6 +22,7 @@ on:
       - 'atlas-bootstrap.js'
       - 'sw.js'
       - 'tools/navigation_observer_contract_09411b.mjs'
+      - 'tools/navigation_browser_smoke_09411c.mjs'
       - '.github/workflows/navigation-09411b-regression.yml'
   workflow_dispatch:
 
@@ -40,3 +42,37 @@ jobs:
         run: node --check atlas-navigation-09411b.js
       - name: Run observer and geometry regression contract
         run: node tools/navigation_observer_contract_09411b.mjs
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-atlas-navigation-playwright-chromium-v1
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium --with-deps
+      - name: Start local Atlas server
+        run: |
+          python -m http.server 4173 >/tmp/atlas-navigation-server.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/atlas-navigation-server.log
+          exit 1
+      - name: Run real navigation interaction smoke
+        env:
+          ATLAS_URL: http://127.0.0.1:4173/
+        run: node tools/navigation_browser_smoke_09411c.mjs
