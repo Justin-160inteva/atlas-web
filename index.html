@@ -30,13 +30,19 @@
     .app-shell:has(.search-overlay.open)>:not(.search-overlay){pointer-events:none!important}
     .app-shell:has(.search-overlay.open)>.search-overlay,.app-shell:has(.search-overlay.open)>.search-overlay *{pointer-events:auto!important}
     :root{
-      --atlas-red-light:#fffafb;
-      --atlas-red-mid:#fdecef;
-      --atlas-red-deep:#f7d4da;
-      --atlas-red-deeper:#edb4bf;
-      --atlas-red-line:rgba(255,239,242,.92);
-      --atlas-red-glow:inset 0 1px 0 rgba(255,255,255,.94),inset 0 -1px 0 rgba(174,79,96,.12),0 9px 22px rgba(137,55,72,.16);
-      --atlas-red-ink:#6b2b37;
+      --atlas-glass-active-bg:linear-gradient(145deg,rgba(255,255,255,.46) 0%,rgba(255,247,249,.39) 26%,rgba(255,224,231,.34) 62%,rgba(238,174,187,.28) 100%);
+      --atlas-glass-floating-bg:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,243,246,.09) 46%,rgba(97,35,49,.13));
+      --atlas-glass-active-line:rgba(255,255,255,.38);
+      --atlas-glass-active-shadow:inset 0 1px 0 rgba(255,255,255,.54),inset 0 -1px 0 rgba(120,45,59,.08),0 9px 22px rgba(26,12,16,.18);
+      --atlas-glass-active-ink:#6b2b37;
+      --atlas-glass-active-blur:18px;
+      --atlas-red-light:rgba(255,255,255,.46);
+      --atlas-red-mid:rgba(255,247,249,.39);
+      --atlas-red-deep:rgba(255,224,231,.34);
+      --atlas-red-deeper:rgba(238,174,187,.28);
+      --atlas-red-line:var(--atlas-glass-active-line);
+      --atlas-red-glow:var(--atlas-glass-active-shadow);
+      --atlas-red-ink:var(--atlas-glass-active-ink);
     }
     html body .bottom-nav .nav-item.active,
     html body .quick-rail .rail-button.active,
@@ -45,10 +51,25 @@
     html body :where(.sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,.data-center-tabs button.active,.evidence-season-tabs button.active,.evidence-tool-grid button.active,.settings-primary-card,.category-chip:not(.off).active,.region-progress.active),
     html.atlas-ipad-ultra body :where(.sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,.data-center-tabs button.active,.evidence-season-tabs button.active,.evidence-tool-grid button.active,.settings-primary-card,.category-chip:not(.off).active,.region-progress.active),
     html body .profile-button.atlas-settings-button[aria-expanded="true"]{
-      border-color:var(--atlas-red-line)!important;
-      background:linear-gradient(145deg,#fff 0%,var(--atlas-red-light) 24%,var(--atlas-red-mid) 52%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper) 100%)!important;
-      color:var(--atlas-red-ink)!important;
-      box-shadow:var(--atlas-red-glow)!important;
+      border-color:var(--atlas-glass-active-line)!important;
+      background:var(--atlas-glass-active-bg)!important;
+      -webkit-backdrop-filter:blur(var(--atlas-glass-active-blur)) saturate(150%)!important;
+      backdrop-filter:blur(var(--atlas-glass-active-blur)) saturate(150%)!important;
+      color:var(--atlas-glass-active-ink)!important;
+      box-shadow:var(--atlas-glass-active-shadow)!important;
+    }
+    html body :where(.search-trigger,.icon-button,.profile-button),
+    html.atlas-ipad-ultra body :where(.search-trigger,.icon-button,.profile-button){
+      border-color:rgba(255,255,255,.18)!important;
+      background:var(--atlas-glass-floating-bg)!important;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.19),0 8px 20px rgba(0,0,0,.14)!important;
+    }
+    html.atlas-ipad-ultra body .bottom-nav .nav-item.active,
+    html.atlas-ipad-ultra body .quick-rail .rail-button.active,
+    html.atlas-ipad-ultra body :where(.data-center-tabs button.active,.sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,.evidence-season-tabs button.active,.evidence-tool-grid button.active,.settings-primary-card,.category-chip:not(.off).active,.region-progress.active){
+      -webkit-backdrop-filter:none!important;
+      backdrop-filter:none!important;
+      background:var(--atlas-glass-active-bg)!important;
     }
     html body .map-controls,
     html.atlas-ipad-ultra body .map-controls,
@@ -75,14 +96,8 @@
       box-shadow:none!important;
       color:rgba(255,255,255,.96)!important;
     }
-    html body .map-controls button .atlas-control-icon{
-      filter:drop-shadow(0 2px 4px rgba(0,0,0,.48));
-    }
-    html body .map-controls button:active{
-      background:transparent!important;
-      transform:scale(.91)!important;
-      opacity:.78!important;
-    }
+    html body .map-controls button .atlas-control-icon{filter:drop-shadow(0 2px 4px rgba(0,0,0,.48))}
+    html body .map-controls button:active{background:transparent!important;transform:scale(.91)!important;opacity:.78!important}
   </style>
 </head>
 <body>
