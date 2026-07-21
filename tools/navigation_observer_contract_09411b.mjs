@@ -39,11 +39,16 @@ check('settings glyph has one circle', (svgBlock.match(/<circle\b/g) || []).leng
 check('settings glyph has one path', (svgBlock.match(/<path\b/g) || []).length === 1);
 check('settings glyph has no nested visual duplicate', !/opacity="\.34"/.test(svgBlock));
 
-check('left rail uses safe visible inset', /\.quick-rail\{[\s\S]*left:var\(--atlas-nav-edge\)!important/.test(css));
-check('bottom uses viewport centre', /\.bottom-nav\{[\s\S]*left:50%!important/.test(css));
+check('left rail has direct safe visible inset', /html body \.quick-rail\{[\s\S]*left:max\(12px,env\(safe-area-inset-left,0px\)\)!important/.test(css));
+check('mobile left rail minimum is eight', /html body \.quick-rail\{left:max\(8px,env\(safe-area-inset-left,0px\)\)!important/.test(css));
+check('bottom uses physical viewport edges', /html body \.bottom-nav\{[\s\S]*left:0!important;[\s\S]*right:0!important/.test(css));
+check('bottom uses native auto margins', /margin-left:auto!important;[\s\S]*margin-right:auto!important/.test(css));
 check('bottom width remains compact', /width:min\(430px,/.test(css));
 check('bottom transform matrix is neutral', /transform:none!important/.test(css));
-check('bottom visual translation is independent', /translate:-50% 0/.test(css));
+check('individual translate is disabled', /translate:none!important/.test(css));
+check('double negative centering is absent', !/translate:-50%/.test(css) && !/translate3d\(-50%/.test(css));
+check('desktop bottom minimum is eight', /bottom:max\(8px,env\(safe-area-inset-bottom,0px\)\)!important/.test(css));
+check('symmetric safe inline variable exists', /--atlas-nav-safe-inline:max\(12px,env\(safe-area-inset-left,0px\),env\(safe-area-inset-right,0px\)\)/.test(css));
 check('closed layers cannot intercept input', /\.panel:not\(\.open\)[\s\S]*pointer-events:none!important/.test(css));
 
 check('service worker caches new controller', worker.includes("'./atlas-navigation-09411b.js'"));
@@ -51,5 +56,5 @@ check('service worker excludes old observer controller', !worker.includes("'./at
 check('service worker cache namespace matches manifest', worker.includes(`const CACHE='${manifest.cacheNamespace}'`));
 
 const failed = checks.filter(item => !item.passed);
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.11b', passed: failed.length === 0, totalChecks: checks.length, checks }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.11c', passed: failed.length === 0, totalChecks: checks.length, checks }, null, 2));
 if (failed.length) process.exit(1);
