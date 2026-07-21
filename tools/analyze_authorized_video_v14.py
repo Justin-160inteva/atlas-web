@@ -4,9 +4,9 @@
 v14 preserves v13's verified BVID/page/CID identity, WBI-signed metadata,
 resumable API-provided CDN failover, transient-media policy, and numeric-only
 analysis output. Before a new stream starts, it performs a small concurrent
-speed probe across the API-provided candidates and tries the fastest route
-first. This removes conservative project-side routing without bypassing source
-authorization, access controls, or platform safety limits.
+speed probe across the API-provided candidates. Large streams prefer the
+fastest candidate that actually honors HTTP Range, so bounded parallel workers
+are not silently lost to a superficially fast single-stream CDN.
 """
 from __future__ import annotations
 
@@ -21,8 +21,8 @@ runner = v13.runner
 MIB = v13.MIB
 
 
-def _probe_speed(candidate: str, probe_bytes: int, timeout_seconds: int) -> float:
-    """Return measured bytes/second for a small bounded range probe."""
+def _probe_speed(candidate: str, probe_bytes: int, timeout_seconds: int) -> tuple[bool, float]:
+    """Return (range-supported, measured bytes/second) for a bounded probe."""
     headers = dict(runner.HEADERS)
     headers.update({
         "Range": f"bytes=0-{probe_bytes - 1}",
@@ -40,7 +40,7 @@ def _probe_speed(candidate: str, probe_bytes: int, timeout_seconds: int) -> floa
         response.raise_for_status()
         status = int(getattr(response, "status_code", 0) or 0)
         if status not in {200, 206}:
-            return 0.0
+            return False, 0.0
         for chunk in response.iter_content(chunk_size=64 * 1024):
             if not chunk:
                 continue
@@ -48,15 +48,16 @@ def _probe_speed(candidate: str, probe_bytes: int, timeout_seconds: int) -> floa
             if received >= probe_bytes:
                 break
     elapsed = max(0.001, time.monotonic() - started)
-    return received / elapsed if received else 0.0
+    return status == 206, (received / elapsed if received else 0.0)
 
 
 def _ordered_candidates(
     candidates: list[str],
     target: pathlib.Path,
     settings: dict[str, Any],
+    declared_size: int,
 ) -> list[str]:
-    """Order fresh transfers by bounded measured throughput.
+    """Order fresh transfers by Range capability and measured throughput.
 
     Existing partial files retain the original API failover order so resume
     semantics remain deterministic.
@@ -67,10 +68,10 @@ def _ordered_candidates(
         return candidates
 
     maximum = max(2, min(6, int(settings.get("cdnSpeedProbeCandidates", 4))))
-    probe_bytes = max(128 * 1024, min(MIB, int(settings.get("cdnSpeedProbeBytes", 256 * 1024))))
+    probe_bytes = max(128 * 1024, min(MIB, int(settings.get("cdnSpeedProbeBytes", 512 * 1024))))
     timeout_seconds = max(3, min(12, int(settings.get("cdnSpeedProbeTimeoutSeconds", 6))))
     sampled = candidates[:maximum]
-    scores: dict[str, float] = {}
+    results: dict[str, tuple[bool, float]] = {}
 
     with ThreadPoolExecutor(max_workers=len(sampled), thread_name_prefix="atlas-cdn-probe") as pool:
         futures = {
@@ -80,15 +81,25 @@ def _ordered_candidates(
         for future in as_completed(futures):
             candidate = futures[future]
             try:
-                scores[candidate] = max(0.0, float(future.result()))
+                range_ok, speed = future.result()
+                results[candidate] = (bool(range_ok), max(0.0, float(speed)))
             except Exception:
-                scores[candidate] = 0.0
+                results[candidate] = (False, 0.0)
 
-    original_index = {candidate: index for index, candidate in enumerate(candidates)}
-    return sorted(
-        candidates,
-        key=lambda candidate: (-scores.get(candidate, 0.0), original_index[candidate]),
+    threshold = max(8 * MIB, int(settings.get("parallelRangeThresholdBytes", 8 * MIB)))
+    prefer_range = bool(
+        settings.get("adaptiveParallelRanges", True)
+        and settings.get("preferRangeCapableCdn", True)
+        and declared_size >= threshold
     )
+    original_index = {candidate: index for index, candidate in enumerate(candidates)}
+
+    def rank(candidate: str) -> tuple[int, float, int]:
+        range_ok, speed = results.get(candidate, (False, 0.0))
+        range_priority = 1 if (prefer_range and range_ok) else 0
+        return (-range_priority, -speed, original_index[candidate])
+
+    return sorted(candidates, key=rank)
 
 
 _original_download_stream = v13._download_stream
@@ -108,6 +119,7 @@ def _download_stream(
         [str(candidate) for candidate in (stream.get("candidates") or [])],
         target,
         settings,
+        max(0, int(stream.get("declaredSize") or 0)),
     )
     return _original_download_stream(
         tuned,
