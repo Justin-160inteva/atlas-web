@@ -23,7 +23,6 @@
   --atlas-panel-motion:transform .24s cubic-bezier(.2,.82,.2,1),opacity .18s ease;
 }
 
-/* The complete left medium stays inside the visible device viewport. */
 html body .quick-rail{
   left:max(12px,env(safe-area-inset-left,0px))!important;
   right:auto!important;
@@ -45,7 +44,6 @@ html body .quick-rail{
   contain:layout paint style;
 }
 
-/* Native auto margins provide one physical-viewport centre with no transform layer. */
 html body .bottom-nav{
   left:0!important;
   right:0!important;
@@ -82,13 +80,17 @@ html body .bottom-nav{
   pointer-events:none;
 }
 
-/* One glass language for every primary surface. */
 html body :where(.glass,.top-bar,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar){
   border-color:var(--atlas-glass-line)!important;
   background:var(--atlas-glass-surface)!important;
   -webkit-backdrop-filter:blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important;
   backdrop-filter:blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important;
   box-shadow:var(--atlas-glass-shadow)!important;
+}
+html body .top-bar{
+  border:1px solid var(--atlas-glass-line)!important;
+  border-radius:22px!important;
+  overflow:hidden!important;
 }
 html body :where(.panel,.settings-panel,.evidence-panel,.sheet,.search-modal){
   box-shadow:var(--atlas-glass-shadow-large)!important;
@@ -97,8 +99,10 @@ html body :where(.panel,.settings-panel,.evidence-panel,.sheet,.search-modal){
 html body .sheet{background:linear-gradient(180deg,rgba(62,48,51,.9),rgba(20,17,18,.9))!important}
 html body .monitor-overlay{background:rgba(10,8,9,.91)!important}
 html body .monitor-toolbar{background:linear-gradient(180deg,rgba(54,38,42,.9),rgba(16,14,15,.9))!important}
+html body .search-overlay{z-index:100!important}
+html body .search-overlay.open{pointer-events:auto!important}
+html body .search-modal{position:relative;z-index:1}
 
-/* Nested cards stay crisp and do not create extra backdrop-filter compositor layers. */
 html body :where(.filter-summary,.category-chip,.route-summary,.route-stat,.route-stop,.overall-progress,.region-progress,.settings-card,.settings-about,.settings-section,.data-center-metrics article,.data-center-tabs,.evidence-section,.evidence-stat,.evidence-switches label,.evidence-building-editor,.future-block,.sheet-highlight,.result-item){
   border-color:var(--atlas-glass-line-soft)!important;
   background:var(--atlas-glass-card)!important;
@@ -111,7 +115,6 @@ html body :where(.search-trigger,.search-input-row,.evidence-template-row select
   background:var(--atlas-glass-soft)!important;
 }
 
-/* Premium soft-red neutral controls. */
 html body :where(
   .icon-button,.profile-button,.map-controls button,.search-trigger,
   .close-panel,.close-route,.close-progress,.settings-close,.monitor-close,.monitor-refresh,
@@ -137,9 +140,7 @@ html body :where(
   opacity:.92;
 }
 
-/* Selected and primary controls use a restrained light-to-deep red treatment. */
 html body :where(
-  .bottom-nav .nav-item.active,.quick-rail .rail-button.active,
   .sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,
   .data-center-tabs button.active,.evidence-season-tabs button.active,.evidence-tool-grid button.active,
   .settings-primary-card,.category-chip:not(.off).active,.region-progress.active
@@ -149,16 +150,12 @@ html body :where(
   color:#fff!important;
   box-shadow:var(--atlas-red-glow)!important;
 }
-html body :where(.bottom-nav .nav-item.active,.quick-rail .rail-button.active){
-  transform:scale(1.035)!important;
-}
 html body :where(.evidence-actions button.danger,.evidence-editor-actions button.danger,#clearRoute){
   border-color:rgba(255,123,135,.34)!important;
   background:linear-gradient(150deg,rgba(216,74,88,.42),rgba(104,18,31,.56))!important;
   color:#ffd9dd!important;
 }
 
-/* Navigation keeps its scale feedback while adopting the shared material. */
 .quick-rail .rail-button,.bottom-nav .nav-item{
   min-width:0;
   border:0!important;
@@ -169,12 +166,20 @@ html body :where(.evidence-actions button.danger,.evidence-editor-actions button
 .quick-rail .rail-button:not(.active),.bottom-nav .nav-item:not(.active){background:transparent!important}
 .quick-rail .rail-button:active,.bottom-nav .nav-item:active{transform:scale(.955)!important}
 
-/* Closed systems must never leave an invisible interaction shield. */
+/* Final selected-state authority beats late dynamic navigation styles. */
+html body .bottom-nav .nav-item.active,
+html body .quick-rail .rail-button.active{
+  border:1px solid var(--atlas-red-line)!important;
+  background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 42%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper))!important;
+  color:#fff!important;
+  box-shadow:var(--atlas-red-glow)!important;
+  transform:scale(1.035)!important;
+}
+
 .panel:not(.open),.route-panel:not(.open),.progress-panel:not(.open),.atlas-settings-overlay:not(.open),.search-overlay:not(.open){pointer-events:none!important}
 .quick-rail[inert],.quick-rail[aria-disabled="true"]{pointer-events:auto!important;opacity:1!important}
 .quick-rail .rail-button{pointer-events:auto!important}
 
-/* Clean settings control remains visually aligned with the global material. */
 .profile-button.atlas-settings-button{
   border:1px solid var(--atlas-glass-line)!important;
   background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(139,37,50,.13),rgba(26,21,23,.4))!important;
@@ -187,22 +192,18 @@ html body :where(.evidence-actions button.danger,.evidence-editor-actions button
   box-shadow:var(--atlas-red-glow)!important;
 }
 
-/* Keyboard focus is visible but does not add permanent borders to selected controls. */
 html body :where(button,[role="button"],input,select,textarea):focus-visible{
   outline:2px solid rgba(255,172,180,.82)!important;
   outline-offset:2px;
 }
 
-/* Fallback for browsers without backdrop-filter support. */
 @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
   html body :where(.glass,.top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar){
     background:linear-gradient(148deg,rgba(65,51,54,.97),rgba(17,15,16,.98))!important;
   }
 }
 
-html.atlas-ipad :where(.quick-rail,.bottom-nav,.top-bar,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.sheet){
-  --atlas-glass-blur:14px;
-}
+html.atlas-ipad :where(.quick-rail,.bottom-nav,.top-bar,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.sheet){--atlas-glass-blur:14px}
 
 @media(max-width:720px){
   :root{
@@ -217,6 +218,7 @@ html.atlas-ipad :where(.quick-rail,.bottom-nav,.top-bar,.map-controls,.status-pi
   }
   html body .quick-rail{left:max(8px,env(safe-area-inset-left,0px))!important;width:64px!important;padding:7px!important;border-radius:22px!important}
   html body .bottom-nav{bottom:max(8px,env(safe-area-inset-bottom,0px))!important;width:calc(100% - var(--atlas-nav-safe-inline) - var(--atlas-nav-safe-inline))!important;border-radius:23px!important}
+  html body .top-bar{border-radius:20px!important}
   html body :where(.panel,.settings-panel,.evidence-panel,.sheet,.search-modal){-webkit-backdrop-filter:blur(12px) saturate(122%)!important;backdrop-filter:blur(12px) saturate(122%)!important}
 }
 
