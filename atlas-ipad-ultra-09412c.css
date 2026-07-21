@@ -1,0 +1,158 @@
+/* Atlas Alpha 0.9.4.12c — iPad solid-glass compositor and map-density budget */
+@media (pointer:coarse) and (min-width:700px){
+  html.atlas-ipad-ultra{
+    --atlas-glass-blur:0px;
+    --atlas-glass-saturation:100%;
+    --atlas-ipad-surface:
+      linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,0) 24%),
+      linear-gradient(148deg,#403638 0%,#2a2325 38%,#1c1819 68%,#121011 100%);
+    --atlas-ipad-panel:
+      linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,0) 18%),
+      linear-gradient(155deg,#352d2f 0%,#241f20 48%,#151213 100%);
+    --atlas-ipad-card:
+      linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,0) 22%),
+      linear-gradient(150deg,#30282a 0%,#231d1f 55%,#191516 100%);
+    --atlas-ipad-control:
+      linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 35%),
+      linear-gradient(145deg,#3a3032,#241e20 58%,#181416);
+    --atlas-ipad-line:rgba(255,244,246,.19);
+    --atlas-ipad-line-soft:rgba(255,244,246,.105);
+    --atlas-ipad-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 10px 24px rgba(0,0,0,.25);
+    --atlas-ipad-shadow-large:inset 0 1px 0 rgba(255,255,255,.11),0 16px 34px rgba(0,0,0,.3);
+  }
+
+  html.atlas-ipad-ultra body :where(
+    .glass,.top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,
+    .panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar
+  ){
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:var(--atlas-ipad-surface)!important;
+    border-color:var(--atlas-ipad-line)!important;
+    box-shadow:var(--atlas-ipad-shadow)!important;
+  }
+
+  html.atlas-ipad-ultra body :where(
+    .panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.monitor-toolbar
+  ){
+    background:var(--atlas-ipad-panel)!important;
+    box-shadow:var(--atlas-ipad-shadow-large)!important;
+  }
+
+  html.atlas-ipad-ultra body :where(
+    .filter-summary,.category-chip,.route-summary,.route-stat,.route-stop,
+    .overall-progress,.region-progress,.settings-card,.settings-about,.settings-section,
+    .data-center-metrics article,.data-center-tabs,.evidence-section,.evidence-stat,
+    .evidence-switches label,.evidence-building-editor,.future-block,.sheet-highlight,.result-item
+  ){
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:var(--atlas-ipad-card)!important;
+    border-color:var(--atlas-ipad-line-soft)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.075)!important;
+  }
+
+  html.atlas-ipad-ultra body :where(
+    .search-trigger,.search-input-row,.evidence-template-row select,input,select,textarea,
+    .icon-button,.profile-button,.map-controls button,.close-panel,.close-route,.close-progress,
+    .settings-close,.monitor-close,.monitor-refresh,.sheet-actions button,.route-actions button,
+    .evidence-actions button,.evidence-tool-grid button,.evidence-editor-actions button,
+    .evidence-source button,.evidence-season-tabs button,.data-center-tabs button,
+    .route-stop-copy,.route-remove,#toggleAll,#openRouteBadge
+  ){
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:var(--atlas-ipad-control)!important;
+    border-color:var(--atlas-ipad-line-soft)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08)!important;
+  }
+
+  html.atlas-ipad-ultra body .top-bar,
+  html.atlas-ipad-ultra body .quick-rail,
+  html.atlas-ipad-ultra body .bottom-nav,
+  html.atlas-ipad-ultra body .map-controls,
+  html.atlas-ipad-ultra body .status-pill{
+    isolation:isolate;
+    transform:translateZ(0);
+  }
+
+  html.atlas-ipad-ultra body .quick-rail::before,
+  html.atlas-ipad-ultra body .bottom-nav::before{
+    opacity:.36;
+    background:linear-gradient(180deg,rgba(255,255,255,.13),transparent)!important;
+  }
+
+  html.atlas-ipad-ultra body .progress-panel,
+  html.atlas-ipad-ultra body .route-panel,
+  html.atlas-ipad-ultra body #filterPanel{
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,0) 16%),
+      linear-gradient(155deg,#332b2d 0%,#211c1e 52%,#131112 100%)!important;
+  }
+
+  html.atlas-ipad-ultra body .search-overlay{
+    background:rgba(7,6,7,.78)!important;
+  }
+
+  html.atlas-ipad-ultra body .monitor-overlay{
+    background:#0c0a0b!important;
+  }
+
+  html.atlas-ipad-ultra body #mapCanvas{
+    will-change:auto!important;
+    contain:layout paint style;
+    touch-action:none;
+  }
+
+  html.atlas-ipad-ultra body .vignette{
+    opacity:.38;
+    transition:none!important;
+  }
+
+  html.atlas-ipad-ultra body :where(.region-progress-list,.category-grid,.route-list,.search-results,.evidence-scroll){
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  html.atlas-ipad-ultra body :where(.region-progress,.category-chip,.result-item,.route-stop){
+    content-visibility:auto;
+    contain-intrinsic-size:72px;
+  }
+
+  html.atlas-ipad-ultra.atlas-ultra-interacting body :where(
+    .top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,.panel,.settings-panel,
+    .search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar
+  ),
+  html.atlas-ipad-ultra.atlas-interacting body :where(
+    .top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,.panel,.settings-panel,
+    .search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar
+  ){
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 5px 14px rgba(0,0,0,.2)!important;
+    transition:none!important;
+  }
+
+  html.atlas-ipad-ultra.atlas-ultra-interacting body :where(
+    .pulse,.route-badge,.status-pill,.sheet,.panel,.quick-rail .rail-button,.bottom-nav .nav-item
+  ){
+    animation:none!important;
+    transition:none!important;
+  }
+
+  html.atlas-ipad-ultra body .bottom-nav .nav-item.active,
+  html.atlas-ipad-ultra body .quick-rail .rail-button.active,
+  html.atlas-ipad-ultra body :where(
+    .sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,
+    .data-center-tabs button.active,.evidence-season-tabs button.active,.evidence-tool-grid button.active,
+    .settings-primary-card,.category-chip:not(.off).active,.region-progress.active
+  ){
+    background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 42%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper))!important;
+    border-color:var(--atlas-red-line)!important;
+    box-shadow:inset 0 1px 0 rgba(255,220,224,.24),0 7px 16px rgba(89,13,25,.26)!important;
+  }
+}
+
+@media (pointer:coarse) and (min-width:700px) and (prefers-reduced-motion:reduce){
+  html.atlas-ipad-ultra body *{
+    scroll-behavior:auto!important;
+  }
+}
