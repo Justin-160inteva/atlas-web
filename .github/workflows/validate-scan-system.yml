@@ -10,6 +10,8 @@ on:
       - 'atlas-settings.js'
       - 'data/scan-bug-dictionary.json'
       - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
+      - 'data/batch-analysis/eleven-pilot-scan-queue.json'
+      - 'data/batch-analysis/eleven-pilot-scan-status.json'
       - 'data/batch-analysis/eleven-production-order-policy.json'
       - 'data/quality/release-validation-policy.json'
       - 'release-manifest.json'
@@ -22,6 +24,7 @@ on:
       - 'tools/run_scan_with_auto_recovery.py'
       - 'tools/run_scan_with_auto_recovery_v2.py'
       - 'tools/audit_scan_system_v3.py'
+      - 'tools/audit_scan_system_v4.py'
       - 'scan-monitor.html'
       - 'scan-monitor.js'
       - 'sw.js'
@@ -32,6 +35,8 @@ on:
     paths:
       - 'data/scan-bug-dictionary.json'
       - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
+      - 'data/batch-analysis/eleven-pilot-scan-queue.json'
+      - 'data/batch-analysis/eleven-pilot-scan-status.json'
       - 'data/quality/release-validation-policy.json'
       - 'release-manifest.json'
       - 'tools/publish_runtime_progress.py'
@@ -43,6 +48,7 @@ on:
       - 'tools/run_scan_with_auto_recovery.py'
       - 'tools/run_scan_with_auto_recovery_v2.py'
       - 'tools/audit_scan_system_v3.py'
+      - 'tools/audit_scan_system_v4.py'
       - 'scan-monitor.html'
       - 'scan-monitor.js'
       - 'sw.js'
@@ -79,11 +85,13 @@ jobs:
           python -m py_compile tools/analyze_authorized_video_v12.py
           python -m py_compile tools/bilibili_transport_v13.py
           python -m py_compile tools/analyze_authorized_video_v13.py
+          python -m py_compile tools/analyze_authorized_video_v14.py
           python -m py_compile tools/bilibili_transport_smoke.py
           python -m py_compile tools/diagnose_and_recover_scan_v2.py
           python -m py_compile tools/run_scan_with_auto_recovery.py
           python -m py_compile tools/run_scan_with_auto_recovery_v2.py
           python -m py_compile tools/audit_scan_system_v3.py
+          python -m py_compile tools/audit_scan_system_v4.py
 
       - name: Validate JavaScript monitor
         run: |
@@ -91,13 +99,13 @@ jobs:
           node --check scan-monitor.js
           node --check sw.js
 
-      - name: Run targeted v13 source transport gate
+      - name: Run targeted source transport gate
         run: python tools/bilibili_transport_smoke.py
 
-      - name: Run executable systemic audit and simulated recovery cases
+      - name: Run executable dynamic systemic audit and simulated recovery cases
         id: systemic_audit
         continue-on-error: true
-        run: python tools/audit_scan_system_v3.py
+        run: python tools/audit_scan_system_v4.py
 
       - name: Publish health report even when checks fail
         if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'

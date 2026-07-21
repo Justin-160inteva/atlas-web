@@ -41,6 +41,8 @@ function classify(width, height, touch) {
   return 'desktop';
 }
 
+const version = manifest.version;
+const cacheNamespace = manifest.cacheNamespace;
 const staticContracts = {
   canonicalViewport: html.includes('interactive-widget=resizes-content') && guard.includes('interactive-widget=resizes-content'),
   guardRunsBeforeMap: html.indexOf('page-zoom-guard.js') < html.indexOf('app.js') && html.indexOf('app.js') < html.indexOf('atlas-map-cover-0950.js'),
@@ -55,7 +57,7 @@ const staticContracts = {
   dynamicHeightFallback: styles.includes('100dvh') && styles.includes('@media(max-height:500px)') && guard.includes('font-size: max(16px, 1em)'),
   releaseOwnership: manifest.runtimeOwners?.pageViewportScale === 'page-zoom-guard.js' && manifest.runtimeOwners?.mapViewport === 'page-zoom-guard.js' && manifest.runtimeOwners?.mapViewportFit === 'atlas-map-cover-0950.js' && manifest.releaseAssets?.includes('page-zoom-guard.js') && manifest.releaseAssets?.includes('atlas-map-cover-0950.js'),
   releasePolicy: manifest.invariants?.viewportUsesLayoutShell === true && manifest.invariants?.viewportUsesVisualViewport === false && manifest.invariants?.visualViewportKeyboardOnly === true && manifest.invariants?.viewportStableCommitRequired === true && manifest.invariants?.viewportMaximumStartupCommits === 3 && manifest.invariants?.mapViewportAutomaticFitUsesCover === true && manifest.invariants?.mapViewportManualZoomBelowCover === true && manifest.invariants?.mapViewportManualMinimumRatio === 0.25,
-  offlineRefresh: serviceWorker.includes("const CACHE='atlas-alpha-0949-pages-v2-monitor-v11-rewards-v1-viewport-v2'") && bootstrap.includes("cacheNamespace: 'atlas-alpha-0949-pages-v2-monitor-v11-rewards-v1-viewport-v2'") && html.includes('build=viewport-stable-v2') && html.includes('build=cover-v2-manual-zoom') && manifest.invariants?.requiredViewportScaleChecks === 120
+  offlineRefresh: serviceWorker.includes(`const CACHE='${cacheNamespace}'`) && bootstrap.includes(`cacheNamespace: '${cacheNamespace}'`) && html.includes(`atlas-bootstrap.js?v=${version}`) && html.includes(`page-zoom-guard.js?v=${version}`) && html.includes(`atlas-map-cover-0950.js?v=${version}`) && manifest.invariants?.requiredViewportScaleChecks === 120
 };
 
 const results = [];
@@ -88,7 +90,7 @@ for (const device of devices) {
 
 const failed = results.filter(result => !result.passed);
 const report = {
-  schemaVersion: 3,
+  schemaVersion: 4,
   release: manifest.version,
   generatedAt: new Date().toISOString(),
   passed: failed.length === 0 && results.length === 120,

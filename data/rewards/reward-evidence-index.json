@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "release": "0.9.4.9",
+  "release": "0.9.4.10",
   "targetLocationCount": 3430,
   "locationSource": "data/locations.json",
   "recordSchema": "data/rewards/reward-record-schema.json",
@@ -35,9 +35,11 @@
       "targetRecords": 5,
       "reviewableRecords": 5,
       "confirmedRecords": 0,
-      "sourceProfile": "single-community-database-with-explicit-uncertainty"
+      "minimumSourcesPerReward": 2,
+      "minimumSourcesPerEquipmentReward": 3,
+      "sourceProfile": "qualified-cross-source-with-unresolved-lineage-and-version"
     }
   ],
-  "lastGeneratedAt": "2026-07-20T20:35:00Z",
-  "noteZhCN": "首批5条城堡记录仅为高置信推断，来源为单一社区数据库快照；没有任何记录被标记为官方确认或多来源确认。其余3425个点位保持 unresolved。"
+  "lastGeneratedAt": "2026-07-21T14:45:00Z",
+  "noteZhCN": "首批5条城堡记录的全部奖励已获得至少两个来源支持，装备获得至少三个来源支持；但社区地图之间的数据链独立性和游戏版本仍未完全确认，因此没有任何记录升级为官方确认或多来源确认，其余3425个点位保持 unresolved。"
 }
