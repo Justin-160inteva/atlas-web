@@ -1,11 +1,10 @@
 (() => {
   'use strict';
 
-  const VERSION = '0.9.4.12g';
+  const VERSION = '0.9.4.12h';
   const ICON_DESIGN = 'clean-radial-09411a';
   const root = document.documentElement;
   const rail = document.querySelector('.quick-rail');
-  const bottom = document.querySelector('.bottom-nav');
   const panels = ['filterPanel', 'routePanel', 'progressPanel']
     .map(id => document.getElementById(id))
     .filter(Boolean);
@@ -22,7 +21,7 @@
     html.atlas-ipad body .app-shell .quick-rail.quick-rail,
     html.atlas-ipad-ultra body .app-shell .quick-rail.quick-rail{
       left:max(14px,env(safe-area-inset-left,0px))!important;
-      width:76px!important;
+      width:88px!important;
       height:auto!important;
       min-height:0!important;
       padding:8px!important;
@@ -30,9 +29,9 @@
       flex-direction:column!important;
       gap:4px!important;
       border:1px solid rgba(255,255,255,.12)!important;
-      border-radius:24px!important;
+      border-radius:26px!important;
       overflow:hidden!important;
-      background:rgba(6,6,7,.76)!important;
+      background:rgba(5,5,6,.78)!important;
       -webkit-backdrop-filter:none!important;
       backdrop-filter:none!important;
       box-shadow:none!important;
@@ -51,10 +50,10 @@
     }
 
     html body .app-shell .quick-rail.quick-rail .rail-button{
-      flex:0 0 62px!important;
-      width:60px!important;
-      height:62px!important;
-      min-height:62px!important;
+      flex:0 0 68px!important;
+      width:72px!important;
+      height:68px!important;
+      min-height:68px!important;
       margin:0!important;
       padding:0!important;
       display:flex!important;
@@ -63,7 +62,7 @@
       justify-content:center!important;
       gap:5px!important;
       border:0!important;
-      border-radius:16px!important;
+      border-radius:18px!important;
       overflow:hidden!important;
       background:transparent!important;
       -webkit-backdrop-filter:none!important;
@@ -71,7 +70,7 @@
       box-shadow:none!important;
       transform:none!important;
       translate:none!important;
-      color:rgba(255,255,255,.58)!important;
+      color:rgba(228,228,230,.58)!important;
       opacity:1!important;
       transition:none!important;
       contain:layout paint!important;
@@ -80,17 +79,17 @@
     html body .app-shell .quick-rail.quick-rail .rail-button.active{
       border:0!important;
       background:transparent!important;
-      color:#e7a1ab!important;
+      color:rgba(248,248,249,.96)!important;
       box-shadow:none!important;
       transform:none!important;
       translate:none!important;
     }
 
     html body .app-shell .quick-rail.quick-rail .rail-button :where(.rail-icon,.atlas-control-icon){
-      width:24px!important;
-      height:24px!important;
+      width:25px!important;
+      height:25px!important;
       color:currentColor!important;
-      opacity:.9!important;
+      opacity:.92!important;
       filter:none!important;
     }
 
@@ -99,7 +98,7 @@
       font-size:10px!important;
       line-height:1!important;
       color:currentColor!important;
-      opacity:.82!important;
+      opacity:.84!important;
       white-space:nowrap!important;
     }
 
@@ -117,7 +116,7 @@
       border:1px solid rgba(255,255,255,.12)!important;
       border-radius:24px!important;
       overflow:hidden!important;
-      background:rgba(6,6,7,.78)!important;
+      background:rgba(5,5,6,.8)!important;
       -webkit-backdrop-filter:none!important;
       backdrop-filter:none!important;
       box-shadow:none!important;
@@ -150,7 +149,7 @@
       box-shadow:none!important;
       transform:none!important;
       translate:none!important;
-      color:rgba(255,255,255,.58)!important;
+      color:rgba(228,228,230,.58)!important;
       opacity:1!important;
       transition:none!important;
       contain:layout paint!important;
@@ -159,7 +158,7 @@
     html body .app-shell .bottom-nav.bottom-nav .nav-item.active{
       border:0!important;
       background:transparent!important;
-      color:#e7a1ab!important;
+      color:rgba(248,248,249,.96)!important;
       box-shadow:none!important;
       transform:none!important;
       translate:none!important;
@@ -186,8 +185,18 @@
     html.atlas-ipad-ultra body .vignette{display:none!important}
 
     @media(max-width:720px){
-      html body .app-shell .quick-rail.quick-rail{left:max(10px,env(safe-area-inset-left,0px))!important;width:70px!important;padding:7px!important;border-radius:22px!important}
-      html body .app-shell .quick-rail.quick-rail .rail-button{flex-basis:58px!important;width:56px!important;height:58px!important;min-height:58px!important}
+      html body .app-shell .quick-rail.quick-rail{
+        left:max(10px,env(safe-area-inset-left,0px))!important;
+        width:80px!important;
+        padding:7px!important;
+        border-radius:23px!important;
+      }
+      html body .app-shell .quick-rail.quick-rail .rail-button{
+        flex-basis:64px!important;
+        width:66px!important;
+        height:64px!important;
+        min-height:64px!important;
+      }
       html body .app-shell .bottom-nav.bottom-nav .nav-item{height:60px!important}
     }
   `;
@@ -213,9 +222,11 @@
   }
 
   function installNavigationStyle() {
-    if (document.getElementById('atlas-navigation-lite-09412g')) return;
+    const oldStyle = document.getElementById('atlas-navigation-lite-09412g');
+    oldStyle?.remove();
+    if (document.getElementById('atlas-navigation-lite-09412h')) return;
     const style = document.createElement('style');
-    style.id = 'atlas-navigation-lite-09412g';
+    style.id = 'atlas-navigation-lite-09412h';
     style.textContent = navigationCss;
     document.head.appendChild(style);
   }
