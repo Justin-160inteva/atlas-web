@@ -92,25 +92,31 @@
     const targetLevel = levels.includes(level) ? level : nearestLevel(drag.currentHeight || sheet.getBoundingClientRect().height);
     const targetHeight = levelHeights()[targetLevel];
     const currentHeight = sheet.getBoundingClientRect().height;
+    let settled = false;
+    let fallbackTimer = 0;
 
     sheet.classList.remove('dragging');
     sheet.classList.add('snapping');
     sheet.style.height = `${currentHeight}px`;
     setLevelState(targetLevel);
 
-    requestAnimationFrame(() => {
-      sheet.style.height = `${targetHeight}px`;
-    });
-
-    const finish = () => {
+    const finish = event => {
+      if (settled) return;
+      if (event && (event.target !== sheet || event.propertyName !== 'height')) return;
+      settled = true;
+      window.clearTimeout(fallbackTimer);
       sheet.classList.remove('snapping');
       sheet.style.removeProperty('height');
       sheet.removeEventListener('transitionend', finish);
       updateAccessibility(targetLevel);
       if (reveal) revealSection(targetLevel, true);
     };
+
     sheet.addEventListener('transitionend', finish);
-    window.setTimeout(finish, 430);
+    requestAnimationFrame(() => {
+      sheet.style.height = `${targetHeight}px`;
+    });
+    fallbackTimer = window.setTimeout(() => finish(), 430);
   }
 
   function nextLevel(direction) {
@@ -164,7 +170,7 @@
     const height = drag.currentHeight;
     drag.active = false;
     drag.pointerId = null;
-    handle.releasePointerCapture?.(event.pointerId);
+    if (handle.hasPointerCapture?.(event.pointerId)) handle.releasePointerCapture(event.pointerId);
 
     if (!moved) {
       sheet.classList.remove('dragging');
@@ -195,7 +201,7 @@
     }
     event.preventDefault();
     event.stopImmediatePropagation();
-    snapTo(nextLevel(1), true);
+    snapTo(currentLevel() === 'full' ? 'peek' : nextLevel(1), true);
   }, true);
 
   handle.addEventListener('keydown', event => {
@@ -225,6 +231,11 @@
     attributes: true,
     attributeFilter: ['data-level', 'class']
   });
+
+  new MutationObserver(() => {
+    body.scrollTop = 0;
+    updateAccessibility('peek');
+  }).observe(body, { childList: true });
 
   window.addEventListener('resize', () => {
     if (!drag.active) sheet.style.removeProperty('height');
