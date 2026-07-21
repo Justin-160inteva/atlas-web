@@ -45,9 +45,25 @@ for (const profile of profiles) {
         const rect = node.getBoundingClientRect();
         const style = getComputedStyle(node);
         const matrix = new DOMMatrixReadOnly(style.transform === 'none' ? 'matrix(1,0,0,1,0,0)' : style.transform);
-        return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height, transformX: matrix.e, pointerEvents: style.pointerEvents, visibility: style.visibility, opacity: Number.parseFloat(style.opacity) };
+        return {
+          left: rect.left,
+          right: rect.right,
+          top: rect.top,
+          bottom: rect.bottom,
+          width: rect.width,
+          height: rect.height,
+          transformX: matrix.e,
+          pointerEvents: style.pointerEvents,
+          visibility: style.visibility,
+          opacity: Number.parseFloat(style.opacity)
+        };
       };
-      return { bottom: read('.bottom-nav'), rail: read('.quick-rail'), viewport: { width: innerWidth, height: innerHeight }, audit: window.AtlasNavigationRecovery.audit() };
+      return {
+        bottom: read('.bottom-nav'),
+        rail: read('.quick-rail'),
+        viewport: { width: innerWidth, height: innerHeight },
+        audit: window.AtlasNavigationRecovery.audit()
+      };
     });
 
     const inset = 8;
@@ -77,7 +93,11 @@ for (const profile of profiles) {
       check(`rail ${mode} keeps one active`, await page.locator('.quick-rail .rail-button.active').count() === 1);
     }
 
-    const returnCases = [['filter', 'locations', '#filterPanel'], ['route', 'collectibles', '#routePanel'], ['progress', 'activities', '#progressPanel']];
+    const returnCases = [
+      ['filter', 'locations', '#filterPanel'],
+      ['route', 'collectibles', '#routePanel'],
+      ['progress', 'activities', '#progressPanel']
+    ];
     for (const [panel, mode, selector] of returnCases) {
       await page.locator(`.bottom-nav .nav-item[data-panel="${panel}"]`).click({ timeout: 5000 });
       await page.locator('.bottom-nav .nav-item[data-panel="map"]').click({ timeout: 5000 });
@@ -101,6 +121,9 @@ for (const profile of profiles) {
 }
 
 await browser.close();
-for (const result of report) console.log(`${result.profile}: ${result.checks.filter(item => item.passed).length}/${result.checks.length}; errors=${result.errors.length}`);
+for (const result of report) {
+  const passed = result.checks.filter(item => item.passed).length;
+  console.log(`${result.profile}: ${passed}/${result.checks.length}; errors=${result.errors.length}`);
+}
 console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.11c', passed: !failed, profiles: report }, null, 2));
 if (failed) process.exit(1);
