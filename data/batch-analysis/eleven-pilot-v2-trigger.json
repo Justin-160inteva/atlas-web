@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 17,
-  "triggerId": "eleven-production-p036-p046-p038-closed-loop-20260721-04",
-  "requestedAt": "2026-07-21T16:18:00Z",
+  "schemaVersion": 18,
+  "triggerId": "eleven-production-p036-p046-p038-fresh-run-baseline-20260721-05",
+  "requestedAt": "2026-07-21T16:23:19Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P36-P46",
@@ -30,5 +30,5 @@
   "humanReviewOnUnknownFailure": false,
   "expectedDownloadCount": 9,
   "expectedAnalysisCount": 9,
-  "reason": "Use the repaired v2 entrypoint to normalize the structured heartbeat-supervisor failure, claim P38, persist its result, and continue strictly through P46."
+  "reason": "Run P38 through the merged v12 workflow using a current-run baseline, fresh decision reports, dynamic analyzer validation, non-cancelling serial concurrency, and pycache cleanup; continue only after a durable import increase."
 }
