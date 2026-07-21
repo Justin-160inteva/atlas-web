@@ -38,7 +38,7 @@ for (const profile of profiles) {
   page.on('console', message => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
 
   try {
-    await page.goto(`${baseURL}?visual-correction=09412d-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    await page.goto(`${baseURL}?visual-correction=09412d1-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForFunction(() => Number(document.getElementById('visibleCount')?.textContent || 0) >= 3000, null, { timeout: 45_000 });
     await page.waitForTimeout(450);
 
@@ -54,9 +54,43 @@ for (const profile of profiles) {
         backdropFilter: style.backdropFilter || style.webkitBackdropFilter || 'none',
         color: style.color,
         pointerEvents: style.pointerEvents,
+        transform: style.transform,
+        overflow: style.overflow,
         rect: { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height }
       };
     });
+
+    const navGeometry = async selector => page.locator(selector).evaluateAll(nodes => nodes.map(node => {
+      const rect = node.getBoundingClientRect();
+      const style = getComputedStyle(node);
+      return {
+        active: node.classList.contains('active'),
+        left: rect.left,
+        right: rect.right,
+        top: rect.top,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        transform: style.transform,
+        overflow: style.overflow,
+        pointerEvents: style.pointerEvents
+      };
+    }));
+
+    const verifySeparated = (name, items, axis = 'x') => {
+      check(`${name} has five cells`, items.length === 5, JSON.stringify(items));
+      const widths = items.map(item => axis === 'x' ? item.width : item.height);
+      check(`${name} cells are equal sized`, Math.max(...widths) - Math.min(...widths) <= 1.25, JSON.stringify(widths));
+      for (let index = 1; index < items.length; index += 1) {
+        const gap = axis === 'x' ? items[index].left - items[index - 1].right : items[index].top - items[index - 1].bottom;
+        check(`${name} gap ${index} stays separated`, gap >= 3, String(gap));
+      }
+      for (const [index, item] of items.entries()) {
+        check(`${name} cell ${index + 1} clips paint`, item.overflow === 'hidden', JSON.stringify(item));
+        check(`${name} cell ${index + 1} stays interactive`, item.pointerEvents !== 'none', JSON.stringify(item));
+        if (item.active) check(`${name} active cell has no enlargement`, item.transform === 'none' || item.transform === 'matrix(1, 0, 0, 1, 0, 0)', item.transform);
+      }
+    };
 
     const nav = await styleData('.bottom-nav .nav-item.active');
     const rail = await styleData('.quick-rail .rail-button.active');
@@ -65,6 +99,9 @@ for (const profile of profiles) {
     const settings = await styleData('#evidenceStudioBtn');
     const controls = await styleData('.map-controls');
     const buttons = await Promise.all(['#zoomIn', '#zoomOut', '#resetView'].map(styleData));
+
+    verifySeparated('bottom nav initial', await navGeometry('.bottom-nav .nav-item'), 'x');
+    verifySeparated('quick rail initial', await navGeometry('.quick-rail .rail-button'), 'y');
 
     await page.locator('#evidenceStudioBtn').click({ timeout: 5000 });
     await page.waitForTimeout(180);
@@ -103,6 +140,19 @@ for (const profile of profiles) {
     });
 
     await page.locator('.settings-close').click({ timeout: 5000 });
+
+    for (const panel of ['map', 'filter', 'route', 'progress', 'favorites']) {
+      await page.locator(`.bottom-nav .nav-item[data-panel="${panel}"]`).click({ timeout: 5000 });
+      await page.waitForTimeout(80);
+      verifySeparated(`bottom nav after ${panel}`, await navGeometry('.bottom-nav .nav-item'), 'x');
+    }
+
+    for (const mode of ['all', 'locations', 'collectibles', 'activities', 'favorites']) {
+      await page.locator(`.quick-rail .rail-button[data-mode="${mode}"]`).click({ timeout: 5000 });
+      await page.waitForTimeout(70);
+      verifySeparated(`quick rail after ${mode}`, await navGeometry('.quick-rail .rail-button'), 'y');
+    }
+
     const before = await page.locator('#zoomLabel').textContent();
     await page.locator('#zoomIn').click({ timeout: 5000 });
     await page.waitForTimeout(120);
@@ -122,5 +172,5 @@ for (const profile of profiles) {
 }
 
 await browser.close();
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12d', passed: !failed, profiles: report }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12d-1', passed: !failed, profiles: report }, null, 2));
 if (failed) process.exit(1);
