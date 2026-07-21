@@ -1,0 +1,116 @@
+name: Atlas autonomous scan repair
+
+on:
+  workflow_run:
+    workflows:
+      - Scan 11 game world regional batch v11
+      - Validate scan system health
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      manifest:
+        description: Scan manifest to repair
+        required: false
+        default: data/batch-analysis/eleven-pilot-scan-manifest.json
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+  models: read
+
+concurrency:
+  group: atlas-autonomous-scan-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile autonomous repair stack
+        run: |
+          python -m py_compile tools/scan_autonomous_repair.py
+          python -m py_compile tools/autonomous_scan_repair_smoke.py
+          python -m py_compile tools/run_scan_with_auto_recovery.py
+          python -m py_compile tools/run_scan_with_auto_recovery_v2.py
+          python tools/autonomous_scan_repair_smoke.py
+
+      - name: Run bounded autonomous repair
+        id: repair
+        continue-on-error: true
+        env:
+          ATLAS_AI_REPAIR_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
+          ATLAS_CHECKS: '24'
+          ATLAS_VALIDATION_TIER: fast
+        run: |
+          manifest='${{ inputs.manifest }}'
+          if [ -z "$manifest" ]; then manifest='data/batch-analysis/eleven-pilot-scan-manifest.json'; fi
+          python tools/scan_autonomous_repair.py "$manifest" --repair-only
+
+      - name: Read repair decision
+        id: decision
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, pathlib
+          path=pathlib.Path('data/batch-analysis/scan-autonomous-repair-report.json')
+          report=json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'outcome':'missing_report'}
+          outcome=report.get('outcome','unknown')
+          print(f'outcome={outcome}')
+          print(f"repaired={'true' if outcome=='repaired' else 'false'}")
+          print(f"needs_issue={'true' if outcome in {'repair_failed','protected_failure_not_modified'} else 'false'}")
+          print(f"target={report.get('targetExternalSourceId','unknown')}")
+          PY
+
+      - name: Commit a passing repair without asking for confirmation
+        if: steps.decision.outputs.repaired == 'true'
+        run: |
+          git config user.name 'atlas-autonomous-repair[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools data/scan-bug-dictionary.json data/scan-autonomy-policy.json data/batch-analysis/scan-autonomous-repair-report.json data/batch-analysis/*scan-queue.json data/batch-analysis/*scan-manifest.json
+          git diff --cached --quiet && exit 0
+          git commit -m "fix(scan): autonomous repair for ${{ steps.decision.outputs.target }}"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Resume import after a passing repair
+        if: steps.decision.outputs.repaired == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run scan-eleven-pilot-v2.yml --ref main
+
+      - name: Record an unresolved protected failure without requesting approval
+        if: steps.decision.outputs.needs_issue == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Atlas autonomous scan repair: ${{ steps.decision.outputs.target }}"
+          existing=$(gh issue list --state open --search "$title in:title" --json number --jq 'length')
+          if [ "$existing" != '0' ]; then exit 0; fi
+          gh issue create --title "$title" --body-file data/batch-analysis/scan-autonomous-repair-report.json
+
+      - name: Upload repair audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-autonomous-scan-repair-${{ github.run_id }}
+          path: |
+            data/batch-analysis/scan-autonomous-repair-report.json
+            data/conflict-reports/autonomous-scan-repair-smoke.json
+          if-no-files-found: warn
