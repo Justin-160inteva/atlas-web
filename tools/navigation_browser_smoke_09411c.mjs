@@ -154,7 +154,7 @@ for (const profile of profiles) {
     await page.waitForTimeout(70);
     const markerMidAudit = await page.evaluate(() => window.AtlasMarkerDesign.audit());
     check('marker animation starts on selection', markerMidAudit.selectedId === selectedMarker && markerMidAudit.activeAnimations >= 1, JSON.stringify(markerMidAudit));
-    await page.waitForTimeout(180);
+    await page.waitForFunction(() => window.AtlasMarkerDesign?.audit().activeAnimations === 0, null, { timeout: 1000 });
     const markerEndAudit = await page.evaluate(() => window.AtlasMarkerDesign.audit());
     check('marker animation settles after 190ms', markerEndAudit.selectedId === selectedMarker && markerEndAudit.activeAnimations === 0, JSON.stringify(markerEndAudit));
     await page.evaluate(() => window.closeSheet());
