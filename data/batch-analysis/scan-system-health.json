@@ -1,11 +1,11 @@
 {
   "schemaVersion": 11,
-  "generatedAt": "2026-07-21T17:42:36.154134Z",
-  "status": "pass",
+  "generatedAt": "2026-07-21T18:31:36.185412Z",
+  "status": "fail",
   "summary": {
     "total": 47,
-    "passed": 47,
-    "failed": 0
+    "passed": 45,
+    "failed": 2
   },
   "dictionaryVersion": "2026.07.21.2",
   "release": "0.9.4.10",
@@ -95,7 +95,7 @@
     {
       "name": "status_coherent",
       "passed": true,
-      "detail": "summary={'total': 11, 'imported': 9, 'running': 0, 'failed': 0, 'blocked': 0, 'retryableFailed': 0, 'remaining': 2, 'attemptedThisRun': 1, 'newlyImportedThisRun': 1}"
+      "detail": "summary={'total': 11, 'imported': 10, 'running': 0, 'failed': 0, 'blocked': 0, 'retryableFailed': 0, 'remaining': 1, 'attemptedThisRun': 1, 'newlyImportedThisRun': 1}"
     },
     {
       "name": "active_item_coherent",
@@ -135,17 +135,17 @@
     {
       "name": "v13_adapter",
       "passed": true,
-      "detail": "tools/analyze_authorized_video_v14.py"
+      "detail": "tools/analyze_authorized_video_v13.py"
     },
     {
       "name": "adaptive_ranges",
-      "passed": true,
+      "passed": false,
       "detail": "parallel ranges enabled"
     },
     {
       "name": "download_policy",
       "passed": true,
-      "detail": "workers=8"
+      "detail": "workers=6"
     },
     {
       "name": "wbi_metadata",
@@ -159,7 +159,7 @@
     },
     {
       "name": "cdn_probe",
-      "passed": true,
+      "passed": false,
       "detail": "speed-probed range CDN"
     },
     {
