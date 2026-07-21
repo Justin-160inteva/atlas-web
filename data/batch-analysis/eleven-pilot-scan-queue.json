@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-21T07:16:08Z",
-  "updatedAt": "2026-07-21T14:49:54.850497Z",
-  "status": "retryable_failure",
+  "updatedAt": "2026-07-21T16:26:22.805956Z",
+  "status": "progress",
   "pilotRegion": "顺序批次 P36-P46",
   "strategy": "严格按P36至P46原始顺序处理11期；任何时刻最多下载和分析1期。当前一期完成、验证并持久化后，才自动启动下一期。",
   "maximumQueueItems": 11,
@@ -75,11 +75,12 @@
       "mapUtility": "中高",
       "priority": 74,
       "durationSeconds": 2082,
-      "state": "failed",
-      "attemptCount": 0,
+      "state": "imported",
+      "attemptCount": 1,
       "episodeSequence": 38,
-      "error": "heartbeat supervisor: no heartbeat for 1168s at stage persisting",
-      "lastFinishedAt": "2026-07-21T14:49:54.850497Z"
+      "lastStartedAt": "2026-07-21T16:24:58.145705Z",
+      "resultPath": "data/analysis-results/eleven-p038.json",
+      "lastFinishedAt": "2026-07-21T16:26:22.802300Z"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p039",
