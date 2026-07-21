@@ -20,7 +20,7 @@
     collectibles:svg('collectibles','<path d="m12 3.2 7 6.5-7 11.1L5 9.7Z"/><path d="m5 9.7 7 3.7 7-3.7M8.6 6.35 12 13.4l3.4-7.05"/>'),
     activities:svg('activities','<path d="m5.1 4.1 5.6 5.6M3.5 2.8l3.4.4.4 3.4M10.7 9.7 5 15.4l-1.6 4.8 4.8-1.6 5.7-5.7"/><path d="m18.9 4.1-5.6 5.6m7.2-6.9-3.4.4-.4 3.4m-3.4 3.1 5.7 5.7 1.6 4.8-4.8-1.6-5.7-5.7"/>'),
     locate:svg('locate','<circle cx="12" cy="12" r="6.25"/><circle cx="12" cy="12" r="1.65" fill="currentColor" stroke="none"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3"/>'),
-    settings:svg('settings','<circle cx="12" cy="12" r="3.05"/><path d="M9.9 3.5h4.2l.45 2.05c.47.2.91.46 1.31.77l1.99-.64 2.1 3.64-1.55 1.41c.06.42.06.85 0 1.27l1.55 1.41-2.1 3.64-1.99-.64c-.4.31-.84.57-1.31.77l-.45 2.05H9.9l-.45-2.05a6.8 6.8 0 0 1-1.31-.77l-1.99.64-2.1-3.64 1.55-1.41a5.1 5.1 0 0 1 0-1.27L4.05 9.32l2.1-3.64 1.99.64c.4-.31.84-.57 1.31-.77Z"/>'),
+    settings:svg('settings','<circle cx="12" cy="12" r="3.05"/><path d="M9.7 3.5h4.6l.5 2.1 1.5.9 2-.6 2.3 4-1.6 1.5v1.8l1.6 1.5-2.3 4-2-.6-1.5.9-.5 2.1H9.7l-.5-2.1-1.5-.9-2 .6-2.3-4L5 13.8V12l-1.6-1.5 2.3-4 2 .6 1.5-.9Z"/>'),
     zoomIn:svg('zoom-in','<path d="M12 6v12M6 12h12"/>'),
     zoomOut:svg('zoom-out','<path d="M6 12h12"/>'),
     reset:svg('reset','<path d="M5.1 8.4A7.8 7.8 0 1 1 4.6 15"/><path d="M4.8 4.6v4.2H9"/><circle cx="12" cy="12" r="1.35" fill="currentColor" stroke="none"/>'),
@@ -69,7 +69,8 @@
       settings.classList.add('atlas-settings-button');
       settings.setAttribute('aria-label','打开设置与数据中心');
       if(!settings.hasAttribute('aria-expanded'))settings.setAttribute('aria-expanded','false');
-      settings.dataset.iconDesign='precision-gear-09412b2';
+      settings.dataset.iconDesign='clean-radial-09411a';
+      settings.dataset.controlIconDesign='precision-gear-09412b2';
     }
 
     document.querySelectorAll('.close-panel,.close-route,.close-progress').forEach(button=>installIcon(button,'close'));
@@ -112,8 +113,9 @@
       search:[document.querySelector('#searchTrigger > .icon'),document.querySelector('#searchOverlay .search-input-row > span')].filter(Boolean)
     };
     const entries=Object.values(groups).flat();
+    const settings=document.getElementById('evidenceStudioBtn');
     const valid=entries.every(host=>host.children.length===1&&Boolean(directSvg(host))&&!([...host.childNodes].some(node=>node.nodeType===Node.TEXT_NODE&&node.textContent.trim())));
-    return {releaseVersion:RELEASE_VERSION,designVersion:DESIGN_VERSION,valid,total:entries.length,groups:Object.fromEntries(Object.entries(groups).map(([key,value])=>[key,value.length])),repairScheduled:Boolean(repairFrame),settingsDesign:document.getElementById('evidenceStudioBtn')?.dataset.iconDesign||''};
+    return {releaseVersion:RELEASE_VERSION,designVersion:DESIGN_VERSION,valid,total:entries.length,groups:Object.fromEntries(Object.entries(groups).map(([key,value])=>[key,value.length])),repairScheduled:Boolean(repairFrame),settingsDesign:settings?.dataset.iconDesign||'',precisionSettingsDesign:settings?.dataset.controlIconDesign||''};
   }
 
   function init(){
