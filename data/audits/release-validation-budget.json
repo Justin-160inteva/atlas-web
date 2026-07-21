@@ -1,25 +1,23 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-21T16:23:17.135012Z",
+  "generatedAt": "2026-07-21T16:38:39.047151Z",
   "release": "0.9.4.10",
   "policyRevision": "2026.07.21.1",
   "event": "push",
-  "tier": "standard",
-  "targetMinutes": 10,
+  "tier": "quick",
+  "targetMinutes": 7,
   "forcedFull": false,
   "scheduledFull": false,
   "targetedPullRequest": false,
   "postMergeFullUiMatrix": false,
   "changedFiles": [
-    ".github/workflows/scan-eleven-pilot-v2.yml"
+    "detail-sheet-gesture.css"
   ],
   "safeSupportFiles": [],
   "matchedGroups": {
     "validationFramework": [],
     "scanAutonomy": [],
-    "scanCore": [
-      ".github/workflows/scan-eleven-pilot-v2.yml"
-    ],
+    "scanCore": [],
     "monitor": [],
     "dataCenter": [],
     "rewards": [],
@@ -32,10 +30,10 @@
   "run": {
     "data_center": false,
     "reward": false,
-    "heartbeat": true,
-    "serial": true,
-    "queue_schema": true,
-    "autonomous_repair": true,
+    "heartbeat": false,
+    "serial": false,
+    "queue_schema": false,
+    "autonomous_repair": false,
     "browser_matrix": false,
     "ipad": false,
     "reward_search": false,
@@ -45,12 +43,12 @@
     "playwright": false
   },
   "budget": {
-    "targetMinutes": 10,
-    "heartbeatChecks": 128,
-    "serialQueueChecks": 128,
-    "queueSchemaChecks": 96,
-    "browserChecks": 500,
-    "monitorAuthorityChecks": 500,
+    "targetMinutes": 7,
+    "heartbeatChecks": 96,
+    "serialQueueChecks": 96,
+    "queueSchemaChecks": 80,
+    "browserChecks": 0,
+    "monitorAuthorityChecks": 0,
     "dataCenterChecks": 500,
     "rewardEvidenceChecks": 500,
     "fullAudit": false
