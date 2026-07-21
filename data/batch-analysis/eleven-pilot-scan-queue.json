@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-21T07:16:08Z",
-  "updatedAt": "2026-07-21T17:53:25.693904Z",
-  "status": "progress",
+  "updatedAt": "2026-07-21T19:47:08.956108Z",
+  "status": "complete",
   "pilotRegion": "顺序批次 P36-P46",
   "strategy": "严格按P36至P46原始顺序处理11期；任何时刻最多下载和分析1期。当前一期完成、验证并持久化后，才自动启动下一期。",
   "maximumQueueItems": 11,
@@ -246,9 +246,12 @@
       "mapUtility": "中高",
       "priority": 74,
       "durationSeconds": 2468,
-      "state": "pending",
-      "attemptCount": 0,
-      "episodeSequence": 46
+      "state": "imported",
+      "attemptCount": 1,
+      "episodeSequence": 46,
+      "lastStartedAt": "2026-07-21T19:45:56.854589Z",
+      "resultPath": "data/analysis-results/eleven-p046.json",
+      "lastFinishedAt": "2026-07-21T19:47:08.952453Z"
     }
   ]
 }
