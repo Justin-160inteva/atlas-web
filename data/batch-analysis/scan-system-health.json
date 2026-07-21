@@ -1,21 +1,22 @@
 {
-  "schemaVersion": 11,
-  "generatedAt": "2026-07-21T19:44:28.968734Z",
-  "status": "fail",
+  "schemaVersion": 12,
+  "generatedAt": "2026-07-21T20:06:23.887635Z",
+  "status": "pass",
   "summary": {
-    "total": 47,
-    "passed": 45,
-    "failed": 2
+    "total": 55,
+    "passed": 55,
+    "failed": 0
   },
   "dictionaryVersion": "2026.07.21.2",
   "release": "0.9.4.10",
   "queueItems": 11,
   "maximumConcurrentItems": 1,
-  "batchId": "eleven-production-p036-p046-v1",
+  "batchId": "eleven-production-p047-p057-v1",
   "pageRange": [
-    36,
-    46
+    47,
+    57
   ],
+  "transportMode": "resumable-single-stream",
   "checks": [
     {
       "name": "dictionary_size",
@@ -65,12 +66,12 @@
     {
       "name": "queue_chronological",
       "passed": true,
-      "detail": "pages=[36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]"
+      "detail": "pages=[47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57]"
     },
     {
       "name": "queue_sequence_slots",
       "passed": true,
-      "detail": "sequences=[25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]"
+      "detail": "sequences=[36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]"
     },
     {
       "name": "queue_serial",
@@ -85,7 +86,7 @@
     {
       "name": "queue_status_batch_identity",
       "passed": true,
-      "detail": "queue=eleven-production-p036-p046-v1, status=eleven-production-p036-p046-v1, manifest=eleven-production-p036-p046-v1"
+      "detail": "queue=eleven-production-p047-p057-v1, status=eleven-production-p047-p057-v1, manifest=eleven-production-p047-p057-v1"
     },
     {
       "name": "queue_authority",
@@ -95,7 +96,7 @@
     {
       "name": "status_coherent",
       "passed": true,
-      "detail": "summary={'total': 11, 'imported': 10, 'running': 0, 'failed': 0, 'blocked': 0, 'retryableFailed': 0, 'remaining': 1, 'attemptedThisRun': 1, 'newlyImportedThisRun': 1}"
+      "detail": "summary={'total': 11, 'imported': 0, 'running': 0, 'failed': 0, 'blocked': 0, 'retryableFailed': 0, 'remaining': 11, 'attemptedThisRun': 0, 'newlyImportedThisRun': 0}"
     },
     {
       "name": "active_item_coherent",
@@ -113,9 +114,24 @@
       "detail": "terminal state is clean"
     },
     {
+      "name": "catalog_identity",
+      "passed": true,
+      "detail": "all queue sources exist in catalog"
+    },
+    {
+      "name": "catalog_authorization",
+      "passed": true,
+      "detail": "catalog authorization matches"
+    },
+    {
+      "name": "catalog_pending_or_imported",
+      "passed": true,
+      "detail": "catalog state is scannable"
+    },
+    {
       "name": "manifest_batch",
       "passed": true,
-      "detail": "active batch eleven-production-p036-p046-v1"
+      "detail": "active batch eleven-production-p047-p057-v1"
     },
     {
       "name": "manifest_serial",
@@ -139,8 +155,8 @@
     },
     {
       "name": "adaptive_ranges",
-      "passed": false,
-      "detail": "parallel ranges enabled"
+      "passed": true,
+      "detail": "supported transport mode=resumable-single-stream"
     },
     {
       "name": "download_policy",
@@ -159,13 +175,38 @@
     },
     {
       "name": "cdn_probe",
-      "passed": false,
-      "detail": "speed-probed range CDN"
+      "passed": true,
+      "detail": "cdn selection compatible with resumable-single-stream"
     },
     {
       "name": "retention",
       "passed": true,
       "detail": "no retained media"
+    },
+    {
+      "name": "policy_active_batch",
+      "passed": true,
+      "detail": "production order targets active batch"
+    },
+    {
+      "name": "policy_serial",
+      "passed": true,
+      "detail": "chronological serial policy"
+    },
+    {
+      "name": "authorization_active",
+      "passed": true,
+      "detail": "active author authorization"
+    },
+    {
+      "name": "authorization_scope",
+      "passed": true,
+      "detail": "analysis scope allowed"
+    },
+    {
+      "name": "runtime_projection",
+      "passed": true,
+      "detail": "runtime belongs to active batch"
     },
     {
       "name": "monitor_poll",
