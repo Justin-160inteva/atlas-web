@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-21T16:19:46.677278Z",
+  "generatedAt": "2026-07-21T16:23:17.135012Z",
   "release": "0.9.4.10",
   "policyRevision": "2026.07.21.1",
   "event": "push",
@@ -11,14 +11,14 @@
   "targetedPullRequest": false,
   "postMergeFullUiMatrix": false,
   "changedFiles": [
-    "tools/run_scan_with_auto_recovery_v2.py"
+    ".github/workflows/scan-eleven-pilot-v2.yml"
   ],
   "safeSupportFiles": [],
   "matchedGroups": {
     "validationFramework": [],
     "scanAutonomy": [],
     "scanCore": [
-      "tools/run_scan_with_auto_recovery_v2.py"
+      ".github/workflows/scan-eleven-pilot-v2.yml"
     ],
     "monitor": [],
     "dataCenter": [],
@@ -27,9 +27,7 @@
     "searchTargeted": [],
     "uiFull": [],
     "ui": [],
-    "highRisk": [
-      "tools/run_scan_with_auto_recovery_v2.py"
-    ]
+    "highRisk": []
   },
   "run": {
     "data_center": false,
