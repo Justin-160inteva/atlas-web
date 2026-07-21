@@ -1,16 +1,16 @@
 {
-  "schemaVersion": 13,
-  "triggerId": "eleven-production-p025-p035-terminal-sync-20260721-01",
-  "requestedAt": "2026-07-21T02:06:00Z",
+  "schemaVersion": 14,
+  "triggerId": "eleven-production-p036-p046-start-20260721-01",
+  "requestedAt": "2026-07-21T07:16:08Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
-  "pilotRegion": "顺序批次 P25-P35",
+  "pilotRegion": "顺序批次 P36-P46",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
-  "mode": "completed-batch-terminal-authority-sync",
-  "queuePages": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
-  "startWithPage": null,
+  "mode": "chronological-eleven-queued-one-item-per-run",
+  "queuePages": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46],
+  "startWithPage": 36,
   "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
   "automaticRecovery": true,
   "autonomousRepair": true,
@@ -28,7 +28,7 @@
     "etaSeconds": true
   },
   "humanReviewOnUnknownFailure": false,
-  "expectedDownloadCount": 0,
-  "expectedAnalysisCount": 0,
-  "reason": "Persist terminal authority for the already completed 11/11 bounded batch without downloading or re-analyzing media."
+  "expectedDownloadCount": 11,
+  "expectedAnalysisCount": 11,
+  "reason": "Process P36 through P46 strictly one at a time; persist and validate each result before starting the next item."
 }
