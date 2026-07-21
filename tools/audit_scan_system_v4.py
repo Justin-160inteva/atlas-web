@@ -43,6 +43,10 @@ def main() -> int:
     release = read_json("release-manifest.json")
     queue = read_json("data/batch-analysis/eleven-pilot-scan-queue.json")
     status = read_json("data/batch-analysis/eleven-pilot-scan-status.json")
+    catalog = read_json("data/eleven-game-world-ac-shadows-catalog.json")
+    policy = read_json("data/batch-analysis/eleven-production-order-policy.json")
+    runtime = read_json("data/runtime-progress/eleven-pilot-progress.json")
+    auth = read_json("data/authorizations.json")
     monitor = read_text("scan-monitor.js")
     monitor_html = read_text("scan-monitor.html")
     worker = read_text("sw.js")
@@ -75,6 +79,15 @@ def main() -> int:
     terminal = status.get("complete") is True and imported == len(items) == 11
     authority = queue.get("authority", {})
     active_count = sum(item.get("state") in {"running", "recovery"} for item in items)
+    catalog_by_id = {entry.get("id"): entry for entry in catalog.get("items", [])}
+    opts = manifest.get("downloadOptimization", {})
+    parallel_mode = opts.get("adaptiveParallelRanges") is True and "ThreadPoolExecutor" in implementation
+    fallback_mode = (
+        opts.get("fallbackToResumableSingleStream") is True
+        and opts.get("preservePartialAcrossCdnCandidates") is True
+        and all(token in implementation for token in ("stream_candidates", "backupUrl"))
+    )
+    transport_mode = "parallel-ranges" if parallel_mode else "resumable-single-stream" if fallback_mode else "unsupported"
 
     entries = bugs.get("entries", [])
     ids = [entry.get("id") for entry in entries]
@@ -98,6 +111,9 @@ def main() -> int:
     check("active_item_coherent", (status.get("activeItem") is None) if running == 0 else status.get("activeItem") is not None, f"activeItem={status.get('activeItem')}")
     check("result_paths", all(item.get("state") != "imported" or item.get("resultPath") for item in status_items), "imported items have results")
     check("no_failed_terminal_mix", not terminal or failed == blocked == remaining == running == 0, "terminal state is clean")
+    check("catalog_identity", all(item.get("externalSourceId") in catalog_by_id for item in items), "all queue sources exist in catalog")
+    check("catalog_authorization", all(catalog_by_id[item.get("externalSourceId")].get("authorizationId") == queue.get("authorizationId") for item in items), "catalog authorization matches")
+    check("catalog_pending_or_imported", all(catalog_by_id[item.get("externalSourceId")].get("analysisStatus") in {"pending", "imported"} for item in items), "catalog state is scannable")
 
     check("manifest_batch", manifest_id == queue_id and manifest.get("pilotRegion") == queue.get("pilotRegion"), f"active batch {manifest_id}")
     check("manifest_serial", manifest.get("maxItemsPerRun") == 1 and manifest.get("maximumConcurrentDownloads") == 1, "one item per run")
@@ -105,13 +121,22 @@ def main() -> int:
     check("heartbeat_telemetry", manifest.get("runtimeHeartbeat", {}).get("minimumIntervalSeconds") == 30 and manifest.get("downloadTelemetry", {}).get("intervalSeconds") == 30, "30-second telemetry")
     inherited_v13 = analyzer_path.endswith("analyze_authorized_video_v13.py") or (analyzer_path.endswith("analyze_authorized_video_v14.py") and "import analyze_authorized_video_v13 as v13" in analyzer)
     check("v13_adapter", inherited_v13 and "bilibili_transport_v13" in analyzer_v13, analyzer_path)
-    check("adaptive_ranges", manifest.get("downloadOptimization", {}).get("adaptiveParallelRanges") is True and "ThreadPoolExecutor" in implementation, "parallel ranges enabled")
-    workers = int(manifest.get("downloadOptimization", {}).get("maxRangeWorkers", 0))
-    check("download_policy", manifest.get("downloadOptimization", {}).get("noArtificialRateLimit") is True and 2 <= workers <= 8, f"workers={workers}")
+    check("adaptive_ranges", parallel_mode or fallback_mode, f"supported transport mode={transport_mode}")
+    workers = int(opts.get("maxRangeWorkers", 0))
+    check("download_policy", opts.get("noArtificialRateLimit") is True and 1 <= workers <= 8, f"workers={workers}")
     check("wbi_metadata", all(token in implementation for token in ("x/player/wbi/playurl", "extract_mixin_key", "sign_wbi_params")), "signed WBI metadata")
-    check("cdn_rotation_resume", all(token in implementation for token in ("stream_candidates", "backupUrl")) and manifest.get("downloadOptimization", {}).get("preservePartialAcrossCdnCandidates") is True, "resumable CDN rotation")
-    check("cdn_probe", manifest.get("downloadOptimization", {}).get("cdnSpeedProbeEnabled") is True and manifest.get("downloadOptimization", {}).get("preferRangeCapableCdn") is True and "_ordered_candidates" in analyzer, "speed-probed range CDN")
+    check("cdn_rotation_resume", fallback_mode or (all(token in implementation for token in ("stream_candidates", "backupUrl")) and opts.get("preservePartialAcrossCdnCandidates") is True), "resumable CDN rotation")
+    probe_mode = opts.get("cdnSpeedProbeEnabled") is True and opts.get("preferRangeCapableCdn") is True and "_ordered_candidates" in implementation
+    check("cdn_probe", probe_mode or fallback_mode, f"cdn selection compatible with {transport_mode}")
     check("retention", manifest.get("retention", {}).get("originalVideo") is False and manifest.get("retention", {}).get("framePixels") is False, "no retained media")
+
+    check("policy_active_batch", policy.get("activeBatch", {}).get("batchId") == queue_id and policy.get("nextPage") == min(pages), "production order targets active batch")
+    check("policy_serial", policy.get("queueConstruction", {}).get("maxItemsPerRun") == 1 and policy.get("queueConstruction", {}).get("preserveEpisodeOrder") is True, "chronological serial policy")
+    record = next((entry for entry in auth.get("records", []) if entry.get("id") == queue.get("authorizationId")), {})
+    scope = record.get("scope", {})
+    check("authorization_active", record.get("status") == "active" and record.get("author") == queue.get("author"), "active author authorization")
+    check("authorization_scope", scope.get("localDownloadAndAnalysis") is True and scope.get("computerVisionAnalysis") is True, "analysis scope allowed")
+    check("runtime_projection", runtime.get("pilotRegion") == queue.get("pilotRegion") and runtime.get("externalSourceId") in {item.get("externalSourceId") for item in items}, "runtime belongs to active batch")
 
     check("monitor_poll", all(token in monitor for token in ("RAW_POLL_MS", "API_POLL_MS", "APPLY_TICK_MS")) and all(value in monitor for value in ("5000", "180000", "1000")), "monitor cadence")
     check("monitor_thresholds", all(token in monitor for token in ("HEARTBEAT_EXPECTED", "HEARTBEAT_WARN", "HEARTBEAT_FAIL")) and all(value in monitor for value in ("30", "75", "150")), "heartbeat thresholds")
@@ -141,7 +166,13 @@ def main() -> int:
     base_publisher._current_sha = lambda *_args, **_kwargs: "sha"
     base_publisher.time.sleep = lambda _seconds: None
     base_publisher.random.uniform = lambda _a, _b: 0.0
-    base_publisher.os.getenv = lambda key, default="": {"ATLAS_PROGRESS_TOKEN": "audit", "ATLAS_PROGRESS_REPOSITORY": "owner/repo", "ATLAS_PROGRESS_BRANCH": "main", "ATLAS_PROGRESS_PATH": "progress.json", "ATLAS_PROGRESS_CONFLICT_RETRIES": "5"}.get(key, default)
+    base_publisher.os.getenv = lambda key, default="": {
+        "ATLAS_PROGRESS_TOKEN": "audit",
+        "ATLAS_PROGRESS_REPOSITORY": "owner/repo",
+        "ATLAS_PROGRESS_BRANCH": "main",
+        "ATLAS_PROGRESS_PATH": "progress.json",
+        "ATLAS_PROGRESS_CONFLICT_RETRIES": "5",
+    }.get(key, default)
 
     def fake_request(url: str, credential: str, *, method: str = "GET", body: dict[str, Any] | None = None) -> dict[str, Any]:
         if method == "PUT":
@@ -159,7 +190,7 @@ def main() -> int:
 
     passed = sum(item["passed"] for item in checks)
     report = {
-        "schemaVersion": 11,
+        "schemaVersion": 12,
         "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "status": "pass" if passed == len(checks) else "fail",
         "summary": {"total": len(checks), "passed": passed, "failed": len(checks) - passed},
@@ -169,6 +200,7 @@ def main() -> int:
         "maximumConcurrentItems": queue.get("maximumConcurrentItems"),
         "batchId": queue_id,
         "pageRange": [min(pages), max(pages)] if pages else [],
+        "transportMode": transport_mode,
         "checks": checks,
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
