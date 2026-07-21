@@ -1,0 +1,89 @@
+name: Reconcile completed scan authority
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reconcile-completed-scan-authority.yml'
+  workflow_run:
+    workflows:
+      - Scan 11 game world regional batch v11
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atlas-completed-scan-authority
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Synchronize durable terminal authority
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          queue_path = Path('data/batch-analysis/eleven-pilot-scan-queue.json')
+          status_path = Path('data/batch-analysis/eleven-pilot-scan-status.json')
+          queue = json.loads(queue_path.read_text(encoding='utf-8'))
+          status = json.loads(status_path.read_text(encoding='utf-8'))
+          items = queue.get('items', [])
+          summary = status.get('summary', {})
+          complete = (
+              status.get('complete') is True
+              and summary.get('total') == summary.get('imported') == len(items) == 11
+              and all(item.get('state') == 'imported' for item in items)
+          )
+          if not complete:
+              print('bounded batch is not terminal; no authority change')
+              raise SystemExit(0)
+
+          authority = queue.setdefault('authority', {})
+          authority.update({
+              'owner': 'data/batch-analysis/eleven-pilot-scan-status.json',
+              'batchId': status.get('batchId') or queue.get('queueId'),
+              'terminal': True,
+              'protectFromCatalogRegeneration': True,
+          })
+          queue['status'] = 'complete'
+          queue.pop('activeExternalSourceId', None)
+          queue['updatedAt'] = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+          queue_path.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print('terminal authority synchronized for 11/11 imported items')
+          PY
+
+      - name: Run complete scan health audit
+        run: |
+          python -m py_compile tools/audit_scan_system_v3.py
+          python tools/audit_scan_system_v3.py
+
+      - name: Persist reconciled queue and passing report
+        run: |
+          git config user.name 'atlas-terminal-reconciler[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/scan-system-health.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Reconcile completed scan authority and health [skip ci]'
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          exit 1
