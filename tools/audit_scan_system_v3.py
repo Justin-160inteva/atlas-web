@@ -150,7 +150,7 @@ def main() -> int:
     check("workflow_capacity", "len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']==11" in workflow, "eleven-item workflow gate")
     check("workflow_serial", "Scan exactly one item" in workflow and "maximumConcurrentDownloads" in workflow, "one active scan")
     check("workflow_catalog_state", "if item.get('state')=='imported'" in workflow and "catalog_state=='imported'" in workflow, "catalog state remains coherent after each run")
-    check("workflow_400_gate", "400/400 eleven-item serial integrity and privacy checks passed" in workflow, "400-round scan gate")
+    check("workflow_400_gate", any(text in workflow for text in ("400/400 eleven-item serial integrity and privacy checks passed", "400/400 serial integrity, autonomy safety, and privacy checks passed")), "400-round scan gate")
     check("workflow_auto_continue", "Continue with exactly one next item after durable success" in workflow and "steps.decision.outputs.progressed == 'true'" in workflow, "next run only after durable success")
 
     check("monitor_poll", all(token in monitor for token in ("RAW_POLL_MS", "API_POLL_MS", "APPLY_TICK_MS")) and all(value in monitor for value in ("5000", "180000", "1000")), "5s raw, 180s API, 1s UI")
