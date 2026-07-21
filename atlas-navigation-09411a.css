@@ -94,15 +94,8 @@ html body :where(.glass,.top-bar,.map-controls,.status-pill,.panel,.settings-pan
   backdrop-filter:blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important;
   box-shadow:var(--atlas-glass-shadow)!important;
 }
-html body .top-bar{
-  border:1px solid var(--atlas-glass-line)!important;
-  border-radius:22px!important;
-  overflow:hidden!important;
-}
-html body :where(.panel,.settings-panel,.evidence-panel,.sheet,.search-modal){
-  box-shadow:var(--atlas-glass-shadow-large)!important;
-  transition:var(--atlas-panel-motion)!important;
-}
+html body .top-bar{border:1px solid var(--atlas-glass-line)!important;border-radius:22px!important;overflow:hidden!important}
+html body :where(.panel,.settings-panel,.evidence-panel,.sheet,.search-modal){box-shadow:var(--atlas-glass-shadow-large)!important;transition:var(--atlas-panel-motion)!important}
 html body .sheet{background:linear-gradient(180deg,rgba(62,48,51,.9),rgba(20,17,18,.9))!important}
 html body .monitor-overlay{background:rgba(10,8,9,.91)!important}
 html body .monitor-toolbar{background:linear-gradient(180deg,rgba(54,38,42,.9),rgba(16,14,15,.9))!important}
@@ -117,19 +110,9 @@ html body :where(.filter-summary,.category-chip,.route-summary,.route-stat,.rout
   backdrop-filter:none!important;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.085)!important;
 }
-html body :where(.search-trigger,.search-input-row,.evidence-template-row select,input,select,textarea){
-  border-color:var(--atlas-glass-line-soft)!important;
-  background:var(--atlas-glass-soft)!important;
-}
+html body :where(.search-trigger,.search-input-row,.evidence-template-row select,input,select,textarea){border-color:var(--atlas-glass-line-soft)!important;background:var(--atlas-glass-soft)!important}
 
-html body :where(
-  .icon-button,.profile-button,.map-controls button,.search-trigger,
-  .close-panel,.close-route,.close-progress,.settings-close,.monitor-close,.monitor-refresh,
-  .sheet-actions button,.route-actions button,.evidence-actions button,.evidence-tool-grid button,
-  .evidence-editor-actions button,.evidence-source button,.evidence-season-tabs button,
-  .data-center-tabs button,.settings-card,.category-chip,.region-progress,.result-item,
-  .route-stop-copy,.route-remove,#toggleAll,#openRouteBadge
-){
+html body :where(.icon-button,.profile-button,.map-controls button,.search-trigger,.close-panel,.close-route,.close-progress,.settings-close,.monitor-close,.monitor-refresh,.sheet-actions button,.route-actions button,.evidence-actions button,.evidence-tool-grid button,.evidence-editor-actions button,.evidence-source button,.evidence-season-tabs button,.data-center-tabs button,.settings-card,.category-chip,.region-progress,.result-item,.route-stop-copy,.route-remove,#toggleAll,#openRouteBadge){
   border:1px solid var(--atlas-glass-line-soft)!important;
   background:linear-gradient(148deg,rgba(255,255,255,.1),rgba(133,35,47,.12) 54%,rgba(34,22,25,.28))!important;
   color:var(--text)!important;
@@ -137,31 +120,15 @@ html body :where(
   transition:var(--atlas-control-motion)!important;
   touch-action:manipulation;
 }
-html body :where(
-  .icon-button,.profile-button,.map-controls button,.close-panel,.close-route,.close-progress,
-  .settings-close,.monitor-close,.monitor-refresh,.sheet-actions button,.route-actions button,
-  .evidence-actions button,.evidence-tool-grid button,.evidence-editor-actions button,
-  .evidence-source button,.evidence-season-tabs button,.data-center-tabs button,#toggleAll,#openRouteBadge
-):active{
-  transform:scale(.96)!important;
-  opacity:.92;
-}
+html body :where(.icon-button,.profile-button,.map-controls button,.close-panel,.close-route,.close-progress,.settings-close,.monitor-close,.monitor-refresh,.sheet-actions button,.route-actions button,.evidence-actions button,.evidence-tool-grid button,.evidence-editor-actions button,.evidence-source button,.evidence-season-tabs button,.data-center-tabs button,#toggleAll,#openRouteBadge):active{transform:scale(.96)!important;opacity:.92}
 
-html body :where(
-  .sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,
-  .data-center-tabs button.active,.evidence-season-tabs button.active,.evidence-tool-grid button.active,
-  .settings-primary-card,.category-chip:not(.off).active,.region-progress.active
-){
+html body :where(.sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,.data-center-tabs button.active,.evidence-season-tabs button.active,.evidence-tool-grid button.active,.settings-primary-card,.category-chip:not(.off).active,.region-progress.active){
   border-color:var(--atlas-red-line)!important;
   background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 42%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper))!important;
   color:#fff!important;
   box-shadow:var(--atlas-red-glow)!important;
 }
-html body :where(.evidence-actions button.danger,.evidence-editor-actions button.danger,#clearRoute){
-  border-color:rgba(255,123,135,.34)!important;
-  background:linear-gradient(150deg,rgba(216,74,88,.42),rgba(104,18,31,.56))!important;
-  color:#ffd9dd!important;
-}
+html body :where(.evidence-actions button.danger,.evidence-editor-actions button.danger,#clearRoute){border-color:rgba(255,123,135,.34)!important;background:linear-gradient(150deg,rgba(216,74,88,.42),rgba(104,18,31,.56))!important;color:#ffd9dd!important}
 
 .quick-rail .rail-button,.bottom-nav .nav-item{
   min-width:0!important;
@@ -180,7 +147,6 @@ html body :where(.evidence-actions button.danger,.evidence-editor-actions button
   transition:var(--atlas-control-motion)!important;
 }
 
-/* True inner inset: every rail cell sits visibly inside the outer glass border. */
 html body .quick-rail.quick-rail .rail-button{
   width:calc(100% - 8px)!important;
   max-width:calc(100% - 8px)!important;
@@ -193,12 +159,19 @@ html body .quick-rail.quick-rail .rail-button{
 .quick-rail .rail-button:not(.active),.bottom-nav .nav-item:not(.active){background:transparent!important}
 .quick-rail .rail-button:active,.bottom-nav .nav-item:active{transform:scale(.955)!important}
 
-/* Final selected-state authority: no enlargement and no outer shadow. */
-html body .bottom-nav .nav-item.active,
-html body .quick-rail.quick-rail .rail-button.active{
+html body .bottom-nav .nav-item.active{
   border:1px solid var(--atlas-red-line)!important;
   background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 42%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper))!important;
   color:#fff!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(91,27,38,.1)!important;
+  transform:none!important;
+}
+
+/* Higher specificity only locks geometry and inset shadow; Glass Active colors stay translucent. */
+html body .quick-rail.quick-rail .rail-button.active{
+  border-color:var(--atlas-glass-active-line,var(--atlas-red-line))!important;
+  background:var(--atlas-glass-active-bg,linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 42%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper)))!important;
+  color:var(--atlas-glass-active-ink,#6b2b37)!important;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(91,27,38,.1)!important;
   transform:none!important;
 }
@@ -207,27 +180,14 @@ html body .quick-rail.quick-rail .rail-button.active{
 .quick-rail[inert],.quick-rail[aria-disabled="true"]{pointer-events:auto!important;opacity:1!important}
 .quick-rail .rail-button{pointer-events:auto!important}
 
-.profile-button.atlas-settings-button{
-  border:1px solid var(--atlas-glass-line)!important;
-  background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(139,37,50,.13),rgba(26,21,23,.4))!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 20px rgba(0,0,0,.17)!important;
-}
+.profile-button.atlas-settings-button{border:1px solid var(--atlas-glass-line)!important;background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(139,37,50,.13),rgba(26,21,23,.4))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 20px rgba(0,0,0,.17)!important}
 .profile-button.atlas-settings-button .atlas-control-icon{width:23px!important;height:23px!important;stroke-width:1.65!important}
-.profile-button.atlas-settings-button[aria-expanded="true"]{
-  border-color:var(--atlas-red-line)!important;
-  background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 44%,var(--atlas-red-deep))!important;
-  box-shadow:var(--atlas-red-glow)!important;
-}
+.profile-button.atlas-settings-button[aria-expanded="true"]{border-color:var(--atlas-red-line)!important;background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 44%,var(--atlas-red-deep))!important;box-shadow:var(--atlas-red-glow)!important}
 
-html body :where(button,[role="button"],input,select,textarea):focus-visible{
-  outline:2px solid rgba(255,172,180,.82)!important;
-  outline-offset:2px;
-}
+html body :where(button,[role="button"],input,select,textarea):focus-visible{outline:2px solid rgba(255,172,180,.82)!important;outline-offset:2px}
 
 @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
-  html body :where(.glass,.top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar){
-    background:linear-gradient(148deg,rgba(65,51,54,.97),rgba(17,15,16,.98))!important;
-  }
+  html body :where(.glass,.top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar){background:linear-gradient(148deg,rgba(65,51,54,.97),rgba(17,15,16,.98))!important}
 }
 
 html.atlas-ipad :where(.quick-rail,.bottom-nav,.top-bar,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.sheet){--atlas-glass-blur:14px}
@@ -251,11 +211,7 @@ html.atlas-ipad :where(.quick-rail,.bottom-nav,.top-bar,.map-controls,.status-pi
 }
 
 @media(prefers-reduced-transparency:reduce){
-  html body :where(.glass,.top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar){
-    -webkit-backdrop-filter:none!important;
-    backdrop-filter:none!important;
-    background:linear-gradient(148deg,rgba(61,45,49,.98),rgba(16,14,15,.99))!important;
-  }
+  html body :where(.glass,.top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar){-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:linear-gradient(148deg,rgba(61,45,49,.98),rgba(16,14,15,.99))!important}
 }
 
 @media(prefers-reduced-motion:reduce){
