@@ -163,13 +163,10 @@ jobs:
           if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != 'true' ]; then
             npx playwright install --with-deps chromium
           fi
-          node - <<'NODE' || (npx playwright install --with-deps chromium && node - <<'NODE2')
-          const { chromium } = require('playwright');
-          chromium.launch({headless:true}).then(async b=>{await b.close(); console.log('cached Chromium ready')});
-          NODE
-          const { chromium } = require('playwright');
-          chromium.launch({headless:true}).then(async b=>{await b.close(); console.log('Chromium fallback ready')});
-          NODE2
+          if ! node -e "const {chromium}=require('playwright'); chromium.launch({headless:true}).then(async b=>{await b.close()}).catch(()=>process.exit(1))"; then
+            npx playwright install --with-deps chromium
+            node -e "const {chromium}=require('playwright'); chromium.launch({headless:true}).then(async b=>{await b.close(); console.log('Chromium fallback ready')})"
+          fi
 
       - name: Start local Atlas server only for browser validation
         if: steps.validation.outputs.run_playwright == 'true'
