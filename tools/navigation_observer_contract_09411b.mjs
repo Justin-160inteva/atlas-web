@@ -72,10 +72,13 @@ check('no filter blur added', !/[^-]filter:\s*blur\(/.test(css));
 check('bottom nav uses five isolated grid cells', /grid-template-columns:repeat\(5,minmax\(0,1fr\)\)!important/.test(css) && /html body \.bottom-nav[\s\S]*gap:6px!important/.test(css));
 check('quick rail uses five isolated grid cells', /grid-template-rows:repeat\(5,minmax\(0,1fr\)\)!important/.test(css));
 check('navigation cells clip cross-cell paint', /\.quick-rail \.rail-button,\.bottom-nav \.nav-item\{[\s\S]*overflow:hidden!important;[\s\S]*contain:layout paint style!important/.test(css));
-check('selected navigation does not enlarge', /Final selected-state authority: no enlargement[\s\S]*transform:none!important/.test(css) && !/Final selected-state authority[\s\S]*scale\(1\.035\)/.test(css));
+const bottomActiveRule = css.match(/html body \.bottom-nav \.nav-item\.active\{[\s\S]*?\n\}/)?.[0] || '';
+const railActiveRule = css.match(/html body \.quick-rail\.quick-rail \.rail-button\.active\{[\s\S]*?\n\}/)?.[0] || '';
+check('selected navigation does not enlarge', /transform:none!important/.test(bottomActiveRule) && /transform:none!important/.test(railActiveRule) && !/scale\(1\.035\)/.test(bottomActiveRule + railActiveRule));
 check('quick rail cells have true inner width inset', /html body \.quick-rail\.quick-rail \.rail-button\{[\s\S]*width:calc\(100% - 8px\)!important;[\s\S]*justify-self:center!important/.test(css));
 check('quick rail cells have vertical inset', /height:calc\(100% - 4px\)!important;[\s\S]*align-self:center!important/.test(css));
-check('quick rail selected state has no outer shadow', /quick-rail\.quick-rail \.rail-button\.active\{[\s\S]*box-shadow:inset 0 1px 0[^;]*inset 0 -1px 0[^;]*!important/.test(css));
+check('quick rail selected state has no outer shadow', /box-shadow:inset 0 1px 0[^;]*inset 0 -1px 0[^;]*!important/.test(railActiveRule));
+check('quick rail selected state keeps translucent active token', /background:var\(--atlas-glass-active-bg/.test(railActiveRule));
 
 check('marker authority is marker-state', manifest.runtimeOwners.markerGeometry === 'marker-state.js' && manifest.runtimeOwners.markerSelectionMotion === 'marker-state.js');
 check('marker audit owner is marker-state', manifest.runtimeOwners.markerDesignAudit === 'marker-state.js');
