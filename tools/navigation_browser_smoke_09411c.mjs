@@ -34,7 +34,7 @@ for (const profile of profiles) {
   page.on('console', message => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
 
   try {
-    await page.goto(`${baseURL}?navigation-smoke=09412c-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    await page.goto(`${baseURL}?navigation-smoke=09412d-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForFunction(() => Number(document.getElementById('visibleCount')?.textContent || 0) >= 3000, null, { timeout: 45_000 });
     await page.waitForFunction(() => window.AtlasNavigationRecovery?.version === '0.9.4.11b', null, { timeout: 15_000 });
     await page.waitForFunction(() => window.AtlasMarkerDesign?.version === '0.9.4.12b-1', null, { timeout: 15_000 });
@@ -47,24 +47,16 @@ for (const profile of profiles) {
         const style = getComputedStyle(node);
         const matrix = new DOMMatrixReadOnly(style.transform === 'none' ? 'matrix(1,0,0,1,0,0)' : style.transform);
         return {
-          left: rect.left,
-          right: rect.right,
-          top: rect.top,
-          bottom: rect.bottom,
-          width: rect.width,
-          height: rect.height,
-          transformX: matrix.e,
-          pointerEvents: style.pointerEvents,
-          visibility: style.visibility,
+          left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
+          width: rect.width, height: rect.height, transformX: matrix.e,
+          pointerEvents: style.pointerEvents, visibility: style.visibility,
           opacity: Number.parseFloat(style.opacity)
         };
       };
       return {
-        bottom: read('.bottom-nav'),
-        rail: read('.quick-rail'),
+        bottom: read('.bottom-nav'), rail: read('.quick-rail'),
         viewport: { width: innerWidth, height: innerHeight },
-        audit: window.AtlasNavigationRecovery.audit(),
-        markerAudit: window.AtlasMarkerDesign.audit()
+        audit: window.AtlasNavigationRecovery.audit(), markerAudit: window.AtlasMarkerDesign.audit()
       };
     });
 
@@ -94,14 +86,12 @@ for (const profile of profiles) {
         if (!node) return null;
         const style = getComputedStyle(node);
         return {
-          selector,
-          background: style.backgroundImage,
+          selector, background: style.backgroundImage,
           backdrop: style.backdropFilter || style.webkitBackdropFilter || 'none',
           blur: blurValue(style.backdropFilter || style.webkitBackdropFilter),
           border: Number.parseFloat(style.borderTopWidth) || 0,
           radius: Number.parseFloat(style.borderTopLeftRadius) || 0,
-          shadow: style.boxShadow,
-          transition: style.transitionDuration
+          shadow: style.boxShadow, transition: style.transitionDuration
         };
       };
       const root = getComputedStyle(document.documentElement);
@@ -117,20 +107,19 @@ for (const profile of profiles) {
           ink: root.getPropertyValue('--atlas-red-ink').trim(),
           blur: root.getPropertyValue('--atlas-glass-blur').trim()
         },
-        surfaces: selectors.map(inspect).filter(Boolean),
-        nested,
+        surfaces: selectors.map(inspect).filter(Boolean), nested,
         active: inspect('.bottom-nav .nav-item.active'),
         primary: inspect('.route-actions .primary'),
-        mapControls: inspect('.map-controls'),
-        mapAction: inspect('.map-controls button')
+        mapControls: inspect('.map-controls'), mapAction: inspect('.map-controls button')
       };
     });
 
+    const translucentToken = value => /^rgba\(/.test(value) && /,\s*0?\.[0-9]+\)$/.test(value);
     check('glass token is installed', glassState.tokens.surface.includes('linear-gradient'), JSON.stringify(glassState.tokens));
-    check('ultra-light red token is installed', glassState.tokens.light === '#fffafb', JSON.stringify(glassState.tokens));
-    check('mist-pink token is installed', glassState.tokens.mid === '#fdecef', JSON.stringify(glassState.tokens));
-    check('light-rose token is installed', glassState.tokens.deep === '#f7d4da' && glassState.tokens.deeper === '#edb4bf', JSON.stringify(glassState.tokens));
-    check('dark rose ink token is installed', glassState.tokens.ink === '#6b2b37', JSON.stringify(glassState.tokens));
+    check('ultra-light red token is translucent', translucentToken(glassState.tokens.light), JSON.stringify(glassState.tokens));
+    check('mist-pink token is translucent', translucentToken(glassState.tokens.mid), JSON.stringify(glassState.tokens));
+    check('light-rose tokens are translucent', translucentToken(glassState.tokens.deep) && translucentToken(glassState.tokens.deeper), JSON.stringify(glassState.tokens));
+    check('dark rose ink token is installed', glassState.tokens.ink === 'var(--atlas-glass-active-ink)' || glassState.tokens.ink === '#6b2b37', JSON.stringify(glassState.tokens));
     check('representative surfaces exist', glassState.surfaces.length === 8, JSON.stringify(glassState.surfaces));
     for (const surface of glassState.surfaces) {
       check(`${surface.selector} uses glass gradient`, surface.background !== 'none' && surface.background.includes('linear-gradient'), JSON.stringify(surface));
@@ -141,8 +130,8 @@ for (const profile of profiles) {
     for (const nested of glassState.nested) check(`${nested.selector} avoids nested blur`, nested.blur === 0, JSON.stringify(nested));
     check('map control container is frameless transparent', glassState.mapControls?.background === 'none' && glassState.mapControls.blur === 0 && glassState.mapControls.border === 0 && glassState.mapControls.radius === 0 && glassState.mapControls.shadow === 'none', JSON.stringify(glassState.mapControls));
     check('map action is frameless transparent', glassState.mapAction?.background === 'none' && glassState.mapAction.blur === 0 && glassState.mapAction.border === 0 && glassState.mapAction.shadow === 'none', JSON.stringify(glassState.mapAction));
-    check('active control uses ultra-light red gradient', glassState.active?.background.includes('linear-gradient') && glassState.active.background !== glassState.mapAction?.background, JSON.stringify(glassState.active));
-    check('primary control uses ultra-light red gradient', glassState.primary?.background.includes('linear-gradient') && glassState.primary.background !== glassState.mapAction?.background, JSON.stringify(glassState.primary));
+    check('active control uses translucent glass gradient', glassState.active?.background.includes('linear-gradient') && glassState.active.background.includes('rgba'), JSON.stringify(glassState.active));
+    check('primary control uses translucent glass gradient', glassState.primary?.background.includes('linear-gradient') && glassState.primary.background.includes('rgba'), JSON.stringify(glassState.primary));
 
     const selectedMarker = await page.evaluate(() => {
       const marker = state.markers.find(item => item.items?.[0]);
@@ -185,11 +174,7 @@ for (const profile of profiles) {
       check(`rail ${mode} keeps one active`, await page.locator('.quick-rail .rail-button.active').count() === 1);
     }
 
-    const returnCases = [
-      ['filter', 'locations', '#filterPanel'],
-      ['route', 'collectibles', '#routePanel'],
-      ['progress', 'activities', '#progressPanel']
-    ];
+    const returnCases = [['filter','locations','#filterPanel'],['route','collectibles','#routePanel'],['progress','activities','#progressPanel']];
     for (const [panel, mode, selector] of returnCases) {
       await page.locator(`.bottom-nav .nav-item[data-panel="${panel}"]`).click({ timeout: 5000 });
       await page.locator('.bottom-nav .nav-item[data-panel="map"]').click({ timeout: 5000 });
@@ -218,5 +203,5 @@ for (const result of report) {
   const passed = result.checks.filter(item => item.passed).length;
   console.log(`${result.profile}: ${passed}/${result.checks.length}; errors=${result.errors.length}`);
 }
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12c', passed: !failed, profiles: report }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12d', passed: !failed, profiles: report }, null, 2));
 if (failed) process.exit(1);
