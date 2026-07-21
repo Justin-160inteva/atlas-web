@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-07-21T09:06:20.825976Z",
+  "generatedAt": "2026-07-21T11:17:18.660670Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "autonomyPolicy": "data/scan-autonomy-policy.json",
@@ -8,8 +8,8 @@
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-21T09:06:20.825948Z",
-      "finishedAt": "2026-07-21T09:06:20.825968Z",
+      "startedAt": "2026-07-21T11:17:18.660642Z",
+      "finishedAt": "2026-07-21T11:17:18.660661Z",
       "preflightState": "unrecoverable",
       "dictionaryEntryId": null,
       "action": "human_review_required",
@@ -17,7 +17,7 @@
       "requiresHumanReview": true,
       "autonomousRepair": {
         "schemaVersion": 1,
-        "generatedAt": "2026-07-21T09:06:20.794078Z",
+        "generatedAt": "2026-07-21T11:17:18.630966Z",
         "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
         "outcome": "batch_already_complete",
         "confirmationRequired": false,
@@ -25,7 +25,7 @@
         "tests": [],
         "durationSeconds": 0.0,
         "controllerReturnCode": 0,
-        "controllerOutput": "{\"schemaVersion\": 1, \"generatedAt\": \"2026-07-21T09:06:20.794078Z\", \"manifest\": \"data/batch-analysis/eleven-pilot-scan-manifest.json\", \"outcome\": \"batch_already_complete\", \"confirmationRequired\": false, \"changedFiles\": [], \"tests\": [], \"durationSeconds\": 0.0}\n\n"
+        "controllerOutput": "{\"schemaVersion\": 1, \"generatedAt\": \"2026-07-21T11:17:18.630966Z\", \"manifest\": \"data/batch-analysis/eleven-pilot-scan-manifest.json\", \"outcome\": \"batch_already_complete\", \"confirmationRequired\": false, \"changedFiles\": [], \"tests\": [], \"durationSeconds\": 0.0}\n\n"
       }
     }
   ],
