@@ -1,4 +1,4 @@
-/* Atlas Alpha 0.9.4.12d-1 — unified glass with isolated navigation cells */
+/* Atlas Alpha 0.9.4.12d-2 — unified glass with true rail inner inset */
 :root{
   --atlas-nav-edge:max(12px,env(safe-area-inset-left,0px));
   --atlas-nav-edge-right:max(12px,env(safe-area-inset-right,0px));
@@ -179,12 +179,23 @@ html body :where(.evidence-actions button.danger,.evidence-editor-actions button
   -webkit-tap-highlight-color:transparent;
   transition:var(--atlas-control-motion)!important;
 }
+
+/* True inner inset: every rail cell sits visibly inside the outer glass border. */
+html body .quick-rail.quick-rail .rail-button{
+  width:calc(100% - 8px)!important;
+  max-width:calc(100% - 8px)!important;
+  height:calc(100% - 4px)!important;
+  justify-self:center!important;
+  align-self:center!important;
+  border-radius:14px!important;
+}
+
 .quick-rail .rail-button:not(.active),.bottom-nav .nav-item:not(.active){background:transparent!important}
 .quick-rail .rail-button:active,.bottom-nav .nav-item:active{transform:scale(.955)!important}
 
-/* Final selected-state authority: no enlargement, no cross-cell paint. */
+/* Final selected-state authority: no enlargement and no outer shadow. */
 html body .bottom-nav .nav-item.active,
-html body .quick-rail .rail-button.active{
+html body .quick-rail.quick-rail .rail-button.active{
   border:1px solid var(--atlas-red-line)!important;
   background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 42%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper))!important;
   color:#fff!important;
