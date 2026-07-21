@@ -2,22 +2,22 @@
   'use strict';
 
   const root = document.documentElement;
-  const viewport = document.querySelector('meta[name="viewport"]');
+  const viewportMeta = document.querySelector('meta[name="viewport"]');
   const visual = window.visualViewport;
   const canonicalViewport = 'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no,interactive-widget=resizes-content';
-  const scaleTolerance = 0.015;
   const dimensionTolerance = 2;
+  const stabilityDelayMs = 56;
+  const maximumStabilitySamples = 12;
   let lastWidth = 0;
   let lastHeight = 0;
   let lastOrientation = '';
   let lastProfile = '';
-  let frame = 0;
-  let settleTimer = 0;
-  let interacted = false;
-  let resettingScale = false;
-  let mapHooksInstalled = false;
   let previousCanvasWidth = 0;
   let previousCanvasHeight = 0;
+  let mapHooksInstalled = false;
+  let settleGeneration = 0;
+  let settleTimer = 0;
+  let commitCount = 0;
 
   function preventNativeZoom(event) {
     if (event.cancelable) event.preventDefault();
@@ -37,21 +37,47 @@
     return 'desktop';
   }
 
+  function editableElementActive() {
+    const active = document.activeElement;
+    return Boolean(active && /^(?:INPUT|TEXTAREA|SELECT)$/.test(active.tagName));
+  }
+
+  function shellBounds() {
+    const shell = document.querySelector('.app-shell');
+    const rect = shell?.getBoundingClientRect?.();
+    const layoutWidth = Math.max(
+      1,
+      Math.round(root.clientWidth || 0),
+      Math.round(window.innerWidth || 0),
+      Math.round(rect?.width || 0)
+    );
+    const layoutHeight = Math.max(
+      1,
+      Math.round(root.clientHeight || 0),
+      Math.round(window.innerHeight || 0),
+      Math.round(rect?.height || 0)
+    );
+    return { width: layoutWidth, height: layoutHeight };
+  }
+
   function readViewport() {
-    const scale = Math.max(0.1, Number(visual?.scale || 1));
-    const rawWidth = Number(visual?.width || root.clientWidth || window.innerWidth || 1);
-    const rawHeight = Number(visual?.height || root.clientHeight || window.innerHeight || 1);
-    const normalizeFactor = Math.abs(scale - 1) > scaleTolerance ? scale : 1;
-    const width = Math.max(1, Math.round(rawWidth * normalizeFactor));
-    const height = Math.max(1, Math.round(rawHeight * normalizeFactor));
+    const layout = shellBounds();
+    const visualScale = Math.max(0.1, Number(visual?.scale || 1));
+    const visualHeight = Math.max(1, Number(visual?.height || layout.height));
+    const visualTop = Math.max(0, Number(visual?.offsetTop || 0));
+    const keyboardInset = editableElementActive()
+      ? Math.max(0, Math.round(layout.height - visualHeight - visualTop))
+      : 0;
     return {
-      width,
-      height,
-      scale,
+      width: layout.width,
+      height: layout.height,
+      scale: visualScale,
       left: 0,
       top: 0,
-      orientation: orientationName(width, height),
-      profile: profileName(width, height)
+      keyboardInset,
+      orientation: orientationName(layout.width, layout.height),
+      profile: profileName(layout.width, layout.height),
+      source: 'layout-shell'
     };
   }
 
@@ -62,17 +88,20 @@
   function writeViewportMetrics(metrics, reason) {
     root.style.setProperty('--atlas-viewport-width', `${metrics.width}px`);
     root.style.setProperty('--atlas-viewport-height', `${metrics.height}px`);
-    root.style.setProperty('--atlas-viewport-left', `${metrics.left}px`);
-    root.style.setProperty('--atlas-viewport-top', `${metrics.top}px`);
+    root.style.setProperty('--atlas-viewport-left', '0px');
+    root.style.setProperty('--atlas-viewport-top', '0px');
     root.style.setProperty('--atlas-page-scale', String(metrics.scale));
+    root.style.setProperty('--atlas-keyboard-inset', `${metrics.keyboardInset}px`);
     root.dataset.atlasViewportProfile = metrics.profile;
     root.dataset.atlasViewportOrientation = metrics.orientation;
+    root.dataset.atlasViewportSource = metrics.source;
     root.dataset.atlasViewportReady = 'true';
+    root.dataset.atlasViewportCommitCount = String(commitCount);
     root.classList.toggle('atlas-compact-phone', metrics.profile === 'compact-phone');
     root.classList.toggle('atlas-phone', ['compact-phone', 'phone', 'large-phone'].includes(metrics.profile));
     root.classList.toggle('atlas-tablet', ['tablet', 'large-tablet'].includes(metrics.profile));
     root.dispatchEvent(new CustomEvent('atlas:viewportchange', {
-      detail: { ...metrics, reason }
+      detail: { ...metrics, reason, commitCount }
     }));
   }
 
@@ -116,14 +145,26 @@
     function viewportResize() {
       const metrics = readViewport();
       const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      const targetWidth = Math.max(1, Math.floor(metrics.width * dpr));
+      const targetHeight = Math.max(1, Math.floor(metrics.height * dpr));
+      const cssWidth = `${metrics.width}px`;
+      const cssHeight = `${metrics.height}px`;
+      const canvasAlreadyCorrect = canvas.width === targetWidth &&
+        canvas.height === targetHeight &&
+        canvas.style.width === cssWidth &&
+        canvas.style.height === cssHeight;
+      if (canvasAlreadyCorrect) return;
+
       const hadViewport = previousCanvasWidth > 0 && previousCanvasHeight > 0 && Number.isFinite(state.scale) && state.scale > 0;
       const worldCenterX = hadViewport ? (previousCanvasWidth / 2 - state.offsetX) / state.scale : 0;
       const worldCenterY = hadViewport ? (previousCanvasHeight / 2 - state.offsetY) / state.scale : 0;
-      canvas.width = Math.max(1, Math.floor(metrics.width * dpr));
-      canvas.height = Math.max(1, Math.floor(metrics.height * dpr));
-      canvas.style.width = `${metrics.width}px`;
-      canvas.style.height = `${metrics.height}px`;
+
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+      canvas.style.width = cssWidth;
+      canvas.style.height = cssHeight;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
       if (!hadViewport || (!state.offsetX && !state.offsetY)) {
         viewportFitMap();
       } else {
@@ -132,6 +173,7 @@
         state.offsetY = metrics.height / 2 - worldCenterY * state.scale;
         viewportUpdateZoomLabel();
       }
+
       previousCanvasWidth = metrics.width;
       previousCanvasHeight = metrics.height;
       if (typeof window.scheduleDraw === 'function') window.scheduleDraw();
@@ -208,7 +250,6 @@
     window.focusRoute = viewportFocusRoute;
     window.buildMarkers = viewportBuildMarkers;
     window.updateZoomLabel = viewportUpdateZoomLabel;
-    window.addEventListener('resize', viewportResize, { passive: true });
     const focusRouteButton = document.getElementById('focusRoute');
     if (focusRouteButton) focusRouteButton.onclick = viewportFocusRoute;
     mapHooksInstalled = true;
@@ -218,75 +259,85 @@
   }
 
   function requestAppResize(refit) {
-    installMapViewportHooks();
-    window.dispatchEvent(new Event('resize'));
+    if (!installMapViewportHooks()) return;
+    if (typeof window.resize === 'function') window.resize();
     if (refit && typeof window.fitMap === 'function') {
-      requestAnimationFrame(() => {
-        window.fitMap();
-        if (typeof window.scheduleDraw === 'function') window.scheduleDraw();
-      });
+      window.fitMap();
+      if (typeof window.scheduleDraw === 'function') window.scheduleDraw();
     }
   }
 
-  function normalizePageScale(force = false) {
-    if (!viewport) return false;
-    if (viewport.getAttribute('content') !== canonicalViewport) {
-      viewport.setAttribute('content', canonicalViewport);
-    }
-    const scale = Number(visual?.scale || 1);
-    if (!force || resettingScale || Math.abs(scale - 1) <= scaleTolerance) return false;
-    resettingScale = true;
-    viewport.setAttribute('content', canonicalViewport.replace('initial-scale=1', 'initial-scale=1.0001'));
-    requestAnimationFrame(() => {
-      viewport.setAttribute('content', canonicalViewport);
-      window.scrollTo(0, 0);
-      resettingScale = false;
-      scheduleViewportUpdate('page-scale-reset', true, 3);
-    });
-    return true;
-  }
-
-  function applyViewport(reason, refit = false) {
-    const metrics = readViewport();
-    const dimensionsChanged = Math.abs(metrics.width - lastWidth) > dimensionTolerance || Math.abs(metrics.height - lastHeight) > dimensionTolerance;
+  function commitViewport(metrics, reason, refit = false) {
+    const dimensionsChanged = Math.abs(metrics.width - lastWidth) > dimensionTolerance ||
+      Math.abs(metrics.height - lastHeight) > dimensionTolerance;
     const orientationChanged = Boolean(lastOrientation && metrics.orientation !== lastOrientation);
     const profileChanged = Boolean(lastProfile && metrics.profile !== lastProfile);
+    const firstCommit = !lastWidth || !lastHeight;
     const shouldRefit = refit || orientationChanged || profileChanged;
+
+    if (!dimensionsChanged && !orientationChanged && !profileChanged && !firstCommit) {
+      root.style.setProperty('--atlas-keyboard-inset', `${metrics.keyboardInset}px`);
+      root.style.setProperty('--atlas-page-scale', String(metrics.scale));
+      return false;
+    }
+
+    commitCount += 1;
     writeViewportMetrics(metrics, reason);
     lastWidth = metrics.width;
     lastHeight = metrics.height;
     lastOrientation = metrics.orientation;
     lastProfile = metrics.profile;
-    if (dimensionsChanged || shouldRefit) requestAppResize(shouldRefit);
+    requestAppResize(shouldRefit || firstCommit);
+    return true;
   }
 
-  function scheduleViewportUpdate(reason, refit = false, passes = 1) {
-    cancelAnimationFrame(frame);
+  function settleViewport(reason, refit = false, immediate = false) {
+    const generation = ++settleGeneration;
     clearTimeout(settleTimer);
-    frame = requestAnimationFrame(() => {
-      applyViewport(reason, refit);
-      if (passes > 1) {
-        settleTimer = window.setTimeout(() => scheduleViewportUpdate(`${reason}-settled`, refit && !interacted, passes - 1), 90);
+    let previous = null;
+    let stableSamples = 0;
+    let samples = 0;
+
+    if (immediate) commitViewport(readViewport(), `${reason}-initial`, refit);
+
+    const sample = () => {
+      if (generation !== settleGeneration) return;
+      const current = readViewport();
+      samples += 1;
+      const stable = previous &&
+        Math.abs(current.width - previous.width) <= dimensionTolerance &&
+        Math.abs(current.height - previous.height) <= dimensionTolerance &&
+        current.orientation === previous.orientation;
+      stableSamples = stable ? stableSamples + 1 : 0;
+      previous = current;
+
+      if (stableSamples >= 2 || samples >= maximumStabilitySamples) {
+        commitViewport(current, reason, refit);
+        root.dataset.atlasViewportSettling = 'false';
+        return;
       }
-    });
+
+      root.dataset.atlasViewportSettling = 'true';
+      settleTimer = window.setTimeout(sample, stabilityDelayMs);
+    };
+
+    requestAnimationFrame(sample);
   }
 
-  function stabilizeViewport(reason, forceRefit = true, resetInteraction = false) {
-    const scaleWasReset = normalizePageScale(true);
-    if (resetInteraction) interacted = false;
-    scheduleViewportUpdate(reason, forceRefit || scaleWasReset, 4);
-    window.setTimeout(() => scheduleViewportUpdate(`${reason}-late`, (forceRefit || scaleWasReset) && !interacted, 2), 420);
+  function updateKeyboardInset() {
+    const metrics = readViewport();
+    root.style.setProperty('--atlas-keyboard-inset', `${metrics.keyboardInset}px`);
+    root.style.setProperty('--atlas-page-scale', String(metrics.scale));
   }
 
-  if (viewport) viewport.setAttribute('content', canonicalViewport);
+  if (viewportMeta && viewportMeta.getAttribute('content') !== canonicalViewport) {
+    viewportMeta.setAttribute('content', canonicalViewport);
+  }
 
   document.addEventListener('dblclick', preventNativeZoom, { capture: true, passive: false });
   ['gesturestart', 'gesturechange', 'gestureend'].forEach(type => {
     document.addEventListener(type, preventNativeZoom, { capture: true, passive: false });
   });
-  document.addEventListener('touchstart', () => { interacted = true; }, { capture: true, passive: true });
-  document.addEventListener('pointerdown', () => { interacted = true; }, { capture: true, passive: true });
-  document.addEventListener('wheel', () => { interacted = true; }, { capture: true, passive: true });
 
   const style = document.createElement('style');
   style.textContent = `
@@ -295,14 +346,15 @@
       --atlas-viewport-height: 100dvh;
       --atlas-viewport-left: 0px;
       --atlas-viewport-top: 0px;
+      --atlas-keyboard-inset: 0px;
     }
     html, body {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      min-width: 0;
-      min-height: 0;
+      width: auto;
+      height: auto;
+      min-width: 100vw;
+      min-height: 100dvh;
       overflow: hidden;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
@@ -310,19 +362,23 @@
     }
     .app-shell {
       position: fixed;
-      left: 0;
-      top: 0;
-      width: var(--atlas-viewport-width);
-      height: var(--atlas-viewport-height);
-      min-width: 0;
-      min-height: 0;
+      inset: 0;
+      width: auto !important;
+      height: auto !important;
+      min-width: 100vw;
+      min-height: 100dvh;
       overflow: hidden;
       transform: none !important;
       zoom: 1 !important;
     }
+    #mapCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+    }
     input, select, textarea { font-size: max(16px, 1em); }
     button, .map-controls, .map-controls button { touch-action: manipulation; }
-    #mapCanvas { touch-action: none; }
     .map-controls button { -webkit-user-select: none; user-select: none; }
     :root[data-atlas-viewport-profile="compact-phone"] .top-bar {
       left: 8px;
@@ -364,29 +420,29 @@
     });
   }
 
-  visual?.addEventListener('resize', () => {
-    if (Math.abs(Number(visual.scale || 1) - 1) > scaleTolerance) normalizePageScale(true);
-    scheduleViewportUpdate('visual-viewport-resize', false, 2);
-  }, { passive: true });
-  visual?.addEventListener('scroll', () => scheduleViewportUpdate('visual-viewport-scroll'), { passive: true });
-  window.addEventListener('orientationchange', () => {
-    interacted = false;
-    window.setTimeout(() => stabilizeViewport('orientation-change', true, true), 80);
-  }, { passive: true });
-  window.addEventListener('pageshow', event => stabilizeViewport(event.persisted ? 'bfcache-restore' : 'page-show', true, true), { passive: true });
-  window.addEventListener('load', () => stabilizeViewport('window-load', true, true), { once: true, passive: true });
+  window.addEventListener('resize', () => settleViewport('layout-resize', false, false), { passive: true });
+  window.addEventListener('orientationchange', () => settleViewport('orientation-change', true, false), { passive: true });
+  window.addEventListener('pageshow', event => settleViewport(event.persisted ? 'bfcache-restore' : 'page-show', true, true), { passive: true });
+  window.addEventListener('load', () => settleViewport('window-load', false, false), { once: true, passive: true });
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') stabilizeViewport('visibility-restore', false, false);
+    if (document.visibilityState === 'visible') settleViewport('visibility-restore', false, false);
   });
+  visual?.addEventListener('resize', updateKeyboardInset, { passive: true });
 
   window.AtlasViewport = {
     measure: readViewport,
-    refresh: (reason = 'manual') => scheduleViewportUpdate(reason, false, 2),
-    normalizeScale: () => normalizePageScale(true),
+    refresh: (reason = 'manual') => settleViewport(reason, false, false),
+    normalizeScale: () => {
+      if (viewportMeta && viewportMeta.getAttribute('content') !== canonicalViewport) viewportMeta.setAttribute('content', canonicalViewport);
+      return Math.abs(Number(visual?.scale || 1) - 1) <= 0.02;
+    },
     profile: () => readViewport().profile,
-    orientation: () => readViewport().orientation
+    orientation: () => readViewport().orientation,
+    stats: () => ({ commits: commitCount, settling: root.dataset.atlasViewportSettling === 'true', source: 'layout-shell' })
   };
+
   root.dataset.atlasViewportController = window.AtlasRelease?.version || '0.9.4.9';
+  root.dataset.atlasViewportSettling = 'true';
   installMapViewportHooks();
-  stabilizeViewport('initial', true, true);
+  settleViewport('initial', true, true);
 })();
