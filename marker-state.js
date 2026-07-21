@@ -108,6 +108,7 @@ window.AtlasMarkerDesign=Object.freeze({
   version:ATLAS_MARKER_DESIGN_VERSION,
   selectedScale:ATLAS_MARKER_SELECTED_SCALE,
   durationMs:ATLAS_MARKER_SELECTION_MS,
+  render:drawMarker,
   audit:()=>({
     version:ATLAS_MARKER_DESIGN_VERSION,
     shape:'anchored-long-tail-droplet',
