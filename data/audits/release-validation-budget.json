@@ -1,23 +1,25 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-21T16:08:48.021070Z",
+  "generatedAt": "2026-07-21T16:14:11.013845Z",
   "release": "0.9.4.10",
   "policyRevision": "2026.07.21.1",
   "event": "push",
-  "tier": "quick",
-  "targetMinutes": 7,
+  "tier": "standard",
+  "targetMinutes": 10,
   "forcedFull": false,
   "scheduledFull": false,
   "targetedPullRequest": false,
   "postMergeFullUiMatrix": false,
   "changedFiles": [
-    "data/batch-analysis/atlas-scan-autorecover-request.json"
+    "data/scan-bug-dictionary.json"
   ],
   "safeSupportFiles": [],
   "matchedGroups": {
     "validationFramework": [],
     "scanAutonomy": [],
-    "scanCore": [],
+    "scanCore": [
+      "data/scan-bug-dictionary.json"
+    ],
     "monitor": [],
     "dataCenter": [],
     "rewards": [],
@@ -30,10 +32,10 @@
   "run": {
     "data_center": false,
     "reward": false,
-    "heartbeat": false,
-    "serial": false,
-    "queue_schema": false,
-    "autonomous_repair": false,
+    "heartbeat": true,
+    "serial": true,
+    "queue_schema": true,
+    "autonomous_repair": true,
     "browser_matrix": false,
     "ipad": false,
     "reward_search": false,
@@ -43,12 +45,12 @@
     "playwright": false
   },
   "budget": {
-    "targetMinutes": 7,
-    "heartbeatChecks": 96,
-    "serialQueueChecks": 96,
-    "queueSchemaChecks": 80,
-    "browserChecks": 0,
-    "monitorAuthorityChecks": 0,
+    "targetMinutes": 10,
+    "heartbeatChecks": 128,
+    "serialQueueChecks": 128,
+    "queueSchemaChecks": 96,
+    "browserChecks": 500,
+    "monitorAuthorityChecks": 500,
     "dataCenterChecks": 500,
     "rewardEvidenceChecks": 500,
     "fullAudit": false
