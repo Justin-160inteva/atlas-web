@@ -1,5 +1,5 @@
 /* Atlas Alpha 0.9.4.12c — iPad solid-glass compositor and map-density budget */
-@media (pointer:coarse) and (min-width:700px){
+@media (min-width:700px){
   html.atlas-ipad-ultra{
     --atlas-glass-blur:0px;
     --atlas-glass-saturation:100%;
@@ -151,7 +151,7 @@
   }
 }
 
-@media (pointer:coarse) and (min-width:700px) and (prefers-reduced-motion:reduce){
+@media (min-width:700px) and (prefers-reduced-motion:reduce){
   html.atlas-ipad-ultra body *{
     scroll-behavior:auto!important;
   }
