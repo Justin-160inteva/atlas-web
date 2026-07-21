@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
+  "runtimeProgress": "data/runtime-progress/eleven-pilot-progress.json",
+  "reportOutput": "data/batch-analysis/eleven-heartbeat-supervisor-state.json",
+  "dictionary": "data/scan-bug-dictionary.json",
+  "staleAfterSeconds": 120,
+  "hardStaleAfterSeconds": 300,
+  "resumeCooldownSeconds": 300,
+  "policy": {
+    "maximumAttemptsPerItem": 3,
+    "sameJobRecovery": true,
+    "autonomousAiRepairFallback": true,
+    "confirmationRequired": false
+  }
+}
