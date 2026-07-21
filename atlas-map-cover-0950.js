@@ -85,6 +85,27 @@
       updateLabel();
     };
 
+    const zoomInButton = document.getElementById('zoomIn');
+    const zoomOutButton = document.getElementById('zoomOut');
+    if (zoomInButton) zoomInButton.onclick = () => window.zoomAt(1.25);
+    if (zoomOutButton) zoomOutButton.onclick = () => window.zoomAt(0.8);
+
+    const mapCanvas = document.getElementById('mapCanvas');
+    if (mapCanvas) {
+      mapCanvas.addEventListener('wheel', event => {
+        clampToManualMinimum(event.clientX, event.clientY);
+        updateLabel();
+      }, { passive: true });
+      mapCanvas.addEventListener('pointermove', () => {
+        if (state.pointers?.size !== 2) return;
+        const points = [...state.pointers.values()];
+        const centerX = (points[0].x + points[1].x) / 2;
+        const centerY = (points[0].y + points[1].y) / 2;
+        clampToManualMinimum(centerX, centerY);
+        updateLabel();
+      });
+    }
+
     ['resetView', 'brandBtn', 'locateBtn'].forEach(id => {
       const button = document.getElementById(id);
       if (!button) return;
