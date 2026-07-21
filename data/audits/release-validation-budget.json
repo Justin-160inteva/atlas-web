@@ -1,86 +1,54 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-21T15:13:47.935798Z",
+  "generatedAt": "2026-07-21T16:08:48.021070Z",
   "release": "0.9.4.10",
   "policyRevision": "2026.07.21.1",
   "event": "push",
-  "tier": "standard",
-  "targetMinutes": 10,
+  "tier": "quick",
+  "targetMinutes": 7,
   "forcedFull": false,
   "scheduledFull": false,
   "targetedPullRequest": false,
-  "postMergeFullUiMatrix": true,
+  "postMergeFullUiMatrix": false,
   "changedFiles": [
-    ".github/workflows/validate-scan-monitor.yml",
-    ".github/workflows/validate-scan-system.yml",
-    "atlas-bootstrap.js",
-    "data/rewards/reward-evidence-index.json",
-    "data/rewards/reward-records-runtime.json",
-    "index.html",
-    "release-manifest.json",
-    "sw.js",
-    "tools/audit_scan_system_v4.py",
-    "tools/reward_summary_runtime_smoke.mjs",
-    "tools/viewport_scale_contract_smoke.mjs"
+    "data/batch-analysis/atlas-scan-autorecover-request.json"
   ],
-  "safeSupportFiles": [
-    "atlas-bootstrap.js",
-    "release-manifest.json",
-    "sw.js",
-    "tools/reward_summary_runtime_smoke.mjs",
-    "tools/viewport_scale_contract_smoke.mjs"
-  ],
+  "safeSupportFiles": [],
   "matchedGroups": {
-    "validationFramework": [
-      "release-manifest.json"
-    ],
+    "validationFramework": [],
     "scanAutonomy": [],
     "scanCore": [],
     "monitor": [],
     "dataCenter": [],
-    "rewards": [
-      "data/rewards/reward-evidence-index.json",
-      "data/rewards/reward-records-runtime.json"
-    ],
-    "viewportTargeted": [
-      "tools/viewport_scale_contract_smoke.mjs"
-    ],
+    "rewards": [],
+    "viewportTargeted": [],
     "searchTargeted": [],
-    "uiFull": [
-      "atlas-bootstrap.js",
-      "sw.js"
-    ],
-    "ui": [
-      "atlas-bootstrap.js",
-      "index.html",
-      "sw.js"
-    ],
-    "highRisk": [
-      "sw.js"
-    ]
+    "uiFull": [],
+    "ui": [],
+    "highRisk": []
   },
   "run": {
     "data_center": false,
-    "reward": true,
+    "reward": false,
     "heartbeat": false,
     "serial": false,
     "queue_schema": false,
     "autonomous_repair": false,
-    "browser_matrix": true,
-    "ipad": true,
-    "reward_search": true,
+    "browser_matrix": false,
+    "ipad": false,
+    "reward_search": false,
     "monitor": false,
     "full_audit": false,
-    "browser": true,
-    "playwright": true
+    "browser": false,
+    "playwright": false
   },
   "budget": {
-    "targetMinutes": 10,
-    "heartbeatChecks": 128,
-    "serialQueueChecks": 128,
-    "queueSchemaChecks": 96,
-    "browserChecks": 500,
-    "monitorAuthorityChecks": 500,
+    "targetMinutes": 7,
+    "heartbeatChecks": 96,
+    "serialQueueChecks": 96,
+    "queueSchemaChecks": 80,
+    "browserChecks": 0,
+    "monitorAuthorityChecks": 0,
     "dataCenterChecks": 500,
     "rewardEvidenceChecks": 500,
     "fullAudit": false
