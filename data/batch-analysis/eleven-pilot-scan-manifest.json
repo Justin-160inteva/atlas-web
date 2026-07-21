@@ -1,12 +1,12 @@
 {
-  "schemaVersion": 17,
+  "schemaVersion": 18,
   "id": "eleven-production-p036-p046-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "statusOutput": "data/batch-analysis/eleven-pilot-scan-status.json",
-  "analyzer": "tools/analyze_authorized_video_v13.py",
+  "analyzer": "tools/analyze_authorized_video_v14.py",
   "outputPrefix": "eleven",
   "maximumQueueItems": 11,
   "maxItemsPerRun": 1,
@@ -61,8 +61,8 @@
   "downloadOptimization": {
     "noArtificialRateLimit": true,
     "adaptiveParallelRanges": true,
-    "maxRangeWorkers": 4,
-    "parallelRangeThresholdBytes": 16777216,
+    "maxRangeWorkers": 8,
+    "parallelRangeThresholdBytes": 8388608,
     "chunkSizeBytes": 2097152,
     "rangeRetries": 3,
     "rangeRetriesPerCdn": 2,
@@ -74,7 +74,11 @@
     "analysisVideoMaxHeight": 480,
     "allowLegacyProgressiveFallback": true,
     "bypassPublicVideoWebpage": true,
-    "preservePartialAcrossCdnCandidates": true
+    "preservePartialAcrossCdnCandidates": true,
+    "cdnSpeedProbeEnabled": true,
+    "cdnSpeedProbeCandidates": 4,
+    "cdnSpeedProbeBytes": 262144,
+    "cdnSpeedProbeTimeoutSeconds": 6
   },
   "analysisOptimization": {
     "policy": "catalog-aware-quality-speed-balance",
@@ -94,7 +98,8 @@
     "verifiedCatalogCidFirst": true,
     "apiProvidedCdnRotation": true,
     "publicVideoWebpageBypassed": true,
-    "fixedBy": "tools/analyze_authorized_video_v13.py"
+    "fastestAuthorizedCdnProbe": true,
+    "fixedBy": "tools/analyze_authorized_video_v14.py"
   },
   "recoveryPolicy": {
     "enabled": true,
