@@ -1,25 +1,75 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "mode": "chronological",
   "sequenceStart": 1,
   "sequenceEnd": 80,
   "skipAlreadyImported": true,
-  "alreadyImportedPilotPages": [1, 2, 3, 4, 5, 6, 20, 21, 22],
-  "nextPage": 7,
+  "alreadyImportedPilotPages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    20,
+    21,
+    22,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "nextPage": 47,
   "queueConstruction": {
-    "maxItemsPerRegionalBatch": 5,
+    "maxItemsPerRegionalBatch": 11,
     "maxItemsPerRun": 1,
     "preserveEpisodeOrder": true,
     "priorityOverrideEnabled": false,
     "identityVerificationRequired": true
   },
   "lastCompletedBatch": {
-    "pages": [4, 5, 6],
-    "completedAt": "2026-07-19T21:39:00Z"
+    "pages": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "completedAt": "2026-07-21T19:47:08Z"
   },
-  "reason": "The regional pilot deliberately sampled high-map-utility episodes to validate the pipeline. Full production proceeds from P01 upward in chronological batches. A batch may hold five verified episodes, but each workflow run analyzes only one episode and starts the next only after durable completion and validation.",
+  "activeBatch": {
+    "pages": [
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57
+    ],
+    "initializedAt": "2026-07-21T19:53:25Z",
+    "batchId": "eleven-production-p047-p057-v1"
+  },
+  "reason": "Full production continues chronologically from P47 through P57. The queue contains eleven verified episodes, but each workflow run analyzes exactly one episode and starts the next only after durable completion and validation.",
   "safety": {
     "neverRescanImportedUnlessExplicitlyRequested": true,
     "neverBroadenAuthorization": true,
