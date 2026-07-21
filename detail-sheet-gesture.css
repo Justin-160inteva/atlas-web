@@ -1,0 +1,121 @@
+.sheet-handle {
+  position: relative;
+  display: block;
+  width: 88px;
+  height: 30px;
+  margin: -3px auto 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  outline: none;
+}
+
+.sheet-handle::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  width: 58px;
+  height: 8px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .28), rgba(255, 255, 255, .07)),
+    linear-gradient(90deg, rgba(112, 104, 97, .75), rgba(198, 188, 178, .88), rgba(112, 104, 97, .75));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .35),
+    inset 0 -1px 0 rgba(0, 0, 0, .28),
+    0 5px 15px rgba(0, 0, 0, .32);
+  backdrop-filter: blur(12px) saturate(135%);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  transition: width .18s ease, filter .18s ease, transform .18s ease;
+}
+
+.sheet-handle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 24px;
+  height: 2px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .38);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .22);
+  pointer-events: none;
+}
+
+.sheet-handle:hover::before,
+.sheet-handle:focus-visible::before {
+  width: 64px;
+  filter: brightness(1.12);
+}
+
+.sheet-handle:focus-visible {
+  box-shadow: 0 0 0 3px rgba(225, 69, 80, .28);
+}
+
+.sheet.dragging {
+  transition: none !important;
+  will-change: height;
+}
+
+.sheet.dragging .sheet-handle {
+  cursor: grabbing;
+}
+
+.sheet.dragging .sheet-handle::before {
+  width: 68px;
+  transform: translateX(-50%) scaleY(1.08);
+  filter: brightness(1.18);
+}
+
+.sheet.snapping {
+  will-change: height;
+}
+
+.sheet-body {
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+.sheet-levels {
+  margin-top: -1px;
+}
+
+.sheet-levels button {
+  cursor: pointer;
+  transition: width .18s ease, background .18s ease, opacity .18s ease;
+}
+
+.sheet-levels button.active {
+  width: 25px;
+}
+
+@media (hover: none) {
+  .sheet-handle:hover::before {
+    width: 58px;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet,
+  .sheet-handle::before,
+  .sheet-levels button {
+    transition-duration: .01ms !important;
+  }
+
+  .sheet-body {
+    scroll-behavior: auto;
+  }
+}
