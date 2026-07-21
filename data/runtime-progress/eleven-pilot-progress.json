@@ -11,11 +11,11 @@
   "processedSeconds": 0.0,
   "durationSeconds": 1534.0,
   "sampledFrames": 0,
-  "targetFrames": 0,
-  "message": "运行心跳超时；已释放旧租约并安排一次有界重试",
-  "updatedAt": "2026-07-21T09:05:38.670516Z",
-  "heartbeatSequence": 11,
+  "targetFrames": 360,
+  "message": "P36已恢复为待处理；状态文件已切换到P36-P46，等待串行扫描领取",
+  "updatedAt": "2026-07-21T13:54:18Z",
+  "heartbeatSequence": 12,
   "telemetryPreserved": false,
-  "projectionSource": "durable-queue-supervisor",
+  "projectionSource": "bounded-batch-recovery",
   "privacy": "Only public, sanitized task progress is stored. No media URLs, cookies, video files, local paths, or frame pixels are included."
 }
