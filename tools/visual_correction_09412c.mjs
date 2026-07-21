@@ -11,8 +11,10 @@ const browser = await chromium.launch({ headless: true });
 const report = [];
 let failed = false;
 
-function rgbTriples(value) {
-  return [...String(value).matchAll(/rgba?\((\d+)[, ]+(\d+)[, ]+(\d+)/g)].map(match => match.slice(1, 4).map(Number));
+function rgbaStops(value) {
+  return [...String(value).matchAll(/rgba?\((\d+)[, ]+(\d+)[, ]+(\d+)(?:[, /]+([\d.]+))?/g)].map(match => ({
+    r: Number(match[1]), g: Number(match[2]), b: Number(match[3]), a: match[4] == null ? 1 : Number(match[4])
+  }));
 }
 
 for (const profile of profiles) {
@@ -36,58 +38,71 @@ for (const profile of profiles) {
   page.on('console', message => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
 
   try {
-    await page.goto(`${baseURL}?visual-correction=09412c-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    await page.goto(`${baseURL}?visual-correction=09412d-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForFunction(() => Number(document.getElementById('visibleCount')?.textContent || 0) >= 3000, null, { timeout: 45_000 });
     await page.waitForTimeout(450);
 
-    const visual = await page.evaluate(() => {
-      const styleData = selector => {
-        const node = document.querySelector(selector);
-        const style = getComputedStyle(node);
-        const rect = node.getBoundingClientRect();
-        return {
-          backgroundColor: style.backgroundColor,
-          backgroundImage: style.backgroundImage,
-          borderTopWidth: style.borderTopWidth,
-          borderBottomWidth: style.borderBottomWidth,
-          boxShadow: style.boxShadow,
-          backdropFilter: style.backdropFilter || style.webkitBackdropFilter || 'none',
-          color: style.color,
-          pointerEvents: style.pointerEvents,
-          rect: { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height }
-        };
-      };
+    const styleData = async selector => page.locator(selector).evaluate(node => {
+      const style = getComputedStyle(node);
+      const rect = node.getBoundingClientRect();
       return {
-        rootClass: document.documentElement.className,
-        nav: styleData('.bottom-nav .nav-item.active'),
-        rail: styleData('.quick-rail .rail-button.active'),
-        controls: styleData('.map-controls'),
-        buttons: ['#zoomIn', '#zoomOut', '#resetView'].map(styleData),
-        variables: ['--atlas-red-light','--atlas-red-mid','--atlas-red-deep','--atlas-red-deeper','--atlas-red-ink'].reduce((out, key) => {
-          out[key] = getComputedStyle(document.documentElement).getPropertyValue(key).trim();
-          return out;
-        }, {})
+        backgroundColor: style.backgroundColor,
+        backgroundImage: style.backgroundImage,
+        borderTopWidth: style.borderTopWidth,
+        borderBottomWidth: style.borderBottomWidth,
+        boxShadow: style.boxShadow,
+        backdropFilter: style.backdropFilter || style.webkitBackdropFilter || 'none',
+        color: style.color,
+        pointerEvents: style.pointerEvents,
+        rect: { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height }
       };
     });
 
-    for (const [name, state] of [['bottom selected', visual.nav], ['rail selected', visual.rail]]) {
-      const stops = rgbTriples(state.backgroundImage);
-      check(`${name} uses gradient`, state.backgroundImage.includes('linear-gradient'), state.backgroundImage);
-      check(`${name} contains only light red stops`, stops.length >= 4 && stops.every(([r, g, b]) => r >= 230 && g >= 170 && b >= 180), JSON.stringify(stops));
-      check(`${name} uses dark rose ink`, rgbTriples(state.color).some(([r, g, b]) => r < 140 && g < 90 && b < 100), state.color);
+    const nav = await styleData('.bottom-nav .nav-item.active');
+    const rail = await styleData('.quick-rail .rail-button.active');
+    const search = await styleData('.search-trigger');
+    const locate = await styleData('#locateBtn');
+    const settings = await styleData('#evidenceStudioBtn');
+    const controls = await styleData('.map-controls');
+    const buttons = await Promise.all(['#zoomIn', '#zoomOut', '#resetView'].map(styleData));
+
+    await page.locator('#evidenceStudioBtn').click({ timeout: 5000 });
+    await page.waitForTimeout(180);
+    const dataTab = await styleData('.data-center-tabs button.active');
+
+    const variables = await page.evaluate(() => ['--atlas-glass-active-bg','--atlas-glass-floating-bg','--atlas-glass-active-line','--atlas-glass-active-ink'].reduce((out, key) => {
+      out[key] = getComputedStyle(document.documentElement).getPropertyValue(key).trim();
+      return out;
+    }, {}));
+
+    for (const [name, state] of [['bottom selected', nav], ['rail selected', rail], ['database tab', dataTab]]) {
+      const stops = rgbaStops(state.backgroundImage);
+      check(`${name} uses translucent gradient`, state.backgroundImage.includes('linear-gradient') && stops.length >= 4, state.backgroundImage);
+      check(`${name} contains translucent alpha`, stops.some(stop => stop.a > 0 && stop.a < .6), JSON.stringify(stops));
+      check(`${name} remains ultra-light pink`, stops.every(({ r, g, b }) => r >= 230 && g >= 170 && b >= 180), JSON.stringify(stops));
+      check(`${name} uses rose ink`, rgbaStops(state.color).some(({ r, g, b }) => r < 140 && g < 90 && b < 100), state.color);
+      if (!profile.name.startsWith('ipad')) check(`${name} uses live glass blur`, state.backdropFilter.includes('blur('), state.backdropFilter);
     }
 
-    check('light-red variables are present', Object.values(visual.variables).every(Boolean), JSON.stringify(visual.variables));
-    check('no legacy deep-red variables remain active', !Object.values(visual.variables).some(value => /#64131e|#3d0b12|rgb\(100[, ]+19[, ]+30\)|rgb\(61[, ]+11[, ]+18\)/i.test(value)), JSON.stringify(visual.variables));
+    for (const [name, state] of [['search', search], ['locate', locate], ['settings', settings]]) {
+      const stops = rgbaStops(state.backgroundImage);
+      check(`${name} uses floating translucent glass`, state.backgroundImage.includes('linear-gradient') && stops.some(stop => stop.a > 0 && stop.a < .25), state.backgroundImage);
+      check(`${name} keeps subtle border`, Number.parseFloat(state.borderTopWidth) >= .75, state.borderTopWidth);
+      check(`${name} keeps bounded shadow`, state.boxShadow !== 'none', state.boxShadow);
+    }
+
+    check('glass tokens are installed', Object.values(variables).every(Boolean), JSON.stringify(variables));
+    check('active token uses alpha channels', /rgba\(/.test(variables['--atlas-glass-active-bg']), variables['--atlas-glass-active-bg']);
 
     const transparent = state => state.backgroundColor === 'rgba(0, 0, 0, 0)' && state.backgroundImage === 'none' && state.borderTopWidth === '0px' && state.borderBottomWidth === '0px' && state.boxShadow === 'none' && state.backdropFilter === 'none';
-    check('map control container is frameless transparent', transparent(visual.controls), JSON.stringify(visual.controls));
-    visual.buttons.forEach((button, index) => {
-      check(`map action ${index + 1} is frameless transparent`, transparent(button), JSON.stringify(button));
+    check('map control container stays frameless transparent', transparent(controls), JSON.stringify(controls));
+    buttons.forEach((button, index) => {
+      check(`map action ${index + 1} stays frameless transparent`, transparent(button), JSON.stringify(button));
       check(`map action ${index + 1} remains a touch target`, button.rect.width >= 40 && button.rect.height >= 38, JSON.stringify(button.rect));
       check(`map action ${index + 1} remains interactive`, button.pointerEvents !== 'none');
     });
 
+    await page.locator('.settings-close').click({ timeout: 5000 });
     const before = await page.locator('#zoomLabel').textContent();
     await page.locator('#zoomIn').click({ timeout: 5000 });
     await page.waitForTimeout(120);
@@ -107,5 +122,5 @@ for (const profile of profiles) {
 }
 
 await browser.close();
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12c', passed: !failed, profiles: report }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12d', passed: !failed, profiles: report }, null, 2));
 if (failed) process.exit(1);
