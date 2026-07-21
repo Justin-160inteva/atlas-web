@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 14,
-  "triggerId": "eleven-production-p036-p046-start-20260721-01",
-  "requestedAt": "2026-07-21T07:16:08Z",
+  "schemaVersion": 15,
+  "triggerId": "eleven-production-p036-p046-recovery-20260721-02",
+  "requestedAt": "2026-07-21T13:54:18Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P36-P46",
@@ -30,5 +30,5 @@
   "humanReviewOnUnknownFailure": false,
   "expectedDownloadCount": 11,
   "expectedAnalysisCount": 11,
-  "reason": "Process P36 through P46 strictly one at a time; persist and validate each result before starting the next item."
+  "reason": "Recover P36 after a stale persisting heartbeat; keep strict one-at-a-time processing and publish P36-P46 to the web monitor."
 }
