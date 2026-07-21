@@ -1,14 +1,14 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-21T20:06:21.099463+00:00",
+  "generatedAt": "2026-07-21T22:02:08.347323+00:00",
   "release": "0.9.4.10",
   "status": "pass",
-  "riskScore": 80,
+  "riskScore": 100,
   "summary": {
     "critical": 0,
     "high": 0,
-    "warning": 40,
-    "total": 40
+    "warning": 57,
+    "total": 57
   },
   "resourceGraph": {
     "app.js": [
@@ -37,6 +37,7 @@
       "atlas-rewards-0949.css",
       "detail-sheet-gesture.css",
       "atlas-navigation-09411a.css",
+      "atlas-ipad-ultra-09412c.css",
       "atlas-icons.js",
       "atlas-i18n.js",
       "location-names.js",
@@ -63,7 +64,8 @@
       "atlas-multiview-091.js",
       "atlas-public-library.js",
       "atlas-analysis-import.js",
-      "atlas-navigation-09411b.js"
+      "atlas-navigation-09411b.js",
+      "atlas-ipad-ultra-09412c.js"
     ],
     "scan-monitor.html": [
       "scan-monitor.css",
@@ -106,6 +108,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".quick-rail .rail-button has multiple transition definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-liquid-nav-0933.css",
         "atlas-navigation-09411a.css",
         "atlas-ui-fix-0931.css"
@@ -292,6 +295,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".top-bar has multiple -webkit-backdrop-filter definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-liquid-nav-0933.css",
         "atlas-navigation-09411a.css"
       ],
@@ -310,6 +314,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".top-bar has multiple backdrop-filter definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-liquid-nav-0933.css",
         "atlas-navigation-09411a.css"
       ],
@@ -328,6 +333,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".bottom-nav has multiple -webkit-backdrop-filter definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-liquid-nav-0933.css",
         "atlas-nav-layout-0937.css",
         "atlas-navigation-09411a.css"
@@ -347,6 +353,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".quick-rail has multiple -webkit-backdrop-filter definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-liquid-nav-0933.css",
         "atlas-nav-layout-0937.css",
         "atlas-navigation-09411a.css"
@@ -366,6 +373,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".bottom-nav has multiple backdrop-filter definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-liquid-nav-0933.css",
         "atlas-nav-layout-0937.css",
         "atlas-navigation-09411a.css"
@@ -385,6 +393,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".quick-rail has multiple backdrop-filter definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-liquid-nav-0933.css",
         "atlas-nav-layout-0937.css",
         "atlas-navigation-09411a.css"
@@ -461,8 +470,287 @@
     {
       "severity": "warning",
       "code": "CSS_CASCADE_CONFLICT",
+      "message": ".map-controls has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".map-controls",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".status-pill has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".status-pill",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".panel has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".panel",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".settings-panel has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".settings-panel",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(12px) saturate(122%)!important",
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".search-modal has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".search-modal",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".evidence-panel has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".evidence-panel",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(12px) saturate(122%)!important",
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".sheet has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".sheet",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(12px) saturate(122%)!important",
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".route-badge has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".route-badge",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".map-controls has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".map-controls",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".status-pill has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".status-pill",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".panel has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".panel",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".settings-panel has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".settings-panel",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(12px) saturate(122%)!important",
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".search-modal has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".search-modal",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".evidence-panel has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".evidence-panel",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(12px) saturate(122%)!important",
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".sheet has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".sheet",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(12px) saturate(122%)!important",
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".route-badge has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-ultra-09412c.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".route-badge",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
       "message": ".settings-panel has multiple transition definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-navigation-09411a.css",
         "atlas-settings.css"
       ],
@@ -482,6 +770,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".evidence-panel has multiple transition definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-navigation-09411a.css",
         "evidence-studio.css"
       ],
@@ -501,6 +790,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".sheet has multiple transition definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-navigation-09411a.css",
         "styles.css"
       ],
@@ -622,8 +912,26 @@
     {
       "severity": "warning",
       "code": "CSS_CASCADE_CONFLICT",
+      "message": ".quick-rail .rail-button has multiple transform definitions",
+      "files": [
+        "atlas-nav-layout-0937.css",
+        "atlas-navigation-09411a.css"
+      ],
+      "evidence": {
+        "selector": ".quick-rail .rail-button",
+        "property": "transform",
+        "values": [
+          "none!important",
+          "translateZ(0)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
       "message": ".panel has multiple transition definitions",
       "files": [
+        "atlas-ipad-ultra-09412c.css",
         "atlas-navigation-09411a.css",
         "styles.css"
       ],

@@ -2,8 +2,8 @@
 
 - Release: **0.9.4.10**
 - Status: **pass**
-- Risk score: **80/100**
-- Findings: 40 (0 critical, 0 high, 40 warning)
+- Risk score: **100/100**
+- Findings: 57 (0 critical, 0 high, 57 warning)
 
 ## WARNING · SW_REGISTRATION_DELEGATED
 
@@ -21,7 +21,7 @@ Files: `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`, `atlas-ui-fix
 
 .quick-rail .rail-button has multiple transition definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`, `atlas-ui-fix-0931.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`, `atlas-ui-fix-0931.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
@@ -81,37 +81,37 @@ Files: `performance-071.css`, `styles.css`
 
 .top-bar has multiple -webkit-backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .top-bar has multiple backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .bottom-nav has multiple -webkit-backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .quick-rail has multiple -webkit-backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .bottom-nav has multiple backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .quick-rail has multiple backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
@@ -133,21 +133,117 @@ Files: `alpha03.css`, `atlas-080.css`, `atlas-liquid-nav-0933.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
+.map-controls has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.status-pill has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.panel has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.settings-panel has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.search-modal has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.evidence-panel has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.sheet has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.route-badge has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.map-controls has multiple backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.status-pill has multiple backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.panel has multiple backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.settings-panel has multiple backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.search-modal has multiple backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.evidence-panel has multiple backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.sheet has multiple backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.route-badge has multiple backdrop-filter definitions
+
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
 .settings-panel has multiple transition definitions
 
-Files: `atlas-navigation-09411a.css`, `atlas-settings.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`, `atlas-settings.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .evidence-panel has multiple transition definitions
 
-Files: `atlas-navigation-09411a.css`, `evidence-studio.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`, `evidence-studio.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .sheet has multiple transition definitions
 
-Files: `atlas-navigation-09411a.css`, `styles.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`, `styles.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
@@ -187,9 +283,15 @@ Files: `atlas-080.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
+.quick-rail .rail-button has multiple transform definitions
+
+Files: `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
 .panel has multiple transition definitions
 
-Files: `atlas-navigation-09411a.css`, `styles.css`
+Files: `atlas-ipad-ultra-09412c.css`, `atlas-navigation-09411a.css`, `styles.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
