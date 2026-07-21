@@ -4,18 +4,18 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P36-P46",
-  "updatedAt": "2026-07-21T17:26:11.225754Z",
+  "updatedAt": "2026-07-21T17:34:11.046581Z",
   "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
-    "imported": 8,
+    "imported": 9,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 3,
+    "remaining": 2,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -112,11 +112,11 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p044",
       "sequence": 33,
       "page": 44,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-21T17:27:43.335458Z",
+      "lastFinishedAt": "2026-07-21T17:34:11.040323Z",
+      "resultPath": "data/analysis-results/eleven-p044.json",
       "error": null
     },
     {
@@ -144,18 +144,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p043",
-      "sequence": 32,
-      "page": 43,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P43 第43期：士兵之殇",
-      "startedAt": "2026-07-21T17:21:11.029477Z",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p044",
+      "sequence": 33,
+      "page": 44,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P44 第44期：六角公主",
+      "startedAt": "2026-07-21T17:27:43.335458Z",
       "attemptCount": 1,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p043.json status=analyzed\n\n",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p044.json status=analyzed\n\n[h264 @ 0x556461b1e880] Invalid NAL unit size (-1470993558 > 1983).\n[h264 @ 0x556461b1e880] missing picture in access unit with size 1987\n[h264 @ 0x556461b1e880] Invalid NAL unit size (-1760761561 > 1267).\n[h264 @ 0x556461b1e880] missing picture in access unit with size 1271\n[h264 @ 0x556461adbb00] Invalid NAL unit size (-1470993558 > 1983).\n[h264 @ 0x556461adbb00] Error splitting the input into NAL units.\n[h264 @ 0x556461b1e880] Invalid NAL unit size (1119285253 > 587).\n[h264 @ 0x556461b1e880] missing picture in access unit with size 591\n[h264 @ 0x556461a69cc0] Invalid NAL unit size (-1760761561 > 1267).\n[h264 @ 0x556461a69cc0] Error splitting the input into NAL units.\n[h264 @ 0x556461a9f200] Invalid NAL unit size (1119285253 > 587).\n[h264 @ 0x556461a9f200] Error splitting the input into NAL units.\n[h264 @ 0x556461abae00] left block unavailable for requested intra4x4 mode -1\n[h264 @ 0x556461abae00] error while decoding MB 0 19, bytestream 1606\n[h264 @ 0x556461b1e880] Invalid NAL unit size (1035137874 > 423).\n[h264 @ 0x556461b1e880] missing picture in access unit with size 427\n[h264 @ 0x556461b1e880] Invalid NAL unit size (570570650 > 554).\n[h264 @ 0x556461b1e880] missing picture in access unit with size 558\n[h264 @ 0x556461abae00] Invalid NAL unit size (1035137874 > 423).\n[h264 @ 0x556461abae00] Error splitting the input into NAL units.\n[h264 @ 0x556461adbb00] Invalid NAL unit size (570570650 > 554).\n[h264 @ 0x556461adbb00] Error splitting the input into NAL units.\n",
       "analysisStatus": "analyzed",
       "indexReturnCode": 0,
       "completed": true,
-      "finishedAt": "2026-07-21T17:26:11.219770Z"
+      "finishedAt": "2026-07-21T17:34:11.040323Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
