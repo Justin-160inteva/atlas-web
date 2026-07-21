@@ -3,6 +3,7 @@
 const ATLAS_MARKER_DESIGN_VERSION='0.9.4.12b-1';
 const ATLAS_MARKER_SELECTED_SCALE=1.28;
 const ATLAS_MARKER_SELECTION_MS=190;
+const ATLAS_MARKER_SELECTION_HARD_LIMIT=222;
 const atlasMarkerAnimations=new Map();
 let atlasMarkerLastSelectedId=null;
 
@@ -109,6 +110,7 @@ window.AtlasMarkerDesign=Object.freeze({
   selectedScale:ATLAS_MARKER_SELECTED_SCALE,
   durationMs:ATLAS_MARKER_SELECTION_MS,
   render:drawMarker,
+  scaleFor:id=>atlasMarkerScale(id,id===state.selected?.id),
   audit:()=>({
     version:ATLAS_MARKER_DESIGN_VERSION,
     shape:'anchored-long-tail-droplet',
@@ -122,3 +124,19 @@ window.AtlasMarkerDesign=Object.freeze({
     selectedId:atlasMarkerLastSelectedId
   })
 });
+
+window.AtlasMarkerVisuals=Object.freeze({
+  version:window.AtlasRelease?.version||'0.9.4.10',
+  selectedScale:ATLAS_MARKER_SELECTED_SCALE,
+  selectionDuration:ATLAS_MARKER_SELECTION_MS,
+  selectionHardLimit:ATLAS_MARKER_SELECTION_HARD_LIMIT,
+  minimumSelectionFrames:2,
+  selectionUsesScaleOnly:true,
+  selectionDecorationLayers:0,
+  tipAnchorStable:true,
+  scaleFor:id=>window.AtlasMarkerDesign.scaleFor(id),
+  activeMotionCount:()=>atlasMarkerAnimations.size,
+  geometry:Object.freeze({centerOffsetRadius:.58,shoulderRatio:.16,lowerCurveRatio:.58})
+});
+document.documentElement.dataset.atlasMarkerVisuals=window.AtlasMarkerVisuals.version;
+document.documentElement.dataset.atlasMarkerOwner='marker-state.js';
