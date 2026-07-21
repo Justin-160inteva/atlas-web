@@ -18,6 +18,8 @@ ci_workflow = (ROOT / '.github/workflows/atlas-conflict-reasoner.yml').read_text
 ast.parse(source)
 ast.parse(orchestrator)
 ast.parse(selector)
+model = policy.get('model', {})
+endpoint = str(model.get('endpoint', ''))
 checks = {
     'enabled': policy.get('enabled') is True,
     'confirmation_bypassed': policy.get('authorization', {}).get('confirmationRequired') is False,
@@ -33,7 +35,7 @@ checks = {
     'single_download': policy.get('mandatorySafety', {}).get('maximumConcurrentDownloads') == 1,
     'rollback': policy.get('mandatorySafety', {}).get('rollbackOnValidationFailure') is True,
     'no_retention': policy.get('mandatorySafety', {}).get('neverRetainOriginalMedia') is True and policy.get('mandatorySafety', {}).get('neverRetainFramePixels') is True,
-    'model_endpoint': 'models.github.ai/inference/chat/completions' in str(policy.get('model', {}).get('endpoint', '')),
+    'model_endpoint': model.get('provider') == 'github-models' and endpoint.startswith('https://models.github.ai/inference/'),
     'untrusted_logs': 'untrusted data' in source,
     'path_allowlist': 'allowedPathPatterns' in source and 'blockedPathPatterns' in source,
     'snapshot_guard': 'protected_snapshot' in source and 'verify_snapshot' in source,
@@ -46,7 +48,7 @@ checks = {
     'workflow_commits': 'git push origin HEAD:main' in workflow,
     'scan_workflow_models_permission': 'models: read' in scan_workflow,
     'scan_workflow_token': 'ATLAS_AI_REPAIR_TOKEN' in scan_workflow,
-    'scan_workflow_persists_patch': "data/scan-autonomy-policy.json" in scan_workflow and "tools'" in scan_workflow,
+    'scan_workflow_persists_patch': 'data/scan-autonomy-policy.json' in scan_workflow and "tools'" in scan_workflow,
     'release_owner': release.get('runtimeOwners', {}).get('scanAutonomousRepair') == 'tools/scan_autonomous_repair.py',
     'release_confirmation_invariant': release.get('invariants', {}).get('scanAutonomousRepairConfirmationRequired') is False,
     'release_time_budget': release.get('invariants', {}).get('scanAutonomousRepairTargetMinutes') == 5 and release.get('invariants', {}).get('scanAutonomousRepairMaximumMinutes') == 10,
@@ -59,7 +61,7 @@ checks = {
 }
 failed = [name for name, passed in checks.items() if not passed]
 report = {
-    'schemaVersion': 2,
+    'schemaVersion': 3,
     'passed': not failed,
     'totalChecks': len(checks),
     'failedChecks': failed,
