@@ -2,6 +2,7 @@
   'use strict';
 
   const VERSION = '0.9.4.11b';
+  const RAIL_DESIGN_VERSION = '0.9.4.12e';
   const ICON_DESIGN = 'clean-radial-09411a';
   const root = document.documentElement;
   const rail = document.querySelector('.quick-rail');
@@ -16,6 +17,135 @@
       <circle cx="12" cy="12" r="3.25" />
       <path d="M12 2.9v2.25M12 18.85v2.25M21.1 12h-2.25M5.15 12H2.9M18.43 5.57l-1.59 1.59M7.16 16.84l-1.59 1.59M18.43 18.43l-1.59-1.59M7.16 7.16 5.57 5.57" />
     </svg>`;
+
+  const railStyleText = `
+    html body .app-shell .quick-rail.quick-rail{
+      left:max(14px,env(safe-area-inset-left,0px))!important;
+      width:82px!important;
+      height:360px!important;
+      padding:10px 9px!important;
+      display:grid!important;
+      grid-template-rows:repeat(5,60px)!important;
+      gap:7px!important;
+      align-content:center!important;
+      border:1px solid rgba(255,255,255,.17)!important;
+      border-radius:28px!important;
+      overflow:hidden!important;
+      background:linear-gradient(155deg,rgba(255,255,255,.11),rgba(58,46,50,.52) 38%,rgba(18,16,17,.76) 100%)!important;
+      -webkit-backdrop-filter:blur(18px) saturate(138%)!important;
+      backdrop-filter:blur(18px) saturate(138%)!important;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 -1px 0 rgba(255,255,255,.025),0 16px 34px rgba(0,0,0,.24)!important;
+      box-sizing:border-box!important;
+    }
+    html body .app-shell .quick-rail.quick-rail::before{
+      inset:2px 12px auto!important;
+      height:19%!important;
+      border-radius:999px!important;
+      background:linear-gradient(180deg,rgba(255,255,255,.13),transparent)!important;
+      opacity:.68!important;
+    }
+    html body .app-shell .quick-rail.quick-rail .rail-button{
+      position:relative!important;
+      width:62px!important;
+      max-width:62px!important;
+      height:60px!important;
+      min-height:60px!important;
+      margin:0 auto!important;
+      padding:0!important;
+      display:flex!important;
+      flex-direction:column!important;
+      align-items:center!important;
+      justify-content:center!important;
+      gap:4px!important;
+      border:0!important;
+      border-radius:19px!important;
+      overflow:hidden!important;
+      background:transparent!important;
+      box-shadow:none!important;
+      transform:none!important;
+      isolation:isolate!important;
+      contain:layout paint style!important;
+      color:rgba(255,255,255,.62)!important;
+    }
+    html body .app-shell .quick-rail.quick-rail .rail-button::before{
+      content:"";
+      position:absolute;
+      z-index:0;
+      inset:4px 3px;
+      border:1px solid transparent;
+      border-radius:16px;
+      background:transparent;
+      -webkit-backdrop-filter:none;
+      backdrop-filter:none;
+      box-shadow:none;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .17s ease,background .17s ease,border-color .17s ease;
+    }
+    html body .app-shell .quick-rail.quick-rail .rail-button.active{
+      border:0!important;
+      background:transparent!important;
+      box-shadow:none!important;
+      color:#713440!important;
+    }
+    html body .app-shell .quick-rail.quick-rail .rail-button.active::before{
+      border-color:rgba(255,255,255,.28);
+      background:linear-gradient(145deg,rgba(255,255,255,.3),rgba(255,242,246,.23) 48%,rgba(232,166,181,.17));
+      -webkit-backdrop-filter:blur(12px) saturate(142%);
+      backdrop-filter:blur(12px) saturate(142%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -1px 0 rgba(120,55,68,.055);
+      opacity:1;
+    }
+    html body .app-shell .quick-rail.quick-rail .rail-button > *{
+      position:relative!important;
+      z-index:1!important;
+    }
+    html body .app-shell .quick-rail.quick-rail .rail-button :where(.rail-icon,.atlas-control-icon){
+      width:24px!important;
+      height:24px!important;
+      color:currentColor!important;
+      opacity:.82!important;
+      filter:none!important;
+    }
+    html body .app-shell .quick-rail.quick-rail .rail-button small{
+      margin:0!important;
+      font-size:10px!important;
+      line-height:1!important;
+      letter-spacing:.01em!important;
+      color:currentColor!important;
+      opacity:.72!important;
+      white-space:nowrap!important;
+    }
+    html body .app-shell .quick-rail.quick-rail .rail-button.active :where(.rail-icon,.atlas-control-icon){opacity:.96!important}
+    html body .app-shell .quick-rail.quick-rail .rail-button.active small{opacity:.9!important}
+    html body .app-shell .quick-rail.quick-rail .rail-button:active{transform:scale(.965)!important}
+    @media(max-width:720px){
+      html body .app-shell .quick-rail.quick-rail{
+        left:max(10px,env(safe-area-inset-left,0px))!important;
+        width:74px!important;
+        height:340px!important;
+        padding:8px 7px!important;
+        grid-template-rows:repeat(5,56px)!important;
+        gap:6px!important;
+        border-radius:25px!important;
+      }
+      html body .app-shell .quick-rail.quick-rail .rail-button{
+        width:58px!important;
+        max-width:58px!important;
+        height:56px!important;
+        min-height:56px!important;
+        border-radius:17px!important;
+      }
+      html body .app-shell .quick-rail.quick-rail .rail-button::before{inset:3px;border-radius:14px}
+    }
+    @media(prefers-reduced-transparency:reduce){
+      html body .app-shell .quick-rail.quick-rail .rail-button.active::before{
+        -webkit-backdrop-filter:none;
+        backdrop-filter:none;
+        background:rgba(248,221,228,.9);
+      }
+    }
+  `;
 
   let repairFrame = 0;
   let repairCount = 0;
@@ -42,6 +172,17 @@
     if (!node || !node.style.getPropertyValue(property)) return false;
     node.style.removeProperty(property);
     return true;
+  }
+
+  function installRailDesign() {
+    let style = document.getElementById('atlas-rail-design-09412e');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'atlas-rail-design-09412e';
+      document.head.appendChild(style);
+    }
+    if (style.textContent !== railStyleText) style.textContent = railStyleText;
+    root.dataset.atlasRailDesign = RAIL_DESIGN_VERSION;
   }
 
   function restoreRail() {
@@ -116,6 +257,7 @@
   function runRepair() {
     repairFrame = 0;
     repairCount += 1;
+    installRailDesign();
     restoreRail();
     restoreOpenLayers();
     closeDetachedLayers();
@@ -203,6 +345,7 @@
       .every(layer => !layer.hasAttribute('inert') && layer.getAttribute('aria-hidden') === 'false');
     return {
       version: VERSION,
+      railDesignVersion: RAIL_DESIGN_VERSION,
       repairCount,
       repairScheduled: Boolean(repairFrame),
       railInteractive: !railNeedsRepair(),
@@ -213,10 +356,11 @@
   }
 
   function init() {
+    installRailDesign();
     installInteractionGuard();
     runRepair();
     root.dataset.atlasNavigation = VERSION;
-    window.AtlasNavigationRecovery = Object.freeze({ version: VERSION, audit, restoreRail, returnToMap, scheduleRepair });
+    window.AtlasNavigationRecovery = Object.freeze({ version: VERSION, railDesignVersion: RAIL_DESIGN_VERSION, audit, restoreRail, returnToMap, scheduleRepair });
   }
 
   document.readyState === 'loading'
