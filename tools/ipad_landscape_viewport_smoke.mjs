@@ -25,74 +25,91 @@ const check = (name, condition, detail = '') => {
 page.on('pageerror', error => errors.push(`pageerror: ${error.message}`));
 page.on('console', message => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
 
+const inspect = () => page.evaluate(() => {
+  const shell = document.querySelector('.app-shell').getBoundingClientRect();
+  const canvas = document.getElementById('mapCanvas').getBoundingClientRect();
+  const scale = Number(state?.scale || 0);
+  const offsetX = Number(state?.offsetX || 0);
+  const offsetY = Number(state?.offsetY || 0);
+  const mapSize = 4096 * scale;
+  return {
+    innerWidth,
+    innerHeight,
+    shell: { left: shell.left, top: shell.top, right: shell.right, bottom: shell.bottom, width: shell.width, height: shell.height },
+    canvas: { left: canvas.left, top: canvas.top, right: canvas.right, bottom: canvas.bottom, width: canvas.width, height: canvas.height },
+    map: {
+      scale,
+      left: offsetX,
+      top: offsetY,
+      right: offsetX + mapSize,
+      bottom: offsetY + mapSize,
+      centerX: offsetX + mapSize / 2,
+      centerY: offsetY + mapSize / 2,
+      minimumScale: Number(window.AtlasMapCover?.minimumScale?.() || 0)
+    },
+    measured: window.AtlasViewport.measure(),
+    stats: window.AtlasViewport.stats?.(),
+    source: document.documentElement.dataset.atlasViewportSource,
+    commitCount: Number(document.documentElement.dataset.atlasViewportCommitCount || 0),
+    coverReady: window.AtlasMapCover?.ready?.() === true && document.documentElement.dataset.atlasMapCoverReady === 'true'
+  };
+});
+
+function mapCoversViewport(sample) {
+  return sample.map.left <= 1 && sample.map.top <= 1 && sample.map.right >= sample.innerWidth - 1 && sample.map.bottom >= sample.innerHeight - 1;
+}
+
+function mapCentered(sample) {
+  return Math.abs(sample.map.centerX - sample.innerWidth / 2) <= 2 && Math.abs(sample.map.centerY - sample.innerHeight / 2) <= 2;
+}
+
 try {
   await page.goto(`${baseURL}?ipad-landscape-viewport-smoke=1&v=${manifest.version}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
   await page.waitForFunction(minimum => Number(document.getElementById('visibleCount')?.textContent || 0) >= minimum, manifest.invariants.minimumLocationCount, { timeout: 45_000 });
-  await page.waitForFunction(() => document.documentElement.dataset.atlasViewportReady === 'true' && window.AtlasViewport?.measure, null, { timeout: 15_000 });
+  await page.waitForFunction(() => document.documentElement.dataset.atlasViewportReady === 'true' && window.AtlasViewport?.measure && window.AtlasMapCover?.ready?.(), null, { timeout: 15_000 });
   await page.waitForTimeout(700);
 
-  const portrait = await page.evaluate(() => {
-    const shell = document.querySelector('.app-shell').getBoundingClientRect();
-    const canvas = document.getElementById('mapCanvas').getBoundingClientRect();
-    return {
-      innerWidth,
-      innerHeight,
-      shell: { left: shell.left, top: shell.top, right: shell.right, bottom: shell.bottom, width: shell.width, height: shell.height },
-      canvas: { left: canvas.left, top: canvas.top, right: canvas.right, bottom: canvas.bottom, width: canvas.width, height: canvas.height },
-      measured: window.AtlasViewport.measure(),
-      stats: window.AtlasViewport.stats?.()
-    };
-  });
+  const portrait = await inspect();
   check('portrait shell fills width', Math.abs(portrait.shell.width - portrait.innerWidth) <= 2, JSON.stringify(portrait));
   check('portrait shell fills height', Math.abs(portrait.shell.height - portrait.innerHeight) <= 2, JSON.stringify(portrait));
+  check('portrait map cover ready', portrait.coverReady, JSON.stringify(portrait));
+  check('portrait world map covers viewport', mapCoversViewport(portrait), JSON.stringify(portrait));
+  check('portrait world map is centered', mapCentered(portrait), JSON.stringify(portrait));
 
   await page.setViewportSize({ width: 1180, height: 820 });
   await page.evaluate(() => window.dispatchEvent(new Event('orientationchange')));
-  await page.waitForFunction(() => document.documentElement.dataset.atlasViewportOrientation === 'landscape' && document.documentElement.dataset.atlasViewportSettling === 'false', null, { timeout: 5_000 });
-  await page.waitForTimeout(250);
+  await page.waitForFunction(() => document.documentElement.dataset.atlasViewportOrientation === 'landscape' && document.documentElement.dataset.atlasViewportSettling === 'false' && document.documentElement.dataset.atlasMapCoverReady === 'true', null, { timeout: 5_000 });
+  await page.waitForTimeout(300);
 
   const samples = [];
   for (let index = 0; index < 7; index += 1) {
-    samples.push(await page.evaluate(() => {
-      const shell = document.querySelector('.app-shell').getBoundingClientRect();
-      const canvas = document.getElementById('mapCanvas').getBoundingClientRect();
-      return {
-        innerWidth,
-        innerHeight,
-        shellWidth: shell.width,
-        shellHeight: shell.height,
-        shellRight: shell.right,
-        shellBottom: shell.bottom,
-        canvasWidth: canvas.width,
-        canvasHeight: canvas.height,
-        canvasRight: canvas.right,
-        canvasBottom: canvas.bottom,
-        measured: window.AtlasViewport.measure(),
-        stats: window.AtlasViewport.stats?.(),
-        source: document.documentElement.dataset.atlasViewportSource,
-        commitCount: Number(document.documentElement.dataset.atlasViewportCommitCount || 0)
-      };
-    }));
+    samples.push(await inspect());
     await page.waitForTimeout(120);
   }
 
   const first = samples[0];
   const last = samples.at(-1);
   const sizesStable = samples.every(sample =>
-    Math.abs(sample.shellWidth - first.shellWidth) <= 1 &&
-    Math.abs(sample.shellHeight - first.shellHeight) <= 1 &&
-    Math.abs(sample.canvasWidth - first.canvasWidth) <= 1 &&
-    Math.abs(sample.canvasHeight - first.canvasHeight) <= 1
+    Math.abs(sample.shell.width - first.shell.width) <= 1 &&
+    Math.abs(sample.shell.height - first.shell.height) <= 1 &&
+    Math.abs(sample.canvas.width - first.canvas.width) <= 1 &&
+    Math.abs(sample.canvas.height - first.canvas.height) <= 1 &&
+    Math.abs(sample.map.scale - first.map.scale) <= 0.00001 &&
+    Math.abs(sample.map.left - first.map.left) <= 1 &&
+    Math.abs(sample.map.top - first.map.top) <= 1
   );
   const commitsStable = samples.every(sample => sample.commitCount === first.commitCount);
 
   check('landscape source is layout shell', first.source === 'layout-shell' && first.measured.source === 'layout-shell', JSON.stringify(first));
-  check('landscape shell fills width', Math.abs(first.shellWidth - first.innerWidth) <= 2 && Math.abs(first.shellRight - first.innerWidth) <= 2, JSON.stringify(first));
-  check('landscape shell fills height', Math.abs(first.shellHeight - first.innerHeight) <= 2 && Math.abs(first.shellBottom - first.innerHeight) <= 2, JSON.stringify(first));
-  check('landscape canvas fills width', Math.abs(first.canvasWidth - first.innerWidth) <= 2 && Math.abs(first.canvasRight - first.innerWidth) <= 2, JSON.stringify(first));
-  check('landscape canvas fills height', Math.abs(first.canvasHeight - first.innerHeight) <= 2 && Math.abs(first.canvasBottom - first.innerHeight) <= 2, JSON.stringify(first));
+  check('landscape shell fills width', Math.abs(first.shell.width - first.innerWidth) <= 2 && Math.abs(first.shell.right - first.innerWidth) <= 2, JSON.stringify(first));
+  check('landscape shell fills height', Math.abs(first.shell.height - first.innerHeight) <= 2 && Math.abs(first.shell.bottom - first.innerHeight) <= 2, JSON.stringify(first));
+  check('landscape canvas fills width', Math.abs(first.canvas.width - first.innerWidth) <= 2 && Math.abs(first.canvas.right - first.innerWidth) <= 2, JSON.stringify(first));
+  check('landscape canvas fills height', Math.abs(first.canvas.height - first.innerHeight) <= 2 && Math.abs(first.canvas.bottom - first.innerHeight) <= 2, JSON.stringify(first));
+  check('landscape world map covers viewport', mapCoversViewport(first), JSON.stringify(first));
+  check('landscape world map is centered', mapCentered(first), JSON.stringify(first));
+  check('landscape scale respects cover minimum', first.map.scale + 0.00001 >= first.map.minimumScale && first.map.minimumScale > 0, JSON.stringify(first));
   check('measured layout matches browser', Math.abs(first.measured.width - first.innerWidth) <= 2 && Math.abs(first.measured.height - first.innerHeight) <= 2, JSON.stringify(first));
-  check('no post-rotation size jitter', sizesStable, JSON.stringify(samples));
+  check('no post-rotation size or map jitter', sizesStable, JSON.stringify(samples));
   check('no post-rotation commit loop', commitsStable && first.commitCount <= manifest.invariants.viewportMaximumStartupCommits, JSON.stringify(samples));
   check('viewport remains stable after observation', last.stats?.settling === false, JSON.stringify(last));
   check('no runtime errors', errors.length === 0, errors.join('\n'));
@@ -105,7 +122,7 @@ await context.close();
 await browser.close();
 const passedChecks = checks.filter(item => item.passed).length;
 const report = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   release: manifest.version,
   generatedAt: new Date().toISOString(),
   passed: !failed && passedChecks === checks.length,
@@ -115,5 +132,5 @@ const report = {
 };
 await fs.mkdir(new URL('../data/conflict-reports/', import.meta.url), { recursive: true });
 await fs.writeFile(new URL('../data/conflict-reports/ipad-landscape-viewport.json', import.meta.url), `${JSON.stringify(report, null, 2)}\n`);
-console.log(`iPad landscape viewport: ${passedChecks}/${checks.length}; errors=${errors.length}`);
+console.log(`iPad landscape viewport and map cover: ${passedChecks}/${checks.length}; errors=${errors.length}`);
 if (!report.passed) process.exit(2);
