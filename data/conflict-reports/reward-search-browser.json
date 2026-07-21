@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.10",
+  "generatedAt": "2026-07-21T15:16:05.029Z",
+  "passed": true,
+  "totalChecks": 22,
+  "profiles": [
+    {
+      "profile": "mobile-390x844",
+      "checks": [
+        {
+          "name": "search owner",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "search owner dataset",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "english reward exact first",
+          "passed": true,
+          "detail": "{\"id\":\"location-mapgenie-434361\",\"kind\":\"reward-exact\",\"badge\":\"奖励精确匹配\",\"hint\":\"命中奖励：Minogame's Protection（传奇饰品）\"}"
+        },
+        {
+          "name": "english reward badge",
+          "passed": true,
+          "detail": "奖励精确匹配"
+        },
+        {
+          "name": "matched reward only",
+          "passed": true,
+          "detail": "命中奖励：Minogame's Protection（传奇饰品）"
+        },
+        {
+          "name": "chinese reward exact first",
+          "passed": true,
+          "detail": "{\"kind\":\"reward-exact\",\"hint\":\"命中奖励：经验值\"}"
+        },
+        {
+          "name": "chinese matched reward only",
+          "passed": true,
+          "detail": "命中奖励：经验值"
+        },
+        {
+          "name": "search closes before focus",
+          "passed": true,
+          "detail": "{\"overlayOpen\":false,\"inputFocused\":false,\"scale\":1,\"dx\":0,\"dy\":0}"
+        },
+        {
+          "name": "page scale normalized",
+          "passed": true,
+          "detail": "1"
+        },
+        {
+          "name": "selected location centered",
+          "passed": true,
+          "detail": "{\"overlayOpen\":false,\"inputFocused\":false,\"scale\":1,\"dx\":0,\"dy\":0}"
+        },
+        {
+          "name": "no runtime errors",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "errors": []
+    },
+    {
+      "profile": "ipad-820x1180",
+      "checks": [
+        {
+          "name": "search owner",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "search owner dataset",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "english reward exact first",
+          "passed": true,
+          "detail": "{\"id\":\"location-mapgenie-434361\",\"kind\":\"reward-exact\",\"badge\":\"奖励精确匹配\",\"hint\":\"命中奖励：Minogame's Protection（传奇饰品）\"}"
+        },
+        {
+          "name": "english reward badge",
+          "passed": true,
+          "detail": "奖励精确匹配"
+        },
+        {
+          "name": "matched reward only",
+          "passed": true,
+          "detail": "命中奖励：Minogame's Protection（传奇饰品）"
+        },
+        {
+          "name": "chinese reward exact first",
+          "passed": true,
+          "detail": "{\"kind\":\"reward-exact\",\"hint\":\"命中奖励：经验值\"}"
+        },
+        {
+          "name": "chinese matched reward only",
+          "passed": true,
+          "detail": "命中奖励：经验值"
+        },
+        {
+          "name": "search closes before focus",
+          "passed": true,
+          "detail": "{\"overlayOpen\":false,\"inputFocused\":false,\"scale\":1,\"dx\":0,\"dy\":0}"
+        },
+        {
+          "name": "page scale normalized",
+          "passed": true,
+          "detail": "1"
+        },
+        {
+          "name": "selected location centered",
+          "passed": true,
+          "detail": "{\"overlayOpen\":false,\"inputFocused\":false,\"scale\":1,\"dx\":0,\"dy\":0}"
+        },
+        {
+          "name": "no runtime errors",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

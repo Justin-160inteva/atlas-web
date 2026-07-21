@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-21T14:27:28.601764Z",
-  "release": "0.9.4.9",
+  "generatedAt": "2026-07-21T15:13:47.935798Z",
+  "release": "0.9.4.10",
   "policyRevision": "2026.07.21.1",
   "event": "push",
   "tier": "standard",
@@ -9,40 +9,70 @@
   "forcedFull": false,
   "scheduledFull": false,
   "targetedPullRequest": false,
-  "postMergeFullUiMatrix": false,
+  "postMergeFullUiMatrix": true,
   "changedFiles": [
-    "tools/analyze_authorized_video_v14.py"
+    ".github/workflows/validate-scan-monitor.yml",
+    ".github/workflows/validate-scan-system.yml",
+    "atlas-bootstrap.js",
+    "data/rewards/reward-evidence-index.json",
+    "data/rewards/reward-records-runtime.json",
+    "index.html",
+    "release-manifest.json",
+    "sw.js",
+    "tools/audit_scan_system_v4.py",
+    "tools/reward_summary_runtime_smoke.mjs",
+    "tools/viewport_scale_contract_smoke.mjs"
   ],
-  "safeSupportFiles": [],
+  "safeSupportFiles": [
+    "atlas-bootstrap.js",
+    "release-manifest.json",
+    "sw.js",
+    "tools/reward_summary_runtime_smoke.mjs",
+    "tools/viewport_scale_contract_smoke.mjs"
+  ],
   "matchedGroups": {
-    "validationFramework": [],
-    "scanAutonomy": [],
-    "scanCore": [
-      "tools/analyze_authorized_video_v14.py"
+    "validationFramework": [
+      "release-manifest.json"
     ],
+    "scanAutonomy": [],
+    "scanCore": [],
     "monitor": [],
     "dataCenter": [],
-    "rewards": [],
-    "viewportTargeted": [],
+    "rewards": [
+      "data/rewards/reward-evidence-index.json",
+      "data/rewards/reward-records-runtime.json"
+    ],
+    "viewportTargeted": [
+      "tools/viewport_scale_contract_smoke.mjs"
+    ],
     "searchTargeted": [],
-    "uiFull": [],
-    "ui": [],
-    "highRisk": []
+    "uiFull": [
+      "atlas-bootstrap.js",
+      "sw.js"
+    ],
+    "ui": [
+      "atlas-bootstrap.js",
+      "index.html",
+      "sw.js"
+    ],
+    "highRisk": [
+      "sw.js"
+    ]
   },
   "run": {
     "data_center": false,
-    "reward": false,
-    "heartbeat": true,
-    "serial": true,
-    "queue_schema": true,
-    "autonomous_repair": true,
-    "browser_matrix": false,
-    "ipad": false,
-    "reward_search": false,
+    "reward": true,
+    "heartbeat": false,
+    "serial": false,
+    "queue_schema": false,
+    "autonomous_repair": false,
+    "browser_matrix": true,
+    "ipad": true,
+    "reward_search": true,
     "monitor": false,
     "full_audit": false,
-    "browser": false,
-    "playwright": false
+    "browser": true,
+    "playwright": true
   },
   "budget": {
     "targetMinutes": 10,
