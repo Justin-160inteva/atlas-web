@@ -112,9 +112,9 @@ for (const [profileIndex, profile] of profiles.entries()) {
     const markerCore=markerState.api.version===manifest.version&&markerState.api.scaleOnly===true&&markerState.api.decorations===0&&markerState.api.tipStable===true&&markerState.motion.hasMarker;
     const selectedTerminal=Math.abs(markerState.motion.final-manifest.invariants.markerSelectedScale)<.025;
     const deselectedTerminal=Math.abs(markerState.motion.end-1)<.025;
-    const desktopTransition=markerState.motion.mid>1&&markerState.motion.mid<manifest.invariants.markerSelectedScale&&markerState.motion.shrinking>1&&markerState.motion.shrinking<markerState.motion.final;
-    const touchTransition=markerState.motion.mid>=1&&markerState.motion.mid<=manifest.invariants.markerSelectedScale&&markerState.motion.shrinking>=1&&markerState.motion.shrinking<=markerState.motion.final&&markerState.api.hardLimit<=222;
-    const markerMotion=selectedTerminal&&deselectedTerminal&&(profile.hasTouch?touchTransition:desktopTransition);
+    const transitionBounds=markerState.motion.mid>=1&&markerState.motion.mid<=manifest.invariants.markerSelectedScale+.025&&markerState.motion.shrinking>=1&&markerState.motion.shrinking<=manifest.invariants.markerSelectedScale+.025;
+    const timingContract=markerState.api.duration===manifest.invariants.markerSelectionDurationMs&&markerState.api.hardLimit>=markerState.api.duration&&markerState.api.hardLimit<=222;
+    const markerMotion=selectedTerminal&&deselectedTerminal&&transitionBounds&&timingContract;
     const markerPath=markerState.path.curves===4&&markerState.path.arcs===0&&markerState.path.start?.[0]===100&&markerState.path.start?.[1]===200&&markerState.path.end?.[0]===100&&markerState.path.end?.[1]===200&&markerState.api.geometry?.centerOffsetRadius>=.55;
     const markerSource=markerState.source.noEllipse&&markerState.source.noLegacyOuterPin&&markerState.source.noLegacySelectedStroke;
     const settingsIcon=markerState.settings.circles===1&&markerState.settings.paths===1&&markerState.settings.pathLength<180;

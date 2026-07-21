@@ -72,12 +72,15 @@ jobs:
           node --check atlas-i18n.js
           node --check location-names.js
           node --check location-title-polish.js
+          node --check location-search-patch.js
           node --check atlas-080.js
           node --check atlas-ui-fix-0931.js
           node --check page-zoom-guard.js
           node --check scan-monitor.js
           node --check tools/data_center_contract_smoke.mjs
           node --check tools/reward_evidence_contract_smoke.mjs
+          node --check tools/reward_search_contract_smoke.mjs
+          node --check tools/reward_search_browser_smoke.mjs
           node --check tools/viewport_scale_contract_smoke.mjs
           node --check tools/monitor_batch_authority_smoke.mjs
           node --check sw.js
@@ -95,6 +98,9 @@ jobs:
 
       - name: Run static conflict reasoner
         run: python tools/atlas_conflict_reasoner_v3.py
+
+      - name: Run reward search ownership contract
+        run: node tools/reward_search_contract_smoke.mjs
 
       - name: Run cross-device viewport scale matrix
         run: node tools/viewport_scale_contract_smoke.mjs
@@ -152,6 +158,12 @@ jobs:
         env:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/browser_conflict_smoke.mjs
+
+      - name: Run mobile and iPad reward search matrix
+        if: steps.validation.outputs.run_browser == 'true'
+        env:
+          ATLAS_URL: http://127.0.0.1:4173/
+        run: node tools/reward_search_browser_smoke.mjs
 
       - name: Run monitor batch authority matrix when monitor changes
         if: steps.validation.outputs.run_monitor == 'true'
