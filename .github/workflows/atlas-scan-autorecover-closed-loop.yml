@@ -9,18 +9,22 @@ on:
     paths:
       - 'data/batch-analysis/atlas-scan-autorecover-request.json'
 
-concurrency:
-  group: atlas-authorized-scan-autorecover
-  cancel-in-progress: false
-
 permissions:
   contents: write
+  actions: write
   models: read
+
+concurrency:
+  group: scan-eleven-regional-batch
+  cancel-in-progress: false
+
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
 
 jobs:
   reconcile-and-recover:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - name: Check out current main
         uses: actions/checkout@v4
@@ -38,130 +42,163 @@ jobs:
         run: |
           python tools/supervise_runtime_heartbeat.py data/batch-analysis/atlas-scan-autorecover-config.json
           python - <<'PY'
-          import json, os, pathlib
-
-          report_path = pathlib.Path('data/batch-analysis/eleven-heartbeat-supervisor-state.json')
-          queue_path = pathlib.Path('data/batch-analysis/eleven-pilot-scan-queue.json')
-          status_path = pathlib.Path('data/batch-analysis/eleven-pilot-scan-status.json')
-          report = json.loads(report_path.read_text(encoding='utf-8'))
-          resume = bool(report.get('resumeWorkflow'))
-          target_id = report.get('resumeTargetExternalSourceId')
-          repair = str(report.get('repair') or '')
-          normalized = False
-
-          if resume and target_id and repair in {
-              'reset_lease_and_retry',
-              'resume_pending_item',
-              'publish_terminal_projection_and_resume_pending',
-          }:
-              queue = json.loads(queue_path.read_text(encoding='utf-8'))
-              target = next((item for item in queue.get('items', []) if item.get('externalSourceId') == target_id), None)
-              if target and target.get('state') != 'imported':
-                  if target.get('state') == 'failed' and str(target.get('error') or '').startswith('heartbeat supervisor:'):
-                      target['attemptCount'] = max(1, int(target.get('attemptCount') or 0))
-                  target['state'] = 'pending'
-                  target.pop('error', None)
-                  target.pop('lastFinishedAt', None)
-                  target['lastRecoveryAt'] = report.get('generatedAt')
-                  target['lastRecoveryAction'] = repair
-                  queue['status'] = 'recovery_scheduled'
-                  queue['updatedAt'] = report.get('generatedAt')
-                  queue.pop('activeExternalSourceId', None)
-                  queue_path.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-                  normalized = True
-
-              status = json.loads(status_path.read_text(encoding='utf-8'))
-              status_target = next((item for item in status.get('items', []) if item.get('externalSourceId') == target_id), None)
-              if status_target and status_target.get('state') != 'imported':
-                  status_target['state'] = 'pending'
-                  status_target['attemptCount'] = max(int(status_target.get('attemptCount') or 0), int((target or {}).get('attemptCount') or 0))
-                  status_target.pop('error', None)
-                  status_target['lastStartedAt'] = None
-                  status_target['lastFinishedAt'] = None
-                  status_target['resultPath'] = None
-                  states = [item.get('state', 'pending') for item in status.get('items', [])]
-                  status['activeItem'] = None
-                  status['phase'] = 'progress'
-                  status['updatedAt'] = report.get('generatedAt')
-                  status['summary'] = {
-                      'total': len(states),
-                      'imported': states.count('imported'),
-                      'running': states.count('running'),
-                      'failed': states.count('failed'),
-                      'blocked': states.count('blocked'),
-                      'retryableFailed': 0,
-                      'remaining': sum(state not in {'imported', 'running', 'failed', 'blocked'} for state in states),
-                      'attemptedThisRun': 0,
-                      'newlyImportedThisRun': 0,
-                  }
-                  status_path.write_text(json.dumps(status, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-
-          report['closedLoopPrepared'] = normalized
-          report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-          actionable = resume or bool(report.get('queueChanged')) or bool(report.get('projectionWritten')) or normalized
-          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+          import json, os
+          report=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor-state.json',encoding='utf-8'))
+          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          imported=sum(item.get('state')=='imported' for item in queue.get('items',[]))
+          resume=bool(report.get('resumeWorkflow'))
+          actionable=resume or bool(report.get('queueChanged')) or bool(report.get('projectionWritten'))
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as output:
               output.write(f"resume={'true' if resume else 'false'}\n")
               output.write(f"actionable={'true' if actionable else 'false'}\n")
-              output.write(f"decision={report.get('decision', 'unknown')}\n")
+              output.write(f"decision={report.get('decision','unknown')}\n")
+              output.write(f"imported_before={imported}\n")
+          print(json.dumps({
+              'decision':report.get('decision'),
+              'repair':report.get('repair'),
+              'resume':resume,
+              'target':report.get('resumeTargetExternalSourceId'),
+              'importedBefore':imported,
+          },ensure_ascii=False))
           PY
 
       - name: Install scan dependencies only when recovery is required
         if: steps.reconcile.outputs.resume == 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg curl
           python -m pip install --upgrade pip
-          python -m pip install curl-cffi opencv-python-headless numpy yt-dlp
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+
+      - name: Validate recovery stack without writing bytecode
+        if: steps.reconcile.outputs.resume == 'true'
+        run: |
+          python - <<'PY'
+          import ast, json, pathlib
+          manifest=json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json',encoding='utf-8'))
+          paths=[
+              'tools/supervise_runtime_heartbeat.py',
+              'tools/run_scan_with_auto_recovery.py',
+              'tools/run_scan_with_auto_recovery_v2.py',
+              'tools/diagnose_and_recover_scan_v2.py',
+              'tools/scan_autonomous_repair.py',
+              'tools/scan_catalog_queue_v2.py',
+              manifest['analyzer'],
+          ]
+          for relative in paths:
+              ast.parse(pathlib.Path(relative).read_text(encoding='utf-8'),filename=relative)
+          print(f"validated {len(paths)} closed-loop source files")
+          PY
+          python tools/autonomous_scan_repair_smoke.py
 
       - name: Diagnose, repair and retry the same queue item
         id: scan
         if: steps.reconcile.outputs.resume == 'true'
         continue-on-error: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ATLAS_AI_REPAIR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONUNBUFFERED: '1'
+          ATLAS_FORCE_HTTP11: '1'
+          ATLAS_PARALLEL_RANGE_WORKERS: '8'
+          PYTHONPATH: ${{ github.workspace }}/tools/p33_v14_hook
+          GITHUB_TOKEN: ${{ github.token }}
+          ATLAS_AI_REPAIR_TOKEN: ${{ github.token }}
+          ATLAS_PROGRESS_TOKEN: ${{ github.token }}
+          ATLAS_PROGRESS_REPOSITORY: ${{ github.repository }}
+          ATLAS_PROGRESS_BRANCH: main
+          ATLAS_PROGRESS_PATH: data/runtime-progress/eleven-pilot-progress.json
+          ATLAS_PROGRESS_LOCAL_PATH: /tmp/atlas-runtime-progress.json
+          ATLAS_PROGRESS_MIN_INTERVAL_SECONDS: '30'
+          ATLAS_PROGRESS_CONFLICT_RETRIES: '5'
         run: |
           set +e
-          python tools/run_scan_with_auto_recovery.py data/batch-analysis/eleven-pilot-scan-manifest.json
+          python tools/run_scan_with_auto_recovery_v2.py data/batch-analysis/eleven-pilot-scan-manifest.json
           code=$?
           echo "code=$code" >> "$GITHUB_OUTPUT"
           exit 0
 
-      - name: Run fast safety audit after recovery
-        if: steps.reconcile.outputs.resume == 'true'
-        run: |
-          python -m py_compile \
-            tools/supervise_runtime_heartbeat.py \
-            tools/run_scan_with_auto_recovery.py \
-            tools/diagnose_and_recover_scan_v2.py \
-            tools/scan_autonomous_repair.py
-          python tools/audit_scan_system_v4.py
-
-      - name: Remove generated interpreter caches
+      - name: Remove transient media and restore interpreter caches
         if: always()
         run: |
+          find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
+          find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' \) -delete
           find . -type d -name '__pycache__' -prune -exec rm -rf {} +
-          find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python - <<'PY'
+          import subprocess
+          tracked=subprocess.check_output(['git','ls-files'],text=True).splitlines()
+          caches=[path for path in tracked if '/__pycache__/' in path or path.endswith(('.pyc','.pyo'))]
+          if caches:
+              subprocess.run(['git','restore','--source=HEAD','--staged','--worktree','--',*caches],check=True)
+          PY
 
-      - name: Persist recovered queue, results and approved AI patches
-        if: steps.reconcile.outputs.actionable == 'true'
+      - name: Verify recovered state and compute continuation
+        if: always()
+        id: decision
         run: |
-          git config user.name "atlas-scan-autorecover[bot]"
-          git config user.email "atlas-scan-autorecover[bot]@users.noreply.github.com"
-          git add -u
-          find data/analysis-results -maxdepth 1 -type f -name 'eleven-p*.json' -print0 | xargs -0 -r git add --
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          items=queue.get('items',[])
+          imported=sum(item.get('state')=='imported' for item in items)
+          before=int('${{ steps.reconcile.outputs.imported_before }}' or 0)
+          complete=bool(items) and imported==len(items)
+          progressed=imported>before
+          print(f"imported={imported}")
+          print(f"total={len(items)}")
+          print(f"progressed={'true' if progressed else 'false'}")
+          print(f"complete={'true' if complete else 'false'}")
+          PY
+          python tools/audit_scan_system_v4.py
+
+      - name: Persist durable recovery changes only
+        if: always() && (steps.reconcile.outputs.actionable == 'true' || steps.reconcile.outputs.resume == 'true')
+        id: persist
+        run: |
+          echo "persisted=false" >> "$GITHUB_OUTPUT"
+          git config user.name 'atlas-scan-autorecover[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/analysis-results \
+            data/analysis-jobs \
+            data/analysis-index.json \
+            data/eleven-game-world-ac-shadows-catalog.json \
+            data/batch-analysis/eleven-heartbeat-supervisor-state.json \
+            data/batch-analysis/eleven-pilot-scan-queue.json \
+            data/batch-analysis/eleven-pilot-scan-status.json \
+            data/batch-analysis/eleven-pilot-recovery-report.json \
+            data/batch-analysis/eleven-pilot-orchestration-report.json \
+            data/batch-analysis/scan-autonomous-repair-report.json \
+            data/batch-analysis/eleven-pilot-scan-manifest.json \
+            data/scan-bug-dictionary.json \
+            data/scan-autonomy-policy.json
+          find tools -type f -name '*.py' -print0 | xargs -0 -r git add --
+          if git diff --cached --name-only | grep -E '(^|/)__pycache__/|\.py[co]$'; then
+            echo 'interpreter cache was staged' >&2
+            exit 1
+          fi
           if git diff --cached --quiet; then
-            echo "No durable recovery changes to persist"
             exit 0
           fi
           git commit -m "Auto-recover authorized scan: ${{ steps.reconcile.outputs.decision }}"
-          for attempt in 1 2 3; do
-            git pull --rebase origin main && git push origin HEAD:main && exit 0
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              pushed_sha=$(git rev-parse HEAD)
+              git fetch origin main
+              if git merge-base --is-ancestor "$pushed_sha" origin/main; then
+                echo "persisted=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
             git rebase --abort || true
-            sleep $((attempt * 5))
+            sleep $((attempt * 4))
           done
           exit 1
 
+      - name: Continue with the next item after recovered import
+        if: always() && steps.persist.outputs.persisted == 'true' && steps.decision.outputs.progressed == 'true' && steps.decision.outputs.complete != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run scan-eleven-pilot-v2.yml --ref main
+
       - name: Surface protected failure after durable reporting
-        if: steps.reconcile.outputs.resume == 'true' && steps.scan.outputs.code != '0'
+        if: always() && steps.reconcile.outputs.resume == 'true' && steps.scan.outputs.code != '0'
         run: exit 1
