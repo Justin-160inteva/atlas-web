@@ -1,0 +1,94 @@
+name: UI 0.9.4.12b-2 control icon regression
+
+on:
+  pull_request:
+    paths:
+      - 'atlas-controls-0938.js'
+      - 'atlas-controls-0938.css'
+      - 'atlas-liquid-nav-0934.js'
+      - 'atlas-navigation-09411b.js'
+      - 'atlas-ipad-nav-0940.js'
+      - 'release-manifest.json'
+      - 'sw.js'
+      - 'tools/control_icon_contract_09412b2.mjs'
+      - 'tools/control_icon_browser_smoke_09412b2.mjs'
+      - '.github/workflows/control-icons-09412b2-regression.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'atlas-controls-0938.js'
+      - 'atlas-controls-0938.css'
+      - 'atlas-liquid-nav-0934.js'
+      - 'atlas-navigation-09411b.js'
+      - 'atlas-ipad-nav-0940.js'
+      - 'release-manifest.json'
+      - 'sw.js'
+      - 'tools/control_icon_contract_09412b2.mjs'
+      - 'tools/control_icon_browser_smoke_09412b2.mjs'
+      - '.github/workflows/control-icons-09412b2-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Parse control icon runtime
+        run: node --check atlas-controls-0938.js
+      - name: Run static control icon contract
+        run: node tools/control_icon_contract_09412b2.mjs
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-atlas-control-icons-playwright-chromium-v1
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium --with-deps
+      - name: Start local Atlas server
+        run: |
+          python -m http.server 4173 >/tmp/atlas-control-icons-server.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/atlas-control-icons-server.log
+          exit 1
+      - name: Run real cross-device control icon smoke
+        id: browser_smoke
+        continue-on-error: true
+        env:
+          ATLAS_URL: http://127.0.0.1:4173/
+        run: |
+          set -o pipefail
+          node tools/control_icon_browser_smoke_09412b2.mjs 2>&1 | tee control-icons-browser-09412b2.log
+      - name: Upload compact browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: control-icons-browser-09412b2-${{ github.sha }}
+          path: control-icons-browser-09412b2.log
+          retention-days: 3
+      - name: Enforce browser smoke result
+        if: steps.browser_smoke.outcome == 'failure'
+        run: exit 1
