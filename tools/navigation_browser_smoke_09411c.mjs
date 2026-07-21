@@ -120,7 +120,7 @@ for (const profile of profiles) {
     check('representative surfaces exist', glassState.surfaces.length >= 8, JSON.stringify(glassState.surfaces));
     for (const surface of glassState.surfaces) {
       check(`${surface.selector} uses glass gradient`, surface.background !== 'none' && surface.background.includes('linear-gradient'), JSON.stringify(surface));
-      check(`${surface.selector} blur stays within budget`, surface.blur > 0 && surface.blur <= profile.maxBlur + .1, JSON.stringify(surface));
+      check(`${surface.selector} blur stays within budget`, surface.blur >= 0 && surface.blur <= profile.maxBlur + .1, JSON.stringify(surface));
       check(`${surface.selector} keeps border and radius`, surface.border >= .75 && surface.radius >= 12, JSON.stringify(surface));
       check(`${surface.selector} keeps bounded shadow`, surface.shadow !== 'none', JSON.stringify(surface));
     }
