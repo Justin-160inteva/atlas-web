@@ -34,9 +34,10 @@ for (const profile of profiles) {
   page.on('console', message => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
 
   try {
-    await page.goto(`${baseURL}?navigation-smoke=09412a-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    await page.goto(`${baseURL}?navigation-smoke=09412b1-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForFunction(() => Number(document.getElementById('visibleCount')?.textContent || 0) >= 3000, null, { timeout: 45_000 });
     await page.waitForFunction(() => window.AtlasNavigationRecovery?.version === '0.9.4.11b', null, { timeout: 15_000 });
+    await page.waitForFunction(() => window.AtlasMarkerDesign?.version === '0.9.4.12b-1', null, { timeout: 15_000 });
     await page.waitForTimeout(450);
 
     const geometry = await page.evaluate(() => {
@@ -62,7 +63,8 @@ for (const profile of profiles) {
         bottom: read('.bottom-nav'),
         rail: read('.quick-rail'),
         viewport: { width: innerWidth, height: innerHeight },
-        audit: window.AtlasNavigationRecovery.audit()
+        audit: window.AtlasNavigationRecovery.audit(),
+        markerAudit: window.AtlasMarkerDesign.audit()
       };
     });
 
@@ -78,6 +80,12 @@ for (const profile of profiles) {
     check('rail is interactive', geometry.audit.railInteractive && geometry.rail.pointerEvents !== 'none', JSON.stringify(geometry.audit));
     check('closed panels are safe', geometry.audit.closedPanelsSafe, JSON.stringify(geometry.audit));
     check('settings icon is valid', geometry.audit.settingsIconValid, JSON.stringify(geometry.audit));
+
+    check('marker runtime version is current', geometry.markerAudit.version === '0.9.4.12b-1', JSON.stringify(geometry.markerAudit));
+    check('marker uses anchored long-tail droplet', geometry.markerAudit.shape === 'anchored-long-tail-droplet' && geometry.markerAudit.anchor === 'bottom-tip', JSON.stringify(geometry.markerAudit));
+    check('marker selection is scale only', geometry.markerAudit.selectionFeedback === 'scale-only' && geometry.markerAudit.selectionRing === false && geometry.markerAudit.selectionBorder === false, JSON.stringify(geometry.markerAudit));
+    check('marker selection scale is 1.28', geometry.markerAudit.selectedScale === 1.28, JSON.stringify(geometry.markerAudit));
+    check('marker selection duration is 190ms', geometry.markerAudit.durationMs === 190, JSON.stringify(geometry.markerAudit));
 
     const glassState = await page.evaluate(() => {
       const blurValue = value => Number((String(value).match(/blur\((\d+(?:\.\d+)?)px\)/) || [])[1] || 0);
@@ -129,6 +137,22 @@ for (const profile of profiles) {
     check('primary control uses premium red gradient', glassState.primary?.background.includes('linear-gradient') && glassState.primary.background !== glassState.neutral?.background, JSON.stringify(glassState.primary));
     check('neutral control keeps soft red glass', glassState.neutral?.background.includes('linear-gradient'), JSON.stringify(glassState.neutral));
 
+    const selectedMarker = await page.evaluate(() => {
+      const marker = state.markers.find(item => item.items?.[0]);
+      if (!marker) return null;
+      selectLocation(marker.items[0]);
+      return marker.items[0].id;
+    });
+    check('visible marker can be selected', Boolean(selectedMarker), String(selectedMarker));
+    await page.waitForTimeout(70);
+    const markerMidAudit = await page.evaluate(() => window.AtlasMarkerDesign.audit());
+    check('marker animation starts on selection', markerMidAudit.selectedId === selectedMarker && markerMidAudit.activeAnimations >= 1, JSON.stringify(markerMidAudit));
+    await page.waitForTimeout(180);
+    const markerEndAudit = await page.evaluate(() => window.AtlasMarkerDesign.audit());
+    check('marker animation settles after 190ms', markerEndAudit.selectedId === selectedMarker && markerEndAudit.activeAnimations === 0, JSON.stringify(markerEndAudit));
+    await page.evaluate(() => window.closeSheet());
+    await page.waitForTimeout(210);
+
     await page.locator('#evidenceStudioBtn').click({ timeout: 5000 });
     await page.waitForTimeout(180);
     check('settings panel opens over global glass', await page.locator('.settings-panel.open').count() === 1);
@@ -168,9 +192,10 @@ for (const profile of profiles) {
       check(`${panel} return closes panel safely`, await page.locator(selector).evaluate(node => node.getAttribute('aria-hidden') === 'true' && node.hasAttribute('inert') && getComputedStyle(node).pointerEvents === 'none'));
     }
 
-    const finalAudit = await page.evaluate(() => window.AtlasNavigationRecovery.audit());
-    check('final rail audit passes', finalAudit.railInteractive, JSON.stringify(finalAudit));
-    check('final closed-panel audit passes', finalAudit.closedPanelsSafe, JSON.stringify(finalAudit));
+    const finalAudit = await page.evaluate(() => ({ navigation: window.AtlasNavigationRecovery.audit(), marker: window.AtlasMarkerDesign.audit() }));
+    check('final rail audit passes', finalAudit.navigation.railInteractive, JSON.stringify(finalAudit.navigation));
+    check('final closed-panel audit passes', finalAudit.navigation.closedPanelsSafe, JSON.stringify(finalAudit.navigation));
+    check('final marker audit remains scale only', finalAudit.marker.selectionFeedback === 'scale-only' && finalAudit.marker.selectionRing === false && finalAudit.marker.selectionBorder === false, JSON.stringify(finalAudit.marker));
     check('no runtime errors', errors.length === 0, errors.join('\n'));
   } catch (error) {
     failed = true;
@@ -186,5 +211,5 @@ for (const result of report) {
   const passed = result.checks.filter(item => item.passed).length;
   console.log(`${result.profile}: ${passed}/${result.checks.length}; errors=${result.errors.length}`);
 }
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12a', passed: !failed, profiles: report }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12b-1', passed: !failed, profiles: report }, null, 2));
 if (failed) process.exit(1);
