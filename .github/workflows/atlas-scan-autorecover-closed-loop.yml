@@ -34,10 +34,67 @@ jobs:
         run: |
           python tools/supervise_runtime_heartbeat.py data/batch-analysis/atlas-scan-autorecover-config.json
           python - <<'PY'
-          import json, os
-          report = json.load(open('data/batch-analysis/eleven-heartbeat-supervisor-state.json', encoding='utf-8'))
+          import json, os, pathlib
+
+          report_path = pathlib.Path('data/batch-analysis/eleven-heartbeat-supervisor-state.json')
+          queue_path = pathlib.Path('data/batch-analysis/eleven-pilot-scan-queue.json')
+          status_path = pathlib.Path('data/batch-analysis/eleven-pilot-scan-status.json')
+          report = json.loads(report_path.read_text(encoding='utf-8'))
           resume = bool(report.get('resumeWorkflow'))
-          actionable = resume or bool(report.get('queueChanged')) or bool(report.get('projectionWritten'))
+          target_id = report.get('resumeTargetExternalSourceId')
+          repair = str(report.get('repair') or '')
+          normalized = False
+
+          if resume and target_id and repair in {
+              'reset_lease_and_retry',
+              'resume_pending_item',
+              'publish_terminal_projection_and_resume_pending',
+          }:
+              queue = json.loads(queue_path.read_text(encoding='utf-8'))
+              target = next((item for item in queue.get('items', []) if item.get('externalSourceId') == target_id), None)
+              if target and target.get('state') != 'imported':
+                  if target.get('state') == 'failed' and str(target.get('error') or '').startswith('heartbeat supervisor:'):
+                      target['attemptCount'] = max(1, int(target.get('attemptCount') or 0))
+                  target['state'] = 'pending'
+                  target.pop('error', None)
+                  target.pop('lastFinishedAt', None)
+                  target['lastRecoveryAt'] = report.get('generatedAt')
+                  target['lastRecoveryAction'] = repair
+                  queue['status'] = 'recovery_scheduled'
+                  queue['updatedAt'] = report.get('generatedAt')
+                  queue.pop('activeExternalSourceId', None)
+                  queue_path.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+                  normalized = True
+
+              status = json.loads(status_path.read_text(encoding='utf-8'))
+              status_target = next((item for item in status.get('items', []) if item.get('externalSourceId') == target_id), None)
+              if status_target and status_target.get('state') != 'imported':
+                  status_target['state'] = 'pending'
+                  status_target['attemptCount'] = max(int(status_target.get('attemptCount') or 0), int((target or {}).get('attemptCount') or 0))
+                  status_target.pop('error', None)
+                  status_target['lastStartedAt'] = None
+                  status_target['lastFinishedAt'] = None
+                  status_target['resultPath'] = None
+                  states = [item.get('state', 'pending') for item in status.get('items', [])]
+                  status['activeItem'] = None
+                  status['phase'] = 'progress'
+                  status['updatedAt'] = report.get('generatedAt')
+                  status['summary'] = {
+                      'total': len(states),
+                      'imported': states.count('imported'),
+                      'running': states.count('running'),
+                      'failed': states.count('failed'),
+                      'blocked': states.count('blocked'),
+                      'retryableFailed': 0,
+                      'remaining': sum(state not in {'imported', 'running', 'failed', 'blocked'} for state in states),
+                      'attemptedThisRun': 0,
+                      'newlyImportedThisRun': 0,
+                  }
+                  status_path.write_text(json.dumps(status, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          report['closedLoopPrepared'] = normalized
+          report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          actionable = resume or bool(report.get('queueChanged')) or bool(report.get('projectionWritten')) or normalized
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
               output.write(f"resume={'true' if resume else 'false'}\n")
               output.write(f"actionable={'true' if actionable else 'false'}\n")
