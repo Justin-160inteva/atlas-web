@@ -38,7 +38,7 @@ for (const profile of profiles) {
   page.on('console', message => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
 
   try {
-    await page.goto(`${baseURL}?visual-correction=09412d1-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    await page.goto(`${baseURL}?visual-correction=09412d2-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForFunction(() => Number(document.getElementById('visibleCount')?.textContent || 0) >= 3000, null, { timeout: 45_000 });
     await page.waitForTimeout(450);
 
@@ -92,6 +92,17 @@ for (const profile of profiles) {
       }
     };
 
+    const verifyRailInset = async label => {
+      const shell = await styleData('.quick-rail');
+      const active = await styleData('.quick-rail .rail-button.active');
+      const left = active.rect.left - shell.rect.left;
+      const right = shell.rect.right - active.rect.right;
+      check(`${label} left inset clears outer border`, left >= 10, JSON.stringify({ left, shell: shell.rect, active: active.rect }));
+      check(`${label} right inset clears outer border`, right >= 10, JSON.stringify({ right, shell: shell.rect, active: active.rect }));
+      check(`${label} active shadow stays inset-only`, active.boxShadow === 'none' || active.boxShadow.includes('inset'), active.boxShadow);
+      return { shell, active };
+    };
+
     const nav = await styleData('.bottom-nav .nav-item.active');
     const rail = await styleData('.quick-rail .rail-button.active');
     const search = await styleData('.search-trigger');
@@ -102,6 +113,8 @@ for (const profile of profiles) {
 
     verifySeparated('bottom nav initial', await navGeometry('.bottom-nav .nav-item'), 'x');
     verifySeparated('quick rail initial', await navGeometry('.quick-rail .rail-button'), 'y');
+    const initialRail = await verifyRailInset('quick rail initial');
+    check('first rail cell keeps top inset', initialRail.active.rect.top - initialRail.shell.rect.top >= 8, JSON.stringify(initialRail));
 
     await page.locator('#evidenceStudioBtn').click({ timeout: 5000 });
     await page.waitForTimeout(180);
@@ -151,6 +164,9 @@ for (const profile of profiles) {
       await page.locator(`.quick-rail .rail-button[data-mode="${mode}"]`).click({ timeout: 5000 });
       await page.waitForTimeout(70);
       verifySeparated(`quick rail after ${mode}`, await navGeometry('.quick-rail .rail-button'), 'y');
+      const insets = await verifyRailInset(`quick rail after ${mode}`);
+      if (mode === 'all') check('all mode keeps top inset', insets.active.rect.top - insets.shell.rect.top >= 8, JSON.stringify(insets));
+      if (mode === 'favorites') check('favorites mode keeps bottom inset', insets.shell.rect.bottom - insets.active.rect.bottom >= 8, JSON.stringify(insets));
     }
 
     const before = await page.locator('#zoomLabel').textContent();
@@ -172,5 +188,5 @@ for (const profile of profiles) {
 }
 
 await browser.close();
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12d-1', passed: !failed, profiles: report }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12d-2', passed: !failed, profiles: report }, null, 2));
 if (failed) process.exit(1);

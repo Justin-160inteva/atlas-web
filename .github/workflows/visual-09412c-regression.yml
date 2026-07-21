@@ -4,12 +4,14 @@ on:
   pull_request:
     paths:
       - 'index.html'
+      - 'atlas-navigation-09411a.css'
       - 'tools/visual_correction_09412c.mjs'
       - '.github/workflows/visual-09412c-regression.yml'
   push:
     branches: [main]
     paths:
       - 'index.html'
+      - 'atlas-navigation-09411a.css'
       - 'tools/visual_correction_09412c.mjs'
       - '.github/workflows/visual-09412c-regression.yml'
   workflow_dispatch:

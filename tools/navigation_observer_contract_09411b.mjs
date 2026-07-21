@@ -53,7 +53,7 @@ check('desktop bottom minimum is eight', /bottom:max\(8px,env\(safe-area-inset-b
 check('symmetric safe inline variable exists', /--atlas-nav-safe-inline:max\(12px,env\(safe-area-inset-left,0px\),env\(safe-area-inset-right,0px\)\)/.test(css));
 check('closed layers cannot intercept input', /\.panel:not\(\.open\)[\s\S]*pointer-events:none!important/.test(css));
 
-check('glass authority version is 09412d-1', /Atlas Alpha 0\.9\.4\.12d-1/.test(css));
+check('glass authority version is 09412d-2', /Atlas Alpha 0\.9\.4\.12d-2/.test(css));
 check('single glass surface token exists', /--atlas-glass-surface:linear-gradient/.test(css));
 check('premium light red token exists', /--atlas-red-light:#ee7b86/.test(css));
 check('premium deep red token exists', /--atlas-red-deep:#64131e/.test(css));
@@ -72,7 +72,13 @@ check('no filter blur added', !/[^-]filter:\s*blur\(/.test(css));
 check('bottom nav uses five isolated grid cells', /grid-template-columns:repeat\(5,minmax\(0,1fr\)\)!important/.test(css) && /html body \.bottom-nav[\s\S]*gap:6px!important/.test(css));
 check('quick rail uses five isolated grid cells', /grid-template-rows:repeat\(5,minmax\(0,1fr\)\)!important/.test(css));
 check('navigation cells clip cross-cell paint', /\.quick-rail \.rail-button,\.bottom-nav \.nav-item\{[\s\S]*overflow:hidden!important;[\s\S]*contain:layout paint style!important/.test(css));
-check('selected navigation does not enlarge', /Final selected-state authority: no enlargement[\s\S]*transform:none!important/.test(css) && !/Final selected-state authority[\s\S]*scale\(1\.035\)/.test(css));
+const bottomActiveRule = css.match(/html body \.bottom-nav \.nav-item\.active\{[\s\S]*?\n\}/)?.[0] || '';
+const railActiveRule = css.match(/html body \.quick-rail\.quick-rail \.rail-button\.active\{[\s\S]*?\n\}/)?.[0] || '';
+check('selected navigation does not enlarge', /transform:none!important/.test(bottomActiveRule) && /transform:none!important/.test(railActiveRule) && !/scale\(1\.035\)/.test(bottomActiveRule + railActiveRule));
+check('quick rail cells have true inner width inset', /html body \.quick-rail\.quick-rail \.rail-button\{[\s\S]*width:calc\(100% - 8px\)!important;[\s\S]*justify-self:center!important/.test(css));
+check('quick rail cells have vertical inset', /height:calc\(100% - 4px\)!important;[\s\S]*align-self:center!important/.test(css));
+check('quick rail selected state has no outer shadow', /box-shadow:inset 0 1px 0[^;]*inset 0 -1px 0[^;]*!important/.test(railActiveRule));
+check('quick rail selected state keeps translucent active token', /background:var\(--atlas-glass-active-bg/.test(railActiveRule));
 
 check('marker authority is marker-state', manifest.runtimeOwners.markerGeometry === 'marker-state.js' && manifest.runtimeOwners.markerSelectionMotion === 'marker-state.js');
 check('marker audit owner is marker-state', manifest.runtimeOwners.markerDesignAudit === 'marker-state.js');
@@ -101,5 +107,5 @@ check('service worker refreshes marker-state', /page-zoom-guard\|marker-state\|s
 check('service worker cache namespace matches manifest', worker.includes(`const CACHE='${manifest.cacheNamespace}'`));
 
 const failed = checks.filter(item => !item.passed);
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12d-1', passed: failed.length === 0, totalChecks: checks.length, checks }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12d-2', passed: failed.length === 0, totalChecks: checks.length, checks }, null, 2));
 if (failed.length) process.exit(1);
