@@ -1,30 +1,46 @@
 {
-  "schemaVersion": 3,
-  "generatedAt": "2026-07-20T22:08:11.593753Z",
+  "schemaVersion": 4,
+  "generatedAt": "2026-07-21T09:06:20.825976Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
-  "finalState": "scan_completed_or_progressed",
+  "autonomyPolicy": "data/scan-autonomy-policy.json",
+  "finalState": "unrecoverable",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-20T22:04:56.316968Z",
-      "finishedAt": "2026-07-20T22:08:10.461453Z",
-      "preflightState": "none",
-      "preflightDictionaryEntryId": null,
-      "scannerReturnCode": 0,
-      "scannerTimeoutSeconds": 5700,
-      "imported": 11,
-      "failed": 0,
-      "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 11, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 0}\n\n"
+      "startedAt": "2026-07-21T09:06:20.825948Z",
+      "finishedAt": "2026-07-21T09:06:20.825968Z",
+      "preflightState": "unrecoverable",
+      "dictionaryEntryId": null,
+      "action": "human_review_required",
+      "retryScheduled": false,
+      "requiresHumanReview": true,
+      "autonomousRepair": {
+        "schemaVersion": 1,
+        "generatedAt": "2026-07-21T09:06:20.794078Z",
+        "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
+        "outcome": "batch_already_complete",
+        "confirmationRequired": false,
+        "changedFiles": [],
+        "tests": [],
+        "durationSeconds": 0.0,
+        "controllerReturnCode": 0,
+        "controllerOutput": "{\"schemaVersion\": 1, \"generatedAt\": \"2026-07-21T09:06:20.794078Z\", \"manifest\": \"data/batch-analysis/eleven-pilot-scan-manifest.json\", \"outcome\": \"batch_already_complete\", \"confirmationRequired\": false, \"changedFiles\": [], \"tests\": [], \"durationSeconds\": 0.0}\n\n"
+      }
     }
   ],
+  "performance": {
+    "targetRepairMinutes": 5,
+    "maximumRepairMinutes": 10,
+    "deterministicRecoveryFirst": true
+  },
   "safety": {
-    "maximumCycles": 3,
+    "maximumCycles": 5,
     "strictEarliestUnresolvedOrder": true,
     "sourceCodeModifiedAutomatically": false,
     "authorizationBroadened": false,
     "mediaRetentionChanged": false,
-    "queueScopeExpanded": false
+    "queueScopeExpanded": false,
+    "confirmationRequired": false
   }
 }
