@@ -4,6 +4,7 @@
   const root = document.documentElement;
   const WORLD_SIZE = 4096;
   const OVERSCAN = 1.02;
+  const MANUAL_MIN_RATIO = 0.25;
   let installed = false;
   let installTimer = 0;
 
@@ -17,6 +18,10 @@
 
   function coverScale(viewport = metrics()) {
     return Math.max(viewport.width / WORLD_SIZE, viewport.height / WORLD_SIZE) * OVERSCAN;
+  }
+
+  function manualMinimumScale(viewport = metrics()) {
+    return coverScale(viewport) * MANUAL_MIN_RATIO;
   }
 
   function updateLabel() {
@@ -38,13 +43,14 @@
     if (typeof window.scheduleDraw === 'function') window.scheduleDraw();
     root.dataset.atlasMapCoverReady = 'true';
     root.dataset.atlasMapCoverScale = String(nextScale);
+    root.dataset.atlasMapManualMinimumScale = String(manualMinimumScale(viewport));
     return true;
   }
 
-  function clampToCover(anchorX, anchorY) {
+  function clampToManualMinimum(anchorX, anchorY) {
     if (typeof state === 'undefined' || !Number.isFinite(state.scale) || state.scale <= 0) return;
     const viewport = metrics();
-    const minimum = coverScale(viewport);
+    const minimum = manualMinimumScale(viewport);
     if (state.scale >= minimum) return;
     const pointX = Number.isFinite(anchorX) ? anchorX : viewport.width / 2;
     const pointY = Number.isFinite(anchorY) ? anchorY : viewport.height / 2;
@@ -73,9 +79,9 @@
     const originalZoomAt = window.zoomAt;
     window.fitMap = fitCover;
     window.updateZoomLabel = updateLabel;
-    window.zoomAt = function coverSafeZoomAt(factor, x, y) {
+    window.zoomAt = function coverFitManualZoomAt(factor, x, y) {
       originalZoomAt(factor, x, y);
-      clampToCover(x, y);
+      clampToManualMinimum(x, y);
       updateLabel();
     };
 
@@ -100,7 +106,10 @@
 
   window.AtlasMapCover = {
     fit: fitCover,
-    minimumScale: coverScale,
+    coverScale,
+    manualMinimumScale,
+    minimumScale: manualMinimumScale,
+    manualMinimumRatio: MANUAL_MIN_RATIO,
     ready: () => installed
   };
 
