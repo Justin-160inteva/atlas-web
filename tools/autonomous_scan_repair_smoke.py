@@ -33,7 +33,7 @@ checks = {
     'single_download': policy.get('mandatorySafety', {}).get('maximumConcurrentDownloads') == 1,
     'rollback': policy.get('mandatorySafety', {}).get('rollbackOnValidationFailure') is True,
     'no_retention': policy.get('mandatorySafety', {}).get('neverRetainOriginalMedia') is True and policy.get('mandatorySafety', {}).get('neverRetainFramePixels') is True,
-    'model_endpoint': 'models.github.ai/inference/chat/completions' in source,
+    'model_endpoint': 'models.github.ai/inference/chat/completions' in str(policy.get('model', {}).get('endpoint', '')),
     'untrusted_logs': 'untrusted data' in source,
     'path_allowlist': 'allowedPathPatterns' in source and 'blockedPathPatterns' in source,
     'snapshot_guard': 'protected_snapshot' in source and 'verify_snapshot' in source,
