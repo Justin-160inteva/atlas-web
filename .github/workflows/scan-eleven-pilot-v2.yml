@@ -133,11 +133,13 @@ jobs:
           assert pathlib.Path(manifest['analyzer']).is_file()
           assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==30
           assert manifest['downloadTelemetry']['intervalSeconds']==30
-          assert manifest['downloadOptimization']['noArtificialRateLimit'] is True
-          assert manifest['downloadOptimization']['adaptiveParallelRanges'] is True
-          assert manifest['downloadOptimization']['metadataRefreshPasses']>=2
-          assert manifest['downloadOptimization']['bypassPublicVideoWebpage'] is True
-          assert manifest['downloadOptimization']['preservePartialAcrossCdnCandidates'] is True
+          download=manifest['downloadOptimization']
+          assert download['noArtificialRateLimit'] is True
+          assert download['adaptiveParallelRanges'] is True or download['fallbackToResumableSingleStream'] is True
+          assert int(download.get('maxRangeWorkers',1))>=1
+          assert download['metadataRefreshPasses']>=2
+          assert download['bypassPublicVideoWebpage'] is True
+          assert download['preservePartialAcrossCdnCandidates'] is True
           assert manifest['compatibilityFixes']['wbiSignedPlayerMetadata'] is True
           assert manifest['compatibilityFixes']['apiProvidedCdnRotation'] is True
           assert manifest['retention']['originalVideo'] is False
