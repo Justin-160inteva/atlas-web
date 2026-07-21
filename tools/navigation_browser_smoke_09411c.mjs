@@ -34,7 +34,7 @@ for (const profile of profiles) {
   page.on('console', message => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
 
   try {
-    await page.goto(`${baseURL}?navigation-smoke=09412b1-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    await page.goto(`${baseURL}?navigation-smoke=09412c-${profile.name}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForFunction(() => Number(document.getElementById('visibleCount')?.textContent || 0) >= 3000, null, { timeout: 45_000 });
     await page.waitForFunction(() => window.AtlasNavigationRecovery?.version === '0.9.4.11b', null, { timeout: 15_000 });
     await page.waitForFunction(() => window.AtlasMarkerDesign?.version === '0.9.4.12b-1', null, { timeout: 15_000 });
@@ -105,27 +105,33 @@ for (const profile of profiles) {
         };
       };
       const root = getComputedStyle(document.documentElement);
-      const selectors = ['.top-bar','.quick-rail','.bottom-nav','.map-controls','.status-pill','#filterPanel','.settings-panel','.search-modal','#detailSheet'];
+      const selectors = ['.top-bar','.quick-rail','.bottom-nav','.status-pill','#filterPanel','.settings-panel','.search-modal','#detailSheet'];
       const nested = ['.filter-summary','.evidence-section','.data-center-tabs'].map(inspect).filter(Boolean);
       return {
         tokens: {
           surface: root.getPropertyValue('--atlas-glass-surface').trim(),
           light: root.getPropertyValue('--atlas-red-light').trim(),
+          mid: root.getPropertyValue('--atlas-red-mid').trim(),
           deep: root.getPropertyValue('--atlas-red-deep').trim(),
+          deeper: root.getPropertyValue('--atlas-red-deeper').trim(),
+          ink: root.getPropertyValue('--atlas-red-ink').trim(),
           blur: root.getPropertyValue('--atlas-glass-blur').trim()
         },
         surfaces: selectors.map(inspect).filter(Boolean),
         nested,
         active: inspect('.bottom-nav .nav-item.active'),
         primary: inspect('.route-actions .primary'),
-        neutral: inspect('.map-controls button')
+        mapControls: inspect('.map-controls'),
+        mapAction: inspect('.map-controls button')
       };
     });
 
     check('glass token is installed', glassState.tokens.surface.includes('linear-gradient'), JSON.stringify(glassState.tokens));
-    check('premium light red token is installed', glassState.tokens.light === '#ee7b86', JSON.stringify(glassState.tokens));
-    check('premium deep red token is installed', glassState.tokens.deep === '#64131e', JSON.stringify(glassState.tokens));
-    check('representative surfaces exist', glassState.surfaces.length >= 8, JSON.stringify(glassState.surfaces));
+    check('ultra-light red token is installed', glassState.tokens.light === '#fffafb', JSON.stringify(glassState.tokens));
+    check('mist-pink token is installed', glassState.tokens.mid === '#fdecef', JSON.stringify(glassState.tokens));
+    check('light-rose token is installed', glassState.tokens.deep === '#f7d4da' && glassState.tokens.deeper === '#edb4bf', JSON.stringify(glassState.tokens));
+    check('dark rose ink token is installed', glassState.tokens.ink === '#6b2b37', JSON.stringify(glassState.tokens));
+    check('representative surfaces exist', glassState.surfaces.length === 8, JSON.stringify(glassState.surfaces));
     for (const surface of glassState.surfaces) {
       check(`${surface.selector} uses glass gradient`, surface.background !== 'none' && surface.background.includes('linear-gradient'), JSON.stringify(surface));
       check(`${surface.selector} blur stays within budget`, surface.blur >= 0 && surface.blur <= profile.maxBlur + .1, JSON.stringify(surface));
@@ -133,9 +139,10 @@ for (const profile of profiles) {
       check(`${surface.selector} keeps bounded shadow`, surface.shadow !== 'none', JSON.stringify(surface));
     }
     for (const nested of glassState.nested) check(`${nested.selector} avoids nested blur`, nested.blur === 0, JSON.stringify(nested));
-    check('active control uses premium red gradient', glassState.active?.background.includes('linear-gradient') && glassState.active.background !== glassState.neutral?.background, JSON.stringify(glassState.active));
-    check('primary control uses premium red gradient', glassState.primary?.background.includes('linear-gradient') && glassState.primary.background !== glassState.neutral?.background, JSON.stringify(glassState.primary));
-    check('neutral control keeps soft red glass', glassState.neutral?.background.includes('linear-gradient'), JSON.stringify(glassState.neutral));
+    check('map control container is frameless transparent', glassState.mapControls?.background === 'none' && glassState.mapControls.blur === 0 && glassState.mapControls.border === 0 && glassState.mapControls.radius === 0 && glassState.mapControls.shadow === 'none', JSON.stringify(glassState.mapControls));
+    check('map action is frameless transparent', glassState.mapAction?.background === 'none' && glassState.mapAction.blur === 0 && glassState.mapAction.border === 0 && glassState.mapAction.shadow === 'none', JSON.stringify(glassState.mapAction));
+    check('active control uses ultra-light red gradient', glassState.active?.background.includes('linear-gradient') && glassState.active.background !== glassState.mapAction?.background, JSON.stringify(glassState.active));
+    check('primary control uses ultra-light red gradient', glassState.primary?.background.includes('linear-gradient') && glassState.primary.background !== glassState.mapAction?.background, JSON.stringify(glassState.primary));
 
     const selectedMarker = await page.evaluate(() => {
       const marker = state.markers.find(item => item.items?.[0]);
@@ -211,5 +218,5 @@ for (const result of report) {
   const passed = result.checks.filter(item => item.passed).length;
   console.log(`${result.profile}: ${passed}/${result.checks.length}; errors=${result.errors.length}`);
 }
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12b-1', passed: !failed, profiles: report }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12c', passed: !failed, profiles: report }, null, 2));
 if (failed) process.exit(1);
