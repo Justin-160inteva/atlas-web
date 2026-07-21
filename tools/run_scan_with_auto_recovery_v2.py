@@ -65,8 +65,35 @@ def normalize_queue(queue: dict[str, Any]) -> bool:
     return False
 
 
+def synchronize_terminal_authority(queue: dict[str, Any], manifest: dict[str, Any]) -> bool:
+    """Keep durable authority metadata aligned with the actual bounded queue state."""
+    items = queue.get("items", [])
+    complete = bool(items) and all(item.get("state") == "imported" for item in items)
+    authority = queue.setdefault("authority", {})
+    changed = False
+    expected_batch = manifest.get("id") or queue.get("queueId")
+    expected = {
+        "owner": "data/batch-analysis/eleven-pilot-scan-status.json",
+        "batchId": expected_batch,
+        "terminal": complete,
+        "protectFromCatalogRegeneration": True,
+    }
+    for key, value in expected.items():
+        if authority.get(key) != value:
+            authority[key] = value
+            changed = True
+    expected_status = "complete" if complete else queue.get("status")
+    if queue.get("status") != expected_status:
+        queue["status"] = expected_status
+        changed = True
+    if complete and "activeExternalSourceId" in queue:
+        queue.pop("activeExternalSourceId", None)
+        changed = True
+    return changed
+
+
 def prepare_queue(manifest_arg: str) -> bool:
-    """Hydrate queue metadata and make the earliest queued item claimable."""
+    """Hydrate queue metadata, synchronize authority, and make one item claimable."""
     manifest_path = (base.ROOT / manifest_arg).resolve()
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     queue_path = base.ROOT / manifest["queue"]
@@ -74,6 +101,7 @@ def prepare_queue(manifest_arg: str) -> bool:
     queue = json.loads(queue_path.read_text(encoding="utf-8"))
     catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
     changed = hydrate_queue_from_catalog(queue, catalog)
+    changed = synchronize_terminal_authority(queue, manifest) or changed
     changed = normalize_queue(queue) or changed
     if changed:
         _write_json(queue_path, queue)
