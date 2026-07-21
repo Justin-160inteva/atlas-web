@@ -1,10 +1,12 @@
 import fs from 'node:fs/promises';
 
 const read = path => fs.readFile(new URL(`../${path}`, import.meta.url), 'utf8');
-const [html, css, controller, manifestText, worker] = await Promise.all([
+const [html, css, controller, marker, legacyMarker, manifestText, worker] = await Promise.all([
   read('index.html'),
   read('atlas-navigation-09411a.css'),
   read('atlas-navigation-09411b.js'),
+  read('marker-state.js'),
+  read('atlas-ui-fix-0931.js'),
   read('release-manifest.json'),
   read('sw.js')
 ]);
@@ -67,10 +69,32 @@ check('reduced motion fallback exists', /@media\(prefers-reduced-motion:reduce\)
 check('no infinite animation added', !/animation[^;]*infinite/.test(css));
 check('no filter blur added', !/[^-]filter:\s*blur\(/.test(css));
 
+check('marker authority is marker-state', manifest.runtimeOwners.markerGeometry === 'marker-state.js' && manifest.runtimeOwners.markerSelectionMotion === 'marker-state.js');
+check('marker audit owner is marker-state', manifest.runtimeOwners.markerDesignAudit === 'marker-state.js');
+check('marker-state is a release asset', manifest.releaseAssets.includes('marker-state.js'));
+check('marker version contract', manifest.invariants.markerDesignVersion === '0.9.4.12b-1');
+check('marker shape contract', manifest.invariants.markerShape === 'anchored-long-tail-droplet');
+check('marker scale-only contract', manifest.invariants.markerSelectionUsesScaleOnly === true && manifest.invariants.markerSelectionDecorationLayers === 0);
+check('marker selected scale contract', manifest.invariants.markerSelectedScale === 1.28);
+check('marker duration contract', manifest.invariants.markerSelectionDurationMs === 190);
+check('marker tip anchor contract', manifest.invariants.markerTipAnchorStable === true);
+check('marker runtime version exists', /ATLAS_MARKER_DESIGN_VERSION='0\.9\.4\.12b-1'/.test(marker));
+check('marker uses long-tail bezier path', (marker.match(/ctx\.bezierCurveTo\(/g) || []).length >= 5 && /ctx\.moveTo\(0,0\)/.test(marker));
+check('marker selected feedback is scale only', /selectionFeedback:'scale-only'/.test(marker) && /selectionRing:false/.test(marker) && /selectionBorder:false/.test(marker));
+check('legacy selected ring is absent', !/if\(selected\)\{ctx\.beginPath\(\);ctx\.arc/.test(marker));
+check('legacy selected shadow branch is absent', !/shadowColor=selected\?/.test(marker));
+check('marker animation is frame coalesced by scheduleDraw', /if\(t>=1\)atlasMarkerAnimations\.delete\(id\);else scheduleDraw\(\)/.test(marker));
+check('marker runtime audit is exposed', /window\.AtlasMarkerDesign=Object\.freeze/.test(marker));
+const markerHandoffIndex = legacyMarker.indexOf("if(window.AtlasMarkerDesign?.version==='0.9.4.12b-1')");
+const legacyOverrideIndex = legacyMarker.indexOf('drawMarker=function');
+check('legacy marker controller hands off to marker-state', /if\(window\.AtlasMarkerDesign\?\.version==='0\.9\.4\.12b-1'\)[\s\S]*root\.dataset\.atlasMarkerOwner='marker-state\.js';[\s\S]*return;/.test(legacyMarker));
+check('marker handoff precedes legacy draw override', markerHandoffIndex >= 0 && legacyOverrideIndex >= 0 && markerHandoffIndex < legacyOverrideIndex);
+
 check('service worker caches new controller', worker.includes("'./atlas-navigation-09411b.js'"));
 check('service worker excludes old observer controller', !worker.includes("'./atlas-navigation-09411a.js'"));
+check('service worker refreshes marker-state', /page-zoom-guard\|marker-state\|scan-monitor/.test(worker));
 check('service worker cache namespace matches manifest', worker.includes(`const CACHE='${manifest.cacheNamespace}'`));
 
 const failed = checks.filter(item => !item.passed);
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12a', passed: failed.length === 0, totalChecks: checks.length, checks }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12b-1', passed: failed.length === 0, totalChecks: checks.length, checks }, null, 2));
 if (failed.length) process.exit(1);
