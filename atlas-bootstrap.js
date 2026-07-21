@@ -4,7 +4,7 @@
   const release = Object.freeze({
     version: '0.9.4.9',
     versionText: "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.9",
-    cacheNamespace: 'atlas-alpha-0949-pages-v1-monitor-v11-rewards-v1',
+    cacheNamespace: 'atlas-alpha-0949-pages-v2-monitor-v11-rewards-v1-viewport-v2',
     owner: 'atlas-bootstrap.js'
   });
 
@@ -32,7 +32,7 @@
 
   async function verifyManifest() {
     try {
-      const response = await fetch(`release-manifest.json?v=${encodeURIComponent(release.version)}`, { cache: 'no-store' });
+      const response = await fetch(`release-manifest.json?v=${encodeURIComponent(release.version)}&cache=${encodeURIComponent(release.cacheNamespace)}`, { cache: 'no-store' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const manifest = await response.json();
       if (manifest.version !== release.version || manifest.releaseOwner !== release.owner || manifest.cacheNamespace !== release.cacheNamespace) {
@@ -47,7 +47,8 @@
   function getReleaseRegistration() {
     if (!nativeRegister) return Promise.resolve(null);
     if (!registrationPromise) {
-      registrationPromise = nativeRegister(`sw.js?v=${encodeURIComponent(release.version)}`, { updateViaCache: 'none' });
+      const workerURL = `sw.js?v=${encodeURIComponent(release.version)}&cache=${encodeURIComponent(release.cacheNamespace)}`;
+      registrationPromise = nativeRegister(workerURL, { updateViaCache: 'none' });
     }
     return registrationPromise;
   }
@@ -68,7 +69,7 @@
       await registration.update();
       if (registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' });
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        const key = `atlas.controllerReload.${release.version}`;
+        const key = `atlas.controllerReload.${release.cacheNamespace}`;
         if (sessionStorage.getItem(key)) return;
         sessionStorage.setItem(key, '1');
         location.reload();

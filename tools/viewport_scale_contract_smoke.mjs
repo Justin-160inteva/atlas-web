@@ -3,12 +3,13 @@ import vm from 'node:vm';
 
 const read = path => fs.readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 const readJson = async path => JSON.parse(await read(path));
-const [guard, html, styles, serviceWorker, manifest] = await Promise.all([
+const [guard, html, styles, serviceWorker, manifest, bootstrap] = await Promise.all([
   read('page-zoom-guard.js'),
   read('index.html'),
   read('styles.css'),
   read('sw.js'),
-  readJson('release-manifest.json')
+  readJson('release-manifest.json'),
+  read('atlas-bootstrap.js')
 ]);
 
 new vm.Script(guard, { filename: 'page-zoom-guard.js' });
@@ -41,14 +42,17 @@ function classify(width, height, touch) {
 const staticContracts = {
   canonicalViewport: html.includes('interactive-widget=resizes-content') && guard.includes('interactive-widget=resizes-content'),
   guardRunsBeforeMap: html.indexOf('page-zoom-guard.js') < html.indexOf('app.js'),
-  visualViewportAuthority: guard.includes('window.visualViewport') && guard.includes('--atlas-viewport-width') && guard.includes('--atlas-viewport-height'),
-  scaleRecovery: guard.includes('initial-scale=1.0001') && guard.includes("scheduleViewportUpdate('page-scale-reset'"),
-  mapPinchPreserved: !guard.includes('event.touches.length > 1) preventNativeZoom') && guard.includes('#mapCanvas { touch-action: none; }'),
+  layoutShellAuthority: guard.includes("source: 'layout-shell'") && guard.includes("document.querySelector('.app-shell')") && guard.includes('getBoundingClientRect') && guard.includes('root.clientWidth') && !guard.includes('Number(visual?.width'),
+  noScaleOscillation: !guard.includes('initial-scale=1.0001') && !guard.includes('window.scrollTo(0, 0)') && !guard.includes("visual?.addEventListener('scroll'") && guard.includes('viewportMeta.setAttribute'),
+  visualKeyboardOnly: guard.includes('function updateKeyboardInset') && guard.includes("visual?.addEventListener('resize', updateKeyboardInset") && guard.includes('--atlas-keyboard-inset'),
+  stableCommit: guard.includes('function settleViewport') && guard.includes('stableSamples >= 2') && guard.includes('maximumStabilitySamples') && guard.includes('atlasViewportCommitCount'),
+  mapPinchPreserved: !guard.includes('event.touches.length > 1) preventNativeZoom') && guard.includes('#mapCanvas') && guard.includes('touch-action: none'),
   lifecycleRecovery: guard.includes("'orientationchange'") && guard.includes("'pageshow'") && guard.includes("'visibilitychange'"),
   mapGeometryHooks: guard.includes('installMapViewportHooks') && guard.includes('viewportFitMap') && guard.includes('viewportResize') && guard.includes('viewportFocusRoute'),
   dynamicHeightFallback: styles.includes('100dvh') && styles.includes('@media(max-height:500px)') && guard.includes('font-size: max(16px, 1em)'),
   releaseOwnership: manifest.runtimeOwners?.pageViewportScale === 'page-zoom-guard.js' && manifest.runtimeOwners?.mapViewport === 'page-zoom-guard.js' && manifest.releaseAssets?.includes('page-zoom-guard.js'),
-  offlineRefresh: serviceWorker.includes("'./page-zoom-guard.js'") && serviceWorker.includes('page-zoom-guard') && manifest.invariants?.requiredViewportScaleChecks === 120
+  releasePolicy: manifest.invariants?.viewportUsesLayoutShell === true && manifest.invariants?.viewportUsesVisualViewport === false && manifest.invariants?.visualViewportKeyboardOnly === true && manifest.invariants?.viewportStableCommitRequired === true && manifest.invariants?.viewportMaximumStartupCommits === 3,
+  offlineRefresh: serviceWorker.includes("const CACHE='atlas-alpha-0949-pages-v2-monitor-v11-rewards-v1-viewport-v2'") && bootstrap.includes("cacheNamespace: 'atlas-alpha-0949-pages-v2-monitor-v11-rewards-v1-viewport-v2'") && html.includes('build=viewport-stable-v2') && manifest.invariants?.requiredViewportScaleChecks === 120
 };
 
 const results = [];
@@ -58,20 +62,19 @@ for (const device of devices) {
   const cappedDpr = Math.min(device.dpr, 2.5);
   const canvasWidth = Math.floor(device.width * cappedDpr);
   const canvasHeight = Math.floor(device.height * cappedDpr);
-  const simulatedPageScale = 2;
-  const normalizedWidth = Math.round((device.width / simulatedPageScale) * simulatedPageScale);
-  const normalizedHeight = Math.round((device.height / simulatedPageScale) * simulatedPageScale);
+  const staleVisualWidth = orientation === 'landscape' && device.touch ? Math.min(device.width, device.height) : device.width;
+  const layoutShellWidth = device.width;
   const checks = [
     ['device-profile', classify(device.width, device.height, device.touch) === device.profile],
     ['orientation', orientation === (device.width >= device.height ? 'landscape' : 'portrait')],
     ['fit-scale', Number.isFinite(fitScale) && fitScale > 0 && fitScale < 1],
     ['canvas-size', canvasWidth > 0 && canvasHeight > 0 && cappedDpr <= 2.5],
-    ['zoom-normalization', normalizedWidth === device.width && normalizedHeight === device.height],
     ['aspect-ratio', Math.abs(canvasWidth / canvasHeight - device.width / device.height) < 0.01],
-    ['viewport-source', staticContracts.canonicalViewport && staticContracts.visualViewportAuthority],
-    ['scale-and-gesture', staticContracts.scaleRecovery && staticContracts.mapPinchPreserved],
-    ['lifecycle-and-layout', staticContracts.lifecycleRecovery && staticContracts.mapGeometryHooks && staticContracts.dynamicHeightFallback],
-    ['release-and-offline', staticContracts.guardRunsBeforeMap && staticContracts.releaseOwnership && staticContracts.offlineRefresh]
+    ['stale-visual-width-ignored', layoutShellWidth === device.width && (orientation !== 'landscape' || !device.touch || staleVisualWidth <= layoutShellWidth)],
+    ['layout-source', staticContracts.canonicalViewport && staticContracts.layoutShellAuthority && staticContracts.visualKeyboardOnly],
+    ['no-jitter', staticContracts.noScaleOscillation && staticContracts.stableCommit],
+    ['lifecycle-and-map', staticContracts.lifecycleRecovery && staticContracts.mapGeometryHooks && staticContracts.mapPinchPreserved && staticContracts.dynamicHeightFallback],
+    ['release-and-offline', staticContracts.guardRunsBeforeMap && staticContracts.releaseOwnership && staticContracts.releasePolicy && staticContracts.offlineRefresh]
   ];
   for (const [name, passed] of checks) {
     results.push({ device: device.name, profile: device.profile, orientation, name, passed: Boolean(passed) });
@@ -80,7 +83,7 @@ for (const device of devices) {
 
 const failed = results.filter(result => !result.passed);
 const report = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   release: manifest.version,
   generatedAt: new Date().toISOString(),
   passed: failed.length === 0 && results.length === 120,
