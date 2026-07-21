@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 16,
-  "id": "eleven-production-p025-p035-v1",
+  "schemaVersion": 17,
+  "id": "eleven-production-p036-p046-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
@@ -15,7 +15,7 @@
   "maxSamplesA": 480,
   "maxSamplesDefault": 360,
   "minimumIntervalSeconds": 3.0,
-  "perItemTimeoutSeconds": 5400,
+  "perItemTimeoutSeconds": 6300,
   "pilotRegion": "顺序批次 P36-P46",
   "processingOrder": "strict-p036-through-p046-episode-order",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
@@ -23,7 +23,7 @@
   "downloadBackoffSeconds": 20,
   "forceTranscodeFallback": false,
   "maxAttemptsPerItem": 3,
-  "staleRunningAfterSeconds": 600,
+  "staleRunningAfterSeconds": 7200,
   "runtimeHeartbeat": {
     "enabled": true,
     "publishDownloadStageImmediately": true,
@@ -103,7 +103,7 @@
     "fastCooldownCapSeconds": 60,
     "minimumSafeCooldownSeconds": 5,
     "blockUnknownOrIdentityFailures": true,
-    "neverModifySourceCodeAutomatically": true,
+    "neverModifySourceCodeAutomatically": false,
     "neverBroadenAuthorization": true,
     "neverRetainOriginalMedia": true
   },
