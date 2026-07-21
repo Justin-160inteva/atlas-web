@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 16,
-  "triggerId": "eleven-production-p036-p046-p038-autorecover-20260721-01",
-  "requestedAt": "2026-07-21T15:46:00Z",
+  "schemaVersion": 17,
+  "triggerId": "eleven-production-p036-p046-p038-closed-loop-20260721-04",
+  "requestedAt": "2026-07-21T16:18:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P36-P46",
@@ -30,5 +30,5 @@
   "humanReviewOnUnknownFailure": false,
   "expectedDownloadCount": 9,
   "expectedAnalysisCount": 9,
-  "reason": "P38 reached analysis completion but the heartbeat supervisor marked the persisting stage stale. Run deterministic recovery first, invoke bounded AI repair only if necessary, retry P38, then continue strictly through P46."
+  "reason": "Use the repaired v2 entrypoint to normalize the structured heartbeat-supervisor failure, claim P38, persist its result, and continue strictly through P46."
 }
