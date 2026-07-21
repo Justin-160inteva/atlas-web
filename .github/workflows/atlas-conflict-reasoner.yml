@@ -82,6 +82,7 @@ jobs:
           node --check tools/reward_search_contract_smoke.mjs
           node --check tools/reward_search_browser_smoke.mjs
           node --check tools/viewport_scale_contract_smoke.mjs
+          node --check tools/ipad_landscape_viewport_smoke.mjs
           node --check tools/monitor_batch_authority_smoke.mjs
           node --check sw.js
 
@@ -158,6 +159,12 @@ jobs:
         env:
           ATLAS_URL: http://127.0.0.1:4173/
         run: node tools/browser_conflict_smoke.mjs
+
+      - name: Run iPad portrait-to-landscape viewport stability gate
+        if: steps.validation.outputs.run_browser == 'true'
+        env:
+          ATLAS_URL: http://127.0.0.1:4173/
+        run: node tools/ipad_landscape_viewport_smoke.mjs
 
       - name: Run mobile and iPad reward search matrix
         if: steps.validation.outputs.run_browser == 'true'
