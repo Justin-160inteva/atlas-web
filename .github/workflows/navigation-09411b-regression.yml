@@ -1,4 +1,4 @@
-name: UI 0.9.4.12a glass regression
+name: UI 0.9.4.12b-1 marker regression
 
 on:
   pull_request:
@@ -6,6 +6,7 @@ on:
       - 'index.html'
       - 'atlas-navigation-09411a.css'
       - 'atlas-navigation-09411b.js'
+      - 'marker-state.js'
       - 'release-manifest.json'
       - 'atlas-bootstrap.js'
       - 'sw.js'
@@ -18,6 +19,7 @@ on:
       - 'index.html'
       - 'atlas-navigation-09411a.css'
       - 'atlas-navigation-09411b.js'
+      - 'marker-state.js'
       - 'release-manifest.json'
       - 'atlas-bootstrap.js'
       - 'sw.js'
@@ -38,9 +40,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Parse recovery controller
-        run: node --check atlas-navigation-09411b.js
-      - name: Run observer and glass regression contract
+      - name: Parse navigation and marker controllers
+        run: |
+          node --check atlas-navigation-09411b.js
+          node --check marker-state.js
+      - name: Run navigation glass and marker contract
         run: node tools/navigation_observer_contract_09411b.mjs
 
   browser:
@@ -72,20 +76,20 @@ jobs:
           done
           cat /tmp/atlas-navigation-server.log
           exit 1
-      - name: Run real glass and interaction smoke
+      - name: Run real marker and interaction smoke
         id: browser_smoke
         continue-on-error: true
         env:
           ATLAS_URL: http://127.0.0.1:4173/
         run: |
           set -o pipefail
-          node tools/navigation_browser_smoke_09411c.mjs 2>&1 | tee navigation-browser-09412a.log
+          node tools/navigation_browser_smoke_09411c.mjs 2>&1 | tee marker-browser-09412b1.log
       - name: Upload compact browser diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: navigation-browser-09412a-${{ github.sha }}
-          path: navigation-browser-09412a.log
+          name: marker-browser-09412b1-${{ github.sha }}
+          path: marker-browser-09412b1.log
           retention-days: 3
       - name: Enforce browser smoke result
         if: steps.browser_smoke.outcome == 'failure'
