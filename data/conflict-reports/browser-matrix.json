@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "release": "0.9.4.10",
-  "generatedAt": "2026-07-21T15:15:50.737Z",
+  "generatedAt": "2026-07-21T19:25:28.392Z",
   "passed": true,
   "totalChecks": 500,
   "profiles": [
@@ -46,12 +46,12 @@
         {
           "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1440,\"height\":900,\"cssWidth\":1440,\"cssHeight\":900},\"visualScale\":1,\"measured\":{\"width\":1440,\"height\":900,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"desktop\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1440,\"height\":900}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1440,\"height\":900,\"cssWidth\":1440,\"cssHeight\":900},\"visualScale\":1,\"measured\":{\"width\":1440,\"height\":900,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"desktop\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1440,\"height\":900}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1440,\"height\":900,\"cssWidth\":1440,\"cssHeight\":900},\"visualScale\":1,\"measured\":{\"width\":1440,\"height\":900,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"desktop\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1440,\"height\":900}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1440,\"height\":900,\"cssWidth\":1440,\"cssHeight\":900},\"visualScale\":1,\"measured\":{\"width\":1440,\"height\":900,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"desktop\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1440,\"height\":900}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -156,22 +156,22 @@
         {
           "name": "bottom fully visible left",
           "passed": true,
-          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":505,\"right\":935,\"top\":822,\"bottom\":892,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible right",
           "passed": true,
-          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":505,\"right\":935,\"top\":822,\"bottom\":892,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible lower edge",
           "passed": true,
-          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":505,\"right\":935,\"top\":822,\"bottom\":892,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom horizontally centered",
           "passed": true,
-          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":505,\"right\":935,\"top\":822,\"bottom\":892,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom has no horizontal translation drift",
@@ -181,52 +181,52 @@
         {
           "name": "bottom complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":505,\"right\":935,\"top\":822,\"bottom\":892,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom visible border",
           "passed": true,
-          "detail": "{\"left\":505,\"right\":935,\"top\":825,\"bottom\":895,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":505,\"right\":935,\"top\":822,\"bottom\":892,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom material background",
           "passed": true,
-          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)"
+          "detail": "linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))"
         },
         {
           "name": "rail fully visible left",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible right",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible top",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible bottom",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail visible border",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail material background",
           "passed": true,
-          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)"
+          "detail": "linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))"
         },
         {
           "name": "bottom map active",
@@ -376,7 +376,7 @@
         {
           "name": "bottom maximum width and marker release contract",
           "passed": true,
-          "detail": "{\"width\":430,\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"width\":430,\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "navigation guard and observed OpenCV recovery contract",
@@ -416,12 +416,12 @@
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "ipad class not forced",
@@ -477,12 +477,12 @@
         {
           "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1024,\"height\":768,\"cssWidth\":1024,\"cssHeight\":768},\"visualScale\":1,\"measured\":{\"width\":1024,\"height\":768,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1024,\"height\":768}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1024,\"height\":768,\"cssWidth\":1024,\"cssHeight\":768},\"visualScale\":1,\"measured\":{\"width\":1024,\"height\":768,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1024,\"height\":768}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1024,\"height\":768,\"cssWidth\":1024,\"cssHeight\":768},\"visualScale\":1,\"measured\":{\"width\":1024,\"height\":768,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1024,\"height\":768}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1024,\"height\":768,\"cssWidth\":1024,\"cssHeight\":768},\"visualScale\":1,\"measured\":{\"width\":1024,\"height\":768,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1024,\"height\":768}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -587,22 +587,22 @@
         {
           "name": "bottom fully visible left",
           "passed": true,
-          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":297,\"right\":727,\"top\":690,\"bottom\":760,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible right",
           "passed": true,
-          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":297,\"right\":727,\"top\":690,\"bottom\":760,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible lower edge",
           "passed": true,
-          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":297,\"right\":727,\"top\":690,\"bottom\":760,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom horizontally centered",
           "passed": true,
-          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":297,\"right\":727,\"top\":690,\"bottom\":760,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom has no horizontal translation drift",
@@ -612,52 +612,52 @@
         {
           "name": "bottom complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":297,\"right\":727,\"top\":690,\"bottom\":760,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom visible border",
           "passed": true,
-          "detail": "{\"left\":297,\"right\":727,\"top\":693,\"bottom\":763,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":297,\"right\":727,\"top\":690,\"bottom\":760,\"width\":430,\"height\":70,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom material background",
           "passed": true,
-          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)"
+          "detail": "linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))"
         },
         {
           "name": "rail fully visible left",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible right",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible top",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible bottom",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail visible border",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail material background",
           "passed": true,
-          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)"
+          "detail": "linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))"
         },
         {
           "name": "bottom map active",
@@ -837,12 +837,12 @@
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "ipad class not forced",
@@ -898,12 +898,12 @@
         {
           "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1416,\"height\":984,\"cssWidth\":1180,\"cssHeight\":820},\"visualScale\":1,\"measured\":{\"width\":1180,\"height\":820,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1180,\"height\":820}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1416,\"height\":984,\"cssWidth\":1180,\"cssHeight\":820},\"visualScale\":1,\"measured\":{\"width\":1180,\"height\":820,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1180,\"height\":820}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1416,\"height\":984,\"cssWidth\":1180,\"cssHeight\":820},\"visualScale\":1,\"measured\":{\"width\":1180,\"height\":820,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1180,\"height\":820}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1416,\"height\":984,\"cssWidth\":1180,\"cssHeight\":820},\"visualScale\":1,\"measured\":{\"width\":1180,\"height\":820,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"landscape\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":1180,\"height\":820}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -1008,22 +1008,22 @@
         {
           "name": "bottom fully visible left",
           "passed": true,
-          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":375,\"right\":805,\"top\":742,\"bottom\":812,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible right",
           "passed": true,
-          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":375,\"right\":805,\"top\":742,\"bottom\":812,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible lower edge",
           "passed": true,
-          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":375,\"right\":805,\"top\":742,\"bottom\":812,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom horizontally centered",
           "passed": true,
-          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":375,\"right\":805,\"top\":742,\"bottom\":812,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom has no horizontal translation drift",
@@ -1033,12 +1033,12 @@
         {
           "name": "bottom complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":375,\"right\":805,\"top\":742,\"bottom\":812,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom visible border",
           "passed": true,
-          "detail": "{\"left\":375,\"right\":805,\"top\":745,\"bottom\":815,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":375,\"right\":805,\"top\":742,\"bottom\":812,\"width\":430,\"height\":70,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom material background",
@@ -1048,32 +1048,32 @@
         {
           "name": "rail fully visible left",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible right",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible top",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible bottom",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail visible border",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":86,\"bottom\":464,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":86,\"bottom\":464,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail material background",
@@ -1258,12 +1258,12 @@
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "ipad class enabled",
@@ -1319,12 +1319,12 @@
         {
           "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":984,\"height\":1416,\"cssWidth\":820,\"cssHeight\":1180},\"visualScale\":1,\"measured\":{\"width\":820,\"height\":1180,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":820,\"height\":1180}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":984,\"height\":1416,\"cssWidth\":820,\"cssHeight\":1180},\"visualScale\":1,\"measured\":{\"width\":820,\"height\":1180,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":820,\"height\":1180}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":984,\"height\":1416,\"cssWidth\":820,\"cssHeight\":1180},\"visualScale\":1,\"measured\":{\"width\":820,\"height\":1180,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":820,\"height\":1180}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":984,\"height\":1416,\"cssWidth\":820,\"cssHeight\":1180},\"visualScale\":1,\"measured\":{\"width\":820,\"height\":1180,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":820,\"height\":1180}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -1429,22 +1429,22 @@
         {
           "name": "bottom fully visible left",
           "passed": true,
-          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":195,\"right\":625,\"top\":1106,\"bottom\":1172,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible right",
           "passed": true,
-          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":195,\"right\":625,\"top\":1106,\"bottom\":1172,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible lower edge",
           "passed": true,
-          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":195,\"right\":625,\"top\":1106,\"bottom\":1172,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom horizontally centered",
           "passed": true,
-          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":195,\"right\":625,\"top\":1106,\"bottom\":1172,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom has no horizontal translation drift",
@@ -1454,12 +1454,12 @@
         {
           "name": "bottom complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":195,\"right\":625,\"top\":1106,\"bottom\":1172,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom visible border",
           "passed": true,
-          "detail": "{\"left\":195,\"right\":625,\"top\":1109,\"bottom\":1175,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":195,\"right\":625,\"top\":1106,\"bottom\":1172,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom material background",
@@ -1469,32 +1469,32 @@
         {
           "name": "rail fully visible left",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible right",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible top",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible bottom",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail visible border",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail material background",
@@ -1679,12 +1679,12 @@
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "ipad class enabled",
@@ -1740,12 +1740,12 @@
         {
           "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1036,\"height\":1382,\"cssWidth\":768,\"cssHeight\":1024},\"visualScale\":1,\"measured\":{\"width\":768,\"height\":1024,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":768,\"height\":1024}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1036,\"height\":1382,\"cssWidth\":768,\"cssHeight\":1024},\"visualScale\":1,\"measured\":{\"width\":768,\"height\":1024,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":768,\"height\":1024}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1036,\"height\":1382,\"cssWidth\":768,\"cssHeight\":1024},\"visualScale\":1,\"measured\":{\"width\":768,\"height\":1024,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":768,\"height\":1024}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":1036,\"height\":1382,\"cssWidth\":768,\"cssHeight\":1024},\"visualScale\":1,\"measured\":{\"width\":768,\"height\":1024,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"tablet\",\"source\":\"layout-shell\"},\"inner\":{\"width\":768,\"height\":1024}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -1850,22 +1850,22 @@
         {
           "name": "bottom fully visible left",
           "passed": true,
-          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":169,\"right\":599,\"top\":950,\"bottom\":1016,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible right",
           "passed": true,
-          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":169,\"right\":599,\"top\":950,\"bottom\":1016,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible lower edge",
           "passed": true,
-          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":169,\"right\":599,\"top\":950,\"bottom\":1016,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom horizontally centered",
           "passed": true,
-          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":169,\"right\":599,\"top\":950,\"bottom\":1016,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom has no horizontal translation drift",
@@ -1875,12 +1875,12 @@
         {
           "name": "bottom complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":169,\"right\":599,\"top\":950,\"bottom\":1016,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom visible border",
           "passed": true,
-          "detail": "{\"left\":169,\"right\":599,\"top\":953,\"bottom\":1019,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":169,\"right\":599,\"top\":950,\"bottom\":1016,\"width\":430,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":25,\"radiusBottomLeft\":25,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom material background",
@@ -1890,32 +1890,32 @@
         {
           "name": "rail fully visible left",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible right",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible top",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible bottom",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail visible border",
           "passed": true,
-          "detail": "{\"left\":8,\"right\":86,\"top\":76,\"bottom\":454,\"width\":78,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":12,\"right\":88,\"top\":76,\"bottom\":454,\"width\":76,\"height\":378,\"background\":\"linear-gradient(145deg, rgba(72, 70, 69, 0.9), rgba(29, 28, 29, 0.93) 38%, rgba(14, 14, 15, 0.94) 100%), radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":24,\"radiusBottomLeft\":24,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail material background",
@@ -2100,12 +2100,12 @@
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "ipad class enabled",
@@ -2161,12 +2161,12 @@
         {
           "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":468,\"height\":1012,\"cssWidth\":390,\"cssHeight\":844},\"visualScale\":1,\"measured\":{\"width\":390,\"height\":844,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"large-phone\",\"source\":\"layout-shell\"},\"inner\":{\"width\":390,\"height\":844}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":468,\"height\":1012,\"cssWidth\":390,\"cssHeight\":844},\"visualScale\":1,\"measured\":{\"width\":390,\"height\":844,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"large-phone\",\"source\":\"layout-shell\"},\"inner\":{\"width\":390,\"height\":844}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"viewportState\":{\"canvas\":{\"width\":468,\"height\":1012,\"cssWidth\":390,\"cssHeight\":844},\"visualScale\":1,\"measured\":{\"width\":390,\"height\":844,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"large-phone\",\"source\":\"layout-shell\"},\"inner\":{\"width\":390,\"height\":844}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
+          "detail": "{\"viewportState\":{\"canvas\":{\"width\":468,\"height\":1012,\"cssWidth\":390,\"cssHeight\":844},\"visualScale\":1,\"measured\":{\"width\":390,\"height\":844,\"scale\":1,\"left\":0,\"top\":0,\"keyboardInset\":0,\"orientation\":\"portrait\",\"profile\":\"large-phone\",\"source\":\"layout-shell\"},\"inner\":{\"width\":390,\"height\":844}},\"markerState\":{\"api\":{\"version\":\"0.9.4.10\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.28,\"final\":1.28,\"shrinking\":1,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":148}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -2271,22 +2271,22 @@
         {
           "name": "bottom fully visible left",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":382,\"top\":770,\"bottom\":836,\"width\":374,\"height\":66,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible right",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":382,\"top\":770,\"bottom\":836,\"width\":374,\"height\":66,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom fully visible lower edge",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":382,\"top\":770,\"bottom\":836,\"width\":374,\"height\":66,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom horizontally centered",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":382,\"top\":770,\"bottom\":836,\"width\":374,\"height\":66,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom has no horizontal translation drift",
@@ -2296,52 +2296,52 @@
         {
           "name": "bottom complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":382,\"top\":770,\"bottom\":836,\"width\":374,\"height\":66,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom visible border",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":384,\"top\":774,\"bottom\":840,\"width\":378,\"height\":66,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":382,\"top\":770,\"bottom\":836,\"width\":374,\"height\":66,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":23,\"radiusBottomLeft\":23,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "bottom material background",
           "passed": true,
-          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.106), rgba(255, 255, 255, 0.024) 36%, rgba(12, 12, 13, 0.69) 100%), radial-gradient(circle at 50% -18%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 52%)"
+          "detail": "linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))"
         },
         {
           "name": "rail fully visible left",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":72,\"top\":76,\"bottom\":452,\"width\":64,\"height\":376,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible right",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":72,\"top\":76,\"bottom\":452,\"width\":64,\"height\":376,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible top",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":72,\"top\":76,\"bottom\":452,\"width\":64,\"height\":376,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail fully visible bottom",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":72,\"top\":76,\"bottom\":452,\"width\":64,\"height\":376,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail complete rounded medium",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":72,\"top\":76,\"bottom\":452,\"width\":64,\"height\":376,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail visible border",
           "passed": true,
-          "detail": "{\"left\":6,\"right\":72,\"top\":76,\"bottom\":452,\"width\":66,\"height\":376,\"background\":\"linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)\",\"borderTop\":1,\"radiusTopLeft\":21,\"radiusBottomLeft\":21,\"pointerEvents\":\"auto\",\"transformX\":0}"
+          "detail": "{\"left\":8,\"right\":72,\"top\":76,\"bottom\":452,\"width\":64,\"height\":376,\"background\":\"linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))\",\"borderTop\":1,\"radiusTopLeft\":22,\"radiusBottomLeft\":22,\"pointerEvents\":\"auto\",\"transformX\":0}"
         },
         {
           "name": "rail material background",
           "passed": true,
-          "detail": "linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.024) 34%, rgba(12, 12, 13, 0.66) 100%), radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.17), rgba(0, 0, 0, 0) 46%)"
+          "detail": "linear-gradient(148deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.05) 31%, rgba(35, 28, 30, 0.74) 72%, rgba(13, 12, 13, 0.82))"
         },
         {
           "name": "bottom map active",
@@ -2521,12 +2521,12 @@
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.10&cache=atlas-alpha-09410-pages-v1-monitor-v12-rewards-v2-viewport-v3-nav-09411b-1-marker-09412b1"
         },
         {
           "name": "ipad class not forced",

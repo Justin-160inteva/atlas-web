@@ -1,17 +1,21 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-21T16:47:43.736294Z",
+  "generatedAt": "2026-07-21T19:24:16.784979Z",
   "release": "0.9.4.10",
   "policyRevision": "2026.07.21.1",
   "event": "push",
-  "tier": "quick",
-  "targetMinutes": 7,
+  "tier": "standard",
+  "targetMinutes": 10,
   "forcedFull": false,
   "scheduledFull": false,
   "targetedPullRequest": false,
-  "postMergeFullUiMatrix": false,
+  "postMergeFullUiMatrix": true,
   "changedFiles": [
-    "detail-sheet-gesture.css"
+    ".github/workflows/control-icons-09412b2-regression.yml",
+    "atlas-controls-0938.css",
+    "atlas-controls-0938.js",
+    "tools/control_icon_browser_smoke_09412b2.mjs",
+    "tools/control_icon_contract_09412b2.mjs"
   ],
   "safeSupportFiles": [],
   "matchedGroups": {
@@ -23,8 +27,12 @@
     "rewards": [],
     "viewportTargeted": [],
     "searchTargeted": [],
-    "uiFull": [],
-    "ui": [],
+    "uiFull": [
+      "atlas-controls-0938.js"
+    ],
+    "ui": [
+      "atlas-controls-0938.js"
+    ],
     "highRisk": []
   },
   "run": {
@@ -34,21 +42,21 @@
     "serial": false,
     "queue_schema": false,
     "autonomous_repair": false,
-    "browser_matrix": false,
-    "ipad": false,
-    "reward_search": false,
+    "browser_matrix": true,
+    "ipad": true,
+    "reward_search": true,
     "monitor": false,
     "full_audit": false,
-    "browser": false,
-    "playwright": false
+    "browser": true,
+    "playwright": true
   },
   "budget": {
-    "targetMinutes": 7,
-    "heartbeatChecks": 96,
-    "serialQueueChecks": 96,
-    "queueSchemaChecks": 80,
-    "browserChecks": 0,
-    "monitorAuthorityChecks": 0,
+    "targetMinutes": 10,
+    "heartbeatChecks": 128,
+    "serialQueueChecks": 128,
+    "queueSchemaChecks": 96,
+    "browserChecks": 500,
+    "monitorAuthorityChecks": 500,
     "dataCenterChecks": 500,
     "rewardEvidenceChecks": 500,
     "fullAudit": false

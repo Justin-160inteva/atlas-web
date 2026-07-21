@@ -2,8 +2,8 @@
 
 - Release: **0.9.4.10**
 - Status: **pass**
-- Risk score: **56/100**
-- Findings: 28 (0 critical, 0 high, 28 warning)
+- Risk score: **80/100**
+- Findings: 40 (0 critical, 0 high, 40 warning)
 
 ## WARNING · SW_REGISTRATION_DELEGATED
 
@@ -15,13 +15,13 @@ Files: `app.js`, `atlas-bootstrap.js`
 
 .bottom-nav .nav-item has multiple transition definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-ui-fix-0931.css`
+Files: `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`, `atlas-ui-fix-0931.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .quick-rail .rail-button has multiple transition definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-ui-fix-0931.css`
+Files: `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`, `atlas-ui-fix-0931.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
@@ -51,13 +51,13 @@ Files: `atlas-liquid-nav-0933.css`, `atlas-ui-fix-0931.css`
 
 .bottom-nav .nav-item:active has multiple transform definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-ui-fix-0931.css`
+Files: `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`, `atlas-ui-fix-0931.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .quick-rail .rail-button:active has multiple transform definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-liquid-nav-0934.css`, `atlas-ui-fix-0931.css`
+Files: `atlas-liquid-nav-0933.css`, `atlas-liquid-nav-0934.css`, `atlas-navigation-09411a.css`, `atlas-ui-fix-0931.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
@@ -79,27 +79,39 @@ Files: `performance-071.css`, `styles.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
+.top-bar has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.top-bar has multiple backdrop-filter definitions
+
+Files: `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
 .bottom-nav has multiple -webkit-backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .quick-rail has multiple -webkit-backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .bottom-nav has multiple backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .quick-rail has multiple backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
@@ -111,13 +123,73 @@ Files: `atlas-ipad-nav-0940.css`, `atlas-liquid-nav-0933.css`
 
 .map-controls button has multiple transition definitions
 
-Files: `alpha03.css`, `atlas-080.css`, `atlas-liquid-nav-0933.css`
+Files: `alpha03.css`, `atlas-080.css`, `atlas-liquid-nav-0933.css`, `atlas-navigation-09411a.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .map-controls button:active has multiple transform definitions
 
 Files: `alpha03.css`, `atlas-080.css`, `atlas-liquid-nav-0933.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.settings-panel has multiple transition definitions
+
+Files: `atlas-navigation-09411a.css`, `atlas-settings.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.evidence-panel has multiple transition definitions
+
+Files: `atlas-navigation-09411a.css`, `evidence-studio.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.sheet has multiple transition definitions
+
+Files: `atlas-navigation-09411a.css`, `styles.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.settings-close has multiple transition definitions
+
+Files: `atlas-navigation-09411a.css`, `atlas-settings.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.monitor-close has multiple transition definitions
+
+Files: `atlas-navigation-09411a.css`, `atlas-settings.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.monitor-refresh has multiple transition definitions
+
+Files: `atlas-navigation-09411a.css`, `atlas-settings.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.data-center-tabs button has multiple transition definitions
+
+Files: `atlas-navigation-09411a.css`, `atlas-settings.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.settings-card has multiple transition definitions
+
+Files: `atlas-navigation-09411a.css`, `atlas-settings.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.map-controls button has multiple transform definitions
+
+Files: `atlas-080.css`, `atlas-navigation-09411a.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.panel has multiple transition definitions
+
+Files: `atlas-navigation-09411a.css`, `styles.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
