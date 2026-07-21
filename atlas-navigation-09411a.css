@@ -1,4 +1,4 @@
-/* Atlas Alpha 0.9.4.11a — complete Apple-inspired navigation media */
+/* Atlas Alpha 0.9.4.11b — complete Apple-inspired navigation media */
 :root{
   --atlas-nav-edge:max(12px,env(safe-area-inset-left,0px));
   --atlas-nav-edge-right:max(12px,env(safe-area-inset-right,0px));
@@ -29,12 +29,12 @@
   contain:layout paint style;
 }
 
-/* Centre from the viewport itself; do not combine left/right constraints with max-width. */
+/* Keep the medium centred on the physical viewport without transform-matrix drift. */
 .bottom-nav{
   left:50%!important;
   right:auto!important;
   bottom:var(--atlas-nav-floor)!important;
-  width:min(470px,calc(100% - var(--atlas-nav-edge) - var(--atlas-nav-edge-right)))!important;
+  width:min(430px,calc(100% - var(--atlas-nav-edge) - var(--atlas-nav-edge-right)))!important;
   max-width:none!important;
   margin:0!important;
   padding:6px!important;
@@ -45,7 +45,8 @@
   -webkit-backdrop-filter:blur(20px) saturate(142%)!important;
   backdrop-filter:blur(20px) saturate(142%)!important;
   box-shadow:var(--atlas-nav-shadow)!important;
-  transform:translate3d(-50%,0,0)!important;
+  transform:none!important;
+  translate:-50% 0;
   pointer-events:auto!important;
   visibility:visible!important;
   opacity:1!important;
