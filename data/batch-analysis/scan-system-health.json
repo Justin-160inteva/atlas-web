@@ -1,18 +1,21 @@
 {
-  "schemaVersion": 10,
-  "generatedAt": "2026-07-21T07:27:43.249045Z",
-  "status": "fail",
+  "schemaVersion": 11,
+  "generatedAt": "2026-07-21T16:39:36.387518Z",
+  "status": "pass",
   "summary": {
-    "total": 76,
-    "passed": 75,
-    "failed": 1
+    "total": 47,
+    "passed": 47,
+    "failed": 0
   },
-  "dictionaryVersion": "2026.07.21.1",
-  "release": "0.9.4.9",
+  "dictionaryVersion": "2026.07.21.2",
+  "release": "0.9.4.10",
   "queueItems": 11,
   "maximumConcurrentItems": 1,
-  "batchId": "eleven-production-p025-p035-v1",
-  "catalogProjectionLag": [],
+  "batchId": "eleven-production-p036-p046-v1",
+  "pageRange": [
+    36,
+    46
+  ],
   "checks": [
     {
       "name": "dictionary_size",
@@ -22,7 +25,7 @@
     {
       "name": "dictionary_unique",
       "passed": true,
-      "detail": "unique IDs"
+      "detail": "unique bug IDs"
     },
     {
       "name": "dictionary_complete",
@@ -30,149 +33,89 @@
       "detail": "patterns and actions present"
     },
     {
-      "name": "dictionary_layers",
-      "passed": true,
-      "detail": "required layers present"
-    },
-    {
-      "name": "cooldowns_bounded",
-      "passed": true,
-      "detail": "network cooldowns bounded"
-    },
-    {
       "name": "release_version",
       "passed": true,
-      "detail": "Alpha 0.9.4.9"
+      "detail": "0.9.4.10"
     },
     {
-      "name": "release_audit_cycle",
+      "name": "release_assets_exist",
       "passed": true,
-      "detail": "Alpha 0.9.4.9; next mandatory audit is 0.9.4.11"
+      "detail": "all release assets exist"
     },
     {
-      "name": "release_matrices",
+      "name": "release_monitor_owner",
       "passed": true,
-      "detail": "six exact 500-check gates"
+      "detail": "single monitor owner"
     },
     {
-      "name": "release_monitor_contract",
+      "name": "release_autonomy",
       "passed": true,
-      "detail": "single batch-authoritative monitor"
-    },
-    {
-      "name": "release_serial11_contract",
-      "passed": true,
-      "detail": "eleven queued, one active, auto continue"
-    },
-    {
-      "name": "release_transport_contract",
-      "passed": true,
-      "detail": "signed WBI direct API with resumable CDN rotation"
-    },
-    {
-      "name": "release_marker_contract",
-      "passed": true,
-      "detail": "anchored scale-only marker selection"
-    },
-    {
-      "name": "release_marker_runtime",
-      "passed": true,
-      "detail": "no legacy selection rings or ornaments"
-    },
-    {
-      "name": "release_settings_icon",
-      "passed": true,
-      "detail": "simplified radial settings icon"
-    },
-    {
-      "name": "release_data_center_owner",
-      "passed": true,
-      "detail": "one shell owner and one evidence data engine"
-    },
-    {
-      "name": "release_data_center_contract",
-      "passed": true,
-      "detail": "one data and evidence center with two views"
-    },
-    {
-      "name": "release_data_center_runtime",
-      "passed": true,
-      "detail": "legacy evidence workspace is embedded under one controller"
-    },
-    {
-      "name": "release_data_center_css",
-      "passed": true,
-      "detail": "responsive frosted center and embedded evidence workspace"
-    },
-    {
-      "name": "release_data_center_matrix",
-      "passed": true,
-      "detail": "dedicated exact-500 data center matrix"
+      "detail": "autonomous repair enabled"
     },
     {
       "name": "queue_exact_eleven",
       "passed": true,
-      "detail": "exactly eleven bounded items"
+      "detail": "exactly eleven items"
     },
     {
       "name": "queue_unique",
       "passed": true,
-      "detail": "eleven unique sources"
+      "detail": "unique sources"
     },
     {
       "name": "queue_chronological",
       "passed": true,
-      "detail": "sequence=[25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]"
+      "detail": "pages=[36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]"
     },
     {
-      "name": "queue_no_skips",
+      "name": "queue_sequence_slots",
       "passed": true,
-      "detail": "P25-P35 all included"
-    },
-    {
-      "name": "queue_region",
-      "passed": true,
-      "detail": "bounded batch label"
+      "detail": "sequences=[25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]"
     },
     {
       "name": "queue_serial",
       "passed": true,
-      "detail": "maximum one active item"
+      "detail": "active=0, running=0"
     },
     {
       "name": "queue_auto_continue",
       "passed": true,
-      "detail": "durable-success continuation"
+      "detail": "automatic continuation"
     },
     {
       "name": "queue_status_batch_identity",
       "passed": true,
-      "detail": "queue=eleven-production-p025-p035-v1, status=eleven-production-p025-p035-v1"
+      "detail": "queue=eleven-production-p036-p046-v1, status=eleven-production-p036-p046-v1, manifest=eleven-production-p036-p046-v1"
     },
     {
       "name": "queue_authority",
-      "passed": false,
-      "detail": "durable status authority wins over a stale terminal projection"
+      "passed": true,
+      "detail": "terminal=False"
     },
     {
       "name": "status_coherent",
       "passed": true,
-      "detail": "status matches queue"
+      "detail": "summary={'total': 11, 'imported': 4, 'running': 0, 'failed': 0, 'blocked': 0, 'retryableFailed': 0, 'remaining': 7, 'attemptedThisRun': 1, 'newlyImportedThisRun': 1}"
     },
     {
-      "name": "queue_catalog_state",
+      "name": "active_item_coherent",
       "passed": true,
-      "detail": "durable status wins; catalog lagged=0"
+      "detail": "activeItem=None"
     },
     {
-      "name": "catalog_lag_is_bounded",
+      "name": "result_paths",
       "passed": true,
-      "detail": "lagged projections=0"
+      "detail": "imported items have results"
+    },
+    {
+      "name": "no_failed_terminal_mix",
+      "passed": true,
+      "detail": "terminal state is clean"
     },
     {
       "name": "manifest_batch",
       "passed": true,
-      "detail": "manifest targets P25-P35"
+      "detail": "active batch eleven-production-p036-p046-v1"
     },
     {
       "name": "manifest_serial",
@@ -187,67 +130,47 @@
     {
       "name": "heartbeat_telemetry",
       "passed": true,
-      "detail": "30-second heartbeat and telemetry"
+      "detail": "30-second telemetry"
     },
     {
       "name": "v13_adapter",
       "passed": true,
-      "detail": "v13 analyzer selected"
+      "detail": "tools/analyze_authorized_video_v14.py"
     },
     {
       "name": "adaptive_ranges",
       "passed": true,
-      "detail": "bounded range transfer"
+      "detail": "parallel ranges enabled"
     },
     {
       "name": "download_policy",
       "passed": true,
-      "detail": "no artificial cap, bounded workers"
+      "detail": "workers=8"
     },
     {
       "name": "wbi_metadata",
       "passed": true,
-      "detail": "signed metadata bypasses the blocked webpage"
+      "detail": "signed WBI metadata"
     },
     {
       "name": "cdn_rotation_resume",
       "passed": true,
-      "detail": "partial bytes survive API-provided CDN failover"
+      "detail": "resumable CDN rotation"
+    },
+    {
+      "name": "cdn_probe",
+      "passed": true,
+      "detail": "speed-probed range CDN"
     },
     {
       "name": "retention",
       "passed": true,
-      "detail": "no retained media pixels"
-    },
-    {
-      "name": "workflow_capacity",
-      "passed": true,
-      "detail": "eleven-item workflow gate"
-    },
-    {
-      "name": "workflow_serial",
-      "passed": true,
-      "detail": "one active scan"
-    },
-    {
-      "name": "workflow_catalog_state",
-      "passed": true,
-      "detail": "catalog state remains coherent after each run"
-    },
-    {
-      "name": "workflow_400_gate",
-      "passed": true,
-      "detail": "400-round scan gate"
-    },
-    {
-      "name": "workflow_auto_continue",
-      "passed": true,
-      "detail": "next run only after durable success"
+      "detail": "no retained media"
     },
     {
       "name": "monitor_poll",
       "passed": true,
-      "detail": "5s raw, 180s API, 1s UI"
+      "detail": "monitor cadence"
     },
     {
       "name": "monitor_thresholds",
@@ -262,77 +185,37 @@
     {
       "name": "monitor_single_controller",
       "passed": true,
-      "detail": "one monitor controller"
-    },
-    {
-      "name": "monitor_durable_priority",
-      "passed": true,
-      "detail": "durable state wins"
+      "detail": "single controller"
     },
     {
       "name": "monitor_batch_authority",
       "passed": true,
-      "detail": "mismatched legacy queues are isolated"
+      "detail": "batch authority selection"
     },
     {
       "name": "monitor_cache",
       "passed": true,
-      "detail": "single-monitor cache"
-    },
-    {
-      "name": "supervisor_capacity",
-      "passed": true,
-      "detail": "eleven-item supervisor gate"
-    },
-    {
-      "name": "supervisor_serial",
-      "passed": true,
-      "detail": "one-item supervisor policy"
-    },
-    {
-      "name": "supervisor_auto_continue",
-      "passed": true,
-      "detail": "supervisor continuation policy"
-    },
-    {
-      "name": "supervisor_thresholds",
-      "passed": true,
-      "detail": "90/180-second thresholds"
-    },
-    {
-      "name": "supervisor_dedup",
-      "passed": true,
-      "detail": "resume deduplication"
-    },
-    {
-      "name": "supervisor_durable",
-      "passed": true,
-      "detail": "durable reconciliation"
-    },
-    {
-      "name": "supervisor_safety",
-      "passed": true,
-      "detail": "bounded repair safety"
+      "detail": "release cache synchronized"
     },
     {
       "name": "publisher_conflict",
       "passed": true,
-      "detail": "fresh-SHA conflict retry"
+      "detail": "fresh SHA retries"
     },
     {
       "name": "telemetry_preservation",
       "passed": true,
-      "detail": "same-item telemetry preserved"
+      "detail": "telemetry preserved"
     },
     {
       "name": "same_job_recovery",
       "passed": true,
-      "detail": "same-job bounded recovery"
+      "detail": "same-job recovery"
     },
     {
       "name": "success_projection",
       "passed": true,
-      "detail": "success projects next item"
+      "detail": "durable continuation"
     },
     {
       "name": "match_bilibili-http-412",
@@ -345,29 +228,9 @@
       "detail": "HTTP Error 503: Service Unavailable"
     },
     {
-      "name": "match_curl-transport",
-      "passed": true,
-      "detail": "curl: (18) end of response with bytes missing"
-    },
-    {
       "name": "match_range-not-supported",
       "passed": true,
       "detail": "range request was not honored"
-    },
-    {
-      "name": "match_download-truncated",
-      "passed": true,
-      "detail": "content-length mismatch after resumed transfer"
-    },
-    {
-      "name": "match_github-contents-conflict",
-      "passed": true,
-      "detail": "409 Conflict sha does not match"
-    },
-    {
-      "name": "match_multipart-page-identity",
-      "passed": true,
-      "detail": "CID mismatch"
     },
     {
       "name": "match_opencv-open-failure",
@@ -382,17 +245,12 @@
     {
       "name": "transport_gate",
       "passed": true,
-      "detail": "96 deterministic source-transport checks"
+      "detail": "96 source transport checks"
     },
     {
       "name": "repository_media_clean",
       "passed": true,
       "detail": "media files=0"
-    },
-    {
-      "name": "release_assets_exist",
-      "passed": true,
-      "detail": "all release assets exist"
     }
   ]
 }
