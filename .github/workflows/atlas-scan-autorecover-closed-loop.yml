@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '2-59/5 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'data/batch-analysis/atlas-scan-autorecover-request.json'
 
 concurrency:
   group: atlas-authorized-scan-autorecover
@@ -132,6 +136,12 @@ jobs:
             tools/diagnose_and_recover_scan_v2.py \
             tools/scan_autonomous_repair.py
           python tools/audit_scan_system_v4.py
+
+      - name: Remove generated interpreter caches
+        if: always()
+        run: |
+          find . -type d -name '__pycache__' -prune -exec rm -rf {} +
+          find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
 
       - name: Persist recovered queue, results and approved AI patches
         if: steps.reconcile.outputs.actionable == 'true'
