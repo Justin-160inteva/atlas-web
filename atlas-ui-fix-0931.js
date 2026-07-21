@@ -183,6 +183,7 @@
   }
 
   if(window.AtlasMarkerDesign?.version==='0.9.4.12b-1'){
+    drawMarker=window.AtlasMarkerDesign.render;
     root.dataset.atlasMarkerVisuals=window.AtlasMarkerDesign.version;
     root.dataset.atlasMarkerOwner='marker-state.js';
     return;
