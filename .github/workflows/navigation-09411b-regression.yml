@@ -6,6 +6,7 @@ on:
       - 'index.html'
       - 'atlas-navigation-09411a.css'
       - 'atlas-navigation-09411b.js'
+      - 'atlas-ui-fix-0931.js'
       - 'marker-state.js'
       - 'release-manifest.json'
       - 'atlas-bootstrap.js'
@@ -19,6 +20,7 @@ on:
       - 'index.html'
       - 'atlas-navigation-09411a.css'
       - 'atlas-navigation-09411b.js'
+      - 'atlas-ui-fix-0931.js'
       - 'marker-state.js'
       - 'release-manifest.json'
       - 'atlas-bootstrap.js'
@@ -43,6 +45,7 @@ jobs:
       - name: Parse navigation and marker controllers
         run: |
           node --check atlas-navigation-09411b.js
+          node --check atlas-ui-fix-0931.js
           node --check marker-state.js
       - name: Run navigation glass and marker contract
         run: node tools/navigation_observer_contract_09411b.mjs
