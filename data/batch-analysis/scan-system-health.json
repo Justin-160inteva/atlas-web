@@ -1,11 +1,11 @@
 {
   "schemaVersion": 10,
-  "generatedAt": "2026-07-21T02:13:32.734966Z",
-  "status": "pass",
+  "generatedAt": "2026-07-21T07:27:43.249045Z",
+  "status": "fail",
   "summary": {
     "total": 76,
-    "passed": 76,
-    "failed": 0
+    "passed": 75,
+    "failed": 1
   },
   "dictionaryVersion": "2026.07.21.1",
   "release": "0.9.4.9",
@@ -151,7 +151,7 @@
     },
     {
       "name": "queue_authority",
-      "passed": true,
+      "passed": false,
       "detail": "durable status authority wins over a stale terminal projection"
     },
     {
