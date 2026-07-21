@@ -1,13 +1,13 @@
 {
   "schemaVersion": 10,
-  "generatedAt": "2026-07-21T01:12:04.063021Z",
+  "generatedAt": "2026-07-21T01:51:20.881303Z",
   "status": "fail",
   "summary": {
     "total": 76,
-    "passed": 75,
-    "failed": 1
+    "passed": 74,
+    "failed": 2
   },
-  "dictionaryVersion": "2026.07.20.2",
+  "dictionaryVersion": "2026.07.21.1",
   "release": "0.9.4.9",
   "queueItems": 11,
   "maximumConcurrentItems": 1,
@@ -17,7 +17,7 @@
     {
       "name": "dictionary_size",
       "passed": true,
-      "detail": "27 entries"
+      "detail": "28 entries"
     },
     {
       "name": "dictionary_unique",
@@ -236,7 +236,7 @@
     },
     {
       "name": "workflow_400_gate",
-      "passed": true,
+      "passed": false,
       "detail": "400-round scan gate"
     },
     {
