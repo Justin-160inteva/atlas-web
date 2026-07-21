@@ -1,27 +1,40 @@
-/* Atlas Alpha 0.9.4.11c — complete Apple-inspired navigation media */
+/* Atlas Alpha 0.9.4.12a — unified Apple-inspired glass and premium red controls */
 :root{
   --atlas-nav-edge:max(12px,env(safe-area-inset-left,0px));
   --atlas-nav-edge-right:max(12px,env(safe-area-inset-right,0px));
   --atlas-nav-safe-inline:max(12px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));
   --atlas-nav-floor:max(8px,env(safe-area-inset-bottom,0px));
-  --atlas-nav-glass:linear-gradient(145deg,rgba(255,255,255,.135),rgba(255,255,255,.045) 38%,rgba(18,18,19,.72) 100%);
-  --atlas-nav-line:rgba(255,255,255,.2);
-  --atlas-nav-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(255,255,255,.035),0 14px 34px rgba(0,0,0,.28);
+  --atlas-glass-blur:16px;
+  --atlas-glass-saturation:132%;
+  --atlas-glass-surface:linear-gradient(148deg,rgba(255,255,255,.145),rgba(255,255,255,.052) 31%,rgba(35,28,30,.74) 72%,rgba(13,12,13,.82));
+  --atlas-glass-soft:linear-gradient(148deg,rgba(255,255,255,.105),rgba(116,35,45,.095) 54%,rgba(20,17,18,.42));
+  --atlas-glass-card:linear-gradient(150deg,rgba(255,255,255,.085),rgba(255,255,255,.028) 42%,rgba(77,24,32,.075));
+  --atlas-glass-line:rgba(255,244,246,.205);
+  --atlas-glass-line-soft:rgba(255,244,246,.115);
+  --atlas-glass-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(255,255,255,.035),0 14px 34px rgba(0,0,0,.27);
+  --atlas-glass-shadow-large:inset 0 1px 0 rgba(255,255,255,.2),0 22px 54px rgba(0,0,0,.33);
+  --atlas-red-light:#ee7b86;
+  --atlas-red-mid:#b72d3c;
+  --atlas-red-deep:#64131e;
+  --atlas-red-deeper:#3d0b12;
+  --atlas-red-line:rgba(255,151,160,.42);
+  --atlas-red-glow:0 10px 24px rgba(119,18,31,.28),inset 0 1px 0 rgba(255,220,224,.28);
+  --atlas-control-motion:transform .18s cubic-bezier(.2,.82,.2,1),background-color .18s ease,border-color .18s ease,opacity .18s ease;
+  --atlas-panel-motion:transform .24s cubic-bezier(.2,.82,.2,1),opacity .18s ease;
 }
 
-/* The complete left medium stays inside the visible device viewport. */
 html body .quick-rail{
   left:max(12px,env(safe-area-inset-left,0px))!important;
   right:auto!important;
   width:76px!important;
   padding:8px!important;
-  border:1px solid var(--atlas-nav-line)!important;
+  border:1px solid var(--atlas-glass-line)!important;
   border-radius:24px!important;
   overflow:hidden!important;
-  background:var(--atlas-nav-glass)!important;
-  -webkit-backdrop-filter:blur(20px) saturate(142%)!important;
-  backdrop-filter:blur(20px) saturate(142%)!important;
-  box-shadow:var(--atlas-nav-shadow)!important;
+  background:var(--atlas-glass-surface)!important;
+  -webkit-backdrop-filter:blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important;
+  backdrop-filter:blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important;
+  box-shadow:var(--atlas-glass-shadow)!important;
   transform:translate3d(0,0,0)!important;
   translate:none!important;
   pointer-events:auto!important;
@@ -31,7 +44,6 @@ html body .quick-rail{
   contain:layout paint style;
 }
 
-/* Native auto margins provide one physical-viewport centre with no transform layer. */
 html body .bottom-nav{
   left:0!important;
   right:0!important;
@@ -41,13 +53,13 @@ html body .bottom-nav{
   margin-left:auto!important;
   margin-right:auto!important;
   padding:6px!important;
-  border:1px solid var(--atlas-nav-line)!important;
+  border:1px solid var(--atlas-glass-line)!important;
   border-radius:25px!important;
   overflow:hidden!important;
-  background:var(--atlas-nav-glass)!important;
-  -webkit-backdrop-filter:blur(20px) saturate(142%)!important;
-  backdrop-filter:blur(20px) saturate(142%)!important;
-  box-shadow:var(--atlas-nav-shadow)!important;
+  background:var(--atlas-glass-surface)!important;
+  -webkit-backdrop-filter:blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important;
+  backdrop-filter:blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important;
+  box-shadow:var(--atlas-glass-shadow)!important;
   transform:none!important;
   translate:none!important;
   pointer-events:auto!important;
@@ -64,46 +76,160 @@ html body .bottom-nav{
   inset:1px 8% auto;
   height:34%;
   border-radius:999px;
-  background:linear-gradient(180deg,rgba(255,255,255,.16),transparent);
+  background:linear-gradient(180deg,rgba(255,255,255,.17),transparent);
   pointer-events:none;
+}
+
+html body :where(.glass,.top-bar,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar){
+  border-color:var(--atlas-glass-line)!important;
+  background:var(--atlas-glass-surface)!important;
+  -webkit-backdrop-filter:blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important;
+  backdrop-filter:blur(var(--atlas-glass-blur)) saturate(var(--atlas-glass-saturation))!important;
+  box-shadow:var(--atlas-glass-shadow)!important;
+}
+html body .top-bar{
+  border:1px solid var(--atlas-glass-line)!important;
+  border-radius:22px!important;
+  overflow:hidden!important;
+}
+html body :where(.panel,.settings-panel,.evidence-panel,.sheet,.search-modal){
+  box-shadow:var(--atlas-glass-shadow-large)!important;
+  transition:var(--atlas-panel-motion)!important;
+}
+html body .sheet{background:linear-gradient(180deg,rgba(62,48,51,.9),rgba(20,17,18,.9))!important}
+html body .monitor-overlay{background:rgba(10,8,9,.91)!important}
+html body .monitor-toolbar{background:linear-gradient(180deg,rgba(54,38,42,.9),rgba(16,14,15,.9))!important}
+html body .search-overlay{z-index:100!important}
+html body .search-overlay.open{pointer-events:auto!important}
+html body .search-modal{position:relative;z-index:1}
+
+html body :where(.filter-summary,.category-chip,.route-summary,.route-stat,.route-stop,.overall-progress,.region-progress,.settings-card,.settings-about,.settings-section,.data-center-metrics article,.data-center-tabs,.evidence-section,.evidence-stat,.evidence-switches label,.evidence-building-editor,.future-block,.sheet-highlight,.result-item){
+  border-color:var(--atlas-glass-line-soft)!important;
+  background:var(--atlas-glass-card)!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.085)!important;
+}
+html body :where(.search-trigger,.search-input-row,.evidence-template-row select,input,select,textarea){
+  border-color:var(--atlas-glass-line-soft)!important;
+  background:var(--atlas-glass-soft)!important;
+}
+
+html body :where(
+  .icon-button,.profile-button,.map-controls button,.search-trigger,
+  .close-panel,.close-route,.close-progress,.settings-close,.monitor-close,.monitor-refresh,
+  .sheet-actions button,.route-actions button,.evidence-actions button,.evidence-tool-grid button,
+  .evidence-editor-actions button,.evidence-source button,.evidence-season-tabs button,
+  .data-center-tabs button,.settings-card,.category-chip,.region-progress,.result-item,
+  .route-stop-copy,.route-remove,#toggleAll,#openRouteBadge
+){
+  border:1px solid var(--atlas-glass-line-soft)!important;
+  background:linear-gradient(148deg,rgba(255,255,255,.1),rgba(133,35,47,.12) 54%,rgba(34,22,25,.28))!important;
+  color:var(--text)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.115)!important;
+  transition:var(--atlas-control-motion)!important;
+  touch-action:manipulation;
+}
+html body :where(
+  .icon-button,.profile-button,.map-controls button,.close-panel,.close-route,.close-progress,
+  .settings-close,.monitor-close,.monitor-refresh,.sheet-actions button,.route-actions button,
+  .evidence-actions button,.evidence-tool-grid button,.evidence-editor-actions button,
+  .evidence-source button,.evidence-season-tabs button,.data-center-tabs button,#toggleAll,#openRouteBadge
+):active{
+  transform:scale(.96)!important;
+  opacity:.92;
+}
+
+html body :where(
+  .sheet-actions button.primary,.route-actions button.primary,.evidence-actions button.primary,
+  .data-center-tabs button.active,.evidence-season-tabs button.active,.evidence-tool-grid button.active,
+  .settings-primary-card,.category-chip:not(.off).active,.region-progress.active
+){
+  border-color:var(--atlas-red-line)!important;
+  background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 42%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper))!important;
+  color:#fff!important;
+  box-shadow:var(--atlas-red-glow)!important;
+}
+html body :where(.evidence-actions button.danger,.evidence-editor-actions button.danger,#clearRoute){
+  border-color:rgba(255,123,135,.34)!important;
+  background:linear-gradient(150deg,rgba(216,74,88,.42),rgba(104,18,31,.56))!important;
+  color:#ffd9dd!important;
 }
 
 .quick-rail .rail-button,.bottom-nav .nav-item{
   min-width:0;
   border:0!important;
-  background:transparent!important;
-  box-shadow:none!important;
+  box-shadow:none;
   -webkit-tap-highlight-color:transparent;
-  transition:transform .18s cubic-bezier(.2,.8,.2,1),color .18s ease,opacity .18s ease!important;
+  transition:var(--atlas-control-motion)!important;
 }
+.quick-rail .rail-button:not(.active),.bottom-nav .nav-item:not(.active){background:transparent!important}
 .quick-rail .rail-button:active,.bottom-nav .nav-item:active{transform:scale(.955)!important}
 
-/* Closed systems must never leave an invisible interaction shield. */
-.panel:not(.open),.route-panel:not(.open),.progress-panel:not(.open),.atlas-settings-overlay:not(.open),.search-overlay:not(.open){
-  pointer-events:none!important;
+/* Final selected-state authority beats late dynamic navigation styles. */
+html body .bottom-nav .nav-item.active,
+html body .quick-rail .rail-button.active{
+  border:1px solid var(--atlas-red-line)!important;
+  background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 42%,var(--atlas-red-deep) 78%,var(--atlas-red-deeper))!important;
+  color:#fff!important;
+  box-shadow:var(--atlas-red-glow)!important;
+  transform:scale(1.035)!important;
 }
+
+.panel:not(.open),.route-panel:not(.open),.progress-panel:not(.open),.atlas-settings-overlay:not(.open),.search-overlay:not(.open){pointer-events:none!important}
 .quick-rail[inert],.quick-rail[aria-disabled="true"]{pointer-events:auto!important;opacity:1!important}
 .quick-rail .rail-button{pointer-events:auto!important}
 
-/* Clean, familiar settings control. */
 .profile-button.atlas-settings-button{
-  border:1px solid rgba(255,255,255,.18)!important;
-  background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.035))!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 8px 22px rgba(0,0,0,.18)!important;
+  border:1px solid var(--atlas-glass-line)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(139,37,50,.13),rgba(26,21,23,.4))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 20px rgba(0,0,0,.17)!important;
 }
 .profile-button.atlas-settings-button .atlas-control-icon{width:23px!important;height:23px!important;stroke-width:1.65!important}
-.profile-button.atlas-settings-button[aria-expanded="true"]{background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(112,24,35,.34))!important}
-
-html.atlas-ipad .quick-rail,html.atlas-ipad .bottom-nav{
-  background:linear-gradient(145deg,rgba(75,73,72,.86),rgba(31,30,31,.91) 42%,rgba(15,15,16,.93))!important;
-  border-color:rgba(255,255,255,.19)!important;
-  box-shadow:var(--atlas-nav-shadow)!important;
+.profile-button.atlas-settings-button[aria-expanded="true"]{
+  border-color:var(--atlas-red-line)!important;
+  background:linear-gradient(150deg,var(--atlas-red-light),var(--atlas-red-mid) 44%,var(--atlas-red-deep))!important;
+  box-shadow:var(--atlas-red-glow)!important;
 }
+
+html body :where(button,[role="button"],input,select,textarea):focus-visible{
+  outline:2px solid rgba(255,172,180,.82)!important;
+  outline-offset:2px;
+}
+
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  html body :where(.glass,.top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar){
+    background:linear-gradient(148deg,rgba(65,51,54,.97),rgba(17,15,16,.98))!important;
+  }
+}
+
+html.atlas-ipad :where(.quick-rail,.bottom-nav,.top-bar,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.sheet){--atlas-glass-blur:14px}
 
 @media(max-width:720px){
-  :root{--atlas-nav-edge:max(8px,env(safe-area-inset-left,0px));--atlas-nav-edge-right:max(8px,env(safe-area-inset-right,0px));--atlas-nav-safe-inline:max(8px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));--atlas-nav-floor:max(8px,env(safe-area-inset-bottom,0px))}
+  :root{
+    --atlas-nav-edge:max(8px,env(safe-area-inset-left,0px));
+    --atlas-nav-edge-right:max(8px,env(safe-area-inset-right,0px));
+    --atlas-nav-safe-inline:max(8px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));
+    --atlas-nav-floor:max(8px,env(safe-area-inset-bottom,0px));
+    --atlas-glass-blur:12px;
+    --atlas-glass-saturation:122%;
+    --atlas-glass-shadow:inset 0 1px 0 rgba(255,255,255,.19),0 10px 24px rgba(0,0,0,.24);
+    --atlas-glass-shadow-large:inset 0 1px 0 rgba(255,255,255,.16),0 16px 36px rgba(0,0,0,.28);
+  }
   html body .quick-rail{left:max(8px,env(safe-area-inset-left,0px))!important;width:64px!important;padding:7px!important;border-radius:22px!important}
   html body .bottom-nav{bottom:max(8px,env(safe-area-inset-bottom,0px))!important;width:calc(100% - var(--atlas-nav-safe-inline) - var(--atlas-nav-safe-inline))!important;border-radius:23px!important}
+  html body .top-bar{border-radius:20px!important}
+  html body :where(.panel,.settings-panel,.evidence-panel,.sheet,.search-modal){-webkit-backdrop-filter:blur(12px) saturate(122%)!important;backdrop-filter:blur(12px) saturate(122%)!important}
 }
 
-@media(prefers-reduced-motion:reduce){.quick-rail .rail-button,.bottom-nav .nav-item{transition:none!important}}
+@media(prefers-reduced-transparency:reduce){
+  html body :where(.glass,.top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,.panel,.settings-panel,.search-modal,.evidence-panel,.sheet,.route-badge,.monitor-toolbar){
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:linear-gradient(148deg,rgba(61,45,49,.98),rgba(16,14,15,.99))!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  html body :where(.quick-rail .rail-button,.bottom-nav .nav-item,button,.panel,.settings-panel,.evidence-panel,.sheet,.search-overlay,.monitor-overlay){transition:none!important}
+}

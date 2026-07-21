@@ -1,4 +1,4 @@
-name: Navigation 0.9.4.11c regression
+name: UI 0.9.4.12a glass regression
 
 on:
   pull_request:
@@ -40,7 +40,7 @@ jobs:
           node-version: '24'
       - name: Parse recovery controller
         run: node --check atlas-navigation-09411b.js
-      - name: Run observer and geometry regression contract
+      - name: Run observer and glass regression contract
         run: node tools/navigation_observer_contract_09411b.mjs
 
   browser:
@@ -72,7 +72,21 @@ jobs:
           done
           cat /tmp/atlas-navigation-server.log
           exit 1
-      - name: Run real navigation interaction smoke
+      - name: Run real glass and interaction smoke
+        id: browser_smoke
+        continue-on-error: true
         env:
           ATLAS_URL: http://127.0.0.1:4173/
-        run: node tools/navigation_browser_smoke_09411c.mjs
+        run: |
+          set -o pipefail
+          node tools/navigation_browser_smoke_09411c.mjs 2>&1 | tee navigation-browser-09412a.log
+      - name: Upload compact browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: navigation-browser-09412a-${{ github.sha }}
+          path: navigation-browser-09412a.log
+          retention-days: 3
+      - name: Enforce browser smoke result
+        if: steps.browser_smoke.outcome == 'failure'
+        run: exit 1

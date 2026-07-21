@@ -51,10 +51,26 @@ check('desktop bottom minimum is eight', /bottom:max\(8px,env\(safe-area-inset-b
 check('symmetric safe inline variable exists', /--atlas-nav-safe-inline:max\(12px,env\(safe-area-inset-left,0px\),env\(safe-area-inset-right,0px\)\)/.test(css));
 check('closed layers cannot intercept input', /\.panel:not\(\.open\)[\s\S]*pointer-events:none!important/.test(css));
 
+check('glass authority version is 09412a', /Atlas Alpha 0\.9\.4\.12a/.test(css));
+check('single glass surface token exists', /--atlas-glass-surface:linear-gradient/.test(css));
+check('premium light red token exists', /--atlas-red-light:#ee7b86/.test(css));
+check('premium deep red token exists', /--atlas-red-deep:#64131e/.test(css));
+check('primary red uses multi-stop gradient', /linear-gradient\(150deg,var\(--atlas-red-light\),var\(--atlas-red-mid\) 42%,var\(--atlas-red-deep\) 78%,var\(--atlas-red-deeper\)\)/.test(css));
+check('all primary surfaces share authority selector', /:where\(\.glass,\.top-bar,\.map-controls,\.status-pill,\.panel,\.settings-panel,\.search-modal,\.evidence-panel,\.sheet,\.route-badge,\.monitor-toolbar\)/.test(css));
+const nestedCardRule = css.match(/html body :where\(\.filter-summary,[\s\S]*?\n\}/)?.[0] || '';
+check('nested cards disable backdrop filter', /-webkit-backdrop-filter:none!important/.test(nestedCardRule) && /backdrop-filter:none!important/.test(nestedCardRule));
+check('desktop blur is limited to sixteen', /--atlas-glass-blur:16px/.test(css));
+check('ipad blur is limited to fourteen', /html\.atlas-ipad[\s\S]*--atlas-glass-blur:14px/.test(css));
+check('mobile blur is limited to twelve', /@media\(max-width:720px\)[\s\S]*--atlas-glass-blur:12px/.test(css));
+check('reduced transparency fallback exists', /@media\(prefers-reduced-transparency:reduce\)/.test(css));
+check('reduced motion fallback exists', /@media\(prefers-reduced-motion:reduce\)/.test(css));
+check('no infinite animation added', !/animation[^;]*infinite/.test(css));
+check('no filter blur added', !/[^-]filter:\s*blur\(/.test(css));
+
 check('service worker caches new controller', worker.includes("'./atlas-navigation-09411b.js'"));
 check('service worker excludes old observer controller', !worker.includes("'./atlas-navigation-09411a.js'"));
 check('service worker cache namespace matches manifest', worker.includes(`const CACHE='${manifest.cacheNamespace}'`));
 
 const failed = checks.filter(item => !item.passed);
-console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.11c', passed: failed.length === 0, totalChecks: checks.length, checks }, null, 2));
+console.log(JSON.stringify({ schemaVersion: 1, version: '0.9.4.12a', passed: failed.length === 0, totalChecks: checks.length, checks }, null, 2));
 if (failed.length) process.exit(1);

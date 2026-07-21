@@ -72,6 +72,21 @@
     return changed;
   }
 
+  function restoreLayerIfOpen(layer) {
+    if (!layer || !layer.classList.contains('open')) return false;
+    let changed = false;
+    changed = removeAttributeIfPresent(layer, 'inert') || changed;
+    changed = setAttributeIfChanged(layer, 'aria-hidden', 'false') || changed;
+    return changed;
+  }
+
+  function restoreOpenLayers() {
+    let changed = false;
+    document.querySelectorAll('.atlas-settings-overlay.open,.search-overlay.open')
+      .forEach(layer => { changed = restoreLayerIfOpen(layer) || changed; });
+    return changed;
+  }
+
   function closeDetachedLayers() {
     let changed = false;
     panels.forEach(panel => { changed = closeLayerIfInactive(panel) || changed; });
@@ -102,6 +117,7 @@
     repairFrame = 0;
     repairCount += 1;
     restoreRail();
+    restoreOpenLayers();
     closeDetachedLayers();
     installSettingsIcon();
     root.dataset.atlasNavigationRepairCount = String(repairCount);
@@ -151,6 +167,11 @@
       }).observe(panel, { attributes: true, attributeFilter: ['class'] });
     });
 
+    document.querySelectorAll('.atlas-settings-overlay,.search-overlay').forEach(layer => {
+      new MutationObserver(scheduleRepair)
+        .observe(layer, { attributes: true, attributeFilter: ['class'] });
+    });
+
     if (rail) {
       new MutationObserver(() => {
         if (railNeedsRepair()) scheduleRepair();
@@ -178,12 +199,15 @@
     const closedPanelsSafe = panels.every(panel => panel.classList.contains('open') || (
       panel.getAttribute('aria-hidden') === 'true' && panel.hasAttribute('inert')
     ));
+    const openLayersInteractive = [...document.querySelectorAll('.atlas-settings-overlay.open,.search-overlay.open')]
+      .every(layer => !layer.hasAttribute('inert') && layer.getAttribute('aria-hidden') === 'false');
     return {
       version: VERSION,
       repairCount,
       repairScheduled: Boolean(repairFrame),
       railInteractive: !railNeedsRepair(),
       closedPanelsSafe,
+      openLayersInteractive,
       settingsIconValid: Boolean(settings?.querySelector(':scope > svg.atlas-settings-icon-09411a')) && settings.children.length === 1
     };
   }
