@@ -1,52 +1,49 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-07-20T22:20:53.419207Z",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-21T14:00:56.891669Z",
   "release": "0.9.4.9",
-  "policyRevision": "2026.07.20.3",
+  "policyRevision": "2026.07.21.1",
+  "event": "push",
   "tier": "quick",
+  "targetMinutes": 7,
   "forcedFull": false,
   "scheduledFull": false,
+  "targetedPullRequest": false,
+  "postMergeFullUiMatrix": false,
   "changedFiles": [
-    "data/rewards/records/location-mapgenie-434361.json",
-    "data/rewards/records/location-mapgenie-434380.json",
-    "data/rewards/records/location-mapgenie-434456.json",
-    "data/rewards/records/location-mapgenie-434582.json",
-    "data/rewards/records/location-mapgenie-434635.json",
-    "data/rewards/reward-records-runtime.json",
-    "release-manifest.json",
-    "tools/reward_evidence_contract_smoke.mjs"
+    "data/batch-analysis/eleven-pilot-scan-manifest.json"
   ],
+  "safeSupportFiles": [],
   "matchedGroups": {
-    "validationFramework": [
-      "release-manifest.json"
-    ],
+    "validationFramework": [],
+    "scanAutonomy": [],
     "scanCore": [],
     "monitor": [],
     "dataCenter": [],
-    "rewards": [
-      "data/rewards/records/location-mapgenie-434361.json",
-      "data/rewards/records/location-mapgenie-434380.json",
-      "data/rewards/records/location-mapgenie-434456.json",
-      "data/rewards/records/location-mapgenie-434582.json",
-      "data/rewards/records/location-mapgenie-434635.json",
-      "data/rewards/reward-records-runtime.json",
-      "tools/reward_evidence_contract_smoke.mjs"
-    ],
+    "rewards": [],
+    "viewportTargeted": [],
+    "searchTargeted": [],
+    "uiFull": [],
     "ui": [],
     "highRisk": []
   },
   "run": {
     "data_center": false,
-    "reward": true,
-    "heartbeat": true,
-    "serial": true,
-    "queue_schema": true,
-    "browser": false,
+    "reward": false,
+    "heartbeat": false,
+    "serial": false,
+    "queue_schema": false,
+    "autonomous_repair": false,
+    "browser_matrix": false,
+    "ipad": false,
+    "reward_search": false,
     "monitor": false,
     "full_audit": false,
+    "browser": false,
     "playwright": false
   },
   "budget": {
+    "targetMinutes": 7,
     "heartbeatChecks": 96,
     "serialQueueChecks": 96,
     "queueSchemaChecks": 80,
@@ -60,6 +57,7 @@
     "authorizationChecksPreserved": true,
     "privacyChecksPreserved": true,
     "singleDownloadChecksPreserved": true,
-    "unrelatedMatricesSkipped": true
+    "unrelatedMatricesSkipped": true,
+    "fullMatrixDeferredOnlyToPostMerge": false
   }
 }
