@@ -1,21 +1,22 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-21T19:24:16.784979Z",
+  "generatedAt": "2026-07-21T20:06:19.772275Z",
   "release": "0.9.4.10",
   "policyRevision": "2026.07.21.1",
   "event": "push",
-  "tier": "standard",
-  "targetMinutes": 10,
+  "tier": "quick",
+  "targetMinutes": 7,
   "forcedFull": false,
   "scheduledFull": false,
   "targetedPullRequest": false,
-  "postMergeFullUiMatrix": true,
+  "postMergeFullUiMatrix": false,
   "changedFiles": [
-    ".github/workflows/control-icons-09412b2-regression.yml",
-    "atlas-controls-0938.css",
-    "atlas-controls-0938.js",
-    "tools/control_icon_browser_smoke_09412b2.mjs",
-    "tools/control_icon_contract_09412b2.mjs"
+    "data/batch-analysis/eleven-pilot-scan-manifest.json",
+    "data/batch-analysis/eleven-pilot-scan-queue.json",
+    "data/batch-analysis/eleven-pilot-scan-status.json",
+    "data/batch-analysis/eleven-production-order-policy.json",
+    "data/runtime-progress/eleven-pilot-progress.json",
+    "tools/audit_scan_system_v4.py"
   ],
   "safeSupportFiles": [],
   "matchedGroups": {
@@ -27,12 +28,8 @@
     "rewards": [],
     "viewportTargeted": [],
     "searchTargeted": [],
-    "uiFull": [
-      "atlas-controls-0938.js"
-    ],
-    "ui": [
-      "atlas-controls-0938.js"
-    ],
+    "uiFull": [],
+    "ui": [],
     "highRisk": []
   },
   "run": {
@@ -42,21 +39,21 @@
     "serial": false,
     "queue_schema": false,
     "autonomous_repair": false,
-    "browser_matrix": true,
-    "ipad": true,
-    "reward_search": true,
+    "browser_matrix": false,
+    "ipad": false,
+    "reward_search": false,
     "monitor": false,
     "full_audit": false,
-    "browser": true,
-    "playwright": true
+    "browser": false,
+    "playwright": false
   },
   "budget": {
-    "targetMinutes": 10,
-    "heartbeatChecks": 128,
-    "serialQueueChecks": 128,
-    "queueSchemaChecks": 96,
-    "browserChecks": 500,
-    "monitorAuthorityChecks": 500,
+    "targetMinutes": 7,
+    "heartbeatChecks": 96,
+    "serialQueueChecks": 96,
+    "queueSchemaChecks": 80,
+    "browserChecks": 0,
+    "monitorAuthorityChecks": 0,
     "dataCenterChecks": 500,
     "rewardEvidenceChecks": 500,
     "fullAudit": false
