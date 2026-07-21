@@ -1,20 +1,19 @@
 {
-  "schemaVersion": 12,
-  "triggerId": "eleven-production-p025-p035-20260720-05-v18",
-  "requestedAt": "2026-07-20T22:04:00Z",
+  "schemaVersion": 13,
+  "triggerId": "eleven-production-p025-p035-terminal-sync-20260721-01",
+  "requestedAt": "2026-07-21T02:06:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
-  "mode": "chronological-eleven-queued-one-item-per-run-live-telemetry",
+  "mode": "completed-batch-terminal-authority-sync",
   "queuePages": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
-  "startWithPage": 35,
+  "startWithPage": null,
   "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
-  "transportOverride": "parallel-chunks-v18",
-  "parallelRangeWorkers": 4,
   "automaticRecovery": true,
+  "autonomousRepair": true,
   "heartbeatSupervisor": true,
   "runtimeHeartbeat": {
     "enabled": true,
@@ -28,13 +27,8 @@
     "segmentProgress": true,
     "etaSeconds": true
   },
-  "humanReviewOnUnknownFailure": true,
-  "manualTransportMigration": {
-    "page": 35,
-    "generation": "v18-parallel-chunks",
-    "previousAttemptCount": 0,
-    "manualAttemptsScheduled": 1,
-    "additionalAutomaticRetriesAuthorized": 0
-  },
-  "recoveryReason": "Restart the final pending P35 item with the merged four-worker preserved-range transport."
+  "humanReviewOnUnknownFailure": false,
+  "expectedDownloadCount": 0,
+  "expectedAnalysisCount": 0,
+  "reason": "Persist terminal authority for the already completed 11/11 bounded batch without downloading or re-analyzing media."
 }
