@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit the active Atlas eleven-item scan batch without hard-coding a page range."""
+"""Audit the active Atlas eleven-item scan batch without hard-coded pages."""
 from __future__ import annotations
 
 import importlib.util
@@ -52,8 +52,10 @@ def main() -> int:
     orchestrator_v2 = read_text("tools/run_scan_with_auto_recovery_v2.py")
     analyzer_path = str(manifest.get("analyzer", ""))
     analyzer = read_text(analyzer_path)
+    analyzer_v13 = read_text("tools/analyze_authorized_video_v13.py")
     transport = read_text("tools/bilibili_transport_v13.py")
     transport_smoke = read_text("tools/bilibili_transport_smoke.py")
+    implementation = "\n".join((analyzer, analyzer_v13, transport))
 
     items = list(queue.get("items", []))
     status_items = list(status.get("items", []))
@@ -94,20 +96,21 @@ def main() -> int:
     check("queue_authority", authority.get("owner") == "data/batch-analysis/eleven-pilot-scan-status.json" and authority.get("batchId") == queue_id and authority.get("protectFromCatalogRegeneration") is True and authority.get("terminal") is terminal, f"terminal={terminal}")
     check("status_coherent", len(status_items) == 11 and int(summary.get("total", 0)) == 11 and imported + running + failed + blocked + remaining == 11, f"summary={summary}")
     check("active_item_coherent", (status.get("activeItem") is None) if running == 0 else status.get("activeItem") is not None, f"activeItem={status.get('activeItem')}")
-    check("result_paths", all((item.get("state") != "imported") or item.get("resultPath") for item in status_items), "imported items have results")
-    check("no_failed_terminal_mix", not terminal or (failed == blocked == remaining == running == 0), "terminal state is clean")
+    check("result_paths", all(item.get("state") != "imported" or item.get("resultPath") for item in status_items), "imported items have results")
+    check("no_failed_terminal_mix", not terminal or failed == blocked == remaining == running == 0, "terminal state is clean")
 
     check("manifest_batch", manifest_id == queue_id and manifest.get("pilotRegion") == queue.get("pilotRegion"), f"active batch {manifest_id}")
     check("manifest_serial", manifest.get("maxItemsPerRun") == 1 and manifest.get("maximumConcurrentDownloads") == 1, "one item per run")
     check("manifest_auto_continue", manifest.get("autoContinueAfterDurableSuccess") is True, "auto continuation enabled")
     check("heartbeat_telemetry", manifest.get("runtimeHeartbeat", {}).get("minimumIntervalSeconds") == 30 and manifest.get("downloadTelemetry", {}).get("intervalSeconds") == 30, "30-second telemetry")
-    check("v13_adapter", analyzer_path.endswith(("analyze_authorized_video_v13.py", "analyze_authorized_video_v14.py")) and "bilibili_transport_v13" in analyzer, analyzer_path)
-    check("adaptive_ranges", manifest.get("downloadOptimization", {}).get("adaptiveParallelRanges") is True and "ThreadPoolExecutor" in analyzer, "parallel ranges enabled")
+    inherited_v13 = analyzer_path.endswith("analyze_authorized_video_v13.py") or (analyzer_path.endswith("analyze_authorized_video_v14.py") and "import analyze_authorized_video_v13 as v13" in analyzer)
+    check("v13_adapter", inherited_v13 and "bilibili_transport_v13" in analyzer_v13, analyzer_path)
+    check("adaptive_ranges", manifest.get("downloadOptimization", {}).get("adaptiveParallelRanges") is True and "ThreadPoolExecutor" in implementation, "parallel ranges enabled")
     workers = int(manifest.get("downloadOptimization", {}).get("maxRangeWorkers", 0))
     check("download_policy", manifest.get("downloadOptimization", {}).get("noArtificialRateLimit") is True and 2 <= workers <= 8, f"workers={workers}")
-    check("wbi_metadata", all(token in analyzer + transport for token in ("x/player/wbi/playurl", "extract_mixin_key", "sign_wbi_params")), "signed WBI metadata")
-    check("cdn_rotation_resume", all(token in analyzer + transport for token in ("stream_candidates", "backupUrl")) and manifest.get("downloadOptimization", {}).get("preservePartialAcrossCdnCandidates") is True, "resumable CDN rotation")
-    check("cdn_probe", manifest.get("downloadOptimization", {}).get("cdnSpeedProbeEnabled") is True and manifest.get("downloadOptimization", {}).get("preferRangeCapableCdn") is True, "speed-probed range CDN")
+    check("wbi_metadata", all(token in implementation for token in ("x/player/wbi/playurl", "extract_mixin_key", "sign_wbi_params")), "signed WBI metadata")
+    check("cdn_rotation_resume", all(token in implementation for token in ("stream_candidates", "backupUrl")) and manifest.get("downloadOptimization", {}).get("preservePartialAcrossCdnCandidates") is True, "resumable CDN rotation")
+    check("cdn_probe", manifest.get("downloadOptimization", {}).get("cdnSpeedProbeEnabled") is True and manifest.get("downloadOptimization", {}).get("preferRangeCapableCdn") is True and "_ordered_candidates" in analyzer, "speed-probed range CDN")
     check("retention", manifest.get("retention", {}).get("originalVideo") is False and manifest.get("retention", {}).get("framePixels") is False, "no retained media")
 
     check("monitor_poll", all(token in monitor for token in ("RAW_POLL_MS", "API_POLL_MS", "APPLY_TICK_MS")) and all(value in monitor for value in ("5000", "180000", "1000")), "monitor cadence")
@@ -149,7 +152,6 @@ def main() -> int:
 
     base_publisher._github_request = fake_request
     check("publisher_409_simulation", base_publisher._publish_github({"stage": "audit", "progressPercent": 1}) is True and calls["put"] == 2, "first conflict recovered")
-
     transport_result = subprocess.run([sys.executable, "tools/bilibili_transport_smoke.py"], cwd=ROOT, capture_output=True, text=True, check=False)
     check("transport_gate", transport_result.returncode == 0 and "96/96" in transport_result.stdout and "expected 96 checks" in transport_smoke, "96 source transport checks")
     media = [path for pattern in ("*.mp4", "*.m4a", "*.webm", "*.flv") for path in ROOT.rglob(pattern)]
