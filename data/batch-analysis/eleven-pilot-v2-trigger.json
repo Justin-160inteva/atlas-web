@@ -1,16 +1,16 @@
 {
-  "schemaVersion": 19,
-  "triggerId": "eleven-production-p036-p046-p046-resume-20260721-01",
-  "requestedAt": "2026-07-21T19:44:33Z",
+  "schemaVersion": 20,
+  "triggerId": "eleven-production-p047-p057-start-20260721-01",
+  "requestedAt": "2026-07-21T20:05:30Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
-  "pilotRegion": "顺序批次 P36-P46",
+  "pilotRegion": "顺序批次 P47-P57",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "mode": "chronological-eleven-queued-one-item-per-run",
-  "queuePages": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46],
-  "startWithPage": 46,
+  "queuePages": [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57],
+  "startWithPage": 47,
   "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
   "automaticRecovery": true,
   "autonomousRepair": true,
@@ -28,7 +28,7 @@
     "etaSeconds": true
   },
   "humanReviewOnUnknownFailure": false,
-  "expectedDownloadCount": 1,
-  "expectedAnalysisCount": 1,
-  "reason": "Resume the sole pending P46 item after repairing the stale parallel-range-only preflight contract. Keep strict one-item serial execution, use the authorized v13 analyzer, allow the existing resumable single-stream fallback, preserve the P36-P46 queue scope, and retain no original media or frame pixels."
+  "expectedDownloadCount": 11,
+  "expectedAnalysisCount": 11,
+  "reason": "Start the verified P47-P57 chronological batch. Process exactly one authorized episode per workflow run, continue only after durable success, preserve automatic recovery and resumable single-stream fallback, and retain no original media or frame pixels."
 }
