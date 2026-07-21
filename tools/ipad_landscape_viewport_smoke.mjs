@@ -32,6 +32,8 @@ const inspect = () => page.evaluate(() => {
   const offsetX = Number(state?.offsetX || 0);
   const offsetY = Number(state?.offsetY || 0);
   const mapSize = 4096 * scale;
+  const coverScale = Number(window.AtlasMapCover?.coverScale?.() || 0);
+  const manualMinimumScale = Number(window.AtlasMapCover?.manualMinimumScale?.() || 0);
   return {
     innerWidth,
     innerHeight,
@@ -39,13 +41,17 @@ const inspect = () => page.evaluate(() => {
     canvas: { left: canvas.left, top: canvas.top, right: canvas.right, bottom: canvas.bottom, width: canvas.width, height: canvas.height },
     map: {
       scale,
+      ratio: coverScale > 0 ? scale / coverScale : 0,
       left: offsetX,
       top: offsetY,
       right: offsetX + mapSize,
       bottom: offsetY + mapSize,
       centerX: offsetX + mapSize / 2,
       centerY: offsetY + mapSize / 2,
-      minimumScale: Number(window.AtlasMapCover?.minimumScale?.() || 0)
+      coverScale,
+      manualMinimumScale,
+      manualMinimumRatio: Number(window.AtlasMapCover?.manualMinimumRatio || 0),
+      zoomLabel: document.getElementById('zoomLabel')?.textContent || ''
     },
     measured: window.AtlasViewport.measure(),
     stats: window.AtlasViewport.stats?.(),
@@ -105,13 +111,28 @@ try {
   check('landscape shell fills height', Math.abs(first.shell.height - first.innerHeight) <= 2 && Math.abs(first.shell.bottom - first.innerHeight) <= 2, JSON.stringify(first));
   check('landscape canvas fills width', Math.abs(first.canvas.width - first.innerWidth) <= 2 && Math.abs(first.canvas.right - first.innerWidth) <= 2, JSON.stringify(first));
   check('landscape canvas fills height', Math.abs(first.canvas.height - first.innerHeight) <= 2 && Math.abs(first.canvas.bottom - first.innerHeight) <= 2, JSON.stringify(first));
-  check('landscape world map covers viewport', mapCoversViewport(first), JSON.stringify(first));
-  check('landscape world map is centered', mapCentered(first), JSON.stringify(first));
-  check('landscape scale respects cover minimum', first.map.scale + 0.00001 >= first.map.minimumScale && first.map.minimumScale > 0, JSON.stringify(first));
+  check('landscape automatic fit covers viewport', mapCoversViewport(first) && first.map.scale + 0.00001 >= first.map.coverScale, JSON.stringify(first));
+  check('landscape automatic fit is centered', mapCentered(first), JSON.stringify(first));
+  check('manual minimum is below automatic cover', first.map.manualMinimumScale > 0 && first.map.manualMinimumScale < first.map.coverScale && Math.abs(first.map.manualMinimumRatio - 0.25) <= 0.00001, JSON.stringify(first));
   check('measured layout matches browser', Math.abs(first.measured.width - first.innerWidth) <= 2 && Math.abs(first.measured.height - first.innerHeight) <= 2, JSON.stringify(first));
   check('no post-rotation size or map jitter', sizesStable, JSON.stringify(samples));
   check('no post-rotation commit loop', commitsStable && first.commitCount <= manifest.invariants.viewportMaximumStartupCommits, JSON.stringify(samples));
   check('viewport remains stable after observation', last.stats?.settling === false, JSON.stringify(last));
+
+  await page.evaluate(() => {
+    const button = document.getElementById('zoomOut');
+    for (let index = 0; index < 12; index += 1) button?.click();
+  });
+  await page.waitForTimeout(250);
+  const manualZoom = await inspect();
+  check('manual zoom can go below 1.0x cover', manualZoom.map.ratio < 0.95 && manualZoom.map.zoomLabel !== '×1.00', JSON.stringify(manualZoom));
+  check('manual zoom reaches configured minimum', manualZoom.map.ratio <= 0.27 && manualZoom.map.ratio >= 0.249 && manualZoom.map.scale + 0.00001 >= manualZoom.map.manualMinimumScale, JSON.stringify(manualZoom));
+
+  await page.click('#resetView');
+  await page.waitForTimeout(250);
+  const reset = await inspect();
+  check('reset returns to 1.0x cover', Math.abs(reset.map.ratio - 1) <= 0.01 && reset.map.zoomLabel === '×1.00', JSON.stringify(reset));
+  check('reset restores full map cover', mapCoversViewport(reset) && mapCentered(reset), JSON.stringify(reset));
   check('no runtime errors', errors.length === 0, errors.join('\n'));
 } catch (error) {
   failed = true;
@@ -122,7 +143,7 @@ await context.close();
 await browser.close();
 const passedChecks = checks.filter(item => item.passed).length;
 const report = {
-  schemaVersion: 2,
+  schemaVersion: 3,
   release: manifest.version,
   generatedAt: new Date().toISOString(),
   passed: !failed && passedChecks === checks.length,
@@ -132,5 +153,5 @@ const report = {
 };
 await fs.mkdir(new URL('../data/conflict-reports/', import.meta.url), { recursive: true });
 await fs.writeFile(new URL('../data/conflict-reports/ipad-landscape-viewport.json', import.meta.url), `${JSON.stringify(report, null, 2)}\n`);
-console.log(`iPad landscape viewport and map cover: ${passedChecks}/${checks.length}; errors=${errors.length}`);
+console.log(`iPad map cover and manual zoom: ${passedChecks}/${checks.length}; errors=${errors.length}`);
 if (!report.passed) process.exit(2);
