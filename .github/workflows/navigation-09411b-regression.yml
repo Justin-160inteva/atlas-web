@@ -1,0 +1,42 @@
+name: Navigation 0.9.4.11b regression
+
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'atlas-navigation-09411a.css'
+      - 'atlas-navigation-09411b.js'
+      - 'release-manifest.json'
+      - 'atlas-bootstrap.js'
+      - 'sw.js'
+      - 'tools/navigation_observer_contract_09411b.mjs'
+      - '.github/workflows/navigation-09411b-regression.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'atlas-navigation-09411a.css'
+      - 'atlas-navigation-09411b.js'
+      - 'release-manifest.json'
+      - 'atlas-bootstrap.js'
+      - 'sw.js'
+      - 'tools/navigation_observer_contract_09411b.mjs'
+      - '.github/workflows/navigation-09411b-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Parse recovery controller
+        run: node --check atlas-navigation-09411b.js
+      - name: Run observer and geometry regression contract
+        run: node tools/navigation_observer_contract_09411b.mjs
