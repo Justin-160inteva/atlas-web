@@ -12,6 +12,7 @@ on:
       - 'scan-monitor.css'
       - 'scan-monitor.js'
       - 'sw.js'
+      - 'release-manifest.json'
       - 'tools/publish_runtime_progress.py'
       - 'tools/publish_runtime_progress_v2.py'
       - 'tools/analyze_authorized_video_v*.py'
@@ -27,6 +28,7 @@ on:
       - 'scan-monitor.css'
       - 'scan-monitor.js'
       - 'sw.js'
+      - 'release-manifest.json'
       - 'tools/publish_runtime_progress.py'
       - 'tools/publish_runtime_progress_v2.py'
       - 'tools/bilibili_transport_v13.py'
@@ -66,6 +68,7 @@ jobs:
           monitor_html=pathlib.Path('scan-monitor.html').read_text(encoding='utf-8')
           monitor_js=pathlib.Path('scan-monitor.js').read_text(encoding='utf-8')
           worker=pathlib.Path('sw.js').read_text(encoding='utf-8')
+          manifest=json.loads(pathlib.Path('release-manifest.json').read_text(encoding='utf-8'))
           publisher=pathlib.Path('tools/publish_runtime_progress.py').read_text(encoding='utf-8')
           publisher_v2=pathlib.Path('tools/publish_runtime_progress_v2.py').read_text(encoding='utf-8')
           progress=json.loads(pathlib.Path('data/runtime-progress/eleven-pilot-progress.json').read_text(encoding='utf-8'))
@@ -94,7 +97,8 @@ jobs:
           assert 'ATLAS_PROGRESS_CONFLICT_RETRIES' in publisher
           assert 'PRESERVE_STAGES' in publisher_v2 and 'telemetryMeasuredAt' in publisher_v2
           assert './scan-monitor.js' in worker and 'scan-monitor-live-bridge.js' not in worker
-          assert 'monitor-v11' in worker
+          assert f"const CACHE='{manifest['cacheNamespace']}'" in worker
+          assert manifest['runtimeOwners']['scanMonitor']=='scan-monitor.js'
           assert progress['author']=='11的游戏世界'
           assert progress['authorizationId']=='auth-eleven-game-world-20260719'
           match=re.fullmatch(r'bili-eleven-acshadows-BV1FdQ9YdEcN-p(\d{3})',progress['externalSourceId'])
@@ -108,5 +112,5 @@ jobs:
           for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
               media.extend(pathlib.Path('.').rglob(pattern))
           assert not media, media
-          print('embedded realtime scan monitor v0.6.1 validation passed')
+          print(f"embedded realtime scan monitor validation passed for release {manifest['version']}")
           PY
