@@ -1,0 +1,55 @@
+name: Visual 0.9.4.12c regression
+
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'tools/visual_correction_09412c.mjs'
+      - '.github/workflows/visual-09412c-regression.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'tools/visual_correction_09412c.mjs'
+      - '.github/workflows/visual-09412c-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Parse visual regression script
+        run: node --check tools/visual_correction_09412c.mjs
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-atlas-visual-playwright-chromium-v1
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium --with-deps
+      - name: Start local Atlas server
+        run: |
+          python -m http.server 4173 >/tmp/atlas-visual-server.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/atlas-visual-server.log
+          exit 1
+      - name: Run desktop iPad and mobile visual correction gate
+        env:
+          ATLAS_URL: http://127.0.0.1:4173/
+        run: node tools/visual_correction_09412c.mjs
