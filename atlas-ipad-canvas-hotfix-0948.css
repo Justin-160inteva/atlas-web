@@ -1,4 +1,4 @@
-/* Atlas Alpha 0.9.4.8 — iPad Safari canvas ghosting and viewport compositor hotfix */
+/* Atlas Alpha 0.9.4.8 — iPad Safari canvas ghosting, gesture and viewport hotfix */
 @media (min-width:700px){
   html.atlas-ipad-canvas-hotfix,
   html.atlas-ipad-canvas-hotfix body{
@@ -28,7 +28,8 @@
     zoom:1!important;
     isolation:isolate;
     contain:layout paint style;
-    touch-action:auto!important;
+    touch-action:pan-y!important;
+    overscroll-behavior:none!important;
   }
 
   html.atlas-ipad-canvas-hotfix body #mapCanvas{
@@ -52,9 +53,13 @@
 
   html.atlas-ipad-canvas-hotfix body :where(
     .panel,
+    .sheet,
     .sheet-body,
+    .search-modal,
     .search-results,
+    .evidence-panel,
     .evidence-scroll,
+    .settings-panel,
     .settings-scroll,
     .route-list,
     .region-progress-list,
@@ -62,8 +67,7 @@
   ){
     touch-action:pan-y!important;
     -webkit-overflow-scrolling:touch!important;
-    overscroll-behavior-y:auto!important;
-    scroll-behavior:smooth;
+    overscroll-behavior-y:contain!important;
   }
 
   html.atlas-ipad-canvas-hotfix body .panel{
