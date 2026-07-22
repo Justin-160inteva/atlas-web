@@ -8,6 +8,7 @@ on:
       - '.github/workflows/reward-evidence-phase2-plan.yml'
       - 'tools/plan_reward_evidence_phase2.py'
       - 'tools/summarize_reward_evidence_phase2.py'
+      - 'tools/extract_reward_evidence_phase2_batch.py'
       - 'data/rewards/reward-evidence-phase2-trigger.json'
       - 'data/rewards/reward-research-sources.json'
       - 'data/rewards/reward-summary-catalog.json'
@@ -34,11 +35,15 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Build unresolved evidence plan
+      - name: Build unresolved evidence plan and batch input
         run: |
-          python -m py_compile tools/plan_reward_evidence_phase2.py tools/summarize_reward_evidence_phase2.py
+          python -m py_compile \
+            tools/plan_reward_evidence_phase2.py \
+            tools/summarize_reward_evidence_phase2.py \
+            tools/extract_reward_evidence_phase2_batch.py
           python tools/plan_reward_evidence_phase2.py
           python tools/summarize_reward_evidence_phase2.py
+          python tools/extract_reward_evidence_phase2_batch.py
 
       - name: Validate plan invariants
         run: |
@@ -47,6 +52,7 @@ jobs:
           from pathlib import Path
           plan = json.loads(Path('data/rewards/reward-evidence-phase2-plan.json').read_text(encoding='utf-8'))
           summary = json.loads(Path('data/rewards/reward-evidence-phase2-summary.json').read_text(encoding='utf-8'))
+          batch = json.loads(Path('data/rewards/reward-evidence-phase2-batch-001-input.json').read_text(encoding='utf-8'))
           assert plan['targetLocationCount'] == 3430
           assert plan['unresolvedCount'] == len(plan['allCandidates'])
           assert plan['nextBatchSize'] == len(plan['nextBatch'])
@@ -54,7 +60,9 @@ jobs:
           assert all(plan['invariants'].values())
           assert summary['unresolvedCount'] == plan['unresolvedCount']
           assert summary['nextBatchSize'] == plan['nextBatchSize']
-          print(f"Phase-two plan validated: {plan['unresolvedCount']} unresolved, {plan['categoryCount']} categories.")
+          assert batch['targetCount'] == plan['nextBatchSize']
+          assert all(batch['invariants'].values())
+          print(f"Phase-two plan validated: {plan['unresolvedCount']} unresolved, {plan['categoryCount']} categories, {batch['itemsWithRewardLikeLines']} reward-like descriptions in batch 001.")
           PY
 
       - name: Commit phase-two plan
@@ -63,7 +71,8 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
             data/rewards/reward-evidence-phase2-plan.json \
-            data/rewards/reward-evidence-phase2-summary.json
+            data/rewards/reward-evidence-phase2-summary.json \
+            data/rewards/reward-evidence-phase2-batch-001-input.json
           if git diff --cached --quiet; then
             echo 'No phase-two plan changes.'
             exit 0
