@@ -1,33 +1,25 @@
 {
   "schemaVersion": 6,
-  "generatedAt": "2026-07-22T01:10:00Z",
+  "generatedAt": "2026-07-22T01:28:21.692324Z",
   "dictionaryVersion": "2026.07.21.2",
-  "dictionaryEntryId": "autonomous-ai-repair-restored",
+  "dictionaryEntryId": "runtime-heartbeat-terminal-stale",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "activeExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
-  "category": "autonomous-repair",
-  "matchedSignature": "deterministic transfer attempts exhausted",
-  "diagnosis": "P33 remains the earliest unresolved item. Deterministic recovery will run first; if it cannot complete, the bounded AI repair controller will patch only allowlisted scan-pipeline files and retry automatically.",
-  "action": "autonomous_repair_requested",
-  "retryScheduled": true,
+  "category": "resolved",
+  "matchedSignature": "end of response with",
+  "diagnosis": "Durable queue state confirms that the previously failed item was imported successfully.",
+  "action": "none",
+  "retryScheduled": false,
   "retryDelaySeconds": 0,
   "requiresHumanReview": false,
-  "confirmationRequired": false,
-  "attemptCount": 3,
+  "attemptCount": 4,
   "maxAttempts": 5,
-  "changedRuntimeSettings": {
-    "analyzer": "tools/analyze_authorized_video_v13.py",
-    "wbiSignedPlayerMetadata": true,
-    "apiProvidedCdnRotation": true,
-    "resumableTailRepair": true,
-    "boundedAiRepair": true
-  },
+  "changedRuntimeSettings": {},
+  "resolution": "durable_import_confirmed",
   "safety": {
     "sourceCodeModified": false,
     "authorizationBroadened": false,
     "mediaRetentionChanged": false,
-    "queueScopeExpanded": false,
-    "strictSerialOrder": true,
-    "maximumConcurrentDownloads": 1
+    "queueScopeExpanded": false
   }
 }

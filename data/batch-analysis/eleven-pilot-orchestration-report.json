@@ -1,32 +1,38 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-07-22T01:19:09.623216Z",
+  "schemaVersion": 4,
+  "generatedAt": "2026-07-22T01:28:21.692605Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
-  "finalState": "human_review_required",
+  "autonomyPolicy": "data/scan-autonomy-policy.json",
+  "finalState": "scan_completed_or_progressed",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-22T01:02:44.354656Z",
-      "finishedAt": "2026-07-22T01:19:08.360747Z",
+      "startedAt": "2026-07-22T01:24:42.121400Z",
+      "finishedAt": "2026-07-22T01:28:21.691840Z",
+      "preflightState": "retry_prepared",
+      "preflightDictionaryEntryId": "curl-transport",
+      "preflightAutonomousOutcome": null,
       "scannerReturnCode": 0,
-      "scannerTimeoutSeconds": 5700,
-      "imported": 9,
-      "failed": 1,
+      "scannerTimeoutSeconds": 6600,
+      "imported": 10,
+      "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 9, \"running\": 0, \"failed\": 1, \"blocked\": 1, \"retryableFailed\": 0, \"remaining\": 2}\n\n",
-      "diagnosisReturnCode": 0,
-      "dictionaryEntryId": "curl-transport",
-      "action": "block_after_attempt_limit",
-      "retryScheduled": false,
-      "requiresHumanReview": true
+      "scannerOutput": "{\"total\": 11, \"imported\": 10, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 1}\n\n"
     }
   ],
+  "performance": {
+    "targetRepairMinutes": 5,
+    "maximumRepairMinutes": 10,
+    "deterministicRecoveryFirst": true
+  },
   "safety": {
-    "maximumCycles": 3,
+    "maximumCycles": 5,
+    "strictEarliestUnresolvedOrder": true,
     "sourceCodeModifiedAutomatically": false,
     "authorizationBroadened": false,
     "mediaRetentionChanged": false,
-    "queueScopeExpanded": false
+    "queueScopeExpanded": false,
+    "confirmationRequired": false
   }
 }

@@ -1,6 +1,6 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-22T01:19:08.342185Z",
+  "updatedAt": "2026-07-22T01:28:21.622676Z",
   "items": [
     {
       "id": "analysis-eleven-p001-v2",
@@ -1129,37 +1129,33 @@
       "authorizationId": "auth-eleven-game-world-20260719",
       "author": "11的游戏世界",
       "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P33 第33期：近江（收集1）",
-      "status": "failed",
+      "status": "imported",
       "resultPath": "data/analysis-results/eleven-p033.json",
-      "resultSha256": "b4d74aa8d7dc196fd249008333266c2c8880d3368b07e41f4a34466987de6325",
-      "generatedAt": "2026-07-20T17:10:27.809147Z",
+      "resultSha256": "5c065f93156c5dcb09572e67a956f2b07385c0f9c01b650b2d787ff10428a37e",
+      "generatedAt": "2026-07-22T01:28:18.876321Z",
       "media": {
-        "durationSeconds": null,
-        "width": null,
-        "height": null,
-        "fps": null,
+        "durationSeconds": 4706.099,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
         "videoRetained": false,
         "framePixelsRetained": false
       },
       "scan": {
-        "sampled": 0,
-        "kept": 0,
+        "sampled": 480,
+        "kept": 472,
         "blurred": 0,
-        "duplicates": 0,
-        "keepRatio": 0
+        "duplicates": 8,
+        "keepRatio": 0.983333
       },
       "pipeline": {
-        "sourceDownloaded": false,
-        "numericDescriptorsGenerated": false,
+        "sourceDownloaded": true,
+        "numericDescriptorsGenerated": true,
         "resultCommitted": true,
-        "libraryImported": false,
+        "libraryImported": true,
         "geospatialAnchoringCompleted": false
       },
-      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。",
-      "failure": {
-        "stage": "download",
-        "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: RequestException('Failed to perform, curl: (18) end of response with 378 bytes missing. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]"
-      }
+      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
     },
     {
       "id": "analysis-eleven-p034-v2",

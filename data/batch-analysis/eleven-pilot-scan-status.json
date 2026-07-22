@@ -4,18 +4,18 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P25-P35",
-  "updatedAt": "2026-07-22T01:19:08.353693Z",
+  "updatedAt": "2026-07-22T01:28:21.663606Z",
   "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
-    "imported": 9,
+    "imported": 10,
     "running": 0,
-    "failed": 1,
-    "blocked": 1,
+    "failed": 0,
+    "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 2,
+    "remaining": 1,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -112,12 +112,12 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
       "sequence": 33,
       "page": 33,
-      "state": "failed",
-      "attemptCount": 3,
-      "lastStartedAt": "2026-07-20T17:03:39.740265Z",
-      "lastFinishedAt": "2026-07-20T17:10:28.962350Z",
-      "resultPath": null,
-      "error": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: RequestException('Failed to perform, curl: (18) end of response with 378 bytes missing. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]"
+      "state": "imported",
+      "attemptCount": 4,
+      "lastStartedAt": "2026-07-22T01:24:42.300504Z",
+      "lastFinishedAt": "2026-07-22T01:28:21.658559Z",
+      "resultPath": "data/analysis-results/eleven-p033.json",
+      "error": null
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
@@ -144,18 +144,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
-      "sequence": 34,
-      "page": 34,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P34 第34期：近江（收集2）",
-      "startedAt": "2026-07-22T01:02:44.389169Z",
-      "attemptCount": 1,
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
+      "sequence": 33,
+      "page": 33,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P33 第33期：近江（收集1）",
+      "startedAt": "2026-07-22T01:24:42.300504Z",
+      "attemptCount": 4,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p034.json status=analyzed\n\n",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p033.json status=analyzed\n\n",
       "analysisStatus": "analyzed",
       "indexReturnCode": 0,
       "completed": true,
-      "finishedAt": "2026-07-22T01:19:08.348444Z"
+      "finishedAt": "2026-07-22T01:28:21.658559Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
