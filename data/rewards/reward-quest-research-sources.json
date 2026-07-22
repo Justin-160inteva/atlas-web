@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "locale": "zh-CN",
+  "sources": [
+    {
+      "sourceId": "game8-all-quests-rendered",
+      "sourceType": "community_database",
+      "title": "List of All Quests and Objectives",
+      "publisherOrAuthor": "Game8",
+      "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504585",
+      "canonicalLocator": "https://game8.co/games/Assassins-Creed-Shadows/archives/504585",
+      "useFor": ["quest_identity", "quest_objectives", "quest_rewards", "quest_detail_links"],
+      "pointEvidence": true,
+      "limitationsZhCN": "仅当任务标题与奖励字段或任务详情页可同时对应时，才作为具体点位奖励证据。"
+    },
+    {
+      "sourceId": "powerpyx-all-main-quests-rendered",
+      "sourceType": "guide_article",
+      "title": "Assassin's Creed Shadows Walkthrough - All Main Quests",
+      "publisherOrAuthor": "PowerPyx",
+      "locator": "https://r.jina.ai/http://www.powerpyx.com/assassins-creed-shadows-walkthrough-all-main-quests/",
+      "canonicalLocator": "https://www.powerpyx.com/assassins-creed-shadows-walkthrough-all-main-quests/",
+      "useFor": ["quest_identity", "quest_order", "quest_detail_links", "reward_crosscheck"],
+      "pointEvidence": true,
+      "limitationsZhCN": "目录页主要用于任务身份与详情页定位；只有详情页明确奖励时才升级奖励证据。"
+    },
+    {
+      "sourceId": "vulkk-quest-progression-rendered",
+      "sourceType": "guide_article",
+      "title": "Assassin's Creed Shadows Quests Lists and Progression Guide",
+      "publisherOrAuthor": "VULKK",
+      "locator": "https://r.jina.ai/http://vulkk.com/2025/04/11/assassins-creed-shadows-quests-order-and-progression-guide/",
+      "canonicalLocator": "https://vulkk.com/2025/04/11/assassins-creed-shadows-quests-order-and-progression-guide/",
+      "useFor": ["quest_identity", "quest_chain", "quest_detail_links", "reward_crosscheck"],
+      "pointEvidence": true,
+      "limitationsZhCN": "任务链信息不能单独证明奖励；必须出现同名任务奖励字段或链接到明确详情。"
+    }
+  ],
+  "matchingPolicy": {
+    "requireExactOrNormalizedQuestTitle": true,
+    "requireRewardFieldInSameContext": true,
+    "maximumContextDistanceCharacters": 1800,
+    "doNotInferRewardsFromQuestType": true,
+    "doNotTreatQuestOrderAsRewardEvidence": true,
+    "unknownOrMissingRewardRemainsUnresolved": true
+  }
+}
