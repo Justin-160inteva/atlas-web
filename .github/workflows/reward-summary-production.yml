@@ -45,6 +45,7 @@ jobs:
 
       - name: Restore verified production artifact
         id: restore
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
