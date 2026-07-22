@@ -1,25 +1,33 @@
 {
-  "schemaVersion": 4,
-  "generatedAt": "2026-07-22T01:19:08.387989Z",
-  "dictionaryVersion": "2026.07.19.5",
-  "dictionaryEntryId": "curl-transport",
+  "schemaVersion": 6,
+  "generatedAt": "2026-07-22T01:10:00Z",
+  "dictionaryVersion": "2026.07.21.2",
+  "dictionaryEntryId": "autonomous-ai-repair-restored",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "activeExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
-  "category": "http-client",
-  "matchedSignature": "end of response with",
-  "diagnosis": "Temporary TLS or HTTP stream failure; resume missing ranges instead of restarting the full object.",
-  "action": "block_after_attempt_limit",
-  "retryScheduled": false,
+  "category": "autonomous-repair",
+  "matchedSignature": "deterministic transfer attempts exhausted",
+  "diagnosis": "P33 remains the earliest unresolved item. Deterministic recovery will run first; if it cannot complete, the bounded AI repair controller will patch only allowlisted scan-pipeline files and retry automatically.",
+  "action": "autonomous_repair_requested",
+  "retryScheduled": true,
   "retryDelaySeconds": 0,
-  "requiresHumanReview": true,
+  "requiresHumanReview": false,
+  "confirmationRequired": false,
   "attemptCount": 3,
-  "maxAttempts": 3,
-  "changedRuntimeSettings": {},
-  "errorExcerpt": "[{\"strategy\": \"bilibili-public-api\", \"success\": false, \"diagnostic\": \"RuntimeError(\\\"Unable to download page 33 media part 0: RequestException('Failed to perform, curl: (18) end of response with 378 bytes missing. See [url-redacted] first for more details.')\\\")\"}, {\"strategy\": \"dash-720\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"impersonated-480\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"multi-flv\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}, {\"strategy\": \"best-public\", \"success\": false, \"diagnostic\": \"ERROR: [BiliBili] 1FdQ9YdEcN: Unable to download webpage: HTTP Error 412: Precondition Failed (caused by <HTTPError 412: Precondition Failed>)\"}]",
+  "maxAttempts": 5,
+  "changedRuntimeSettings": {
+    "analyzer": "tools/analyze_authorized_video_v13.py",
+    "wbiSignedPlayerMetadata": true,
+    "apiProvidedCdnRotation": true,
+    "resumableTailRepair": true,
+    "boundedAiRepair": true
+  },
   "safety": {
     "sourceCodeModified": false,
     "authorizationBroadened": false,
     "mediaRetentionChanged": false,
-    "queueScopeExpanded": false
+    "queueScopeExpanded": false,
+    "strictSerialOrder": true,
+    "maximumConcurrentDownloads": 1
   }
 }
