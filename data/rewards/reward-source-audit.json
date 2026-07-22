@@ -1,19 +1,21 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "generatedAt": "2026-07-22T22:42:20.360673Z",
+  "generatedAt": "2026-07-22T23:14:37.012389Z",
   "targetLocationCount": 3430,
   "recordCount": 3430,
-  "rewardSectionLocations": 988,
+  "rewardSectionLocations": 997,
   "externalMatchLocations": 125,
+  "pointOverrideLocations": 9,
+  "pointOverrideSource": "data/rewards/reward-point-evidence-overrides.json",
   "provisionalTranslationCount": 13,
   "unknownChineseNameCount": 10,
   "lockedRecordCount": 0,
   "openConflictCount": 0,
   "statusCounts": {
-    "high_confidence_inference": 863,
+    "high_confidence_inference": 872,
     "multi_source_confirmed": 125,
-    "unresolved": 2442
+    "unresolved": 2433
   },
   "reviewCounts": {
     "machine_checked": 3430
@@ -60,7 +62,7 @@
       "sourceId": "game8-legendary-trinkets-rendered",
       "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505080",
       "fetched": true,
-      "normalizedCharacterCount": 23698,
+      "normalizedCharacterCount": 23618,
       "error": null
     },
     {
@@ -74,7 +76,7 @@
       "sourceId": "game8-legendary-armor-rendered",
       "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
       "fetched": true,
-      "normalizedCharacterCount": 71191,
+      "normalizedCharacterCount": 71203,
       "error": null
     },
     {
@@ -102,14 +104,14 @@
       "sourceId": "polygon-armor-locations",
       "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
       "fetched": true,
-      "normalizedCharacterCount": 46068,
+      "normalizedCharacterCount": 46092,
       "error": null
     },
     {
       "sourceId": "polygon-kofun-rewards",
       "locator": "https://www.polygon.com/assassins-creed-shadows-guides/548683/kofun-locations-rewards-all-where-to-find",
       "fetched": true,
-      "normalizedCharacterCount": 15873,
+      "normalizedCharacterCount": 15862,
       "error": null
     },
     {
@@ -157,6 +159,8 @@
     "batchLimitRespected": true,
     "lockedRecordsPreserved": true,
     "allNonUnresolvedHaveSources": true,
-    "allSummariesPresent": true
+    "allSummariesPresent": true,
+    "allPointOverridesApplied": true,
+    "singleSourcePointOverridesStayInference": true
   }
 }

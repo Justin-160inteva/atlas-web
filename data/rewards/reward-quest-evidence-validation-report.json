@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "generatedAt": "2026-07-22T23:14:43.863982Z",
+  "valid": true,
+  "validationErrors": [],
+  "baseline": {
+    "unresolved": 2442,
+    "inferred": 863,
+    "multi": 125
+  },
+  "overrideCount": 9,
+  "expectedUnresolved": 2433,
+  "actualUnresolved": 2433,
+  "catalogCoverage": {
+    "total": 3430,
+    "officialConfirmed": 0,
+    "multiSourceConfirmed": 125,
+    "highConfidenceInference": 872,
+    "unresolved": 2433
+  },
+  "auditPointOverrideLocations": 9,
+  "brokenHorn": {
+    "summaryZhCN": "获得2,000 点经验值、3 个技能点（高置信推断）",
+    "rewards": [
+      {
+        "type": "experience",
+        "nameOriginal": "EXP",
+        "nameZhCN": "经验值",
+        "quantity": 2000,
+        "quantityStatus": "exact",
+        "rarity": null,
+        "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+      },
+      {
+        "type": "skill_point",
+        "nameOriginal": "Mastery Points",
+        "nameZhCN": "技能点",
+        "quantity": 3,
+        "quantityStatus": "exact",
+        "rarity": null,
+        "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "quest-detail-powerpyx-all-main-quests-rendered",
+        "sourceType": "guide_article",
+        "title": "《刺客信条：影》任务详情页：Broken Horn",
+        "publisherOrAuthor": "PowerPyx",
+        "locator": "https://www.powerpyx.com/assassins-creed-shadows-broken-horn-walkthrough/",
+        "capturedAt": "2026-07-22T22:55:16.504521Z",
+        "gameVersion": null,
+        "supports": [
+          "quest_identity",
+          "reward_field:2000 EXP, 3 Mastery Points"
+        ],
+        "limitationsZhCN": "同名任务详情页明确列出Reward字段；当前仅有一个独立攻略来源，因此保持高置信推断，不标记为多来源确认。"
+      }
+    ],
+    "errors": []
+  },
+  "overrides": [
+    {
+      "locationId": "location-mapgenie-437614",
+      "title": "Broken Horn",
+      "rewardFieldOriginal": "2000 EXP, 3 Mastery Points",
+      "rewardLines": [
+        "2000 EXP",
+        "3 Mastery Points"
+      ],
+      "recordStatus": "high_confidence_inference",
+      "confidence": 0.88,
+      "summaryZhCN": "获得2,000 点经验值、3 个技能点（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "EXP",
+          "nameZhCN": "经验值",
+          "quantity": 2000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 3,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sourceCount": 1,
+      "reviewMethod": "atlas_reward_builder_v2_point_override",
+      "errors": []
+    },
+    {
+      "locationId": "location-mapgenie-437558",
+      "title": "Fighting for the Cause",
+      "rewardFieldOriginal": "3300 EXP, 2 Mastery points",
+      "rewardLines": [
+        "3300 EXP",
+        "2 Mastery points"
+      ],
+      "recordStatus": "high_confidence_inference",
+      "confidence": 0.88,
+      "summaryZhCN": "获得3,300 点经验值、2 个技能点（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "EXP",
+          "nameZhCN": "经验值",
+          "quantity": 3300,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sourceCount": 1,
+      "reviewMethod": "atlas_reward_builder_v2_point_override",
+      "errors": []
+    },
+    {
+      "locationId": "location-mapgenie-434808",
+      "title": "Guard Duty",
+      "rewardFieldOriginal": "1000 EXP",
+      "rewardLines": [
+        "1000 EXP"
+      ],
+      "recordStatus": "high_confidence_inference",
+      "confidence": 0.88,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "EXP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sourceCount": 1,
+      "reviewMethod": "atlas_reward_builder_v2_point_override",
+      "errors": []
+    },
+    {
+      "locationId": "location-mapgenie-434953",
+      "title": "Lightning and Thunder",
+      "rewardFieldOriginal": "1000 EXP",
+      "rewardLines": [
+        "1000 EXP"
+      ],
+      "recordStatus": "high_confidence_inference",
+      "confidence": 0.88,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "EXP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sourceCount": 1,
+      "reviewMethod": "atlas_reward_builder_v2_point_override",
+      "errors": []
+    },
+    {
+      "locationId": "location-mapgenie-437111",
+      "title": "Nobutsuna Sensei",
+      "rewardFieldOriginal": "1000 EXP",
+      "rewardLines": [
+        "1000 EXP"
+      ],
+      "recordStatus": "high_confidence_inference",
+      "confidence": 0.88,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "EXP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sourceCount": 1,
+      "reviewMethod": "atlas_reward_builder_v2_point_override",
+      "errors": []
+    },
+    {
+      "locationId": "location-mapgenie-436795",
+      "title": "Showdown in Sakamoto",
+      "rewardFieldOriginal": "2000 EXP, 1 Mastery Level",
+      "rewardLines": [
+        "2000 EXP",
+        "1 Mastery Level"
+      ],
+      "recordStatus": "high_confidence_inference",
+      "confidence": 0.88,
+      "summaryZhCN": "获得2,000 点经验值、精通等级提升 1 级（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "EXP",
+          "nameZhCN": "经验值",
+          "quantity": 2000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "mastery_level",
+          "nameOriginal": "Mastery Level",
+          "nameZhCN": "精通等级",
+          "quantity": 1,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sourceCount": 1,
+      "reviewMethod": "atlas_reward_builder_v2_point_override",
+      "errors": []
+    },
+    {
+      "locationId": "location-mapgenie-434950",
+      "title": "Temple of the Horseman",
+      "rewardFieldOriginal": "1000 EXP",
+      "rewardLines": [
+        "1000 EXP"
+      ],
+      "recordStatus": "high_confidence_inference",
+      "confidence": 0.88,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "EXP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sourceCount": 1,
+      "reviewMethod": "atlas_reward_builder_v2_point_override",
+      "errors": []
+    },
+    {
+      "locationId": "location-mapgenie-437851",
+      "title": "The Rising Tide",
+      "rewardFieldOriginal": "1000 EXP",
+      "rewardLines": [
+        "1000 EXP"
+      ],
+      "recordStatus": "high_confidence_inference",
+      "confidence": 0.88,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "EXP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sourceCount": 1,
+      "reviewMethod": "atlas_reward_builder_v2_point_override",
+      "errors": []
+    },
+    {
+      "locationId": "location-mapgenie-437277",
+      "title": "The Wheel Unmasked",
+      "rewardFieldOriginal": "2000 EXP, 3 Mastery Points",
+      "rewardLines": [
+        "2000 EXP",
+        "3 Mastery Points"
+      ],
+      "recordStatus": "high_confidence_inference",
+      "confidence": 0.88,
+      "summaryZhCN": "获得2,000 点经验值、3 个技能点（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "EXP",
+          "nameZhCN": "经验值",
+          "quantity": 2000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 3,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sourceCount": 1,
+      "reviewMethod": "atlas_reward_builder_v2_point_override",
+      "errors": []
+    }
+  ]
+}
