@@ -4,18 +4,18 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P69-P79",
-  "updatedAt": "2026-07-22T21:42:15.020140Z",
+  "updatedAt": "2026-07-22T21:47:23.400109Z",
   "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
-    "imported": 3,
+    "imported": 4,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 8,
+    "remaining": 7,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -57,11 +57,11 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p072",
       "sequence": 72,
       "page": 72,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-22T21:43:19.955483Z",
+      "lastFinishedAt": "2026-07-22T21:47:23.393618Z",
+      "resultPath": "data/analysis-results/eleven-p072.json",
       "error": null
     },
     {
@@ -144,18 +144,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p071",
-      "sequence": 71,
-      "page": 71,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P71 第71期：骑到城町里",
-      "startedAt": "2026-07-22T21:40:20.593504Z",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p072",
+      "sequence": 72,
+      "page": 72,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P72 第72期：Animus裂隙",
+      "startedAt": "2026-07-22T21:43:19.955483Z",
       "attemptCount": 1,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.71s\nruntime progress conflict; refetching SHA and retrying in 0.89s\nruntime progress conflict; refetching SHA and retrying in 0.71s\nruntime progress conflict; refetching SHA and retrying in 0.68s\nruntime progress conflict; refetching SHA and retrying in 0.59s\nruntime progress conflict; refetching SHA and retrying in 0.58s\nruntime progress conflict; refetching SHA and retrying in 0.60s\nruntime progress conflict; refetching SHA and retrying in 0.57s\nanalysis result written: data/analysis-results/eleven-p071.json status=analyzed\nruntime progress conflict; refetching SHA and retrying in 0.61s\nruntime progress conflict; refetching SHA and retrying in 0.74s\n\n",
+      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.79s\nruntime progress conflict; refetching SHA and retrying in 0.64s\nruntime progress conflict; refetching SHA and retrying in 0.71s\nruntime progress conflict; refetching SHA and retrying in 0.85s\nruntime progress conflict; refetching SHA and retrying in 0.86s\nruntime progress publish warning: HTTPError: HTTP Error 403: Forbidden\nruntime progress conflict; refetching SHA and retrying in 0.89s\nruntime progress conflict; refetching SHA and retrying in 0.94s\nruntime progress conflict; refetching SHA and retrying in 0.66s\nruntime progress conflict; refetching SHA and retrying in 0.66s\nanalysis result written: data/analysis-results/eleven-p072.json status=analyzed\nruntime progress conflict; refetching SHA and retrying in 0.93s\nruntime progress conflict; refetching SHA and retrying in 0.79s\n\n",
       "analysisStatus": "analyzed",
       "indexReturnCode": 0,
       "completed": true,
-      "finishedAt": "2026-07-22T21:42:15.013428Z"
+      "finishedAt": "2026-07-22T21:47:23.393618Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
