@@ -18,18 +18,21 @@
   ) return;
 
   const WORLD_SIZE = 4096;
-  const MAX_CANVAS_PIXELS = 3_100_000;
-  const MAX_DPR = 1.45;
-  const FIXED_MARKER_RELATIVE = 1;
+  const MAX_CANVAS_PIXELS = 2_400_000;
+  const MAX_DPR = 1.3;
+  const MIN_MARKER_SCALE = 0.52;
+  const VIEWPORT_PADDING = 56;
   const shell = document.querySelector('.app-shell');
   const viewportMeta = document.querySelector('meta[name="viewport"]');
   const originalBuildMarkers = buildMarkers;
   const originalDrawMarker = drawMarker;
   const originalDrawRoute = drawRoute;
   const legacyResize = typeof resize === 'function' ? resize : null;
+  const interactionProxy = window.AtlasMobilePerf || { interacting: false };
+  window.AtlasMobilePerf = interactionProxy;
 
   const perf = {
-    version: '0.9.4.8-ipad-canvas-3',
+    version: '0.9.4.8-ipad-canvas-4',
     interacting: false,
     dpr: 1,
     cssWidth: 0,
@@ -38,9 +41,12 @@
     resizeTimer: 0,
     resizeGeneration: 0,
     renderedMarkers: 0,
-    visiblePoints: 0,
-    physicalClears: 0
+    availableMarkers: 0,
+    physicalClears: 0,
+    markerScale: 1
   };
+
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
   function metrics() {
     const rect = shell?.getBoundingClientRect?.();
@@ -65,10 +71,18 @@
     return Math.round(Math.max(1, Math.min(hardware, pixelLimited, MAX_DPR)) * 20) / 20;
   }
 
+  function zoomRatio(viewport = metrics()) {
+    return state.scale / Math.max(0.0001, stableFitScale(viewport));
+  }
+
+  function markerScaleForZoom(viewport = metrics()) {
+    return clamp(zoomRatio(viewport), MIN_MARKER_SCALE, 1);
+  }
+
   function updateZoomLabelStable() {
     const label = document.getElementById('zoomLabel');
     if (!label) return;
-    const ratio = state.scale / stableFitScale();
+    const ratio = zoomRatio();
     label.textContent = `×${ratio.toFixed(ratio < 10 ? 2 : 0)}`;
   }
 
@@ -86,7 +100,7 @@
     const anchorX = Number.isFinite(x) ? x : viewport.width / 2;
     const anchorY = Number.isFinite(y) ? y : viewport.height / 2;
     const oldScale = Math.max(0.0001, state.scale);
-    const nextScale = Math.max(stableMinScale(viewport), Math.min(state.maxScale, oldScale * factor));
+    const nextScale = clamp(oldScale * factor, stableMinScale(viewport), state.maxScale);
     const mapX = (anchorX - state.offsetX) / oldScale;
     const mapY = (anchorY - state.offsetY) / oldScale;
     state.scale = nextScale;
@@ -170,6 +184,7 @@
 
   function setInteracting(value) {
     perf.interacting = value;
+    interactionProxy.interacting = value;
     root.classList.toggle('atlas-ipad-canvas-interacting', value);
     root.classList.toggle('atlas-interacting', value);
     if (!value) scheduleDraw();
@@ -187,25 +202,76 @@
     perf.physicalClears += 1;
   }
 
-  draw = function drawStableFixedMarkerSize() {
-    physicalClear();
+  function drawVisibleMap(viewport) {
+    if (!state.imageReady || !Number.isFinite(state.scale) || state.scale <= 0) return;
 
-    if (state.imageReady) {
-      ctx.save();
-      ctx.globalAlpha = 0.92;
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = perf.interacting ? 'low' : 'high';
-      ctx.drawImage(state.image, state.offsetX, state.offsetY, WORLD_SIZE * state.scale, WORLD_SIZE * state.scale);
-      ctx.restore();
+    const scale = state.scale;
+    const sourceLeft = clamp(-state.offsetX / scale, 0, WORLD_SIZE);
+    const sourceTop = clamp(-state.offsetY / scale, 0, WORLD_SIZE);
+    const sourceRight = clamp((viewport.width - state.offsetX) / scale, 0, WORLD_SIZE);
+    const sourceBottom = clamp((viewport.height - state.offsetY) / scale, 0, WORLD_SIZE);
+    const sourceWidth = sourceRight - sourceLeft;
+    const sourceHeight = sourceBottom - sourceTop;
+    if (sourceWidth <= 0 || sourceHeight <= 0) return;
+
+    const destinationX = state.offsetX + sourceLeft * scale;
+    const destinationY = state.offsetY + sourceTop * scale;
+
+    ctx.save();
+    ctx.globalAlpha = 0.92;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = perf.interacting ? 'low' : 'high';
+    ctx.drawImage(
+      state.image,
+      sourceLeft,
+      sourceTop,
+      sourceWidth,
+      sourceHeight,
+      Math.round(destinationX),
+      Math.round(destinationY),
+      Math.ceil(sourceWidth * scale),
+      Math.ceil(sourceHeight * scale)
+    );
+    ctx.restore();
+  }
+
+  function markerInViewport(marker, viewport) {
+    return marker.x >= -VIEWPORT_PADDING &&
+      marker.x <= viewport.width + VIEWPORT_PADDING &&
+      marker.y >= -VIEWPORT_PADDING &&
+      marker.y <= viewport.height + VIEWPORT_PADDING;
+  }
+
+  function drawScaledMarker(marker, scale) {
+    if (scale >= 0.999) {
+      originalDrawMarker(marker, 1);
+      return;
     }
 
+    ctx.save();
+    ctx.translate(marker.x, marker.y);
+    ctx.scale(scale, scale);
+    ctx.translate(-marker.x, -marker.y);
+    originalDrawMarker(marker, 1);
+    ctx.restore();
+  }
+
+  draw = function drawStableAdaptiveMarkers() {
+    const viewport = metrics();
+    physicalClear();
+    drawVisibleMap(viewport);
     originalDrawRoute();
+
     const list = visibleLocations();
     state.markers = originalBuildMarkers(list);
-    for (const marker of state.markers) originalDrawMarker(marker, FIXED_MARKER_RELATIVE);
+    const renderMarkers = state.markers.filter(marker => markerInViewport(marker, viewport));
+    const visualScale = markerScaleForZoom(viewport);
+    perf.markerScale = visualScale;
 
-    perf.visiblePoints = state.markers.length;
-    perf.renderedMarkers = state.markers.length;
+    for (const marker of renderMarkers) drawScaledMarker(marker, visualScale);
+
+    perf.availableMarkers = state.markers.length;
+    perf.renderedMarkers = renderMarkers.length;
     const count = document.getElementById('visibleCount');
     if (count) count.textContent = String(list.length);
   };
@@ -277,12 +343,14 @@
       backingWidth: canvas.width,
       backingHeight: canvas.height,
       dpr: perf.dpr,
-      visiblePoints: perf.visiblePoints,
+      availableMarkers: perf.availableMarkers,
       renderedMarkers: perf.renderedMarkers,
       physicalClears: perf.physicalClears,
-      markerRenderer: 'app.js-original-fixed-screen-size',
+      markerRenderer: 'app.js-original-adaptive-screen-scale',
       markerAggregation: false,
-      markerRelative: FIXED_MARKER_RELATIVE,
+      markerScale: perf.markerScale,
+      viewportCulling: true,
+      croppedMapDraw: true,
       frameLimiter: false
     })
   });
