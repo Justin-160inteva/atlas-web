@@ -1,0 +1,76 @@
+name: Reward Quest Source Diagnostic
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reward-quest-source-diagnostic.yml'
+      - 'tools/inspect_quest_reward_sources.py'
+      - 'data/rewards/reward-quest-research-sources.json'
+      - 'data/rewards/reward-quest-source-trigger.json'
+      - 'data/rewards/reward-evidence-phase2-plan.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reward-quest-source-diagnostic-main
+  cancel-in-progress: true
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Inspect registered quest sources
+        run: |
+          python -m py_compile tools/inspect_quest_reward_sources.py
+          python tools/inspect_quest_reward_sources.py
+
+      - name: Validate diagnostic invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('data/rewards/reward-quest-source-diagnostic.json').read_text(encoding='utf-8'))
+          assert report['targetCount'] == 73
+          assert len(report['results']) == 73
+          assert all(report['invariants'].values())
+          assert all(row['fetched'] for row in report['sources'])
+          print(
+              f"Quest sources inspected: {report['matchedQuestCount']} matched, "
+              f"{report['rewardContextQuestCount']} with nearby reward terms, "
+              f"{report['unmatchedQuestCount']} unmatched."
+          )
+          PY
+
+      - name: Commit quest source diagnostic
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/rewards/reward-quest-source-diagnostic.json
+          if git diff --cached --quiet; then
+            echo 'No quest diagnostic changes.'
+            exit 0
+          fi
+          git commit -m 'Inspect quest reward evidence sources [skip ci]'
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Quest diagnostic push attempt ${attempt} collided with telemetry; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 5))
+          done
+          exit 1
