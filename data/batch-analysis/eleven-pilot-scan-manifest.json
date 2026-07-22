@@ -61,7 +61,7 @@
   },
   "downloadOptimization": {
     "noArtificialRateLimit": true,
-    "adaptiveParallelRanges": true,
+    "adaptiveParallelRanges": false,
     "maxRangeWorkers": 4,
     "parallelRangeThresholdBytes": 8388608,
     "chunkSizeBytes": 2097152,
