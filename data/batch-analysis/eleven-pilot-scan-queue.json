@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-23T02:30:00Z",
-  "updatedAt": "2026-07-23T02:30:00Z",
-  "status": "ready",
+  "updatedAt": "2026-07-22T23:39:09.700712Z",
+  "status": "complete",
   "pilotRegion": "最终单期 P80",
   "strategy": "严格处理P80最终一期；仅允许1个下载与分析任务。完成、验证并持久化后结束当前80P合集；技术故障自动诊断、AI修复并重试。",
   "maximumQueueItems": 1,
@@ -33,9 +33,11 @@
       "mapUtility": "中高",
       "priority": 74,
       "durationSeconds": 1591,
-      "state": "pending",
-      "attemptCount": 0,
-      "resultPath": "data/analysis-results/eleven-p080.json"
+      "state": "imported",
+      "attemptCount": 1,
+      "resultPath": "data/analysis-results/eleven-p080.json",
+      "lastStartedAt": "2026-07-22T23:36:39.642294Z",
+      "lastFinishedAt": "2026-07-22T23:39:09.697108Z"
     }
   ]
 }

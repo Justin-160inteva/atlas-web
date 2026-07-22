@@ -4,34 +4,49 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "最终单期 P80",
-  "updatedAt": "2026-07-23T02:30:00Z",
-  "phase": "queued",
+  "updatedAt": "2026-07-22T23:39:09.702724Z",
+  "phase": "complete",
   "activeItem": null,
-  "complete": false,
+  "complete": true,
   "summary": {
     "total": 1,
-    "imported": 0,
+    "imported": 1,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 1,
-    "attemptedThisRun": 0,
-    "newlyImportedThisRun": 0
+    "remaining": 0,
+    "attemptedThisRun": 1,
+    "newlyImportedThisRun": 1
   },
   "items": [
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p080",
       "sequence": 80,
       "page": 80,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
+      "state": "imported",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-22T23:36:39.642294Z",
+      "lastFinishedAt": "2026-07-22T23:39:09.697108Z",
       "resultPath": "data/analysis-results/eleven-p080.json",
       "error": null
     }
   ],
-  "events": [],
+  "events": [
+    {
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p080",
+      "sequence": 80,
+      "page": 80,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P80 第80期：走出暗影【完结】",
+      "startedAt": "2026-07-22T23:36:39.642294Z",
+      "attemptCount": 1,
+      "analyzerReturnCode": 0,
+      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.92s\nruntime progress conflict; refetching SHA and retrying in 0.82s\nruntime progress conflict; refetching SHA and retrying in 0.93s\nruntime progress conflict; refetching SHA and retrying in 0.66s\nruntime progress conflict; refetching SHA and retrying in 0.64s\nruntime progress conflict; refetching SHA and retrying in 0.83s\nruntime progress conflict; refetching SHA and retrying in 0.89s\nruntime progress conflict; refetching SHA and retrying in 0.72s\nanalysis result written: data/analysis-results/eleven-p080.json status=analyzed\n\n",
+      "analysisStatus": "analyzed",
+      "indexReturnCode": 0,
+      "completed": true,
+      "finishedAt": "2026-07-22T23:39:09.697108Z"
+    }
+  ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
 }
