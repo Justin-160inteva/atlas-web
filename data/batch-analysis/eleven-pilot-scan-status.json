@@ -4,20 +4,20 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P58-P68",
-  "updatedAt": "2026-07-22T16:07:13.804430Z",
-  "phase": "progress",
+  "updatedAt": "2026-07-22T16:43:44.123647Z",
+  "phase": "retryable_failure",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
     "imported": 8,
     "running": 0,
-    "failed": 0,
+    "failed": 1,
     "blocked": 0,
-    "retryableFailed": 0,
+    "retryableFailed": 1,
     "remaining": 3,
     "attemptedThisRun": 1,
-    "newlyImportedThisRun": 1
+    "newlyImportedThisRun": 0
   },
   "items": [
     {
@@ -112,12 +112,12 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p066",
       "sequence": 66,
       "page": 66,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
+      "state": "failed",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-22T16:08:00.931006Z",
+      "lastFinishedAt": "2026-07-22T16:43:44.117118Z",
       "resultPath": null,
-      "error": null
+      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"ream 0 (Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360): unspecified pixel format\\nConsider increasing the value for the 'analyzeduration' (0) and 'probesize' (5000000) options\\nInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '[temporary-path-redacted]\\n  Metadata:\\n    major_brand     : isom\\n    minor_version   : 512\\n    compatible_brands: isomiso2avc1mp41\\n    encoder         : Lavf59.27.100\\n    description     : Bilibili VXCode Swarm Transcoder v1.2.8\\n  Duration: 01:11:44.47, start: 0.000000, bitrate: 465 kb/s\\n  Stream #0:0[0x1](und): Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360, SAR 1:1 DAR 16:9, 5158.82 fps, 16k tbr, 16k tbn (default)\\n    Metadata:\\n      handler_name    : VideoHandler\\n      vendor_id       : [0][0][0][0]\\n  Stream #0:1[0x2](und): Audio: aac (HE-AAC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 46 kb/s (default)\\n    Metadata:\\n      handler_name    : SoundHandler\\n      vendor_id       : [0][0][0][0]\\nOutput #0, mp4, to '[temporary-path-redacted]\\n  Metadata:\\n    major_brand     : isom\\n    minor_version   : 512\\n    compatible_brands: isomiso2avc1mp41\\n    description     : Bilibili VXCode Swarm Transcoder v1.2.8\\n    encoder         : Lavf60.16.100\\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 5158.82 fps, 16k tbr, 16k tbn (default)\\n    Metadata:\\n      handler_name    : VideoHandler\\n      vendor_id       : [0][0][0][0]\\nStream mapping:\\n  Stream #0:0 -> #0:0 (copy)\\nPress [q] to stop, [?] for help\\nsize=       0kB time=N/A bitrate=N/A speed=N/A    \\n[out#0/mp4 @ 0x557c7dee6d40] video:0kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\\n[out#0/mp4 @ 0x557c7dee6d40] Output file is empty, nothing was encoded\\nsize=       0kB time=N/A bitrate=N/A speed=N/A    \\n\"}]"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p067",
@@ -144,18 +144,19 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p065",
-      "sequence": 65,
-      "page": 65,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P65 第65期：落地生根",
-      "startedAt": "2026-07-22T16:01:02.822259Z",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p066",
+      "sequence": 66,
+      "page": 66,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P66 第66期：伊贺（收集）",
+      "startedAt": "2026-07-22T16:08:00.931006Z",
       "attemptCount": 1,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p065.json status=analyzed\n\n",
-      "analysisStatus": "analyzed",
+      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p066.json status=failed\n\n",
+      "analysisStatus": "failed",
       "indexReturnCode": 0,
-      "completed": true,
-      "finishedAt": "2026-07-22T16:07:13.797959Z"
+      "completed": false,
+      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"ream 0 (Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360): unspecified pixel format\\nConsider increasing the value for the 'analyzeduration' (0) and 'probesize' (5000000) options\\nInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '[temporary-path-redacted]\\n  Metadata:\\n    major_brand     : isom\\n    minor_version   : 512\\n    compatible_brands: isomiso2avc1mp41\\n    encoder         : Lavf59.27.100\\n    description     : Bilibili VXCode Swarm Transcoder v1.2.8\\n  Duration: 01:11:44.47, start: 0.000000, bitrate: 465 kb/s\\n  Stream #0:0[0x1](und): Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360, SAR 1:1 DAR 16:9, 5158.82 fps, 16k tbr, 16k tbn (default)\\n    Metadata:\\n      handler_name    : VideoHandler\\n      vendor_id       : [0][0][0][0]\\n  Stream #0:1[0x2](und): Audio: aac (HE-AAC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 46 kb/s (default)\\n    Metadata:\\n      handler_name    : SoundHandler\\n      vendor_id       : [0][0][0][0]\\nOutput #0, mp4, to '[temporary-path-redacted]\\n  Metadata:\\n    major_brand     : isom\\n    minor_version   : 512\\n    compatible_brands: isomiso2avc1mp41\\n    description     : Bilibili VXCode Swarm Transcoder v1.2.8\\n    encoder         : Lavf60.16.100\\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 5158.82 fps, 16k tbr, 16k tbn (default)\\n    Metadata:\\n      handler_name    : VideoHandler\\n      vendor_id       : [0][0][0][0]\\nStream mapping:\\n  Stream #0:0 -> #0:0 (copy)\\nPress [q] to stop, [?] for help\\nsize=       0kB time=N/A bitrate=N/A speed=N/A    \\n[out#0/mp4 @ 0x557c7dee6d40] video:0kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\\n[out#0/mp4 @ 0x557c7dee6d40] Output file is empty, nothing was encoded\\nsize=       0kB time=N/A bitrate=N/A speed=N/A    \\n\"}]",
+      "finishedAt": "2026-07-22T16:43:44.117118Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."

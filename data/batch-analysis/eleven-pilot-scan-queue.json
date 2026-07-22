@@ -4,8 +4,8 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-22T14:39:29Z",
-  "updatedAt": "2026-07-22T16:07:13.801964Z",
-  "status": "progress",
+  "updatedAt": "2026-07-22T16:43:44.121174Z",
+  "status": "retryable_failure",
   "pilotRegion": "顺序批次 P58-P68",
   "strategy": "严格按P58至P68原始顺序处理11期；任何时刻最多下载和分析1期。当前一期完成、验证并持久化后，才自动启动下一期。",
   "maximumQueueItems": 11,
@@ -202,8 +202,11 @@
       "mapUtility": "最高",
       "priority": 100,
       "durationSeconds": 4305,
-      "state": "pending",
-      "attemptCount": 0
+      "state": "failed",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-22T16:08:00.931006Z",
+      "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"ream 0 (Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360): unspecified pixel format\\nConsider increasing the value for the 'analyzeduration' (0) and 'probesize' (5000000) options\\nInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '[temporary-path-redacted]\\n  Metadata:\\n    major_brand     : isom\\n    minor_version   : 512\\n    compatible_brands: isomiso2avc1mp41\\n    encoder         : Lavf59.27.100\\n    description     : Bilibili VXCode Swarm Transcoder v1.2.8\\n  Duration: 01:11:44.47, start: 0.000000, bitrate: 465 kb/s\\n  Stream #0:0[0x1](und): Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360, SAR 1:1 DAR 16:9, 5158.82 fps, 16k tbr, 16k tbn (default)\\n    Metadata:\\n      handler_name    : VideoHandler\\n      vendor_id       : [0][0][0][0]\\n  Stream #0:1[0x2](und): Audio: aac (HE-AAC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 46 kb/s (default)\\n    Metadata:\\n      handler_name    : SoundHandler\\n      vendor_id       : [0][0][0][0]\\nOutput #0, mp4, to '[temporary-path-redacted]\\n  Metadata:\\n    major_brand     : isom\\n    minor_version   : 512\\n    compatible_brands: isomiso2avc1mp41\\n    description     : Bilibili VXCode Swarm Transcoder v1.2.8\\n    encoder         : Lavf60.16.100\\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 5158.82 fps, 16k tbr, 16k tbn (default)\\n    Metadata:\\n      handler_name    : VideoHandler\\n      vendor_id       : [0][0][0][0]\\nStream mapping:\\n  Stream #0:0 -> #0:0 (copy)\\nPress [q] to stop, [?] for help\\nsize=       0kB time=N/A bitrate=N/A speed=N/A    \\n[out#0/mp4 @ 0x557c7dee6d40] video:0kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\\n[out#0/mp4 @ 0x557c7dee6d40] Output file is empty, nothing was encoded\\nsize=       0kB time=N/A bitrate=N/A speed=N/A    \\n\"}]",
+      "lastFinishedAt": "2026-07-22T16:43:44.117118Z"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p067",

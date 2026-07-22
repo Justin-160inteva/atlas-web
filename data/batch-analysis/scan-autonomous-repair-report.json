@@ -1,11 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-22T01:10:00Z",
+  "generatedAt": "2026-07-22T16:43:44.585370Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
-  "outcome": "queued",
+  "outcome": "repair_failed",
   "confirmationRequired": false,
-  "targetExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
   "changedFiles": [],
   "tests": [],
-  "message": "Bounded autonomous AI repair is enabled and will run after deterministic recovery cannot continue."
+  "error": "GitHub Models HTTP 413: {\"error\":{\"code\":\"tokens_limit_reached\",\"message\":\"Request body too large for gpt-4.1 model. Max size: 8000 tokens.\",\"details\":\"Request body too large for gpt-4.1 model. Max size: 8000 tokens.\"}}",
+  "durationSeconds": 0.37,
+  "safety": {
+    "rolledBack": true,
+    "failureVisible": true
+  }
 }
