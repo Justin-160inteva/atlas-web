@@ -72,15 +72,17 @@
 
   html.atlas-ipad-canvas-hotfix body .panel{
     overflow-x:hidden!important;
-    overflow-y:auto!important;
+    overflow-y:scroll!important;
+    scrollbar-gutter:stable;
   }
 
   html.atlas-ipad-canvas-hotfix body :where(.sheet-body,.search-results,.evidence-scroll,.settings-scroll){
-    overflow-y:auto!important;
+    overflow-y:scroll!important;
   }
 
   html.atlas-ipad-canvas-hotfix body :where(.panel.open,.sheet.open,.search-overlay.open,.evidence-panel.open){
     pointer-events:auto!important;
+    visibility:visible!important;
   }
 
   html.atlas-ipad-canvas-hotfix body .vignette{
