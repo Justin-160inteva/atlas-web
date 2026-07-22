@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 22,
-  "id": "eleven-production-p058-p068-v1",
+  "schemaVersion": 23,
+  "id": "eleven-production-p069-p079-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
@@ -16,8 +16,8 @@
   "maxSamplesDefault": 360,
   "minimumIntervalSeconds": 3.0,
   "perItemTimeoutSeconds": 6300,
-  "pilotRegion": "顺序批次 P58-P68",
-  "processingOrder": "strict-p058-through-p068-episode-order",
+  "pilotRegion": "顺序批次 P69-P79",
+  "processingOrder": "strict-p069-through-p079-episode-order",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "preferPublicApi": true,
   "refreshSourceMetadata": true,
@@ -39,25 +39,7 @@
     "enabled": true,
     "intervalSeconds": 30,
     "speedMode": "rolling-30-second-window",
-    "fields": [
-      "downloadedBytes",
-      "totalBytes",
-      "speedBytesPerSecond",
-      "averageSpeedBytesPerSecond",
-      "segmentIndex",
-      "segmentCount",
-      "segmentDownloadedBytes",
-      "segmentTotalBytes",
-      "etaSeconds",
-      "downloadElapsedSeconds",
-      "speedWindowSeconds",
-      "stalledSeconds",
-      "heartbeatSequence",
-      "transferMode",
-      "maxRangeWorkers",
-      "telemetryMeasuredAt",
-      "telemetryPreserved"
-    ]
+    "fields": ["downloadedBytes","totalBytes","speedBytesPerSecond","averageSpeedBytesPerSecond","segmentIndex","segmentCount","segmentDownloadedBytes","segmentTotalBytes","etaSeconds","downloadElapsedSeconds","speedWindowSeconds","stalledSeconds","heartbeatSequence","transferMode","maxRangeWorkers","telemetryMeasuredAt","telemetryPreserved"]
   },
   "downloadOptimization": {
     "noArtificialRateLimit": true,
@@ -117,7 +99,7 @@
     "fastCooldownCapSeconds": 60,
     "minimumSafeCooldownSeconds": 5,
     "blockUnknownOrIdentityFailures": false,
-    "protectedFailureCategories": ["authorization", "identity", "privacy", "queue-scope", "retention"],
+    "protectedFailureCategories": ["authorization","identity","privacy","queue-scope","retention"],
     "neverModifySourceCodeAutomatically": false,
     "neverBroadenAuthorization": true,
     "neverRetainOriginalMedia": true
@@ -129,5 +111,5 @@
   },
   "autonomousRepairPolicy": "data/scan-autonomy-policy.json",
   "autonomousRepairConfirmationRequired": false,
-  "batchInitializedAt": "2026-07-22T14:39:29Z"
+  "batchInitializedAt": "2026-07-22T20:49:00Z"
 }
