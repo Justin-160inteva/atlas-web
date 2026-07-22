@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#0b0b0c" />
   <title>Atlas · 扫描与导入进度</title>
-  <link rel="stylesheet" href="scan-monitor.css?v=0.3.1" />
+  <link rel="stylesheet" href="scan-monitor.css?v=0.4.0" />
 </head>
 <body>
   <main class="monitor-shell">
@@ -39,15 +39,27 @@
       <div class="telemetry-track segment"><i id="segmentBar"></i></div>
       <p id="downloadDetail">等待下载遥测</p>
     </section>
+    <section class="card ai-repair-card" id="aiRepairCard" data-state="idle">
+      <div class="card-title"><b>自动 AI 修复</b><small id="aiRepairBadge">等待异常</small></div>
+      <div class="ai-repair-head"><div><strong id="aiRepairHeadline">当前没有自动修复任务</strong><small id="aiRepairTarget">尚无目标</small></div><b id="aiRepairPercent">0%</b></div>
+      <div class="ai-repair-track"><i id="aiRepairBar"></i></div>
+      <div class="ai-repair-grid">
+        <div><b id="aiRepairAction">等待异常</b><small>当前自动动作</small></div>
+        <div><b id="aiRepairFiles">0 个文件</b><small>安全修改范围</small></div>
+        <div><b id="aiRepairUpdated">—</b><small>修复状态更新时间</small></div>
+      </div>
+      <p id="aiRepairDetail">检测到可安全修复的扫描异常后，将自动进入此栏，不再默认停在人工检查。</p>
+    </section>
     <div class="grid">
       <section class="card"><div class="card-title"><b>当前批次队列</b><small id="queueSummary">正在读取任务</small></div><div class="queue" id="queueList"><div class="empty">正在载入队列…</div></div></section>
       <section class="card"><div class="card-title"><b>当前处理阶段</b><small>批次权威状态优先</small></div><div class="stage-list" id="stageList"></div><div class="warning" id="freshnessNotice" data-level="info">正在核对 GitHub main、任务心跳与监督器。</div><div class="poll-row"><span id="dataOrigin">数据源：连接中</span><span id="nextPoll">下次核对 —</span><button id="forceRefresh" type="button">立即核对</button></div></section>
       <section class="card"><div class="card-title"><b>自动恢复</b><small id="recoveryCategory">未触发</small></div><div id="recoveryPanel"><div class="empty">当前没有恢复事件。</div></div></section>
       <section class="card"><div class="card-title"><b>最近事件</b><small>脱敏摘要</small></div><div id="eventList"><div class="empty">等待扫描事件。</div></div></section>
     </div>
-    <p class="footer">单一状态控制器每5秒读取持久队列与实时心跳、每180秒用 Contents API 权威校准、每秒刷新界面。作者目录导入数直接来自分析索引，并按授权作者与期号去重；完成状态与当前运行批次优先于不同批次的旧队列。</p>
+    <p class="footer">单一状态控制器每5秒读取持久队列与实时心跳、每180秒用 Contents API 权威校准、每秒刷新界面。可安全修复的异常会自动进入 AI 修复栏并重试；只有授权、身份或隐私边界异常才保留人工检查。</p>
   </main>
-  <script src="scan-monitor.js?v=0.6.1" defer></script>
+  <script src="scan-monitor.js?v=0.6.2" defer></script>
+  <script src="scan-monitor-ai-repair.js?v=0.1.0" defer></script>
   <script>
     (() => {
       'use strict';
