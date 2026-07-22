@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-07-22T15:52:06.194736Z",
+  "generatedAt": "2026-07-22T16:00:06.056183Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "autonomyPolicy": "data/scan-autonomy-policy.json",
@@ -8,36 +8,17 @@
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-22T15:34:49.628822Z",
-      "finishedAt": "2026-07-22T15:49:52.623356Z",
+      "startedAt": "2026-07-22T15:53:17.267012Z",
+      "finishedAt": "2026-07-22T16:00:06.055255Z",
       "preflightState": "none",
       "preflightDictionaryEntryId": null,
       "preflightAutonomousOutcome": null,
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 6600,
-      "imported": 5,
-      "failed": 1,
-      "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 5, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 6}\n\n",
-      "diagnosisReturnCode": 0,
-      "dictionaryEntryId": "range-not-supported",
-      "action": "fallback_resumable_single_stream",
-      "retryScheduled": true,
-      "requiresHumanReview": false
-    },
-    {
-      "cycle": 2,
-      "startedAt": "2026-07-22T15:49:53.930720Z",
-      "finishedAt": "2026-07-22T15:52:06.194075Z",
-      "preflightState": "none",
-      "preflightDictionaryEntryId": null,
-      "preflightAutonomousOutcome": null,
-      "scannerReturnCode": 0,
-      "scannerTimeoutSeconds": 6600,
-      "imported": 6,
+      "imported": 7,
       "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 6, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 5}\n\n"
+      "scannerOutput": "{\"total\": 11, \"imported\": 7, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 4}\n\n"
     }
   ],
   "performance": {
