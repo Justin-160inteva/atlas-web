@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "version": "0.9.4.8",
   "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8",
-  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-gesture-1",
+  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-gesture-2",
   "entrypoint": "index.html",
   "releaseOwner": "atlas-bootstrap.js",
   "serviceWorker": "sw.js",
@@ -35,7 +35,7 @@
     "ipadMapViewport": "atlas-ipad-canvas-hotfix-0948.js",
     "ipadCanvasCompositor": "atlas-ipad-canvas-hotfix-0948.js",
     "ipadMapGestures": "atlas-ipad-gesture-hotfix-0948.js",
-    "ipadPanelGestures": "atlas-ipad-canvas-hotfix-0948.css"
+    "ipadPanelGestures": "atlas-ipad-gesture-hotfix-0948.js"
   },
   "releaseAssets": [
     "atlas-bootstrap.js",
@@ -104,6 +104,8 @@
     "ipadPanelVerticalScrollEnabled": true,
     "ipadPanelInertialScrollEnabled": true,
     "ipadSingleGestureController": true,
+    "ipadLegacyPointerHandlersSuppressed": true,
+    "ipadManualPanelScrollFallback": true,
     "ipadNativePagePinchDisabled": true,
     "ipadPinchUsesStableGestureBaseline": true,
     "requireServiceWorkerUpgradeSimulation": true,
