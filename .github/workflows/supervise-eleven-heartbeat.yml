@@ -37,7 +37,7 @@ jobs:
 
       - name: Validate dynamic supervisor and serial queue policy
         run: |
-          python -m py_compile tools/supervise_runtime_heartbeat.py
+          python -m py_compile tools/supervise_runtime_heartbeat.py tools/supervise_runtime_heartbeat_v2.py
           python - <<'PY'
           import json
           config=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor.json',encoding='utf-8'))
@@ -79,7 +79,7 @@ jobs:
       - name: Inspect heartbeat and apply durable-state repair
         id: supervisor
         run: |
-          python tools/supervise_runtime_heartbeat.py data/batch-analysis/eleven-heartbeat-supervisor.json
+          python tools/supervise_runtime_heartbeat_v2.py data/batch-analysis/eleven-heartbeat-supervisor.json
           python - <<'PY' >> "$GITHUB_OUTPUT"
           import json
           report=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor-state.json',encoding='utf-8'))
