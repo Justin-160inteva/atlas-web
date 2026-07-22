@@ -1,0 +1,98 @@
+name: Publish Verified Reward Catalog
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reward-publish-verified.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: reward-publish-verified-main
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Restore verified artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/reward-production
+          mkdir -p /tmp/reward-production
+          gh run download 29934054344 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name reward-summary-production-29934054344 \
+            --dir /tmp/reward-production
+          cp -a /tmp/reward-production/. data/
+
+      - name: Validate all 3430 records
+        run: |
+          node tools/reward_evidence_contract_smoke.mjs
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('.')
+          catalog = json.loads((root / 'data/rewards/reward-summary-catalog.json').read_text(encoding='utf-8'))
+          audit = json.loads((root / 'data/rewards/reward-source-audit.json').read_text(encoding='utf-8'))
+          index = json.loads((root / 'data/rewards/reward-evidence-index.json').read_text(encoding='utf-8'))
+          batches = sorted((root / 'data/rewards/records').glob('batch-*.json'))
+          confirmed = ('officialConfirmed', 'multiSourceConfirmed', 'highConfidenceInference', 'unresolved')
+
+          assert catalog['recordCount'] == 3430
+          assert len(catalog['records']) == 3430
+          assert catalog['coverage']['total'] == 3430
+          assert sum(catalog['coverage'][key] for key in confirmed) == 3430
+          assert audit['invariants']['exactly3430Records']
+          assert audit['invariants']['oneRecordPerLocation']
+          assert audit['invariants']['coverageConserved']
+          assert audit['invariants']['batchLimitRespected']
+          assert audit['invariants']['lockedRecordsPreserved']
+          assert len(batches) == 35
+          assert len(index['batches']) == 35
+          assert all(batch['targetRecords'] <= 100 for batch in index['batches'])
+          print('Verified reward catalog: 3430 records, 35 batches.')
+          PY
+
+      - name: Commit and publish against latest main
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/rewards/reward-evidence-index.json \
+            data/rewards/reward-summary-catalog.json \
+            data/rewards/reward-source-audit.json \
+            data/rewards/reward-research-queue.json \
+            data/rewards/records \
+            data/conflict-reports/reward-evidence-matrix.json
+          if git diff --cached --quiet; then
+            echo 'Verified reward catalog is already published.'
+            exit 0
+          fi
+          git commit -m 'Generate 3430 Simplified Chinese reward evidence records [skip ci]'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Publish attempt ${attempt} lost a concurrent race; retrying."
+            sleep $((attempt * 3))
+          done
+          echo 'Unable to publish verified reward catalog after eight attempts.' >&2
+          exit 1
