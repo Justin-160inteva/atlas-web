@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "requestedAt": "2026-07-22T22:56:00Z",
-  "mode": "translate-next-highest-priority-reward-names",
+  "requestedAt": "2026-07-22T23:12:00Z",
+  "mode": "clean-placeholders-and-translate-next-highest-priority-names",
   "locale": "zh-CN",
   "maximumNamesThisRun": 100,
   "continueOnSchedule": true,
-  "batchRevision": "standard-zh-cn-002",
+  "batchRevision": "standard-zh-cn-003-placeholder-safe",
   "priorityOrder": [
     "castle reward proper names",
     "confirmed or inferred named rewards",
@@ -19,6 +19,8 @@
     "doNotClaimOfficialTranslation": true,
     "doNotChangeRewardQuantity": true,
     "doNotChangeRewardType": true,
-    "doNotChangeEvidenceStatusFromTranslationAlone": true
+    "doNotChangeEvidenceStatusFromTranslationAlone": true,
+    "rejectUnknownSourcePlaceholders": true,
+    "removeExistingPlaceholderGuesses": true
   }
 }
