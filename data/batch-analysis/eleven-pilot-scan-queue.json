@@ -4,7 +4,7 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "createdAt": "2026-07-22T14:39:29Z",
-  "updatedAt": "2026-07-22T19:48:10.022848Z",
+  "updatedAt": "2026-07-22T19:55:01.875242Z",
   "status": "progress",
   "pilotRegion": "顺序批次 P58-P68",
   "strategy": "严格按P58至P68原始顺序处理11期；任何时刻最多下载和分析1期。当前一期完成、验证并持久化后，才自动启动下一期。",
@@ -227,8 +227,11 @@
       "mapUtility": "中高",
       "priority": 74,
       "durationSeconds": 3015,
-      "state": "pending",
-      "attemptCount": 0
+      "state": "imported",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-22T19:49:06.051497Z",
+      "resultPath": "data/analysis-results/eleven-p067.json",
+      "lastFinishedAt": "2026-07-22T19:55:01.871278Z"
     },
     {
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p068",
