@@ -10,6 +10,7 @@ on:
       - 'data/rewards/reward-production-trigger.json'
       - 'data/rewards/reward-research-sources.json'
       - 'data/rewards/reward-translation-lexicon-zh-CN.json'
+      - 'data/rewards/production-artifacts/*.zip'
   pull_request:
     paths:
       - '.github/workflows/reward-summary-production.yml'
@@ -40,10 +41,23 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Restore verified production artifact
+        id: restore
+        run: |
+          artifact="$(find data/rewards/production-artifacts -maxdepth 1 -type f -name '*.zip' 2>/dev/null | sort | tail -n 1)"
+          if [ -n "$artifact" ]; then
+            unzip -o "$artifact" -d data
+            echo 'restored=true' >> "$GITHUB_OUTPUT"
+            echo "Restored verified reward artifact: $artifact"
+          else
+            echo 'restored=false' >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Compile reward builder
         run: python -m py_compile tools/build_reward_summary_catalog.py
 
       - name: Build all 3430 reward records
+        if: steps.restore.outputs.restored != 'true'
         run: python tools/build_reward_summary_catalog.py
 
       - name: Run reward evidence contract matrix
