@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 23,
-  "id": "eleven-production-p069-p079-v1",
+  "schemaVersion": 24,
+  "id": "eleven-production-p080-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
@@ -8,7 +8,7 @@
   "statusOutput": "data/batch-analysis/eleven-pilot-scan-status.json",
   "analyzer": "tools/analyze_authorized_video_v14.py",
   "outputPrefix": "eleven",
-  "maximumQueueItems": 11,
+  "maximumQueueItems": 1,
   "maxItemsPerRun": 1,
   "maximumConcurrentDownloads": 1,
   "autoContinueAfterDurableSuccess": true,
@@ -16,8 +16,8 @@
   "maxSamplesDefault": 360,
   "minimumIntervalSeconds": 3.0,
   "perItemTimeoutSeconds": 6300,
-  "pilotRegion": "顺序批次 P69-P79",
-  "processingOrder": "strict-p069-through-p079-episode-order",
+  "pilotRegion": "最终单期 P80",
+  "processingOrder": "strict-p080-only",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "preferPublicApi": true,
   "refreshSourceMetadata": true,
@@ -111,5 +111,5 @@
   },
   "autonomousRepairPolicy": "data/scan-autonomy-policy.json",
   "autonomousRepairConfirmationRequired": false,
-  "batchInitializedAt": "2026-07-22T20:49:00Z"
+  "batchInitializedAt": "2026-07-23T02:30:00Z"
 }
