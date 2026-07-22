@@ -7,6 +7,10 @@ on:
   push:
     paths:
       - 'data/batch-analysis/eleven-heartbeat-supervisor.json'
+      - 'data/batch-analysis/eleven-pilot-v2-trigger.json'
+      - 'data/batch-analysis/eleven-pilot-scan-queue.json'
+      - 'data/batch-analysis/eleven-pilot-recovery-report.json'
+      - 'data/batch-analysis/scan-autonomous-repair-report.json'
 
 permissions:
   contents: write
@@ -31,26 +35,32 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Validate supervisor and serial queue policy
+      - name: Validate dynamic supervisor and serial queue policy
         run: |
           python -m py_compile tools/supervise_runtime_heartbeat.py
           python - <<'PY'
           import json
           config=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor.json',encoding='utf-8'))
           manifest=json.load(open(config['manifest'],encoding='utf-8'))
+          trigger=json.load(open(config['trigger'],encoding='utf-8'))
+          queue=json.load(open(manifest['queue'],encoding='utf-8'))
           policy=config['policy']
-          assert config['schemaVersion']>=4
+          items=queue['items']
+          pages=[int(item['page']) for item in items]
+          sequences=[int(item['sequence']) for item in items]
+          assert config['schemaVersion']>=6
           assert config['staleAfterSeconds']==90
           assert config['hardStaleAfterSeconds']==180
-          assert config['resumeCooldownSeconds']==360
-          assert config['maximumQueueItems']==11
-          assert manifest['maximumQueueItems']==11
+          assert config['resumeCooldownSeconds']<=60
+          assert len(items)==config['maximumQueueItems']==manifest['maximumQueueItems']==queue['maximumQueueItems']
           assert manifest['maxItemsPerRun']==1
-          assert manifest['maximumConcurrentDownloads']==1
+          assert manifest['maximumConcurrentDownloads']==queue['maximumConcurrentItems']==1
           assert policy['oneItemPerRun']
           assert policy['maximumConcurrentDownloads']==1
           assert policy['automaticContinuationAfterDurableSuccess']
-          assert policy['maximumAttemptsPerItem']==3
+          assert policy['automaticRedispatchAfterTechnicalFailure']
+          assert policy['retryTechnicalFailuresUntilResolved']
+          assert policy['maximumAttemptsPerItem']==manifest['recoveryPolicy']['maxAttemptsPerItem']==manifest['maxAttemptsPerItem']
           assert policy['durableStateAlwaysWins']
           assert policy['terminalProjectionRequired']
           assert policy['deduplicateResumeRequests']
@@ -59,10 +69,14 @@ jobs:
           assert policy['neverBroadenAuthorization']
           assert policy['neverRetainOriginalMedia']
           assert policy['neverExpandQueueScope']
-          print('heartbeat supervisor v4 eleven-item serial policy passed')
+          assert pages==trigger['queuePages']
+          assert sequences==trigger['queuePages']
+          assert pages==list(range(pages[0],pages[0]+len(pages)))
+          assert trigger['authorizationId']==queue['authorizationId']==manifest['authorizationId']
+          print(f"heartbeat supervisor follows current dynamic queue P{pages[0]}-P{pages[-1]}")
           PY
 
-      - name: Inspect heartbeat and apply bounded durable-state repair
+      - name: Inspect heartbeat and apply durable-state repair
         id: supervisor
         run: |
           python tools/supervise_runtime_heartbeat.py data/batch-analysis/eleven-heartbeat-supervisor.json
@@ -76,23 +90,27 @@ jobs:
           print(f"suppressed={'true' if report.get('resumeSuppressedByCooldown') else 'false'}")
           PY
 
-      - name: Run heartbeat safety gate
+      - name: Run dynamic heartbeat safety gate
         run: |
           python - <<'PY'
           import json, pathlib
+          config=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor.json',encoding='utf-8'))
           report=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor-state.json',encoding='utf-8'))
           queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
           runtime=json.load(open('data/runtime-progress/eleven-pilot-progress.json',encoding='utf-8'))
+          trigger=json.load(open(config['trigger'],encoding='utf-8'))
           dictionary=json.load(open('data/scan-bug-dictionary.json',encoding='utf-8'))
           ids={entry['id'] for entry in dictionary['entries']}
-          assert len(queue['items'])==11
+          items=queue['items']
+          pages=[int(item['page']) for item in items]
+          assert len(items)==queue['maximumQueueItems']==config['maximumQueueItems']
           assert queue['maximumConcurrentItems']==1
-          assert len({item['externalSourceId'] for item in queue['items']})==11
-          assert [item['sequence'] for item in queue['items']]==list(range(25,36))
-          assert sum(item.get('state') in {'running','recovery'} for item in queue['items'])<=1
+          assert len({item['externalSourceId'] for item in items})==len(items)
+          assert pages==trigger['queuePages']
+          assert sum(item.get('state') in {'running','recovery'} for item in items)<=1
           assert report['schemaVersion']>=2
           assert report['dictionaryEntryId'] in ids or report['dictionaryEntryId'] in {'heartbeat-healthy','heartbeat-complete'}
-          assert report['resumeCooldownSeconds']>=300
+          assert report['resumeCooldownSeconds']<=60
           assert report['safety']['sourceCodeModified'] is False
           assert report['safety']['authorizationBroadened'] is False
           assert report['safety']['queueScopeExpanded'] is False
@@ -102,7 +120,7 @@ jobs:
               assert runtime.get('state') in {'queued','complete'}
           for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
               assert not list(pathlib.Path('.').rglob(pattern))
-          print('heartbeat supervisor v4 eleven-item serial safety gate passed')
+          print('dynamic heartbeat safety gate passed')
           PY
 
       - name: Persist supervisor diagnosis and projection
@@ -116,14 +134,14 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add $TRACKED
           git commit -m "Supervise runtime heartbeat: ${{ steps.supervisor.outputs.decision }}"
-          for attempt in 1 2 3; do
+          for attempt in 1 2 3 4 5; do
             if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
             git rebase --abort || true
             sleep $((attempt * 3))
           done
           exit 1
 
-      - name: Resume exactly one cooldown-protected item
+      - name: Resume one serial item immediately
         if: steps.supervisor.outputs.resume == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
