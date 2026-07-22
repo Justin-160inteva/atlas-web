@@ -46,7 +46,7 @@ jobs:
       - name: Restore verified production artifact
         id: restore
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           local_artifact="$(find data/rewards/production-artifacts -maxdepth 1 -type f -name '*.zip' 2>/dev/null | sort | tail -n 1)"
@@ -57,24 +57,28 @@ jobs:
             exit 0
           fi
 
-          artifact_id="$(python - <<'PY'
+          readarray -t verified < <(python - <<'PY'
           import json
           from pathlib import Path
           path = Path('data/rewards/reward-production-trigger.json')
           data = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
-          print(data.get('verifiedArtifactId') or '')
+          run_id = data.get('verifiedWorkflowRunId') or ''
+          print(run_id)
+          print(f"reward-summary-production-{run_id}" if run_id else '')
           PY
-          )"
-          if [ -n "$artifact_id" ]; then
-            curl --fail --location --retry 3 \
-              --header "Authorization: Bearer $GITHUB_TOKEN" \
-              --header 'Accept: application/vnd.github+json' \
-              --header 'X-GitHub-Api-Version: 2022-11-28' \
-              "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/${artifact_id}/zip" \
-              --output /tmp/reward-production.zip
-            unzip -o /tmp/reward-production.zip -d data
+          )
+          run_id="${verified[0]:-}"
+          artifact_name="${verified[1]:-}"
+          if [ -n "$run_id" ] && [ -n "$artifact_name" ]; then
+            rm -rf /tmp/reward-production
+            mkdir -p /tmp/reward-production
+            gh run download "$run_id" \
+              --repo "$GITHUB_REPOSITORY" \
+              --name "$artifact_name" \
+              --dir /tmp/reward-production
+            cp -a /tmp/reward-production/. data/
             echo 'restored=true' >> "$GITHUB_OUTPUT"
-            echo "Restored verified reward artifact ID: $artifact_id"
+            echo "Restored verified reward artifact from run $run_id"
           else
             echo 'restored=false' >> "$GITHUB_OUTPUT"
           fi
