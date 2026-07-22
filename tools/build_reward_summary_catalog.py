@@ -34,6 +34,7 @@ POLICY_PATH = ROOT / "data/rewards/reward-source-policy.json"
 TERMS_PATH = ROOT / "data/rewards/reward-terminology-zh-CN.json"
 LEXICON_PATH = ROOT / "data/rewards/reward-translation-lexicon-zh-CN.json"
 SOURCES_PATH = ROOT / "data/rewards/reward-research-sources.json"
+POINT_OVERRIDES_PATH = ROOT / "data/rewards/reward-point-evidence-overrides.json"
 CATALOG_PATH = ROOT / "data/rewards/reward-summary-catalog.json"
 AUDIT_PATH = ROOT / "data/rewards/reward-source-audit.json"
 QUEUE_PATH = ROOT / "data/rewards/reward-research-queue.json"
@@ -48,7 +49,7 @@ REWARD_SECTION = re.compile(
 MARKDOWN_LINK = re.compile(r"\[([^\]]+)\]\([^\)]+\)")
 QUANTITY_PREFIX = re.compile(r"^(?:(\d[\d,]*(?:\.\d+)?)\s*[x×]?\s+)(.+)$", re.IGNORECASE)
 NUMBER_ONLY_REWARD = re.compile(
-    r"^(\d[\d,]*(?:\.\d+)?)\s+(XP|Mastery Points?|Knowledge Points?|Experience Points?)$",
+    r"^(\d[\d,]*(?:\.\d+)?)\s+(XP|EXP|Mastery Points?|Mastery Levels?|Knowledge Points?|Experience Points?)$",
     re.IGNORECASE,
 )
 HEADING_LINE = re.compile(r"^\*\*[^*]+:\*\*$")
@@ -61,8 +62,10 @@ LATIN = re.compile(r"[A-Za-z]")
 
 TYPE_KEYWORDS: list[tuple[str, str]] = [
     ("experience", "experience"),
+    (" exp", "experience"),
     (" xp", "experience"),
     ("mastery point", "skill_point"),
+    ("mastery level", "mastery_level"),
     ("knowledge point", "knowledge_point"),
     ("trinket", "trinket"),
     ("amulet", "trinket"),
@@ -98,6 +101,7 @@ TYPE_LABELS = {
     "trinket": "饰品",
     "engraving": "铭刻",
     "skill_point": "技能点",
+    "mastery_level": "精通等级",
     "knowledge_point": "知识点",
     "experience": "经验值",
     "ability": "能力",
@@ -111,6 +115,7 @@ TYPE_LABELS = {
 UNIT_LABELS = {
     "experience": "点",
     "skill_point": "个",
+    "mastery_level": "级",
     "knowledge_point": "个",
     "currency": "",
     "resource": "份",
@@ -349,7 +354,7 @@ def parse_reward_line(line: str, lexicon: dict[str, Any]) -> dict[str, Any]:
     rarity = infer_rarity(combined)
     translation = translate_name(name_part, lexicon)
 
-    if reward_type in {"experience", "skill_point", "knowledge_point"}:
+    if reward_type in {"experience", "skill_point", "mastery_level", "knowledge_point"}:
         name_zh = TYPE_LABELS[reward_type]
         named = False
     elif translation.text == "具体名称待核对":
@@ -393,6 +398,8 @@ def reward_phrase(reward: dict[str, Any]) -> str:
     if quantity is not None:
         quantity_text = f"{quantity:,}" if isinstance(quantity, int) else str(quantity)
         unit = UNIT_LABELS.get(reward_type, "件")
+        if reward_type == "mastery_level":
+            return f"精通等级提升 {quantity_text} 级"
         if reward_type in {"experience", "skill_point", "knowledge_point"}:
             return f"{quantity_text} {unit}{name}"
         return f"{quantity_text} {unit}{name}"
@@ -508,11 +515,26 @@ def build_record(
     external_pages: list[ExternalPage],
     maximum_distance: int,
     generated_at: str,
+    point_overrides: dict[str, dict[str, Any]],
 ) -> tuple[dict[str, Any], dict[str, Any]]:
-    reward_lines = extract_reward_lines(
+    description_reward_lines = extract_reward_lines(
         str(location.get("description") or ""),
         str(location.get("category_id") or ""),
     )
+    override = point_overrides.get(location["id"])
+    override_applied = bool(not description_reward_lines and override and override.get("rewardLines"))
+    reward_lines = (
+        list(description_reward_lines)
+        if description_reward_lines
+        else list(override.get("rewardLines", [])) if override_applied else []
+    )
+    evidence_mode = (
+        "location_description"
+        if description_reward_lines
+        else str(override.get("evidenceMode") or "point_specific_override") if override_applied
+        else "none"
+    )
+
     parsed = [parse_reward_line(line, lexicon) for line in reward_lines]
     primary = source_for_location(location)
     cross_sources = external_matches(location, parsed, external_pages, maximum_distance)
@@ -529,14 +551,37 @@ def build_record(
         })
 
     sources: list[dict[str, Any]] = []
-    if reward_lines and primary:
+    if description_reward_lines and primary:
         sources.append(primary)
+    if override_applied:
+        sources.extend(dict(source) for source in override.get("sources", []))
     sources.extend(cross_sources)
+
+    # Keep unique source records while preserving stable evidence order.
+    unique_sources: list[dict[str, Any]] = []
+    seen_source_ids: set[str] = set()
+    for source in sources:
+        source_id = str(source.get("sourceId") or source.get("locator") or "")
+        if not source_id or source_id in seen_source_ids:
+            continue
+        seen_source_ids.add(source_id)
+        unique_sources.append(source)
+    sources = unique_sources
 
     if not reward_lines:
         status = "unresolved"
         confidence = 0.0
         summary = "奖励尚未确认"
+    elif override_applied:
+        independent_sources = len({str(source.get("sourceId") or source.get("locator")) for source in sources})
+        if independent_sources >= 2:
+            status = "multi_source_confirmed"
+            confidence = 0.92
+            summary = "获得" + "、".join(reward_phrase(reward) for reward in parsed)
+        else:
+            status = "high_confidence_inference"
+            confidence = float(override.get("confidence", 0.88))
+            summary = "获得" + "、".join(reward_phrase(reward) for reward in parsed) + "（高置信推断）"
     elif cross_sources:
         status = "multi_source_confirmed"
         confidence = 0.92
@@ -546,6 +591,12 @@ def build_record(
         confidence = 0.82 if not unknown_names else 0.78
         summary = "获得" + "、".join(reward_phrase(reward) for reward in parsed) + "（高置信推断）"
 
+    review_method = "atlas_reward_builder_v2_point_override" if override_applied else "atlas_reward_builder_v1"
+    change_reason = (
+        "同名任务详情页的明确Reward字段已作为点位级独立证据导入；单一攻略来源保持高置信推断。"
+        if override_applied
+        else "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+    )
     record = {
         "locationId": location["id"],
         "sourceLocationId": (location.get("source") or {}).get("location_id"),
@@ -559,9 +610,9 @@ def build_record(
         "review": {
             "state": "machine_checked",
             "lastReviewedAt": generated_at,
-            "method": "atlas_reward_builder_v1",
+            "method": review_method,
             "reviewer": None,
-            "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。",
+            "changeReasonZhCN": change_reason,
         },
     }
     audit = {
@@ -572,6 +623,8 @@ def build_record(
         "translationProvisional": len(provisional),
         "unknownNameCount": len(unknown_names),
         "unknownTokens": sorted({token for reward in parsed for token in reward.get("_unknownTokens", [])}),
+        "pointOverrideApplied": override_applied,
+        "evidenceMode": evidence_mode,
     }
     return record, audit
 
@@ -658,7 +711,11 @@ def main() -> int:
     terms = load_json(TERMS_PATH)
     lexicon = load_json(LEXICON_PATH)
     registry = load_json(SOURCES_PATH)
+    point_override_document = load_json(POINT_OVERRIDES_PATH) if POINT_OVERRIDES_PATH.exists() else {"records": {}}
+    point_overrides = point_override_document.get("records", {})
 
+    if not isinstance(point_overrides, dict):
+        raise ValueError("Point evidence overrides must use a records object")
     if len(locations) != 3430:
         raise ValueError(f"Expected 3430 locations, got {len(locations)}")
     if len({location.get('id') for location in locations}) != len(locations):
@@ -694,7 +751,14 @@ def main() -> int:
                 "locked": True,
             }
         else:
-            record, row = build_record(location, lexicon, external_pages, maximum_distance, generated_at)
+            record, row = build_record(
+                location,
+                lexicon,
+                external_pages,
+                maximum_distance,
+                generated_at,
+                point_overrides,
+            )
             row["locked"] = False
         validate_record(record)
         records.append(record)
@@ -710,6 +774,7 @@ def main() -> int:
     provisional_count = sum(row["translationProvisional"] for row in audit_rows)
     unknown_name_count = sum(row["unknownNameCount"] for row in audit_rows)
     external_match_locations = sum(1 for row in audit_rows if row["externalMatchCount"])
+    point_override_locations = sum(1 for row in audit_rows if row.get("pointOverrideApplied"))
     unknown_tokens = Counter(token for row in audit_rows for token in row["unknownTokens"])
 
     batches = write_batches(records, generated_at)
@@ -753,6 +818,8 @@ def main() -> int:
         "recordCount": len(records),
         "rewardSectionLocations": reward_section_count,
         "externalMatchLocations": external_match_locations,
+        "pointOverrideLocations": point_override_locations,
+        "pointOverrideSource": POINT_OVERRIDES_PATH.relative_to(ROOT).as_posix() if POINT_OVERRIDES_PATH.exists() else None,
         "provisionalTranslationCount": provisional_count,
         "unknownChineseNameCount": unknown_name_count,
         "lockedRecordCount": len(locked),
@@ -771,6 +838,15 @@ def main() -> int:
             "lockedRecordsPreserved": all(catalog["records"][location_id] == record for location_id, record in locked.items()),
             "allNonUnresolvedHaveSources": all(record["status"] == "unresolved" or record["sources"] for record in records),
             "allSummariesPresent": all(record["summaryZhCN"] for record in records),
+            "allPointOverridesApplied": all(
+                catalog["records"].get(location_id, {}).get("status") != "unresolved"
+                for location_id in point_overrides
+            ),
+            "singleSourcePointOverridesStayInference": all(
+                len(override.get("sources", [])) != 1
+                or catalog["records"].get(location_id, {}).get("status") == "high_confidence_inference"
+                for location_id, override in point_overrides.items()
+            ),
         },
     }
     write_json(AUDIT_PATH, audit)
@@ -814,6 +890,7 @@ def main() -> int:
     index["researchQueue"] = QUEUE_PATH.relative_to(ROOT).as_posix()
     index["researchSources"] = SOURCES_PATH.relative_to(ROOT).as_posix()
     index["translationLexicon"] = LEXICON_PATH.relative_to(ROOT).as_posix()
+    index["pointEvidenceOverrides"] = POINT_OVERRIDES_PATH.relative_to(ROOT).as_posix() if POINT_OVERRIDES_PATH.exists() else None
     index["coverage"] = {
         "total": 3430,
         "officialConfirmed": status_counts["official_confirmed"],
