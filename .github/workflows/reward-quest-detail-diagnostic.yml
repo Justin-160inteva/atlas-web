@@ -1,0 +1,75 @@
+name: Reward Quest Detail Diagnostic
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reward-quest-detail-diagnostic.yml'
+      - 'tools/inspect_quest_detail_pages.py'
+      - 'data/rewards/reward-quest-source-diagnostic.json'
+      - 'data/rewards/reward-quest-detail-trigger.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reward-quest-detail-diagnostic-main
+  cancel-in-progress: true
+
+jobs:
+  inspect-details:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Inspect exact-title quest detail links
+        run: |
+          python -m py_compile tools/inspect_quest_detail_pages.py
+          python tools/inspect_quest_detail_pages.py
+
+      - name: Validate detail diagnostic invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('data/rewards/reward-quest-detail-diagnostic.json').read_text(encoding='utf-8'))
+          assert report['targetCount'] == 73
+          assert len(report['results']) == 73
+          assert all(report['invariants'].values())
+          assert report['successfullyFetchedPageCount'] <= report['uniqueRenderedPageCount']
+          print(
+              f"Quest detail diagnostic: {report['questWithDetailLinkCount']} quests with links, "
+              f"{report['successfullyFetchedPageCount']}/{report['uniqueRenderedPageCount']} pages fetched, "
+              f"{report['questWithRewardContextCount']} quests with explicit reward context."
+          )
+          PY
+
+      - name: Commit quest detail diagnostic
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/rewards/reward-quest-detail-diagnostic.json
+          if git diff --cached --quiet; then
+            echo 'No quest detail diagnostic changes.'
+            exit 0
+          fi
+          git commit -m 'Inspect quest detail reward evidence [skip ci]'
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Quest detail diagnostic push attempt ${attempt} collided with telemetry; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 5))
+          done
+          exit 1
