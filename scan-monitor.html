@@ -56,10 +56,11 @@
       <section class="card"><div class="card-title"><b>自动恢复</b><small id="recoveryCategory">未触发</small></div><div id="recoveryPanel"><div class="empty">当前没有恢复事件。</div></div></section>
       <section class="card"><div class="card-title"><b>最近事件</b><small>脱敏摘要</small></div><div id="eventList"><div class="empty">等待扫描事件。</div></div></section>
     </div>
-    <p class="footer">单一状态控制器每5秒读取持久队列与实时心跳、每180秒用 Contents API 权威校准、每秒刷新界面。可安全修复的异常会自动进入 AI 修复栏并重试；只有授权、身份或隐私边界异常才保留人工检查。</p>
+    <p class="footer">右上角刷新或“立即核对”每次都会锁定 GitHub main 最新提交，并同步刷新实时遥测、批次队列、任务状态、AI修复、监督器及作者目录。后台仍每5秒自动轮询。</p>
   </main>
-  <script src="scan-monitor.js?v=0.6.2" defer></script>
-  <script src="scan-monitor-ai-repair.js?v=0.1.0" defer></script>
+  <script src="scan-monitor-fresh-refresh.js?v=0.1.0" defer></script>
+  <script src="scan-monitor.js?v=0.6.3" defer></script>
+  <script src="scan-monitor-ai-repair.js?v=0.1.1" defer></script>
   <script>
     (() => {
       'use strict';
@@ -69,6 +70,8 @@
       const target = document.getElementById('catalogProgress');
       let imported = null;
       let applying = false;
+      let activeRefresh = null;
+      let forceQueued = false;
 
       function apply() {
         if (!target || imported === null || applying) return;
@@ -79,9 +82,16 @@
         applying = false;
       }
 
-      async function refreshAuthorCount() {
+      async function executeRefresh() {
         try {
-          const response = await fetch(`data/analysis-index.json?t=${Date.now()}`, { cache: 'no-store' });
+          const response = await fetch(`data/analysis-index.json?t=${Date.now()}`, {
+            cache: 'no-store',
+            headers: {
+              Accept: 'application/json',
+              'Cache-Control': 'no-cache, no-store, max-age=0',
+              Pragma: 'no-cache'
+            }
+          });
           if (!response.ok) throw new Error(String(response.status));
           const index = await response.json();
           const pages = new Set();
@@ -100,11 +110,29 @@
         }
       }
 
+      function refreshAuthorCount(options = {}) {
+        const force = options === true || options?.force === true;
+        if (activeRefresh) {
+          if (force) forceQueued = true;
+          return activeRefresh;
+        }
+        activeRefresh = executeRefresh().finally(() => {
+          activeRefresh = null;
+          if (forceQueued) {
+            forceQueued = false;
+            refreshAuthorCount({ force: true });
+          }
+        });
+        return activeRefresh;
+      }
+
       if (target) {
         new MutationObserver(apply).observe(target, { childList: true, characterData: true, subtree: true });
         window.setInterval(apply, 500);
         window.setInterval(refreshAuthorCount, 15000);
-        refreshAuthorCount();
+        window.addEventListener('atlas-authoritative-refresh', () => refreshAuthorCount({ force: true }));
+        window.AtlasAuthorCountRefresh = refreshAuthorCount;
+        refreshAuthorCount({ force: true });
       }
     })();
   </script>
