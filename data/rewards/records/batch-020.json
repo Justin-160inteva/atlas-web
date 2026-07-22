@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "release": "0.9.4.8",
   "batchId": "reward-batch-020",
-  "generatedAt": "2026-07-22T15:55:03.160117Z",
+  "generatedAt": "2026-07-22T21:40:10.563219Z",
   "recordSchema": "data/rewards/reward-record-schema.json",
   "startIndex": 1901,
   "endIndex": 2000,
@@ -61,6 +61,20 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Heartspiller"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "polygon-kofun-rewards",
           "sourceType": "guide_article",
           "title": "All kofun locations and rewards in Assassin's Creed Shadows",
@@ -85,7 +99,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -138,7 +152,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -191,7 +205,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -244,7 +258,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -297,7 +311,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -350,7 +364,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -403,7 +417,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -456,7 +470,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -509,7 +523,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -562,7 +576,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -615,7 +629,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -668,7 +682,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -721,7 +735,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -774,7 +788,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -827,7 +841,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -880,7 +894,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -933,7 +947,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -986,7 +1000,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1039,7 +1053,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1092,7 +1106,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1145,7 +1159,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1198,7 +1212,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1251,7 +1265,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1304,7 +1318,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1322,7 +1336,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1340,7 +1354,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1358,7 +1372,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1376,7 +1390,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1394,7 +1408,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1412,7 +1426,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1465,7 +1479,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1518,7 +1532,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1571,7 +1585,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1624,7 +1638,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1677,7 +1691,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1730,7 +1744,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1783,7 +1797,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1836,7 +1850,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1889,7 +1903,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1942,7 +1956,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1995,7 +2009,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2048,7 +2062,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2101,7 +2115,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2154,7 +2168,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2207,7 +2221,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2260,7 +2274,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2313,7 +2327,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2366,7 +2380,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2419,7 +2433,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2472,7 +2486,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2525,7 +2539,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2578,7 +2592,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2631,7 +2645,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2684,7 +2698,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2737,7 +2751,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2790,7 +2804,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2843,7 +2857,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2896,7 +2910,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2949,7 +2963,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3002,7 +3016,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3055,7 +3069,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3108,7 +3122,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3161,7 +3175,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3214,7 +3228,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3267,7 +3281,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3320,7 +3334,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3373,7 +3387,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3426,7 +3440,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3479,7 +3493,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3532,7 +3546,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3585,7 +3599,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3638,7 +3652,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3691,7 +3705,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3744,7 +3758,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3797,7 +3811,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3850,7 +3864,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3903,7 +3917,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3956,7 +3970,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4009,7 +4023,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4062,7 +4076,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4115,7 +4129,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4168,7 +4182,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4221,7 +4235,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4274,7 +4288,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4327,7 +4341,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4380,7 +4394,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4433,7 +4447,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4486,7 +4500,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4539,7 +4553,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4592,7 +4606,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4645,7 +4659,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4698,7 +4712,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4751,7 +4765,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4804,7 +4818,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4857,7 +4871,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4910,7 +4924,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4963,7 +4977,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5016,7 +5030,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5069,7 +5083,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5122,7 +5136,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"

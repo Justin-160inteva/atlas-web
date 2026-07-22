@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "release": "0.9.4.8",
   "batchId": "reward-batch-018",
-  "generatedAt": "2026-07-22T15:55:03.160117Z",
+  "generatedAt": "2026-07-22T21:40:10.563219Z",
   "recordSchema": "data/rewards/reward-record-schema.json",
   "startIndex": 1701,
   "endIndex": 1800,
@@ -71,7 +71,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -140,7 +140,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -209,7 +209,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -278,7 +278,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -288,9 +288,9 @@
       "locationId": "location-mapgenie-434525",
       "sourceLocationId": 434525,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.82,
-      "summaryZhCN": "获得5,000 点经验值、1 个技能点、武器“弓（暂译）”（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得5,000 点经验值、1 个技能点、武器“弓（暂译）”",
       "rewards": [
         {
           "type": "experience",
@@ -335,6 +335,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Bow ??"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Bow ??"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Bow ??"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Bow ??"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -347,7 +403,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -407,7 +463,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -417,9 +473,9 @@
       "locationId": "location-mapgenie-434558",
       "sourceLocationId": 434558,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、290 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、290 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -473,6 +529,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -485,7 +597,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -563,7 +675,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -631,6 +743,21 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon",
+            "reward_name:Death Whisperer"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "polygon-armor-locations",
           "sourceType": "guide_article",
           "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
@@ -655,7 +782,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -733,7 +860,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -813,6 +940,62 @@
             "reward_name:Mon"
           ],
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -825,7 +1008,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -903,7 +1086,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -971,6 +1154,21 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-legendary-trinkets-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Trinkets and Amulets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505080",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Flight of the Ubagabi",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "vulkk-legendary-trinkets",
           "sourceType": "guide_article",
           "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
@@ -996,7 +1194,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1006,9 +1204,9 @@
       "locationId": "location-mapgenie-434722",
       "sourceLocationId": 434722,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -1062,6 +1260,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:?? Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:?? Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:?? Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:?? Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -1074,7 +1328,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1152,7 +1406,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1162,9 +1416,9 @@
       "locationId": "location-mapgenie-434816",
       "sourceLocationId": 434816,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、奖励（具体名称待核对）、335 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、奖励（具体名称待核对）、335 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -1218,6 +1472,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -1230,7 +1540,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1308,7 +1618,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1386,7 +1696,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1396,9 +1706,9 @@
       "locationId": "location-mapgenie-434825",
       "sourceLocationId": 434825,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、305 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、305 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -1452,6 +1762,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -1464,7 +1830,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1532,6 +1898,62 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "vulkk-legendary-trinkets",
           "sourceType": "guide_article",
           "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
@@ -1557,7 +1979,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1635,7 +2057,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1645,9 +2067,9 @@
       "locationId": "location-mapgenie-434999",
       "sourceLocationId": 434999,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、奖励（具体名称待核对）、280 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、奖励（具体名称待核对）、280 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -1701,6 +2123,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -1713,7 +2191,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1791,7 +2269,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1801,9 +2279,9 @@
       "locationId": "location-mapgenie-435003",
       "sourceLocationId": 435003,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -1857,6 +2335,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:?? Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:?? Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:?? Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:?? Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -1869,7 +2403,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1879,9 +2413,9 @@
       "locationId": "location-mapgenie-435004",
       "sourceLocationId": 435004,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、奖励（具体名称待核对）、345 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、奖励（具体名称待核对）、345 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -1935,6 +2469,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -1947,7 +2537,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2015,6 +2605,76 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-trinkets-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Trinkets and Amulets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505080",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "polygon-armor-locations",
           "sourceType": "guide_article",
           "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
@@ -2067,7 +2727,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2077,9 +2737,9 @@
       "locationId": "location-mapgenie-435016",
       "sourceLocationId": 435016,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、345 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、345 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -2133,6 +2793,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -2145,7 +2861,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2223,7 +2939,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2267,7 +2983,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2277,9 +2993,9 @@
       "locationId": "location-mapgenie-435019",
       "sourceLocationId": 435019,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、330 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、330 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -2333,6 +3049,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -2345,7 +3117,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2398,7 +3170,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2451,7 +3223,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2529,7 +3301,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2616,7 +3388,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2626,9 +3398,9 @@
       "locationId": "location-mapgenie-435044",
       "sourceLocationId": 435044,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、295 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、295 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -2682,6 +3454,21 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Call of the Void",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -2694,7 +3481,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2772,7 +3559,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2850,7 +3637,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2928,7 +3715,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2988,7 +3775,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3066,7 +3853,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3144,7 +3931,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3154,9 +3941,9 @@
       "locationId": "location-mapgenie-435778",
       "sourceLocationId": 435778,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -3201,6 +3988,20 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Phantom Fist"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -3213,7 +4014,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3291,7 +4092,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3351,7 +4152,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3429,7 +4230,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3516,7 +4317,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3594,7 +4395,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3672,7 +4473,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3725,7 +4526,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3803,7 +4604,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3813,9 +4614,9 @@
       "locationId": "location-mapgenie-435954",
       "sourceLocationId": 435954,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、375 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、375 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -3869,6 +4670,20 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Ocean's Grip"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -3881,7 +4696,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3959,7 +4774,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4037,7 +4852,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4096,6 +4911,62 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "vulkk-legendary-trinkets",
           "sourceType": "guide_article",
           "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
@@ -4120,7 +4991,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4173,7 +5044,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4251,7 +5122,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4329,7 +5200,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4416,7 +5287,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4426,9 +5297,9 @@
       "locationId": "location-mapgenie-436671",
       "sourceLocationId": 436671,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、275 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、275 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -4473,6 +5344,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -4485,7 +5412,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4495,9 +5422,9 @@
       "locationId": "location-mapgenie-436672",
       "sourceLocationId": 436672,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、300 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、300 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -4551,6 +5478,20 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Warrior's Garden"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -4563,7 +5504,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4641,7 +5582,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4719,7 +5660,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4763,7 +5704,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4841,7 +5782,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4910,7 +5851,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4969,6 +5910,20 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-legendary-trinkets-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Trinkets and Amulets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505080",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Heartseeker"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "vulkk-legendary-trinkets",
           "sourceType": "guide_article",
           "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
@@ -4993,7 +5948,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5003,9 +5958,9 @@
       "locationId": "location-mapgenie-437189",
       "sourceLocationId": 437189,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -5050,6 +6005,20 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Dark Burst"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -5062,7 +6031,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5072,9 +6041,9 @@
       "locationId": "location-mapgenie-437192",
       "sourceLocationId": 437192,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.82,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器“血雨”（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器“血雨”",
       "rewards": [
         {
           "type": "experience",
@@ -5119,12 +6088,26 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Blood Rain"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5192,6 +6175,20 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-legendary-trinkets-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Trinkets and Amulets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505080",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Rat Tail Finisher"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "vulkk-legendary-trinkets",
           "sourceType": "guide_article",
           "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
@@ -5216,7 +6213,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5226,9 +6223,9 @@
       "locationId": "location-mapgenie-437200",
       "sourceLocationId": 437200,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -5273,6 +6270,20 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Celestial Blade"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -5285,7 +6296,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5354,7 +6365,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5432,7 +6443,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5510,7 +6521,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5588,7 +6599,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5656,6 +6667,77 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-trinkets-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Trinkets and Amulets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505080",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Dragonfly's Cunning",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "vulkk-legendary-trinkets",
           "sourceType": "guide_article",
           "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
@@ -5681,7 +6763,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5759,7 +6841,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5837,7 +6919,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5915,7 +6997,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5993,7 +7075,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6071,7 +7153,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6149,7 +7231,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6227,7 +7309,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6305,7 +7387,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6383,7 +7465,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6461,7 +7543,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6479,7 +7561,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6582,7 +7664,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6592,9 +7674,9 @@
       "locationId": "location-mapgenie-437617",
       "sourceLocationId": 437617,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、3 个技能点、传奇武器（具体名称待核对）、290 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、3 个技能点、传奇武器（具体名称待核对）、290 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -6648,6 +7730,21 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Daybreak's Fury",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -6660,7 +7757,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6738,7 +7835,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6816,7 +7913,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6826,9 +7923,9 @@
       "locationId": "location-mapgenie-437662",
       "sourceLocationId": 437662,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、370 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、370 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -6882,6 +7979,20 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Wave of Wasps"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -6894,7 +8005,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6972,7 +8083,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6982,9 +8093,9 @@
       "locationId": "location-mapgenie-437671",
       "sourceLocationId": 437671,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、290 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、290 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -7038,6 +8149,62 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-castle-rewards-rendered",
+          "sourceType": "community_database",
+          "title": "All Castle Locations and Rewards",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-headgear-rendered",
+          "sourceType": "community_database",
+          "title": "List of Legendary Headgear and Helmets",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "game8-legendary-armor-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Armor",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -7050,7 +8217,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -7143,7 +8310,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -7153,9 +8320,9 @@
       "locationId": "location-mapgenie-437853",
       "sourceLocationId": 437853,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、3 个技能点、传奇武器（具体名称待核对）、375 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、3 个技能点、传奇武器（具体名称待核对）、375 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -7209,6 +8376,20 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Steel Blossom"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -7221,7 +8402,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -7231,9 +8412,9 @@
       "locationId": "location-mapgenie-437880",
       "sourceLocationId": 437880,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、295 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、295 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -7287,6 +8468,21 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Boulder Fall",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -7299,7 +8495,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -7309,9 +8505,9 @@
       "locationId": "location-mapgenie-437890",
       "sourceLocationId": 437890,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器“龙之怒火（暂译）”、225 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器“龙之怒火（暂译）”、225 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -7365,6 +8561,21 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Dragon's Wrath",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -7377,7 +8588,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -7454,6 +8665,20 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Winds of War"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "vulkk-legendary-trinkets",
           "sourceType": "guide_article",
           "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
@@ -7478,7 +8703,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -7488,9 +8713,9 @@
       "locationId": "location-mapgenie-437924",
       "sourceLocationId": 437924,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、310 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、310 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -7544,6 +8769,20 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Shade of Blight"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -7556,7 +8795,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -7566,9 +8805,9 @@
       "locationId": "location-mapgenie-437934",
       "sourceLocationId": 437934,
       "categoryId": "category-12317-target",
-      "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、335 货币（具体名称待核对）（高置信推断）",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、335 货币（具体名称待核对）",
       "rewards": [
         {
           "type": "experience",
@@ -7622,6 +8861,20 @@
             "reward_quantity"
           ],
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "game8-legendary-weapons-rendered",
+          "sourceType": "community_database",
+          "title": "List of All Legendary Weapons",
+          "publisherOrAuthor": "Game8",
+          "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Repeating Fate"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
       "conflicts": [
@@ -7634,7 +8887,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T15:55:03.160117Z",
+        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
