@@ -4,7 +4,7 @@
   const release = Object.freeze({
     version: '0.9.4.8',
     versionText: "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8",
-    cacheNamespace: 'atlas-alpha-0948-pages-v1-monitor-v11',
+    cacheNamespace: 'atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1',
     owner: 'atlas-bootstrap.js'
   });
 
@@ -47,7 +47,7 @@
   function getReleaseRegistration() {
     if (!nativeRegister) return Promise.resolve(null);
     if (!registrationPromise) {
-      registrationPromise = nativeRegister(`sw.js?v=${encodeURIComponent(release.version)}`, { updateViaCache: 'none' });
+      registrationPromise = nativeRegister(`sw.js?v=${encodeURIComponent(release.version)}&cache=${encodeURIComponent(release.cacheNamespace)}`, { updateViaCache: 'none' });
     }
     return registrationPromise;
   }
@@ -68,7 +68,7 @@
       await registration.update();
       if (registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' });
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        const key = `atlas.controllerReload.${release.version}`;
+        const key = `atlas.controllerReload.${release.cacheNamespace}`;
         if (sessionStorage.getItem(key)) return;
         sessionStorage.setItem(key, '1');
         location.reload();
