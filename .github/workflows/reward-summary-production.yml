@@ -54,9 +54,11 @@ jobs:
           index = json.loads((root / 'data/rewards/reward-evidence-index.json').read_text(encoding='utf-8'))
           batches = sorted((root / 'data/rewards/records').glob('batch-*.json'))
 
+          confirmed_keys = ('officialConfirmed', 'multiSourceConfirmed', 'highConfidenceInference', 'unresolved')
           assert catalog['recordCount'] == 3430
           assert len(catalog['records']) == 3430
-          assert sum(catalog['coverage'].values()) == 3430
+          assert catalog['coverage']['total'] == 3430
+          assert sum(catalog['coverage'][key] for key in confirmed_keys) == 3430
           assert audit['invariants']['exactly3430Records']
           assert audit['invariants']['oneRecordPerLocation']
           assert audit['invariants']['coverageConserved']
