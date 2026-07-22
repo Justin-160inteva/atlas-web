@@ -1,13 +1,15 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "requestedAt": "2026-07-22T23:31:00Z",
+  "requestedAt": "2026-07-23T01:02:00Z",
   "mode": "classify-and-prioritize-all-unresolved-reward-records",
   "maximumNextBatchSize": 100,
+  "planningRevision": "post-91-legendary-chests",
   "requirements": {
     "doNotGenerateRewardValuesFromCategoryOnly": true,
     "requirePointSpecificEvidenceToUpgradeStatus": true,
     "prioritizeOfficialGuideVideoAndImageEvidence": true,
-    "preserve3430RecordCoverage": true
+    "preserve3430RecordCoverage": true,
+    "excludeResolvedLegendaryChests": true
   }
 }
