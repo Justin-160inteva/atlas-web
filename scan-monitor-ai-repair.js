@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = '0.1.0';
+  const VERSION = '0.1.1';
   const POLL_MS = 5000;
   const paths = {
     report: 'data/batch-analysis/scan-autonomous-repair-report.json',
@@ -10,7 +10,8 @@
     runtime: 'data/runtime-progress/eleven-pilot-progress.json'
   };
   let timer = 0;
-  let refreshing = false;
+  let activeRefresh = null;
+  let forceQueued = false;
 
   const $ = id => document.getElementById(id);
   const age = value => {
@@ -26,7 +27,11 @@
   async function read(path) {
     const response = await fetch(`${path}?t=${Date.now()}`, {
       cache: 'no-store',
-      headers: { Accept: 'application/json' }
+      headers: {
+        Accept: 'application/json',
+        'Cache-Control': 'no-cache, no-store, max-age=0',
+        Pragma: 'no-cache'
+      }
     });
     if (!response.ok) throw new Error(String(response.status));
     return response.json();
@@ -125,9 +130,7 @@
     }
   }
 
-  async function refresh() {
-    if (refreshing) return;
-    refreshing = true;
+  async function executeRefresh() {
     try {
       const [report, recovery, queue, runtime] = await Promise.all([
         read(paths.report), read(paths.recovery), read(paths.queue), read(paths.runtime)
@@ -140,17 +143,32 @@
         $('aiRepairBadge').textContent = '状态读取重试中';
         $('aiRepairDetail').textContent = `自动 AI 修复状态暂时读取失败：${error.message || error}。5秒后重试。`;
       }
-    } finally {
-      refreshing = false;
     }
+  }
+
+  function refresh(options = {}) {
+    const force = options === true || options?.force === true;
+    if (activeRefresh) {
+      if (force) forceQueued = true;
+      return activeRefresh;
+    }
+    activeRefresh = executeRefresh().finally(() => {
+      activeRefresh = null;
+      if (forceQueued) {
+        forceQueued = false;
+        refresh({ force: true });
+      }
+    });
+    return activeRefresh;
   }
 
   function start() {
     clearInterval(timer);
-    refresh();
+    refresh({ force: true });
     timer = window.setInterval(refresh, POLL_MS);
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
-    window.addEventListener('online', refresh, { passive: true });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh({ force: true }); });
+    window.addEventListener('online', () => refresh({ force: true }), { passive: true });
+    window.addEventListener('atlas-authoritative-refresh', () => refresh({ force: true }));
     window.AtlasScanAiRepair = { version: VERSION, refresh };
   }
 
