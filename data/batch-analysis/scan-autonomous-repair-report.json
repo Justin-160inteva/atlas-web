@@ -1,38 +1,17 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-07-22T18:50:00Z",
+  "schemaVersion": 3,
+  "generatedAt": "2026-07-22T20:49:00Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
-  "outcome": "repaired",
+  "outcome": "idle",
   "confirmationRequired": false,
-  "targetExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p066",
-  "targetPage": 66,
-  "summary": "已识别 FFmpeg 空输出、异常时间戳、极端帧率和未识别像素格式问题；启用 v14 标准化转码兜底，并将 P66 放回严格串行队列自动重试。",
-  "changedFiles": [
-    "tools/analyze_authorized_video_v14.py",
-    "tools/scan_autonomous_repair.py",
-    "data/scan-bug-dictionary.json",
-    "data/batch-analysis/eleven-pilot-scan-manifest.json"
-  ],
-  "tests": [
-    {
-      "name": "bounded-media-normalization-contract",
-      "status": "configured",
-      "detail": "Large probe window, generated timestamps, 30fps H.264 and yuv420p validation are enabled."
-    },
-    {
-      "name": "ai-context-budget",
-      "status": "fixed",
-      "detail": "Repair source packet reduced from 90000 to 18000 characters and model output capped at 2800 tokens."
-    }
-  ],
-  "previousFailure": {
-    "outcome": "repair_failed",
-    "cause": "GitHub Models request exceeded the 8000-token input limit",
-    "resolved": true
-  },
-  "queueState": "autonomous_repair_ready",
-  "progressPercent": 55,
-  "nextAction": "retry_same_authorized_item",
+  "targetExternalSourceId": null,
+  "targetPage": null,
+  "summary": "P69-P79 新批次已初始化；当前没有需要修复的技术故障。",
+  "changedFiles": [],
+  "tests": [],
+  "queueState": "queued",
+  "progressPercent": 0,
+  "nextAction": "scan_p069",
   "humanReviewRequired": false,
   "safety": {
     "authorizationPreserved": true,
