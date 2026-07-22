@@ -1,0 +1,612 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "generatedAt": "2026-07-22T22:03:05.968059Z",
+  "targetLocationCount": 3430,
+  "unresolvedCount": 2533,
+  "resolvedOrInferredCount": 897,
+  "unresolvedWithDescription": 1080,
+  "unresolvedWithSourceLocationId": 2533,
+  "categoryCount": 32,
+  "regionCount": 11,
+  "strategyCounts": {
+    "point_specific_external_evidence_required": 1157,
+    "legendary_chest_crosscheck": 624,
+    "activity_reward_crosscheck": 228,
+    "castle_legendary_chest_crosscheck": 193,
+    "quest_completion_reward_crosscheck": 177,
+    "activity_completion_reward_crosscheck": 117,
+    "kofun_location_reward_crosscheck": 32,
+    "tea_collectible_crosscheck": 4,
+    "collectible_identity_and_unlock_crosscheck": 1
+  },
+  "topCategories": [
+    {
+      "categoryId": "category-12346-chest",
+      "categoryZhCN": "Chest",
+      "unresolved": 596
+    },
+    {
+      "categoryId": "category-12309-landmark",
+      "categoryZhCN": "Landmark",
+      "unresolved": 240
+    },
+    {
+      "categoryId": "category-12350-stockpile",
+      "categoryZhCN": "Stockpile",
+      "unresolved": 225
+    },
+    {
+      "categoryId": "category-12348-keys",
+      "categoryZhCN": "Keys",
+      "unresolved": 150
+    },
+    {
+      "categoryId": "category-12347-samurai-daisho",
+      "categoryZhCN": "Samurai Daisho",
+      "unresolved": 120
+    },
+    {
+      "categoryId": "category-12308-viewpoint",
+      "categoryZhCN": "Viewpoint",
+      "unresolved": 116
+    },
+    {
+      "categoryId": "category-12324-lost-page",
+      "categoryZhCN": "Lost Page",
+      "unresolved": 103
+    },
+    {
+      "categoryId": "category-12452-hostile-landmark",
+      "categoryZhCN": "Hostile Landmark",
+      "unresolved": 98
+    },
+    {
+      "categoryId": "category-12307-kakurega",
+      "categoryZhCN": "Kakurega",
+      "unresolved": 96
+    },
+    {
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "unresolved": 91
+    },
+    {
+      "categoryId": "category-12349-small-shrine",
+      "categoryZhCN": "Small Shrine",
+      "unresolved": 86
+    },
+    {
+      "categoryId": "category-12355-sub-region",
+      "categoryZhCN": "Sub-Region",
+      "unresolved": 84
+    },
+    {
+      "categoryId": "category-12341-quest",
+      "categoryZhCN": "Quest",
+      "unresolved": 73
+    },
+    {
+      "categoryId": "category-12315-jizo-statue",
+      "categoryZhCN": "Jizo Statue",
+      "unresolved": 69
+    },
+    {
+      "categoryId": "category-12359-port-trader",
+      "categoryZhCN": "Port Trader",
+      "unresolved": 59
+    },
+    {
+      "categoryId": "category-13645-alarm-bell",
+      "categoryZhCN": "Alarm Bell",
+      "unresolved": 50
+    },
+    {
+      "categoryId": "category-12351-kura-key",
+      "categoryZhCN": "Kura Key",
+      "unresolved": 43
+    },
+    {
+      "categoryId": "category-12344-miscellaneous",
+      "categoryZhCN": "Miscellaneous",
+      "unresolved": 39
+    },
+    {
+      "categoryId": "category-12320-ornament-vendor",
+      "categoryZhCN": "Ornament Vendor",
+      "unresolved": 36
+    },
+    {
+      "categoryId": "category-12325-cultural-discovery",
+      "categoryZhCN": "Cultural Discovery",
+      "unresolved": 34
+    }
+  ],
+  "topRegions": [
+    {
+      "regionId": "region-3147-izumi-settsu",
+      "regionZhCN": "IZUMI SETTSU",
+      "unresolved": 345
+    },
+    {
+      "regionId": "region-3144-omi",
+      "regionZhCN": "OMI",
+      "unresolved": 341
+    },
+    {
+      "regionId": "region-3149-harima",
+      "regionZhCN": "HARIMA",
+      "unresolved": 290
+    },
+    {
+      "regionId": "region-3152-kii",
+      "regionZhCN": "KII",
+      "unresolved": 289
+    },
+    {
+      "regionId": "region-3150-tamba",
+      "regionZhCN": "TAMBA",
+      "unresolved": 261
+    },
+    {
+      "regionId": "region-3148-yamashiro",
+      "regionZhCN": "YAMASHIRO",
+      "unresolved": 235
+    },
+    {
+      "regionId": "region-3151-yamato",
+      "regionZhCN": "YAMATO",
+      "unresolved": 229
+    },
+    {
+      "regionId": "region-3146-wakasa",
+      "regionZhCN": "WAKASA",
+      "unresolved": 227
+    },
+    {
+      "regionId": "region-3304-awaji",
+      "regionZhCN": "AWAJI",
+      "unresolved": 192
+    },
+    {
+      "regionId": "region-3145-iga",
+      "regionZhCN": "IGA",
+      "unresolved": 122
+    },
+    {
+      "regionId": "unknown-region",
+      "regionZhCN": "unknown-region",
+      "unresolved": 2
+    }
+  ],
+  "registeredSources": {
+    "pointEvidenceCount": 14,
+    "contextOrTerminologyCount": 4,
+    "pointEvidenceSourceIds": [
+      "powerpyx-legendary-chests",
+      "powerpyx-castle-locations",
+      "pushsquare-legendary-armor",
+      "game8-castle-rewards-rendered",
+      "game8-legendary-weapons-rendered",
+      "game8-legendary-trinkets-rendered",
+      "game8-legendary-headgear-rendered",
+      "game8-legendary-armor-rendered",
+      "game8-legendary-weapons",
+      "game8-legendary-trinkets",
+      "game8-legendary-chests",
+      "polygon-armor-locations",
+      "polygon-kofun-rewards",
+      "vulkk-legendary-trinkets"
+    ]
+  },
+  "nextBatchSize": 100,
+  "nextTargets": [
+    {
+      "locationId": "location-mapgenie-435760",
+      "sourceLocationId": 435760,
+      "title": "Takatori Castle Ruins",
+      "categoryId": "category-12452-hostile-landmark",
+      "categoryZhCN": "Hostile Landmark",
+      "regionId": "region-3151-yamato",
+      "regionZhCN": "YAMATO",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-438364",
+      "sourceLocationId": 438364,
+      "title": "Outer Genbao Fort Kakurega",
+      "categoryId": "category-12307-kakurega",
+      "categoryZhCN": "Kakurega",
+      "regionId": "region-3146-wakasa",
+      "regionZhCN": "WAKASA",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-436812",
+      "sourceLocationId": 436812,
+      "title": "Akechi Clan Kamon",
+      "categoryId": "category-12332-kamon-crest",
+      "categoryZhCN": "Kamon Crest",
+      "regionId": "region-3144-omi",
+      "regionZhCN": "OMI",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-438466",
+      "sourceLocationId": 438466,
+      "title": "Bessho Clan Kamon",
+      "categoryId": "category-12332-kamon-crest",
+      "categoryZhCN": "Kamon Crest",
+      "regionId": "region-3149-harima",
+      "regionZhCN": "HARIMA",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-437584",
+      "sourceLocationId": 437584,
+      "title": "Hashiba Clan Kamon",
+      "categoryId": "category-12332-kamon-crest",
+      "categoryZhCN": "Kamon Crest",
+      "regionId": "region-3149-harima",
+      "regionZhCN": "HARIMA",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-437925",
+      "sourceLocationId": 437925,
+      "title": "Tsutsui Clan Kamon",
+      "categoryId": "category-12332-kamon-crest",
+      "categoryZhCN": "Kamon Crest",
+      "regionId": "region-3151-yamato",
+      "regionZhCN": "YAMATO",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-435861",
+      "sourceLocationId": 435861,
+      "title": "Kano Painting",
+      "categoryId": "category-12326-kano-painting",
+      "categoryZhCN": "Kano Painting",
+      "regionId": "region-3144-omi",
+      "regionZhCN": "OMI",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-436180",
+      "sourceLocationId": 436180,
+      "title": "Kano Painting",
+      "categoryId": "category-12326-kano-painting",
+      "categoryZhCN": "Kano Painting",
+      "regionId": "region-3146-wakasa",
+      "regionZhCN": "WAKASA",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-436708",
+      "sourceLocationId": 436708,
+      "title": "Kano Painting",
+      "categoryId": "category-12326-kano-painting",
+      "categoryZhCN": "Kano Painting",
+      "regionId": "region-3144-omi",
+      "regionZhCN": "OMI",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-437698",
+      "sourceLocationId": 437698,
+      "title": "Kano Painting",
+      "categoryId": "category-12326-kano-painting",
+      "categoryZhCN": "Kano Painting",
+      "regionId": "region-3149-harima",
+      "regionZhCN": "HARIMA",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-437926",
+      "sourceLocationId": 437926,
+      "title": "Kano Painting",
+      "categoryId": "category-12326-kano-painting",
+      "categoryZhCN": "Kano Painting",
+      "regionId": "region-3151-yamato",
+      "regionZhCN": "YAMATO",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-463534",
+      "sourceLocationId": 463534,
+      "title": "Fukuchiyama Castle Kura Key",
+      "categoryId": "category-12351-kura-key",
+      "categoryZhCN": "Kura Key",
+      "regionId": "region-3150-tamba",
+      "regionZhCN": "TAMBA",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-481195",
+      "sourceLocationId": 481195,
+      "title": "Iwaya Castle Kura Key",
+      "categoryId": "category-12351-kura-key",
+      "categoryZhCN": "Kura Key",
+      "regionId": "region-3304-awaji",
+      "regionZhCN": "AWAJI",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-452254",
+      "sourceLocationId": 452254,
+      "title": "Kameyama Castle Kura Key",
+      "categoryId": "category-12351-kura-key",
+      "categoryZhCN": "Kura Key",
+      "regionId": "region-3150-tamba",
+      "regionZhCN": "TAMBA",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-440237",
+      "sourceLocationId": 440237,
+      "title": "Katano Castle Kura Key",
+      "categoryId": "category-12351-kura-key",
+      "categoryZhCN": "Kura Key",
+      "regionId": "region-3147-izumi-settsu",
+      "regionZhCN": "IZUMI SETTSU",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-439316",
+      "sourceLocationId": 439316,
+      "title": "Sakamoto Castle Kura Key",
+      "categoryId": "category-12351-kura-key",
+      "categoryZhCN": "Kura Key",
+      "regionId": "region-3144-omi",
+      "regionZhCN": "OMI",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-480990",
+      "sourceLocationId": 480990,
+      "title": "Sumoto Castle Kura Key",
+      "categoryId": "category-12351-kura-key",
+      "categoryZhCN": "Kura Key",
+      "regionId": "region-3304-awaji",
+      "regionZhCN": "AWAJI",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-450319",
+      "sourceLocationId": 450319,
+      "title": "Tsuchibashi Fort Kura Key",
+      "categoryId": "category-12351-kura-key",
+      "categoryZhCN": "Kura Key",
+      "regionId": "region-3152-kii",
+      "regionZhCN": "KII",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-481151",
+      "sourceLocationId": 481151,
+      "title": "Yura Castle Kura Key",
+      "categoryId": "category-12351-kura-key",
+      "categoryZhCN": "Kura Key",
+      "regionId": "region-3304-awaji",
+      "regionZhCN": "AWAJI",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-481205",
+      "sourceLocationId": 481205,
+      "title": "Iwaya Castle Harbor",
+      "categoryId": "category-12309-landmark",
+      "categoryZhCN": "Landmark",
+      "regionId": "region-3304-awaji",
+      "regionZhCN": "AWAJI",
+      "priority": 106,
+      "strategy": "castle_legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "official_reward_mechanics",
+        "castle",
+        "legendary_chest",
+        "video"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    }
+  ],
+  "researchPolicyZhCN": "按具体地点证据优先。只有来源能同时对应地点和奖励时才升级证据状态；类别规律仅用于排序，不直接生成奖励。",
+  "invariants": {
+    "catalogCountPreserved": true,
+    "unresolvedCountConserved": true,
+    "noRewardValuesGenerated": true,
+    "noEvidenceStatusChanged": true
+  }
+}
