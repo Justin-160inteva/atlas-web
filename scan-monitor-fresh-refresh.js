@@ -1,12 +1,12 @@
 (() => {
   'use strict';
 
-  const VERSION = '0.1.0';
+  const VERSION = '0.1.1';
   const REPO = 'Justin-160inteva/atlas-web';
   const BRANCH = 'main';
   const API_ROOT = `https://api.github.com/repos/${REPO}`;
   const RAW_ROOT = `https://raw.githubusercontent.com/${REPO}`;
-  const MANUAL_WINDOW_MS = 12000;
+  const MANUAL_WINDOW_MS = 14000;
   const nativeFetch = window.fetch.bind(window);
 
   const livePaths = new Set([
@@ -61,11 +61,9 @@
     return Boolean(url && url.hostname === 'api.github.com' && url.pathname.includes(`/repos/${REPO}/contents/`));
   }
 
-  function withNoCacheHeaders(headers) {
+  function safeHeaders(headers, accept = 'application/json') {
     const result = new Headers(headers || {});
-    result.set('Accept', result.get('Accept') || 'application/json');
-    result.set('Cache-Control', 'no-cache, no-store, max-age=0');
-    result.set('Pragma', 'no-cache');
+    if (!result.has('Accept')) result.set('Accept', accept);
     return result;
   }
 
@@ -82,7 +80,7 @@
   async function resolveLatestHead(currentGeneration) {
     const response = await nativeFetch(`${API_ROOT}/commits/${BRANCH}?atlas_refresh=${Date.now()}-${currentGeneration}`, {
       cache: 'no-store',
-      headers: withNoCacheHeaders({ Accept: 'application/vnd.github+json' })
+      headers: safeHeaders({ Accept: 'application/vnd.github+json' })
     });
     if (!response.ok) throw new Error(`HEAD ${response.status}`);
     const payload = await response.json();
@@ -110,7 +108,7 @@
     if (!packetCache.has(key)) {
       packetCache.set(key, nativeFetch(`${RAW_ROOT}/${sha}/${path}?atlas_refresh=${generation}-${Date.now()}`, {
         cache: 'no-store',
-        headers: withNoCacheHeaders({ Accept: 'application/json' })
+        headers: safeHeaders({ Accept: 'application/json' })
       }).then(async response => {
         if (!response.ok) throw new Error(`${path} ${response.status}`);
         return response.text();
@@ -147,7 +145,7 @@
             headers: { 'Content-Type': 'application/json', 'X-Atlas-Commit': sha }
           });
         } catch (_) {
-          // Fall through to a direct no-cache request when pinned raw delivery is temporarily unavailable.
+          // Fall through to a direct cache-busted request if pinned raw delivery is temporarily unavailable.
         }
       }
     }
@@ -157,7 +155,7 @@
       return nativeFetch(url.href, {
         ...init,
         cache: 'no-store',
-        headers: withNoCacheHeaders(init.headers)
+        headers: safeHeaders(init.headers)
       });
     }
     return nativeFetch(input, init);
@@ -176,7 +174,7 @@
   function callControllers() {
     try { window.AtlasScanMonitor?.refresh?.(); } catch (_) {}
     try { window.AtlasScanAiRepair?.refresh?.({ force: true }); } catch (_) {}
-    try { window.AtlasAuthorCountRefresh?.(); } catch (_) {}
+    try { window.AtlasAuthorCountRefresh?.({ force: true }); } catch (_) {}
   }
 
   async function performRefresh(reason = 'manual') {
@@ -185,10 +183,10 @@
       await beginAuthoritativeWindow();
       window.dispatchEvent(new CustomEvent('atlas-authoritative-refresh', { detail: { reason, generation } }));
       callControllers();
-      await delay(350);
-      callControllers();
-      await delay(900);
-      callControllers();
+      for (const wait of [350, 900, 1800, 3500]) {
+        await delay(wait);
+        callControllers();
+      }
     }).catch(() => {
       callControllers();
     });
@@ -205,7 +203,7 @@
       button.getAttribute('title'),
       button.textContent
     ].filter(Boolean).join(' ');
-    return /(?:刷新|立即核对|refresh|reload)/i.test(label);
+    return /(?:刷新|立即核对|refresh|reload|↻|⟳|↺|⭮)/i.test(label);
   }
 
   function attachClickBridge(doc) {
@@ -243,6 +241,6 @@
     get generation() { return generation; }
   };
 
-  // The first page render is also pinned to the newest main commit.
+  // The first render is authoritative as well, including a normal reload from the top-right control.
   beginAuthoritativeWindow();
 })();
