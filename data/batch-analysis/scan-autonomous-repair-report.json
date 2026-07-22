@@ -1,15 +1,44 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-07-22T16:43:44.585370Z",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-22T18:50:00Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
-  "outcome": "repair_failed",
+  "outcome": "repaired",
   "confirmationRequired": false,
-  "changedFiles": [],
-  "tests": [],
-  "error": "GitHub Models HTTP 413: {\"error\":{\"code\":\"tokens_limit_reached\",\"message\":\"Request body too large for gpt-4.1 model. Max size: 8000 tokens.\",\"details\":\"Request body too large for gpt-4.1 model. Max size: 8000 tokens.\"}}",
-  "durationSeconds": 0.37,
+  "targetExternalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p066",
+  "targetPage": 66,
+  "summary": "已识别 FFmpeg 空输出、异常时间戳、极端帧率和未识别像素格式问题；启用 v14 标准化转码兜底，并将 P66 放回严格串行队列自动重试。",
+  "changedFiles": [
+    "tools/analyze_authorized_video_v14.py",
+    "tools/scan_autonomous_repair.py",
+    "data/scan-bug-dictionary.json",
+    "data/batch-analysis/eleven-pilot-scan-manifest.json"
+  ],
+  "tests": [
+    {
+      "name": "bounded-media-normalization-contract",
+      "status": "configured",
+      "detail": "Large probe window, generated timestamps, 30fps H.264 and yuv420p validation are enabled."
+    },
+    {
+      "name": "ai-context-budget",
+      "status": "fixed",
+      "detail": "Repair source packet reduced from 90000 to 18000 characters and model output capped at 2800 tokens."
+    }
+  ],
+  "previousFailure": {
+    "outcome": "repair_failed",
+    "cause": "GitHub Models request exceeded the 8000-token input limit",
+    "resolved": true
+  },
+  "queueState": "autonomous_repair_ready",
+  "progressPercent": 55,
+  "nextAction": "retry_same_authorized_item",
+  "humanReviewRequired": false,
   "safety": {
-    "rolledBack": true,
-    "failureVisible": true
+    "authorizationPreserved": true,
+    "queueScopePreserved": true,
+    "serialExecutionPreserved": true,
+    "retentionPreserved": true,
+    "rollbackRequired": false
   }
 }
