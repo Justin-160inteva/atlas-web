@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "locale": "zh-CN",
+  "sources": [
+    {
+      "sourceId": "ubisoft-cn-ac-shadows",
+      "sourceType": "official_website",
+      "title": "刺客信条：影｜育碧中国",
+      "publisherOrAuthor": "Ubisoft",
+      "locator": "https://zh-cn.ubisoft.com/ac_shadows",
+      "useFor": ["official_chinese_terminology", "game_identity"],
+      "pointEvidence": false
+    },
+    {
+      "sourceId": "ubisoft-cn-story-preorder-4179",
+      "sourceType": "official_website",
+      "title": "《刺客信条：影》剧情预告片与版本内容",
+      "publisherOrAuthor": "Ubisoft",
+      "locator": "https://zh-cn.ubisoft.com/ac_shadows/news_detail?id=4179",
+      "useFor": ["official_chinese_terminology", "reward_type_terminology"],
+      "pointEvidence": false
+    },
+    {
+      "sourceId": "powerpyx-legendary-chests",
+      "sourceType": "guide_article",
+      "title": "Assassin's Creed Shadows All Legendary Chest Locations",
+      "publisherOrAuthor": "PowerPyx",
+      "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-legendary-chest-locations/",
+      "useFor": ["legendary_chest", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "pushsquare-legendary-armor",
+      "sourceType": "guide_article",
+      "title": "All Legendary Armor Sets and Where to Find Them",
+      "publisherOrAuthor": "Push Square",
+      "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+      "useFor": ["armor", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "game8-legendary-weapons",
+      "sourceType": "community_database",
+      "title": "List of All Legendary Weapons",
+      "publisherOrAuthor": "Game8",
+      "locator": "https://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+      "useFor": ["weapon", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "game8-legendary-trinkets",
+      "sourceType": "community_database",
+      "title": "List of Legendary Trinkets and Amulets",
+      "publisherOrAuthor": "Game8",
+      "locator": "https://game8.co/games/Assassins-Creed-Shadows/archives/505080",
+      "useFor": ["trinket", "amulet", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "game8-legendary-chests",
+      "sourceType": "community_database",
+      "title": "All Legendary Chest Locations",
+      "publisherOrAuthor": "Game8",
+      "locator": "https://game8.co/games/Assassins-Creed-Shadows/archives/504806",
+      "useFor": ["legendary_chest", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "polygon-armor-locations",
+      "sourceType": "guide_article",
+      "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+      "publisherOrAuthor": "Polygon",
+      "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+      "useFor": ["armor", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "polygon-kofun-rewards",
+      "sourceType": "guide_article",
+      "title": "All kofun locations and rewards in Assassin's Creed Shadows",
+      "publisherOrAuthor": "Polygon",
+      "locator": "https://www.polygon.com/assassins-creed-shadows-guides/548683/kofun-locations-rewards-all-where-to-find",
+      "useFor": ["kofun", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "vulkk-legendary-trinkets",
+      "sourceType": "guide_article",
+      "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
+      "publisherOrAuthor": "VULKK",
+      "locator": "https://vulkk.com/2025/03/24/all-legendary-amulets-and-trinkets-in-assassins-creed-shadows/",
+      "useFor": ["trinket", "amulet", "location_reward_crosscheck"],
+      "pointEvidence": true
+    }
+  ],
+  "matchingPolicy": {
+    "requireLocationAndRewardName": true,
+    "maximumNormalizedCharacterDistance": 4500,
+    "doNotUpgradeOnRewardNameOnly": true,
+    "doNotUpgradeOnLocationOnly": true,
+    "networkFailureLeavesExistingStatusUnchanged": true
+  }
+}
