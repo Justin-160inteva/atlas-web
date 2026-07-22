@@ -1,6 +1,10 @@
 (function(){'use strict';
 const coarse=matchMedia('(pointer:coarse)').matches||/iPad|iPhone|iPod|Android/i.test(navigator.userAgent);
 if(!coarse)return;
+const ipad=/iPad/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const largeTouch=navigator.maxTouchPoints>1&&Math.min(screen.width,screen.height)>=700;
+// Alpha 0.9.4.8 iPad Canvas hotfix is the sole compositor/gesture owner on large touch devices.
+if(ipad||largeTouch)return;
 const canvas=document.getElementById('mapCanvas');
 const perf={interacting:false,lastFrame:0,settleTimer:0,grid:null,gridSource:null,gridSize:48};
 window.AtlasMobilePerf=perf;
