@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "version": "0.9.4.8",
   "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8",
-  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11",
+  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1",
   "entrypoint": "index.html",
   "releaseOwner": "atlas-bootstrap.js",
   "serviceWorker": "sw.js",
@@ -31,7 +31,9 @@
     "scanOrchestration": "tools/run_scan_with_auto_recovery.py",
     "queueSchemaHydration": "tools/run_scan_with_auto_recovery_v2.py",
     "favorites": "app.js",
-    "mapViewport": "app.js"
+    "mapViewport": "app.js",
+    "ipadMapViewport": "atlas-ipad-canvas-hotfix-0948.js",
+    "ipadCanvasCompositor": "atlas-ipad-canvas-hotfix-0948.js"
   },
   "releaseAssets": [
     "atlas-bootstrap.js",
@@ -44,6 +46,8 @@
     "atlas-data-guard-0939.js",
     "atlas-ui-fix-0931.js",
     "atlas-080.js",
+    "atlas-ipad-canvas-hotfix-0948.js",
+    "atlas-ipad-canvas-hotfix-0948.css",
     "scan-monitor.js",
     "data/rewards/reward-evidence-index.json",
     "data/rewards/reward-source-policy.json",
@@ -89,6 +93,9 @@
     "allowLegacyVersionWriters": false,
     "allowMultipleFetchOverrides": false,
     "requireIpadCompositorPath": true,
+    "ipadCanvasPhysicalClearRequired": true,
+    "ipadMaximumRenderedMarkersDuringInteraction": 440,
+    "ipadMaximumCanvasPixels": 3100000,
     "requireServiceWorkerUpgradeSimulation": true,
     "requireFullAuditAtThisRelease": true
   }

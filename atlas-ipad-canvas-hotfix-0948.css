@@ -1,0 +1,85 @@
+/* Atlas Alpha 0.9.4.8 — iPad Safari canvas ghosting and viewport compositor hotfix */
+@media (min-width:700px){
+  html.atlas-ipad-canvas-hotfix,
+  html.atlas-ipad-canvas-hotfix body{
+    position:fixed!important;
+    inset:0!important;
+    width:auto!important;
+    height:auto!important;
+    min-width:100vw!important;
+    min-height:100dvh!important;
+    overflow:hidden!important;
+    overscroll-behavior:none!important;
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+  }
+
+  html.atlas-ipad-canvas-hotfix body .app-shell{
+    position:fixed!important;
+    inset:0!important;
+    width:auto!important;
+    height:auto!important;
+    min-width:100vw!important;
+    min-height:100dvh!important;
+    overflow:hidden!important;
+    transform:none!important;
+    translate:none!important;
+    scale:none!important;
+    zoom:1!important;
+    isolation:isolate;
+    contain:layout paint style;
+  }
+
+  html.atlas-ipad-canvas-hotfix body #mapCanvas{
+    position:absolute!important;
+    inset:0!important;
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    max-width:none!important;
+    max-height:none!important;
+    transform:none!important;
+    translate:none!important;
+    scale:none!important;
+    will-change:auto!important;
+    contain:layout paint size style;
+    image-rendering:auto;
+    touch-action:none!important;
+    -webkit-user-select:none;
+    user-select:none;
+  }
+
+  html.atlas-ipad-canvas-hotfix body .vignette{
+    contain:paint;
+    transform:none!important;
+    will-change:auto!important;
+  }
+
+  html.atlas-ipad-canvas-hotfix.atlas-ipad-canvas-interacting body :where(
+    .glass,.top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill,
+    .panel,.sheet,.search-modal,.evidence-panel,.settings-panel
+  ){
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    transition:none!important;
+  }
+
+  html.atlas-ipad-canvas-hotfix.atlas-ipad-canvas-interacting body :where(
+    .top-bar,.quick-rail,.bottom-nav,.map-controls,.status-pill
+  ){
+    background:linear-gradient(145deg,rgba(37,33,30,.97),rgba(16,15,14,.96))!important;
+    box-shadow:0 8px 24px rgba(0,0,0,.24)!important;
+  }
+
+  html.atlas-ipad-canvas-hotfix.atlas-ipad-canvas-interacting body .vignette{
+    opacity:.3!important;
+    transition:none!important;
+  }
+
+  html.atlas-ipad-canvas-hotfix.atlas-ipad-canvas-interacting body :where(
+    .pulse,.route-badge,.rail-button,.nav-item
+  ){
+    animation:none!important;
+    transition:none!important;
+  }
+}

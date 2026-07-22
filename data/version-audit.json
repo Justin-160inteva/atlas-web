@@ -6,7 +6,7 @@
   "lastAuditDate": "2026-07-22",
   "lastAuditTrigger": "accepted-feature-regression",
   "auditEveryPatchReleases": 3,
-  "nextScheduledAuditVersion": "0.9.4.14",
+  "nextScheduledAuditVersion": "0.9.4.11",
   "stageGate": {
     "id": "ultra-hd-original-map",
     "title": "超高清自创地图成型",
@@ -24,7 +24,7 @@
     "status": "regression_blocked",
     "intendedVersion": "0.9.4.8",
     "entryPageVersion": "0.9.4.8",
-    "serviceWorkerCacheVersion": "atlas-alpha-0948-pages-v1-monitor-v11",
+    "serviceWorkerCacheVersion": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1",
     "publicVerificationRequired": true,
     "physicalDeviceVerificationRequired": true,
     "blockingRegression": "P34 runtime is active while durable P33 remains failed, violating strict earliest-unresolved order"
@@ -69,7 +69,7 @@
       "evidence": [
         "data/audits/full-audit-0948-regression-20260722.json",
         "PROJECT-ROADMAP.md updated with blocking regression and next-three-version priorities",
-        "nextScheduledAuditVersion advanced to 0.9.4.14"
+        "nextScheduledAuditVersion restored to 0.9.4.11"
       ]
     }
   ],
@@ -219,7 +219,7 @@
       "type": "regression-triggered-full-audit",
       "result": "Critical P33/P34 durable-order regression found; roadmap and audit ledger updated; release marked regression-blocked",
       "report": "data/audits/full-audit-0948-regression-20260722.json",
-      "nextScheduledAuditVersion": "0.9.4.14"
+      "nextScheduledAuditVersion": "0.9.4.11"
     }
   ]
 }
