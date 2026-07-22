@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "release": "0.9.4.8",
   "batchId": "reward-batch-019",
-  "generatedAt": "2026-07-22T21:40:10.563219Z",
+  "generatedAt": "2026-07-22T21:43:25.420084Z",
   "recordSchema": "data/rewards/reward-record-schema.json",
   "startIndex": 1801,
   "endIndex": 1900,
@@ -14,7 +14,7 @@
       "categoryId": "category-12317-target",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇饰品（具体名称待核对）、330 货币（具体名称待核对）",
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇饰品（具体名称待核对）、330 文钱",
       "rewards": [
         {
           "type": "experience",
@@ -46,11 +46,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 330,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -108,7 +108,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -120,7 +120,7 @@
       "categoryId": "category-12317-target",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得2,000 点经验值、3 个技能点、传奇武器“龙之刃（暂译）”、255 货币（具体名称待核对）",
+      "summaryZhCN": "获得2,000 点经验值、3 个技能点、传奇武器“龙刃”、255 文钱",
       "rewards": [
         {
           "type": "experience",
@@ -143,20 +143,20 @@
         {
           "type": "weapon",
           "nameOriginal": "Dragon's Edge",
-          "nameZhCN": "龙之刃（暂译）",
+          "nameZhCN": "龙刃",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": "legendary",
-          "notesZhCN": "中文名称为规则化暂译，后续发现官方简体中文译名时应替换。原始奖励类型：Legendary Katana。"
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Katana。"
         },
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 255,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -191,17 +191,10 @@
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -213,7 +206,7 @@
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
       "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、270 货币（具体名称待核对）（高置信推断）",
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、270 文钱（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -245,11 +238,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 270,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -279,7 +272,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -291,7 +284,7 @@
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
       "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、225 货币（具体名称待核对）（高置信推断）",
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、225 文钱（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -323,11 +316,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 225,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -357,7 +350,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -410,7 +403,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -422,7 +415,7 @@
       "categoryId": "category-12317-target",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇饰品（具体名称待核对）",
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇饰品“将门复仇”",
       "rewards": [
         {
           "type": "experience",
@@ -445,11 +438,11 @@
         {
           "type": "trinket",
           "nameOriginal": "Masakado's Vengeance",
-          "nameZhCN": "传奇饰品（具体名称待核对）",
+          "nameZhCN": "将门复仇",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": "legendary",
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Amulet。"
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Amulet。"
         }
       ],
       "sources": [
@@ -483,17 +476,10 @@
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -505,7 +491,7 @@
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
       "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、385 货币（具体名称待核对）（高置信推断）",
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、385 文钱（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -537,11 +523,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 385,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -571,7 +557,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -583,7 +569,7 @@
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
       "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、235 货币（具体名称待核对）（高置信推断）",
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、235 文钱（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -615,11 +601,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 235,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -649,7 +635,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -661,7 +647,7 @@
       "categoryId": "category-12317-target",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、310 货币（具体名称待核对）",
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、传奇武器（具体名称待核对）、310 文钱",
       "rewards": [
         {
           "type": "experience",
@@ -693,11 +679,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 310,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -741,7 +727,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -753,7 +739,7 @@
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
       "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、255 货币（具体名称待核对）（高置信推断）",
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、255 文钱（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -785,11 +771,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 255,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -819,7 +805,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -831,7 +817,7 @@
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
       "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、375 货币（具体名称待核对）（高置信推断）",
+      "summaryZhCN": "获得2,000 点经验值、2 个技能点、武器（具体名称待核对）、375 文钱（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -863,11 +849,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 375,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -897,7 +883,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -908,8 +894,8 @@
       "sourceLocationId": 463097,
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、1 个技能点、155 货币（具体名称待核对）（高置信推断）",
+      "confidence": 0.82,
+      "summaryZhCN": "获得2,000 点经验值、1 个技能点、155 文钱（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -932,11 +918,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 155,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -956,17 +942,10 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -978,7 +957,7 @@
       "categoryId": "category-12317-target",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得2,000 点经验值、1 个技能点、305 货币（具体名称待核对）",
+      "summaryZhCN": "获得2,000 点经验值、1 个技能点、305 文钱",
       "rewards": [
         {
           "type": "experience",
@@ -1001,11 +980,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 305,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -1081,17 +1060,10 @@
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1102,8 +1074,8 @@
       "sourceLocationId": 463142,
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得2,000 点经验值、1 个技能点、255 货币（具体名称待核对）（高置信推断）",
+      "confidence": 0.82,
+      "summaryZhCN": "获得2,000 点经验值、1 个技能点、255 文钱（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -1126,11 +1098,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 255,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -1150,17 +1122,10 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1172,7 +1137,7 @@
       "categoryId": "category-12317-target",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得2,000 点经验值、1 个技能点、360 货币（具体名称待核对）",
+      "summaryZhCN": "获得2,000 点经验值、1 个技能点、360 文钱",
       "rewards": [
         {
           "type": "experience",
@@ -1195,11 +1160,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 360,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -1303,17 +1268,10 @@
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1325,7 +1283,7 @@
       "categoryId": "category-12317-target",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得2,000 点经验值、1 个技能点、320 货币（具体名称待核对）",
+      "summaryZhCN": "获得2,000 点经验值、1 个技能点、320 文钱",
       "rewards": [
         {
           "type": "experience",
@@ -1348,11 +1306,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 320,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -1386,17 +1344,10 @@
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1408,7 +1359,7 @@
       "categoryId": "category-12317-target",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得2,000 点经验值、1 个技能点、320 货币（具体名称待核对）",
+      "summaryZhCN": "获得2,000 点经验值、1 个技能点、320 文钱",
       "rewards": [
         {
           "type": "experience",
@@ -1431,11 +1382,11 @@
         {
           "type": "currency",
           "nameOriginal": "Mon",
-          "nameZhCN": "货币（具体名称待核对）",
+          "nameZhCN": "文钱",
           "quantity": 320,
           "quantityStatus": "exact",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         }
       ],
       "sources": [
@@ -1455,6 +1406,34 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         },
         {
+          "sourceId": "powerpyx-legendary-chests",
+          "sourceType": "guide_article",
+          "title": "Assassin's Creed Shadows All Legendary Chest Locations",
+          "publisherOrAuthor": "PowerPyx",
+          "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-legendary-chest-locations/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "powerpyx-castle-locations",
+          "sourceType": "guide_article",
+          "title": "Assassin's Creed Shadows All Castle Locations",
+          "publisherOrAuthor": "PowerPyx",
+          "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-castle-locations/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
           "sourceId": "vulkk-legendary-trinkets",
           "sourceType": "guide_article",
           "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
@@ -1469,17 +1448,10 @@
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1497,7 +1469,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1515,7 +1487,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1526,8 +1498,8 @@
       "sourceLocationId": 481021,
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得5,000 点经验值、3 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "confidence": 0.82,
+      "summaryZhCN": "获得5,000 点经验值、3 个技能点、传奇武器“震骨”（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -1550,11 +1522,11 @@
         {
           "type": "weapon",
           "nameOriginal": "Boneshaker",
-          "nameZhCN": "传奇武器（具体名称待核对）",
+          "nameZhCN": "震骨",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": "legendary",
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Kanabo。"
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Kanabo。"
         }
       ],
       "sources": [
@@ -1574,17 +1546,10 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1653,7 +1618,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1722,7 +1687,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1791,7 +1756,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1860,7 +1825,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1929,7 +1894,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -1998,7 +1963,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2067,7 +2032,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2136,7 +2101,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2205,7 +2170,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2274,7 +2239,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2343,7 +2308,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2412,7 +2377,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2481,7 +2446,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2550,7 +2515,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2561,8 +2526,8 @@
       "sourceLocationId": 481103,
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得5,000 点经验值、3 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "confidence": 0.82,
+      "summaryZhCN": "获得5,000 点经验值、3 个技能点、传奇武器“小助手”（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -2585,11 +2550,11 @@
         {
           "type": "weapon",
           "nameOriginal": "Little Helper",
-          "nameZhCN": "传奇武器（具体名称待核对）",
+          "nameZhCN": "小助手",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": "legendary",
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Teppo。"
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Teppo。"
         }
       ],
       "sources": [
@@ -2609,17 +2574,10 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2688,7 +2646,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2699,8 +2657,8 @@
       "sourceLocationId": 481171,
       "categoryId": "category-12317-target",
       "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得10,000 点经验值、6 个技能点、传奇护甲（具体名称待核对）、传奇护甲（具体名称待核对）（高置信推断）",
+      "confidence": 0.82,
+      "summaryZhCN": "获得10,000 点经验值、6 个技能点、传奇护甲“由加里面具”、传奇护甲“由加里甲”（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -2723,20 +2681,20 @@
         {
           "type": "armor",
           "nameOriginal": "Yukari's Mask",
-          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "nameZhCN": "由加里面具",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": "legendary",
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Headgear。"
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Headgear。"
         },
         {
           "type": "armor",
           "nameOriginal": "Yukari's Armor",
-          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "nameZhCN": "由加里甲",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": "legendary",
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Light Armor。"
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Light Armor。"
         }
       ],
       "sources": [
@@ -2756,17 +2714,10 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2835,7 +2786,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2904,7 +2855,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -2973,7 +2924,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3042,7 +2993,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3111,7 +3062,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3180,7 +3131,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3249,7 +3200,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3318,7 +3269,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3387,7 +3338,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3456,7 +3407,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3525,7 +3476,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3594,7 +3545,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3612,7 +3563,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3630,7 +3581,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3713,7 +3664,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3787,7 +3738,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3856,7 +3807,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -3939,7 +3890,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4022,7 +3973,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4105,7 +4056,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4174,7 +4125,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4257,7 +4208,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4340,7 +4291,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4423,7 +4374,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4492,7 +4443,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4561,7 +4512,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4630,7 +4581,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4699,7 +4650,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4768,7 +4719,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4837,7 +4788,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4906,7 +4857,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -4917,8 +4868,8 @@
       "sourceLocationId": 438256,
       "categoryId": "category-12357-horse-archery",
       "status": "high_confidence_inference",
-      "confidence": 0.78,
-      "summaryZhCN": "获得500 点经验值、1 个知识点、奖励（具体名称待核对）（高置信推断）",
+      "confidence": 0.82,
+      "summaryZhCN": "获得500 点经验值、1 个知识点、明（高置信推断）",
       "rewards": [
         {
           "type": "experience",
@@ -4941,11 +4892,11 @@
         {
           "type": "unknown",
           "nameOriginal": "Akira",
-          "nameZhCN": "奖励（具体名称待核对）",
+          "nameZhCN": "明",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Mount。"
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Mount。"
         }
       ],
       "sources": [
@@ -4965,17 +4916,10 @@
           "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5044,7 +4988,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5113,7 +5057,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5166,7 +5110,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5219,7 +5163,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5272,7 +5216,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5325,7 +5269,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5378,7 +5322,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5431,7 +5375,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5484,7 +5428,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5537,7 +5481,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5590,7 +5534,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5643,7 +5587,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5696,7 +5640,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5749,7 +5693,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5802,7 +5746,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5855,7 +5799,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5908,7 +5852,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -5961,7 +5905,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6014,7 +5958,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6067,7 +6011,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6120,7 +6064,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6173,7 +6117,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6270,7 +6214,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6282,7 +6226,7 @@
       "categoryId": "category-12356-kofun",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得2,000 点经验值、1 个知识点、传奇饰品（具体名称待核对）",
+      "summaryZhCN": "获得2,000 点经验值、1 个知识点、传奇饰品“将门复仇”",
       "rewards": [
         {
           "type": "experience",
@@ -6305,11 +6249,11 @@
         {
           "type": "trinket",
           "nameOriginal": "Masakado's Vengeance",
-          "nameZhCN": "传奇饰品（具体名称待核对）",
+          "nameZhCN": "将门复仇",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": "legendary",
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Trinket。"
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Trinket。"
         }
       ],
       "sources": [
@@ -6371,17 +6315,10 @@
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6478,7 +6415,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6490,16 +6427,16 @@
       "categoryId": "category-12356-kofun",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得奖励（具体名称待核对）、1 个知识点、传奇饰品“天照之佑”",
+      "summaryZhCN": "获得一千经验、1 个知识点、传奇饰品“天照之佑”",
       "rewards": [
         {
           "type": "unknown",
           "nameOriginal": "1,000XP",
-          "nameZhCN": "奖励（具体名称待核对）",
+          "nameZhCN": "一千经验",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": null,
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         },
         {
           "type": "knowledge_point",
@@ -6579,17 +6516,10 @@
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6686,7 +6616,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6811,7 +6741,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6908,7 +6838,7 @@
       ],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -6998,7 +6928,7 @@
       "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
@@ -7010,16 +6940,16 @@
       "categoryId": "category-12356-kofun",
       "status": "multi_source_confirmed",
       "confidence": 0.92,
-      "summaryZhCN": "获得1000（暂译）、1 个知识点、传奇武器（具体名称待核对）",
+      "summaryZhCN": "获得一千、1 个知识点、传奇武器“大地之霞”",
       "rewards": [
         {
           "type": "unknown",
           "nameOriginal": "1,000",
-          "nameZhCN": "1000（暂译）",
+          "nameZhCN": "一千",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": null,
-          "notesZhCN": "中文名称为规则化暂译，后续发现官方简体中文译名时应替换。"
+          "notesZhCN": "采用已登记的简体中文名称。"
         },
         {
           "type": "knowledge_point",
@@ -7033,11 +6963,11 @@
         {
           "type": "weapon",
           "nameOriginal": "Blush of the Earth",
-          "nameZhCN": "传奇武器（具体名称待核对）",
+          "nameZhCN": "大地之霞",
           "quantity": null,
           "quantityStatus": "not_applicable",
           "rarity": "legendary",
-          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Bow。"
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Bow。"
         }
       ],
       "sources": [
@@ -7085,17 +7015,10 @@
           "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
         }
       ],
-      "conflicts": [
-        {
-          "type": "translation_mismatch",
-          "status": "accepted_uncertainty",
-          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
-          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
-        }
-      ],
+      "conflicts": [],
       "review": {
         "state": "machine_checked",
-        "lastReviewedAt": "2026-07-22T21:40:10.563219Z",
+        "lastReviewedAt": "2026-07-22T21:43:25.420084Z",
         "method": "atlas_reward_builder_v1",
         "reviewer": null,
         "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
