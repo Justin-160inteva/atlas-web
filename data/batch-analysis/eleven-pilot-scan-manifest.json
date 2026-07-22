@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "id": "eleven-production-p058-p068-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
@@ -23,7 +23,7 @@
   "refreshSourceMetadata": true,
   "downloadBackoffSeconds": 20,
   "forceTranscodeFallback": true,
-  "maxAttemptsPerItem": 3,
+  "maxAttemptsPerItem": 20,
   "staleRunningAfterSeconds": 7200,
   "runtimeHeartbeat": {
     "enabled": true,
@@ -111,11 +111,13 @@
   },
   "recoveryPolicy": {
     "enabled": true,
-    "maxAttemptsPerItem": 3,
+    "maxAttemptsPerItem": 20,
     "automaticallyRetryKnownTransientFailures": true,
+    "retryTechnicalFailuresUntilResolved": true,
     "fastCooldownCapSeconds": 60,
     "minimumSafeCooldownSeconds": 5,
-    "blockUnknownOrIdentityFailures": true,
+    "blockUnknownOrIdentityFailures": false,
+    "protectedFailureCategories": ["authorization", "identity", "privacy", "queue-scope", "retention"],
     "neverModifySourceCodeAutomatically": false,
     "neverBroadenAuthorization": true,
     "neverRetainOriginalMedia": true
