@@ -1,26 +1,30 @@
 {
-  "schemaVersion": 11,
-  "triggerId": "eleven-production-p058-p068-20260722-unattended-start",
-  "requestedAt": "2026-07-22T14:39:29Z",
+  "schemaVersion": 12,
+  "triggerId": "eleven-production-p058-p068-p066-persistent-retry-20260722-1930z",
+  "requestedAt": "2026-07-22T19:30:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P58-P68",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
-  "mode": "strict-serial-one-item-per-run-deterministic-then-ai-repair",
+  "mode": "strict-serial-persistent-deterministic-then-ai-repair",
   "queuePages": [58,59,60,61,62,63,64,65,66,67,68],
-  "earliestUnresolvedPage": 58,
-  "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
+  "earliestUnresolvedPage": 66,
+  "requiredAnalyzer": "tools/analyze_authorized_video_v14.py",
   "automaticRecovery": true,
   "autonomousAiRepair": true,
+  "retryTechnicalFailuresUntilResolved": true,
+  "maximumTechnicalAttemptsBeforeEscalatingDiagnostics": 20,
+  "automaticRedispatchAfterFailure": true,
   "confirmationRequired": false,
   "heartbeatSupervisor": true,
   "runtimeHeartbeat": {
     "enabled": true,
     "minimumIntervalSeconds": 30,
     "independentDuringNetworkStall": true,
-    "publicSanitizedProgressOnly": true
+    "publicSanitizedProgressOnly": true,
+    "hardStaleRecoverySeconds": 180
   },
   "downloadTelemetry": {
     "downloadedMegabytes": true,
@@ -29,6 +33,6 @@
     "etaSeconds": true
   },
   "humanReviewOnUnknownFailure": false,
-  "protectedBoundaryPolicy": "Only authorization, identity, privacy, queue-scope or retention violations may stop without an automatic source patch.",
-  "recoveryReason": "P47-P57 completed; initialize the next authorized P58-P68 serial batch with unattended deterministic recovery and bounded AI repair."
+  "protectedBoundaryPolicy": "Only authorization, identity, privacy, queue-scope or retention violations may stop automatic repair and redispatch.",
+  "recoveryReason": "P66 heartbeat and FFmpeg normalization retry must continue automatically until the technical fault is resolved, while preserving authorization, strict serial execution and transient-media safeguards."
 }
