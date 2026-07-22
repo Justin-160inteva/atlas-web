@@ -46,6 +46,27 @@ jobs:
       - name: Compile translation and catalog builders
         run: python -m py_compile tools/research_reward_translation_batch.py tools/build_reward_summary_catalog.py
 
+      - name: Block untranslated source placeholders
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          lexicon_path = Path('data/rewards/reward-translation-lexicon-zh-CN.json')
+          evidence_path = Path('data/rewards/reward-translation-evidence.json')
+          lexicon = json.loads(lexicon_path.read_text(encoding='utf-8'))
+          evidence = json.loads(evidence_path.read_text(encoding='utf-8')) if evidence_path.exists() else {'schemaVersion': 1, 'release': '0.9.4.8', 'locale': 'zh-CN', 'translations': {}}
+          marker = '__ATLAS_BLOCKED_PLACEHOLDER__'
+          blocked = ('??', '?? Mon', '?? Banner', '?? Weapon')
+          exact = lexicon.setdefault('exactNames', {})
+          translations = evidence.setdefault('translations', {})
+          for original in blocked:
+              exact[original] = marker
+              translations.pop(original, None)
+          lexicon_path.write_text(json.dumps(lexicon, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
       - name: Translate next bounded reward-name batch
         id: research
         env:
@@ -59,6 +80,28 @@ jobs:
           print(f"accepted={state['acceptedThisRun']}")
           print(f"rejected={state['rejectedThisRun']}")
           print(f"remaining={state['remainingCandidateNames']}")
+          PY
+
+      - name: Remove temporary placeholder markers
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          lexicon_path = Path('data/rewards/reward-translation-lexicon-zh-CN.json')
+          evidence_path = Path('data/rewards/reward-translation-evidence.json')
+          lexicon = json.loads(lexicon_path.read_text(encoding='utf-8'))
+          evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
+          marker = '__ATLAS_BLOCKED_PLACEHOLDER__'
+          blocked = ('??', '?? Mon', '?? Banner', '?? Weapon')
+          exact = lexicon.setdefault('exactNames', {})
+          translations = evidence.setdefault('translations', {})
+          for original in blocked:
+              if exact.get(original) == marker or original.startswith('??'):
+                  exact.pop(original, None)
+              translations.pop(original, None)
+          lexicon_path.write_text(json.dumps(lexicon, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
 
       - name: Rebuild all 3430 reward summaries
@@ -93,13 +136,15 @@ jobs:
           assert lexicon['locale'] == 'zh-CN'
           assert state['acceptedThisRun'] > 0
           assert not any(state['safety'].values())
+          assert '__ATLAS_BLOCKED_PLACEHOLDER__' not in lexicon.get('exactNames', {}).values()
           for original, row in evidence.get('translations', {}).items():
+              assert not original.startswith('??')
               assert row['original'] == original
               assert row['standardSimplifiedChinese'] is True
               assert row['officialConfirmed'] is False
               assert re.search(r'[\u3400-\u9fff]', row['zhCN'])
               assert not re.search(r'[A-Za-z]', row['zhCN'])
-          print(f"Validated 3430 records; translated {state['acceptedThisRun']} names; {state['remainingCandidateNames']} names remain.")
+          print(f"Validated 3430 records; translated {state['acceptedThisRun']} names; {state['remainingCandidateNames']} translatable names remain.")
           PY
 
       - name: Commit translated names and rebuilt reward catalog
