@@ -5,14 +5,20 @@
   "pilotRegion": "顺序批次 P58-P68",
   "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p066",
   "page": 66,
-  "state": "blocked",
+  "state": "recovery",
   "stage": "recovery",
-  "progressPercent": 2.0,
+  "progressPercent": 55.0,
   "processedSeconds": 0.0,
-  "durationSeconds": 0.0,
+  "durationSeconds": 4305.0,
   "sampledFrames": 0,
   "targetFrames": 480,
-  "message": "自动调查完成：unknown；安全边界阻止继续修改，问题保持可见",
-  "updatedAt": "2026-07-22T16:43:44.983029Z",
+  "message": "自动 AI 修复已应用：启用 v14 时间戳重建与 H.264/yuv420p 标准化；P66 等待严格串行自动重试",
+  "updatedAt": "2026-07-22T18:50:00Z",
+  "repair": {
+    "outcome": "repaired",
+    "humanReviewRequired": false,
+    "repairPass": 1,
+    "nextAction": "retry_same_authorized_item"
+  },
   "privacy": "Only public, sanitized task progress is stored. No media URLs, cookies, video files, local paths, or frame pixels are included."
 }
