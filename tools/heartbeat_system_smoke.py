@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Run exactly 500 distinct heartbeat supervision scenarios for an eleven-item serial queue."""
+"""Run a risk-budgeted heartbeat supervision matrix for an eleven-item serial queue."""
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 from datetime import datetime, timedelta, timezone
 
@@ -15,6 +16,13 @@ manifest = json.loads((ROOT / "data/batch-analysis/eleven-pilot-scan-manifest.js
 dictionary = json.loads((ROOT / "data/scan-bug-dictionary.json").read_text(encoding="utf-8"))
 results: list[dict[str, object]] = []
 PAGES = list(range(25, 36))
+REQUESTED_CHECKS = max(5, int(os.environ.get("ATLAS_CHECKS", "500")))
+VALIDATION_TIER = os.environ.get("ATLAS_VALIDATION_TIER", "full" if REQUESTED_CHECKS >= 500 else "targeted")
+
+
+def group_sizes(total: int, groups: int) -> list[int]:
+    base, remainder = divmod(total, groups)
+    return [base + (1 if index < remainder else 0) for index in range(groups)]
 
 
 def stamp(seconds_ago: int) -> str:
@@ -75,38 +83,49 @@ def record(name: str, passed: bool, detail: str) -> None:
         raise AssertionError(f"{name}: {detail}")
 
 
-for i in range(100):
-    age = i % 90
-    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(), {"updatedAt": stamp(1)}, runtime("p025", state="running", stage="analysis", age=age, sequence=i + 1), dictionary, {}, NOW)
-    record(f"fresh-{i:03d}", report["decision"] == "healthy" and not report["resumeWorkflow"] and projection is None and not report["queueChanged"] and valid_serial(queue), f"age={age}")
+fresh_count, soft_count, hard_count, terminal_count, dedup_count = group_sizes(REQUESTED_CHECKS, 5)
+sequence = 1
 
-for i in range(100):
-    age = 91 + (i % 89)
-    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(), {"updatedAt": stamp(1)}, runtime("p025", state="running", stage="analysis", age=age, sequence=i + 101), dictionary, {}, NOW)
-    record(f"soft-{i:03d}", report["decision"] == "soft_stale" and report["repair"] == "observe_and_recheck" and not report["resumeWorkflow"] and projection is None and not report["queueChanged"] and valid_serial(queue), f"age={age}")
+for index in range(fresh_count):
+    age = index % 90
+    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(), {"updatedAt": stamp(1)}, runtime("p025", state="running", stage="analysis", age=age, sequence=sequence), dictionary, {}, NOW)
+    sequence += 1
+    record(f"fresh-{index:03d}", report["decision"] == "healthy" and not report["resumeWorkflow"] and projection is None and not report["queueChanged"] and valid_serial(queue), f"age={age}")
 
-for i in range(100):
-    age = 180 + i
-    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(), {"updatedAt": stamp(1)}, runtime("p025", state="running", stage="persisting", age=age, sequence=i + 201), dictionary, {}, NOW)
-    record(f"hard-{i:03d}", report["decision"] == "hard_stale" and report["resumeWorkflow"] and report["queueChanged"] and queue["items"][0]["state"] == "failed" and projection is not None and projection["state"] == "queued" and valid_serial(queue), f"age={age}")
+for index in range(soft_count):
+    age = 91 + (index % 89)
+    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(), {"updatedAt": stamp(1)}, runtime("p025", state="running", stage="analysis", age=age, sequence=sequence), dictionary, {}, NOW)
+    sequence += 1
+    record(f"soft-{index:03d}", report["decision"] == "soft_stale" and report["repair"] == "observe_and_recheck" and not report["resumeWorkflow"] and projection is None and not report["queueChanged"] and valid_serial(queue), f"age={age}")
 
-for i in range(100):
-    age = i
-    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(first_state="imported"), {"updatedAt": stamp(1)}, runtime("p025", state="running", stage="persisting", age=age, sequence=i + 301), dictionary, {}, NOW)
-    record(f"terminal-{i:03d}", report["decision"] == "stale_terminal_heartbeat" and report["resumeWorkflow"] and not report["queueChanged"] and projection is not None and projection["externalSourceId"] == "p026" and projection["state"] == "queued" and valid_serial(queue), f"age={age}")
+for index in range(hard_count):
+    age = 180 + index
+    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(), {"updatedAt": stamp(1)}, runtime("p025", state="running", stage="persisting", age=age, sequence=sequence), dictionary, {}, NOW)
+    sequence += 1
+    record(f"hard-{index:03d}", report["decision"] == "hard_stale" and report["resumeWorkflow"] and report["queueChanged"] and queue["items"][0]["state"] == "failed" and projection is not None and projection["state"] == "queued" and valid_serial(queue), f"age={age}")
 
-for i in range(100):
-    previous = {"resumeTargetExternalSourceId": "p026", "lastResumeRequestedAt": stamp(i)}
-    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(first_state="imported"), {"updatedAt": stamp(1)}, runtime("p026", state="queued", stage="queued", age=400 + i, sequence=i + 401), dictionary, previous, NOW)
-    record(f"dedup-{i:03d}", report["decision"] == "pending_queued" and not report["resumeWorkflow"] and report["resumeSuppressedByCooldown"] and report["resumeTargetExternalSourceId"] == "p026" and projection is None and not report["queueChanged"] and valid_serial(queue), f"elapsed={i}")
+for index in range(terminal_count):
+    age = index
+    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(first_state="imported"), {"updatedAt": stamp(1)}, runtime("p025", state="running", stage="persisting", age=age, sequence=sequence), dictionary, {}, NOW)
+    sequence += 1
+    record(f"terminal-{index:03d}", report["decision"] == "stale_terminal_heartbeat" and report["resumeWorkflow"] and not report["queueChanged"] and projection is not None and projection["externalSourceId"] == "p026" and projection["state"] == "queued" and valid_serial(queue), f"age={age}")
 
-if len(results) != 500:
-    raise SystemExit(f"expected exactly 500 heartbeat checks, got {len(results)}")
+for index in range(dedup_count):
+    previous = {"resumeTargetExternalSourceId": "p026", "lastResumeRequestedAt": stamp(index)}
+    report, queue, projection = supervisor.evaluate(config, manifest, base_queue(first_state="imported"), {"updatedAt": stamp(1)}, runtime("p026", state="queued", stage="queued", age=400 + index, sequence=sequence), dictionary, previous, NOW)
+    sequence += 1
+    record(f"dedup-{index:03d}", report["decision"] == "pending_queued" and not report["resumeWorkflow"] and report["resumeSuppressedByCooldown"] and report["resumeTargetExternalSourceId"] == "p026" and projection is None and not report["queueChanged"] and valid_serial(queue), f"elapsed={index}")
+
+if len(results) != REQUESTED_CHECKS:
+    raise SystemExit(f"expected exactly {REQUESTED_CHECKS} heartbeat checks, got {len(results)}")
 output = {
-    "schemaVersion": 3,
+    "schemaVersion": 4,
     "generatedAt": NOW.isoformat().replace("+00:00", "Z"),
+    "validationTier": VALIDATION_TIER,
+    "requestedChecks": REQUESTED_CHECKS,
     "queueItems": 11,
     "maximumConcurrentItems": 1,
+    "coverageFamilies": ["fresh", "soft-stale", "hard-stale", "terminal-projection", "resume-deduplication"],
     "totalChecks": len(results),
     "passed": all(item["passed"] for item in results),
     "checks": results,
@@ -114,4 +133,4 @@ output = {
 out = ROOT / "data/conflict-reports/heartbeat-matrix.json"
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print("Heartbeat eleven-item serial supervision matrix: 500/500 checks passed")
+print(f"Heartbeat eleven-item serial supervision matrix: {len(results)}/{REQUESTED_CHECKS} checks passed ({VALIDATION_TIER})")

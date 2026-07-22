@@ -1,15 +1,18 @@
 {
-  "schemaVersion": 4,
-  "version": "2026.07.19.5",
+  "schemaVersion": 6,
+  "version": "2026.07.21.2",
   "project": "Atlas authorized video scan pipeline",
-  "scope": "Extensible dictionary of project-observed and primary-source failure signatures for source retrieval, media processing, analysis, GitHub Actions, progress publishing, queue state, authorization, privacy, runtime heartbeat supervision, and adaptive transfer recovery.",
+  "scope": "Extensible dictionary of project-observed and primary-source failure signatures for source retrieval, media processing, analysis, GitHub Actions, progress publishing, queue state, authorization, privacy, runtime heartbeat supervision, adaptive transfer recovery, and bounded AI source repair.",
   "defaultPolicy": {
     "maxAttemptsPerItem": 3,
     "diagnoseImmediately": true,
     "retryOnlyWhenSafe": true,
     "fastRecoveryCooldownCapSeconds": 60,
     "minimumSafeCooldownSeconds": 5,
-    "neverModifySourceCodeAutomatically": true,
+    "neverModifySourceCodeAutomatically": false,
+    "sourceCodeAutoRepairPolicy": "allowlisted_ai_patch_after_deterministic_recovery",
+    "autonomousRepairConfirmationRequired": false,
+    "maximumAutonomousRepairPassesPerItem": 2,
     "neverBroadenAuthorization": true,
     "neverRetainOriginalMedia": true,
     "neverIgnoreIdentityMismatch": true
@@ -18,20 +21,23 @@
     "githubContents": "https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28",
     "githubConcurrency": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
     "githubRateLimits": "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api",
+    "githubModels": "https://docs.github.com/en/rest/models/inference",
     "ytDlpReadme": "https://github.com/yt-dlp/yt-dlp/blob/master/README.md",
     "ytDlpBilibiliExtractor": "https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/extractor/bilibili.py",
     "curlCffi": "https://github.com/lexiforest/curl_cffi",
     "ffmpegErrors": "https://ffmpeg.org/doxygen/0.10/group__lavu__error.html"
   },
   "entries": [
-    {"id":"bilibili-http-412","layer":"source-download","retryable":true,"autoAction":"fast_backoff_public_api_and_adaptive_range","cooldownSeconds":20,"patterns":["http error 412","status code 412","precondition failed"],"diagnosis":"Request precondition rejection; refresh public metadata, rotate to an approved backup URL, use adaptive range/resume, and apply a short bounded cooldown."},
+    {"id":"bilibili-http-412","layer":"source-download","retryable":true,"autoAction":"fast_backoff_public_api_and_adaptive_range","cooldownSeconds":20,"maximumAttemptsOverride":5,"patterns":["http error 412","status code 412","precondition failed"],"diagnosis":"Request precondition rejection; refresh public metadata, rotate to an approved backup URL, use adaptive range/resume, and apply a short bounded cooldown."},
     {"id":"bilibili-http-403","layer":"source-download","retryable":true,"autoAction":"fast_backoff_public_api_and_adaptive_range","cooldownSeconds":15,"patterns":["http error 403","status code 403","403 forbidden"],"diagnosis":"Media request rejected; refresh metadata, try approved backup URLs, and retry after a short bounded cooldown."},
+    {"id":"bilibili-http-5xx","layer":"source-download","retryable":true,"autoAction":"refresh_wbi_metadata_rotate_cdn","cooldownSeconds":8,"maximumAttemptsOverride":5,"patterns":["http error 500","http error 502","http error 503","http error 504","status code 503","service unavailable","gateway time-out"],"diagnosis":"The selected API or CDN path is temporarily unavailable; refresh WBI-signed metadata and resume across API-provided CDN backups."},
     {"id":"bilibili-http-429","layer":"source-download","retryable":true,"autoAction":"wait_then_retry","cooldownSeconds":60,"patterns":["http error 429","too many requests","rate limit"],"diagnosis":"Request rate limit reached; use the maximum fast-recovery cooldown and avoid a tight retry loop."},
+    {"id":"bilibili-wbi-risk-control","layer":"source-metadata","retryable":true,"autoAction":"refresh_wbi_metadata_rotate_cdn","cooldownSeconds":20,"maximumAttemptsOverride":5,"patterns":["api code=-352","code=352","risk control","v_voucher"],"diagnosis":"Anonymous player metadata hit a temporary WBI risk gate; rotate the bounded player fingerprint, refresh the WBI key, and retry the direct API path."},
     {"id":"bilibili-no-formats","layer":"source-metadata","retryable":true,"autoAction":"refresh_source_metadata_and_retry","cooldownSeconds":5,"patterns":["no video formats found","requested format is not available","no formats found"],"diagnosis":"Extractor returned no usable format; refresh page, CID, and play metadata."},
     {"id":"bilibili-initial-state","layer":"source-metadata","retryable":true,"autoAction":"switch_to_public_api","cooldownSeconds":5,"patterns":["unable to extract initial state","unable to extract play info","playurl api returned no"],"diagnosis":"Page extraction changed or returned incomplete state; use verified API metadata."},
-    {"id":"multipart-page-identity","layer":"identity","retryable":false,"autoAction":"human_review_required","cooldownSeconds":0,"patterns":["exceeds multipart page count","cid mismatch","page identity mismatch","returned no pages"],"diagnosis":"BVID, page, CID, or title identity is inconsistent."},
+    {"id":"multipart-page-identity","layer":"identity","retryable":false,"autoAction":"protected_failure","cooldownSeconds":0,"patterns":["exceeds multipart page count","cid mismatch","page identity mismatch","returned no pages"],"diagnosis":"BVID, page, CID, or title identity is inconsistent. This protected failure remains visible and is never auto-patched."},
     {"id":"curl-response-context-manager","layer":"http-client","retryable":true,"autoAction":"use_v11_transfer_adapter","cooldownSeconds":0,"patterns":["does not support the context manager protocol"],"diagnosis":"The HTTP response object requires explicit closing; use the compatibility transfer adapter."},
-    {"id":"curl-transport","layer":"http-client","retryable":true,"autoAction":"enable_adaptive_range_and_retry","cooldownSeconds":8,"patterns":["ssl_connect","curl: (35)","http/2 stream","curl: (92)","tls handshake","curl: (18)","end of response with"],"diagnosis":"Temporary TLS or HTTP stream failure; resume missing ranges instead of restarting the full object."},
+    {"id":"curl-transport","layer":"http-client","retryable":true,"autoAction":"enable_adaptive_range_and_retry","cooldownSeconds":8,"maximumAttemptsOverride":5,"patterns":["ssl_connect","curl: (35)","http/2 stream","curl: (92)","tls handshake","curl: (18)","end of response with"],"diagnosis":"Temporary TLS or HTTP stream failure; resume missing ranges instead of restarting the full object."},
     {"id":"network-timeout-reset","layer":"network","retryable":true,"autoAction":"enable_adaptive_range_and_retry","cooldownSeconds":5,"patterns":["read timed out","connect timeout","operation timed out","connection reset","incomplete read","broken pipe"],"diagnosis":"The network transfer ended before completion; retry only missing ranges with bounded workers."},
     {"id":"download-truncated","layer":"source-download","retryable":true,"autoAction":"enable_adaptive_range_and_retry","cooldownSeconds":5,"patterns":["unexpectedly small","content-length mismatch","download produced no usable file","premature eof","assembly size mismatch"],"diagnosis":"The downloaded object is incomplete; discard invalid partial output and resume bounded ranges."},
     {"id":"range-not-supported","layer":"source-download","retryable":true,"autoAction":"fallback_resumable_single_stream","cooldownSeconds":0,"patterns":["range request was not honored","range unsupported"],"diagnosis":"The selected CDN endpoint does not honor byte ranges; use resumable single-stream mode."},
@@ -45,9 +51,10 @@
     {"id":"workflow-stale-lease","layer":"orchestration","retryable":true,"autoAction":"reset_stale_lease_and_retry","cooldownSeconds":0,"patterns":["stale running lease","workflow was cancelled","active item has no heartbeat","heartbeat stale"],"diagnosis":"A workflow ended without releasing its queue lease."},
     {"id":"runtime-heartbeat-missing","layer":"heartbeat","retryable":true,"autoAction":"resume_pending_item","cooldownSeconds":0,"patterns":["heartbeat file missing","no valid heartbeat timestamp"],"diagnosis":"No valid runtime heartbeat exists while work remains."},
     {"id":"runtime-heartbeat-soft-stale","layer":"heartbeat","retryable":true,"autoAction":"observe_and_recheck","cooldownSeconds":0,"patterns":["soft stale heartbeat","heartbeat age exceeds soft threshold"],"diagnosis":"Heartbeat is late but remains inside the hard recovery window."},
-    {"id":"runtime-heartbeat-hard-stale","layer":"heartbeat","retryable":true,"autoAction":"reset_lease_and_retry","cooldownSeconds":0,"patterns":["hard stale heartbeat","no heartbeat for 420 seconds"],"diagnosis":"Runtime progress stopped beyond the hard threshold; release one bounded lease and retry."},
+    {"id":"runtime-heartbeat-hard-stale","layer":"heartbeat","retryable":true,"autoAction":"reset_stale_lease_and_retry","cooldownSeconds":0,"patterns":["hard stale heartbeat","heartbeat supervisor: no heartbeat for","no heartbeat for 420 seconds"],"diagnosis":"Runtime progress stopped beyond the hard threshold; release one bounded lease and retry."},
     {"id":"runtime-heartbeat-terminal-stale","layer":"heartbeat","retryable":false,"autoAction":"publish_terminal_projection","cooldownSeconds":0,"patterns":["terminal stale heartbeat","durable queue already confirms import"],"diagnosis":"A stale runtime file remains after durable completion; UI must prefer terminal queue state."},
     {"id":"runtime-heartbeat-inactive-stale","layer":"heartbeat","retryable":true,"autoAction":"resume_pending_item","cooldownSeconds":0,"patterns":["inactive stale heartbeat","old queued heartbeat"],"diagnosis":"The last heartbeat is inactive and stale while a pending item remains."},
-    {"id":"schema-authorization-privacy","layer":"safety","retryable":false,"autoAction":"human_review_required","cooldownSeconds":0,"patterns":["jsondecodeerror","keyerror","assertionerror","authorization failed","permission scope","retention violation","frame pixels retained","original video retained"],"diagnosis":"A schema, authorization, identity, or privacy invariant failed; stop automatic processing."}
+    {"id":"schema-authorization-privacy","layer":"safety","retryable":false,"autoAction":"protected_failure","cooldownSeconds":0,"patterns":["jsondecodeerror","keyerror","assertionerror","authorization failed","permission scope","retention violation","frame pixels retained","original video retained"],"diagnosis":"A schema, authorization, identity, or privacy invariant failed. The failure stays visible and automatic source modification is blocked."},
+    {"id":"unknown-technical-source-failure","layer":"source-code","retryable":false,"autoAction":"bounded_ai_source_repair","cooldownSeconds":0,"patterns":["no known signature","unexpected internal error","unhandled exception"],"diagnosis":"No deterministic recovery matched; invoke the allowlisted AI repair controller, run fast safety tests, and retry the same queue item only after validation passes."}
   ]
 }

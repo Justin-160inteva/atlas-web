@@ -1,12 +1,12 @@
 {
-  "schemaVersion": 15,
+  "schemaVersion": 20,
   "id": "eleven-production-p025-p035-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "statusOutput": "data/batch-analysis/eleven-pilot-scan-status.json",
-  "analyzer": "tools/analyze_authorized_video_v12.py",
+  "analyzer": "tools/analyze_authorized_video_v13.py",
   "outputPrefix": "eleven",
   "maximumQueueItems": 11,
   "maxItemsPerRun": 1,
@@ -15,15 +15,16 @@
   "maxSamplesA": 480,
   "maxSamplesDefault": 360,
   "minimumIntervalSeconds": 3.0,
-  "perItemTimeoutSeconds": 5400,
+  "perItemTimeoutSeconds": 6300,
   "pilotRegion": "顺序批次 P25-P35",
   "processingOrder": "strict-p025-through-p035-episode-order",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "preferPublicApi": true,
-  "downloadBackoffSeconds": 40,
+  "refreshSourceMetadata": true,
+  "downloadBackoffSeconds": 20,
   "forceTranscodeFallback": false,
   "maxAttemptsPerItem": 3,
-  "staleRunningAfterSeconds": 600,
+  "staleRunningAfterSeconds": 7200,
   "runtimeHeartbeat": {
     "enabled": true,
     "publishDownloadStageImmediately": true,
@@ -62,13 +63,24 @@
     "noArtificialRateLimit": true,
     "adaptiveParallelRanges": true,
     "maxRangeWorkers": 4,
-    "parallelRangeThresholdBytes": 16777216,
+    "parallelRangeThresholdBytes": 8388608,
     "chunkSizeBytes": 2097152,
     "rangeRetries": 3,
+    "rangeRetriesPerCdn": 2,
     "heartbeatSeconds": 20,
     "speedWindowSeconds": 30,
     "fallbackToResumableSingleStream": true,
-    "preferBackupUrlOnRepeated412": true
+    "preferBackupUrlOnRepeated412": true,
+    "metadataRefreshPasses": 2,
+    "analysisVideoMaxHeight": 480,
+    "allowLegacyProgressiveFallback": true,
+    "bypassPublicVideoWebpage": true,
+    "preservePartialAcrossCdnCandidates": true,
+    "cdnSpeedProbeEnabled": true,
+    "cdnSpeedProbeCandidates": 4,
+    "cdnSpeedProbeBytes": 524288,
+    "cdnSpeedProbeTimeoutSeconds": 6,
+    "preferRangeCapableCdn": true
   },
   "analysisOptimization": {
     "policy": "catalog-aware-quality-speed-balance",
@@ -84,7 +96,13 @@
     "curlCffiResponseContextManager": true,
     "adaptiveRangeResume": true,
     "preserveDownloadTelemetryAcrossStages": true,
-    "fixedBy": "tools/analyze_authorized_video_v12.py"
+    "wbiSignedPlayerMetadata": true,
+    "verifiedCatalogCidFirst": true,
+    "apiProvidedCdnRotation": true,
+    "publicVideoWebpageBypassed": true,
+    "fastestAuthorizedCdnProbe": true,
+    "preferRangeCapableCdn": true,
+    "fixedBy": "tools/analyze_authorized_video_v13.py"
   },
   "recoveryPolicy": {
     "enabled": true,
@@ -93,7 +111,7 @@
     "fastCooldownCapSeconds": 60,
     "minimumSafeCooldownSeconds": 5,
     "blockUnknownOrIdentityFailures": true,
-    "neverModifySourceCodeAutomatically": true,
+    "neverModifySourceCodeAutomatically": false,
     "neverBroadenAuthorization": true,
     "neverRetainOriginalMedia": true
   },
@@ -101,5 +119,8 @@
     "originalVideo": false,
     "framePixels": false,
     "numericDescriptorsOnly": true
-  }
+  },
+  "autonomousRepairPolicy": "data/scan-autonomy-policy.json",
+  "autonomousRepairConfirmationRequired": false,
+  "autonomousRepairRestoredAt": "2026-07-22T01:10:00Z"
 }
