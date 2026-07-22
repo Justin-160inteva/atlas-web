@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "requestedAt": "2026-07-22T22:40:00Z",
+  "mode": "translate-next-highest-priority-reward-names",
+  "locale": "zh-CN",
+  "maximumNamesThisRun": 100,
+  "continueOnSchedule": true,
+  "priorityOrder": [
+    "castle reward proper names",
+    "confirmed or inferred named rewards",
+    "quest reward proper names",
+    "cosmetic and collectible reward names"
+  ],
+  "requirements": {
+    "retainOriginalName": true,
+    "standardSimplifiedChinese": true,
+    "doNotClaimOfficialTranslation": true,
+    "doNotChangeRewardQuantity": true,
+    "doNotChangeRewardType": true,
+    "doNotChangeEvidenceStatusFromTranslationAlone": true
+  }
+}
