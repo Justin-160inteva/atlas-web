@@ -4,18 +4,18 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P69-P79",
-  "updatedAt": "2026-07-22T21:47:23.400109Z",
+  "updatedAt": "2026-07-22T21:53:14.181028Z",
   "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
-    "imported": 4,
+    "imported": 5,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 7,
+    "remaining": 6,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -68,11 +68,11 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p073",
       "sequence": 73,
       "page": 73,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-22T21:51:26.273289Z",
+      "lastFinishedAt": "2026-07-22T21:53:14.174005Z",
+      "resultPath": "data/analysis-results/eleven-p073.json",
       "error": null
     },
     {
@@ -144,18 +144,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p072",
-      "sequence": 72,
-      "page": 72,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P72 第72期：Animus裂隙",
-      "startedAt": "2026-07-22T21:43:19.955483Z",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p073",
+      "sequence": 73,
+      "page": 73,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P73 第73期：路易斯·弗罗伊斯的心血",
+      "startedAt": "2026-07-22T21:51:26.273289Z",
       "attemptCount": 1,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.79s\nruntime progress conflict; refetching SHA and retrying in 0.64s\nruntime progress conflict; refetching SHA and retrying in 0.71s\nruntime progress conflict; refetching SHA and retrying in 0.85s\nruntime progress conflict; refetching SHA and retrying in 0.86s\nruntime progress publish warning: HTTPError: HTTP Error 403: Forbidden\nruntime progress conflict; refetching SHA and retrying in 0.89s\nruntime progress conflict; refetching SHA and retrying in 0.94s\nruntime progress conflict; refetching SHA and retrying in 0.66s\nruntime progress conflict; refetching SHA and retrying in 0.66s\nanalysis result written: data/analysis-results/eleven-p072.json status=analyzed\nruntime progress conflict; refetching SHA and retrying in 0.93s\nruntime progress conflict; refetching SHA and retrying in 0.79s\n\n",
+      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.79s\nruntime progress conflict; refetching SHA and retrying in 0.64s\nruntime progress conflict; refetching SHA and retrying in 0.62s\nanalysis result written: data/analysis-results/eleven-p073.json status=analyzed\nruntime progress conflict; refetching SHA and retrying in 0.72s\n\n",
       "analysisStatus": "analyzed",
       "indexReturnCode": 0,
       "completed": true,
-      "finishedAt": "2026-07-22T21:47:23.393618Z"
+      "finishedAt": "2026-07-22T21:53:14.174005Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
