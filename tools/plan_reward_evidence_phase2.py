@@ -2,13 +2,13 @@
 """Plan phase-two evidence research for unresolved Atlas reward records.
 
 The planner does not invent rewards or change the catalog. It classifies every unresolved
-location by category, region, available source text, and likely evidence strategy, then
-writes a bounded priority queue for subsequent official/guide/video/image research.
+location by explicit category, title, region, available source text, and likely evidence
+strategy, then writes a bounded priority queue for official/guide/video/image research.
 """
 from __future__ import annotations
 
 import json
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -67,26 +67,32 @@ def description_has_reward_text(location: dict[str, Any]) -> bool:
     return "**reward" in description or "rewards:" in description or "reward:" in description
 
 
-def strategy(category_label: str, title: str, description: str) -> tuple[str, int, list[str]]:
-    text = f"{category_label} {title} {description}".lower()
-    if any(token in text for token in ("castle", "城", "fort", "堡")):
-        return "castle_legendary_chest_crosscheck", 100, ["official_reward_mechanics", "castle", "legendary_chest", "video"]
-    if any(token in text for token in ("kofun", "古坟", "tomb")):
-        return "kofun_location_reward_crosscheck", 96, ["kofun", "guide", "video"]
-    if any(token in text for token in ("legendary chest", "传奇宝箱", "chest")):
-        return "legendary_chest_crosscheck", 94, ["legendary_chest", "guide", "video"]
-    if any(token in text for token in ("quest", "任务", "contract", "契约", "target", "目标")):
-        return "quest_completion_reward_crosscheck", 90, ["quest", "guide", "video"]
-    if any(token in text for token in ("sumi-e", "水墨", "painting", "画")):
-        return "collectible_identity_and_unlock_crosscheck", 82, ["collectible", "image", "video"]
-    if any(token in text for token in ("pet", "动物", "animal", "cub", "pup")):
+def strategy(category_id: str, category_label: str, title: str) -> tuple[str, int, list[str]]:
+    category = f"{category_id} {category_label}".lower()
+    title_text = title.lower()
+
+    if "legendary-chest" in category or "legendary chest" in category or "传奇宝箱" in category:
+        return "legendary_chest_crosscheck", 100, ["legendary_chest", "guide", "video", "image"]
+    if "kofun" in category or "古坟" in category:
+        return "kofun_location_reward_crosscheck", 98, ["kofun", "guide", "video"]
+    if "quest" in category or "任务" in category:
+        return "quest_completion_reward_crosscheck", 94, ["quest", "guide", "video"]
+    if ("hostile-landmark" in category or "castle" in category) and any(token in title_text for token in ("castle", "fort", "城", "堡")):
+        return "castle_legendary_chest_crosscheck", 92, ["official_reward_mechanics", "castle", "legendary_chest", "video"]
+    if "chest" in category or "宝箱" in category:
+        return "generic_chest_specific_loot_crosscheck", 84, ["chest", "video", "image", "guide"]
+    if any(token in category for token in ("kano-painting", "kamon-crest", "lost-page", "cultural-discovery", "sumi-e", "tea-bowl")):
+        return "collectible_identity_and_unlock_crosscheck", 82, ["collectible", "image", "video", "guide"]
+    if any(token in category for token in ("pet", "animal")):
         return "pet_unlock_crosscheck", 80, ["pet", "image", "video"]
-    if any(token in text for token in ("tea bowl", "茶碗", "tea", "茶具")):
-        return "tea_collectible_crosscheck", 78, ["collectible", "guide", "image"]
-    if any(token in text for token in ("viewpoint", "俯瞰点", "sync", "同步点")):
-        return "activity_completion_reward_crosscheck", 68, ["official_mechanics", "guide"]
-    if any(token in text for token in ("shrine", "神社", "temple", "寺", "kata", "冥想")):
-        return "activity_reward_crosscheck", 72, ["activity", "guide", "video"]
+    if "viewpoint" in category:
+        return "activity_completion_reward_crosscheck", 72, ["official_mechanics", "guide"]
+    if any(token in category for token in ("small-shrine", "jizo-statue", "temple", "shrine", "kata", "meditation")):
+        return "activity_reward_crosscheck", 76, ["activity", "guide", "video"]
+    if any(token in category for token in ("samurai-daisho", "alarm-bell", "stockpile", "keys", "kura-key", "kakurega")):
+        return "hostile_or_resource_activity_crosscheck", 64, ["activity", "guide", "video"]
+    if any(token in category for token in ("vendor", "trader")):
+        return "merchant_inventory_or_unlock_crosscheck", 58, ["merchant", "guide", "image"]
     return "point_specific_external_evidence_required", 50, ["official", "guide", "video", "image"]
 
 
@@ -119,7 +125,7 @@ def main() -> int:
         region_name = label(regions.get(region_id), region_id)
         title = str(location.get("title") or location.get("name") or location_id)
         description = str(location.get("description") or "")
-        method, base_priority, evidence_types = strategy(category_name, title, description)
+        method, base_priority, evidence_types = strategy(category_id, category_name, title)
         source_location_id = record.get("sourceLocationId") or (location.get("source") or {}).get("location_id")
         has_description = bool(description.strip())
         has_reward_text = description_has_reward_text(location)
@@ -158,7 +164,7 @@ def main() -> int:
     nonpoint_sources = [source for source in registry.get("sources", []) if not source.get("pointEvidence")]
 
     payload = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "release": "0.9.4.8",
         "generatedAt": now_iso(),
         "targetLocationCount": 3430,
@@ -182,7 +188,7 @@ def main() -> int:
             "contextOrTerminologyCount": len(nonpoint_sources),
             "pointEvidenceSourceIds": [source.get("sourceId") for source in point_sources],
         },
-        "researchPolicyZhCN": "按具体地点证据优先。只有来源能同时对应地点和奖励时才升级证据状态；类别规律仅用于排序，不直接生成奖励。",
+        "researchPolicyZhCN": "按明确类别和具体地点证据排序。只有来源能同时对应地点和奖励时才升级证据状态；描述中的场景词不会改变地点类别。",
         "nextBatchSize": min(100, len(candidates)),
         "nextBatch": candidates[:100],
         "allCandidates": candidates,
