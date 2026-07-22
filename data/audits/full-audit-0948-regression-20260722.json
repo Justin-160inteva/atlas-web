@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "project": "Atlas - Assassin's Creed Shadows Interactive Map",
+  "release": "0.9.4.8",
+  "generatedAt": "2026-07-22T01:20:00Z",
+  "trigger": {
+    "type": "accepted-feature-regression",
+    "condition": "strict earliest-unresolved scan order regressed",
+    "evidence": [
+      "durable queue still records P33 as failed at attempt 3",
+      "runtime heartbeat records P34 as running",
+      "main tools/run_scan_with_auto_recovery.py excludes failed items from next durable projection and lacks the merged failed-head preflight",
+      "scan-system health evidence is stale: generated for release 0.9.4.7 with dictionary 2026.07.19.5"
+    ]
+  },
+  "result": "fail",
+  "blockingFindings": [
+    {
+      "id": "scan-order-regression",
+      "severity": "critical",
+      "acceptedRequirement": "P33 must be resolved before P34 and P35; one active task only",
+      "observed": "P34 is running while durable P33 remains failed",
+      "requiredFix": "restore failed-head preflight and effective attempt limit handling on main, then reconcile durable queue state before allowing later items"
+    },
+    {
+      "id": "audit-evidence-stale",
+      "severity": "high",
+      "acceptedRequirement": "release evidence must match the current version and active bug dictionary",
+      "observed": "scan-system-health.json reports 0.9.4.7 and dictionary 2026.07.19.5 while release-manifest is 0.9.4.8",
+      "requiredFix": "regenerate scan-system health and full audit evidence after the scheduler repair"
+    }
+  ],
+  "verifiedImplemented": [
+    "Alpha 0.9.4.8 release manifest and entry ownership declarations",
+    "reward evidence foundation with four evidence levels, schema, terminology and 3430 unresolved coverage index",
+    "single data/evidence center ownership",
+    "single active download invariant declared in release, queue and supervisor configuration",
+    "ultra-HD original map dependent work remains gated and not falsely marked complete"
+  ],
+  "partialOrUnverified": [
+    "strict P33-P34-P35 durable ordering: implementation regressed on main",
+    "bounded 5-attempt transport recovery: dictionary policy exists but active durable queue still reflects the old 3-attempt outcome",
+    "dynamic watchdog and test-budget optimization: configuration work exists, but roadmap and main CI still contain fixed 500-check requirements",
+    "Alpha 0.9.4.8 public GitHub Pages verification",
+    "physical iPad Safari and desktop verification",
+    "first verified reward evidence batch and reward display in location details"
+  ],
+  "deferredUntilUltraHdMap": [
+    "final geometry-dependent route calibration",
+    "final coordinate and overlay calibration",
+    "geometry-dependent responsive polish",
+    "final cross-feature map compatibility certification"
+  ],
+  "technicalDebt": [
+    "runtime heartbeat commits are very frequent and can create repository noise",
+    "main conflict workflow still runs multiple unconditional exact-500 matrices and a full audit for unrelated changes",
+    "roadmap operating rules still state fixed 200-500 and exact-500 requirements instead of the accepted risk-based budget",
+    "audit and health reports can lag behind the current release and dictionary",
+    "scan runtime projection and durable queue can disagree"
+  ],
+  "nextThreeVersionPriorities": {
+    "0.9.4.9": [
+      "restore and verify strict earliest-unresolved queue ownership",
+      "reconcile P33 durable state and prevent P34/P35 bypass",
+      "land risk-based validation budgets and path-scoped CI",
+      "regenerate current scan-system and release audit evidence"
+    ],
+    "0.9.4.10": [
+      "import first reviewable reward evidence batch",
+      "show reward status, confidence and source summary in location details",
+      "add performance baselines for map and panels"
+    ],
+    "0.9.4.11": [
+      "expand reward coverage in bounded batches",
+      "complete public deployment and physical-device verification records",
+      "reassess but do not prematurely complete the ultra-HD original map gate"
+    ]
+  },
+  "safety": {
+    "authorizationBroadened": false,
+    "mediaRetentionChanged": false,
+    "queueScopeExpanded": false,
+    "obsoleteFilesDeletedWithoutProof": false
+  }
+}
