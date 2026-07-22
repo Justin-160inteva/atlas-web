@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 2,
-  "id": "eleven-account-extra-audit-20260723-v2-wbi",
-  "requestedAt": "2026-07-23T02:44:00Z",
+  "schemaVersion": 3,
+  "id": "eleven-account-extra-audit-20260723-v3-wbi-force",
+  "requestedAt": "2026-07-23T02:46:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "seedBvid": "BV1FdQ9YdEcN",
@@ -15,6 +15,7 @@
   "reportOutput": "data/batch-analysis/eleven-account-extra-video-report.json",
   "mode": "metadata-only-account-enumeration-and-incremental-comparison",
   "signedWbiFallback": true,
+  "auditRevision": "force-new-pr-run-v3",
   "requirements": {
     "exactAuthorMatch": true,
     "titleKeywordMatch": true,
