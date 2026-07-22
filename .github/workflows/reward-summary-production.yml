@@ -49,7 +49,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          local_artifact="$(find data/rewards/production-artifacts -maxdepth 1 -type f -name '*.zip' 2>/dev/null | sort | tail -n 1)"
+          local_artifact="$(find data/rewards/production-artifacts -maxdepth 1 -type f -name '*.zip' 2>/dev/null | sort | tail -n 1 || true)"
           if [ -n "$local_artifact" ]; then
             unzip -o "$local_artifact" -d data
             echo 'restored=true' >> "$GITHUB_OUTPUT"
