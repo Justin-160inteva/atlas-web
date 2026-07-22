@@ -1,0 +1,95 @@
+name: Reward Summary Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reward-summary-production.yml'
+      - 'tools/build_reward_summary_catalog.py'
+      - 'data/rewards/reward-production-trigger.json'
+      - 'data/rewards/reward-research-sources.json'
+      - 'data/rewards/reward-translation-lexicon-zh-CN.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reward-summary-production-main
+  cancel-in-progress: false
+
+jobs:
+  build-reward-summaries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile reward builder
+        run: python -m py_compile tools/build_reward_summary_catalog.py
+
+      - name: Build all 3430 reward records
+        run: python tools/build_reward_summary_catalog.py
+
+      - name: Run reward evidence contract matrix
+        run: node tools/reward_evidence_contract_smoke.mjs
+
+      - name: Validate generated coverage and batches
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('.')
+          catalog = json.loads((root / 'data/rewards/reward-summary-catalog.json').read_text(encoding='utf-8'))
+          audit = json.loads((root / 'data/rewards/reward-source-audit.json').read_text(encoding='utf-8'))
+          index = json.loads((root / 'data/rewards/reward-evidence-index.json').read_text(encoding='utf-8'))
+          batches = sorted((root / 'data/rewards/records').glob('batch-*.json'))
+
+          assert catalog['recordCount'] == 3430
+          assert len(catalog['records']) == 3430
+          assert sum(catalog['coverage'].values()) == 3430
+          assert audit['invariants']['exactly3430Records']
+          assert audit['invariants']['oneRecordPerLocation']
+          assert audit['invariants']['coverageConserved']
+          assert audit['invariants']['batchLimitRespected']
+          assert audit['invariants']['lockedRecordsPreserved']
+          assert len(batches) == 35
+          assert len(index['batches']) == 35
+          assert all(batch['targetRecords'] <= 100 for batch in index['batches'])
+          print('Reward production validation passed: 3430 records, 35 bounded batches.')
+          PY
+
+      - name: Commit generated reward evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/rewards/reward-evidence-index.json \
+            data/rewards/reward-summary-catalog.json \
+            data/rewards/reward-source-audit.json \
+            data/rewards/reward-research-queue.json \
+            data/rewards/records
+          if git diff --cached --quiet; then
+            echo 'No generated reward changes.'
+            exit 0
+          fi
+          git commit -m 'Generate 3430 Simplified Chinese reward evidence records [skip ci]'
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt ${attempt} failed; retrying after concurrent scan update."
+            git rebase --abort || true
+            sleep $((attempt * 5))
+          done
+          echo 'Unable to publish reward evidence after five attempts.' >&2
+          exit 1
