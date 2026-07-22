@@ -1,0 +1,216 @@
+name: Reward Quest Evidence Import
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reward-quest-evidence-import.yml'
+      - 'tools/build_quest_reward_evidence_overrides.py'
+      - 'tools/apply_quest_reward_override_builder_patch.py'
+      - 'tools/run_reward_translation_with_fallback.py'
+      - 'data/rewards/reward-quest-detail-diagnostic.json'
+      - 'data/rewards/reward-quest-evidence-trigger.json'
+  pull_request:
+    paths:
+      - '.github/workflows/reward-quest-evidence-import.yml'
+      - 'tools/build_quest_reward_evidence_overrides.py'
+      - 'tools/apply_quest_reward_override_builder_patch.py'
+      - 'tools/run_reward_translation_with_fallback.py'
+      - 'data/rewards/reward-quest-detail-diagnostic.json'
+      - 'data/rewards/reward-quest-evidence-trigger.json'
+
+permissions:
+  contents: write
+  models: read
+
+concurrency:
+  group: reward-quest-evidence-import-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  import-validate-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Check out repository branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Record baseline reward coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          audit = json.loads(Path('data/rewards/reward-source-audit.json').read_text(encoding='utf-8'))
+          Path('/tmp/reward-quest-baseline.json').write_text(json.dumps({
+              'unresolved': audit['statusCounts']['unresolved'],
+              'inferred': audit['statusCounts']['high_confidence_inference'],
+              'multi': audit['statusCounts']['multi_source_confirmed'],
+          }), encoding='utf-8')
+          print(f"Baseline unresolved: {audit['statusCounts']['unresolved']}")
+          PY
+
+      - name: Build strict quest reward overrides
+        run: |
+          python -m py_compile \
+            tools/build_quest_reward_evidence_overrides.py \
+            tools/apply_quest_reward_override_builder_patch.py \
+            tools/run_reward_translation_with_fallback.py
+          python tools/build_quest_reward_evidence_overrides.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          overrides = json.loads(Path('data/rewards/reward-point-evidence-overrides.json').read_text(encoding='utf-8'))
+          assert overrides['targetQuestCount'] == 73
+          assert overrides['overrideCount'] > 0
+          assert overrides['overrideCount'] <= 13
+          assert overrides['conflictCount'] == 0
+          assert all(overrides['invariants'].values())
+          assert 'location-mapgenie-437614' in overrides['records']
+          print(f"Strict quest overrides ready: {overrides['overrideCount']} accepted, {overrides['skippedCount']} unresolved.")
+          PY
+
+      - name: Integrate point-specific overrides
+        run: |
+          python tools/apply_quest_reward_override_builder_patch.py
+          python -m py_compile tools/build_reward_summary_catalog.py
+
+      - name: Rebuild records to expose any new named rewards
+        run: python tools/build_reward_summary_catalog.py
+
+      - name: Block unknown source placeholders during translation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          lexicon_path = Path('data/rewards/reward-translation-lexicon-zh-CN.json')
+          evidence_path = Path('data/rewards/reward-translation-evidence.json')
+          lexicon = json.loads(lexicon_path.read_text(encoding='utf-8'))
+          evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
+          marker = '__ATLAS_BLOCKED_PLACEHOLDER__'
+          blocked = ('??', '?? Mon', '?? Banner', '?? Weapon')
+          exact = lexicon.setdefault('exactNames', {})
+          translations = evidence.setdefault('translations', {})
+          for original in blocked:
+              exact[original] = marker
+              translations.pop(original, None)
+          lexicon_path.write_text(json.dumps(lexicon, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Translate newly exposed reward proper names
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python tools/run_reward_translation_with_fallback.py
+
+      - name: Remove temporary placeholder markers
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          lexicon_path = Path('data/rewards/reward-translation-lexicon-zh-CN.json')
+          evidence_path = Path('data/rewards/reward-translation-evidence.json')
+          lexicon = json.loads(lexicon_path.read_text(encoding='utf-8'))
+          evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
+          marker = '__ATLAS_BLOCKED_PLACEHOLDER__'
+          blocked = ('??', '?? Mon', '?? Banner', '?? Weapon')
+          exact = lexicon.setdefault('exactNames', {})
+          translations = evidence.setdefault('translations', {})
+          for original in blocked:
+              if exact.get(original) == marker or original.startswith('??'):
+                  exact.pop(original, None)
+              translations.pop(original, None)
+          lexicon_path.write_text(json.dumps(lexicon, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Rebuild all 3430 reward records
+        run: python tools/build_reward_summary_catalog.py
+
+      - name: Run reward evidence contract matrix
+        run: node tools/reward_evidence_contract_smoke.mjs
+
+      - name: Validate strict quest reward import
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          baseline = json.loads(Path('/tmp/reward-quest-baseline.json').read_text(encoding='utf-8'))
+          overrides = json.loads(Path('data/rewards/reward-point-evidence-overrides.json').read_text(encoding='utf-8'))
+          catalog = json.loads(Path('data/rewards/reward-summary-catalog.json').read_text(encoding='utf-8'))
+          audit = json.loads(Path('data/rewards/reward-source-audit.json').read_text(encoding='utf-8'))
+          records = catalog['records']
+          count = overrides['overrideCount']
+
+          assert catalog['recordCount'] == 3430
+          assert catalog['coverage']['total'] == 3430
+          assert audit['pointOverrideLocations'] == count
+          assert audit['statusCounts']['unresolved'] == baseline['unresolved'] - count
+          assert audit['invariants']['exactly3430Records']
+          assert audit['invariants']['oneRecordPerLocation']
+          assert audit['invariants']['coverageConserved']
+          assert audit['invariants']['batchLimitRespected']
+          assert audit['invariants']['allPointOverridesApplied']
+          assert audit['invariants']['singleSourcePointOverridesStayInference']
+
+          for location_id, override in overrides['records'].items():
+              record = records[location_id]
+              assert record['status'] == 'high_confidence_inference', (location_id, record['status'])
+              assert record['confidence'] == 0.88, (location_id, record['confidence'])
+              assert len(record['sources']) == 1, (location_id, record['sources'])
+              assert record['review']['method'] == 'atlas_reward_builder_v2_point_override'
+              assert record['rewards']
+              assert '高置信推断' in record['summaryZhCN']
+
+          broken = records['location-mapgenie-437614']
+          assert broken['summaryZhCN'] == '获得2,000 点经验值、3 个技能点（高置信推断）', broken['summaryZhCN']
+          assert any(reward['type'] == 'experience' and reward['quantity'] == 2000 for reward in broken['rewards'])
+          assert any(reward['type'] == 'skill_point' and reward['quantity'] == 3 for reward in broken['rewards'])
+          assert all(not source['sourceId'].startswith('mapgenie-') for source in broken['sources'])
+          print(
+              f"Quest reward import validated: {count} exact Reward fields imported; "
+              f"unresolved {baseline['unresolved']} -> {audit['statusCounts']['unresolved']}."
+          )
+          PY
+
+      - name: Commit quest overrides and rebuilt catalog
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            tools/build_reward_summary_catalog.py \
+            data/rewards/reward-point-evidence-overrides.json \
+            data/rewards/reward-translation-lexicon-zh-CN.json \
+            data/rewards/reward-translation-evidence.json \
+            data/rewards/reward-translation-research-state.json \
+            data/rewards/reward-summary-catalog.json \
+            data/rewards/reward-source-audit.json \
+            data/rewards/reward-research-queue.json \
+            data/rewards/reward-evidence-index.json \
+            data/rewards/records \
+            data/conflict-reports/reward-evidence-matrix.json
+          if git diff --cached --quiet; then
+            echo 'No quest evidence changes to publish.'
+            exit 0
+          fi
+          git commit -m 'Import strict quest Reward fields [skip ci]'
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin "$TARGET_BRANCH" && git push origin "HEAD:$TARGET_BRANCH"; then
+              exit 0
+            fi
+            echo "Quest evidence publish attempt ${attempt} collided with a concurrent update; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 6))
+          done
+          exit 1
