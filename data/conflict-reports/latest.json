@@ -1,14 +1,14 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-20T13:12:42.360143+00:00",
-  "release": "0.9.4.5",
+  "generatedAt": "2026-07-22T03:12:08.634129+00:00",
+  "release": "0.9.4.8",
   "status": "pass",
-  "riskScore": 56,
+  "riskScore": 68,
   "summary": {
     "critical": 0,
     "high": 0,
-    "warning": 28,
-    "total": 28
+    "warning": 34,
+    "total": 34
   },
   "resourceGraph": {
     "app.js": [
@@ -34,6 +34,7 @@
       "multiview-091.css",
       "public-library.css",
       "atlas-settings.css",
+      "atlas-ipad-canvas-hotfix-0948.css",
       "atlas-icons.js",
       "atlas-i18n.js",
       "location-names.js",
@@ -56,7 +57,8 @@
       "atlas-evidence-workflow.js",
       "atlas-multiview-091.js",
       "atlas-public-library.js",
-      "atlas-analysis-import.js"
+      "atlas-analysis-import.js",
+      "atlas-ipad-canvas-hotfix-0948.js"
     ],
     "scan-monitor.html": [
       "scan-monitor.css",
@@ -275,8 +277,43 @@
     {
       "severity": "warning",
       "code": "CSS_CASCADE_CONFLICT",
+      "message": ".top-bar has multiple -webkit-backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-canvas-hotfix-0948.css",
+        "atlas-liquid-nav-0933.css"
+      ],
+      "evidence": {
+        "selector": ".top-bar",
+        "property": "-webkit-backdrop-filter",
+        "values": [
+          "blur(28px) saturate(145%)",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".top-bar has multiple backdrop-filter definitions",
+      "files": [
+        "atlas-ipad-canvas-hotfix-0948.css",
+        "atlas-liquid-nav-0933.css"
+      ],
+      "evidence": {
+        "selector": ".top-bar",
+        "property": "backdrop-filter",
+        "values": [
+          "blur(28px) saturate(145%)",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
       "message": ".bottom-nav has multiple -webkit-backdrop-filter definitions",
       "files": [
+        "atlas-ipad-canvas-hotfix-0948.css",
         "atlas-liquid-nav-0933.css",
         "atlas-nav-layout-0937.css"
       ],
@@ -285,7 +322,8 @@
         "property": "-webkit-backdrop-filter",
         "values": [
           "blur(23px) saturate(150%) brightness(1.035)!important",
-          "blur(24px) saturate(138%)"
+          "blur(24px) saturate(138%)",
+          "none!important"
         ]
       }
     },
@@ -294,6 +332,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".quick-rail has multiple -webkit-backdrop-filter definitions",
       "files": [
+        "atlas-ipad-canvas-hotfix-0948.css",
         "atlas-liquid-nav-0933.css",
         "atlas-nav-layout-0937.css"
       ],
@@ -302,7 +341,8 @@
         "property": "-webkit-backdrop-filter",
         "values": [
           "blur(22px) saturate(148%) brightness(1.035)!important",
-          "blur(24px) saturate(138%)"
+          "blur(24px) saturate(138%)",
+          "none!important"
         ]
       }
     },
@@ -311,6 +351,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".bottom-nav has multiple backdrop-filter definitions",
       "files": [
+        "atlas-ipad-canvas-hotfix-0948.css",
         "atlas-liquid-nav-0933.css",
         "atlas-nav-layout-0937.css"
       ],
@@ -319,7 +360,8 @@
         "property": "backdrop-filter",
         "values": [
           "blur(23px) saturate(150%) brightness(1.035)!important",
-          "blur(24px) saturate(138%)"
+          "blur(24px) saturate(138%)",
+          "none!important"
         ]
       }
     },
@@ -328,6 +370,7 @@
       "code": "CSS_CASCADE_CONFLICT",
       "message": ".quick-rail has multiple backdrop-filter definitions",
       "files": [
+        "atlas-ipad-canvas-hotfix-0948.css",
         "atlas-liquid-nav-0933.css",
         "atlas-nav-layout-0937.css"
       ],
@@ -336,7 +379,8 @@
         "property": "backdrop-filter",
         "values": [
           "blur(22px) saturate(148%) brightness(1.035)!important",
-          "blur(24px) saturate(138%)"
+          "blur(24px) saturate(138%)",
+          "none!important"
         ]
       }
     },
@@ -394,6 +438,23 @@
           "scale(.9)",
           "scale(.92)",
           "scale(.97)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".rail-button has multiple transition definitions",
+      "files": [
+        "alpha03.css",
+        "atlas-ipad-canvas-hotfix-0948.css"
+      ],
+      "evidence": {
+        "selector": ".rail-button",
+        "property": "transition",
+        "values": [
+          "none!important",
+          "transform .16s ease,background .18s ease,color .18s ease"
         ]
       }
     },
@@ -499,6 +560,59 @@
         "values": [
           "translateZ(0)",
           "translateZ(0) scale(1)"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".panel has multiple transition definitions",
+      "files": [
+        "atlas-ipad-canvas-hotfix-0948.css",
+        "styles.css"
+      ],
+      "evidence": {
+        "selector": ".panel",
+        "property": "transition",
+        "values": [
+          "none!important",
+          "transform .28s ease"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".sheet has multiple transition definitions",
+      "files": [
+        "atlas-ipad-canvas-hotfix-0948.css",
+        "styles.css"
+      ],
+      "evidence": {
+        "selector": ".sheet",
+        "property": "transition",
+        "values": [
+          "bottom .32s cubic-bezier(.2,.8,.2,1)",
+          "bottom .32s cubic-bezier(.2,.8,.2,1),height .32s cubic-bezier(.2,.8,.2,1)",
+          "none!important"
+        ]
+      }
+    },
+    {
+      "severity": "warning",
+      "code": "CSS_CASCADE_CONFLICT",
+      "message": ".evidence-panel has multiple transition definitions",
+      "files": [
+        "atlas-ipad-canvas-hotfix-0948.css",
+        "evidence-studio.css"
+      ],
+      "evidence": {
+        "selector": ".evidence-panel",
+        "property": "transition",
+        "values": [
+          "none",
+          "none!important",
+          "transform .28s cubic-bezier(.2,.8,.2,1)"
         ]
       }
     },

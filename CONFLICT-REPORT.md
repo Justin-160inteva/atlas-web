@@ -1,9 +1,9 @@
 # Atlas Conflict Report
 
-- Release: **0.9.4.5**
+- Release: **0.9.4.8**
 - Status: **pass**
-- Risk score: **56/100**
-- Findings: 28 (0 critical, 0 high, 28 warning)
+- Risk score: **68/100**
+- Findings: 34 (0 critical, 0 high, 34 warning)
 
 ## WARNING · SW_REGISTRATION_DELEGATED
 
@@ -79,27 +79,39 @@ Files: `performance-071.css`, `styles.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
+.top-bar has multiple -webkit-backdrop-filter definitions
+
+Files: `atlas-ipad-canvas-hotfix-0948.css`, `atlas-liquid-nav-0933.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.top-bar has multiple backdrop-filter definitions
+
+Files: `atlas-ipad-canvas-hotfix-0948.css`, `atlas-liquid-nav-0933.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
 .bottom-nav has multiple -webkit-backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+Files: `atlas-ipad-canvas-hotfix-0948.css`, `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .quick-rail has multiple -webkit-backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+Files: `atlas-ipad-canvas-hotfix-0948.css`, `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .bottom-nav has multiple backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+Files: `atlas-ipad-canvas-hotfix-0948.css`, `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
 .quick-rail has multiple backdrop-filter definitions
 
-Files: `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
+Files: `atlas-ipad-canvas-hotfix-0948.css`, `atlas-liquid-nav-0933.css`, `atlas-nav-layout-0937.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
@@ -118,6 +130,12 @@ Files: `alpha03.css`, `atlas-080.css`, `atlas-liquid-nav-0933.css`
 .map-controls button:active has multiple transform definitions
 
 Files: `alpha03.css`, `atlas-080.css`, `atlas-liquid-nav-0933.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.rail-button has multiple transition definitions
+
+Files: `alpha03.css`, `atlas-ipad-canvas-hotfix-0948.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 
@@ -154,6 +172,24 @@ Files: `atlas-liquid-nav-0934.css`, `atlas-nav-layout-0937.css`
 .quick-rail .rail-button .rail-icon has multiple transform definitions
 
 Files: `atlas-liquid-nav-0934.css`, `atlas-nav-layout-0937.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.panel has multiple transition definitions
+
+Files: `atlas-ipad-canvas-hotfix-0948.css`, `styles.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.sheet has multiple transition definitions
+
+Files: `atlas-ipad-canvas-hotfix-0948.css`, `styles.css`
+
+## WARNING · CSS_CASCADE_CONFLICT
+
+.evidence-panel has multiple transition definitions
+
+Files: `atlas-ipad-canvas-hotfix-0948.css`, `evidence-studio.css`
 
 ## WARNING · CSS_CASCADE_CONFLICT
 

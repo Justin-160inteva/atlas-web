@@ -1,8 +1,17 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-07-20T00:00:00Z",
-  "queueItems": 10,
+  "schemaVersion": 4,
+  "generatedAt": "2026-07-20T13:35:00Z",
+  "validationTier": "full",
+  "requestedChecks": 500,
+  "queueItems": 11,
   "maximumConcurrentItems": 1,
+  "coverageFamilies": [
+    "fresh",
+    "soft-stale",
+    "hard-stale",
+    "terminal-projection",
+    "resume-deduplication"
+  ],
   "totalChecks": 500,
   "passed": true,
   "checks": [

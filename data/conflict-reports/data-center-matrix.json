@@ -1,0 +1,3559 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "generatedAt": "2026-07-22T03:12:08.684Z",
+  "passed": true,
+  "totalChecks": 500,
+  "profiles": [
+    {
+      "name": "desktop-wide",
+      "checks": [
+        {
+          "profile": "desktop-wide",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-wide",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    },
+    {
+      "name": "desktop-compact",
+      "checks": [
+        {
+          "profile": "desktop-compact",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-compact",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    },
+    {
+      "name": "ipad-landscape",
+      "checks": [
+        {
+          "profile": "ipad-landscape",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-landscape",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    },
+    {
+      "name": "ipad-portrait",
+      "checks": [
+        {
+          "profile": "ipad-portrait",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-portrait",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    },
+    {
+      "name": "tablet-compact",
+      "checks": [
+        {
+          "profile": "tablet-compact",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "tablet-compact",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    },
+    {
+      "name": "mobile",
+      "checks": [
+        {
+          "profile": "mobile",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    },
+    {
+      "name": "desktop-performance",
+      "checks": [
+        {
+          "profile": "desktop-performance",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "desktop-performance",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    },
+    {
+      "name": "ipad-performance",
+      "checks": [
+        {
+          "profile": "ipad-performance",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "ipad-performance",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    },
+    {
+      "name": "mobile-reduced-motion",
+      "checks": [
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "mobile-reduced-motion",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    },
+    {
+      "name": "offline-recovery",
+      "checks": [
+        {
+          "profile": "offline-recovery",
+          "scenario": 0,
+          "name": "release · source contract",
+          "passed": true,
+          "detail": "release"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 0,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 0,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 0,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 0,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 1,
+          "name": "matrix · source contract",
+          "passed": true,
+          "detail": "matrix"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 1,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 1,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 1,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 1,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 2,
+          "name": "evidenceView · source contract",
+          "passed": true,
+          "detail": "evidenceView"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 2,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 2,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 2,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 2,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 3,
+          "name": "bypassBounded · source contract",
+          "passed": true,
+          "detail": "bypassBounded"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 3,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 3,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 3,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 3,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 4,
+          "name": "closesEvidence · source contract",
+          "passed": true,
+          "detail": "closesEvidence"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 4,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 4,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 4,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 4,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 5,
+          "name": "cssMetrics · source contract",
+          "passed": true,
+          "detail": "cssMetrics"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 5,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 5,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 5,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 5,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 6,
+          "name": "evidenceHeaderHidden · source contract",
+          "passed": true,
+          "detail": "evidenceHeaderHidden"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 6,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 6,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 6,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 6,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 7,
+          "name": "privacyCopy · source contract",
+          "passed": true,
+          "detail": "privacyCopy"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 7,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 7,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 7,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 7,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 8,
+          "name": "noDuplicateEvidenceCard · source contract",
+          "passed": true,
+          "detail": "noDuplicateEvidenceCard"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 8,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 8,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 8,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":true,\"view\":\"evidence\",\"evidence\":true,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 8,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 9,
+          "name": "offlineFallback · source contract",
+          "passed": true,
+          "detail": "offlineFallback"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 9,
+          "name": "single center state",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 9,
+          "name": "evidence lifecycle",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 9,
+          "name": "monitor ownership",
+          "passed": true,
+          "detail": "{\"center\":false,\"view\":\"database\",\"evidence\":false,\"monitor\":false}"
+        },
+        {
+          "profile": "offline-recovery",
+          "scenario": 9,
+          "name": "profile and contract group",
+          "passed": true,
+          "detail": "{\"responsive\":true,\"motion\":true,\"performance\":true,\"offline\":true,\"group\":true}"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2561 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "generatedAt": "2026-07-22T03:12:08.726Z",
+  "passed": true,
+  "totalChecks": 500,
+  "contractCount": 50,
+  "failedContracts": [],
+  "profiles": [
+    {
+      "profile": "official-text",
+      "checks": [
+        {
+          "profile": "official-text",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "official-text",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "profile": "official-web",
+      "checks": [
+        {
+          "profile": "official-web",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "official-web",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "profile": "official-patch",
+      "checks": [
+        {
+          "profile": "official-patch",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "official-patch",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "profile": "authorized-video",
+      "checks": [
+        {
+          "profile": "authorized-video",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "authorized-video",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "profile": "public-video",
+      "checks": [
+        {
+          "profile": "public-video",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "public-video",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "profile": "screenshot",
+      "checks": [
+        {
+          "profile": "screenshot",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "screenshot",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "profile": "community-database",
+      "checks": [
+        {
+          "profile": "community-database",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "community-database",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "profile": "guide-article",
+      "checks": [
+        {
+          "profile": "guide-article",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "guide-article",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "profile": "manual-review",
+      "checks": [
+        {
+          "profile": "manual-review",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "manual-review",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "profile": "conflict-recovery",
+      "checks": [
+        {
+          "profile": "conflict-recovery",
+          "name": "release",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "fullAudit",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "rewardOwner",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "rewardMatrix",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "targetCount",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "coverageTotal",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "coverageConserved",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "unresolvedAllowed",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "noInferenceAsOfficial",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "sourceLocatorRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "conflictTrackingRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "simplifiedChineseRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "fourEvidenceLevels",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "officialThreshold",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "multiThreshold",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "inferenceThreshold",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "unresolvedThreshold",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "sourceTypes",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "conflictTypes",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "forbiddenBulkCopy",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "forbiddenFakeOfficial",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "schemaLocationRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "schemaStatusRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "schemaConfidenceRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "schemaSummaryRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "schemaSourcesRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "schemaConflictsRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "schemaReviewRequired",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "confidenceBounded",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "exactStatuses",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "rewardTypes",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "quantityStatuses",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "sourceLocatorSchema",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "sourceSupportsSchema",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "conflictStateSchema",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "reviewLocked",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "terminologyLocale",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "preserveOriginal",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "noInventNames",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "officialChinese",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "unknownQuantity",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "inferenceSuffix",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "rewardTypeTranslations",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "evidenceLabels",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "productionBatchLimit",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "lockedProtection",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "duplicateCheck",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "sourceCheck",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "terminologyCheck",
+          "passed": true
+        },
+        {
+          "profile": "conflict-recovery",
+          "name": "conflictReport",
+          "passed": true
+        }
+      ]
+    }
+  ]
+}

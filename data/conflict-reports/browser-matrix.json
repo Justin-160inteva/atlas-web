@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "0.9.4.5",
-  "generatedAt": "2026-07-20T13:13:50.019Z",
+  "release": "0.9.4.8",
+  "generatedAt": "2026-07-22T03:13:13.934Z",
   "passed": true,
   "totalChecks": 500,
   "profiles": [
@@ -11,7 +11,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.5"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8"
         },
         {
           "name": "release conflict absent",
@@ -44,14 +44,14 @@
           "detail": ""
         },
         {
-          "name": "canvas width",
+          "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"width\":1440,\"height\":900}"
+          "detail": "{\"canvas\":{\"width\":1440,\"height\":900},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
-          "name": "canvas height",
+          "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"width\":1440,\"height\":900}"
+          "detail": "{\"canvas\":{\"width\":1440,\"height\":900},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -374,9 +374,9 @@
           "detail": ""
         },
         {
-          "name": "bottom maximum width contract",
+          "name": "bottom maximum width and marker release contract",
           "passed": true,
-          "detail": "430"
+          "detail": "{\"width\":430,\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
           "name": "navigation guard and observed OpenCV recovery contract",
@@ -401,27 +401,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "ipad class not forced",
@@ -442,7 +442,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.5"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8"
         },
         {
           "name": "release conflict absent",
@@ -475,14 +475,14 @@
           "detail": ""
         },
         {
-          "name": "canvas width",
+          "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"width\":1024,\"height\":768}"
+          "detail": "{\"canvas\":{\"width\":1024,\"height\":768},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
-          "name": "canvas height",
+          "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"width\":1024,\"height\":768}"
+          "detail": "{\"canvas\":{\"width\":1024,\"height\":768},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -822,27 +822,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "ipad class not forced",
@@ -863,7 +863,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.5"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8"
         },
         {
           "name": "release conflict absent",
@@ -896,14 +896,14 @@
           "detail": ""
         },
         {
-          "name": "canvas width",
+          "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"width\":1416,\"height\":984}"
+          "detail": "{\"canvas\":{\"width\":1711,\"height\":1189},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.2101621650269616,\"final\":1.28,\"shrinking\":1.0469873634290556,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
-          "name": "canvas height",
+          "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"width\":1416,\"height\":984}"
+          "detail": "{\"canvas\":{\"width\":1711,\"height\":1189},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.2101621650269616,\"final\":1.28,\"shrinking\":1.0469873634290556,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -1243,27 +1243,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "ipad class enabled",
@@ -1284,7 +1284,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.5"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8"
         },
         {
           "name": "release conflict absent",
@@ -1317,14 +1317,14 @@
           "detail": ""
         },
         {
-          "name": "canvas width",
+          "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"width\":984,\"height\":1416}"
+          "detail": "{\"canvas\":{\"width\":1189,\"height\":1711},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.221097658550809,\"final\":1.28,\"shrinking\":1.0369127711969808,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
-          "name": "canvas height",
+          "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"width\":984,\"height\":1416}"
+          "detail": "{\"canvas\":{\"width\":1189,\"height\":1711},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.221097658550809,\"final\":1.28,\"shrinking\":1.0369127711969808,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -1664,27 +1664,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "ipad class enabled",
@@ -1705,7 +1705,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.5"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8"
         },
         {
           "name": "release conflict absent",
@@ -1738,14 +1738,14 @@
           "detail": ""
         },
         {
-          "name": "canvas width",
+          "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"width\":1036,\"height\":1382}"
+          "detail": "{\"canvas\":{\"width\":1113,\"height\":1484},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.2087513418982463,\"final\":1.28,\"shrinking\":1.0854100275434204,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
-          "name": "canvas height",
+          "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"width\":1036,\"height\":1382}"
+          "detail": "{\"canvas\":{\"width\":1113,\"height\":1484},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.2087513418982463,\"final\":1.28,\"shrinking\":1.0854100275434204,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -2085,27 +2085,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "ipad class enabled",
@@ -2126,7 +2126,7 @@
         {
           "name": "release label",
           "passed": true,
-          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.5"
+          "detail": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8"
         },
         {
           "name": "release conflict absent",
@@ -2159,14 +2159,14 @@
           "detail": ""
         },
         {
-          "name": "canvas width",
+          "name": "canvas width and marker scale-only contract",
           "passed": true,
-          "detail": "{\"width\":468,\"height\":1012}"
+          "detail": "{\"canvas\":{\"width\":468,\"height\":1012},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
-          "name": "canvas height",
+          "name": "canvas height and anchored teardrop motion",
           "passed": true,
-          "detail": "{\"width\":468,\"height\":1012}"
+          "detail": "{\"canvas\":{\"width\":468,\"height\":1012},\"markerState\":{\"api\":{\"version\":\"0.9.4.8\",\"selectedScale\":1.28,\"duration\":190,\"hardLimit\":222,\"scaleOnly\":true,\"decorations\":0,\"tipStable\":true,\"geometry\":{\"centerOffsetRadius\":0.58,\"shoulderRatio\":0.16,\"lowerCurveRatio\":0.58}},\"path\":{\"curves\":4,\"arcs\":0,\"start\":[100,200],\"end\":[100,200]},\"motion\":{\"hasMarker\":true,\"mid\":1.245,\"final\":1.28,\"shrinking\":1.035,\"end\":1},\"source\":{\"noEllipse\":true,\"noLegacyOuterPin\":true,\"noLegacySelectedStroke\":true},\"settings\":{\"circles\":1,\"paths\":1,\"pathLength\":112}}}"
         },
         {
           "name": "bottom icon 1 single svg",
@@ -2506,27 +2506,27 @@
         {
           "name": "release scripts use one cache version",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "bootstrap loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "controls loaded once",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.5\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/atlas-bootstrap.js?v=0.9.4.8&build=ipad-canvas-hotfix-1\nhttp://127.0.0.1:4173/atlas-data-guard-0939.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-settings.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-analysis-import.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-liquid-nav-0934.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-controls-0938.js?v=0.9.4.8\nhttp://127.0.0.1:4173/atlas-ipad-nav-0940.js?v=0.9.4.8"
         },
         {
           "name": "service worker registration count",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "service worker release URL",
           "passed": true,
-          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.5"
+          "detail": "http://127.0.0.1:4173/sw.js?v=0.9.4.8&cache=atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1"
         },
         {
           "name": "ipad class not forced",

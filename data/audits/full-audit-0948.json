@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "generatedAt": "2026-07-22T03:12:09.023863Z",
+  "status": "pass",
+  "summary": {
+    "total": 29,
+    "passed": 29,
+    "failed": 0,
+    "blocking": 0
+  },
+  "deletions": [
+    {
+      "path": "scan-monitor-live-bridge.js",
+      "reason": "previously removed duplicate UI controller"
+    },
+    {
+      "path": ".github/workflows/scan-eleven-watchdog.yml",
+      "reason": "previously removed duplicate scheduler"
+    }
+  ],
+  "rewardCoverage": {
+    "total": 3430,
+    "officialConfirmed": 0,
+    "multiSourceConfirmed": 0,
+    "highConfidenceInference": 0,
+    "unresolved": 3430,
+    "humanReviewed": 0,
+    "locked": 0,
+    "openConflicts": 0
+  },
+  "checks": [
+    {
+      "name": "release_version",
+      "passed": true,
+      "detail": "Alpha 0.9.4.8",
+      "severity": "error"
+    },
+    {
+      "name": "full_audit_required",
+      "passed": true,
+      "detail": "full audit gate enabled",
+      "severity": "error"
+    },
+    {
+      "name": "entry_version",
+      "passed": true,
+      "detail": "entry page synchronized",
+      "severity": "error"
+    },
+    {
+      "name": "bootstrap_version",
+      "passed": true,
+      "detail": "bootstrap synchronized",
+      "severity": "error"
+    },
+    {
+      "name": "service_worker_version",
+      "passed": true,
+      "detail": "service-worker cache synchronized",
+      "severity": "error"
+    },
+    {
+      "name": "release_assets_exist",
+      "passed": true,
+      "detail": "all declared assets exist",
+      "severity": "error"
+    },
+    {
+      "name": "release_assets_unique",
+      "passed": true,
+      "detail": "no duplicate release assets",
+      "severity": "error"
+    },
+    {
+      "name": "runtime_owners_unique",
+      "passed": true,
+      "detail": "shared owners are explicit",
+      "severity": "error"
+    },
+    {
+      "name": "single_settings_owner",
+      "passed": true,
+      "detail": "one data/evidence shell owner",
+      "severity": "error"
+    },
+    {
+      "name": "single_settings_panel",
+      "passed": true,
+      "detail": "one settings panel template",
+      "severity": "error"
+    },
+    {
+      "name": "obsolete_monitor_bridge_removed",
+      "passed": true,
+      "detail": "obsolete competing monitor bridge absent",
+      "severity": "error"
+    },
+    {
+      "name": "obsolete_watchdog_removed",
+      "passed": true,
+      "detail": "obsolete duplicate scheduler absent",
+      "severity": "error"
+    },
+    {
+      "name": "reward_target",
+      "passed": true,
+      "detail": "target=3430",
+      "severity": "error"
+    },
+    {
+      "name": "reward_coverage_conserved",
+      "passed": true,
+      "detail": "coverage=3430/3430",
+      "severity": "error"
+    },
+    {
+      "name": "reward_policy_levels",
+      "passed": true,
+      "detail": "four evidence levels",
+      "severity": "error"
+    },
+    {
+      "name": "reward_policy_no_fake_official",
+      "passed": true,
+      "detail": "inference cannot masquerade as official",
+      "severity": "error"
+    },
+    {
+      "name": "reward_schema_confidence",
+      "passed": true,
+      "detail": "confidence bounded",
+      "severity": "error"
+    },
+    {
+      "name": "reward_schema_sources",
+      "passed": true,
+      "detail": "sources required",
+      "severity": "error"
+    },
+    {
+      "name": "reward_schema_conflicts",
+      "passed": true,
+      "detail": "conflicts required",
+      "severity": "error"
+    },
+    {
+      "name": "reward_zh_cn",
+      "passed": true,
+      "detail": "Simplified Chinese terminology",
+      "severity": "error"
+    },
+    {
+      "name": "reward_locked_protection",
+      "passed": true,
+      "detail": "locked records protected",
+      "severity": "error"
+    },
+    {
+      "name": "reward_matrix_declared",
+      "passed": true,
+      "detail": "exact 500 reward checks",
+      "severity": "error"
+    },
+    {
+      "name": "reward_matrix_exists",
+      "passed": true,
+      "detail": "reward matrix executable exists",
+      "severity": "error"
+    },
+    {
+      "name": "roadmap_current",
+      "passed": true,
+      "detail": "roadmap includes current release",
+      "severity": "error"
+    },
+    {
+      "name": "roadmap_reward_scope",
+      "passed": true,
+      "detail": "reward scope recorded",
+      "severity": "error"
+    },
+    {
+      "name": "ledger_current",
+      "passed": true,
+      "detail": "ledger=0.9.4.8",
+      "severity": "error"
+    },
+    {
+      "name": "ledger_last_audit",
+      "passed": true,
+      "detail": "last=0.9.4.8",
+      "severity": "error"
+    },
+    {
+      "name": "ledger_next_audit",
+      "passed": true,
+      "detail": "next=0.9.4.11",
+      "severity": "error"
+    },
+    {
+      "name": "repository_media_clean",
+      "passed": true,
+      "detail": "media files=0",
+      "severity": "error"
+    }
+  ]
+}
