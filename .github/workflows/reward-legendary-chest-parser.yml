@@ -1,0 +1,109 @@
+name: Reward Legendary Chest Parser
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reward-legendary-chest-parser.yml'
+      - 'tools/apply_legendary_chest_reward_parser_patch.py'
+      - 'data/rewards/reward-legendary-chest-parser-trigger.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reward-legendary-chest-parser-main
+  cancel-in-progress: true
+
+jobs:
+  patch-build-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Apply bounded parser patch
+        run: |
+          python -m py_compile tools/apply_legendary_chest_reward_parser_patch.py
+          python tools/apply_legendary_chest_reward_parser_patch.py
+          python -m py_compile tools/build_reward_summary_catalog.py
+
+      - name: Rebuild all reward records
+        run: python tools/build_reward_summary_catalog.py
+
+      - name: Run reward evidence contract matrix
+        run: node tools/reward_evidence_contract_smoke.mjs
+
+      - name: Validate explicit legendary chest extraction
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          catalog = json.loads(Path('data/rewards/reward-summary-catalog.json').read_text(encoding='utf-8'))
+          audit = json.loads(Path('data/rewards/reward-source-audit.json').read_text(encoding='utf-8'))
+          records = catalog['records']
+          expected = {
+              'location-mapgenie-438759': 'Scale of the Koi',
+              'location-mapgenie-437354': 'Armor of the Legendary Samurai',
+              'location-mapgenie-434597': 'Tools Master Mask',
+              'location-mapgenie-438443': 'Lengthened Horizon',
+              'location-mapgenie-438314': "Yukimitsu's Revenge",
+              'location-mapgenie-438765': 'Armor Eater',
+              'location-mapgenie-435068': 'Demon Tooth',
+          }
+          for location_id, original in expected.items():
+              record = records[location_id]
+              assert record['status'] in {'high_confidence_inference', 'multi_source_confirmed'}
+              assert record['rewards']
+              reward = next(item for item in record['rewards'] if item['nameOriginal'] == original)
+              assert reward['rarity'] == 'legendary'
+              assert re.search(r'[\u3400-\u9fff]', reward['nameZhCN'])
+              assert '具体名称待核对' not in reward['nameZhCN']
+              assert record['evidence']
+          assert catalog['recordCount'] == 3430
+          assert catalog['coverage']['total'] == 3430
+          assert audit['invariants']['exactly3430Records']
+          assert audit['invariants']['oneRecordPerLocation']
+          assert audit['invariants']['coverageConserved']
+          assert audit['invariants']['batchLimitRespected']
+          assert audit['statusCounts']['unresolved'] < 2533
+          print(f"Legendary chest extraction validated; unresolved now {audit['statusCounts']['unresolved']}.")
+          PY
+
+      - name: Commit parser and regenerated catalog
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            tools/build_reward_summary_catalog.py \
+            data/rewards/reward-summary-catalog.json \
+            data/rewards/reward-source-audit.json \
+            data/rewards/reward-research-queue.json \
+            data/rewards/reward-evidence-index.json \
+            data/rewards/records \
+            data/conflict-reports/reward-evidence-matrix.json
+          if git diff --cached --quiet; then
+            echo 'No parser or reward changes.'
+            exit 0
+          fi
+          git commit -m 'Extract explicit legendary chest rewards [skip ci]'
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Parser publish attempt ${attempt} collided with telemetry; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 6))
+          done
+          exit 1
