@@ -1,12 +1,12 @@
 {
-  "schemaVersion": 20,
+  "schemaVersion": 21,
   "id": "eleven-production-p058-p068-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "catalog": "data/eleven-game-world-ac-shadows-catalog.json",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "statusOutput": "data/batch-analysis/eleven-pilot-scan-status.json",
-  "analyzer": "tools/analyze_authorized_video_v13.py",
+  "analyzer": "tools/analyze_authorized_video_v14.py",
   "outputPrefix": "eleven",
   "maximumQueueItems": 11,
   "maxItemsPerRun": 1,
@@ -102,7 +102,12 @@
     "publicVideoWebpageBypassed": true,
     "fastestAuthorizedCdnProbe": true,
     "preferRangeCapableCdn": true,
-    "fixedBy": "tools/analyze_authorized_video_v13.py"
+    "ffmpegLargeProbeWindow": true,
+    "generatedTimestampRecovery": true,
+    "pixelFormatNormalization": true,
+    "implausibleFrameRateNormalization": true,
+    "emptyStreamCopyFallback": true,
+    "fixedBy": "tools/analyze_authorized_video_v14.py"
   },
   "recoveryPolicy": {
     "enabled": true,
