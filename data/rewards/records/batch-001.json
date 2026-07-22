@@ -1,0 +1,4540 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "batchId": "reward-batch-001",
+  "generatedAt": "2026-07-22T15:35:07.556823Z",
+  "recordSchema": "data/rewards/reward-record-schema.json",
+  "startIndex": 1,
+  "endIndex": 100,
+  "recordCount": 100,
+  "records": [
+    {
+      "locationId": "location-mapgenie-434361",
+      "sourceLocationId": 434361,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇饰品“蓑龟之护”",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "trinket",
+          "nameOriginal": "Minogame's Protection",
+          "nameZhCN": "蓑龟之护",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Trinket。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434361",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434361",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "vulkk-legendary-trinkets",
+          "sourceType": "guide_article",
+          "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
+          "publisherOrAuthor": "VULKK",
+          "locator": "https://vulkk.com/2025/03/24/all-legendary-amulets-and-trinkets-in-assassins-creed-shadows/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Minogame's Protection"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434380",
+      "sourceLocationId": 434380,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲“工具大师装束”",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Tools Master Gear",
+          "nameZhCN": "工具大师装束",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Light Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434380",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434380",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Tools Master Gear"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Tools Master Gear"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434456",
+      "sourceLocationId": 434456,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、3 个技能点、传奇护甲“农民服饰”",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 3,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Peasant Clothes",
+          "nameZhCN": "农民服饰",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Light Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434456",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434456",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Peasant Clothes"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Peasant Clothes"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434582",
+      "sourceLocationId": 434582,
+      "categoryId": "category-12312-castle",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得3,000 点经验值、5 个技能点、传奇护甲“工具大师面具”（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 5,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Legendary Tools Master Mask",
+          "nameZhCN": "工具大师面具",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Headgear。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434582",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434582",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434635",
+      "sourceLocationId": 434635,
+      "categoryId": "category-12312-castle",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得3,000 点经验值、3 个技能点、传奇护甲“农民斗笠”（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 3,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Legendary Peasant Hat",
+          "nameZhCN": "农民斗笠",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Headgear。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434635",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434635",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434726",
+      "sourceLocationId": 434726,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、5 个技能点、传奇护甲“幽灵行者兜帽”",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 5,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Yurei-Walker Hood",
+          "nameZhCN": "幽灵行者兜帽",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Headgear。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434726",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434726",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "powerpyx-legendary-chests",
+          "sourceType": "guide_article",
+          "title": "Assassin's Creed Shadows All Legendary Chest Locations",
+          "publisherOrAuthor": "PowerPyx",
+          "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-legendary-chest-locations/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Yurei-Walker Hood"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Yurei-Walker Hood"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Yurei-Walker Hood"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434747",
+      "sourceLocationId": 434747,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、3 个技能点、传奇护甲“幽灵行者长袍”",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 3,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Yurei-Walker Robes",
+          "nameZhCN": "幽灵行者长袍",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Light Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434747",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434747",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "powerpyx-legendary-chests",
+          "sourceType": "guide_article",
+          "title": "Assassin's Creed Shadows All Legendary Chest Locations",
+          "publisherOrAuthor": "PowerPyx",
+          "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-legendary-chest-locations/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Yurei-Walker Robes"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Yurei-Walker Robes"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Yurei-Walker Robes"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434791",
+      "sourceLocationId": 434791,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲“守护者护甲”",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Protector's Armor",
+          "nameZhCN": "守护者护甲",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Heavy Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434791",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434791",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Protector's Armor"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Protector's Armor"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434998",
+      "sourceLocationId": 434998,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、5 个技能点、传奇护甲“防御大师服饰”",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 5,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Defense Master Clothing",
+          "nameZhCN": "防御大师服饰",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434998",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434998",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Defense Master Clothing"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Defense Master Clothing"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435034",
+      "sourceLocationId": 435034,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、3 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 3,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Ship Captain's Gear",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435034",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435034",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Ship Captain's Gear"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Ship Captain's Gear"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435086",
+      "sourceLocationId": 435086,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、5 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 5,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Hidden Servant Kosode",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Light Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435086",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435086",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Hidden Servant Kosode"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Hidden Servant Kosode"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435722",
+      "sourceLocationId": 435722,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、4 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 4,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Legendary Onna-musha Kosode",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Light Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435722",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435722",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Legendary Onna-musha Kosode"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Legendary Onna-musha Kosode"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435857",
+      "sourceLocationId": 435857,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、4 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 4,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Mamushi Snake Robes",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：legendary Light Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435857",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435857",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mamushi Snake Robes"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mamushi Snake Robes"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435937",
+      "sourceLocationId": 435937,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Master Archer Outfit",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435937",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435937",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Master Archer Outfit"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Master Archer Outfit"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435961",
+      "sourceLocationId": 435961,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、4 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 4,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Master Archer Headband",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Helmet。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435961",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435961",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Master Archer Headband"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Master Archer Headband"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436173",
+      "sourceLocationId": 436173,
+      "categoryId": "category-12312-castle",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、3 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 3,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Masamune's Thorn",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Tanto。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436173",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436173",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436257",
+      "sourceLocationId": 436257,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、4 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 4,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Outfit of the Legendary Ronin",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436257",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436257",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Outfit of the Legendary Ronin"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436298",
+      "sourceLocationId": 436298,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、5 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 5,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Kasa of the Legendary Ronin",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Helmet。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436298",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436298",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Kasa of the Legendary Ronin"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Kasa of the Legendary Ronin"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436385",
+      "sourceLocationId": 436385,
+      "categoryId": "category-12312-castle",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、3 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 3,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Tale Smasher",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Kanabo。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436385",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436385",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436706",
+      "sourceLocationId": 436706,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、4 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 4,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Ship Captain's Mask",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Helmet。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436706",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436706",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Ship Captain's Mask"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Ship Captain's Mask"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437062",
+      "sourceLocationId": 437062,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Mamushi Snake Hood",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Headgear。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437062",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437062",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mamushi Snake Hood"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mamushi Snake Hood"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437603",
+      "sourceLocationId": 437603,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Samurai Daimyo Armor of Legend",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437603",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437603",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Samurai Daimyo Armor of Legend"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Samurai Daimyo Armor of Legend"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437616",
+      "sourceLocationId": 437616,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、4 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 4,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Defense Master Headwrap",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Helmet。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437616",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437616",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Defense Master Headwrap"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Defense Master Headwrap"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437808",
+      "sourceLocationId": 437808,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、5 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 5,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Hidden Servant Hat",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Headgear。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437808",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437808",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Hidden Servant Hat"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437917",
+      "sourceLocationId": 437917,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、4 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 4,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Legendary Onna-musha Headband",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Headgear。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437917",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437917",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Legendary Onna-musha Headband"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Legendary Onna-musha Headband"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-438282",
+      "sourceLocationId": 438282,
+      "categoryId": "category-12312-castle",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲“守护者之头盔（暂译）”",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Protector's Helmet",
+          "nameZhCN": "守护者之头盔（暂译）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "中文名称为规则化暂译，后续发现官方简体中文译名时应替换。原始奖励类型：Legendary Helmet。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-438282",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=438282",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Protector's Helmet"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Protector's Helmet"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-479981",
+      "sourceLocationId": 479981,
+      "categoryId": "category-12312-castle",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、4 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 4,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Heron's Flight",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Long Katana。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-479981",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=479981",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-480970",
+      "sourceLocationId": 480970,
+      "categoryId": "category-12312-castle",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、5 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 5,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Crimson Call",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Bow。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-480970",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=480970",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-480979",
+      "sourceLocationId": 480979,
+      "categoryId": "category-12312-castle",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Bo Master Outfit",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Light Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-480979",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=480979",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434422",
+      "sourceLocationId": 434422,
+      "categoryId": "category-12310-fort",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、1 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Point",
+          "nameZhCN": "技能点",
+          "quantity": 1,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Swift Shinobi Hood",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Headgear。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434422",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434422",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Swift Shinobi Hood"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Swift Shinobi Hood"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434697",
+      "sourceLocationId": 434697,
+      "categoryId": "category-12310-fort",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得3,000 点经验值、1 个技能点、传奇武器“艺匠之泪”（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Point",
+          "nameZhCN": "技能点",
+          "quantity": 1,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Artist's Tear",
+          "nameZhCN": "艺匠之泪",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Tanto。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-434697",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=434697",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435108",
+      "sourceLocationId": 435108,
+      "categoryId": "category-12310-fort",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Swift Shinobi Robes",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Light Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435108",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435108",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Swift Shinobi Robes"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Swift Shinobi Robes"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435685",
+      "sourceLocationId": 435685,
+      "categoryId": "category-12310-fort",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得3,000 点经验值、1 个技能点、传奇武器“放血者”（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Point",
+          "nameZhCN": "技能点",
+          "quantity": 1,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Bloodletter",
+          "nameZhCN": "放血者",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Kusarigama。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435685",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435685",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435849",
+      "sourceLocationId": 435849,
+      "categoryId": "category-12310-fort",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、1 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Point",
+          "nameZhCN": "技能点",
+          "quantity": 1,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Time Honored Crescent",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Naginata。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435849",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435849",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435928",
+      "sourceLocationId": 435928,
+      "categoryId": "category-12310-fort",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Dynasty Ender",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Teppo。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435928",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435928",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436278",
+      "sourceLocationId": 436278,
+      "categoryId": "category-12310-fort",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、1 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Point",
+          "nameZhCN": "技能点",
+          "quantity": 1,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Tremor Strike",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Kanabo。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436278",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436278",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436380",
+      "sourceLocationId": 436380,
+      "categoryId": "category-12310-fort",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Helmet of the Legendary Samurai",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Helmet。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436380",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436380",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Helmet of the Legendary Samurai"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Helmet of the Legendary Samurai"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437352",
+      "sourceLocationId": 437352,
+      "categoryId": "category-12310-fort",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Armor of the Legendary Samurai",
+          "nameZhCN": "传奇护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Armor。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437352",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437352",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "pushsquare-legendary-armor",
+          "sourceType": "guide_article",
+          "title": "All Legendary Armor Sets and Where to Find Them",
+          "publisherOrAuthor": "Push Square",
+          "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Armor of the Legendary Samurai"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Armor of the Legendary Samurai"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437575",
+      "sourceLocationId": 437575,
+      "categoryId": "category-12310-fort",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Yami no Kage",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Katana。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437575",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437575",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437623",
+      "sourceLocationId": 437623,
+      "categoryId": "category-12310-fort",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Funeral Pyre",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Bow。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437623",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437623",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-438439",
+      "sourceLocationId": 438439,
+      "categoryId": "category-12310-fort",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得3,000 点经验值、2 个技能点、传奇武器（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 3000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Lethal Lotus Petal",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Long Katana。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-438439",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=438439",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434429",
+      "sourceLocationId": 434429,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434447",
+      "sourceLocationId": 434447,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434493",
+      "sourceLocationId": 434493,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434501",
+      "sourceLocationId": 434501,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434569",
+      "sourceLocationId": 434569,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434610",
+      "sourceLocationId": 434610,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434616",
+      "sourceLocationId": 434616,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434622",
+      "sourceLocationId": 434622,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434704",
+      "sourceLocationId": 434704,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434705",
+      "sourceLocationId": 434705,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434706",
+      "sourceLocationId": 434706,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434717",
+      "sourceLocationId": 434717,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434805",
+      "sourceLocationId": 434805,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434818",
+      "sourceLocationId": 434818,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434983",
+      "sourceLocationId": 434983,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434985",
+      "sourceLocationId": 434985,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434991",
+      "sourceLocationId": 434991,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-434993",
+      "sourceLocationId": 434993,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435688",
+      "sourceLocationId": 435688,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435730",
+      "sourceLocationId": 435730,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435733",
+      "sourceLocationId": 435733,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435760",
+      "sourceLocationId": 435760,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435767",
+      "sourceLocationId": 435767,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435877",
+      "sourceLocationId": 435877,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436199",
+      "sourceLocationId": 436199,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436217",
+      "sourceLocationId": 436217,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436294",
+      "sourceLocationId": 436294,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436334",
+      "sourceLocationId": 436334,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436352",
+      "sourceLocationId": 436352,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436375",
+      "sourceLocationId": 436375,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436405",
+      "sourceLocationId": 436405,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436406",
+      "sourceLocationId": 436406,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436425",
+      "sourceLocationId": 436425,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436444",
+      "sourceLocationId": 436444,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436475",
+      "sourceLocationId": 436475,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436480",
+      "sourceLocationId": 436480,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436481",
+      "sourceLocationId": 436481,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436482",
+      "sourceLocationId": 436482,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436675",
+      "sourceLocationId": 436675,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436833",
+      "sourceLocationId": 436833,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437128",
+      "sourceLocationId": 437128,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437197",
+      "sourceLocationId": 437197,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437226",
+      "sourceLocationId": 437226,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437228",
+      "sourceLocationId": 437228,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437296",
+      "sourceLocationId": 437296,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437318",
+      "sourceLocationId": 437318,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437319",
+      "sourceLocationId": 437319,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437320",
+      "sourceLocationId": 437320,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437321",
+      "sourceLocationId": 437321,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437322",
+      "sourceLocationId": 437322,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437382",
+      "sourceLocationId": 437382,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437474",
+      "sourceLocationId": 437474,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437497",
+      "sourceLocationId": 437497,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437498",
+      "sourceLocationId": 437498,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437602",
+      "sourceLocationId": 437602,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437604",
+      "sourceLocationId": 437604,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437607",
+      "sourceLocationId": 437607,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437643",
+      "sourceLocationId": 437643,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437648",
+      "sourceLocationId": 437648,
+      "categoryId": "category-12452-hostile-landmark",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    }
+  ]
+}

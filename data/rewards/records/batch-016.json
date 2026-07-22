@@ -1,0 +1,4493 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "batchId": "reward-batch-016",
+  "generatedAt": "2026-07-22T15:35:07.556823Z",
+  "recordSchema": "data/rewards/reward-record-schema.json",
+  "startIndex": 1501,
+  "endIndex": 1600,
+  "recordCount": 100,
+  "records": [
+    {
+      "locationId": "location-mapgenie-435683",
+      "sourceLocationId": 435683,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Ibuki as an Ally if ??",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435683",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435683",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435695",
+      "sourceLocationId": 435695,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435695",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435695",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435705",
+      "sourceLocationId": 435705,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435705",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435705",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435710",
+      "sourceLocationId": 435710,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Decoration",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Red Lantern Post。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435710",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435710",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435807",
+      "sourceLocationId": 435807,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435881",
+      "sourceLocationId": 435881,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435938",
+      "sourceLocationId": 435938,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435938",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435938",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435946",
+      "sourceLocationId": 435946,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Fighting Dummy",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "rare",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Rare Cosmetic。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435946",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435946",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435958",
+      "sourceLocationId": 435958,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、2 个技能点、武器（具体名称待核对）、210 货币（具体名称待核对）、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Lash of Deception",
+          "nameZhCN": "武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "epic",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Epic Kusarigama。"
+        },
+        {
+          "type": "currency",
+          "nameOriginal": "Mon",
+          "nameZhCN": "货币（具体名称待核对）",
+          "quantity": 210,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Oni-Yuri as an Ally if she was spared during the Quest",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-435958",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=435958",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-435996",
+      "sourceLocationId": 435996,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436154",
+      "sourceLocationId": 436154,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得500 点经验值、375 份奖励（具体名称待核对）、375 份奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 500,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Hemp Cloth",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 375,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Leather",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 375,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436154",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436154",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436155",
+      "sourceLocationId": 436155,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得750 点经验值、300 份奖励（具体名称待核对）、300 份奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 750,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Ironsand",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 300,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Tamahagane",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 300,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436155",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436155",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436201",
+      "sourceLocationId": 436201,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436313",
+      "sourceLocationId": 436313,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、传奇货币（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "currency",
+          "nameOriginal": "Anemone",
+          "nameZhCN": "传奇货币（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Flora。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436313",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436313",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436331",
+      "sourceLocationId": 436331,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得500 点经验值、225 份奖励（具体名称待核对）、270 份奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 500,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Oakwood",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 225,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Silk",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 270,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436331",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436331",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436332",
+      "sourceLocationId": 436332,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得750 点经验值、300 份奖励（具体名称待核对）、300 份奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 750,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Ironsand",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 300,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Tamahagane",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 300,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436332",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436332",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436363",
+      "sourceLocationId": 436363,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Hay Supply",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Cosmetic。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436363",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436363",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436412",
+      "sourceLocationId": 436412,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436457",
+      "sourceLocationId": 436457,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436529",
+      "sourceLocationId": 436529,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Resting Pilgrims",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Pet Cosmetic。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436529",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436529",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436735",
+      "sourceLocationId": 436735,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436735",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436735",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436736",
+      "sourceLocationId": 436736,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436736",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436736",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436749",
+      "sourceLocationId": 436749,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436749",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436749",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436795",
+      "sourceLocationId": 436795,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436820",
+      "sourceLocationId": 436820,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、传奇武器（具体名称待核对）、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "weapon",
+          "nameOriginal": "Last Breath",
+          "nameZhCN": "传奇武器（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Bow。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Shooting Range",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Set Piece。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436820",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436820",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436826",
+      "sourceLocationId": 436826,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436826",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436826",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-436830",
+      "sourceLocationId": 436830,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-436830",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=436830",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437051",
+      "sourceLocationId": 437051,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Katsushime can join as an Ally",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437051",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437051",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437066",
+      "sourceLocationId": 437066,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437066",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437066",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437111",
+      "sourceLocationId": 437111,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437129",
+      "sourceLocationId": 437129,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437129",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437129",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437131",
+      "sourceLocationId": 437131,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得5,000 点经验值、奖励（具体名称待核对）、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 5000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Samurai Stand",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Yasuke Skill。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "??",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Decoration。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437131",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437131",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437133",
+      "sourceLocationId": 437133,
+      "categoryId": "category-12341-quest",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得5,000 点经验值、传奇饰品“蓑龟之护”、奖励（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 5000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "trinket",
+          "nameOriginal": "Minogame's Protection",
+          "nameZhCN": "蓑龟之护",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Amulet(Yasuke)。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Gold",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437133",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437133",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "vulkk-legendary-trinkets",
+          "sourceType": "guide_article",
+          "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
+          "publisherOrAuthor": "VULKK",
+          "locator": "https://vulkk.com/2025/03/24/all-legendary-amulets-and-trinkets-in-assassins-creed-shadows/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Minogame's Protection",
+            "reward_name:Gold"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437141",
+      "sourceLocationId": 437141,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437141",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437141",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437168",
+      "sourceLocationId": 437168,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、奖励（具体名称待核对）、奖励（具体名称待核对）、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Birds in a Landscape",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Wall Decoration。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Garden Scene",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Wall Decoration。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Painting of Lions",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Wall Decoration。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437168",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437168",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437186",
+      "sourceLocationId": 437186,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437188",
+      "sourceLocationId": 437188,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437190",
+      "sourceLocationId": 437190,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437191",
+      "sourceLocationId": 437191,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437201",
+      "sourceLocationId": 437201,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437205",
+      "sourceLocationId": 437205,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437205",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437205",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437206",
+      "sourceLocationId": 437206,
+      "categoryId": "category-12341-quest",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得1,000 点经验值、20 货币（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "currency",
+          "nameOriginal": "Mon",
+          "nameZhCN": "货币（具体名称待核对）",
+          "quantity": 20,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437206",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437206",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "powerpyx-legendary-chests",
+          "sourceType": "guide_article",
+          "title": "Assassin's Creed Shadows All Legendary Chest Locations",
+          "publisherOrAuthor": "PowerPyx",
+          "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-legendary-chest-locations/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437212",
+      "sourceLocationId": 437212,
+      "categoryId": "category-12341-quest",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得1,000 点经验值、20 货币（具体名称待核对）、护甲（具体名称待核对）、护甲（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "currency",
+          "nameOriginal": "Mon",
+          "nameZhCN": "货币（具体名称待核对）",
+          "quantity": 20,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Apprentice Assassin Gear",
+          "nameZhCN": "护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "epic",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Epic Light Armor。"
+        },
+        {
+          "type": "armor",
+          "nameOriginal": "Apprentice Assassin Headgear",
+          "nameZhCN": "护甲（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "epic",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Epic Headgear。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437212",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437212",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "powerpyx-legendary-chests",
+          "sourceType": "guide_article",
+          "title": "Assassin's Creed Shadows All Legendary Chest Locations",
+          "publisherOrAuthor": "PowerPyx",
+          "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-legendary-chest-locations/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        },
+        {
+          "sourceId": "polygon-armor-locations",
+          "sourceType": "guide_article",
+          "title": "All armor and armor sets locations list in Assassin's Creed Shadows",
+          "publisherOrAuthor": "Polygon",
+          "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon",
+            "reward_name:Apprentice Assassin Gear"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437219",
+      "sourceLocationId": 437219,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得5,000 点经验值、奖励（具体名称待核对）、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 5000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Enhanced Impact",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Naoe Skill。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Disabling Strike",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Yasuke Skill。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437219",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437219",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437221",
+      "sourceLocationId": 437221,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437221",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437221",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437222",
+      "sourceLocationId": 437222,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437222",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437222",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437223",
+      "sourceLocationId": 437223,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437223",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437223",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437224",
+      "sourceLocationId": 437224,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437224",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437224",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437249",
+      "sourceLocationId": 437249,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437249",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437249",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437250",
+      "sourceLocationId": 437250,
+      "categoryId": "category-12341-quest",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得1,000 点经验值、传奇饰品“天照之佑”",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "trinket",
+          "nameOriginal": "Amaterasu's Blessing",
+          "nameZhCN": "天照之佑",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "采用已登记的简体中文名称。原始奖励类型：Legendary Amulet。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437250",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437250",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "vulkk-legendary-trinkets",
+          "sourceType": "guide_article",
+          "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
+          "publisherOrAuthor": "VULKK",
+          "locator": "https://vulkk.com/2025/03/24/all-legendary-amulets-and-trinkets-in-assassins-creed-shadows/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Amaterasu's Blessing"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437251",
+      "sourceLocationId": 437251,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437251",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437251",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437277",
+      "sourceLocationId": 437277,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437284",
+      "sourceLocationId": 437284,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437285",
+      "sourceLocationId": 437285,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437285",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437285",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437286",
+      "sourceLocationId": 437286,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437286",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437286",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437293",
+      "sourceLocationId": 437293,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437293",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437293",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437294",
+      "sourceLocationId": 437294,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437294",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437294",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437295",
+      "sourceLocationId": 437295,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437295",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437295",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437302",
+      "sourceLocationId": 437302,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437302",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437302",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437304",
+      "sourceLocationId": 437304,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437304",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437304",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437308",
+      "sourceLocationId": 437308,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437308",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437308",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437309",
+      "sourceLocationId": 437309,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437309",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437309",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437310",
+      "sourceLocationId": 437310,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、100 份奖励（具体名称待核对）、100 份奖励（具体名称待核对）、150 份奖励（具体名称待核对）、100 份奖励（具体名称待核对）、50 份奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Leather",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 100,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Hemp Cloth",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 100,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Ironsand",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 150,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Tamahagane",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 100,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Oakwood",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 50,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437310",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437310",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437335",
+      "sourceLocationId": 437335,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437341",
+      "sourceLocationId": 437341,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437343",
+      "sourceLocationId": 437343,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437345",
+      "sourceLocationId": 437345,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437346",
+      "sourceLocationId": 437346,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437347",
+      "sourceLocationId": 437347,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437351",
+      "sourceLocationId": 437351,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437457",
+      "sourceLocationId": 437457,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得5,000 点经验值、奖励（具体名称待核对）、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 5000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Feral Frenzy",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Naoe Skill。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Ultimate Onslaught",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Yasuke Skill。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437457",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437457",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437465",
+      "sourceLocationId": 437465,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437466",
+      "sourceLocationId": 437466,
+      "categoryId": "category-12341-quest",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得1,000 点经验值、传奇饰品（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "trinket",
+          "nameOriginal": "Discipline's Reward",
+          "nameZhCN": "传奇饰品（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Amulet。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437466",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437466",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "vulkk-legendary-trinkets",
+          "sourceType": "guide_article",
+          "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
+          "publisherOrAuthor": "VULKK",
+          "locator": "https://vulkk.com/2025/03/24/all-legendary-amulets-and-trinkets-in-assassins-creed-shadows/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Discipline's Reward"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437471",
+      "sourceLocationId": 437471,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437480",
+      "sourceLocationId": 437480,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得500 点经验值、750 货币（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 500,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "currency",
+          "nameOriginal": "Mon",
+          "nameZhCN": "货币（具体名称待核对）",
+          "quantity": 750,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437480",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437480",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437485",
+      "sourceLocationId": 437485,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得500 点经验值、225 份奖励（具体名称待核对）、270 份奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 500,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Oakwood",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 225,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Silk",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 270,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437485",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437485",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437486",
+      "sourceLocationId": 437486,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得750 点经验值、300 份奖励（具体名称待核对）、300 份奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 750,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Ironsand",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 300,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Tamahagane",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": 300,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437486",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437486",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437553",
+      "sourceLocationId": 437553,
+      "categoryId": "category-12341-quest",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得1,000 点经验值、2 个技能点、传奇饰品（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 2,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "trinket",
+          "nameOriginal": "Warrior's Respite",
+          "nameZhCN": "传奇饰品（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Amulet。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437553",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437553",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "vulkk-legendary-trinkets",
+          "sourceType": "guide_article",
+          "title": "All Legendary Amulets and Trinkets in Assassin's Creed Shadows",
+          "publisherOrAuthor": "VULKK",
+          "locator": "https://vulkk.com/2025/03/24/all-legendary-amulets-and-trinkets-in-assassins-creed-shadows/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Warrior's Respite"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437554",
+      "sourceLocationId": 437554,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得2,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 2000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437554",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437554",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437557",
+      "sourceLocationId": 437557,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437558",
+      "sourceLocationId": 437558,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437571",
+      "sourceLocationId": 437571,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437571",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437571",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437590",
+      "sourceLocationId": 437590,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437590",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437590",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437597",
+      "sourceLocationId": 437597,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437597",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437597",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437598",
+      "sourceLocationId": 437598,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437598",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437598",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437614",
+      "sourceLocationId": 437614,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437618",
+      "sourceLocationId": 437618,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得5,000 点经验值、奖励（具体名称待核对）、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 5000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Sweep the Leg",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Naoe Skill。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Defensive Breach",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Yasuke Skill。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437618",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437618",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437646",
+      "sourceLocationId": 437646,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.78,
+      "summaryZhCN": "获得1,000 点经验值、奖励（具体名称待核对）（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "unknown",
+          "nameOriginal": "Yagoro as an Ally",
+          "nameZhCN": "奖励（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437646",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437646",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437656",
+      "sourceLocationId": 437656,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437660",
+      "sourceLocationId": 437660,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437660",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437660",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437666",
+      "sourceLocationId": 437666,
+      "categoryId": "category-12341-quest",
+      "status": "unresolved",
+      "confidence": 0.0,
+      "summaryZhCN": "奖励尚未确认",
+      "rewards": [],
+      "sources": [],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437669",
+      "sourceLocationId": 437669,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437669",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437669",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437673",
+      "sourceLocationId": 437673,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437673",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437673",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437674",
+      "sourceLocationId": 437674,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437674",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437674",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437696",
+      "sourceLocationId": 437696,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437696",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437696",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437697",
+      "sourceLocationId": 437697,
+      "categoryId": "category-12341-quest",
+      "status": "multi_source_confirmed",
+      "confidence": 0.92,
+      "summaryZhCN": "获得2,000 点经验值、3 个技能点、传奇饰品（具体名称待核对）、255 货币（具体名称待核对）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 2000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "skill_point",
+          "nameOriginal": "Mastery Points",
+          "nameZhCN": "技能点",
+          "quantity": 3,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        },
+        {
+          "type": "trinket",
+          "nameOriginal": "Oni's Fury",
+          "nameZhCN": "传奇饰品（具体名称待核对）",
+          "quantity": null,
+          "quantityStatus": "not_applicable",
+          "rarity": "legendary",
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。原始奖励类型：Legendary Amulet。"
+        },
+        {
+          "type": "currency",
+          "nameOriginal": "Mon",
+          "nameZhCN": "货币（具体名称待核对）",
+          "quantity": 255,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "原文专名已保留在 nameOriginal；前端不显示未经核对的伪官方中文名。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437697",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437697",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        },
+        {
+          "sourceId": "powerpyx-legendary-chests",
+          "sourceType": "guide_article",
+          "title": "Assassin's Creed Shadows All Legendary Chest Locations",
+          "publisherOrAuthor": "PowerPyx",
+          "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-legendary-chest-locations/",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name:Mon"
+          ],
+          "limitationsZhCN": "自动交叉核对要求地点名与奖励原文名在同一页面的限定文本距离内共同出现；数量仍以可复查来源为准。"
+        }
+      ],
+      "conflicts": [
+        {
+          "type": "translation_mismatch",
+          "status": "accepted_uncertainty",
+          "detailZhCN": "至少一个奖励专名尚无已核对的官方简体中文译名。",
+          "resolutionZhCN": "前端使用标准化暂译或中文类别占位；原文名保留在结构化记录中，发现官方译名后再替换。"
+        }
+      ],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437816",
+      "sourceLocationId": 437816,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437816",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437816",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437817",
+      "sourceLocationId": 437817,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437817",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437817",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437819",
+      "sourceLocationId": 437819,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437819",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437819",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    },
+    {
+      "locationId": "location-mapgenie-437843",
+      "sourceLocationId": 437843,
+      "categoryId": "category-12341-quest",
+      "status": "high_confidence_inference",
+      "confidence": 0.82,
+      "summaryZhCN": "获得1,000 点经验值（高置信推断）",
+      "rewards": [
+        {
+          "type": "experience",
+          "nameOriginal": "XP",
+          "nameZhCN": "经验值",
+          "quantity": 1000,
+          "quantityStatus": "exact",
+          "rarity": null,
+          "notesZhCN": "数量直接来自原始地点资料中的奖励字段。"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "mapgenie-437843",
+          "sourceType": "community_database",
+          "title": "MapGenie《刺客信条：影》互动地图地点记录",
+          "publisherOrAuthor": "MapGenie",
+          "locator": "https://mapgenie.io/assassins-creed-shadows/maps/japan?locationIds=437843",
+          "capturedAt": null,
+          "gameVersion": null,
+          "supports": [
+            "location_identity",
+            "reward_name",
+            "reward_quantity"
+          ],
+          "limitationsZhCN": "单一社区数据库来源；原始仓库记录来自已导入的地图数据，尚需官方文本、游戏画面或独立指南复核。"
+        }
+      ],
+      "conflicts": [],
+      "review": {
+        "state": "machine_checked",
+        "lastReviewedAt": "2026-07-22T15:35:07.556823Z",
+        "method": "atlas_reward_builder_v1",
+        "reviewer": null,
+        "changeReasonZhCN": "从地点原始奖励字段提取，按简体中文术语标准化，并使用独立公开来源进行保守交叉核对。"
+      }
+    }
+  ]
+}
