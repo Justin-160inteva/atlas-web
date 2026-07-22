@@ -8,6 +8,8 @@ on:
       - '.github/workflows/reward-quest-evidence-import.yml'
       - 'tools/build_quest_reward_evidence_overrides.py'
       - 'tools/apply_quest_reward_override_builder_patch.py'
+      - 'tools/apply_numeric_progression_reward_patch.py'
+      - 'tools/clean_progression_reward_translation_entries.py'
       - 'tools/report_quest_reward_import_validation.py'
       - 'tools/run_reward_translation_with_fallback.py'
       - 'data/rewards/reward-quest-detail-diagnostic.json'
@@ -17,6 +19,8 @@ on:
       - '.github/workflows/reward-quest-evidence-import.yml'
       - 'tools/build_quest_reward_evidence_overrides.py'
       - 'tools/apply_quest_reward_override_builder_patch.py'
+      - 'tools/apply_numeric_progression_reward_patch.py'
+      - 'tools/clean_progression_reward_translation_entries.py'
       - 'tools/report_quest_reward_import_validation.py'
       - 'tools/run_reward_translation_with_fallback.py'
       - 'data/rewards/reward-quest-detail-diagnostic.json'
@@ -65,6 +69,8 @@ jobs:
           python -m py_compile \
             tools/build_quest_reward_evidence_overrides.py \
             tools/apply_quest_reward_override_builder_patch.py \
+            tools/apply_numeric_progression_reward_patch.py \
+            tools/clean_progression_reward_translation_entries.py \
             tools/report_quest_reward_import_validation.py \
             tools/run_reward_translation_with_fallback.py
           python tools/build_quest_reward_evidence_overrides.py
@@ -81,10 +87,14 @@ jobs:
           print(f"Strict quest overrides ready: {overrides['overrideCount']} accepted, {overrides['skippedCount']} unresolved.")
           PY
 
-      - name: Integrate point-specific overrides
+      - name: Integrate point-specific and numeric progression parsing
         run: |
           python tools/apply_quest_reward_override_builder_patch.py
+          python tools/apply_numeric_progression_reward_patch.py
           python -m py_compile tools/build_reward_summary_catalog.py
+
+      - name: Remove progression values from the proper-name lexicon
+        run: python tools/clean_progression_reward_translation_entries.py
 
       - name: Rebuild records to expose any new named rewards
         run: python tools/build_reward_summary_catalog.py
