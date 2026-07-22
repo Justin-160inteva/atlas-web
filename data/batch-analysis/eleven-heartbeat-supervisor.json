@@ -1,23 +1,26 @@
 {
-  "schemaVersion": 5,
-  "id": "eleven-runtime-heartbeat-supervisor-v5-p025-p035-schema-safe",
+  "schemaVersion": 6,
+  "id": "eleven-runtime-heartbeat-supervisor-v6-dynamic-current-batch",
   "enabled": true,
-  "configurationRevision": "queue-schema-hydration-20260720-01",
+  "configurationRevision": "dynamic-queue-persistent-retry-20260722-01",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
+  "trigger": "data/batch-analysis/eleven-pilot-v2-trigger.json",
   "runtimeProgress": "data/runtime-progress/eleven-pilot-progress.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "reportOutput": "data/batch-analysis/eleven-heartbeat-supervisor-state.json",
   "workflow": "scan-eleven-pilot-v2.yml",
   "staleAfterSeconds": 90,
   "hardStaleAfterSeconds": 180,
-  "resumeCooldownSeconds": 360,
+  "resumeCooldownSeconds": 60,
   "maximumQueueItems": 11,
   "policy": {
     "checkEveryMinutes": 5,
     "oneItemPerRun": true,
     "maximumConcurrentDownloads": 1,
     "automaticContinuationAfterDurableSuccess": true,
-    "maximumAttemptsPerItem": 3,
+    "automaticRedispatchAfterTechnicalFailure": true,
+    "retryTechnicalFailuresUntilResolved": true,
+    "maximumAttemptsPerItem": 20,
     "durableStateAlwaysWins": true,
     "terminalProjectionRequired": true,
     "deduplicateResumeRequests": true,
@@ -25,6 +28,7 @@
     "neverModifyExecutableSourceAutomatically": true,
     "neverBroadenAuthorization": true,
     "neverRetainOriginalMedia": true,
-    "neverExpandQueueScope": true
+    "neverExpandQueueScope": true,
+    "protectedFailuresStopRedispatch": true
   }
 }
