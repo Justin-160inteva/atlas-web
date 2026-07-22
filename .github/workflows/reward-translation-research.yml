@@ -12,13 +12,20 @@ on:
       - 'data/rewards/reward-translation-research-policy.json'
       - 'data/rewards/reward-translation-trigger.json'
       - 'data/rewards/reward-research-sources.json'
+  pull_request:
+    paths:
+      - '.github/workflows/reward-translation-research.yml'
+      - 'tools/research_reward_translation_batch.py'
+      - 'data/rewards/reward-translation-research-policy.json'
+      - 'data/rewards/reward-translation-trigger.json'
+      - 'data/rewards/reward-research-sources.json'
 
 permissions:
   contents: write
   models: read
 
 concurrency:
-  group: reward-translation-research-main
+  group: reward-translation-research-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -26,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - name: Check out latest main
+      - name: Check out repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -96,7 +103,7 @@ jobs:
           PY
 
       - name: Commit translated names and rebuilt reward catalog
-        if: steps.research.outputs.accepted != '0'
+        if: steps.research.outputs.accepted != '0' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
