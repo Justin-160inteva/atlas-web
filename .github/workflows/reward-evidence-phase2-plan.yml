@@ -1,0 +1,73 @@
+name: Reward Evidence Phase 2 Plan
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reward-evidence-phase2-plan.yml'
+      - 'tools/plan_reward_evidence_phase2.py'
+      - 'data/rewards/reward-evidence-phase2-trigger.json'
+      - 'data/rewards/reward-research-sources.json'
+      - 'data/rewards/reward-summary-catalog.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reward-evidence-phase2-plan-main
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build unresolved evidence plan
+        run: |
+          python -m py_compile tools/plan_reward_evidence_phase2.py
+          python tools/plan_reward_evidence_phase2.py
+
+      - name: Validate plan invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          plan = json.loads(Path('data/rewards/reward-evidence-phase2-plan.json').read_text(encoding='utf-8'))
+          assert plan['targetLocationCount'] == 3430
+          assert plan['unresolvedCount'] == len(plan['allCandidates'])
+          assert plan['nextBatchSize'] == len(plan['nextBatch'])
+          assert plan['nextBatchSize'] <= 100
+          assert all(plan['invariants'].values())
+          print(f"Phase-two plan validated: {plan['unresolvedCount']} unresolved, {plan['categoryCount']} categories.")
+          PY
+
+      - name: Commit phase-two plan
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/rewards/reward-evidence-phase2-plan.json
+          if git diff --cached --quiet; then
+            echo 'No phase-two plan changes.'
+            exit 0
+          fi
+          git commit -m 'Plan phase-two reward evidence research [skip ci]'
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Plan push attempt ${attempt} collided with telemetry; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 5))
+          done
+          exit 1
