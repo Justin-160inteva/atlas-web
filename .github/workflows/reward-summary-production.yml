@@ -103,18 +103,18 @@ jobs:
             data/rewards/reward-summary-catalog.json \
             data/rewards/reward-source-audit.json \
             data/rewards/reward-research-queue.json \
-            data/rewards/records
+            data/rewards/records \
+            data/conflict-reports/reward-evidence-matrix.json
           if git diff --cached --quiet; then
             echo 'No generated reward changes.'
             exit 0
           fi
           git commit -m 'Generate 3430 Simplified Chinese reward evidence records [skip ci]'
           for attempt in 1 2 3 4 5; do
-            if git pull --rebase origin "$target_branch" && git push origin HEAD:"$target_branch"; then
+            if git push origin HEAD:"$target_branch"; then
               exit 0
             fi
-            echo "Push attempt ${attempt} failed; retrying after concurrent update."
-            git rebase --abort || true
+            echo "Push attempt ${attempt} failed; retrying."
             sleep $((attempt * 5))
           done
           echo 'Unable to publish reward evidence after five attempts.' >&2
