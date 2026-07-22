@@ -53,7 +53,7 @@ NUMBER_ONLY_REWARD = re.compile(
 )
 HEADING_LINE = re.compile(r"^\*\*[^*]+:\*\*$")
 INLINE_LEGENDARY_REWARD = re.compile(
-    r"^(?P<name>[^\n]{2,140}?)\s+-\s+(?P<descriptor>Legendary\s+(?:Amulet|Trinket|Armor|Armour|Headgear|Helmet|Katana|Tanto|Kusarigama|Naginata|Kanabo|Teppo|Bow|Weapon|Outfit|Gear))$",
+    r"^(?P<name>[^\n]{2,140}?)\s+-\s+(?P<descriptor>Leg(?:endary|edary)\s+[A-Za-z][A-Za-z /-]{1,60})$",
     re.IGNORECASE,
 )
 UNKNOWN_REWARD_PLACEHOLDERS = {"?", "??", "TBD", "Unknown"}
@@ -73,6 +73,7 @@ TYPE_KEYWORDS: list[tuple[str, str]] = [
     ("armour", "armor"),
     ("headgear", "armor"),
     ("helmet", "armor"),
+    ("legendary bo", "weapon"),
     ("katana", "weapon"),
     ("tanto", "weapon"),
     ("kusarigama", "weapon"),
@@ -197,19 +198,24 @@ def extract_reward_lines(description: str, category_id: str | None = None) -> li
             if cleaned and cleaned not in UNKNOWN_REWARD_PLACEHOLDERS:
                 lines.append(cleaned)
 
-    # MapGenie legendary-chest records commonly store the explicit reward as a
+    # MapGenie Legendary Chest records commonly store the explicit reward as a
     # standalone "Proper Name - Legendary Type" line instead of a Rewards block.
     # Apply this fallback only to the explicit Legendary Chest category.
     if not lines and "legendary-chest" in str(category_id or "").lower():
         for raw in description.splitlines():
-            cleaned = clean_markdown(raw.strip())
+            cleaned = re.sub(r"^[\-•*]+\s*", "", clean_markdown(raw.strip()))
             if not cleaned or cleaned in UNKNOWN_REWARD_PLACEHOLDERS:
                 continue
             inline = INLINE_LEGENDARY_REWARD.fullmatch(cleaned)
             if not inline:
                 continue
             name = inline.group("name").strip()
-            descriptor = inline.group("descriptor").strip()
+            descriptor = re.sub(
+                r"^Legedary\b",
+                "Legendary",
+                inline.group("descriptor").strip(),
+                flags=re.IGNORECASE,
+            )
             if name in UNKNOWN_REWARD_PLACEHOLDERS or name.startswith("??"):
                 continue
             lines.append(f"{name} - {descriptor}")
