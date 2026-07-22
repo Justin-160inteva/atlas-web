@@ -33,10 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - name: Check out repository
+      - name: Check out repository branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -148,7 +149,9 @@ jobs:
           PY
 
       - name: Commit translated names and rebuilt reward catalog
-        if: steps.research.outputs.accepted != '0' && github.event_name != 'pull_request'
+        if: steps.research.outputs.accepted != '0'
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -168,10 +171,10 @@ jobs:
           fi
           git commit -m "Translate reward names to standard Simplified Chinese [skip ci]"
           for attempt in 1 2 3 4 5 6; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
+            if git pull --rebase origin "$TARGET_BRANCH" && git push origin "HEAD:$TARGET_BRANCH"; then
               exit 0
             fi
-            echo "Push attempt ${attempt} collided with a scan telemetry commit; retrying."
+            echo "Push attempt ${attempt} collided with a concurrent update; retrying."
             git rebase --abort || true
             sleep $((attempt * 6))
           done
