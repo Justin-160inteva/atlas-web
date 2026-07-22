@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "generatedAt": "2026-07-22T22:06:55.687689Z",
+  "generatedAt": "2026-07-22T22:32:52.005242Z",
   "targetLocationCount": 3430,
-  "unresolvedCount": 2533,
-  "resolvedOrInferredCount": 897,
-  "unresolvedWithDescription": 1080,
-  "unresolvedWithSourceLocationId": 2533,
+  "unresolvedCount": 2460,
+  "resolvedOrInferredCount": 970,
+  "unresolvedWithDescription": 1007,
+  "unresolvedWithSourceLocationId": 2460,
   "categoryCount": 32,
   "regionCount": 11,
   "strategyCounts": {
@@ -17,8 +17,8 @@
     "activity_reward_crosscheck": 155,
     "merchant_inventory_or_unlock_crosscheck": 128,
     "activity_completion_reward_crosscheck": 116,
-    "legendary_chest_crosscheck": 91,
     "quest_completion_reward_crosscheck": 73,
+    "legendary_chest_crosscheck": 18,
     "castle_legendary_chest_crosscheck": 1
   },
   "topCategories": [
@@ -66,11 +66,6 @@
       "categoryId": "category-12307-kakurega",
       "categoryZhCN": "Kakurega",
       "unresolved": 96
-    },
-    {
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "unresolved": 91
     },
     {
       "categoryId": "category-12349-small-shrine",
@@ -121,58 +116,63 @@
       "categoryId": "category-12325-cultural-discovery",
       "categoryZhCN": "Cultural Discovery",
       "unresolved": 34
+    },
+    {
+      "categoryId": "category-12321-gear-vendor",
+      "categoryZhCN": "Gear Vendor",
+      "unresolved": 33
     }
   ],
   "topRegions": [
     {
       "regionId": "region-3147-izumi-settsu",
       "regionZhCN": "IZUMI SETTSU",
-      "unresolved": 345
+      "unresolved": 337
     },
     {
       "regionId": "region-3144-omi",
       "regionZhCN": "OMI",
-      "unresolved": 341
-    },
-    {
-      "regionId": "region-3149-harima",
-      "regionZhCN": "HARIMA",
-      "unresolved": 290
+      "unresolved": 332
     },
     {
       "regionId": "region-3152-kii",
       "regionZhCN": "KII",
-      "unresolved": 289
+      "unresolved": 283
+    },
+    {
+      "regionId": "region-3149-harima",
+      "regionZhCN": "HARIMA",
+      "unresolved": 280
     },
     {
       "regionId": "region-3150-tamba",
       "regionZhCN": "TAMBA",
-      "unresolved": 261
+      "unresolved": 253
     },
     {
       "regionId": "region-3148-yamashiro",
       "regionZhCN": "YAMASHIRO",
-      "unresolved": 235
+      "unresolved": 228
     },
     {
       "regionId": "region-3151-yamato",
       "regionZhCN": "YAMATO",
-      "unresolved": 229
+      "unresolved": 222
     },
     {
       "regionId": "region-3146-wakasa",
       "regionZhCN": "WAKASA",
-      "unresolved": 227
+      "unresolved": 218
     },
     {
       "regionId": "region-3304-awaji",
       "regionZhCN": "AWAJI",
-      "unresolved": 192
+      "unresolved": 188
     },
     {
       "regionId": "region-3145-iga",
       "regionZhCN": "IGA",
-      "unresolved": 122
+      "unresolved": 117
     },
     {
       "regionId": "unknown-region",
@@ -222,206 +222,6 @@
       "currentSummaryZhCN": "奖励尚未确认"
     },
     {
-      "locationId": "location-mapgenie-438759",
-      "sourceLocationId": 438759,
-      "title": "Legendary Chest - Abandoned Gardens",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3146-wakasa",
-      "regionZhCN": "WAKASA",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-437354",
-      "sourceLocationId": 437354,
-      "title": "Legendary Chest - Akagi Fort",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3152-kii",
-      "regionZhCN": "KII",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-434597",
-      "sourceLocationId": 434597,
-      "title": "Legendary Chest - Amagasaki Castle",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3147-izumi-settsu",
-      "regionZhCN": "IZUMI SETTSU",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-438443",
-      "sourceLocationId": 438443,
-      "title": "Legendary Chest - Amanohashidate",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3150-tamba",
-      "regionZhCN": "TAMBA",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-438314",
-      "sourceLocationId": 438314,
-      "title": "Legendary Chest - Ancient Tomb of Nanjo",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3148-yamashiro",
-      "regionZhCN": "YAMASHIRO",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-438765",
-      "sourceLocationId": 438765,
-      "title": "Legendary Chest - Aokura Shrine",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3150-tamba",
-      "regionZhCN": "TAMBA",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-435068",
-      "sourceLocationId": 435068,
-      "title": "Legendary Chest - Arima Onsen",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3149-harima",
-      "regionZhCN": "HARIMA",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-479957",
-      "sourceLocationId": 479957,
-      "title": "Legendary Chest - Atakebune",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3304-awaji",
-      "regionZhCN": "AWAJI",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-438463",
-      "sourceLocationId": 438463,
-      "title": "Legendary Chest - Azuchi Castle",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3144-omi",
-      "regionZhCN": "OMI",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-438475",
-      "sourceLocationId": 438475,
-      "title": "Legendary Chest - Azuchi Hyotanyama Kofun",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3144-omi",
-      "regionZhCN": "OMI",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
       "locationId": "location-mapgenie-480965",
       "sourceLocationId": 480965,
       "title": "Legendary Chest - Bandit Camp",
@@ -429,146 +229,6 @@
       "categoryZhCN": "Legendary Chest",
       "regionId": "region-3304-awaji",
       "regionZhCN": "AWAJI",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-438436",
-      "sourceLocationId": 438436,
-      "title": "Legendary Chest - Blackstone Cascades",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3149-harima",
-      "regionZhCN": "HARIMA",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-437824",
-      "sourceLocationId": 437824,
-      "title": "Legendary Chest - Chasuriyama Kofun",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3150-tamba",
-      "regionZhCN": "TAMBA",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-438824",
-      "sourceLocationId": 438824,
-      "title": "Legendary Chest - Four Devils Lair",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3145-iga",
-      "regionZhCN": "IGA",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-438761",
-      "sourceLocationId": 438761,
-      "title": "Legendary Chest - Fukuchiyama Castle",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3150-tamba",
-      "regionZhCN": "TAMBA",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-479953",
-      "sourceLocationId": 479953,
-      "title": "Legendary Chest - Fukura Camp",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3304-awaji",
-      "regionZhCN": "AWAJI",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-435930",
-      "sourceLocationId": 435930,
-      "title": "Legendary Chest - Genbao Fort",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3146-wakasa",
-      "regionZhCN": "WAKASA",
-      "priority": 106,
-      "strategy": "legendary_chest_crosscheck",
-      "desiredEvidenceTypes": [
-        "legendary_chest",
-        "guide",
-        "video",
-        "image"
-      ],
-      "hasDescription": true,
-      "hasRewardText": false,
-      "currentSummaryZhCN": "奖励尚未确认"
-    },
-    {
-      "locationId": "location-mapgenie-439473",
-      "sourceLocationId": 439473,
-      "title": "Legendary Chest - Grave of Buried Hopes",
-      "categoryId": "category-12342-legendary-chest",
-      "categoryZhCN": "Legendary Chest",
-      "regionId": "region-3148-yamashiro",
-      "regionZhCN": "YAMASHIRO",
       "priority": 106,
       "strategy": "legendary_chest_crosscheck",
       "desiredEvidenceTypes": [
@@ -596,6 +256,345 @@
         "guide",
         "video",
         "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-439265",
+      "sourceLocationId": 439265,
+      "title": "Legendary Chest - Hidden Path",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3152-kii",
+      "regionZhCN": "KII",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-435116",
+      "sourceLocationId": 435116,
+      "title": "Legendary Chest - Hijiyama Fort",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3145-iga",
+      "regionZhCN": "IGA",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-438405",
+      "sourceLocationId": 438405,
+      "title": "Legendary Chest - Iimori Cave",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3152-kii",
+      "regionZhCN": "KII",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-479983",
+      "sourceLocationId": 479983,
+      "title": "Legendary Chest - Iwaya Castle",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3304-awaji",
+      "regionZhCN": "AWAJI",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-437373",
+      "sourceLocationId": 437373,
+      "title": "Legendary Chest - Kameyama Castle",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3150-tamba",
+      "regionZhCN": "TAMBA",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-434425",
+      "sourceLocationId": 434425,
+      "title": "Legendary Chest - Katano Castle",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3147-izumi-settsu",
+      "regionZhCN": "IZUMI SETTSU",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-439138",
+      "sourceLocationId": 439138,
+      "title": "Legendary Chest - Miyanoue Fort",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3149-harima",
+      "regionZhCN": "HARIMA",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-439354",
+      "sourceLocationId": 439354,
+      "title": "Legendary Chest - Nagahama Castle",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3144-omi",
+      "regionZhCN": "OMI",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-435077",
+      "sourceLocationId": 435077,
+      "title": "Legendary Chest - Narutaki Falls",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3150-tamba",
+      "regionZhCN": "TAMBA",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-434804",
+      "sourceLocationId": 434804,
+      "title": "Legendary Chest - Nijo Palace",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3148-yamashiro",
+      "regionZhCN": "YAMASHIRO",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-434483",
+      "sourceLocationId": 434483,
+      "title": "Legendary Chest - Osaka Castle",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3147-izumi-settsu",
+      "regionZhCN": "IZUMI SETTSU",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-434767",
+      "sourceLocationId": 434767,
+      "title": "Legendary Chest - Shoryuji Castle",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3148-yamashiro",
+      "regionZhCN": "YAMASHIRO",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-438810",
+      "sourceLocationId": 438810,
+      "title": "Legendary Chest - The Cliffs of Thought",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3148-yamashiro",
+      "regionZhCN": "YAMASHIRO",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-438454",
+      "sourceLocationId": 438454,
+      "title": "Legendary Chest - Uchinakao Burrows",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3146-wakasa",
+      "regionZhCN": "WAKASA",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-438806",
+      "sourceLocationId": 438806,
+      "title": "Legendary Chest - Uda Matsuyama Castle",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3151-yamato",
+      "regionZhCN": "YAMATO",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-481160",
+      "sourceLocationId": 481160,
+      "title": "Legendary Chest - Yura Castle",
+      "categoryId": "category-12342-legendary-chest",
+      "categoryZhCN": "Legendary Chest",
+      "regionId": "region-3304-awaji",
+      "regionZhCN": "AWAJI",
+      "priority": 106,
+      "strategy": "legendary_chest_crosscheck",
+      "desiredEvidenceTypes": [
+        "legendary_chest",
+        "guide",
+        "video",
+        "image"
+      ],
+      "hasDescription": true,
+      "hasRewardText": false,
+      "currentSummaryZhCN": "奖励尚未确认"
+    },
+    {
+      "locationId": "location-mapgenie-481052",
+      "sourceLocationId": 481052,
+      "title": "A Sour Defeat",
+      "categoryId": "category-12341-quest",
+      "categoryZhCN": "Quest",
+      "regionId": "region-3304-awaji",
+      "regionZhCN": "AWAJI",
+      "priority": 100,
+      "strategy": "quest_completion_reward_crosscheck",
+      "desiredEvidenceTypes": [
+        "quest",
+        "guide",
+        "video"
       ],
       "hasDescription": true,
       "hasRewardText": false,
