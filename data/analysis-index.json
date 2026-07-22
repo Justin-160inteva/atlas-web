@@ -1,6 +1,6 @@
 {
   "version": "0.9.1.4",
-  "updatedAt": "2026-07-22T16:43:44.083824Z",
+  "updatedAt": "2026-07-22T19:48:09.987399Z",
   "items": [
     {
       "id": "analysis-eleven-p001-v2",
@@ -2284,37 +2284,33 @@
       "authorizationId": "auth-eleven-game-world-20260719",
       "author": "11的游戏世界",
       "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P66 第66期：伊贺（收集）",
-      "status": "failed",
+      "status": "imported",
       "resultPath": "data/analysis-results/eleven-p066.json",
-      "resultSha256": "1dd5997e3d3f9e84fb99ec9076a152ddae2686a8443ae750ccf661ac11d9b1f8",
-      "generatedAt": "2026-07-22T16:43:42.781142Z",
+      "resultSha256": "dea6acce84d194cd946ef89f8e5d55d90fc613dfa1041be175b3fd2bd4c24e7c",
+      "generatedAt": "2026-07-22T19:48:07.106835Z",
       "media": {
-        "durationSeconds": null,
-        "width": null,
-        "height": null,
-        "fps": null,
+        "durationSeconds": 4304.433,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
         "videoRetained": false,
         "framePixelsRetained": false
       },
       "scan": {
-        "sampled": 0,
-        "kept": 0,
-        "blurred": 0,
-        "duplicates": 0,
-        "keepRatio": 0
+        "sampled": 480,
+        "kept": 463,
+        "blurred": 2,
+        "duplicates": 15,
+        "keepRatio": 0.964583
       },
       "pipeline": {
-        "sourceDownloaded": false,
-        "numericDescriptorsGenerated": false,
+        "sourceDownloaded": true,
+        "numericDescriptorsGenerated": true,
         "resultCommitted": true,
-        "libraryImported": false,
+        "libraryImported": true,
         "geospatialAnchoringCompleted": false
       },
-      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。",
-      "failure": {
-        "stage": "download",
-        "error": "[{\"strategy\": \"wbi-signed-api-cdn-rotation\", \"success\": false, \"diagnostic\": \"ream 0 (Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360): unspecified pixel format\\nConsider increasing the value for the 'analyzeduration' (0) and 'probesize' (5000000) options\\nInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '[temporary-path-redacted]\\n  Metadata:\\n    major_brand     : isom\\n    minor_version   : 512\\n    compatible_brands: isomiso2avc1mp41\\n    encoder         : Lavf59.27.100\\n    description     : Bilibili VXCode Swarm Transcoder v1.2.8\\n  Duration: 01:11:44.47, start: 0.000000, bitrate: 465 kb/s\\n  Stream #0:0[0x1](und): Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360, SAR 1:1 DAR 16:9, 5158.82 fps, 16k tbr, 16k tbn (default)\\n    Metadata:\\n      handler_name    : VideoHandler\\n      vendor_id       : [0][0][0][0]\\n  Stream #0:1[0x2](und): Audio: aac (HE-AAC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 46 kb/s (default)\\n    Metadata:\\n      handler_name    : SoundHandler\\n      vendor_id       : [0][0][0][0]\\nOutput #0, mp4, to '[temporary-path-redacted]\\n  Metadata:\\n    major_brand     : isom\\n    minor_version   : 512\\n    compatible_brands: isomiso2avc1mp41\\n    description     : Bilibili VXCode Swarm Transcoder v1.2.8\\n    encoder         : Lavf60.16.100\\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), none(tv, bt709), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 5158.82 fps, 16k tbr, 16k tbn (default)\\n    Metadata:\\n      handler_name    : VideoHandler\\n      vendor_id       : [0][0][0][0]\\nStream mapping:\\n  Stream #0:0 -> #0:0 (copy)\\nPress [q] to stop, [?] for help\\nsize=       0kB time=N/A bitrate=N/A speed=N/A    \\n[out#0/mp4 @ 0x557c7dee6d40] video:0kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\\n[out#0/mp4 @ 0x557c7dee6d40] Output file is empty, nothing was encoded\\nsize=       0kB time=N/A bitrate=N/A speed=N/A    \\n\"}]"
-      }
+      "privacy": "原视频和画面像素已在分析后删除；公开仓库仅保存时间戳和数值视觉特征。"
     },
     {
       "id": "analysis-dada-05-v1",

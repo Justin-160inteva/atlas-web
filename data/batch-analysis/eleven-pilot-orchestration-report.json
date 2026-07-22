@@ -1,46 +1,24 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-07-22T16:43:45.965819Z",
+  "generatedAt": "2026-07-22T19:48:10.050710Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "autonomyPolicy": "data/scan-autonomy-policy.json",
-  "finalState": "unrecoverable",
+  "finalState": "scan_completed_or_progressed",
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-22T16:08:00.697165Z",
-      "finishedAt": "2026-07-22T16:43:44.150106Z",
+      "startedAt": "2026-07-22T19:46:17.561520Z",
+      "finishedAt": "2026-07-22T19:48:10.049750Z",
       "preflightState": "none",
       "preflightDictionaryEntryId": null,
       "preflightAutonomousOutcome": null,
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 6600,
-      "imported": 8,
-      "failed": 1,
+      "imported": 9,
+      "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 8, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 3}\n\n",
-      "diagnosisReturnCode": 0,
-      "dictionaryEntryId": null,
-      "action": "human_review_required",
-      "retryScheduled": false,
-      "requiresHumanReview": true,
-      "autonomousRepair": {
-        "schemaVersion": 1,
-        "generatedAt": "2026-07-22T16:43:44.585370Z",
-        "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
-        "outcome": "repair_failed",
-        "confirmationRequired": false,
-        "changedFiles": [],
-        "tests": [],
-        "error": "GitHub Models HTTP 413: {\"error\":{\"code\":\"tokens_limit_reached\",\"message\":\"Request body too large for gpt-4.1 model. Max size: 8000 tokens.\",\"details\":\"Request body too large for gpt-4.1 model. Max size: 8000 tokens.\"}}",
-        "durationSeconds": 0.37,
-        "safety": {
-          "rolledBack": true,
-          "failureVisible": true
-        },
-        "controllerReturnCode": 2,
-        "controllerOutput": "\n{\"schemaVersion\": 1, \"generatedAt\": \"2026-07-22T16:43:44.585370Z\", \"manifest\": \"data/batch-analysis/eleven-pilot-scan-manifest.json\", \"outcome\": \"repair_failed\", \"confirmationRequired\": false, \"changedFiles\": [], \"tests\": [], \"error\": \"GitHub Models HTTP 413: {\\\"error\\\":{\\\"code\\\":\\\"tokens_limit_reached\\\",\\\"message\\\":\\\"Request body too large for gpt-4.1 model. Max size: 8000 tokens.\\\",\\\"details\\\":\\\"Request body too large for gpt-4.1 model. Max size: 8000 tokens.\\\"}}\", \"durationSeconds\": 0.37, \"safety\": {\"rolledBack\": true, \"failureVisible\": true}}\n"
-      }
+      "scannerOutput": "{\"total\": 11, \"imported\": 9, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 2}\n\n"
     }
   ],
   "performance": {
