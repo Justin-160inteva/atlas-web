@@ -28,6 +28,7 @@
     zoom:1!important;
     isolation:isolate;
     contain:layout paint style;
+    touch-action:auto!important;
   }
 
   html.atlas-ipad-canvas-hotfix body #mapCanvas{
@@ -47,6 +48,35 @@
     touch-action:none!important;
     -webkit-user-select:none;
     user-select:none;
+  }
+
+  html.atlas-ipad-canvas-hotfix body :where(
+    .panel,
+    .sheet-body,
+    .search-results,
+    .evidence-scroll,
+    .settings-scroll,
+    .route-list,
+    .region-progress-list,
+    .category-grid
+  ){
+    touch-action:pan-y!important;
+    -webkit-overflow-scrolling:touch!important;
+    overscroll-behavior-y:auto!important;
+    scroll-behavior:smooth;
+  }
+
+  html.atlas-ipad-canvas-hotfix body .panel{
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+  }
+
+  html.atlas-ipad-canvas-hotfix body :where(.sheet-body,.search-results,.evidence-scroll,.settings-scroll){
+    overflow-y:auto!important;
+  }
+
+  html.atlas-ipad-canvas-hotfix body :where(.panel.open,.sheet.open,.search-overlay.open,.evidence-panel.open){
+    pointer-events:auto!important;
   }
 
   html.atlas-ipad-canvas-hotfix body .vignette{
