@@ -8,6 +8,7 @@ on:
       - '.github/workflows/reward-legendary-chest-parser.yml'
       - 'tools/apply_legendary_chest_reward_parser_patch.py'
       - 'tools/research_reward_translation_batch.py'
+      - 'tools/run_reward_translation_with_fallback.py'
       - 'tools/report_legendary_chest_validation.py'
       - 'data/rewards/reward-translation-research-policy.json'
       - 'data/rewards/reward-legendary-chest-parser-trigger.json'
@@ -16,6 +17,7 @@ on:
       - '.github/workflows/reward-legendary-chest-parser.yml'
       - 'tools/apply_legendary_chest_reward_parser_patch.py'
       - 'tools/research_reward_translation_batch.py'
+      - 'tools/run_reward_translation_with_fallback.py'
       - 'tools/report_legendary_chest_validation.py'
       - 'data/rewards/reward-translation-research-policy.json'
       - 'data/rewards/reward-legendary-chest-parser-trigger.json'
@@ -31,7 +33,7 @@ concurrency:
 jobs:
   patch-build-validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 55
     steps:
       - name: Check out repository branch
         uses: actions/checkout@v4
@@ -49,6 +51,7 @@ jobs:
           python -m py_compile \
             tools/apply_legendary_chest_reward_parser_patch.py \
             tools/research_reward_translation_batch.py \
+            tools/run_reward_translation_with_fallback.py \
             tools/report_legendary_chest_validation.py
           python tools/apply_legendary_chest_reward_parser_patch.py
           python -m py_compile tools/build_reward_summary_catalog.py
@@ -85,7 +88,7 @@ jobs:
       - name: Translate newly extracted reward proper names
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python tools/research_reward_translation_batch.py
+        run: python tools/run_reward_translation_with_fallback.py
 
       - name: Remove temporary placeholder markers
         run: |
