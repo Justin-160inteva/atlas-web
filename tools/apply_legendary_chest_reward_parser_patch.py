@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Apply a narrowly bounded parser patch for explicit legendary-chest reward lines."""
+"""Apply a narrowly bounded parser patch for explicit Legendary Chest reward lines.
+
+The patch remains restricted to the explicit Legendary Chest category. It accepts only
+complete "proper name - legendary type" lines, normalizes one known source typo, strips
+list bullets, and never derives a reward from category alone.
+"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -18,10 +23,10 @@ def replace_once(text: str, old: str, new: str, label: str) -> str:
 def main() -> int:
     text = TARGET.read_text(encoding='utf-8')
 
-    constants_old = '''HEADING_LINE = re.compile(r"^\\*\\*[^*]+:\\*\\*$")
+    base_constants = '''HEADING_LINE = re.compile(r"^\\*\\*[^*]+:\\*\\*$")
 LATIN = re.compile(r"[A-Za-z]")
 '''
-    constants_new = '''HEADING_LINE = re.compile(r"^\\*\\*[^*]+:\\*\\*$")
+    first_version_constants = '''HEADING_LINE = re.compile(r"^\\*\\*[^*]+:\\*\\*$")
 INLINE_LEGENDARY_REWARD = re.compile(
     r"^(?P<name>[^\\n]{2,140}?)\\s+-\\s+(?P<descriptor>Legendary\\s+(?:Amulet|Trinket|Armor|Armour|Headgear|Helmet|Katana|Tanto|Kusarigama|Naginata|Kanabo|Teppo|Bow|Weapon|Outfit|Gear))$",
     re.IGNORECASE,
@@ -29,10 +34,20 @@ INLINE_LEGENDARY_REWARD = re.compile(
 UNKNOWN_REWARD_PLACEHOLDERS = {"?", "??", "TBD", "Unknown"}
 LATIN = re.compile(r"[A-Za-z]")
 '''
-    if 'INLINE_LEGENDARY_REWARD' not in text:
-        text = replace_once(text, constants_old, constants_new, 'insert inline legendary regex')
+    upgraded_constants = '''HEADING_LINE = re.compile(r"^\\*\\*[^*]+:\\*\\*$")
+INLINE_LEGENDARY_REWARD = re.compile(
+    r"^(?P<name>[^\\n]{2,140}?)\\s+-\\s+(?P<descriptor>Leg(?:endary|edary)\\s+[A-Za-z][A-Za-z /-]{1,60})$",
+    re.IGNORECASE,
+)
+UNKNOWN_REWARD_PLACEHOLDERS = {"?", "??", "TBD", "Unknown"}
+LATIN = re.compile(r"[A-Za-z]")
+'''
+    if first_version_constants in text:
+        text = replace_once(text, first_version_constants, upgraded_constants, 'upgrade inline legendary regex')
+    elif 'Leg(?:endary|edary)' not in text:
+        text = replace_once(text, base_constants, upgraded_constants, 'install inline legendary regex')
 
-    function_old = '''def extract_reward_lines(description: str) -> list[str]:
+    original_function = '''def extract_reward_lines(description: str) -> list[str]:
     if not description:
         return []
     match = REWARD_SECTION.search(description)
@@ -49,7 +64,47 @@ LATIN = re.compile(r"[A-Za-z]")
             lines.append(cleaned)
     return lines
 '''
-    function_new = '''def extract_reward_lines(description: str, category_id: str | None = None) -> list[str]:
+    upgraded_function = '''def extract_reward_lines(description: str, category_id: str | None = None) -> list[str]:
+    if not description:
+        return []
+
+    lines: list[str] = []
+    match = REWARD_SECTION.search(description)
+    if match:
+        for raw in match.group(1).splitlines():
+            raw = raw.strip()
+            if not raw or HEADING_LINE.match(raw):
+                continue
+            raw = re.sub(r"^[\\-•*]+\\s*", "", raw)
+            cleaned = clean_markdown(raw)
+            if cleaned and cleaned not in UNKNOWN_REWARD_PLACEHOLDERS:
+                lines.append(cleaned)
+
+    # MapGenie Legendary Chest records commonly store the explicit reward as a
+    # standalone "Proper Name - Legendary Type" line instead of a Rewards block.
+    # Apply this fallback only to the explicit Legendary Chest category.
+    if not lines and "legendary-chest" in str(category_id or "").lower():
+        for raw in description.splitlines():
+            cleaned = re.sub(r"^[\\-•*]+\\s*", "", clean_markdown(raw.strip()))
+            if not cleaned or cleaned in UNKNOWN_REWARD_PLACEHOLDERS:
+                continue
+            inline = INLINE_LEGENDARY_REWARD.fullmatch(cleaned)
+            if not inline:
+                continue
+            name = inline.group("name").strip()
+            descriptor = re.sub(
+                r"^Legedary\\b",
+                "Legendary",
+                inline.group("descriptor").strip(),
+                flags=re.IGNORECASE,
+            )
+            if name in UNKNOWN_REWARD_PLACEHOLDERS or name.startswith("??"):
+                continue
+            lines.append(f"{name} - {descriptor}")
+
+    return list(dict.fromkeys(lines))
+'''
+    first_version_function = '''def extract_reward_lines(description: str, category_id: str | None = None) -> list[str]:
     if not description:
         return []
 
@@ -84,25 +139,34 @@ LATIN = re.compile(r"[A-Za-z]")
 
     return list(dict.fromkeys(lines))
 '''
-    if function_old in text:
-        text = replace_once(text, function_old, function_new, 'replace reward extractor')
-    elif 'def extract_reward_lines(description: str, category_id:' not in text:
-        raise RuntimeError('reward extractor was neither original nor already patched')
+    if original_function in text:
+        text = replace_once(text, original_function, upgraded_function, 'install reward extractor')
+    elif first_version_function in text:
+        text = replace_once(text, first_version_function, upgraded_function, 'upgrade reward extractor')
+    elif upgraded_function not in text:
+        raise RuntimeError('reward extractor was neither original, first-version, nor upgraded')
 
-    call_old = '''    reward_lines = extract_reward_lines(str(location.get("description") or ""))
+    original_call = '''    reward_lines = extract_reward_lines(str(location.get("description") or ""))
 '''
-    call_new = '''    reward_lines = extract_reward_lines(
+    upgraded_call = '''    reward_lines = extract_reward_lines(
         str(location.get("description") or ""),
         str(location.get("category_id") or ""),
     )
 '''
-    if call_old in text:
-        text = replace_once(text, call_old, call_new, 'pass category into reward extractor')
-    elif call_new not in text:
-        raise RuntimeError('build_record reward extractor call was neither original nor patched')
+    if original_call in text:
+        text = replace_once(text, original_call, upgraded_call, 'pass category into reward extractor')
+    elif upgraded_call not in text:
+        raise RuntimeError('build_record reward extractor call was neither original nor upgraded')
+
+    bo_keyword = '''    ("legendary bo", "weapon"),
+'''
+    katana_keyword = '''    ("katana", "weapon"),
+'''
+    if bo_keyword not in text:
+        text = replace_once(text, katana_keyword, bo_keyword + katana_keyword, 'add bo weapon type')
 
     TARGET.write_text(text, encoding='utf-8')
-    print('Applied explicit Legendary Chest reward parser patch.')
+    print('Applied expanded explicit Legendary Chest reward parser patch.')
     return 0
 
 
