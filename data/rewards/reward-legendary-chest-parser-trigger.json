@@ -1,12 +1,17 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "requestedAt": "2026-07-22T23:44:00Z",
-  "mode": "extract-explicit-legendary-chest-name-and-type-lines",
+  "requestedAt": "2026-07-23T00:25:00Z",
+  "mode": "extract-translate-and-validate-explicit-legendary-chest-lines",
   "scope": "category-12342-legendary-chest-only",
+  "publishGeneratedFilesToHeadBranch": true,
+  "workflowRevision": "clean-latest-main-v5",
   "requirements": {
     "directPointTextOnly": true,
     "rejectUnknownPlaceholders": true,
+    "translateNewProperNamesToStandardSimplifiedChinese": true,
+    "validateEveryParsedLegendaryChest": true,
+    "persistCompactFailureReport": true,
     "preserveRewardEvidenceStatusRules": true,
     "rebuildAll3430Records": true,
     "validateNamedSamples": true
