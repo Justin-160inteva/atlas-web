@@ -7,15 +7,20 @@ on:
     paths:
       - '.github/workflows/reward-legendary-chest-parser.yml'
       - 'tools/apply_legendary_chest_reward_parser_patch.py'
+      - 'tools/research_reward_translation_batch.py'
+      - 'data/rewards/reward-translation-research-policy.json'
       - 'data/rewards/reward-legendary-chest-parser-trigger.json'
   pull_request:
     paths:
       - '.github/workflows/reward-legendary-chest-parser.yml'
       - 'tools/apply_legendary_chest_reward_parser_patch.py'
+      - 'tools/research_reward_translation_batch.py'
+      - 'data/rewards/reward-translation-research-policy.json'
       - 'data/rewards/reward-legendary-chest-parser-trigger.json'
 
 permissions:
   contents: write
+  models: read
 
 concurrency:
   group: reward-legendary-chest-parser-${{ github.event_name }}-${{ github.ref }}
@@ -39,11 +44,69 @@ jobs:
 
       - name: Apply bounded parser patch
         run: |
-          python -m py_compile tools/apply_legendary_chest_reward_parser_patch.py
+          python -m py_compile \
+            tools/apply_legendary_chest_reward_parser_patch.py \
+            tools/research_reward_translation_batch.py
           python tools/apply_legendary_chest_reward_parser_patch.py
           python -m py_compile tools/build_reward_summary_catalog.py
 
-      - name: Rebuild all reward records
+      - name: Rebuild records to expose newly extracted names
+        run: python tools/build_reward_summary_catalog.py
+
+      - name: Block unknown source placeholders during translation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          lexicon_path = Path('data/rewards/reward-translation-lexicon-zh-CN.json')
+          evidence_path = Path('data/rewards/reward-translation-evidence.json')
+          lexicon = json.loads(lexicon_path.read_text(encoding='utf-8'))
+          evidence = json.loads(evidence_path.read_text(encoding='utf-8')) if evidence_path.exists() else {
+              'schemaVersion': 1,
+              'release': '0.9.4.8',
+              'locale': 'zh-CN',
+              'translations': {},
+          }
+          marker = '__ATLAS_BLOCKED_PLACEHOLDER__'
+          blocked = ('??', '?? Mon', '?? Banner', '?? Weapon')
+          exact = lexicon.setdefault('exactNames', {})
+          translations = evidence.setdefault('translations', {})
+          for original in blocked:
+              exact[original] = marker
+              translations.pop(original, None)
+          lexicon_path.write_text(json.dumps(lexicon, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Translate newly extracted reward proper names
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python tools/research_reward_translation_batch.py
+
+      - name: Remove temporary placeholder markers
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          lexicon_path = Path('data/rewards/reward-translation-lexicon-zh-CN.json')
+          evidence_path = Path('data/rewards/reward-translation-evidence.json')
+          lexicon = json.loads(lexicon_path.read_text(encoding='utf-8'))
+          evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
+          marker = '__ATLAS_BLOCKED_PLACEHOLDER__'
+          blocked = ('??', '?? Mon', '?? Banner', '?? Weapon')
+          exact = lexicon.setdefault('exactNames', {})
+          translations = evidence.setdefault('translations', {})
+          for original in blocked:
+              if exact.get(original) == marker or original.startswith('??'):
+                  exact.pop(original, None)
+              translations.pop(original, None)
+          lexicon_path.write_text(json.dumps(lexicon, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Rebuild all reward records with translated names
         run: python tools/build_reward_summary_catalog.py
 
       - name: Run reward evidence contract matrix
@@ -58,6 +121,8 @@ jobs:
 
           catalog = json.loads(Path('data/rewards/reward-summary-catalog.json').read_text(encoding='utf-8'))
           audit = json.loads(Path('data/rewards/reward-source-audit.json').read_text(encoding='utf-8'))
+          state = json.loads(Path('data/rewards/reward-translation-research-state.json').read_text(encoding='utf-8'))
+          evidence = json.loads(Path('data/rewards/reward-translation-evidence.json').read_text(encoding='utf-8'))
           records = catalog['records']
           expected = {
               'location-mapgenie-438759': 'Scale of the Koi',
@@ -84,10 +149,13 @@ jobs:
           assert audit['invariants']['coverageConserved']
           assert audit['invariants']['batchLimitRespected']
           assert audit['statusCounts']['unresolved'] < 2533
+          assert state['remainingCandidateNames'] == 0
+          assert not any(state['safety'].values())
+          assert not any(original.startswith('??') for original in evidence.get('translations', {}))
           print(f"Legendary chest extraction validated; unresolved now {audit['statusCounts']['unresolved']}.")
           PY
 
-      - name: Commit parser and regenerated catalog
+      - name: Commit parser, translations and regenerated catalog
         env:
           TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
         run: |
@@ -95,6 +163,9 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
             tools/build_reward_summary_catalog.py \
+            data/rewards/reward-translation-lexicon-zh-CN.json \
+            data/rewards/reward-translation-evidence.json \
+            data/rewards/reward-translation-research-state.json \
             data/rewards/reward-summary-catalog.json \
             data/rewards/reward-source-audit.json \
             data/rewards/reward-research-queue.json \
@@ -102,10 +173,10 @@ jobs:
             data/rewards/records \
             data/conflict-reports/reward-evidence-matrix.json
           if git diff --cached --quiet; then
-            echo 'No parser or reward changes.'
+            echo 'No parser, translation or reward changes.'
             exit 0
           fi
-          git commit -m 'Extract explicit legendary chest rewards [skip ci]'
+          git commit -m 'Extract and translate explicit legendary chest rewards [skip ci]'
           for attempt in 1 2 3 4 5 6; do
             if git pull --rebase origin "$TARGET_BRANCH" && git push origin "HEAD:$TARGET_BRANCH"; then
               exit 0
