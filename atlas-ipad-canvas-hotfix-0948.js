@@ -11,7 +11,6 @@
     typeof canvas === 'undefined' ||
     typeof ctx === 'undefined' ||
     typeof state === 'undefined' ||
-    typeof mapToScreen !== 'function' ||
     typeof visibleLocations !== 'function' ||
     typeof buildMarkers !== 'function' ||
     typeof drawMarker !== 'function' ||
@@ -21,25 +20,21 @@
   const WORLD_SIZE = 4096;
   const MAX_CANVAS_PIXELS = 3_100_000;
   const MAX_DPR = 1.45;
-  const viewportMeta = document.querySelector('meta[name="viewport"]');
+  const FIXED_MARKER_RELATIVE = 1;
   const shell = document.querySelector('.app-shell');
-
-  // Preserve the complete Alpha 0.9.4.8 marker and route renderers.
+  const viewportMeta = document.querySelector('meta[name="viewport"]');
   const originalBuildMarkers = buildMarkers;
   const originalDrawMarker = drawMarker;
   const originalDrawRoute = drawRoute;
   const legacyResize = typeof resize === 'function' ? resize : null;
 
   const perf = {
-    version: '0.9.4.8-ipad-canvas-2',
+    version: '0.9.4.8-ipad-canvas-3',
     interacting: false,
     dpr: 1,
     cssWidth: 0,
     cssHeight: 0,
-    frameTimer: 0,
     frameRaf: 0,
-    lastFrameAt: 0,
-    settleTimer: 0,
     resizeTimer: 0,
     resizeGeneration: 0,
     renderedMarkers: 0,
@@ -49,18 +44,9 @@
 
   function metrics() {
     const rect = shell?.getBoundingClientRect?.();
-    const width = Math.max(
-      1,
-      Math.round(document.documentElement.clientWidth || 0),
-      Math.round(window.innerWidth || 0),
-      Math.round(rect?.width || 0)
-    );
-    const height = Math.max(
-      1,
-      Math.round(document.documentElement.clientHeight || 0),
-      Math.round(window.innerHeight || 0),
-      Math.round(rect?.height || 0)
-    );
+    const doc = document.documentElement;
+    const width = Math.max(1, Math.round(rect?.width || doc.clientWidth || window.innerWidth || 1));
+    const height = Math.max(1, Math.round(rect?.height || doc.clientHeight || window.innerHeight || 1));
     return { width, height };
   }
 
@@ -124,17 +110,9 @@
 
     if (!changed && !refit) return false;
 
-    const hadViewport =
-      perf.cssWidth > 0 &&
-      perf.cssHeight > 0 &&
-      Number.isFinite(state.scale) &&
-      state.scale > 0;
-    const worldCenterX = hadViewport
-      ? (perf.cssWidth / 2 - state.offsetX) / state.scale
-      : WORLD_SIZE / 2;
-    const worldCenterY = hadViewport
-      ? (perf.cssHeight / 2 - state.offsetY) / state.scale
-      : WORLD_SIZE / 2;
+    const hadViewport = perf.cssWidth > 0 && perf.cssHeight > 0 && Number.isFinite(state.scale) && state.scale > 0;
+    const worldCenterX = hadViewport ? (perf.cssWidth / 2 - state.offsetX) / state.scale : WORLD_SIZE / 2;
+    const worldCenterY = hadViewport ? (perf.cssHeight / 2 - state.offsetY) / state.scale : WORLD_SIZE / 2;
 
     canvas.width = targetWidth;
     canvas.height = targetHeight;
@@ -170,17 +148,13 @@
       if (generation !== perf.resizeGeneration) return;
       const current = metrics();
       samples += 1;
-      if (
-        previous &&
-        Math.abs(current.width - previous.width) <= 1 &&
-        Math.abs(current.height - previous.height) <= 1
-      ) {
+      if (previous && Math.abs(current.width - previous.width) <= 1 && Math.abs(current.height - previous.height) <= 1) {
         stableSamples += 1;
       } else {
         stableSamples = 0;
       }
       previous = current;
-      if (stableSamples >= 2 || samples >= 10) {
+      if (stableSamples >= 2 || samples >= 8) {
         applyCanvasSize(refit);
         return;
       }
@@ -194,15 +168,11 @@
     settleResize(false);
   };
 
-  function setInteracting(value, settleDelay = 90) {
+  function setInteracting(value) {
     perf.interacting = value;
-    if (window.AtlasMobilePerf) window.AtlasMobilePerf.interacting = value;
     root.classList.toggle('atlas-ipad-canvas-interacting', value);
     root.classList.toggle('atlas-interacting', value);
-    clearTimeout(perf.settleTimer);
-    if (!value) {
-      perf.settleTimer = window.setTimeout(() => scheduleDraw(), settleDelay);
-    }
+    if (!value) scheduleDraw();
   }
 
   function physicalClear() {
@@ -217,31 +187,22 @@
     perf.physicalClears += 1;
   }
 
-  draw = function drawStableWithoutMarkerOverride() {
-    const viewport = metrics();
+  draw = function drawStableFixedMarkerSize() {
     physicalClear();
 
     if (state.imageReady) {
       ctx.save();
       ctx.globalAlpha = 0.92;
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = perf.interacting ? 'medium' : 'high';
-      ctx.drawImage(
-        state.image,
-        state.offsetX,
-        state.offsetY,
-        WORLD_SIZE * state.scale,
-        WORLD_SIZE * state.scale
-      );
+      ctx.imageSmoothingQuality = perf.interacting ? 'low' : 'high';
+      ctx.drawImage(state.image, state.offsetX, state.offsetY, WORLD_SIZE * state.scale, WORLD_SIZE * state.scale);
       ctx.restore();
     }
 
-    // Use the untouched Alpha 0.9.4.8 route and marker logic.
     originalDrawRoute();
     const list = visibleLocations();
-    const relative = state.scale / stableFitScale(viewport);
     state.markers = originalBuildMarkers(list);
-    for (const marker of state.markers) originalDrawMarker(marker, relative);
+    for (const marker of state.markers) originalDrawMarker(marker, FIXED_MARKER_RELATIVE);
 
     perf.visiblePoints = state.markers.length;
     perf.renderedMarkers = state.markers.length;
@@ -249,70 +210,53 @@
     if (count) count.textContent = String(list.length);
   };
 
-  scheduleDraw = function scheduleDrawStable() {
+  scheduleDraw = function scheduleDrawUnlocked() {
     if (state.framePending || document.hidden) return;
-    const now = performance.now();
-    const minimumGap = perf.interacting ? 33.4 : 16.7;
-    const wait = Math.max(0, minimumGap - (now - perf.lastFrameAt));
     state.framePending = true;
-    clearTimeout(perf.frameTimer);
-    perf.frameTimer = window.setTimeout(() => {
-      perf.frameRaf = requestAnimationFrame(() => {
-        state.framePending = false;
-        perf.lastFrameAt = performance.now();
-        draw();
-      });
-    }, wait);
+    perf.frameRaf = requestAnimationFrame(() => {
+      state.framePending = false;
+      draw();
+    });
   };
 
-  function endInteraction() {
-    setInteracting(false, 100);
-  }
-
+  const endInteraction = () => setInteracting(false);
   canvas.addEventListener('pointerdown', () => setInteracting(true), { capture: true, passive: true });
   canvas.addEventListener('pointerup', endInteraction, { capture: true, passive: true });
   canvas.addEventListener('pointercancel', endInteraction, { capture: true, passive: true });
   canvas.addEventListener('touchend', endInteraction, { capture: true, passive: true });
-  canvas.addEventListener('wheel', () => {
-    setInteracting(true);
-    clearTimeout(perf.settleTimer);
-    perf.settleTimer = window.setTimeout(endInteraction, 150);
-  }, { capture: true, passive: true });
+  canvas.addEventListener('wheel', () => setInteracting(true), { capture: true, passive: true });
 
   if (legacyResize) removeEventListener('resize', legacyResize);
   addEventListener('resize', () => settleResize(false), { passive: true });
   addEventListener('orientationchange', () => settleResize(true), { passive: true });
-  window.visualViewport?.addEventListener('resize', () => settleResize(false), { passive: true });
-  window.visualViewport?.addEventListener('scroll', () => settleResize(false), { passive: true });
+  window.visualViewport?.addEventListener('resize', () => {
+    if ((window.visualViewport?.scale || 1) > 1.01) return;
+    settleResize(false);
+  }, { passive: true });
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-      clearTimeout(perf.frameTimer);
       cancelAnimationFrame(perf.frameRaf);
       state.framePending = false;
     } else {
-      setInteracting(false, 0);
+      setInteracting(false);
       settleResize(false);
     }
   }, { passive: true });
 
   addEventListener('pageshow', event => {
-    setInteracting(false, 0);
+    setInteracting(false);
     settleResize(Boolean(event.persisted));
   }, { passive: true });
 
-  const canonicalViewport =
-    'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no,interactive-widget=resizes-content';
-  if (viewportMeta && viewportMeta.getAttribute('content') !== canonicalViewport) {
-    viewportMeta.setAttribute('content', canonicalViewport);
-  }
+  const canonicalViewport = 'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no,interactive-widget=resizes-content';
+  if (viewportMeta && viewportMeta.getAttribute('content') !== canonicalViewport) viewportMeta.setAttribute('content', canonicalViewport);
 
   const zoomInButton = document.getElementById('zoomIn');
   const zoomOutButton = document.getElementById('zoomOut');
-  const resetButtons = ['resetView', 'locateBtn', 'brandBtn'];
   if (zoomInButton) zoomInButton.onclick = () => zoomAt(1.25);
   if (zoomOutButton) zoomOutButton.onclick = () => zoomAt(0.8);
-  resetButtons.forEach(id => {
+  ['resetView', 'locateBtn', 'brandBtn'].forEach(id => {
     const button = document.getElementById(id);
     if (button) button.onclick = () => {
       fitMap();
@@ -336,8 +280,10 @@
       visiblePoints: perf.visiblePoints,
       renderedMarkers: perf.renderedMarkers,
       physicalClears: perf.physicalClears,
-      markerRenderer: 'app.js-original',
-      markerAggregation: false
+      markerRenderer: 'app.js-original-fixed-screen-size',
+      markerAggregation: false,
+      markerRelative: FIXED_MARKER_RELATIVE,
+      frameLimiter: false
     })
   });
 
