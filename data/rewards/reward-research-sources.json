@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "release": "0.9.4.8",
   "locale": "zh-CN",
   "sources": [
@@ -22,6 +22,15 @@
       "pointEvidence": false
     },
     {
+      "sourceId": "ubisoft-progression-legendary-placement",
+      "sourceType": "official_website",
+      "title": "Assassin's Creed Shadows - Deep Dive Into Progression",
+      "publisherOrAuthor": "Ubisoft",
+      "locator": "https://www.ubisoft.com/en-gb/game/assassins-creed/news/1uXFMBPEpXS1vSH7lPICnN/assassins-creed-shadows-deep-dive-into-progression",
+      "useFor": ["official_reward_mechanics", "predetermined_legendary_castle_chests"],
+      "pointEvidence": false
+    },
+    {
       "sourceId": "powerpyx-legendary-chests",
       "sourceType": "guide_article",
       "title": "Assassin's Creed Shadows All Legendary Chest Locations",
@@ -31,11 +40,71 @@
       "pointEvidence": true
     },
     {
+      "sourceId": "powerpyx-castle-locations",
+      "sourceType": "guide_article",
+      "title": "Assassin's Creed Shadows All Castle Locations",
+      "publisherOrAuthor": "PowerPyx",
+      "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-castle-locations/",
+      "useFor": ["castle_identity", "castle_completion_crosscheck"],
+      "pointEvidence": true
+    },
+    {
       "sourceId": "pushsquare-legendary-armor",
       "sourceType": "guide_article",
       "title": "All Legendary Armor Sets and Where to Find Them",
       "publisherOrAuthor": "Push Square",
       "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
+      "useFor": ["armor", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "game8-castle-rewards-rendered",
+      "sourceType": "community_database",
+      "title": "All Castle Locations and Rewards",
+      "publisherOrAuthor": "Game8",
+      "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+      "canonicalLocator": "https://game8.co/games/Assassins-Creed-Shadows/archives/504651",
+      "useFor": ["castle", "legendary_chest", "location_reward_crosscheck"],
+      "pointEvidence": true,
+      "limitationsZhCN": "通过只读文本渲染镜像抓取公开指南；证据记录同时保留Game8原始页面地址。"
+    },
+    {
+      "sourceId": "game8-legendary-weapons-rendered",
+      "sourceType": "community_database",
+      "title": "List of All Legendary Weapons",
+      "publisherOrAuthor": "Game8",
+      "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+      "canonicalLocator": "https://game8.co/games/Assassins-Creed-Shadows/archives/504654",
+      "useFor": ["weapon", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "game8-legendary-trinkets-rendered",
+      "sourceType": "community_database",
+      "title": "List of Legendary Trinkets and Amulets",
+      "publisherOrAuthor": "Game8",
+      "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505080",
+      "canonicalLocator": "https://game8.co/games/Assassins-Creed-Shadows/archives/505080",
+      "useFor": ["trinket", "amulet", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "game8-legendary-headgear-rendered",
+      "sourceType": "community_database",
+      "title": "List of Legendary Headgear and Helmets",
+      "publisherOrAuthor": "Game8",
+      "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+      "canonicalLocator": "https://game8.co/games/Assassins-Creed-Shadows/archives/505069",
+      "useFor": ["headgear", "helmet", "location_reward_crosscheck"],
+      "pointEvidence": true
+    },
+    {
+      "sourceId": "game8-legendary-armor-rendered",
+      "sourceType": "community_database",
+      "title": "List of All Legendary Armor",
+      "publisherOrAuthor": "Game8",
+      "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
+      "canonicalLocator": "https://game8.co/games/Assassins-Creed-Shadows/archives/504708",
       "useFor": ["armor", "location_reward_crosscheck"],
       "pointEvidence": true
     },
@@ -92,6 +161,16 @@
       "locator": "https://vulkk.com/2025/03/24/all-legendary-amulets-and-trinkets-in-assassins-creed-shadows/",
       "useFor": ["trinket", "amulet", "location_reward_crosscheck"],
       "pointEvidence": true
+    },
+    {
+      "sourceId": "bilibili-castle-legendary-chest-video-series",
+      "sourceType": "video_playlist",
+      "title": "刺客信条：影-城/野外传奇宝箱位置地点（全）",
+      "publisherOrAuthor": "Sikoni",
+      "locator": "https://www.bilibili.com/video/BV1fGXcYME7i/",
+      "useFor": ["chinese_ui_text", "castle_reward_video_evidence", "image_and_frame_crosscheck"],
+      "pointEvidence": false,
+      "limitationsZhCN": "视频与分P标题可用于核对中文界面奖励名；只有能对应到具体地点和奖励画面时才升级点位证据。"
     }
   ],
   "matchingPolicy": {
