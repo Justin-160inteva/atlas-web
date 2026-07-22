@@ -50,19 +50,21 @@
   border-color: rgba(104,196,143,.28);
   background: linear-gradient(135deg, rgba(71,157,109,.15), rgba(255,255,255,.035));
 }
-.sheet-highlight.atlas-reward-evidence[data-status="official_confirmed"]::before,
+.sheet-highlight.atlas-reward-evidence[data-status="official_confirmed"]::before {
+  background: #80d9a4;
+}
 .sheet-highlight.atlas-reward-evidence[data-status="official_confirmed"] small {
   color: #80d9a4;
-  background-color: #80d9a4;
 }
 .sheet-highlight.atlas-reward-evidence[data-status="multi_source_confirmed"] {
   border-color: rgba(105,167,222,.28);
   background: linear-gradient(135deg, rgba(60,125,184,.16), rgba(255,255,255,.035));
 }
-.sheet-highlight.atlas-reward-evidence[data-status="multi_source_confirmed"]::before,
+.sheet-highlight.atlas-reward-evidence[data-status="multi_source_confirmed"]::before {
+  background: #87bce9;
+}
 .sheet-highlight.atlas-reward-evidence[data-status="multi_source_confirmed"] small {
   color: #87bce9;
-  background-color: #87bce9;
 }
 .sheet-highlight.atlas-reward-evidence[data-status="high_confidence_inference"]::before {
   background: #c9a865;
