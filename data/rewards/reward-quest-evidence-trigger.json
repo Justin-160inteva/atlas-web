@@ -1,14 +1,18 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "requestedAt": "2026-07-23T02:00:00Z",
+  "requestedAt": "2026-07-23T02:12:00Z",
   "mode": "import-strict-exact-title-quest-reward-fields",
   "targetQuestCount": 73,
+  "publishGeneratedFilesToHeadBranch": true,
+  "workflowRevision": "strict-reward-field-diagnostic-v2",
   "requirements": {
     "strictRewardFieldOnly": true,
     "singleSourceStaysHighConfidenceInference": true,
     "doNotImportUnknownRewards": true,
     "doNotTreatQuestOrderAsEvidence": true,
-    "preserve3430Records": true
+    "preserve3430Records": true,
+    "validateBrokenHornExactValues": true,
+    "persistCompactValidationReport": true
   }
 }
