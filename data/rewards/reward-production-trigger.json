@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "requestedAt": "2026-07-22T15:10:00Z",
+  "mode": "full-3430-record-build-with-batches-of-100",
+  "locale": "zh-CN",
+  "refreshExternalEvidence": true,
+  "preserveLockedRecords": true,
+  "requestedOutputs": [
+    "data/rewards/reward-summary-catalog.json",
+    "data/rewards/reward-source-audit.json",
+    "data/rewards/reward-research-queue.json",
+    "data/rewards/records/batch-001.json through batch-035.json"
+  ],
+  "requirements": {
+    "oneRecordPerLocation": true,
+    "targetLocationCount": 3430,
+    "maximumBatchSize": 100,
+    "standardSimplifiedChinese": true,
+    "neverPresentInferenceAsOfficial": true,
+    "unresolvedWhenEvidenceIsInsufficient": true
+  }
+}
