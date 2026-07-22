@@ -76,14 +76,15 @@ def main() -> int:
             errors.extend(reward_errors(matching))
             if matching.get('rarity') != 'legendary':
                 errors.append('rarity_not_legendary')
-        if not record.get('evidence'):
-            errors.append('missing_evidence')
+        if not record.get('sources'):
+            errors.append('missing_sources')
         sample_results.append({
             'locationId': location_id,
             'expectedOriginal': expected_original,
             'recordStatus': record.get('status'),
             'summaryZhCN': record.get('summaryZhCN'),
-            'evidenceCount': len(record.get('evidence', [])),
+            'sourceCount': len(record.get('sources', [])),
+            'sources': record.get('sources', []),
             'matchingReward': matching,
             'errors': errors,
         })
@@ -94,6 +95,13 @@ def main() -> int:
         if record.get('categoryId') != 'category-12342-legendary-chest' or not record.get('rewards'):
             continue
         parsed_chests.append(record)
+        if not record.get('sources'):
+            invalid_rewards.append({
+                'locationId': record.get('locationId'),
+                'summaryZhCN': record.get('summaryZhCN'),
+                'reward': None,
+                'errors': ['missing_sources'],
+            })
         for reward in record['rewards']:
             errors = reward_errors(reward)
             if errors:
@@ -111,7 +119,7 @@ def main() -> int:
     if any(row['errors'] for row in sample_results):
         validation_errors.append('sample_validation_failed')
     if invalid_rewards:
-        validation_errors.append('parsed_chest_translation_failed')
+        validation_errors.append('parsed_chest_translation_or_source_failed')
     if catalog.get('recordCount') != 3430 or catalog.get('coverage', {}).get('total') != 3430:
         validation_errors.append('catalog_count_failed')
     for key in ('exactly3430Records', 'oneRecordPerLocation', 'coverageConserved', 'batchLimitRespected'):
@@ -125,7 +133,7 @@ def main() -> int:
         validation_errors.append('placeholder_translation_present')
 
     report = {
-        'schemaVersion': 1,
+        'schemaVersion': 2,
         'release': '0.9.4.8',
         'generatedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
         'valid': not validation_errors,
