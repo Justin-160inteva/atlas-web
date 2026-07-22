@@ -1,16 +1,16 @@
 {
-  "schemaVersion": 13,
-  "triggerId": "eleven-production-p069-p079-20260722-unattended-start",
-  "requestedAt": "2026-07-22T20:49:00Z",
+  "schemaVersion": 14,
+  "triggerId": "eleven-production-p080-20260723-unattended-start",
+  "requestedAt": "2026-07-23T02:30:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
-  "pilotRegion": "顺序批次 P69-P79",
+  "pilotRegion": "最终单期 P80",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
   "mode": "strict-serial-persistent-deterministic-then-ai-repair",
-  "queuePages": [69,70,71,72,73,74,75,76,77,78,79],
-  "earliestUnresolvedPage": 69,
+  "queuePages": [80],
+  "earliestUnresolvedPage": 80,
   "requiredAnalyzer": "tools/analyze_authorized_video_v14.py",
   "automaticRecovery": true,
   "autonomousAiRepair": true,
@@ -34,5 +34,5 @@
   },
   "humanReviewOnUnknownFailure": false,
   "protectedBoundaryPolicy": "Only authorization, identity, privacy, queue-scope or retention violations may stop automatic repair and redispatch.",
-  "recoveryReason": "P58-P68 completed; initialize the next authorized P69-P79 serial batch with unattended deterministic recovery, persistent AI repair and heartbeat redispatch."
+  "recoveryReason": "P69-P79 completed; start the final authorized P80 episode with unattended deterministic recovery, persistent AI repair and heartbeat redispatch."
 }
