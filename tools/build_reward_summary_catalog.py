@@ -52,6 +52,11 @@ NUMBER_ONLY_REWARD = re.compile(
     re.IGNORECASE,
 )
 HEADING_LINE = re.compile(r"^\*\*[^*]+:\*\*$")
+INLINE_LEGENDARY_REWARD = re.compile(
+    r"^(?P<name>[^\n]{2,140}?)\s+-\s+(?P<descriptor>Legendary\s+(?:Amulet|Trinket|Armor|Armour|Headgear|Helmet|Katana|Tanto|Kusarigama|Naginata|Kanabo|Teppo|Bow|Weapon|Outfit|Gear))$",
+    re.IGNORECASE,
+)
+UNKNOWN_REWARD_PLACEHOLDERS = {"?", "??", "TBD", "Unknown"}
 LATIN = re.compile(r"[A-Za-z]")
 
 TYPE_KEYWORDS: list[tuple[str, str]] = [
@@ -176,22 +181,40 @@ def clean_markdown(value: str) -> str:
     return value
 
 
-def extract_reward_lines(description: str) -> list[str]:
+def extract_reward_lines(description: str, category_id: str | None = None) -> list[str]:
     if not description:
         return []
-    match = REWARD_SECTION.search(description)
-    if not match:
-        return []
+
     lines: list[str] = []
-    for raw in match.group(1).splitlines():
-        raw = raw.strip()
-        if not raw or HEADING_LINE.match(raw):
-            continue
-        raw = re.sub(r"^[\-•*]+\s*", "", raw)
-        cleaned = clean_markdown(raw)
-        if cleaned and cleaned not in {"?", "??", "TBD", "Unknown"}:
-            lines.append(cleaned)
-    return lines
+    match = REWARD_SECTION.search(description)
+    if match:
+        for raw in match.group(1).splitlines():
+            raw = raw.strip()
+            if not raw or HEADING_LINE.match(raw):
+                continue
+            raw = re.sub(r"^[\-•*]+\s*", "", raw)
+            cleaned = clean_markdown(raw)
+            if cleaned and cleaned not in UNKNOWN_REWARD_PLACEHOLDERS:
+                lines.append(cleaned)
+
+    # MapGenie legendary-chest records commonly store the explicit reward as a
+    # standalone "Proper Name - Legendary Type" line instead of a Rewards block.
+    # Apply this fallback only to the explicit Legendary Chest category.
+    if not lines and "legendary-chest" in str(category_id or "").lower():
+        for raw in description.splitlines():
+            cleaned = clean_markdown(raw.strip())
+            if not cleaned or cleaned in UNKNOWN_REWARD_PLACEHOLDERS:
+                continue
+            inline = INLINE_LEGENDARY_REWARD.fullmatch(cleaned)
+            if not inline:
+                continue
+            name = inline.group("name").strip()
+            descriptor = inline.group("descriptor").strip()
+            if name in UNKNOWN_REWARD_PLACEHOLDERS or name.startswith("??"):
+                continue
+            lines.append(f"{name} - {descriptor}")
+
+    return list(dict.fromkeys(lines))
 
 
 def normalize_for_match(value: str) -> str:
@@ -480,7 +503,10 @@ def build_record(
     maximum_distance: int,
     generated_at: str,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
-    reward_lines = extract_reward_lines(str(location.get("description") or ""))
+    reward_lines = extract_reward_lines(
+        str(location.get("description") or ""),
+        str(location.get("category_id") or ""),
+    )
     parsed = [parse_reward_line(line, lexicon) for line in reward_lines]
     primary = source_for_location(location)
     cross_sources = external_matches(location, parsed, external_pages, maximum_distance)
