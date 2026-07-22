@@ -1,0 +1,100 @@
+name: Discover 11 game world account extras
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/discover-eleven-account-extras.yml'
+      - 'tools/discover_eleven_account_extras.py'
+      - 'data/batch-analysis/eleven-account-extra-audit.json'
+  pull_request:
+    paths:
+      - '.github/workflows/discover-eleven-account-extras.yml'
+      - 'tools/discover_eleven_account_extras.py'
+      - 'data/batch-analysis/eleven-account-extra-audit.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: discover-eleven-account-extras-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Check out repository branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install metadata-only discovery dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' curl-cffi
+
+      - name: Verify authorization and compile audit tools
+        run: |
+          python -m py_compile tools/discover_bilibili_author_catalog.py
+          python -m py_compile tools/discover_eleven_account_extras.py
+          python - <<'PY'
+          import json
+          records=json.load(open('data/authorizations.json',encoding='utf-8'))['records']
+          record=next(item for item in records if item['id']=='auth-eleven-game-world-20260719')
+          assert record['status']=='active'
+          assert record['author']=='11的游戏世界'
+          assert record['accountScope'] and record['longTerm']
+          assert record['scope']['localDownloadAndAnalysis']
+          assert not record['scope']['publicFullVideoRedistribution']
+          print('authorization gate passed')
+          PY
+
+      - name: Enumerate account and compare with current catalog
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: python tools/discover_eleven_account_extras.py data/batch-analysis/eleven-account-extra-audit.json
+
+      - name: Validate non-destructive audit report
+        run: |
+          python - <<'PY'
+          import json
+          import pathlib
+          report=json.load(open('data/batch-analysis/eleven-account-extra-video-report.json',encoding='utf-8'))
+          assert report['author']=='11的游戏世界'
+          assert report['authorMid']==360046931
+          assert all(report['invariants'].values())
+          assert report['newCandidateCount']==len(report['newCandidates'])
+          assert not list(pathlib.Path('.').rglob('*.mp4'))
+          assert not list(pathlib.Path('.').rglob('*.m4a'))
+          assert not list(pathlib.Path('.').rglob('*.webm'))
+          print(report['conclusionZhCN'])
+          PY
+
+      - name: Commit account extras report
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/batch-analysis/eleven-account-extra-video-report.json
+          if git diff --cached --quiet; then
+            echo 'No account audit changes.'
+            exit 0
+          fi
+          git commit -m 'Audit additional authorized AC Shadows videos [skip ci]'
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin "$TARGET_BRANCH" && git push origin "HEAD:$TARGET_BRANCH"; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 5))
+          done
+          exit 1
