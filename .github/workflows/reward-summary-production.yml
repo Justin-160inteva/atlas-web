@@ -48,16 +48,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
+          restored=false
           local_artifact="$(find data/rewards/production-artifacts -maxdepth 1 -type f -name '*.zip' 2>/dev/null | sort | tail -n 1)"
           if [ -n "$local_artifact" ]; then
-            unzip -o "$local_artifact" -d data
-            echo 'restored=true' >> "$GITHUB_OUTPUT"
-            echo "Restored checked-in reward artifact: $local_artifact"
-            exit 0
+            if unzip -o "$local_artifact" -d data; then
+              restored=true
+              echo "Restored checked-in reward artifact: $local_artifact"
+            else
+              echo 'Checked-in artifact restore failed; falling back to full generation.' >&2
+            fi
           fi
 
-          readarray -t verified < <(python - <<'PY'
+          if [ "$restored" != true ]; then
+            readarray -t verified < <(python - <<'PY'
           import json
           from pathlib import Path
           path = Path('data/rewards/reward-production-trigger.json')
@@ -66,22 +70,26 @@ jobs:
           print(run_id)
           print(f"reward-summary-production-{run_id}" if run_id else '')
           PY
-          )
-          run_id="${verified[0]:-}"
-          artifact_name="${verified[1]:-}"
-          if [ -n "$run_id" ] && [ -n "$artifact_name" ]; then
-            rm -rf /tmp/reward-production
-            mkdir -p /tmp/reward-production
-            gh run download "$run_id" \
-              --repo "$GITHUB_REPOSITORY" \
-              --name "$artifact_name" \
-              --dir /tmp/reward-production
-            cp -a /tmp/reward-production/. data/
-            echo 'restored=true' >> "$GITHUB_OUTPUT"
-            echo "Restored verified reward artifact from run $run_id"
-          else
-            echo 'restored=false' >> "$GITHUB_OUTPUT"
+            )
+            run_id="${verified[0]:-}"
+            artifact_name="${verified[1]:-}"
+            if [ -n "$run_id" ] && [ -n "$artifact_name" ]; then
+              rm -rf /tmp/reward-production
+              mkdir -p /tmp/reward-production
+              if gh run download "$run_id" \
+                --repo "$GITHUB_REPOSITORY" \
+                --name "$artifact_name" \
+                --dir /tmp/reward-production; then
+                cp -a /tmp/reward-production/. data/
+                restored=true
+                echo "Restored verified reward artifact from run $run_id"
+              else
+                echo 'Cross-run artifact restore unavailable; falling back to full generation.' >&2
+              fi
+            fi
           fi
+
+          echo "restored=$restored" >> "$GITHUB_OUTPUT"
 
       - name: Compile reward builder
         run: python -m py_compile tools/build_reward_summary_catalog.py
