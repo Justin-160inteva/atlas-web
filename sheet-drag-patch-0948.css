@@ -1,0 +1,70 @@
+/* Atlas detail sheet smooth-drag patch.
+   Keeps one neutral grabber, removes the old three-step indicator, and
+   provides a transparent touch surface for iPad/Safari dragging. */
+#detailSheet {
+  will-change: height, bottom;
+  overscroll-behavior: contain;
+}
+
+#detailSheet .sheet-levels {
+  display: none !important;
+}
+
+#detailSheet .sheet-handle {
+  position: relative;
+  z-index: 4;
+  display: block;
+  width: 100%;
+  height: 32px;
+  margin: -4px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  touch-action: none;
+  cursor: ns-resize;
+}
+
+#detailSheet .sheet-handle::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  width: 52px;
+  height: 5px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(206, 198, 190, .5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
+  transition: transform .18s ease, background .18s ease, opacity .18s ease;
+  pointer-events: none;
+}
+
+#detailSheet.dragging {
+  transition: none !important;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#detailSheet.dragging .sheet-handle::after {
+  transform: translateX(-50%) scaleX(1.08);
+  background: rgba(224, 216, 207, .72);
+}
+
+#detailSheet.dragging .sheet-body {
+  pointer-events: none;
+}
+
+#detailSheet .sheet-body {
+  height: calc(100% - 28px);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #detailSheet,
+  #detailSheet .sheet-handle::after {
+    transition-duration: .01ms !important;
+  }
+}
