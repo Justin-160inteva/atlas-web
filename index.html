@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="public-library.css?v=0.9.4.8" />
   <link rel="stylesheet" href="atlas-settings.css?v=0.9.4.8" />
   <link rel="stylesheet" href="atlas-ipad-canvas-hotfix-0948.css?v=0.9.4.8&build=ipad-adaptive-markers-1" />
+  <link rel="stylesheet" href="sheet-drag-patch-0948.css?v=0.9.4.8&build=sheet-drag-1" />
 </head>
 <body>
   <main class="app-shell" aria-label="Atlas 互动地图">
@@ -39,7 +40,7 @@
     <div class="map-controls glass" aria-label="地图控制"><button id="zoomIn" aria-label="放大">＋</button><button id="zoomOut" aria-label="缩小">－</button><button id="resetView" aria-label="重置视图">↺</button></div>
     <section class="status-pill glass" aria-live="polite"><span class="pulse"></span><b id="visibleCount">0</b><span>个发现</span><i></i><span id="zoomLabel">×1.00</span></section>
     <nav class="bottom-nav glass" aria-label="主导航"><button class="nav-item active" data-panel="map"><span></span><small>地图</small></button><button class="nav-item" data-panel="filter"><span></span><small>筛选</small></button><button class="nav-item" data-panel="route"><span></span><small>路线</small></button><button class="nav-item" data-panel="progress"><span></span><small>进度</small></button><button class="nav-item" data-panel="favorites"><span></span><small>收藏</small></button></nav>
-    <section class="sheet" id="detailSheet" aria-hidden="true"><button class="sheet-handle" id="sheetHandle" aria-label="切换详情高度"></button><div class="sheet-levels" aria-label="详情卡高度"><button data-level="peek" class="active"></button><button data-level="mid"></button><button data-level="full"></button></div><div class="sheet-body" id="detailContent"></div></section>
+    <section class="sheet" id="detailSheet" aria-hidden="true"><button class="sheet-handle" id="sheetHandle" aria-label="上下拖动调整详情高度"></button><div class="sheet-body" id="detailContent"></div></section>
     <section class="panel glass" id="filterPanel" aria-hidden="true"><header><div><small>探索筛选</small><h2>选择要显示的发现</h2></div><button class="close-panel">×</button></header><div class="filter-summary"><span id="filterCount">44</span><small>个分类</small><button id="toggleAll">全部隐藏</button></div><div class="category-grid" id="categoryGrid"></div></section>
     <section class="panel glass route-panel" id="routePanel" aria-hidden="true"><header><div><small>ATLAS EXPLORATION PLANNER</small><h2>探索路线规划</h2></div><button class="close-route">×</button></header><div class="route-summary"><div class="route-stat"><b id="routeStops">0</b><small>路线点</small></div><div class="route-stat"><b id="routeDistance">0</b><small>地图距离</small></div><div class="route-stat"><b id="routeTime">0 分钟</b><small>预计时间</small></div></div><div class="route-actions"><button class="primary" id="optimizeRoute">优化顺序</button><button id="focusRoute">查看全程</button><button id="clearRoute">清除</button></div><div class="route-list" id="routeList"></div></section>
     <section class="panel glass progress-panel" id="progressPanel" aria-hidden="true"><header><div><small>探索进度</small><h2>区域完成情况</h2></div><button class="close-progress">×</button></header><div class="overall-progress"><div><b id="overallPercent">0%</b><small>总体完成度</small></div><div class="progress-track"><i id="overallBar"></i></div><p>已发现 <span id="overallDone">0</span> / <span id="overallTotal">0</span></p></div><div class="region-progress-list" id="regionProgressList"></div></section>
@@ -85,5 +86,6 @@
   <script src="atlas-public-library.js?v=0.9.4.8" defer></script>
   <script src="atlas-analysis-import.js?v=0.9.4.8" defer></script>
   <script src="atlas-ipad-canvas-hotfix-0948.js?v=0.9.4.8&build=ipad-adaptive-markers-1" defer></script>
+  <script src="sheet-drag-patch-0948.js?v=0.9.4.8&build=sheet-drag-1" defer></script>
 </body>
 </html>
