@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Find additional authorized AC Shadows videos without mutating the scan catalog.
 
-The audit enumerates the authorized Bilibili account through public metadata APIs,
-yt-dlp flat-playlist metadata, and exact-author search fallback. It compares matched
-video containers by BVID against the existing catalog and writes a report only.
-No video media or frame pixels are downloaded.
+The audit enumerates the authorized Bilibili account through a WBI-signed account API,
+legacy public metadata APIs, yt-dlp flat-playlist metadata, and exact-author search.
+It compares matched video containers by BVID against the existing catalog and writes a
+report only. No video media or frame pixels are downloaded.
 """
 from __future__ import annotations
 
@@ -14,13 +14,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import bilibili_transport_v13 as transport
 from discover_bilibili_author_catalog import (
     clean,
     discover_search,
     discover_space_api,
     discover_ytdlp,
+    get,
     norm,
     seed_info,
+    video,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,6 +44,48 @@ def write(path: Path, value: Any) -> None:
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def discover_signed_wbi_space(mid: int, author: str, diagnostics: list[str]) -> tuple[dict[str, dict[str, Any]], bool]:
+    """Enumerate the account with the same WBI signing primitives used by the analyzer."""
+    found: dict[str, dict[str, Any]] = {}
+    complete = False
+    try:
+        nav = get("https://api.bilibili.com/x/web-interface/nav")
+        mixin_key = transport.extract_mixin_key(nav)
+        for page in range(1, 41):
+            endpoint = transport.signed_url(
+                "https://api.bilibili.com/x/space/wbi/arc/search",
+                {
+                    "mid": mid,
+                    "ps": 50,
+                    "pn": page,
+                    "order": "pubdate",
+                    "order_avoided": "true",
+                    "tid": 0,
+                    "keyword": "",
+                    "platform": "web",
+                    "web_location": 1550101,
+                },
+                mixin_key,
+            )
+            payload = get(endpoint)
+            data = payload.get("data") or {}
+            rows = ((data.get("list") or {}).get("vlist") or [])
+            if not rows:
+                break
+            for raw in rows:
+                item = video(raw, author)
+                if item:
+                    found[item["bvid"]] = item
+            count = int((data.get("page") or {}).get("count") or 0)
+            if count and page * 50 >= count:
+                complete = True
+                break
+        diagnostics.append(f"signed WBI space imported {len(found)} complete={complete}")
+    except Exception as exc:
+        diagnostics.append(f"signed WBI space failed: {type(exc).__name__}: {exc}"[-1200:])
+    return found, complete
 
 
 def main() -> int:
@@ -64,10 +109,11 @@ def main() -> int:
     if norm(seed["name"]) != norm(author):
         raise RuntimeError(f"seed owner mismatch: {seed['name']} != {author}")
 
+    signed_videos, signed_complete = discover_signed_wbi_space(seed["mid"], seed["name"], diagnostics)
     api_videos, api_complete = discover_space_api(seed["mid"], seed["name"], diagnostics)
     ytdlp_videos, ytdlp_complete = discover_ytdlp(seed["mid"], seed["name"], diagnostics)
     search_videos = discover_search(seed["name"], needles, diagnostics)
-    account = {**api_videos, **ytdlp_videos, **search_videos}
+    account = {**api_videos, **ytdlp_videos, **search_videos, **signed_videos}
     account[seed["bvid"]] = {
         "bvid": seed["bvid"],
         "title": seed["title"],
@@ -78,31 +124,31 @@ def main() -> int:
     }
 
     matched = [
-        video for video in account.values()
-        if any(norm(needle) in norm(video.get("title")) for needle in needles)
+        entry for entry in account.values()
+        if any(norm(needle) in norm(entry.get("title")) for needle in needles)
     ]
     matched.sort(key=lambda item: (int(item.get("publishedAtUnix") or 0), str(item.get("bvid") or "")))
 
     existing_bvids = {str(item.get("bvid") or "") for item in catalog.get("items", []) if item.get("bvid")}
     existing_bvids.add(str(catalog.get("seedVideo", {}).get("bvid") or ""))
     candidates = []
-    for video in matched:
-        bvid = str(video.get("bvid") or "")
+    for entry in matched:
+        bvid = str(entry.get("bvid") or "")
         if not bvid or bvid in existing_bvids:
             continue
         candidates.append({
             "bvid": bvid,
-            "title": video.get("title"),
+            "title": entry.get("title"),
             "author": author,
-            "durationSeconds": int(video.get("durationSeconds") or 0),
-            "publishedAtUnix": int(video.get("publishedAtUnix") or 0),
-            "url": video.get("url") or f"https://www.bilibili.com/video/{bvid}/",
+            "durationSeconds": int(entry.get("durationSeconds") or 0),
+            "publishedAtUnix": int(entry.get("publishedAtUnix") or 0),
+            "url": entry.get("url") or f"https://www.bilibili.com/video/{bvid}/",
             "authorizationId": manifest["authorizationId"],
             "matchReason": "exact_author_and_title_keyword",
             "requiresMetadataVerificationBeforeQueueing": True,
         })
 
-    enumeration_complete = bool(api_complete or ytdlp_complete)
+    enumeration_complete = bool(signed_complete or api_complete or ytdlp_complete)
     generated_at = now_iso()
     if enumeration_complete and not candidates:
         conclusion = "账号完整枚举未发现当前目录之外的《刺客信条：影》视频容器。"
@@ -112,7 +158,7 @@ def main() -> int:
         conclusion = "账号枚举仍为部分结果；当前未发现新增候选，但不能据此断言账号没有其他相关视频。"
 
     report = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "release": "0.9.4.8",
         "generatedAt": generated_at,
         "author": author,
@@ -121,6 +167,11 @@ def main() -> int:
         "seedBvid": seed["bvid"],
         "titleMustContainAny": needles,
         "accountEnumerationComplete": enumeration_complete,
+        "enumerationMethods": {
+            "signedWbiComplete": signed_complete,
+            "legacyApiComplete": api_complete,
+            "ytDlpComplete": ytdlp_complete,
+        },
         "accountVideosDiscovered": len(account),
         "matchedGameContainers": len(matched),
         "existingCatalogContainers": len(existing_bvids - {""}),
