@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "version": "0.9.4.8",
   "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8",
-  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-3",
+  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-gesture-1",
   "entrypoint": "index.html",
   "releaseOwner": "atlas-bootstrap.js",
   "serviceWorker": "sw.js",
@@ -34,6 +34,7 @@
     "mapViewport": "app.js",
     "ipadMapViewport": "atlas-ipad-canvas-hotfix-0948.js",
     "ipadCanvasCompositor": "atlas-ipad-canvas-hotfix-0948.js",
+    "ipadMapGestures": "atlas-ipad-gesture-hotfix-0948.js",
     "ipadPanelGestures": "atlas-ipad-canvas-hotfix-0948.css"
   },
   "releaseAssets": [
@@ -49,6 +50,7 @@
     "atlas-080.js",
     "atlas-ipad-canvas-hotfix-0948.js",
     "atlas-ipad-canvas-hotfix-0948.css",
+    "atlas-ipad-gesture-hotfix-0948.js",
     "scan-monitor.js",
     "data/rewards/reward-evidence-index.json",
     "data/rewards/reward-source-policy.json",
@@ -101,6 +103,9 @@
     "ipadMaximumCanvasPixels": 3100000,
     "ipadPanelVerticalScrollEnabled": true,
     "ipadPanelInertialScrollEnabled": true,
+    "ipadSingleGestureController": true,
+    "ipadNativePagePinchDisabled": true,
+    "ipadPinchUsesStableGestureBaseline": true,
     "requireServiceWorkerUpgradeSimulation": true,
     "requireFullAuditAtThisRelease": true
   }
