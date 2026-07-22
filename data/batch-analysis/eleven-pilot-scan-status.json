@@ -1,162 +1,37 @@
 {
   "schemaVersion": 2,
-  "batchId": "eleven-production-p058-p068-v1",
+  "batchId": "eleven-production-p069-p079-v1",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
-  "pilotRegion": "顺序批次 P58-P68",
-  "updatedAt": "2026-07-22T20:00:24.167587Z",
-  "phase": "complete",
+  "pilotRegion": "顺序批次 P69-P79",
+  "updatedAt": "2026-07-22T20:49:00Z",
+  "phase": "queued",
   "activeItem": null,
-  "complete": true,
+  "complete": false,
   "summary": {
     "total": 11,
-    "imported": 11,
+    "imported": 0,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 0,
-    "attemptedThisRun": 1,
-    "newlyImportedThisRun": 1
+    "remaining": 11,
+    "attemptedThisRun": 0,
+    "newlyImportedThisRun": 0
   },
   "items": [
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p058",
-      "sequence": 58,
-      "page": 58,
-      "state": "imported",
-      "attemptCount": 2,
-      "lastStartedAt": "2026-07-22T14:51:40.983437Z",
-      "lastFinishedAt": "2026-07-22T14:52:51.611406Z",
-      "resultPath": "data/analysis-results/eleven-p058.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p059",
-      "sequence": 59,
-      "page": 59,
-      "state": "imported",
-      "attemptCount": 2,
-      "lastStartedAt": "2026-07-22T15:02:51.329901Z",
-      "lastFinishedAt": "2026-07-22T15:04:14.660543Z",
-      "resultPath": "data/analysis-results/eleven-p059.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p060",
-      "sequence": 60,
-      "page": 60,
-      "state": "imported",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-22T15:05:06.629533Z",
-      "lastFinishedAt": "2026-07-22T15:13:19.473156Z",
-      "resultPath": "data/analysis-results/eleven-p060.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p061",
-      "sequence": 61,
-      "page": 61,
-      "state": "imported",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-22T15:14:03.739274Z",
-      "lastFinishedAt": "2026-07-22T15:19:32.789893Z",
-      "resultPath": "data/analysis-results/eleven-p061.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p062",
-      "sequence": 62,
-      "page": 62,
-      "state": "imported",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-22T15:20:48.792340Z",
-      "lastFinishedAt": "2026-07-22T15:34:00.160383Z",
-      "resultPath": "data/analysis-results/eleven-p062.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p063",
-      "sequence": 63,
-      "page": 63,
-      "state": "imported",
-      "attemptCount": 2,
-      "lastStartedAt": "2026-07-22T15:49:54.137502Z",
-      "lastFinishedAt": "2026-07-22T15:52:06.160959Z",
-      "resultPath": "data/analysis-results/eleven-p063.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p064",
-      "sequence": 64,
-      "page": 64,
-      "state": "imported",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-22T15:53:17.523334Z",
-      "lastFinishedAt": "2026-07-22T16:00:06.025789Z",
-      "resultPath": "data/analysis-results/eleven-p064.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p065",
-      "sequence": 65,
-      "page": 65,
-      "state": "imported",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-22T16:01:02.822259Z",
-      "lastFinishedAt": "2026-07-22T16:07:13.797959Z",
-      "resultPath": "data/analysis-results/eleven-p065.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p066",
-      "sequence": 66,
-      "page": 66,
-      "state": "imported",
-      "attemptCount": 2,
-      "lastStartedAt": "2026-07-22T19:46:17.827731Z",
-      "lastFinishedAt": "2026-07-22T19:48:10.018947Z",
-      "resultPath": "data/analysis-results/eleven-p066.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p067",
-      "sequence": 67,
-      "page": 67,
-      "state": "imported",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-22T19:49:06.051497Z",
-      "lastFinishedAt": "2026-07-22T19:55:01.871278Z",
-      "resultPath": "data/analysis-results/eleven-p067.json",
-      "error": null
-    },
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p068",
-      "sequence": 68,
-      "page": 68,
-      "state": "imported",
-      "attemptCount": 1,
-      "lastStartedAt": "2026-07-22T19:55:56.210751Z",
-      "lastFinishedAt": "2026-07-22T20:00:24.160962Z",
-      "resultPath": "data/analysis-results/eleven-p068.json",
-      "error": null
-    }
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p069","sequence":69,"page":69,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p070","sequence":70,"page":70,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p071","sequence":71,"page":71,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p072","sequence":72,"page":72,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p073","sequence":73,"page":73,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p074","sequence":74,"page":74,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p075","sequence":75,"page":75,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p076","sequence":76,"page":76,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p077","sequence":77,"page":77,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p078","sequence":78,"page":78,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null},
+    {"externalSourceId":"bili-eleven-acshadows-BV1FdQ9YdEcN-p079","sequence":79,"page":79,"state":"pending","attemptCount":0,"lastStartedAt":null,"lastFinishedAt":null,"resultPath":null,"error":null}
   ],
-  "events": [
-    {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p068",
-      "sequence": 68,
-      "page": 68,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P68 第68期：追杀教如的佣兵",
-      "startedAt": "2026-07-22T19:55:56.210751Z",
-      "attemptCount": 1,
-      "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p068.json status=analyzed\n\n",
-      "analysisStatus": "analyzed",
-      "indexReturnCode": 0,
-      "completed": true,
-      "finishedAt": "2026-07-22T20:00:24.160962Z"
-    }
-  ],
+  "events": [],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."
 }
