@@ -1,10 +1,12 @@
 {
-  "schemaVersion": "2.0",
+  "schemaVersion": "2.1",
   "project": "Atlas - Assassin's Creed Shadows Interactive Map",
   "currentVersion": "0.9.4.8",
   "lastAuditedVersion": "0.9.4.8",
+  "lastAuditDate": "2026-07-22",
+  "lastAuditTrigger": "accepted-feature-regression",
   "auditEveryPatchReleases": 3,
-  "nextScheduledAuditVersion": "0.9.4.11",
+  "nextScheduledAuditVersion": "0.9.4.14",
   "stageGate": {
     "id": "ultra-hd-original-map",
     "title": "超高清自创地图成型",
@@ -19,12 +21,13 @@
     ]
   },
   "releaseState": {
-    "status": "implementation_in_progress",
+    "status": "regression_blocked",
     "intendedVersion": "0.9.4.8",
     "entryPageVersion": "0.9.4.8",
     "serviceWorkerCacheVersion": "atlas-alpha-0948-pages-v1-monitor-v11",
     "publicVerificationRequired": true,
-    "physicalDeviceVerificationRequired": true
+    "physicalDeviceVerificationRequired": true,
+    "blockingRegression": "P34 runtime is active while durable P33 remains failed, violating strict earliest-unresolved order"
   },
   "completedEvidence": [
     {
@@ -34,7 +37,7 @@
     },
     {
       "item": "Heartbeat self-healing and single monitor ownership",
-      "status": "implemented",
+      "status": "implemented_with_current_regression_in_queue_order",
       "versions": ["0.9.4.5"]
     },
     {
@@ -55,12 +58,26 @@
         "four evidence levels",
         "reward record schema",
         "Simplified Chinese terminology",
-        "3430-location coverage index",
-        "500-check reward contract matrix"
+        "3430-location unresolved coverage index",
+        "reward contract matrix"
+      ]
+    },
+    {
+      "item": "Regression-triggered full audit",
+      "status": "completed",
+      "versions": ["0.9.4.8"],
+      "evidence": [
+        "data/audits/full-audit-0948-regression-20260722.json",
+        "PROJECT-ROADMAP.md updated with blocking regression and next-three-version priorities",
+        "nextScheduledAuditVersion advanced to 0.9.4.14"
       ]
     }
   ],
   "incompleteItems": [
+    "Restore strict P33 before P34/P35 durable queue ownership on main",
+    "Reconcile P33 failed attempt state with bounded dictionary recovery policy",
+    "Regenerate current 0.9.4.8 scan-system health and full audit evidence",
+    "Land risk-based validation budgets and path-scoped CI on main",
     "Verified reward summaries for all 3430 locations",
     "Stable location-to-reward record generation",
     "First official and multi-source reward batch",
@@ -69,6 +86,24 @@
     "Public GitHub Pages verification for Alpha 0.9.4.8",
     "Physical iPad and desktop verification record",
     "End-to-end 完整版 / 终极完整版 completeness audit"
+  ],
+  "blockingItems": [
+    {
+      "id": "scan-order-regression",
+      "severity": "critical",
+      "evidence": {
+        "durableQueue": "P33 failed attemptCount=3",
+        "runtime": "P34 running/download",
+        "orchestrator": "main wrapper lacks failed-head preflight and projects only pending/queued items"
+      },
+      "acceptance": "P33 must be resolved before P34 and P35; maximum one active item"
+    },
+    {
+      "id": "stale-audit-evidence",
+      "severity": "high",
+      "evidence": "data/batch-analysis/scan-system-health.json reports release 0.9.4.7 and dictionary 2026.07.19.5",
+      "acceptance": "health and audit evidence must match the active release and dictionary"
+    }
   ],
   "rewardPipeline": {
     "targetLocations": 3430,
@@ -82,6 +117,32 @@
     "index": "data/rewards/reward-evidence-index.json",
     "rule": "Inference must never be presented as official confirmation."
   },
+  "validationPolicy": {
+    "mode": "risk-based",
+    "releaseReviewRequired": true,
+    "tiers": {
+      "low": "40-100 targeted checks",
+      "standard": "80-180 relevant checks",
+      "core": "180-300 relevant checks",
+      "full": "complete relevant matrices up to approximately 500 checks per gate"
+    },
+    "mandatoryReviewTopics": [
+      "watchdog polling frequency",
+      "duplicate scheduling",
+      "path-scoped CI",
+      "repeated checks",
+      "total validation time",
+      "stale report evidence"
+    ],
+    "qualityFloors": [
+      "authorization safety",
+      "no public media retention",
+      "single active scan",
+      "earliest unresolved queue ownership",
+      "durable state authority",
+      "reward evidence provenance"
+    ]
+  },
   "auditFindings": {
     "knownObsoleteFilesAlreadyRemoved": [
       "scan-monitor-live-bridge.js",
@@ -91,19 +152,44 @@
     "currentDeletionCandidates": [],
     "openTechnicalDebt": [
       "Reward coverage is still zero confirmed records",
-      "Roadmap and audit ledger previously lagged behind release state",
+      "Strict scan ordering regressed on main",
+      "Runtime projection and durable queue disagree",
+      "Scan-system health evidence is stale",
+      "Main CI still contains unconditional exact-500 matrices and full-audit execution for unrelated changes",
+      "Runtime heartbeat commits are very frequent and create repository noise",
       "Public and physical-device verification remain external to CI",
       "Whole-site frosted UI standardisation is incomplete",
       "Ultra-HD map stage gate remains pending"
     ]
   },
   "currentHighPriority": [
-    "Run all Alpha 0.9.4.8 release gates",
-    "Review full-project audit output and proven deletion candidates",
+    "Restore strict earliest-unresolved scan ownership and reconcile P33",
+    "Prevent P34/P35 bypass and verify one active task",
+    "Land dynamic validation budgets and path-scoped CI",
+    "Regenerate current release health/audit evidence",
     "Research and import the first high-confidence reward batch",
     "Add reward summaries and confidence labels to location details",
     "Verify public deployment and iPad behaviour"
   ],
+  "nextThreeVersionPriorities": {
+    "0.9.4.9": [
+      "scan-order regression repair",
+      "P33 durable reconciliation",
+      "risk-based validation and path-scoped CI",
+      "fresh health and audit evidence"
+    ],
+    "0.9.4.10": [
+      "first verified reward batch",
+      "reward details UI",
+      "map and panel performance baselines"
+    ],
+    "0.9.4.11": [
+      "bounded reward coverage expansion",
+      "public and physical-device verification records",
+      "workflow noise and heartbeat-frequency review",
+      "ultra-HD map gate reassessment without premature completion"
+    ]
+  },
   "auditHistory": [
     {
       "version": "0.9.3.5",
@@ -126,6 +212,14 @@
       "type": "mandatory-full-audit-and-reward-foundation",
       "result": "Reward evidence contracts established; full project audit gate added; coverage remains unresolved until evidence batches are reviewed",
       "nextScheduledAuditVersion": "0.9.4.11"
+    },
+    {
+      "version": "0.9.4.8",
+      "date": "2026-07-22",
+      "type": "regression-triggered-full-audit",
+      "result": "Critical P33/P34 durable-order regression found; roadmap and audit ledger updated; release marked regression-blocked",
+      "report": "data/audits/full-audit-0948-regression-20260722.json",
+      "nextScheduledAuditVersion": "0.9.4.14"
     }
   ]
 }
