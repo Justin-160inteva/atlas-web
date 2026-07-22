@@ -143,7 +143,8 @@ jobs:
             data/rewards/reward-summary-catalog.json \
             data/rewards/reward-source-audit.json \
             data/rewards/reward-research-queue.json \
-            data/rewards/records
+            data/rewards/records \
+            data/conflict-reports/reward-evidence-matrix.json
           if git diff --cached --quiet; then
             echo 'No generated reward changes.'
             exit 0
