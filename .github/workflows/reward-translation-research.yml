@@ -1,0 +1,127 @@
+name: Reward Translation Research
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17,47 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reward-translation-research.yml'
+      - 'tools/research_reward_translation_batch.py'
+      - 'data/rewards/reward-translation-research-policy.json'
+      - 'data/rewards/reward-translation-trigger.json'
+      - 'data/rewards/reward-research-sources.json'
+
+permissions:
+  contents: write
+  models: read
+
+concurrency:
+  group: reward-translation-research-main
+  cancel-in-progress: false
+
+jobs:
+  translate-and-rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile translation and catalog builders
+        run: python -m py_compile tools/research_reward_translation_batch.py tools/build_reward_summary_catalog.py
+
+      - name: Translate next bounded reward-name batch
+        id: research
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python tools/research_reward_translation_batch.py
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          state = json.loads(Path('data/rewards/reward-translation-research-state.json').read_text(encoding='utf-8'))
+          print(f"accepted={state['acceptedThisRun']}")
+          print(f"rejected={state['rejectedThisRun']}")
+          print(f"remaining={state['remainingCandidateNames']}")
+          PY
+
+      - name: Rebuild all 3430 reward summaries
+        if: steps.research.outputs.accepted != '0'
+        run: python tools/build_reward_summary_catalog.py
+
+      - name: Run reward evidence contract matrix
+        if: steps.research.outputs.accepted != '0'
+        run: node tools/reward_evidence_contract_smoke.mjs
+
+      - name: Validate translation and catalog invariants
+        if: steps.research.outputs.accepted != '0'
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          catalog = json.loads(Path('data/rewards/reward-summary-catalog.json').read_text(encoding='utf-8'))
+          audit = json.loads(Path('data/rewards/reward-source-audit.json').read_text(encoding='utf-8'))
+          state = json.loads(Path('data/rewards/reward-translation-research-state.json').read_text(encoding='utf-8'))
+          lexicon = json.loads(Path('data/rewards/reward-translation-lexicon-zh-CN.json').read_text(encoding='utf-8'))
+          evidence = json.loads(Path('data/rewards/reward-translation-evidence.json').read_text(encoding='utf-8'))
+
+          assert catalog['recordCount'] == 3430
+          assert catalog['coverage']['total'] == 3430
+          assert sum(catalog['coverage'][key] for key in ('officialConfirmed', 'multiSourceConfirmed', 'highConfidenceInference', 'unresolved')) == 3430
+          assert audit['invariants']['exactly3430Records']
+          assert audit['invariants']['oneRecordPerLocation']
+          assert audit['invariants']['coverageConserved']
+          assert audit['invariants']['batchLimitRespected']
+          assert lexicon['locale'] == 'zh-CN'
+          assert state['acceptedThisRun'] > 0
+          assert not any(state['safety'].values())
+          for original, row in evidence.get('translations', {}).items():
+              assert row['original'] == original
+              assert row['standardSimplifiedChinese'] is True
+              assert row['officialConfirmed'] is False
+              assert re.search(r'[\u3400-\u9fff]', row['zhCN'])
+              assert not re.search(r'[A-Za-z]', row['zhCN'])
+          print(f"Validated 3430 records; translated {state['acceptedThisRun']} names; {state['remainingCandidateNames']} names remain.")
+          PY
+
+      - name: Commit translated names and rebuilt reward catalog
+        if: steps.research.outputs.accepted != '0'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/rewards/reward-translation-lexicon-zh-CN.json \
+            data/rewards/reward-translation-evidence.json \
+            data/rewards/reward-translation-research-state.json \
+            data/rewards/reward-summary-catalog.json \
+            data/rewards/reward-source-audit.json \
+            data/rewards/reward-research-queue.json \
+            data/rewards/reward-evidence-index.json \
+            data/rewards/records \
+            data/conflict-reports/reward-evidence-matrix.json
+          if git diff --cached --quiet; then
+            echo 'No reward translation changes to publish.'
+            exit 0
+          fi
+          git commit -m "Translate reward names to standard Simplified Chinese [skip ci]"
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt ${attempt} collided with a scan telemetry commit; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 6))
+          done
+          echo 'Unable to publish reward translation batch after six attempts.' >&2
+          exit 1
