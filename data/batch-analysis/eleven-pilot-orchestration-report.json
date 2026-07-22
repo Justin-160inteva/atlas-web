@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-07-22T02:30:38.971115Z",
+  "generatedAt": "2026-07-22T13:39:58.502384Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "autonomyPolicy": "data/scan-autonomy-policy.json",
@@ -8,17 +8,17 @@
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-22T02:29:17.200678Z",
-      "finishedAt": "2026-07-22T02:30:37.936996Z",
+      "startedAt": "2026-07-22T13:36:18.941615Z",
+      "finishedAt": "2026-07-22T13:39:58.501356Z",
       "preflightState": "none",
       "preflightDictionaryEntryId": null,
       "preflightAutonomousOutcome": null,
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 6600,
-      "imported": 11,
+      "imported": 1,
       "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 11, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 0}\n\n"
+      "scannerOutput": "{\"total\": 11, \"imported\": 1, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 10}\n\n"
     }
   ],
   "performance": {
