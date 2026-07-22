@@ -8,6 +8,7 @@ on:
       - '.github/workflows/reward-legendary-chest-parser.yml'
       - 'tools/apply_legendary_chest_reward_parser_patch.py'
       - 'tools/research_reward_translation_batch.py'
+      - 'tools/report_legendary_chest_validation.py'
       - 'data/rewards/reward-translation-research-policy.json'
       - 'data/rewards/reward-legendary-chest-parser-trigger.json'
   pull_request:
@@ -15,6 +16,7 @@ on:
       - '.github/workflows/reward-legendary-chest-parser.yml'
       - 'tools/apply_legendary_chest_reward_parser_patch.py'
       - 'tools/research_reward_translation_batch.py'
+      - 'tools/report_legendary_chest_validation.py'
       - 'data/rewards/reward-translation-research-policy.json'
       - 'data/rewards/reward-legendary-chest-parser-trigger.json'
 
@@ -46,7 +48,8 @@ jobs:
         run: |
           python -m py_compile \
             tools/apply_legendary_chest_reward_parser_patch.py \
-            tools/research_reward_translation_batch.py
+            tools/research_reward_translation_batch.py \
+            tools/report_legendary_chest_validation.py
           python tools/apply_legendary_chest_reward_parser_patch.py
           python -m py_compile tools/build_reward_summary_catalog.py
 
@@ -112,67 +115,33 @@ jobs:
       - name: Run reward evidence contract matrix
         run: node tools/reward_evidence_contract_smoke.mjs
 
-      - name: Validate explicit legendary chest extraction
+      - name: Validate and write compact report
+        run: python tools/report_legendary_chest_validation.py --validate
+
+      - name: Publish failed validation report only
+        if: failure() && github.event_name == 'pull_request'
+        env:
+          TARGET_BRANCH: ${{ github.head_ref }}
         run: |
-          python - <<'PY'
-          import json
-          import re
-          from pathlib import Path
-
-          catalog = json.loads(Path('data/rewards/reward-summary-catalog.json').read_text(encoding='utf-8'))
-          audit = json.loads(Path('data/rewards/reward-source-audit.json').read_text(encoding='utf-8'))
-          state = json.loads(Path('data/rewards/reward-translation-research-state.json').read_text(encoding='utf-8'))
-          evidence = json.loads(Path('data/rewards/reward-translation-evidence.json').read_text(encoding='utf-8'))
-          records = catalog['records']
-          expected = {
-              'location-mapgenie-438759': 'Scale of the Koi',
-              'location-mapgenie-437354': 'Armor of the Legendary Samurai',
-              'location-mapgenie-434597': 'Tools Master Mask',
-              'location-mapgenie-438443': 'Lengthened Horizon',
-              'location-mapgenie-438314': "Yukimitsu's Revenge",
-              'location-mapgenie-438765': 'Armor Eater',
-              'location-mapgenie-435068': 'Demon Tooth',
-          }
-          for location_id, original in expected.items():
-              record = records[location_id]
-              assert record['status'] in {'high_confidence_inference', 'multi_source_confirmed'}, (location_id, record['status'])
-              assert record['rewards'], location_id
-              reward = next(item for item in record['rewards'] if item['nameOriginal'] == original)
-              assert reward['rarity'] == 'legendary', (location_id, reward)
-              assert re.search(r'[\u3400-\u9fff]', reward['nameZhCN']), (location_id, reward)
-              assert '具体名称待核对' not in reward['nameZhCN'], (location_id, reward)
-              assert record['evidence'], location_id
-
-          parsed_chests = []
-          for record in records.values():
-              if record.get('categoryId') != 'category-12342-legendary-chest':
-                  continue
-              if not record.get('rewards'):
-                  continue
-              parsed_chests.append(record)
-              for reward in record['rewards']:
-                  assert reward.get('nameOriginal') and not reward['nameOriginal'].startswith('??'), (record['locationId'], reward)
-                  assert re.search(r'[\u3400-\u9fff]', reward.get('nameZhCN') or ''), (record['locationId'], reward)
-                  assert '具体名称待核对' not in reward['nameZhCN'], (record['locationId'], reward)
-
-          assert parsed_chests
-          assert catalog['recordCount'] == 3430
-          assert catalog['coverage']['total'] == 3430
-          assert audit['invariants']['exactly3430Records']
-          assert audit['invariants']['oneRecordPerLocation']
-          assert audit['invariants']['coverageConserved']
-          assert audit['invariants']['batchLimitRespected']
-          assert audit['statusCounts']['unresolved'] < 2533
-          assert not any(state['safety'].values())
-          assert not any(original.startswith('??') for original in evidence.get('translations', {}))
-          print(
-              f"Legendary chest extraction validated: {len(parsed_chests)} parsed chests; "
-              f"unresolved now {audit['statusCounts']['unresolved']}; "
-              f"other translation candidates remaining {state['remainingCandidateNames']}."
-          )
-          PY
+          report='data/rewards/reward-legendary-chest-validation-report.json'
+          if [ ! -f "$report" ]; then
+            echo 'No validation report was produced.'
+            exit 0
+          fi
+          cp "$report" /tmp/reward-legendary-chest-validation-report.json
+          git reset --hard HEAD
+          git clean -fd
+          mkdir -p data/rewards
+          cp /tmp/reward-legendary-chest-validation-report.json "$report"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$report"
+          git commit -m 'Record legendary chest validation diagnostics [skip ci]'
+          git pull --rebase origin "$TARGET_BRANCH"
+          git push origin "HEAD:$TARGET_BRANCH"
 
       - name: Commit parser, translations and regenerated catalog
+        if: success()
         env:
           TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
         run: |
@@ -187,6 +156,7 @@ jobs:
             data/rewards/reward-source-audit.json \
             data/rewards/reward-research-queue.json \
             data/rewards/reward-evidence-index.json \
+            data/rewards/reward-legendary-chest-validation-report.json \
             data/rewards/records \
             data/conflict-reports/reward-evidence-matrix.json
           if git diff --cached --quiet; then
