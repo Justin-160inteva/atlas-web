@@ -1,4 +1,4 @@
-name: Scan 11 game world regional batch v11
+name: Scan authorized game world serial batch v12
 
 on:
   push:
@@ -9,6 +9,8 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write
+  models: read
 
 concurrency:
   group: scan-eleven-regional-batch
@@ -36,38 +38,86 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg curl
 
-      - name: Compile active scan and recovery stack
-        run: |
-          python -m py_compile tools/publish_runtime_progress.py
-          python -m py_compile tools/publish_runtime_progress_v2.py
-          python -m py_compile tools/analyze_authorized_video_v11.py
-          python -m py_compile tools/analyze_authorized_video_v12.py
-          python -m py_compile tools/scan_catalog_queue_v2.py
-          python -m py_compile tools/diagnose_and_recover_scan_v2.py
-          python -m py_compile tools/run_scan_with_auto_recovery.py
-          python -m py_compile tools/run_scan_with_auto_recovery_v2.py
-          python -m py_compile tools/update_analysis_index.py
-
-      - name: Verify authorization and eleven-item serial state
+      - name: Compile active scan, recovery, and autonomous repair stack
         run: |
           python - <<'PY'
           import json
+          import pathlib
+          import py_compile
+
+          manifest = json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json', encoding='utf-8'))
+          paths = [
+              'tools/publish_runtime_progress.py',
+              'tools/publish_runtime_progress_v2.py',
+              'tools/bilibili_transport_v13.py',
+              'tools/bilibili_transport_smoke.py',
+              'tools/p33_v14_hook/sitecustomize.py',
+              'tools/p33_chunked_tail_smoke.py',
+              'tools/scan_catalog_queue_v2.py',
+              'tools/diagnose_and_recover_scan_v2.py',
+              'tools/scan_autonomous_repair.py',
+              'tools/autonomous_scan_repair_smoke.py',
+              'tools/run_scan_with_auto_recovery.py',
+              'tools/run_scan_with_auto_recovery_v2.py',
+              'tools/update_analysis_index.py',
+              manifest['analyzer'],
+          ]
+          for raw in dict.fromkeys(paths):
+              path = pathlib.Path(raw)
+              assert path.is_file(), f'missing active scan component: {raw}'
+              py_compile.compile(str(path), doraise=True)
+          print(f"compiled active analyzer {manifest['analyzer']}")
+          PY
+          python tools/autonomous_scan_repair_smoke.py
+
+      - name: Run source transport gates
+        run: |
+          python tools/bilibili_transport_smoke.py
+          python tools/p33_chunked_tail_smoke.py
+
+      - name: Verify conditional HTTP/1.1 hook
+        env:
+          ATLAS_FORCE_HTTP11: '1'
+          PYTHONPATH: ${{ github.workspace }}/tools/p33_v14_hook
+        run: |
+          python - <<'PY'
+          import sitecustomize
+          from curl_cffi import requests
+          assert sitecustomize.ATLAS_HTTP11_PATCHED is True
+          assert sitecustomize.ATLAS_TAIL_REPAIR_PATCHED is True
+          assert sitecustomize.ATLAS_PARALLEL_CHUNK_PATCHED is True
+          assert requests._atlas_http11_patched is True
+          assert callable(requests._atlas_http11_original_get)
+          assert callable(requests._atlas_http11_original_request)
+          print('conditional HTTP/1.1, tail, and parallel chunk hooks are active')
+          PY
+
+      - name: Verify authorization, autonomy, and dynamic serial state
+        run: |
+          python - <<'PY'
+          import json
+          import pathlib
+
           auth=json.load(open('data/authorizations.json',encoding='utf-8'))
           queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
           catalog=json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))
           manifest=json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json',encoding='utf-8'))
           bugs=json.load(open('data/scan-bug-dictionary.json',encoding='utf-8'))
+          autonomy=json.load(open('data/scan-autonomy-policy.json',encoding='utf-8'))
           record=next(item for item in auth['records'] if item['id']==queue['authorizationId'])
           scope=record['scope']
           items=queue['items']
           catalog_by_id={entry['id']:entry for entry in catalog['items']}
-          assert record['status']=='active' and record['author']=='11的游戏世界'
-          assert len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']==11
+          pages=[int(item['page']) for item in items]
+          sequences=[int(item['sequence']) for item in items]
+          assert record['status']=='active' and record['author']==queue['author']
+          assert items and len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']
           assert queue['maximumConcurrentItems']==manifest['maximumConcurrentDownloads']==manifest['maxItemsPerRun']==1
           assert queue['autoContinueAfterDurableSuccess'] is True
           assert manifest['autoContinueAfterDurableSuccess'] is True
-          assert [item['sequence'] for item in items]==list(range(25,36))
-          assert len({item['externalSourceId'] for item in items})==11
+          assert pages==list(range(pages[0],pages[0]+len(pages)))
+          assert sequences==list(range(sequences[0],sequences[0]+len(sequences)))
+          assert len({item['externalSourceId'] for item in items})==len(items)
           assert sum(item.get('state') in {'running','recovery'} for item in items)<=1
           assert all(item['regionGuess']==queue['pilotRegion'] for item in items)
           assert all(item['externalSourceId'] in catalog_by_id for item in items)
@@ -80,22 +130,51 @@ jobs:
           assert scope['localDownloadAndAnalysis'] and scope['computerVisionAnalysis']
           assert scope['privateLowResolutionKeyframes']
           assert scope['nonCommercial'] and scope['commercialUseRequiresSeparateWrittenConsent']
-          assert manifest['analyzer'].endswith('analyze_authorized_video_v12.py')
+          assert pathlib.Path(manifest['analyzer']).is_file()
           assert manifest['runtimeHeartbeat']['minimumIntervalSeconds']==30
           assert manifest['downloadTelemetry']['intervalSeconds']==30
-          assert manifest['downloadOptimization']['noArtificialRateLimit'] is True
-          assert manifest['downloadOptimization']['adaptiveParallelRanges'] is True
+          download=manifest['downloadOptimization']
+          assert download['noArtificialRateLimit'] is True
+          assert download['adaptiveParallelRanges'] is True or download['fallbackToResumableSingleStream'] is True
+          assert int(download.get('maxRangeWorkers',1))>=1
+          assert download['metadataRefreshPasses']>=2
+          assert download['bypassPublicVideoWebpage'] is True
+          assert download['preservePartialAcrossCdnCandidates'] is True
+          assert manifest['compatibilityFixes']['wbiSignedPlayerMetadata'] is True
+          assert manifest['compatibilityFixes']['apiProvidedCdnRotation'] is True
           assert manifest['retention']['originalVideo'] is False
           assert manifest['retention']['framePixels'] is False
           assert len({entry['id'] for entry in bugs['entries']})==len(bugs['entries'])
-          print('authorized P25-P35 eleven-item queue is coherent and strictly serial')
+          assert autonomy['enabled'] is True
+          assert autonomy['authorization']['confirmationRequired'] is False
+          assert autonomy['mandatorySafety']['neverBroadenAuthorization'] is True
+          assert autonomy['mandatorySafety']['neverRetainOriginalMedia'] is True
+          assert autonomy['mandatorySafety']['maximumConcurrentDownloads']==1
+          print(f"authorized {queue['pilotRegion']} queue and bounded autonomous repair policy are coherent")
           PY
 
-      - name: Scan exactly one item with bounded recovery
+      - name: Capture current-run baseline
+        id: baseline
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from datetime import datetime, timezone
+          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          imported=sum(item.get('state')=='imported' for item in queue.get('items',[]))
+          started=datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
+          print(f'started_at={started}')
+          print(f'imported={imported}')
+          PY
+
+      - name: Scan exactly one item with deterministic recovery and AI repair
         id: scan
-        continue-on-error: true
         env:
           PYTHONUNBUFFERED: '1'
+          ATLAS_FORCE_HTTP11: '1'
+          ATLAS_PARALLEL_RANGE_WORKERS: '4'
+          PYTHONPATH: ${{ github.workspace }}/tools/p33_v14_hook
+          ATLAS_AI_REPAIR_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           ATLAS_PROGRESS_TOKEN: ${{ github.token }}
           ATLAS_PROGRESS_REPOSITORY: ${{ github.repository }}
           ATLAS_PROGRESS_BRANCH: main
@@ -103,63 +182,110 @@ jobs:
           ATLAS_PROGRESS_LOCAL_PATH: /tmp/atlas-runtime-progress.json
           ATLAS_PROGRESS_MIN_INTERVAL_SECONDS: '30'
           ATLAS_PROGRESS_CONFLICT_RETRIES: '5'
-        run: python tools/run_scan_with_auto_recovery_v2.py data/batch-analysis/eleven-pilot-scan-manifest.json
+        run: |
+          set +e
+          python tools/run_scan_with_auto_recovery_v2.py data/batch-analysis/eleven-pilot-scan-manifest.json
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
 
-      - name: Remove all transient media
+      - name: Remove all transient media and interpreter caches
         if: always()
         run: |
           find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
           find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' \) -delete
+          find . -type d -name '__pycache__' -prune -exec rm -rf {} +
+          find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
 
-      - name: Read durable decision
+      - name: Read current-run durable decision
         if: always()
         id: decision
+        env:
+          RUN_STARTED_AT: ${{ steps.baseline.outputs.started_at }}
+          BASELINE_IMPORTED: ${{ steps.baseline.outputs.imported }}
+          SCAN_CODE: ${{ steps.scan.outputs.code }}
         run: |
           python - <<'PY' >> "$GITHUB_OUTPUT"
-          import json, pathlib
-          recovery_path=pathlib.Path('data/batch-analysis/eleven-pilot-recovery-report.json')
-          orchestration_path=pathlib.Path('data/batch-analysis/eleven-pilot-orchestration-report.json')
-          recovery=json.load(recovery_path.open(encoding='utf-8')) if recovery_path.exists() else {}
-          orchestration=json.load(orchestration_path.open(encoding='utf-8')) if orchestration_path.exists() else {}
-          status=json.load(open('data/batch-analysis/eleven-pilot-scan-status.json',encoding='utf-8'))
-          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          import json
+          import os
+          import pathlib
+          from datetime import datetime, timezone
+
+          def load(path):
+              p=pathlib.Path(path)
+              return json.load(p.open(encoding='utf-8')) if p.exists() else {}
+
+          def stamp(value):
+              if not value:
+                  return datetime.min.replace(tzinfo=timezone.utc)
+              try:
+                  return datetime.fromisoformat(str(value).replace('Z','+00:00'))
+              except ValueError:
+                  return datetime.min.replace(tzinfo=timezone.utc)
+
+          started=stamp(os.environ.get('RUN_STARTED_AT'))
+          baseline=int(os.environ.get('BASELINE_IMPORTED') or 0)
+          scan_code=int(os.environ.get('SCAN_CODE') or 1)
+          recovery=load('data/batch-analysis/eleven-pilot-recovery-report.json')
+          orchestration=load('data/batch-analysis/eleven-pilot-orchestration-report.json')
+          auto=load('data/batch-analysis/scan-autonomous-repair-report.json')
+          queue=load('data/batch-analysis/eleven-pilot-scan-queue.json')
+          status=load('data/batch-analysis/eleven-pilot-scan-status.json')
+
+          recovery=recovery if stamp(recovery.get('generatedAt'))>=started else {}
+          orchestration=orchestration if stamp(orchestration.get('generatedAt'))>=started else {}
+          auto=auto if stamp(auto.get('generatedAt'))>=started else {}
+
+          items=queue.get('items',[])
+          imported=sum(item.get('state')=='imported' for item in items)
+          complete=bool(items) and imported==len(items)
+          progressed=imported>baseline
           final=orchestration.get('finalState','unknown')
-          progressed=final=='scan_completed_or_progressed' or int(status.get('summary',{}).get('newlyImportedThisRun',0))>0
-          target_id=recovery.get('activeExternalSourceId')
-          target=next((item for item in queue.get('items',[]) if item.get('externalSourceId')==target_id),None)
+          terminal=scan_code!=0 or final in {'protected_failure','unrecoverable','attempt_limit_reached','diagnosis_target_mismatch'}
+          target_id=recovery.get('activeExternalSourceId') or auto.get('targetExternalSourceId')
+          target=next((item for item in items if item.get('externalSourceId')==target_id),None)
           relevant=bool(target and target.get('state') in {'failed','blocked','recovery'})
-          terminal=final in {'human_review_required','unrecoverable','attempt_limit_reached'}
-          human=terminal or (not progressed and relevant and recovery.get('requiresHumanReview',False))
-          print(f"complete={'true' if status.get('complete') else 'false'}")
+          human=terminal or (relevant and recovery.get('requiresHumanReview',False) and auto.get('outcome')!='repaired')
+          action=auto.get('outcome') if auto.get('outcome')=='repaired' else recovery.get('action','none') if relevant else 'none'
+
+          print(f"complete={'true' if complete else 'false'}")
           print(f"progressed={'true' if progressed else 'false'}")
           print(f"human={'true' if human else 'false'}")
-          print(f"imported={status.get('summary',{}).get('imported',0)}")
-          print(f"total={status.get('summary',{}).get('total',0)}")
-          print(f"region={queue['pilotRegion']}")
-          print(f"action={recovery.get('action','none') if relevant else 'none'}")
+          print(f"imported={imported}")
+          print(f"total={len(items)}")
+          print(f"region={queue.get('pilotRegion','unknown')}")
+          print(f"action={action}")
+          print(f"scan_code={scan_code}")
+          print(f"fresh_final={final}")
+          print(f"status_imported={status.get('summary',{}).get('imported',0)}")
           PY
 
-      - name: Run 400-round serial integrity and privacy gate
+      - name: Run 400-round dynamic serial integrity and privacy gate
         if: always()
         run: |
           python - <<'PY'
-          import json, pathlib
+          import json
+          import pathlib
           queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
           status=json.load(open('data/batch-analysis/eleven-pilot-scan-status.json',encoding='utf-8'))
           catalog=json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))
           manifest=json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json',encoding='utf-8'))
           bugs=json.load(open('data/scan-bug-dictionary.json',encoding='utf-8'))
+          autonomy=json.load(open('data/scan-autonomy-policy.json',encoding='utf-8'))
           index=json.load(open('data/analysis-index.json',encoding='utf-8'))
           indexed={item['externalSourceId']:item for item in index['items']}
           catalog_by_id={item['id']:item for item in catalog['items']}
-          allowed={'pending','queued','running','recovery','failed','imported'}
+          allowed={'pending','queued','running','recovery','failed','blocked','imported'}
           for _ in range(400):
               items=queue['items']
+              pages=[int(item['page']) for item in items]
+              sequences=[int(item['sequence']) for item in items]
               assert status['authorizationId']==queue['authorizationId']==catalog['authorizationId']
-              assert status['summary']['total']==len(items)==11
+              assert status['summary']['total']==len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']
               assert queue['maximumConcurrentItems']==manifest['maximumConcurrentDownloads']==manifest['maxItemsPerRun']==1
               assert sum(item.get('state') in {'running','recovery'} for item in items)<=1
-              assert [item['sequence'] for item in items]==list(range(25,36))
+              assert pages==list(range(pages[0],pages[0]+len(pages)))
+              assert sequences==list(range(sequences[0],sequences[0]+len(sequences)))
               assert all(item['regionGuess']==queue['pilotRegion'] for item in items)
               assert all(item.get('state','pending') in allowed for item in items)
               assert manifest['autoContinueAfterDurableSuccess'] is True
@@ -167,6 +293,8 @@ jobs:
               assert manifest['retention']['framePixels'] is False
               assert bugs['defaultPolicy']['neverBroadenAuthorization'] is True
               assert bugs['defaultPolicy']['neverRetainOriginalMedia'] is True
+              assert autonomy['mandatorySafety']['neverChangeQueueScope'] is True
+              assert autonomy['mandatorySafety']['strictSerialOrder'] is True
               for item in items:
                   catalog_state=catalog_by_id[item['externalSourceId']]['analysisStatus']
                   if item.get('state')=='imported':
@@ -177,33 +305,58 @@ jobs:
                       assert entry['media']['framePixelsRetained'] is False
                   else:
                       assert catalog_state!='imported'
-              for pattern in ('*.mp4','*.m4a','*.webm','*.flv'):
+              for pattern in ('*.mp4','*.m4a','*.webm','*.flv','*.pyc','*.pyo'):
                   assert not list(pathlib.Path('.').rglob(pattern))
-          print('400/400 eleven-item serial integrity and privacy checks passed')
+          print('400/400 dynamic serial integrity, autonomy safety, privacy, and cache checks passed')
           PY
 
-      - name: Persist durable state
+      - name: Persist durable state and passing autonomous source repair
         if: always()
+        id: persist
         run: |
-          TRACKED='data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/eleven-pilot-scan-manifest.json'
-          if [ -z "$(git status --porcelain -- $TRACKED)" ]; then exit 0; fi
-          git config user.name 'github-actions[bot]'
+          echo "persisted=false" >> "$GITHUB_OUTPUT"
+          git rm -r --cached --ignore-unmatch tools/__pycache__ tools/p33_v14_hook/__pycache__ || true
+          TRACKED='data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/scan-autonomous-repair-report.json data/batch-analysis/eleven-pilot-scan-manifest.json data/scan-bug-dictionary.json data/scan-autonomy-policy.json tools'
+          git add -u -- $TRACKED
+          git add -- data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/scan-autonomous-repair-report.json data/batch-analysis/eleven-pilot-scan-manifest.json data/scan-bug-dictionary.json data/scan-autonomy-policy.json tools/*.py tools/p33_v14_hook/sitecustomize.py
+          if git diff --cached --quiet; then
+            if [ "${{ steps.decision.outputs.progressed }}" = "true" ]; then
+              echo 'current run reported durable progress but no tracked durable state changed' >&2
+              exit 1
+            fi
+            exit 0
+          fi
+          git config user.name 'atlas-autonomous-scan[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add $TRACKED
           git commit -m "Scan ${{ steps.decision.outputs.region }}: ${{ steps.decision.outputs.imported }}/${{ steps.decision.outputs.total }} (${{ steps.decision.outputs.action }})"
-          for attempt in 1 2 3; do
-            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              pushed_sha=$(git rev-parse HEAD)
+              git fetch origin main
+              if git merge-base --is-ancestor "$pushed_sha" origin/main; then
+                echo "persisted=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
             git rebase --abort || true
             sleep $((attempt * 4))
           done
           exit 1
 
       - name: Continue with exactly one next item after durable success
-        if: always() && steps.decision.outputs.complete != 'true' && steps.decision.outputs.human != 'true' && steps.decision.outputs.progressed == 'true'
+        if: always() && steps.persist.outputs.persisted == 'true' && steps.decision.outputs.complete != 'true' && steps.decision.outputs.human != 'true' && steps.decision.outputs.progressed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run scan-eleven-pilot-v2.yml --ref main
 
-      - name: Stop visibly on current unrecoverable failure
+      - name: Stop when durable success was not persisted
+        if: always() && steps.decision.outputs.progressed == 'true' && steps.persist.outputs.persisted != 'true'
+        run: exit 1
+
+      - name: Stop visibly on current-run protected or unrepaired failure
         if: always() && steps.decision.outputs.human == 'true'
+        run: exit 1
+
+      - name: Stop visibly when current run made no durable progress
+        if: always() && steps.decision.outputs.complete != 'true' && steps.decision.outputs.progressed != 'true' && steps.decision.outputs.human != 'true'
         run: exit 1

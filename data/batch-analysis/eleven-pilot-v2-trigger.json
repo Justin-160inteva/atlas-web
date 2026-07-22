@@ -1,18 +1,20 @@
 {
-  "schemaVersion": 7,
-  "triggerId": "eleven-production-p007-p011-20260719-02-opencv-recovery",
-  "requestedAt": "2026-07-19T22:59:57Z",
+  "schemaVersion": 8,
+  "triggerId": "eleven-production-p025-p035-20260722-autonomous-repair",
+  "requestedAt": "2026-07-22T01:10:00Z",
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
-  "pilotRegion": "顺序批次 P07-P11",
+  "pilotRegion": "顺序批次 P25-P35",
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
-  "mode": "chronological-five-queued-one-item-per-run-live-telemetry",
-  "queuePages": [7, 8, 9, 10, 11],
-  "startWithPage": 9,
-  "requiredAnalyzer": "tools/analyze_authorized_video_v12.py",
+  "mode": "strict-serial-one-item-per-run-deterministic-then-ai-repair",
+  "queuePages": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
+  "earliestUnresolvedPage": 33,
+  "requiredAnalyzer": "tools/analyze_authorized_video_v13.py",
   "automaticRecovery": true,
+  "autonomousAiRepair": true,
+  "confirmationRequired": false,
   "heartbeatSupervisor": true,
   "runtimeHeartbeat": {
     "enabled": true,
@@ -26,6 +28,7 @@
     "segmentProgress": true,
     "etaSeconds": true
   },
-  "humanReviewOnUnknownFailure": true,
-  "recoveryReason": "Known OpenCV downloaded-container open failure now maps to the approved transcode fallback and bounded retry."
+  "humanReviewOnUnknownFailure": false,
+  "protectedBoundaryPolicy": "Only authorization, identity, privacy, queue-scope or retention violations may stop without an automatic source patch.",
+  "recoveryReason": "Restore the pre-reset bounded AI repair loop for unresolved scan failures without restoring later map or navigation changes."
 }

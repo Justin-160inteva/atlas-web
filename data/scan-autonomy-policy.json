@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "revision": "2026.07.21.1",
+  "enabled": true,
+  "authorization": {
+    "confirmationRequired": false,
+    "scope": "Atlas authorized video import and analysis pipeline",
+    "grantedByProjectOwner": true,
+    "effectiveAt": "2026-07-21T01:20:00Z"
+  },
+  "timeBudget": {
+    "targetMinutes": 5,
+    "hardMaximumMinutes": 10,
+    "modelRequestSeconds": 90,
+    "validationSeconds": 180
+  },
+  "model": {
+    "provider": "github-models",
+    "id": "openai/gpt-4.1",
+    "endpoint": "https://models.github.ai/inference/chat/completions",
+    "temperature": 0.1,
+    "maximumOutputTokens": 7000
+  },
+  "execution": {
+    "deterministicRecoveryFirst": true,
+    "allowAiSourcePatch": true,
+    "retrySameQueueItemAfterRepair": true,
+    "commitPassingRepairAutomatically": true,
+    "dispatchScanAfterRepair": true,
+    "maximumAiRepairPassesPerItem": 2,
+    "maximumChangedFiles": 3,
+    "maximumChangedLines": 240
+  },
+  "allowedPathPatterns": [
+    "tools/*.py",
+    "tools/p33_v14_hook/*.py",
+    "data/scan-bug-dictionary.json",
+    "data/batch-analysis/*scan-manifest.json"
+  ],
+  "blockedPathPatterns": [
+    "data/authorizations.json",
+    "data/analysis-results/**",
+    "data/rewards/**",
+    "assets/**",
+    "*.html",
+    "*.js",
+    "*.css",
+    "sw.js"
+  ],
+  "mandatorySafety": {
+    "neverBroadenAuthorization": true,
+    "neverChangeQueueScope": true,
+    "neverRetainOriginalMedia": true,
+    "neverRetainFramePixels": true,
+    "neverDisableTests": true,
+    "neverHideFailure": true,
+    "strictSerialOrder": true,
+    "maximumConcurrentDownloads": 1,
+    "rollbackOnValidationFailure": true
+  },
+  "validation": {
+    "quickChecksPerMatrix": 24,
+    "commands": [
+      "python -m py_compile tools/scan_autonomous_repair.py tools/run_scan_with_auto_recovery.py tools/run_scan_with_auto_recovery_v2.py tools/diagnose_and_recover_scan_v2.py",
+      "python tools/autonomous_scan_repair_smoke.py",
+      "python tools/heartbeat_system_smoke.py",
+      "python tools/serial_queue_order_smoke.py",
+      "python tools/queue_schema_smoke.py"
+    ]
+  },
+  "fallback": {
+    "writeAuditableReport": true,
+    "leaveQueueFailureVisible": true,
+    "openIssueWithoutRequestingConfirmation": true,
+    "continueOnlyAfterPassingRepair": true
+  }
+}
