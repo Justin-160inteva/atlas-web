@@ -4,18 +4,18 @@
   "author": "11的游戏世界",
   "authorizationId": "auth-eleven-game-world-20260719",
   "pilotRegion": "顺序批次 P36-P46",
-  "updatedAt": "2026-07-22T02:01:36.075677Z",
+  "updatedAt": "2026-07-22T02:04:32.204931Z",
   "phase": "progress",
   "activeItem": null,
   "complete": false,
   "summary": {
     "total": 11,
-    "imported": 1,
+    "imported": 2,
     "running": 0,
     "failed": 0,
     "blocked": 0,
     "retryableFailed": 0,
-    "remaining": 10,
+    "remaining": 9,
     "attemptedThisRun": 1,
     "newlyImportedThisRun": 1
   },
@@ -35,11 +35,11 @@
       "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p037",
       "sequence": 37,
       "page": 37,
-      "state": "pending",
-      "attemptCount": 0,
-      "lastStartedAt": null,
-      "lastFinishedAt": null,
-      "resultPath": null,
+      "state": "imported",
+      "attemptCount": 1,
+      "lastStartedAt": "2026-07-22T02:02:52.244152Z",
+      "lastFinishedAt": "2026-07-22T02:04:32.198842Z",
+      "resultPath": "data/analysis-results/eleven-p037.json",
       "error": null
     },
     {
@@ -144,18 +144,18 @@
   ],
   "events": [
     {
-      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p036",
-      "sequence": 36,
-      "page": 36,
-      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P36 第36期：恶代官",
-      "startedAt": "2026-07-22T02:00:16.140842Z",
-      "attemptCount": 2,
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p037",
+      "sequence": 37,
+      "page": 37,
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P37 第37期：信纲的弟子",
+      "startedAt": "2026-07-22T02:02:52.244152Z",
+      "attemptCount": 1,
       "analyzerReturnCode": 0,
-      "analyzerOutput": "analysis result written: data/analysis-results/eleven-p036.json status=analyzed\n\n",
+      "analyzerOutput": "runtime progress conflict; refetching SHA and retrying in 0.86s\nruntime progress conflict; refetching SHA and retrying in 0.63s\nanalysis result written: data/analysis-results/eleven-p037.json status=analyzed\n\n",
       "analysisStatus": "analyzed",
       "indexReturnCode": 0,
       "completed": true,
-      "finishedAt": "2026-07-22T02:01:36.069450Z"
+      "finishedAt": "2026-07-22T02:04:32.198842Z"
     }
   ],
   "privacy": "Original videos and frame pixels are transient and are not retained in the public repository."

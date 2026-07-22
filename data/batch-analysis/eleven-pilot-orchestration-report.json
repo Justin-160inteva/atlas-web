@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-07-22T02:01:36.108440Z",
+  "generatedAt": "2026-07-22T02:04:32.230814Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "autonomyPolicy": "data/scan-autonomy-policy.json",
@@ -8,36 +8,17 @@
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-22T01:51:49.470527Z",
-      "finishedAt": "2026-07-22T02:00:14.135700Z",
+      "startedAt": "2026-07-22T02:02:51.999038Z",
+      "finishedAt": "2026-07-22T02:04:32.229814Z",
       "preflightState": "none",
       "preflightDictionaryEntryId": null,
       "preflightAutonomousOutcome": null,
       "scannerReturnCode": 0,
       "scannerTimeoutSeconds": 6600,
-      "imported": 0,
-      "failed": 1,
-      "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 0, \"running\": 0, \"failed\": 1, \"blocked\": 0, \"retryableFailed\": 1, \"remaining\": 11}\n\n",
-      "diagnosisReturnCode": 0,
-      "dictionaryEntryId": "ffmpeg-invalid-data",
-      "action": "enable_transcode_fallback_and_retry",
-      "retryScheduled": true,
-      "requiresHumanReview": false
-    },
-    {
-      "cycle": 2,
-      "startedAt": "2026-07-22T02:00:15.914244Z",
-      "finishedAt": "2026-07-22T02:01:36.107784Z",
-      "preflightState": "none",
-      "preflightDictionaryEntryId": null,
-      "preflightAutonomousOutcome": null,
-      "scannerReturnCode": 0,
-      "scannerTimeoutSeconds": 6600,
-      "imported": 1,
+      "imported": 2,
       "failed": 0,
       "running": 0,
-      "scannerOutput": "{\"total\": 11, \"imported\": 1, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 10}\n\n"
+      "scannerOutput": "{\"total\": 11, \"imported\": 2, \"running\": 0, \"failed\": 0, \"blocked\": 0, \"retryableFailed\": 0, \"remaining\": 9}\n\n"
     }
   ],
   "performance": {
