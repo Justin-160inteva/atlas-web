@@ -127,8 +127,9 @@
         level = nearestLevel(height);
       }
 
-      releaseCapture(gesture.pointerId);
+      const pointerId = gesture.pointerId;
       gesture = null;
+      releaseCapture(pointerId);
       finishSnap(level, height);
     }
 
