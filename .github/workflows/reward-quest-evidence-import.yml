@@ -8,6 +8,7 @@ on:
       - '.github/workflows/reward-quest-evidence-import.yml'
       - 'tools/build_quest_reward_evidence_overrides.py'
       - 'tools/apply_quest_reward_override_builder_patch.py'
+      - 'tools/report_quest_reward_import_validation.py'
       - 'tools/run_reward_translation_with_fallback.py'
       - 'data/rewards/reward-quest-detail-diagnostic.json'
       - 'data/rewards/reward-quest-evidence-trigger.json'
@@ -16,6 +17,7 @@ on:
       - '.github/workflows/reward-quest-evidence-import.yml'
       - 'tools/build_quest_reward_evidence_overrides.py'
       - 'tools/apply_quest_reward_override_builder_patch.py'
+      - 'tools/report_quest_reward_import_validation.py'
       - 'tools/run_reward_translation_with_fallback.py'
       - 'data/rewards/reward-quest-detail-diagnostic.json'
       - 'data/rewards/reward-quest-evidence-trigger.json'
@@ -63,6 +65,7 @@ jobs:
           python -m py_compile \
             tools/build_quest_reward_evidence_overrides.py \
             tools/apply_quest_reward_override_builder_patch.py \
+            tools/report_quest_reward_import_validation.py \
             tools/run_reward_translation_with_fallback.py
           python tools/build_quest_reward_evidence_overrides.py
           python - <<'PY'
@@ -138,51 +141,36 @@ jobs:
       - name: Run reward evidence contract matrix
         run: node tools/reward_evidence_contract_smoke.mjs
 
-      - name: Validate strict quest reward import
+      - name: Validate and report strict quest reward import
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
+          python tools/report_quest_reward_import_validation.py \
+            --baseline /tmp/reward-quest-baseline.json \
+            --validate
 
-          baseline = json.loads(Path('/tmp/reward-quest-baseline.json').read_text(encoding='utf-8'))
-          overrides = json.loads(Path('data/rewards/reward-point-evidence-overrides.json').read_text(encoding='utf-8'))
-          catalog = json.loads(Path('data/rewards/reward-summary-catalog.json').read_text(encoding='utf-8'))
-          audit = json.loads(Path('data/rewards/reward-source-audit.json').read_text(encoding='utf-8'))
-          records = catalog['records']
-          count = overrides['overrideCount']
-
-          assert catalog['recordCount'] == 3430
-          assert catalog['coverage']['total'] == 3430
-          assert audit['pointOverrideLocations'] == count
-          assert audit['statusCounts']['unresolved'] == baseline['unresolved'] - count
-          assert audit['invariants']['exactly3430Records']
-          assert audit['invariants']['oneRecordPerLocation']
-          assert audit['invariants']['coverageConserved']
-          assert audit['invariants']['batchLimitRespected']
-          assert audit['invariants']['allPointOverridesApplied']
-          assert audit['invariants']['singleSourcePointOverridesStayInference']
-
-          for location_id, override in overrides['records'].items():
-              record = records[location_id]
-              assert record['status'] == 'high_confidence_inference', (location_id, record['status'])
-              assert record['confidence'] == 0.88, (location_id, record['confidence'])
-              assert len(record['sources']) == 1, (location_id, record['sources'])
-              assert record['review']['method'] == 'atlas_reward_builder_v2_point_override'
-              assert record['rewards']
-              assert '高置信推断' in record['summaryZhCN']
-
-          broken = records['location-mapgenie-437614']
-          assert broken['summaryZhCN'] == '获得2,000 点经验值、3 个技能点（高置信推断）', broken['summaryZhCN']
-          assert any(reward['type'] == 'experience' and reward['quantity'] == 2000 for reward in broken['rewards'])
-          assert any(reward['type'] == 'skill_point' and reward['quantity'] == 3 for reward in broken['rewards'])
-          assert all(not source['sourceId'].startswith('mapgenie-') for source in broken['sources'])
-          print(
-              f"Quest reward import validated: {count} exact Reward fields imported; "
-              f"unresolved {baseline['unresolved']} -> {audit['statusCounts']['unresolved']}."
-          )
-          PY
+      - name: Publish failed validation report only
+        if: failure() && github.event_name == 'pull_request'
+        env:
+          TARGET_BRANCH: ${{ github.head_ref }}
+        run: |
+          report='data/rewards/reward-quest-evidence-validation-report.json'
+          if [ ! -f "$report" ]; then
+            echo 'No quest validation report was produced.'
+            exit 0
+          fi
+          cp "$report" /tmp/reward-quest-evidence-validation-report.json
+          git reset --hard HEAD
+          git clean -fd
+          mkdir -p data/rewards
+          cp /tmp/reward-quest-evidence-validation-report.json "$report"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$report"
+          git commit -m 'Record quest reward import diagnostics [skip ci]'
+          git pull --rebase origin "$TARGET_BRANCH"
+          git push origin "HEAD:$TARGET_BRANCH"
 
       - name: Commit quest overrides and rebuilt catalog
+        if: success()
         env:
           TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
         run: |
@@ -191,6 +179,7 @@ jobs:
           git add \
             tools/build_reward_summary_catalog.py \
             data/rewards/reward-point-evidence-overrides.json \
+            data/rewards/reward-quest-evidence-validation-report.json \
             data/rewards/reward-translation-lexicon-zh-CN.json \
             data/rewards/reward-translation-evidence.json \
             data/rewards/reward-translation-research-state.json \
