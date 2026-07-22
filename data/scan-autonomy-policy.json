@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "revision": "2026.07.21.1",
+  "schemaVersion": 2,
+  "revision": "2026.07.22.2",
   "enabled": true,
   "authorization": {
     "confirmationRequired": false,
@@ -19,7 +19,7 @@
     "id": "openai/gpt-4.1",
     "endpoint": "https://models.github.ai/inference/chat/completions",
     "temperature": 0.1,
-    "maximumOutputTokens": 7000
+    "maximumOutputTokens": 2800
   },
   "execution": {
     "deterministicRecoveryFirst": true,
@@ -27,9 +27,12 @@
     "retrySameQueueItemAfterRepair": true,
     "commitPassingRepairAutomatically": true,
     "dispatchScanAfterRepair": true,
-    "maximumAiRepairPassesPerItem": 2,
+    "retryUntilResolvedForTechnicalFailures": true,
+    "maximumAiRepairPassesPerItem": 20,
     "maximumChangedFiles": 3,
-    "maximumChangedLines": 240
+    "maximumChangedLines": 240,
+    "minimumRetryDelaySeconds": 5,
+    "maximumRetryDelaySeconds": 60
   },
   "allowedPathPatterns": [
     "tools/*.py",
@@ -56,7 +59,8 @@
     "neverHideFailure": true,
     "strictSerialOrder": true,
     "maximumConcurrentDownloads": 1,
-    "rollbackOnValidationFailure": true
+    "rollbackOnValidationFailure": true,
+    "protectedFailuresStopAutomaticSourceChanges": true
   },
   "validation": {
     "quickChecksPerMatrix": 24,
@@ -72,6 +76,7 @@
     "writeAuditableReport": true,
     "leaveQueueFailureVisible": true,
     "openIssueWithoutRequestingConfirmation": true,
-    "continueOnlyAfterPassingRepair": true
+    "continueOnlyAfterPassingRepair": true,
+    "automaticRedispatchForTechnicalFailures": true
   }
 }
