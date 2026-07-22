@@ -70,10 +70,25 @@
     const reviewState = record.review?.state === 'locked'
       ? '已锁定'
       : record.review?.state === 'human_reviewed' ? '人工复核' : '机器校验';
+    const signature = [
+      locationId,
+      record.status,
+      confidence,
+      sourceCount,
+      conflictCount,
+      reviewState,
+      record.summaryZhCN || '奖励尚未确认'
+    ].join('\u001f');
+
+    if (block.dataset.rewardSignature === signature) {
+      lastLocationId = locationId;
+      return true;
+    }
 
     block.classList.add('atlas-reward-evidence');
     block.dataset.status = record.status || 'unresolved';
     block.dataset.locationId = locationId;
+    block.dataset.rewardSignature = signature;
     block.innerHTML = `
       <small><i aria-hidden="true"></i><span>奖励摘要</span><span>·</span><span>${escapeHtml(status)}</span></small>
       <b>${escapeHtml(record.summaryZhCN || '奖励尚未确认')}</b>
@@ -96,10 +111,16 @@
   function installObserver() {
     const content = document.getElementById('detailContent');
     if (!content) return;
+    let queued = false;
     const observer = new MutationObserver(() => {
+      if (queued) return;
       const locationId = selectedLocationId();
       if (!locationId) return;
-      queueMicrotask(() => applyRecord(locationId));
+      queued = true;
+      queueMicrotask(() => {
+        queued = false;
+        applyRecord(locationId);
+      });
     });
     observer.observe(content, { childList: true, subtree: true });
 
@@ -116,11 +137,11 @@
   function start() {
     installObserver();
     refreshCurrent(false);
-    document.documentElement.dataset.atlasRewardSummary = '0.9.4.8-reward-summary-1';
+    document.documentElement.dataset.atlasRewardSummary = '0.9.4.8-reward-summary-2';
   }
 
   window.AtlasRewardSummary = Object.freeze({
-    version: '0.9.4.8-reward-summary-1',
+    version: '0.9.4.8-reward-summary-2',
     refresh: () => refreshCurrent(true),
     current: () => {
       const locationId = selectedLocationId();
