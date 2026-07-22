@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "locale": "zh-CN",
+  "enabled": true,
+  "model": {
+    "provider": "github-models",
+    "id": "openai/gpt-4.1",
+    "endpoint": "https://models.github.ai/inference/chat/completions",
+    "temperature": 0.1,
+    "maximumOutputTokens": 3200
+  },
+  "batch": {
+    "namesPerModelRequest": 20,
+    "maximumNamesPerRun": 100,
+    "maximumModelRequestsPerRun": 5,
+    "requestTimeoutSeconds": 120
+  },
+  "translationRules": {
+    "outputLanguage": "标准简体中文",
+    "retainOriginalName": true,
+    "doNotChangeRewardType": true,
+    "doNotChangeQuantity": true,
+    "doNotChangeLocationAssociation": true,
+    "doNotClaimOfficialTranslation": true,
+    "translateMeaningInsteadOfWordByWordWhenNecessary": true,
+    "preferEstablishedJapaneseHistoricalChineseNames": true,
+    "removeUnnecessaryLatinCharacters": true,
+    "maximumChineseNameCharacters": 40
+  },
+  "evidenceRules": {
+    "translationDoesNotUpgradeRewardEvidenceStatus": true,
+    "officialConfirmedRequiresOfficialSource": true,
+    "multiSourceConfirmedRequiresIndependentPointEvidence": true,
+    "unresolvedRewardRemainsUnresolvedWithoutRewardEvidence": true
+  },
+  "outputs": {
+    "lexicon": "data/rewards/reward-translation-lexicon-zh-CN.json",
+    "translationEvidence": "data/rewards/reward-translation-evidence.json",
+    "state": "data/rewards/reward-translation-research-state.json",
+    "catalog": "data/rewards/reward-summary-catalog.json"
+  }
+}
