@@ -10,12 +10,19 @@ on:
       - 'data/rewards/reward-production-trigger.json'
       - 'data/rewards/reward-research-sources.json'
       - 'data/rewards/reward-translation-lexicon-zh-CN.json'
+  pull_request:
+    paths:
+      - '.github/workflows/reward-summary-production.yml'
+      - 'tools/build_reward_summary_catalog.py'
+      - 'data/rewards/reward-production-trigger.json'
+      - 'data/rewards/reward-research-sources.json'
+      - 'data/rewards/reward-translation-lexicon-zh-CN.json'
 
 permissions:
   contents: write
 
 concurrency:
-  group: reward-summary-production-main
+  group: reward-summary-production-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -70,7 +77,23 @@ jobs:
           print('Reward production validation passed: 3430 records, 35 bounded batches.')
           PY
 
+      - name: Upload generated reward diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reward-summary-production-${{ github.run_id }}
+          path: |
+            data/rewards/reward-evidence-index.json
+            data/rewards/reward-summary-catalog.json
+            data/rewards/reward-source-audit.json
+            data/rewards/reward-research-queue.json
+            data/rewards/records/*.json
+            data/conflict-reports/reward-evidence-matrix.json
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Commit generated reward evidence
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
