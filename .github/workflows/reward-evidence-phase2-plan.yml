@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/reward-evidence-phase2-plan.yml'
       - 'tools/plan_reward_evidence_phase2.py'
+      - 'tools/summarize_reward_evidence_phase2.py'
       - 'data/rewards/reward-evidence-phase2-trigger.json'
       - 'data/rewards/reward-research-sources.json'
       - 'data/rewards/reward-summary-catalog.json'
@@ -35,8 +36,9 @@ jobs:
 
       - name: Build unresolved evidence plan
         run: |
-          python -m py_compile tools/plan_reward_evidence_phase2.py
+          python -m py_compile tools/plan_reward_evidence_phase2.py tools/summarize_reward_evidence_phase2.py
           python tools/plan_reward_evidence_phase2.py
+          python tools/summarize_reward_evidence_phase2.py
 
       - name: Validate plan invariants
         run: |
@@ -44,11 +46,14 @@ jobs:
           import json
           from pathlib import Path
           plan = json.loads(Path('data/rewards/reward-evidence-phase2-plan.json').read_text(encoding='utf-8'))
+          summary = json.loads(Path('data/rewards/reward-evidence-phase2-summary.json').read_text(encoding='utf-8'))
           assert plan['targetLocationCount'] == 3430
           assert plan['unresolvedCount'] == len(plan['allCandidates'])
           assert plan['nextBatchSize'] == len(plan['nextBatch'])
           assert plan['nextBatchSize'] <= 100
           assert all(plan['invariants'].values())
+          assert summary['unresolvedCount'] == plan['unresolvedCount']
+          assert summary['nextBatchSize'] == plan['nextBatchSize']
           print(f"Phase-two plan validated: {plan['unresolvedCount']} unresolved, {plan['categoryCount']} categories.")
           PY
 
@@ -56,7 +61,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/rewards/reward-evidence-phase2-plan.json
+          git add \
+            data/rewards/reward-evidence-phase2-plan.json \
+            data/rewards/reward-evidence-phase2-summary.json
           if git diff --cached --quiet; then
             echo 'No phase-two plan changes.'
             exit 0
