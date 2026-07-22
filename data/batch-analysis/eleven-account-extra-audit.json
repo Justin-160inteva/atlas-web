@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "eleven-account-extra-audit-20260723-v1",
+  "requestedAt": "2026-07-23T02:34:00Z",
+  "author": "11的游戏世界",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "seedBvid": "BV1FdQ9YdEcN",
+  "titleMustContainAny": [
+    "刺客信条影",
+    "刺客信条：影",
+    "AC Shadows",
+    "Assassin's Creed Shadows"
+  ],
+  "existingCatalog": "data/eleven-game-world-ac-shadows-catalog.json",
+  "reportOutput": "data/batch-analysis/eleven-account-extra-video-report.json",
+  "mode": "metadata-only-account-enumeration-and-incremental-comparison",
+  "requirements": {
+    "exactAuthorMatch": true,
+    "titleKeywordMatch": true,
+    "compareByBvid": true,
+    "doNotModifyExistingCatalog": true,
+    "doNotModifyProductionQueue": true,
+    "doNotDownloadMedia": true,
+    "verifyCandidateMetadataBeforeQueueing": true
+  }
+}
