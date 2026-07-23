@@ -1,0 +1,147 @@
+name: Tokei Pairwise Map Evidence
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/tokei-pairwise-map-evidence.yml'
+      - 'tools/extract_tokei_pairwise_map_evidence.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tokei-pairwise-map-evidence-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile targeted extractor
+        run: |
+          python -m py_compile \
+            tools/extract_tokei_pairwise_map_evidence.py \
+            tools/analyze_authorized_video_v2.py \
+            tools/analyze_authorized_video_v4.py
+
+      - name: Install transient dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download authorized shrine video transiently
+        id: download
+        run: |
+          rm -rf /tmp/tokei-pairwise-video /tmp/tokei-pairwise-evidence /tmp/tokei-pairwise-publish
+          mkdir -p /tmp/tokei-pairwise-video /tmp/tokei-pairwise-evidence /tmp/tokei-pairwise-publish/data/geospatial
+          PYTHONPATH=tools python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import analyze_authorized_video_v4 as resilient
+
+          workdir = Path('/tmp/tokei-pairwise-video')
+          video_path, attempts = resilient.runner.download_with_fallbacks(
+              'https://www.bilibili.com/video/BV1aFXaYmEDZ/', workdir
+          )
+          if not video_path.is_file() or video_path.stat().st_size < 1024:
+              raise RuntimeError('download did not produce a usable shrine video')
+          strategy = next(row['strategy'] for row in attempts if row.get('success'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'video_path={video_path.resolve()}\n')
+              handle.write(f'download_strategy={strategy}\n')
+          print(json.dumps({'video': str(video_path), 'strategy': strategy}, ensure_ascii=False))
+          PY
+
+      - name: Extract dense 12-22 second map sequence
+        env:
+          VIDEO_PATH: ${{ steps.download.outputs.video_path }}
+        run: |
+          python tools/extract_tokei_pairwise_map_evidence.py \
+            --video "$VIDEO_PATH" \
+            --output-dir /tmp/tokei-pairwise-evidence \
+            --run-id '${{ github.run_id }}' \
+            --start 12.0 \
+            --end 22.0 \
+            --interval 0.25
+
+      - name: Validate targeted package and privacy gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest = json.loads(
+              Path('data/geospatial/tokei-pairwise-map-evidence-manifest.json').read_text(encoding='utf-8')
+          )
+          root = Path('/tmp/tokei-pairwise-evidence')
+          assert manifest['status'] == 'transient-targeted-map-evidence-ready'
+          assert manifest['target']['missingCandidateId'] == 'location-mapgenie-438414'
+          assert manifest['target']['directlyIdentifiedNeighborId'] == 'location-mapgenie-437477'
+          assert manifest['counts'] == {'frames': 41, 'contactSheets': 5}
+          assert manifest['policy']['coordinatesAssigned'] is False
+          assert manifest['policy']['candidateAssignmentAllowedInExtractor'] is False
+          assert manifest['privacy']['repositoryContainsPixels'] is False
+          assert all((root / row['filename']).is_file() for row in manifest['frames'])
+          assert all((root / row['filename']).is_file() for row in manifest['contactSheets'])
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          PY
+
+      - name: Upload one-day targeted map evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: tokei-pairwise-map-evidence-${{ github.run_id }}
+          path: /tmp/tokei-pairwise-evidence
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
+
+      - name: Stage non-pixel manifest
+        run: |
+          cp data/geospatial/tokei-pairwise-map-evidence-manifest.json \
+            /tmp/tokei-pairwise-publish/data/geospatial/
+
+      - name: Atomically publish non-pixel manifest
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial
+            cp /tmp/tokei-pairwise-publish/data/geospatial/tokei-pairwise-map-evidence-manifest.json \
+              data/geospatial/
+            git add data/geospatial/tokei-pairwise-map-evidence-manifest.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Record targeted Tokei pairwise evidence manifest [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 5))
+          done
+          exit 1
+
+      - name: Delete transient video and evidence pixels
+        if: always()
+        run: |
+          rm -rf /tmp/tokei-pairwise-video /tmp/tokei-pairwise-evidence /tmp/tokei-pairwise-publish
+          test ! -e /tmp/tokei-pairwise-video
+          test ! -e /tmp/tokei-pairwise-evidence
+          test ! -e /tmp/tokei-pairwise-publish
