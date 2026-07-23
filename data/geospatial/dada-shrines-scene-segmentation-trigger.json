@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "release": "0.9.4.8",
-  "requestedAt": "2026-07-23T01:20:00Z",
-  "mode": "scene-aware-segmentation-and-resumable-two-model-review",
+  "requestedAt": "2026-07-23T02:10:00Z",
+  "mode": "resume-missing-isolated-v4-reviewer-batches",
   "source": {
     "author": "不再犹豫的达达猪",
     "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
@@ -13,15 +13,22 @@
     "targetSegments": 27,
     "sampleIntervalSeconds": 0.25,
     "boundarySearchWindowFraction": 0.42,
-    "firstReviewBatch": [1, 14]
+    "reviewRange": [1, 14],
+    "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48"
   },
   "review": {
-    "resumableModelPackets": true,
-    "requestOnlyMissingModels": true,
-    "requireTwoModelConsensus": true,
-    "minimumConfidencePerModel": 0.92,
+    "strategyVersion": 2,
+    "eventsPerRequest": 3,
+    "framesPerEvent": 1,
+    "resumableBatchPackets": true,
+    "reuseCompletedReasoningPool": true,
+    "reuseCompletedVisionSlots": [1, 3],
+    "requestMissingVisionSlots": [4, 14],
+    "requireTwoIndependentReviewerPools": true,
+    "minimumConfidencePerReviewerPool": 0.92,
     "requireDirectReadableLocationText": true,
-    "rejectDuplicateCandidateAssignments": true
+    "rejectDuplicateCandidateAssignments": true,
+    "promoteCanonicalOnlyAfterFullValidation": true
   },
   "privacy": {
     "commitPixels": false,
