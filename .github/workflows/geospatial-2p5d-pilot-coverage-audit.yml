@@ -1,0 +1,153 @@
+name: Geospatial 2.5D Pilot Coverage Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/geospatial-2p5d-pilot-coverage-audit.yml'
+      - 'tools/build_geospatial_2p5d_pilot_coverage_audit.py'
+      - 'data/geospatial/geospatial-2p5d-pilot-coverage-audit-plan.json'
+      - 'data/analysis-index.json'
+      - 'data/analysis-results/**'
+      - 'data/regions.json'
+      - 'data/locations.json'
+      - 'data/categories.json'
+      - 'data/geospatial/geospatial-progress.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: geospatial-2p5d-pilot-coverage-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile audit tool
+        run: python -m py_compile tools/build_geospatial_2p5d_pilot_coverage_audit.py
+
+      - name: Protect existing coordinate and map sources
+        id: protected
+        run: |
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+          paths = {
+              'locations': Path('data/locations.json'),
+              'regions': Path('data/regions.json'),
+              'legacy': Path('assets/world-map-4096.webp'),
+              'original_candidate': Path('assets/original-map/atlas-original-labels-icons-final-review-v1.svg'),
+          }
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              for key, path in paths.items():
+                  handle.write(f'{key}_sha256={hashlib.sha256(path.read_bytes()).hexdigest()}\n')
+          PY
+
+      - name: Build evidence coverage audit
+        run: python tools/build_geospatial_2p5d_pilot_coverage_audit.py
+
+      - name: Validate audit outputs and no-geometry boundary
+        env:
+          LOCATIONS_SHA256: ${{ steps.protected.outputs.locations_sha256 }}
+          REGIONS_SHA256: ${{ steps.protected.outputs.regions_sha256 }}
+          LEGACY_SHA256: ${{ steps.protected.outputs.legacy_sha256 }}
+          ORIGINAL_CANDIDATE_SHA256: ${{ steps.protected.outputs.original_candidate_sha256 }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          audit_path = Path('data/geospatial/geospatial-2p5d-pilot-coverage-audit.json')
+          brief_path = Path('data/geospatial/geospatial-2p5d-pilot-video-authorization-brief.json')
+          audit = json.loads(audit_path.read_text(encoding='utf-8'))
+          brief = json.loads(brief_path.read_text(encoding='utf-8'))
+
+          assert audit['stage'] == '2p5d-pilot-coverage-audit'
+          assert audit['status'] in {'pilot-region-selected-evidence-gaps-recorded', 'no-region-passes-pilot-hard-gates'}
+          assert audit['counts']['regions'] == 10
+          assert audit['counts']['locations'] == 3430
+          assert audit['counts']['categories'] == 44
+          assert len(audit['regions']) == 10
+          assert audit['selection']['geometryStatus'] == 'not-modeled'
+          assert audit['selection']['visualStatus'] == 'not-started'
+          assert audit['safety'] == {
+              'officialMapGeometryExtracted': False,
+              'thirdPartyPixelsRetained': False,
+              'unsupportedGeometryInferred': False,
+              'existingCoordinatesModified': False,
+              'pilotModelGenerated': False,
+          }
+          assert len(audit['evidenceGaps']) == 6
+          assert brief['status'] == 'authorization-search-brief-ready'
+          assert brief['selectedRegion']['title'] == audit['selection']['regionTitle']
+          assert len(brief['requiredEvidence']) == 5
+          assert len(brief['internetSearchQueries']) >= 5
+          assert brief['selectedTile'] == audit['selection']['tile']
+
+          def digest(path):
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+          assert digest('data/locations.json') == os.environ['LOCATIONS_SHA256']
+          assert digest('data/regions.json') == os.environ['REGIONS_SHA256']
+          assert digest('assets/world-map-4096.webp') == os.environ['LEGACY_SHA256']
+          assert digest('assets/original-map/atlas-original-labels-icons-final-review-v1.svg') == os.environ['ORIGINAL_CANDIDATE_SHA256']
+          assert not list(Path('assets/original-map').glob('*2p5d*'))
+
+          print(json.dumps({
+              'status': audit['status'],
+              'selectedRegion': audit['selection']['regionTitle'],
+              'selectedScore': audit['selection']['score']['total'],
+              'selectedTile': audit['selection']['tile'],
+              'counts': audit['counts'],
+          }, ensure_ascii=False))
+          PY
+
+      - name: Stage audit outputs
+        run: |
+          rm -rf /tmp/geospatial-2p5d-pilot-audit-publish
+          mkdir -p /tmp/geospatial-2p5d-pilot-audit-publish/data/geospatial
+          cp data/geospatial/geospatial-2p5d-pilot-coverage-audit.json /tmp/geospatial-2p5d-pilot-audit-publish/data/geospatial/
+          cp data/geospatial/geospatial-2p5d-pilot-video-authorization-brief.json /tmp/geospatial-2p5d-pilot-audit-publish/data/geospatial/
+
+      - name: Publish audit outputs atomically
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial
+            cp /tmp/geospatial-2p5d-pilot-audit-publish/data/geospatial/*.json data/geospatial/
+            git add \
+              data/geospatial/geospatial-2p5d-pilot-coverage-audit.json \
+              data/geospatial/geospatial-2p5d-pilot-video-authorization-brief.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Generate 2.5D pilot coverage audit [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Delete transient staging
+        if: always()
+        run: |
+          rm -rf /tmp/geospatial-2p5d-pilot-audit-publish
+          test ! -e /tmp/geospatial-2p5d-pilot-audit-publish
