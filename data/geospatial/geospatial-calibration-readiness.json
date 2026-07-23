@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T10:34:01.641408Z",
+  "status": "control-points-ready-pixel-calibration-blocked",
+  "stage": "coordinate-and-overlay-calibration-readiness",
+  "counts": {
+    "anchorPool": 50,
+    "calibrationControlPoints": 24,
+    "validationHoldouts": 12,
+    "reservePoints": 14,
+    "regions": 9
+  },
+  "distribution": {
+    "anchorRegions": {
+      "HARIMA": 4,
+      "IGA": 2,
+      "IZUMI SETTSU": 4,
+      "KII": 11,
+      "OMI": 7,
+      "TAMBA": 2,
+      "WAKASA": 2,
+      "YAMASHIRO": 11,
+      "YAMATO": 7
+    },
+    "controlRegions": {
+      "HARIMA": 3,
+      "IGA": 1,
+      "IZUMI SETTSU": 2,
+      "KII": 7,
+      "OMI": 4,
+      "TAMBA": 2,
+      "WAKASA": 2,
+      "YAMASHIRO": 1,
+      "YAMATO": 2
+    },
+    "controlQuadrants": {
+      "north-east": 8,
+      "north-west": 7,
+      "south-east": 4,
+      "south-west": 5
+    },
+    "missingControlRegions": [],
+    "missingControlQuadrants": []
+  },
+  "geometry": {
+    "allAnchorBoundingBox": {
+      "minimumX": 0.018727370004443758,
+      "maximumX": 0.9637426733723486,
+      "minimumY": 0.045493858770252665,
+      "maximumY": 0.9517743587991078,
+      "width": 0.9450153033679048,
+      "height": 0.9062805000288551,
+      "area": 0.856448941671185
+    },
+    "controlBoundingBox": {
+      "minimumX": 0.018727370004443758,
+      "maximumX": 0.9637426733723486,
+      "minimumY": 0.045493858770252665,
+      "maximumY": 0.9517743587991078,
+      "width": 0.9450153033679048,
+      "height": 0.9062805000288551,
+      "area": 0.856448941671185
+    },
+    "allAnchorConvexHullArea": 0.69504098,
+    "controlConvexHullArea": 0.69406764,
+    "controlToAllHullAreaRatio": 0.99859959,
+    "controlNearestNeighborMinimum": 0.08831328,
+    "controlNearestNeighborMedian": 0.12941219,
+    "holdoutToControlDistanceMedian": 0.07010774,
+    "holdoutToControlDistanceMaximum": 0.0869534
+  },
+  "gates": {
+    "anchorPoolExactly50": true,
+    "controlPointsExactly24": true,
+    "validationHoldoutsExactly12": true,
+    "reservePointsExactly14": true,
+    "allLocationIdsUniqueAcrossSplits": true,
+    "allCoordinatesUniqueAcrossSplits": true,
+    "allRegionsRepresentedInControlSet": true,
+    "allQuadrantsRepresentedInControlSet": true,
+    "controlHullCoversAtLeast90Percent": true,
+    "allConfidenceAtLeast092": true,
+    "repositoryContainsPixels": false
+  },
+  "blockingItems": [
+    "final original ultra-HD base dimensions are not fixed",
+    "final base crop and overlay origin are not fixed",
+    "control-point pixel observations do not exist yet",
+    "12-point holdout residual validation cannot run before a transform exists"
+  ],
+  "nextAction": "fix final base dimensions/crop, measure 24 control pixels, fit transform, validate on 12 holdouts",
+  "safety": {
+    "noPixelCoordinatesInvented": true,
+    "noTransformClaimed": true,
+    "finalBaseStillNotStarted": true,
+    "repositoryContainsPixels": false
+  }
+}
