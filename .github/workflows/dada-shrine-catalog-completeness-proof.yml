@@ -1,0 +1,106 @@
+name: Dada Shrine Catalog Completeness Proof
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/dada-shrine-catalog-completeness-proof.yml'
+      - 'tools/build_dada_shrine_catalog_completeness_proof.py'
+      - 'data/geospatial/dada-shrines-popup-event-census.json'
+      - 'data/geospatial/dada-shrines-27-stage1.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-shrine-catalog-completeness-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile completeness proof tool
+        run: python -m py_compile tools/build_dada_shrine_catalog_completeness_proof.py
+
+      - name: Build exact candidate set-difference proof
+        run: python tools/build_dada_shrine_catalog_completeness_proof.py
+
+      - name: Validate proof and safety gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('data/geospatial/dada-shrines-catalog-completeness-proof.json')
+          proof = json.loads(path.read_text(encoding='utf-8'))
+          assert proof['status'] == 'single-candidate-completeness-proof-ready'
+          assert proof['counts'] == {
+              'allMapShrineCandidates': 32,
+              'excludedAwajiCandidates': 5,
+              'eligibleSequenceCandidates': 27,
+              'directReadableShrinePopups': 26,
+              'setDifferenceCandidates': 1,
+          }
+          assert len(proof['directPopupMappings']) == 26
+          assert len({row['event'] for row in proof['directPopupMappings']}) == 26
+          assert len({row['locationId'] for row in proof['directPopupMappings']}) == 26
+          assert proof['uniqueSetDifference']['locationId'] == 'location-mapgenie-438414'
+          assert proof['uniqueSetDifference']['candidateTitle'] == 'Tokei Shrine'
+          assert proof['uniqueSetDifference']['promotionAllowed'] is False
+          assert proof['method']['coordinatesAssigned'] is False
+          assert proof['method']['canonicalAnchorModified'] is False
+          assert proof['method']['requiresIndependentModelReviewBeforePromotion'] is True
+          assert proof['safety']['setDifferenceDoesNotOverrideDirectVisualGate'] is True
+          assert proof['safety']['noCoordinatesPromotedByThisProof'] is True
+          assert proof['safety']['repositoryContainsPixels'] is False
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          print(json.dumps({'status': proof['status'], 'counts': proof['counts'], 'missing': proof['uniqueSetDifference']}, ensure_ascii=False))
+          PY
+
+      - name: Stage non-pixel proof
+        run: |
+          rm -rf /tmp/dada-shrine-proof-publish
+          mkdir -p /tmp/dada-shrine-proof-publish/data/geospatial
+          cp data/geospatial/dada-shrines-catalog-completeness-proof.json \
+            /tmp/dada-shrine-proof-publish/data/geospatial/
+
+      - name: Atomically publish non-pixel proof
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial
+            cp /tmp/dada-shrine-proof-publish/data/geospatial/dada-shrines-catalog-completeness-proof.json \
+              data/geospatial/
+            git add data/geospatial/dada-shrines-catalog-completeness-proof.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Build exact 27-shrine catalog completeness proof [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Delete transient publish staging
+        if: always()
+        run: |
+          rm -rf /tmp/dada-shrine-proof-publish
+          test ! -e /tmp/dada-shrine-proof-publish
