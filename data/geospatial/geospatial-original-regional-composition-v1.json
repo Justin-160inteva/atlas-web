@@ -8,15 +8,22 @@
     "format": "svg",
     "width": 4096,
     "height": 4096,
-    "sizeBytes": 50920,
-    "sha256": "a5cbb70fa4770eeebb54728bb66baeec1cade4c5800de4d509c9ac6ff6bd8228",
+    "sizeBytes": 61331,
+    "sha256": "f29655c1a58e1d0206a191856a5337162be7d4906c1b1b6f81600c582ad27f6c",
     "editableSource": true,
     "repositoryOwned": true
+  },
+  "composition": {
+    "coordinateInsetPixels": 270,
+    "landModel": "ten smoothed region masses connected by authored composition bands",
+    "globalConvexHullUsedAsVisibleLand": false,
+    "oceanBorderPreserved": true,
+    "densityMarksMaskedToLand": true
   },
   "sourceHashes": {
     "data/geospatial/geospatial-original-regional-composition-plan.json": "554cf51cf9e7d3f3e955398a8ddaceca95b749d20a800172acb516b5db066c2e",
     "data/geospatial/geospatial-original-authored-base-skeleton.json": "1f23cb4fbdfa8150bf2ccc2156bde0da5b6b136b52ae771277c7a406446b34f4",
-    "data/geospatial/geospatial-progress.json": "9057d4ad8bbbcf77abf5f1f317c1b8f781fb9730ae930a06259930575b19b527"
+    "data/geospatial/geospatial-progress.json": "93e96d1c0c030358026c91462688c3e108f5e2b2db23c8e23fd46247a1ffafaa"
   },
   "counts": {
     "locations": 3430,
@@ -46,5 +53,5 @@
     "finalRoadNetwork": false,
     "pixelCalibrationComplete": false
   },
-  "nextAction": "review original regional composition, classify five unassigned points, then author terrain and coastline detailing"
+  "nextAction": "review inset connected-region composition, classify five unassigned points, then author terrain and coastline detailing"
 }
