@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Build a deterministic transient review timeline for the Sakai 2.5D pilot.
+"""Build a deterministic full-duration review timeline for the Sakai 2.5D pilot.
 
 Only timestamps and existing numeric metadata are read. No video or frame pixels are
-used here. The plan prioritizes clear frames and scene changes, then fills the complete
-time axis so sparse legacy analyses cannot block the authorized transient review.
+used here. Full-duration slots are reserved before legacy descriptor-based selections,
+so a truncated legacy scan can never consume the complete review budget.
 """
 from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 PLAN_PATH = ROOT / "data/geospatial/geospatial-2p5d-sakai-pilot-evidence-plan.json"
@@ -37,7 +37,16 @@ def descriptor_metadata(row: dict[str, Any]) -> dict[str, Any]:
 
 def main() -> int:
     plan = load(PLAN_PATH)
-    target = int(plan["extraction"]["selectedFramesPerVideo"])
+    extraction = plan["extraction"]
+    target = int(extraction["selectedFramesPerVideo"])
+    bucket_limits = {key: int(value) for key, value in extraction["selectionBuckets"].items()}
+    if sum(bucket_limits.values()) != target:
+        raise RuntimeError(f"selection bucket total must equal {target}: {bucket_limits}")
+
+    coverage_gates = extraction.get("coverageGates") or {}
+    minimum_end_ratio = float(coverage_gates.get("minimumEndCoverageRatio", 0.95))
+    maximum_gap_fraction = float(coverage_gates.get("maximumGapAsDurationFraction", 1 / 24))
+    require_near_start = bool(coverage_gates.get("requireNearStartFrame", True))
     output_path = ROOT / plan["outputs"]["timestampPlan"]
     videos: list[dict[str, Any]] = []
 
@@ -57,6 +66,8 @@ def main() -> int:
 
         selected: list[dict[str, Any]] = []
         used: set[float] = set()
+        bucket_counts: dict[str, int] = {key: 0 for key in bucket_limits}
+        supplement_count = 0
 
         def add(time_value: Any, bucket: str, metadata: dict[str, Any] | None = None) -> bool:
             try:
@@ -67,7 +78,7 @@ def main() -> int:
             rounded = round(numeric_time, 3)
             if rounded in used or len(selected) >= target:
                 return False
-            record = {
+            record: dict[str, Any] = {
                 "time": rounded,
                 "bucket": bucket,
                 "sharpness": None,
@@ -79,57 +90,59 @@ def main() -> int:
                 record.update(metadata)
             selected.append(record)
             used.add(rounded)
+            bucket_counts[bucket] = bucket_counts.get(bucket, 0) + 1
             return True
 
-        # Bucket 1: the clearest known frames from the legacy numeric scan.
-        for row in sorted(clear_frames, key=lambda item: (-float(item.get("sharpness") or 0), float(item.get("time") or 0)))[:32]:
-            add(row.get("time"), "sharp", {
-                "sharpness": float(row.get("sharpness") or 0),
-                "edgeDensity": float(row.get("edgeDensity") or 0),
-                "difference": None,
-                "numericDescriptorAvailable": True,
-            })
+        def add_rows(bucket: str, limit: int, rows: Iterable[dict[str, Any]]) -> None:
+            for row in rows:
+                if bucket_counts.get(bucket, 0) >= limit:
+                    break
+                add(row.get("time"), bucket, descriptor_metadata(row))
 
-        # Bucket 2: strongest visual changes, useful for scene and map transitions.
-        for row in sorted(descriptors, key=lambda item: (-float(item.get("difference") or 0), float(item.get("time") or 0))):
-            if sum(1 for item in selected if item["bucket"] == "sceneTransition") >= 32:
-                break
-            add(row.get("time"), "sceneTransition", descriptor_metadata(row))
+        temporal_count = bucket_limits.get("temporalCoverage", 0)
+        if temporal_count:
+            start = 0.5
+            end = duration - 0.5
+            for index in range(temporal_count):
+                fraction = index / (temporal_count - 1) if temporal_count > 1 else 0.5
+                add(start + (end - start) * fraction, "temporalCoverage", {
+                    "reason": "deterministic full-duration coverage independent of legacy descriptor span"
+                })
 
-        # Bucket 3: representative legacy descriptors spread across the full time axis.
-        ordered = sorted(descriptors, key=lambda item: float(item.get("time") or 0))
-        if ordered:
-            for index in range(32):
-                source_index = min(len(ordered) - 1, int((index + 0.5) * len(ordered) / 32))
-                add(ordered[source_index].get("time"), "temporalCoverage", descriptor_metadata(ordered[source_index]))
+        sharp_limit = bucket_limits.get("sharp", 0)
+        sharp_rows = sorted(
+            [*clear_frames, *descriptors],
+            key=lambda item: (-float(item.get("sharpness") or 0), float(item.get("time") or 0)),
+        )
+        add_rows("sharp", sharp_limit, sharp_rows)
 
-        # Reuse all remaining numeric descriptors before introducing non-descriptor times.
-        for row in sorted(
+        transition_limit = bucket_limits.get("sceneTransition", 0)
+        transition_rows = sorted(
+            descriptors,
+            key=lambda item: (-float(item.get("difference") or 0), float(item.get("time") or 0)),
+        )
+        add_rows("sceneTransition", transition_limit, transition_rows)
+
+        balanced_limit = bucket_limits.get("balancedFill", 0)
+        balanced_rows = sorted(
             descriptors,
             key=lambda item: (
-                -float(item.get("sharpness") or 0),
-                -float(item.get("difference") or 0),
+                -(float(item.get("sharpness") or 0) * 0.55
+                  + float(item.get("edgeDensity") or 0) * 900
+                  + float(item.get("difference") or 0) * 500),
                 float(item.get("time") or 0),
             ),
-        ):
-            if len(selected) >= target:
-                break
-            add(row.get("time"), "balancedFill", descriptor_metadata(row))
+        )
+        add_rows("balancedFill", balanced_limit, balanced_rows)
 
-        # Fill any sparse legacy scan with evenly distributed authorized review times.
-        supplement_count = 0
-        for multiplier in (4, 8, 16, 32):
+        for multiplier in (4, 8, 16, 32, 64):
             slots = target * multiplier
             for index in range(slots):
                 if len(selected) >= target:
                     break
                 time_value = duration * (index + 0.5) / slots
                 if add(time_value, "temporalSupplement", {
-                    "sharpness": None,
-                    "edgeDensity": None,
-                    "difference": None,
-                    "numericDescriptorAvailable": False,
-                    "reason": "full-duration transient coverage beyond the legacy numeric descriptor set",
+                    "reason": "deterministic collision replacement for exact frame count"
                 }):
                     supplement_count += 1
             if len(selected) >= target:
@@ -138,6 +151,24 @@ def main() -> int:
         selected.sort(key=lambda row: float(row["time"]))
         if len(selected) != target:
             raise RuntimeError(f"failed to select {target} unique timestamps for {job['id']}: {len(selected)}")
+
+        times = [float(row["time"]) for row in selected]
+        gaps = [right - left for left, right in zip(times, times[1:])]
+        maximum_gap = max(gaps, default=0.0)
+        end_coverage_ratio = times[-1] / duration
+        maximum_gap_ratio = maximum_gap / duration
+        near_start = times[0] <= 1.0
+        coverage_passed = (
+            end_coverage_ratio >= minimum_end_ratio
+            and maximum_gap_ratio <= maximum_gap_fraction + 1e-9
+            and (near_start or not require_near_start)
+        )
+        if not coverage_passed:
+            raise RuntimeError(
+                f"full-duration coverage gate failed for {job['id']}: "
+                f"start={times[0]:.3f}, endRatio={end_coverage_ratio:.6f}, "
+                f"maxGapRatio={maximum_gap_ratio:.6f}"
+            )
 
         batch = job.get("batch") or {}
         videos.append({
@@ -151,24 +182,36 @@ def main() -> int:
             "durationSeconds": duration,
             "sourceFileSha256": result.get("media", {}).get("fileSha256"),
             "numericDescriptorCount": len(descriptors),
-            "temporalSupplementCount": supplement_count,
             "timestampCount": len(selected),
+            "bucketCounts": bucket_counts,
+            "temporalSupplementCount": supplement_count,
+            "coverage": {
+                "firstTimestamp": times[0],
+                "lastTimestamp": times[-1],
+                "endCoverageRatio": round(end_coverage_ratio, 6),
+                "maximumGapSeconds": round(maximum_gap, 3),
+                "maximumGapAsDurationFraction": round(maximum_gap_ratio, 6),
+                "minimumEndCoverageRatio": minimum_end_ratio,
+                "maximumAllowedGapAsDurationFraction": maximum_gap_fraction,
+                "nearStartFramePresent": near_start,
+                "passed": coverage_passed,
+            },
             "timestamps": selected,
         })
 
-    supplements = {row["jobId"]: row["temporalSupplementCount"] for row in videos if row["temporalSupplementCount"]}
     payload = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "status": "transient-timestamp-plan-ready",
         "stage": plan["stage"],
         "pilotScope": plan["pilotScope"],
         "authorizationId": plan["authorizationId"],
         "selectionPolicy": {
-            "buckets": plan["extraction"]["selectionBuckets"],
+            "buckets": bucket_limits,
             "pixelDataUsed": False,
-            "source": "legacy numeric descriptors plus deterministic full-duration supplements",
-            "temporalSupplementsAreNumericEvidence": False,
+            "source": "guaranteed full-duration timeline plus legacy numeric descriptors",
+            "fullDurationCoverageReservedBeforeDescriptorSelection": True,
         },
+        "coverageGateStatus": "passed",
         "counts": {
             "videos": len(videos),
             "timestampsPerVideo": target,
@@ -176,7 +219,10 @@ def main() -> int:
         },
         "temporalSupplementAudit": {
             "total": sum(row["temporalSupplementCount"] for row in videos),
-            "byVideo": supplements,
+            "byVideo": {
+                row["jobId"]: row["temporalSupplementCount"]
+                for row in videos if row["temporalSupplementCount"]
+            },
         },
         "videos": videos,
         "safety": {
@@ -185,14 +231,15 @@ def main() -> int:
             "geometryGenerated": False,
             "existingAnalysisModified": False,
         },
-        "nextAction": "download the four authorized pages transiently by explicit CID and extract one-day low-resolution review artifacts",
+        "nextAction": "extract authorized low-resolution transient frames across the complete duration and visually classify Sakai evidence windows",
     }
     write(output_path, payload)
     print(json.dumps({
         "status": payload["status"],
         "videos": payload["counts"]["videos"],
         "totalTimestamps": payload["counts"]["totalTimestamps"],
-        "temporalSupplements": payload["temporalSupplementAudit"]["total"],
+        "coverageGateStatus": payload["coverageGateStatus"],
+        "coverage": {row["jobId"]: row["coverage"] for row in videos},
     }, ensure_ascii=False))
     return 0
 
