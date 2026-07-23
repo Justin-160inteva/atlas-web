@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-07-23T09:17:01.909441Z",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-23T09:22:19.949796Z",
   "status": "complete",
-  "stage": "direct-shrine-popup-independent-review-batch01",
+  "stage": "direct-shrine-popup-independent-review-batch01-programmatic-label-consensus",
   "evidenceFingerprint": "592e3f5861f6c8e6a0658b8b07a6d556c457552bbc86210cab0e4f3b3931fae8",
   "batch": {
     "ordinals": [
@@ -26,17 +26,21 @@
     "minimumConfidencePerModel": 0.92,
     "programmaticLocationIdMapping": true,
     "coordinatesPromoted": false,
-    "canonicalAnchorModified": false
+    "canonicalAnchorModified": false,
+    "programmaticVisibleLabelEquality": true,
+    "modelBooleanControlsMatch": false,
+    "traditionalSimplifiedNormalization": true
   },
   "counts": {
     "candidateCount": 8,
-    "confirmed": 7,
-    "unresolved": 1,
+    "confirmed": 8,
+    "unresolved": 0,
     "successfulReviewerModels": 2,
     "failedReviewerModels": 0,
-    "requestedBatchCallsThisRun": 4,
-    "reusedBatchCallsThisRun": 0,
-    "persistedBatchPackets": 4
+    "requestedBatchCallsThisRun": 0,
+    "reusedBatchCallsThisRun": 4,
+    "persistedBatchPackets": 4,
+    "consistencyCorrections": 1
   },
   "evidence": [
     {
@@ -153,7 +157,9 @@
           "visibleLabel": "高原熊野神社",
           "confidence": 0.95,
           "reasonZhCN": "标题文字清晰可见，且与预期标签完全匹配。",
-          "selectedLocationId": "location-mapgenie-437477"
+          "selectedLocationId": "location-mapgenie-437477",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 2,
@@ -161,7 +167,9 @@
           "visibleLabel": "熊野那智大社",
           "confidence": 0.95,
           "reasonZhCN": "标题文字清晰可见，且与预期标签完全匹配。",
-          "selectedLocationId": "location-mapgenie-436647"
+          "selectedLocationId": "location-mapgenie-436647",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 3,
@@ -169,7 +177,9 @@
           "visibleLabel": "熊野本宫大社",
           "confidence": 0.95,
           "reasonZhCN": "标题文字清晰可见，且与预期标签完全匹配。",
-          "selectedLocationId": "location-mapgenie-437483"
+          "selectedLocationId": "location-mapgenie-437483",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 4,
@@ -177,7 +187,9 @@
           "visibleLabel": "熊野速玉大社",
           "confidence": 0.95,
           "reasonZhCN": "标题文字清晰可见，且与预期标签完全匹配。",
-          "selectedLocationId": "location-mapgenie-436521"
+          "selectedLocationId": "location-mapgenie-436521",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       ]
     },
@@ -197,7 +209,9 @@
           "visibleLabel": "神仓神社",
           "confidence": 0.95,
           "reasonZhCN": "标题“神仓神社”与预期标签完全匹配，字体清晰可辨。",
-          "selectedLocationId": "location-mapgenie-436509"
+          "selectedLocationId": "location-mapgenie-436509",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 6,
@@ -205,7 +219,9 @@
           "visibleLabel": "丹生川上神社",
           "confidence": 0.95,
           "reasonZhCN": "标题“丹生川上神社”与预期标签完全匹配，字体清晰可辨。",
-          "selectedLocationId": "location-mapgenie-435783"
+          "selectedLocationId": "location-mapgenie-435783",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 7,
@@ -213,7 +229,9 @@
           "visibleLabel": "住吉神社",
           "confidence": 0.95,
           "reasonZhCN": "标题“住吉神社”与预期标签完全匹配，字体清晰可辨。",
-          "selectedLocationId": "location-mapgenie-434532"
+          "selectedLocationId": "location-mapgenie-434532",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 8,
@@ -221,7 +239,9 @@
           "visibleLabel": "大神神社",
           "confidence": 0.95,
           "reasonZhCN": "标题“大神神社”与预期标签完全匹配，字体清晰可辨。",
-          "selectedLocationId": "location-mapgenie-435742"
+          "selectedLocationId": "location-mapgenie-435742",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       ]
     },
@@ -241,7 +261,9 @@
           "visibleLabel": "高原熊野神社",
           "confidence": 0.95,
           "reasonZhCN": "标题完全匹配",
-          "selectedLocationId": "location-mapgenie-437477"
+          "selectedLocationId": "location-mapgenie-437477",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 2,
@@ -249,7 +271,9 @@
           "visibleLabel": "熊野那智大社",
           "confidence": 0.95,
           "reasonZhCN": "标题完全匹配",
-          "selectedLocationId": "location-mapgenie-436647"
+          "selectedLocationId": "location-mapgenie-436647",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 3,
@@ -257,7 +281,9 @@
           "visibleLabel": "熊野本宫大社",
           "confidence": 0.95,
           "reasonZhCN": "标题完全匹配",
-          "selectedLocationId": "location-mapgenie-437483"
+          "selectedLocationId": "location-mapgenie-437483",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 4,
@@ -265,7 +291,9 @@
           "visibleLabel": "熊野速玉大社",
           "confidence": 0.95,
           "reasonZhCN": "标题完全匹配",
-          "selectedLocationId": "location-mapgenie-436521"
+          "selectedLocationId": "location-mapgenie-436521",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       ]
     },
@@ -281,11 +309,18 @@
       "reviews": [
         {
           "ordinal": 5,
-          "matchesExpectedLabel": false,
+          "matchesExpectedLabel": true,
           "visibleLabel": "神仓神社",
           "confidence": 0.95,
           "reasonZhCN": "与预期标签不符",
-          "selectedLocationId": null
+          "selectedLocationId": "location-mapgenie-436509",
+          "modelReportedMatch": false,
+          "programmaticLabelMatch": true,
+          "consistencyCorrection": {
+            "reason": "model boolean contradicted its own transcribed visible label",
+            "expectedNormalized": "神仓神社",
+            "visibleNormalized": "神仓神社"
+          }
         },
         {
           "ordinal": 6,
@@ -293,7 +328,9 @@
           "visibleLabel": "丹生川上神社",
           "confidence": 0.95,
           "reasonZhCN": "与预期标签完全匹配",
-          "selectedLocationId": "location-mapgenie-435783"
+          "selectedLocationId": "location-mapgenie-435783",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 7,
@@ -301,7 +338,9 @@
           "visibleLabel": "住吉神社",
           "confidence": 0.95,
           "reasonZhCN": "与预期标签完全匹配",
-          "selectedLocationId": "location-mapgenie-434532"
+          "selectedLocationId": "location-mapgenie-434532",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         {
           "ordinal": 8,
@@ -309,7 +348,9 @@
           "visibleLabel": "大神神社",
           "confidence": 0.95,
           "reasonZhCN": "与预期标签完全匹配",
-          "selectedLocationId": "location-mapgenie-435742"
+          "selectedLocationId": "location-mapgenie-435742",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       ]
     }
@@ -329,7 +370,9 @@
           "visibleLabel": "高原熊野神社",
           "confidence": 0.95,
           "reasonZhCN": "标题文字清晰可见，且与预期标签完全匹配。",
-          "selectedLocationId": "location-mapgenie-437477"
+          "selectedLocationId": "location-mapgenie-437477",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         "openai/gpt-4o-mini": {
           "ordinal": 1,
@@ -337,7 +380,9 @@
           "visibleLabel": "高原熊野神社",
           "confidence": 0.95,
           "reasonZhCN": "标题完全匹配",
-          "selectedLocationId": "location-mapgenie-437477"
+          "selectedLocationId": "location-mapgenie-437477",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       }
     },
@@ -355,7 +400,9 @@
           "visibleLabel": "熊野那智大社",
           "confidence": 0.95,
           "reasonZhCN": "标题文字清晰可见，且与预期标签完全匹配。",
-          "selectedLocationId": "location-mapgenie-436647"
+          "selectedLocationId": "location-mapgenie-436647",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         "openai/gpt-4o-mini": {
           "ordinal": 2,
@@ -363,7 +410,9 @@
           "visibleLabel": "熊野那智大社",
           "confidence": 0.95,
           "reasonZhCN": "标题完全匹配",
-          "selectedLocationId": "location-mapgenie-436647"
+          "selectedLocationId": "location-mapgenie-436647",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       }
     },
@@ -381,7 +430,9 @@
           "visibleLabel": "熊野本宫大社",
           "confidence": 0.95,
           "reasonZhCN": "标题文字清晰可见，且与预期标签完全匹配。",
-          "selectedLocationId": "location-mapgenie-437483"
+          "selectedLocationId": "location-mapgenie-437483",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         "openai/gpt-4o-mini": {
           "ordinal": 3,
@@ -389,7 +440,9 @@
           "visibleLabel": "熊野本宫大社",
           "confidence": 0.95,
           "reasonZhCN": "标题完全匹配",
-          "selectedLocationId": "location-mapgenie-437483"
+          "selectedLocationId": "location-mapgenie-437483",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       }
     },
@@ -407,7 +460,9 @@
           "visibleLabel": "熊野速玉大社",
           "confidence": 0.95,
           "reasonZhCN": "标题文字清晰可见，且与预期标签完全匹配。",
-          "selectedLocationId": "location-mapgenie-436521"
+          "selectedLocationId": "location-mapgenie-436521",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         "openai/gpt-4o-mini": {
           "ordinal": 4,
@@ -415,7 +470,9 @@
           "visibleLabel": "熊野速玉大社",
           "confidence": 0.95,
           "reasonZhCN": "标题完全匹配",
-          "selectedLocationId": "location-mapgenie-436521"
+          "selectedLocationId": "location-mapgenie-436521",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       }
     },
@@ -424,8 +481,8 @@
       "event": 8,
       "expectedLabelZhCN": "神仓神社",
       "locationId": "location-mapgenie-436509",
-      "status": "unresolved",
-      "promotionReady": false,
+      "status": "confirmed",
+      "promotionReady": true,
       "reviewers": {
         "openai/gpt-4.1-mini": {
           "ordinal": 5,
@@ -433,15 +490,24 @@
           "visibleLabel": "神仓神社",
           "confidence": 0.95,
           "reasonZhCN": "标题“神仓神社”与预期标签完全匹配，字体清晰可辨。",
-          "selectedLocationId": "location-mapgenie-436509"
+          "selectedLocationId": "location-mapgenie-436509",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         "openai/gpt-4o-mini": {
           "ordinal": 5,
-          "matchesExpectedLabel": false,
+          "matchesExpectedLabel": true,
           "visibleLabel": "神仓神社",
           "confidence": 0.95,
           "reasonZhCN": "与预期标签不符",
-          "selectedLocationId": null
+          "selectedLocationId": "location-mapgenie-436509",
+          "modelReportedMatch": false,
+          "programmaticLabelMatch": true,
+          "consistencyCorrection": {
+            "reason": "model boolean contradicted its own transcribed visible label",
+            "expectedNormalized": "神仓神社",
+            "visibleNormalized": "神仓神社"
+          }
         }
       }
     },
@@ -459,7 +525,9 @@
           "visibleLabel": "丹生川上神社",
           "confidence": 0.95,
           "reasonZhCN": "标题“丹生川上神社”与预期标签完全匹配，字体清晰可辨。",
-          "selectedLocationId": "location-mapgenie-435783"
+          "selectedLocationId": "location-mapgenie-435783",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         "openai/gpt-4o-mini": {
           "ordinal": 6,
@@ -467,7 +535,9 @@
           "visibleLabel": "丹生川上神社",
           "confidence": 0.95,
           "reasonZhCN": "与预期标签完全匹配",
-          "selectedLocationId": "location-mapgenie-435783"
+          "selectedLocationId": "location-mapgenie-435783",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       }
     },
@@ -485,7 +555,9 @@
           "visibleLabel": "住吉神社",
           "confidence": 0.95,
           "reasonZhCN": "标题“住吉神社”与预期标签完全匹配，字体清晰可辨。",
-          "selectedLocationId": "location-mapgenie-434532"
+          "selectedLocationId": "location-mapgenie-434532",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         "openai/gpt-4o-mini": {
           "ordinal": 7,
@@ -493,7 +565,9 @@
           "visibleLabel": "住吉神社",
           "confidence": 0.95,
           "reasonZhCN": "与预期标签完全匹配",
-          "selectedLocationId": "location-mapgenie-434532"
+          "selectedLocationId": "location-mapgenie-434532",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       }
     },
@@ -511,7 +585,9 @@
           "visibleLabel": "大神神社",
           "confidence": 0.95,
           "reasonZhCN": "标题“大神神社”与预期标签完全匹配，字体清晰可辨。",
-          "selectedLocationId": "location-mapgenie-435742"
+          "selectedLocationId": "location-mapgenie-435742",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         },
         "openai/gpt-4o-mini": {
           "ordinal": 8,
@@ -519,7 +595,9 @@
           "visibleLabel": "大神神社",
           "confidence": 0.95,
           "reasonZhCN": "与预期标签完全匹配",
-          "selectedLocationId": "location-mapgenie-435742"
+          "selectedLocationId": "location-mapgenie-435742",
+          "modelReportedMatch": true,
+          "programmaticLabelMatch": true
         }
       }
     }
@@ -528,5 +606,14 @@
   "privacy": {
     "repositoryContainsPixels": false,
     "transientPopupCropsDeletedByWorkflow": true
-  }
+  },
+  "reviewStrategyVersion": 2,
+  "consistencyCorrections": [
+    {
+      "model": "openai/gpt-4o-mini",
+      "ordinal": 5,
+      "modelReportedMatch": false,
+      "programmaticLabelMatch": true
+    }
+  ]
 }
