@@ -7,7 +7,6 @@ on:
       - '.github/workflows/geospatial-calibration-control-points.yml'
       - 'tools/build_geospatial_calibration_control_points.py'
       - 'data/geospatial/geospatial-calibration-control-points-trigger.json'
-      - 'data/geospatial/geospatial-progress.json'
       - 'data/geospatial/dada-temples-36-anchors-final.json'
       - 'data/geospatial/dada-shrines-27-anchors-batch01.json'
 
@@ -60,7 +59,7 @@ jobs:
       - name: Build deterministic calibration split
         run: python tools/build_geospatial_calibration_control_points.py
 
-      - name: Validate control points, holdouts and blocking state
+      - name: Validate control points and holdouts without progress mutation
         env:
           TEMPLES_SHA256: ${{ steps.inputs.outputs.temples_sha256 }}
           SHRINES_SHA256: ${{ steps.inputs.outputs.shrines_sha256 }}
@@ -79,7 +78,6 @@ jobs:
 
           controls = json.loads(Path('data/geospatial/geospatial-calibration-control-points.json').read_text(encoding='utf-8'))
           readiness = json.loads(Path('data/geospatial/geospatial-calibration-readiness.json').read_text(encoding='utf-8'))
-          progress = json.loads(Path('data/geospatial/geospatial-progress.json').read_text(encoding='utf-8'))
 
           expected_counts = {
               'anchorPool': 50,
@@ -118,24 +116,6 @@ jobs:
               'finalBaseStillNotStarted': True,
               'repositoryContainsPixels': False,
           }
-
-          assert progress['status'] == 'phase1-complete'
-          assert progress['phase1']['confirmedAnchors'] == 50
-          assert progress['phase1']['progressPercent'] == 100.0
-          assert progress['stageGates']['confirmedGeospatialAnchors'] == {'status': 'complete', 'count': 50}
-          assert progress['stageGates']['finalOriginalUltraHdBase'] == {'status': 'not_started'}
-          calibration = progress['stageGates']['coordinateAndOverlayCalibration']
-          assert calibration == {
-              'status': 'in_progress',
-              'controlPointSetStatus': 'ready',
-              'confirmedAnchorPool': 50,
-              'calibrationControlPoints': 24,
-              'validationHoldouts': 12,
-              'reservePoints': 14,
-              'pixelTransformStatus': 'blocked_pending_final_base_dimensions_and_crop',
-              'controlPointPath': 'data/geospatial/geospatial-calibration-control-points.json',
-              'readinessPath': 'data/geospatial/geospatial-calibration-readiness.json',
-          }
           assert not list(Path('data').rglob('*.jpg'))
           assert not list(Path('data').rglob('*.png'))
           assert not list(Path('data').rglob('*.mp4'))
@@ -145,10 +125,11 @@ jobs:
               'controlRegions': readiness['distribution']['controlRegions'],
               'controlQuadrants': readiness['distribution']['controlQuadrants'],
               'nextAction': readiness['nextAction'],
+              'progressMutationPublished': False,
           }, ensure_ascii=False))
           PY
 
-      - name: Stage non-pixel calibration readiness outputs
+      - name: Stage calibration split outputs only
         run: |
           rm -rf /tmp/geospatial-calibration-publish
           mkdir -p /tmp/geospatial-calibration-publish/data/geospatial
@@ -156,10 +137,8 @@ jobs:
             /tmp/geospatial-calibration-publish/data/geospatial/
           cp data/geospatial/geospatial-calibration-readiness.json \
             /tmp/geospatial-calibration-publish/data/geospatial/
-          cp data/geospatial/geospatial-progress.json \
-            /tmp/geospatial-calibration-publish/data/geospatial/
 
-      - name: Atomically publish calibration readiness
+      - name: Atomically publish calibration split without progress mutation
         env:
           TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
         run: |
@@ -171,13 +150,11 @@ jobs:
             mkdir -p data/geospatial
             cp /tmp/geospatial-calibration-publish/data/geospatial/geospatial-calibration-control-points.json data/geospatial/
             cp /tmp/geospatial-calibration-publish/data/geospatial/geospatial-calibration-readiness.json data/geospatial/
-            cp /tmp/geospatial-calibration-publish/data/geospatial/geospatial-progress.json data/geospatial/
             git add \
               data/geospatial/geospatial-calibration-control-points.json \
-              data/geospatial/geospatial-calibration-readiness.json \
-              data/geospatial/geospatial-progress.json
+              data/geospatial/geospatial-calibration-readiness.json
             if git diff --cached --quiet; then exit 0; fi
-            git commit -m 'Build 24-point calibration and 12-point validation split [skip ci]'
+            git commit -m 'Refresh calibration split without progress mutation [skip ci]'
             if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
             sleep $((attempt * 4))
           done
