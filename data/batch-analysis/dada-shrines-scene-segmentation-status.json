@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "status": "partial-model-review",
   "stage": "scene-aware-shrine-segmentation-and-review",
-  "generatedAt": "2026-07-23T01:40:44.855158Z",
+  "generatedAt": "2026-07-23T01:44:13.691803Z",
   "counts": {
     "segments": 27,
     "boundaries": 26,
@@ -15,10 +15,11 @@
   "maximumSegmentDurationSeconds": 16.533,
   "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
   "requestedModelsThisRun": [
-    "openai/gpt-4.1",
+    "openai/gpt-4.1"
+  ],
+  "reusedModelsThisRun": [
     "openai/gpt-4o-mini"
   ],
-  "reusedModelsThisRun": [],
   "modelErrors": [
     {
       "model": "openai/gpt-4.1",

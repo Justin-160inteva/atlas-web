@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-23T01:40:44.753505Z",
+  "generatedAt": "2026-07-23T01:44:13.585107Z",
   "stage": "shrine-anchor-batch01-scene-aware-two-model-review",
   "status": "partial-model-review",
   "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
@@ -19,8 +19,8 @@
     "candidateShrines": 32,
     "successfulModels": 1,
     "failedModels": 1,
-    "requestedModelsThisRun": 2,
-    "reusedModelsThisRun": 0,
+    "requestedModelsThisRun": 1,
+    "reusedModelsThisRun": 1,
     "duplicateCandidateIdsRejected": 0
   },
   "policy": {
@@ -42,7 +42,7 @@
   "modelPackets": [
     {
       "model": "openai/gpt-4o-mini",
-      "source": "fresh-model-review",
+      "source": "reused-persisted-text-review",
       "reviewedAt": "2026-07-23T01:40:44.753401Z",
       "reviews": [
         {
@@ -195,10 +195,11 @@
     }
   ],
   "requestedModelsThisRun": [
-    "openai/gpt-4.1",
+    "openai/gpt-4.1"
+  ],
+  "reusedModelsThisRun": [
     "openai/gpt-4o-mini"
   ],
-  "reusedModelsThisRun": [],
   "duplicateCandidateIdsRejected": [],
   "anchors": [],
   "unresolved": [
