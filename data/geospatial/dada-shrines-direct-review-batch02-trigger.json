@@ -1,12 +1,14 @@
 {
   "schemaVersion": 1,
-  "requestedAt": "2026-07-23T10:05:00Z",
-  "runNonce": "shrine-direct-review-batch02-run-v1",
+  "requestedAt": "2026-07-23T10:15:00Z",
+  "runNonce": "shrine-direct-review-batch02-retry-missing-13-14-v1",
   "batch": {
     "ordinals": [9, 10, 11, 12, 13, 14],
     "models": ["openai/gpt-4.1-mini", "openai/gpt-4o-mini"],
     "minimumConfidencePerModel": 0.92,
-    "programmaticVisibleLabelEquality": true
+    "programmaticVisibleLabelEquality": true,
+    "reuseExistingReviewPackets": true,
+    "expectedMissingPacket": {"model": "openai/gpt-4o-mini", "ordinals": [13, 14]}
   },
   "policy": {
     "cropPopupOnly": true,
