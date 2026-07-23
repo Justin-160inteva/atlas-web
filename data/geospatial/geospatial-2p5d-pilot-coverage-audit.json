@@ -1,0 +1,3430 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T19:36:32.861945Z",
+  "status": "pilot-region-selected-evidence-gaps-recorded",
+  "stage": "2p5d-pilot-coverage-audit",
+  "sourceHashes": {
+    "data/regions.json": "48f03b1c513dc8e8f37a3087b560ab9b2c17469f714c2b04f776ccd50135191d",
+    "data/locations.json": "57b4c06065f46ebcd37033f13df0c5964b3b085ce92c23b6cdcdf5765a3cbdb2",
+    "data/categories.json": "df439a46b4de7f1843bbec0266eee56e5df9bf0a3093554970837bb865012c83",
+    "data/analysis-index.json": "f63763cccf7b99d94190a3bd70aa51d2672ff77be61a35ed3a31b85e0a8dd6ae",
+    "data/geospatial/geospatial-progress.json": "f7c17856427ec114cbadbcb606c4e2fed8c0f8aede6507d70b14687705af0796"
+  },
+  "counts": {
+    "regions": 10,
+    "locations": 3430,
+    "categories": 44,
+    "analysisIndexItems": 103,
+    "importedAuthorizedAnalysisItems": 103,
+    "regionMatchedAuthorizedAnalysisItems": 21,
+    "unmatchedAuthorizedAnalysisItems": 82,
+    "confirmedAnchors": 50
+  },
+  "scoringWeights": {
+    "authorizedVideoEvidence": 0.45,
+    "geospatialReadiness": 0.3,
+    "sceneDiversity": 0.25
+  },
+  "regions": [
+    {
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "score": {
+        "total": 97.756,
+        "authorizedVideoEvidence": 100.0,
+        "geospatialReadiness": 92.52,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 4,
+          "explicitAuthorizedDurationMinutes": 240.534,
+          "keptNumericDescriptorSamples": 1353,
+          "locations": 494,
+          "confirmedAnchors": 4,
+          "distinctCategories": 39,
+          "structuralLocations": 86,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 5,
+            "building-or-landmark": 10,
+            "collectible-or-other": 14,
+            "loot-or-equipment": 5,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": true,
+        "confirmedAnchors": true,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": true,
+      "authorizedVideoEvidence": [
+        {
+          "jobId": "eleven-p013-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p013",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P13 第13期：和泉·摄津（收集1）",
+          "resultPath": "data/analysis-results/eleven-p013.json",
+          "media": {
+            "durationSeconds": 4780.166,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 90,
+            "kept": 88,
+            "blurred": 0,
+            "duplicates": 2,
+            "keepRatio": 0.977778
+          },
+          "matchedRegions": [
+            "IZUMI SETTSU"
+          ]
+        },
+        {
+          "jobId": "eleven-p014-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p014",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P14 第14期：和泉·摄津（收集2）",
+          "resultPath": "data/analysis-results/eleven-p014.json",
+          "media": {
+            "durationSeconds": 3880.933,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 476,
+            "blurred": 0,
+            "duplicates": 4,
+            "keepRatio": 0.991667
+          },
+          "matchedRegions": [
+            "IZUMI SETTSU"
+          ]
+        },
+        {
+          "jobId": "eleven-p015-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p015",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P15 第15期：和泉·摄津（收集3）",
+          "resultPath": "data/analysis-results/eleven-p015.json",
+          "media": {
+            "durationSeconds": 4435.066,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 470,
+            "blurred": 0,
+            "duplicates": 10,
+            "keepRatio": 0.979167
+          },
+          "matchedRegions": [
+            "IZUMI SETTSU"
+          ]
+        },
+        {
+          "jobId": "eleven-p016-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p016",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P16 第16期：和泉·摄津（收集4）",
+          "resultPath": "data/analysis-results/eleven-p016.json",
+          "media": {
+            "durationSeconds": 1335.866,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 347,
+            "kept": 319,
+            "blurred": 0,
+            "duplicates": 28,
+            "keepRatio": 0.919308
+          },
+          "matchedRegions": [
+            "IZUMI SETTSU"
+          ]
+        }
+      ]
+    },
+    {
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "score": {
+        "total": 96.592,
+        "authorizedVideoEvidence": 100.0,
+        "geospatialReadiness": 88.64,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 3,
+          "explicitAuthorizedDurationMinutes": 193.665,
+          "keptNumericDescriptorSamples": 1587,
+          "locations": 358,
+          "confirmedAnchors": 11,
+          "distinctCategories": 38,
+          "structuralLocations": 83,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 5,
+            "building-or-landmark": 10,
+            "collectible-or-other": 13,
+            "loot-or-equipment": 5,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": true,
+        "confirmedAnchors": true,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": true,
+      "authorizedVideoEvidence": [
+        {
+          "jobId": "eleven-p020-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p020",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P20 第20期：山城（收集1）",
+          "resultPath": "data/analysis-results/eleven-p020.json",
+          "media": {
+            "durationSeconds": 5103.433,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 540,
+            "kept": 535,
+            "blurred": 0,
+            "duplicates": 5,
+            "keepRatio": 0.990741
+          },
+          "matchedRegions": [
+            "YAMASHIRO"
+          ]
+        },
+        {
+          "jobId": "eleven-p021-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p021",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P21 第21期：山城（收集2）",
+          "resultPath": "data/analysis-results/eleven-p021.json",
+          "media": {
+            "durationSeconds": 4167.966,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 540,
+            "kept": 527,
+            "blurred": 0,
+            "duplicates": 13,
+            "keepRatio": 0.975926
+          },
+          "matchedRegions": [
+            "YAMASHIRO"
+          ]
+        },
+        {
+          "jobId": "eleven-p022-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p022",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P22 第22期：山城（收集3）",
+          "resultPath": "data/analysis-results/eleven-p022.json",
+          "media": {
+            "durationSeconds": 2348.499,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 540,
+            "kept": 525,
+            "blurred": 0,
+            "duplicates": 15,
+            "keepRatio": 0.972222
+          },
+          "matchedRegions": [
+            "YAMASHIRO"
+          ]
+        }
+      ]
+    },
+    {
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "score": {
+        "total": 90.406,
+        "authorizedVideoEvidence": 81.667,
+        "geospatialReadiness": 95.52,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 2,
+          "explicitAuthorizedDurationMinutes": 170.868,
+          "keptNumericDescriptorSamples": 949,
+          "locations": 444,
+          "confirmedAnchors": 7,
+          "distinctCategories": 39,
+          "structuralLocations": 116,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 4,
+            "building-or-landmark": 11,
+            "collectible-or-other": 14,
+            "loot-or-equipment": 5,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": true,
+        "confirmedAnchors": true,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": true,
+      "authorizedVideoEvidence": [
+        {
+          "jobId": "eleven-p033-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p033",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P33 第33期：近江（收集1）",
+          "resultPath": "data/analysis-results/eleven-p033.json",
+          "media": {
+            "durationSeconds": 4706.099,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 472,
+            "blurred": 0,
+            "duplicates": 8,
+            "keepRatio": 0.983333
+          },
+          "matchedRegions": [
+            "OMI"
+          ]
+        },
+        {
+          "jobId": "eleven-p034-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p034",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P34 第34期：近江（收集2）",
+          "resultPath": "data/analysis-results/eleven-p034.json",
+          "media": {
+            "durationSeconds": 5545.999,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 477,
+            "blurred": 0,
+            "duplicates": 3,
+            "keepRatio": 0.99375
+          },
+          "matchedRegions": [
+            "OMI"
+          ]
+        }
+      ]
+    },
+    {
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "score": {
+        "total": 89.02,
+        "authorizedVideoEvidence": 100.0,
+        "geospatialReadiness": 63.4,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 3,
+          "explicitAuthorizedDurationMinutes": 152.066,
+          "keptNumericDescriptorSamples": 1076,
+          "locations": 305,
+          "confirmedAnchors": 2,
+          "distinctCategories": 40,
+          "structuralLocations": 70,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 5,
+            "building-or-landmark": 11,
+            "collectible-or-other": 13,
+            "loot-or-equipment": 6,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": true,
+        "confirmedAnchors": true,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": true,
+      "authorizedVideoEvidence": [
+        {
+          "jobId": "eleven-p006-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p006",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P06 第6期：黄金铁炮（若狭）",
+          "resultPath": "data/analysis-results/eleven-p006.json",
+          "media": {
+            "durationSeconds": 3106.066,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 148,
+            "kept": 140,
+            "blurred": 0,
+            "duplicates": 8,
+            "keepRatio": 0.945946
+          },
+          "matchedRegions": [
+            "WAKASA"
+          ]
+        },
+        {
+          "jobId": "eleven-p052-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p052",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P52 第52期：若狭（收集1）",
+          "resultPath": "data/analysis-results/eleven-p052.json",
+          "media": {
+            "durationSeconds": 2842.699,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 470,
+            "blurred": 0,
+            "duplicates": 10,
+            "keepRatio": 0.979167
+          },
+          "matchedRegions": [
+            "WAKASA"
+          ]
+        },
+        {
+          "jobId": "eleven-p053-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p053",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P53 第53期：若狭（收集2）",
+          "resultPath": "data/analysis-results/eleven-p053.json",
+          "media": {
+            "durationSeconds": 3175.199,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 466,
+            "blurred": 1,
+            "duplicates": 13,
+            "keepRatio": 0.970833
+          },
+          "matchedRegions": [
+            "WAKASA"
+          ]
+        }
+      ]
+    },
+    {
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "score": {
+        "total": 88.966,
+        "authorizedVideoEvidence": 81.667,
+        "geospatialReadiness": 90.72,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 2,
+          "explicitAuthorizedDurationMinutes": 135.996,
+          "keptNumericDescriptorSamples": 939,
+          "locations": 384,
+          "confirmedAnchors": 11,
+          "distinctCategories": 39,
+          "structuralLocations": 109,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 5,
+            "building-or-landmark": 11,
+            "collectible-or-other": 12,
+            "loot-or-equipment": 6,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": true,
+        "confirmedAnchors": true,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": true,
+      "authorizedVideoEvidence": [
+        {
+          "jobId": "eleven-p069-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p069",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P69 第69期：纪伊（收集1）",
+          "resultPath": "data/analysis-results/eleven-p069.json",
+          "media": {
+            "durationSeconds": 4100.999,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 473,
+            "blurred": 1,
+            "duplicates": 6,
+            "keepRatio": 0.985417
+          },
+          "matchedRegions": [
+            "KII"
+          ]
+        },
+        {
+          "jobId": "eleven-p070-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p070",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P70 第70期：纪伊（收集2）",
+          "resultPath": "data/analysis-results/eleven-p070.json",
+          "media": {
+            "durationSeconds": 4058.766,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 466,
+            "blurred": 0,
+            "duplicates": 14,
+            "keepRatio": 0.970833
+          },
+          "matchedRegions": [
+            "KII"
+          ]
+        }
+      ]
+    },
+    {
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "score": {
+        "total": 86.902,
+        "authorizedVideoEvidence": 81.667,
+        "geospatialReadiness": 83.84,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 2,
+          "explicitAuthorizedDurationMinutes": 131.149,
+          "keptNumericDescriptorSamples": 947,
+          "locations": 298,
+          "confirmedAnchors": 7,
+          "distinctCategories": 38,
+          "structuralLocations": 103,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 4,
+            "building-or-landmark": 10,
+            "collectible-or-other": 14,
+            "loot-or-equipment": 5,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": true,
+        "confirmedAnchors": true,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": true,
+      "authorizedVideoEvidence": [
+        {
+          "jobId": "eleven-p062-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p062",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P62 第62期：大和（收集1）",
+          "resultPath": "data/analysis-results/eleven-p062.json",
+          "media": {
+            "durationSeconds": 3859.533,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 472,
+            "blurred": 0,
+            "duplicates": 8,
+            "keepRatio": 0.983333
+          },
+          "matchedRegions": [
+            "YAMATO"
+          ]
+        },
+        {
+          "jobId": "eleven-p063-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p063",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P63 第63期：大和（收集2）",
+          "resultPath": "data/analysis-results/eleven-p063.json",
+          "media": {
+            "durationSeconds": 4009.433,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 475,
+            "blurred": 0,
+            "duplicates": 5,
+            "keepRatio": 0.989583
+          },
+          "matchedRegions": [
+            "YAMATO"
+          ]
+        }
+      ]
+    },
+    {
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "score": {
+        "total": 86.602,
+        "authorizedVideoEvidence": 81.667,
+        "geospatialReadiness": 82.84,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 2,
+          "explicitAuthorizedDurationMinutes": 167.529,
+          "keptNumericDescriptorSamples": 948,
+          "locations": 373,
+          "confirmedAnchors": 4,
+          "distinctCategories": 35,
+          "structuralLocations": 95,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 4,
+            "building-or-landmark": 11,
+            "collectible-or-other": 10,
+            "loot-or-equipment": 5,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": true,
+        "confirmedAnchors": true,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": true,
+      "authorizedVideoEvidence": [
+        {
+          "jobId": "eleven-p040-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p040",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P40 第40期：播磨（收集1）",
+          "resultPath": "data/analysis-results/eleven-p040.json",
+          "media": {
+            "durationSeconds": 5163.366,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 477,
+            "blurred": 0,
+            "duplicates": 3,
+            "keepRatio": 0.99375
+          },
+          "matchedRegions": [
+            "HARIMA"
+          ]
+        },
+        {
+          "jobId": "eleven-p041-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p041",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P41 第41期：播磨（收集2）",
+          "resultPath": "data/analysis-results/eleven-p041.json",
+          "media": {
+            "durationSeconds": 4888.399,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 471,
+            "blurred": 2,
+            "duplicates": 7,
+            "keepRatio": 0.98125
+          },
+          "matchedRegions": [
+            "HARIMA"
+          ]
+        }
+      ]
+    },
+    {
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "score": {
+        "total": 81.058,
+        "authorizedVideoEvidence": 81.667,
+        "geospatialReadiness": 64.36,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 2,
+          "explicitAuthorizedDurationMinutes": 128.719,
+          "keptNumericDescriptorSamples": 937,
+          "locations": 317,
+          "confirmedAnchors": 2,
+          "distinctCategories": 38,
+          "structuralLocations": 64,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 4,
+            "building-or-landmark": 11,
+            "collectible-or-other": 12,
+            "loot-or-equipment": 6,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": true,
+        "confirmedAnchors": true,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": true,
+      "authorizedVideoEvidence": [
+        {
+          "jobId": "eleven-p056-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p056",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P56 第56期：丹波（收集1）",
+          "resultPath": "data/analysis-results/eleven-p056.json",
+          "media": {
+            "durationSeconds": 3770.666,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 472,
+            "blurred": 0,
+            "duplicates": 8,
+            "keepRatio": 0.983333
+          },
+          "matchedRegions": [
+            "TAMBA"
+          ]
+        },
+        {
+          "jobId": "eleven-p057-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p057",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P57 第57期：丹波（收集2）",
+          "resultPath": "data/analysis-results/eleven-p057.json",
+          "media": {
+            "durationSeconds": 3952.499,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 465,
+            "blurred": 0,
+            "duplicates": 15,
+            "keepRatio": 0.96875
+          },
+          "matchedRegions": [
+            "TAMBA"
+          ]
+        }
+      ]
+    },
+    {
+      "regionId": "region-3145-iga",
+      "regionTitle": "IGA",
+      "score": {
+        "total": 63.109,
+        "authorizedVideoEvidence": 48.713,
+        "geospatialReadiness": 53.96,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 1,
+          "explicitAuthorizedDurationMinutes": 71.741,
+          "keptNumericDescriptorSamples": 463,
+          "locations": 187,
+          "confirmedAnchors": 2,
+          "distinctCategories": 31,
+          "structuralLocations": 46,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 4,
+            "building-or-landmark": 9,
+            "collectible-or-other": 8,
+            "loot-or-equipment": 5,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": true,
+        "confirmedAnchors": true,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": true,
+      "authorizedVideoEvidence": [
+        {
+          "jobId": "eleven-p066-v2",
+          "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p066",
+          "authorizationId": "auth-eleven-game-world-20260719",
+          "author": "11的游戏世界",
+          "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P66 第66期：伊贺（收集）",
+          "resultPath": "data/analysis-results/eleven-p066.json",
+          "media": {
+            "durationSeconds": 4304.433,
+            "width": 640,
+            "height": 360,
+            "fps": 30.0,
+            "videoRetained": false,
+            "framePixelsRetained": false
+          },
+          "scan": {
+            "sampled": 480,
+            "kept": 463,
+            "blurred": 2,
+            "duplicates": 15,
+            "keepRatio": 0.964583
+          },
+          "matchedRegions": [
+            "IGA"
+          ]
+        }
+      ]
+    },
+    {
+      "regionId": "region-3304-awaji",
+      "regionTitle": "AWAJI",
+      "score": {
+        "total": 38.86,
+        "authorizedVideoEvidence": 0.0,
+        "geospatialReadiness": 46.2,
+        "sceneDiversity": 100.0,
+        "metrics": {
+          "explicitAuthorizedVideos": 0,
+          "explicitAuthorizedDurationMinutes": 0.0,
+          "keptNumericDescriptorSamples": 0,
+          "locations": 265,
+          "confirmedAnchors": 0,
+          "distinctCategories": 26,
+          "structuralLocations": 69,
+          "representedSceneFamilies": 6,
+          "sceneFamilyCounts": {
+            "activity-or-route": 2,
+            "building-or-landmark": 9,
+            "collectible-or-other": 5,
+            "loot-or-equipment": 5,
+            "quest-or-character": 2,
+            "service-or-settlement": 3
+          }
+        }
+      },
+      "hardGates": {
+        "explicitAuthorizedVideos": false,
+        "confirmedAnchors": false,
+        "locationCount": true,
+        "distinctCategories": true
+      },
+      "eligibleForPilotSelection": false,
+      "authorizedVideoEvidence": []
+    }
+  ],
+  "selection": {
+    "regionId": "region-3147-izumi-settsu",
+    "regionTitle": "IZUMI SETTSU",
+    "eligible": true,
+    "score": {
+      "total": 97.756,
+      "authorizedVideoEvidence": 100.0,
+      "geospatialReadiness": 92.52,
+      "sceneDiversity": 100.0,
+      "metrics": {
+        "explicitAuthorizedVideos": 4,
+        "explicitAuthorizedDurationMinutes": 240.534,
+        "keptNumericDescriptorSamples": 1353,
+        "locations": 494,
+        "confirmedAnchors": 4,
+        "distinctCategories": 39,
+        "structuralLocations": 86,
+        "representedSceneFamilies": 6,
+        "sceneFamilyCounts": {
+          "activity-or-route": 5,
+          "building-or-landmark": 10,
+          "collectible-or-other": 14,
+          "loot-or-equipment": 5,
+          "quest-or-character": 2,
+          "service-or-settlement": 3
+        }
+      }
+    },
+    "tile": {
+      "grid": {
+        "size": 16,
+        "column": 5,
+        "row": 3
+      },
+      "normalizedBounds": {
+        "minX": 0.3125,
+        "minY": 0.1875,
+        "maxX": 0.375,
+        "maxY": 0.25
+      },
+      "selectionScore": 278,
+      "locationCount": 61,
+      "distinctCategories": 25,
+      "sceneFamilies": [
+        "activity-or-route",
+        "building-or-landmark",
+        "collectible-or-other",
+        "loot-or-equipment",
+        "quest-or-character",
+        "service-or-settlement"
+      ],
+      "confirmedAnchorCount": 2,
+      "structuralLocationCount": 15,
+      "sampleLocations": [
+        {
+          "locationId": "location-mapgenie-455103",
+          "title": "Blank Cultural Discovery",
+          "categoryId": "category-12344-miscellaneous",
+          "categoryTitle": "Miscellaneous",
+          "atlas": {
+            "x": 0.3284480001549274,
+            "y": 0.2243255275867128
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-436378",
+          "title": "Chest",
+          "categoryId": "category-12346-chest",
+          "categoryTitle": "Chest",
+          "atlas": {
+            "x": 0.352874907368738,
+            "y": 0.1919989569870808
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-437215",
+          "title": "Chest",
+          "categoryId": "category-12346-chest",
+          "categoryTitle": "Chest",
+          "atlas": {
+            "x": 0.3705550261534348,
+            "y": 0.22733931766475335
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-437216",
+          "title": "Chest",
+          "categoryId": "category-12346-chest",
+          "categoryTitle": "Chest",
+          "atlas": {
+            "x": 0.3644824341284176,
+            "y": 0.23207368101731712
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-440285",
+          "title": "Chest",
+          "categoryId": "category-12346-chest",
+          "categoryTitle": "Chest",
+          "atlas": {
+            "x": 0.35833617058041667,
+            "y": 0.20600822726721232
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-449390",
+          "title": "Chest",
+          "categoryId": "category-12346-chest",
+          "categoryTitle": "Chest",
+          "atlas": {
+            "x": 0.35437596329574794,
+            "y": 0.20570663723632013
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-449393",
+          "title": "Chest",
+          "categoryId": "category-12346-chest",
+          "categoryTitle": "Chest",
+          "atlas": {
+            "x": 0.32278328655795757,
+            "y": 0.24603255468378896
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434544",
+          "title": "Commerce and Craft at Sakai",
+          "categoryId": "category-12325-cultural-discovery",
+          "categoryTitle": "Cultural Discovery",
+          "atlas": {
+            "x": 0.3314316446547327,
+            "y": 0.2279966983551004
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-449389",
+          "title": "Crops Stockpile",
+          "categoryId": "category-12350-stockpile",
+          "categoryTitle": "Stockpile",
+          "atlas": {
+            "x": 0.35559639915620567,
+            "y": 0.2024382810128238
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434548",
+          "title": "Dress for Success",
+          "categoryId": "category-12341-quest",
+          "categoryTitle": "Quest",
+          "atlas": {
+            "x": 0.31767604788778897,
+            "y": 0.2236320332015259
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-441177",
+          "title": "Drive the Point Home",
+          "categoryId": "category-12341-quest",
+          "categoryTitle": "Quest",
+          "atlas": {
+            "x": 0.3291417215912228,
+            "y": 0.22372587238002276
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-449391",
+          "title": "Fighting Bucks",
+          "categoryId": "category-12323-sumi-e",
+          "categoryTitle": "Sumi-e",
+          "atlas": {
+            "x": 0.3707916609463809,
+            "y": 0.22134662015251153
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434545",
+          "title": "Food Vendor - Natto",
+          "categoryId": "category-12358-local-dish",
+          "categoryTitle": "Local Dish",
+          "atlas": {
+            "x": 0.3417668093512729,
+            "y": 0.22236405985147076
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434560",
+          "title": "Foreign Trade at Sakai",
+          "categoryId": "category-12325-cultural-discovery",
+          "categoryTitle": "Cultural Discovery",
+          "atlas": {
+            "x": 0.3201554596815709,
+            "y": 0.2356937932517729
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434574",
+          "title": "Gansen-ji",
+          "categoryId": "category-12325-cultural-discovery",
+          "categoryTitle": "Cultural Discovery",
+          "atlas": {
+            "x": 0.32858931377731065,
+            "y": 0.20521893875789748
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434575",
+          "title": "Gansenji Temple",
+          "categoryId": "category-12311-temple",
+          "categoryTitle": "Temple",
+          "atlas": {
+            "x": 0.32905018890290694,
+            "y": 0.20318994873057825
+          },
+          "confirmedAnchor": true
+        },
+        {
+          "locationId": "location-mapgenie-440284",
+          "title": "Gear Vendor",
+          "categoryId": "category-12321-gear-vendor",
+          "categoryTitle": "Gear Vendor",
+          "atlas": {
+            "x": 0.32764082286569346,
+            "y": 0.22662048747322094
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434558",
+          "title": "Ghost General",
+          "categoryId": "category-12317-target",
+          "categoryTitle": "Target",
+          "atlas": {
+            "x": 0.32426640151330594,
+            "y": 0.2337163064666674
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434534",
+          "title": "Grave Dancer",
+          "categoryId": "category-12317-target",
+          "categoryTitle": "Target",
+          "atlas": {
+            "x": 0.3698320165315255,
+            "y": 0.2490212198394705
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-454294",
+          "title": "Imai Sokyū",
+          "categoryId": "category-12325-cultural-discovery",
+          "categoryTitle": "Cultural Discovery",
+          "atlas": {
+            "x": 0.3275358849354763,
+            "y": 0.22384717667830223
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434556",
+          "title": "Independence and Culture at Sakai",
+          "categoryId": "category-12325-cultural-discovery",
+          "categoryTitle": "Cultural Discovery",
+          "atlas": {
+            "x": 0.33079252166911755,
+            "y": 0.2381496298787344
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-443228",
+          "title": "Intricate Tea Bowl Collection",
+          "categoryId": "category-12331-tea-bowl",
+          "categoryTitle": "Tea Bowl",
+          "atlas": {
+            "x": 0.32945646557372765,
+            "y": 0.23349429692830115
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-438180",
+          "title": "Izumi Coast",
+          "categoryId": "category-12355-sub-region",
+          "categoryTitle": "Sub-Region",
+          "atlas": {
+            "x": 0.3727189705145375,
+            "y": 0.21519642486850687
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-438080",
+          "title": "Jizo Statue",
+          "categoryId": "category-12315-jizo-statue",
+          "categoryTitle": "Jizo Statue",
+          "atlas": {
+            "x": 0.3423224288368924,
+            "y": 0.24518068902482815
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-437217",
+          "title": "Legendary Chest - Old Kofun",
+          "categoryId": "category-12342-legendary-chest",
+          "categoryTitle": "Legendary Chest",
+          "atlas": {
+            "x": 0.36327484496745693,
+            "y": 0.22859476753600724
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434576",
+          "title": "Lost Page - Gansenji Temple",
+          "categoryId": "category-12324-lost-page",
+          "categoryTitle": "Lost Page",
+          "atlas": {
+            "x": 0.326506543643922,
+            "y": 0.20445334696611206
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434577",
+          "title": "Lost Page - Gansenji Temple",
+          "categoryId": "category-12324-lost-page",
+          "categoryTitle": "Lost Page",
+          "atlas": {
+            "x": 0.32940989631311574,
+            "y": 0.20240261351813144
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-449388",
+          "title": "Mineral Stockpile",
+          "categoryId": "category-12350-stockpile",
+          "categoryTitle": "Stockpile",
+          "atlas": {
+            "x": 0.35560924584499776,
+            "y": 0.2029418093518107
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-449392",
+          "title": "Mineral Stockpile",
+          "categoryId": "category-12350-stockpile",
+          "categoryTitle": "Stockpile",
+          "atlas": {
+            "x": 0.3227531897055865,
+            "y": 0.22891014086506872
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434569",
+          "title": "Money Changer District",
+          "categoryId": "category-12452-hostile-landmark",
+          "categoryTitle": "Hostile Landmark",
+          "atlas": {
+            "x": 0.3223329741816163,
+            "y": 0.22822099677477242
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-436374",
+          "title": "Mount Kongo",
+          "categoryId": "category-12308-viewpoint",
+          "categoryTitle": "Viewpoint",
+          "atlas": {
+            "x": 0.3532532949850585,
+            "y": 0.19508131961473107
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-436375",
+          "title": "Mount Kongo Retreat",
+          "categoryId": "category-12452-hostile-landmark",
+          "categoryTitle": "Hostile Landmark",
+          "atlas": {
+            "x": 0.35514090855616853,
+            "y": 0.20479582278370417
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-437214",
+          "title": "Old Kofun",
+          "categoryId": "category-12356-kofun",
+          "categoryTitle": "Kofun",
+          "atlas": {
+            "x": 0.3717949136062589,
+            "y": 0.22703463125303508
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434540",
+          "title": "Ornament Vendor",
+          "categoryId": "category-12320-ornament-vendor",
+          "categoryTitle": "Ornament Vendor",
+          "atlas": {
+            "x": 0.3294709181002176,
+            "y": 0.2328179688767123
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434535",
+          "title": "Out to Pasture I",
+          "categoryId": "category-12341-quest",
+          "categoryTitle": "Quest",
+          "atlas": {
+            "x": 0.35957714366964416,
+            "y": 0.23335811581832464
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434536",
+          "title": "Out to Pasture II",
+          "categoryId": "category-12341-quest",
+          "categoryTitle": "Quest",
+          "atlas": {
+            "x": 0.36025962424816366,
+            "y": 0.2335766922221964
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434537",
+          "title": "Out to Pasture III",
+          "categoryId": "category-12341-quest",
+          "categoryTitle": "Quest",
+          "atlas": {
+            "x": 0.3609019589088386,
+            "y": 0.23368655261073432
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-440212",
+          "title": "Out to Pasture IV",
+          "categoryId": "category-12341-quest",
+          "categoryTitle": "Quest",
+          "atlas": {
+            "x": 0.36056473321231397,
+            "y": 0.23294957247395584
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-457665",
+          "title": "Playing Card - Nine of Swords",
+          "categoryId": "category-12344-miscellaneous",
+          "categoryTitle": "Miscellaneous",
+          "atlas": {
+            "x": 0.32642625180787416,
+            "y": 0.23509299436046657
+          },
+          "confirmedAnchor": false
+        },
+        {
+          "locationId": "location-mapgenie-434555",
+          "title": "Port Trader",
+          "categoryId": "category-12359-port-trader",
+          "categoryTitle": "Port Trader",
+          "atlas": {
+            "x": 0.3272179292797795,
+            "y": 0.23510214938687113
+          },
+          "confirmedAnchor": false
+        }
+      ]
+    },
+    "geometryStatus": "not-modeled",
+    "visualStatus": "not-started"
+  },
+  "evidenceGaps": {
+    "buildingFootprints": "not-derived-from-current-numeric-analysis",
+    "roadTopology": "not-derived-from-current-numeric-analysis",
+    "waterAndCoastGeometry": "not-derived-from-current-numeric-analysis",
+    "terrainElevation": "not-derived-from-current-numeric-analysis",
+    "vegetationDistribution": "not-derived-from-current-numeric-analysis",
+    "cameraPoseAndScale": "not-derived-from-current-numeric-analysis"
+  },
+  "unmatchedAuthorizedAnalysisItems": [
+    {
+      "jobId": "eleven-p001-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p001",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P01 第1期：战火纷飞",
+      "resultPath": "data/analysis-results/eleven-p001.json",
+      "media": {
+        "durationSeconds": 1377.466,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 360,
+        "kept": 318,
+        "blurred": 0,
+        "duplicates": 42,
+        "keepRatio": 0.883333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p002-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p002",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P02 第2期：怨灵武士（井户义广）",
+      "resultPath": "data/analysis-results/eleven-p002.json",
+      "media": {
+        "durationSeconds": 1605.199,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 360,
+        "kept": 322,
+        "blurred": 0,
+        "duplicates": 38,
+        "keepRatio": 0.894444
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p003-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p003",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P03 第3期：一天之计",
+      "resultPath": "data/analysis-results/eleven-p003.json",
+      "media": {
+        "durationSeconds": 1723.333,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 360,
+        "kept": 321,
+        "blurred": 1,
+        "duplicates": 38,
+        "keepRatio": 0.891667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p004-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p004",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P04 第4期：星星之火",
+      "resultPath": "data/analysis-results/eleven-p004.json",
+      "media": {
+        "durationSeconds": 1617.499,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 360,
+        "kept": 321,
+        "blurred": 0,
+        "duplicates": 39,
+        "keepRatio": 0.891667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p005-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p005",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P05 第5期：无父僧人（和田惟政）",
+      "resultPath": "data/analysis-results/eleven-p005.json",
+      "media": {
+        "durationSeconds": 2996.499,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 360,
+        "kept": 348,
+        "blurred": 0,
+        "duplicates": 12,
+        "keepRatio": 0.966667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p007-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p007",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P07 第7期：无家可归",
+      "resultPath": "data/analysis-results/eleven-p007.json",
+      "media": {
+        "durationSeconds": 1118.799,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 3,
+        "kept": 3,
+        "blurred": 0,
+        "duplicates": 0,
+        "keepRatio": 1.0
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p008-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p008",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P08 第8期：忠犬伸冤",
+      "resultPath": "data/analysis-results/eleven-p008.json",
+      "media": {
+        "durationSeconds": 705.366,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 180,
+        "kept": 161,
+        "blurred": 0,
+        "duplicates": 19,
+        "keepRatio": 0.894444
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p009-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p009",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P09 第9期：浩劫前夕（九字真言）",
+      "resultPath": "data/analysis-results/eleven-p009.json",
+      "media": {
+        "durationSeconds": 4199.599,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 9,
+        "kept": 9,
+        "blurred": 0,
+        "duplicates": 0,
+        "keepRatio": 1.0
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p010-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p010",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P10 第10期：藏蝶人",
+      "resultPath": "data/analysis-results/eleven-p010.json",
+      "media": {
+        "durationSeconds": 1711.999,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 38,
+        "kept": 35,
+        "blurred": 0,
+        "duplicates": 3,
+        "keepRatio": 0.921053
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p011-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p011",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P11 第11期：骑手寺（织田信长）",
+      "resultPath": "data/analysis-results/eleven-p011.json",
+      "media": {
+        "durationSeconds": 2497.333,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 291,
+        "blurred": 0,
+        "duplicates": 9,
+        "keepRatio": 0.97
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p012-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p012",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P12 第12期：电闪雷鸣",
+      "resultPath": "data/analysis-results/eleven-p012.json",
+      "media": {
+        "durationSeconds": 1580.433,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 282,
+        "blurred": 0,
+        "duplicates": 18,
+        "keepRatio": 0.94
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p017-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p017",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P17 第17期：扭曲一族",
+      "resultPath": "data/analysis-results/eleven-p017.json",
+      "media": {
+        "durationSeconds": 2738.499,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 288,
+        "blurred": 0,
+        "duplicates": 12,
+        "keepRatio": 0.96
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p018-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p018",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P18 第18期：逝去的荣耀（伊势贞兴）",
+      "resultPath": "data/analysis-results/eleven-p018.json",
+      "media": {
+        "durationSeconds": 1981.866,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 6,
+        "kept": 5,
+        "blurred": 0,
+        "duplicates": 1,
+        "keepRatio": 0.833333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p019-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p019",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P19 第19期：盗亦有道",
+      "resultPath": "data/analysis-results/eleven-p019.json",
+      "media": {
+        "durationSeconds": 2221.899,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 284,
+        "blurred": 0,
+        "duplicates": 16,
+        "keepRatio": 0.946667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p023-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p023",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P23 第23期：信纲师傅",
+      "resultPath": "data/analysis-results/eleven-p023.json",
+      "media": {
+        "durationSeconds": 4784.399,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 41,
+        "kept": 41,
+        "blurred": 0,
+        "duplicates": 0,
+        "keepRatio": 1.0
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p024-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p024",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P24 第24期：袖剑之秘",
+      "resultPath": "data/analysis-results/eleven-p024.json",
+      "media": {
+        "durationSeconds": 1167.399,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 180,
+        "kept": 168,
+        "blurred": 0,
+        "duplicates": 12,
+        "keepRatio": 0.933333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p025-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p025",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P25 第25期：倾奇者",
+      "resultPath": "data/analysis-results/eleven-p025.json",
+      "media": {
+        "durationSeconds": 1196.999,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 11,
+        "kept": 11,
+        "blurred": 0,
+        "duplicates": 0,
+        "keepRatio": 1.0
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p026-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p026",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P26 第26期：愤怒之声",
+      "resultPath": "data/analysis-results/eleven-p026.json",
+      "media": {
+        "durationSeconds": 1983.533,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 282,
+        "blurred": 0,
+        "duplicates": 18,
+        "keepRatio": 0.94
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p027-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p027",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P27 第27期：袍泽之情（别所治正）",
+      "resultPath": "data/analysis-results/eleven-p027.json",
+      "media": {
+        "durationSeconds": 2503.533,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 284,
+        "blurred": 0,
+        "duplicates": 16,
+        "keepRatio": 0.946667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p028-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p028",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P28 第28期：连歌会",
+      "resultPath": "data/analysis-results/eleven-p028.json",
+      "media": {
+        "durationSeconds": 2307.966,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 283,
+        "blurred": 0,
+        "duplicates": 17,
+        "keepRatio": 0.943333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p029-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p029",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P29 第29期：古怪来客（宇喜多直家）",
+      "resultPath": "data/analysis-results/eleven-p029.json",
+      "media": {
+        "durationSeconds": 2502.666,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 289,
+        "blurred": 0,
+        "duplicates": 11,
+        "keepRatio": 0.963333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p030-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p030",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P30 第30期：坂本决战（明智景光）",
+      "resultPath": "data/analysis-results/eleven-p030.json",
+      "media": {
+        "durationSeconds": 2867.999,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 292,
+        "blurred": 0,
+        "duplicates": 8,
+        "keepRatio": 0.973333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p031-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p031",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P31 第31期：面见公主",
+      "resultPath": "data/analysis-results/eleven-p031.json",
+      "media": {
+        "durationSeconds": 2653.999,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 14,
+        "kept": 12,
+        "blurred": 0,
+        "duplicates": 2,
+        "keepRatio": 0.857143
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p032-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p032",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P32 第32期：轮的面纱（阿市公主）",
+      "resultPath": "data/analysis-results/eleven-p032.json",
+      "media": {
+        "durationSeconds": 2251.466,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 290,
+        "blurred": 0,
+        "duplicates": 10,
+        "keepRatio": 0.966667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p035-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p035",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P35 第35期：五忍众",
+      "resultPath": "data/analysis-results/eleven-p035.json",
+      "media": {
+        "durationSeconds": 1361.233,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 276,
+        "blurred": 0,
+        "duplicates": 24,
+        "keepRatio": 0.92
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p036-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p036",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P36 第36期：恶代官",
+      "resultPath": "data/analysis-results/eleven-p036.json",
+      "media": {
+        "durationSeconds": 1533.066,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 284,
+        "blurred": 0,
+        "duplicates": 16,
+        "keepRatio": 0.946667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p037-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p037",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P37 第37期：信纲的弟子",
+      "resultPath": "data/analysis-results/eleven-p037.json",
+      "media": {
+        "durationSeconds": 3704.466,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 300,
+        "blurred": 0,
+        "duplicates": 0,
+        "keepRatio": 1.0
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p038-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p038",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P38 第38期：背叛者",
+      "resultPath": "data/analysis-results/eleven-p038.json",
+      "media": {
+        "durationSeconds": 2081.766,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 289,
+        "blurred": 0,
+        "duplicates": 11,
+        "keepRatio": 0.963333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p039-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p039",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P39 第39期：铁手座",
+      "resultPath": "data/analysis-results/eleven-p039.json",
+      "media": {
+        "durationSeconds": 1283.333,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 281,
+        "blurred": 0,
+        "duplicates": 19,
+        "keepRatio": 0.936667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p042-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p042",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P42 第42期：暗影之峰",
+      "resultPath": "data/analysis-results/eleven-p042.json",
+      "media": {
+        "durationSeconds": 2529.133,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 285,
+        "blurred": 0,
+        "duplicates": 15,
+        "keepRatio": 0.95
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p043-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p043",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P43 第43期：士兵之殇",
+      "resultPath": "data/analysis-results/eleven-p043.json",
+      "media": {
+        "durationSeconds": 1453.399,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 279,
+        "blurred": 0,
+        "duplicates": 21,
+        "keepRatio": 0.93
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p044-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p044",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P44 第44期：六角公主",
+      "resultPath": "data/analysis-results/eleven-p044.json",
+      "media": {
+        "durationSeconds": 1173.066,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 180,
+        "kept": 169,
+        "blurred": 0,
+        "duplicates": 11,
+        "keepRatio": 0.938889
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p045-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p045",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P45 第45期：演艺者（武田元明）",
+      "resultPath": "data/analysis-results/eleven-p045.json",
+      "media": {
+        "durationSeconds": 2248.566,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 285,
+        "blurred": 0,
+        "duplicates": 15,
+        "keepRatio": 0.95
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p046-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p046",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P46 第46期：我叫弥助",
+      "resultPath": "data/analysis-results/eleven-p046.json",
+      "media": {
+        "durationSeconds": 2467.899,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 291,
+        "blurred": 0,
+        "duplicates": 9,
+        "keepRatio": 0.97
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p047-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p047",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P47 第47期：刺客据点",
+      "resultPath": "data/analysis-results/eleven-p047.json",
+      "media": {
+        "durationSeconds": 858.466,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 180,
+        "kept": 164,
+        "blurred": 0,
+        "duplicates": 16,
+        "keepRatio": 0.911111
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p048-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p048",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P48 第48期：水贼同盟",
+      "resultPath": "data/analysis-results/eleven-p048.json",
+      "media": {
+        "durationSeconds": 2237.599,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 276,
+        "blurred": 0,
+        "duplicates": 24,
+        "keepRatio": 0.92
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p049-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p049",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P49 第49期：武道赛",
+      "resultPath": "data/analysis-results/eleven-p049.json",
+      "media": {
+        "durationSeconds": 1202.599,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 269,
+        "blurred": 0,
+        "duplicates": 31,
+        "keepRatio": 0.896667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p050-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p050",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P50 第50期：全新生活",
+      "resultPath": "data/analysis-results/eleven-p050.json",
+      "media": {
+        "durationSeconds": 850.333,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 180,
+        "kept": 164,
+        "blurred": 0,
+        "duplicates": 16,
+        "keepRatio": 0.911111
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p051-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p051",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P51 第51期：妖怪",
+      "resultPath": "data/analysis-results/eleven-p051.json",
+      "media": {
+        "durationSeconds": 1260.399,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 272,
+        "blurred": 0,
+        "duplicates": 28,
+        "keepRatio": 0.906667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p054-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p054",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P54 第54期：白银私贩",
+      "resultPath": "data/analysis-results/eleven-p054.json",
+      "media": {
+        "durationSeconds": 1869.666,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 289,
+        "blurred": 0,
+        "duplicates": 11,
+        "keepRatio": 0.963333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p055-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p055",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P55 第55期：美食点亮灵感",
+      "resultPath": "data/analysis-results/eleven-p055.json",
+      "media": {
+        "durationSeconds": 770.299,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 50,
+        "kept": 45,
+        "blurred": 0,
+        "duplicates": 5,
+        "keepRatio": 0.9
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p058-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p058",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P58 第58期：怨魂",
+      "resultPath": "data/analysis-results/eleven-p058.json",
+      "media": {
+        "durationSeconds": 2189.899,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 284,
+        "blurred": 0,
+        "duplicates": 16,
+        "keepRatio": 0.946667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p059-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p059",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P59 第59期：以佛求和（净贤法桥）",
+      "resultPath": "data/analysis-results/eleven-p059.json",
+      "media": {
+        "durationSeconds": 2888.899,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 290,
+        "blurred": 0,
+        "duplicates": 10,
+        "keepRatio": 0.966667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p060-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p060",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P60 第60期：暗之影响",
+      "resultPath": "data/analysis-results/eleven-p060.json",
+      "media": {
+        "durationSeconds": 1896.933,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 217,
+        "kept": 213,
+        "blurred": 0,
+        "duplicates": 4,
+        "keepRatio": 0.981567
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p061-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p061",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P61 第61期：山伏冒充者",
+      "resultPath": "data/analysis-results/eleven-p061.json",
+      "media": {
+        "durationSeconds": 1371.633,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 276,
+        "blurred": 0,
+        "duplicates": 24,
+        "keepRatio": 0.92
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p064-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p064",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P64 第64期：浴火重生",
+      "resultPath": "data/analysis-results/eleven-p064.json",
+      "media": {
+        "durationSeconds": 1673.733,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 273,
+        "blurred": 0,
+        "duplicates": 27,
+        "keepRatio": 0.91
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p065-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p065",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P65 第65期：落地生根",
+      "resultPath": "data/analysis-results/eleven-p065.json",
+      "media": {
+        "durationSeconds": 1988.933,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 287,
+        "blurred": 0,
+        "duplicates": 13,
+        "keepRatio": 0.956667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p067-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p067",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P67 第67期：寒冬强盗",
+      "resultPath": "data/analysis-results/eleven-p067.json",
+      "media": {
+        "durationSeconds": 3014.966,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 281,
+        "blurred": 0,
+        "duplicates": 19,
+        "keepRatio": 0.936667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p068-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p068",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P68 第68期：追杀教如的佣兵",
+      "resultPath": "data/analysis-results/eleven-p068.json",
+      "media": {
+        "durationSeconds": 2192.599,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 289,
+        "blurred": 0,
+        "duplicates": 11,
+        "keepRatio": 0.963333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p071-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p071",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P71 第71期：骑到城町里",
+      "resultPath": "data/analysis-results/eleven-p071.json",
+      "media": {
+        "durationSeconds": 1184.233,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 180,
+        "kept": 168,
+        "blurred": 0,
+        "duplicates": 12,
+        "keepRatio": 0.933333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p072-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p072",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P72 第72期：Animus裂隙",
+      "resultPath": "data/analysis-results/eleven-p072.json",
+      "media": {
+        "durationSeconds": 1900.566,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 270,
+        "blurred": 0,
+        "duplicates": 30,
+        "keepRatio": 0.9
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p073-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p073",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P73 第73期：路易斯·弗罗伊斯的心血",
+      "resultPath": "data/analysis-results/eleven-p073.json",
+      "media": {
+        "durationSeconds": 1074.766,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 180,
+        "kept": 165,
+        "blurred": 0,
+        "duplicates": 15,
+        "keepRatio": 0.916667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p074-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p074",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P74 第74期：燃眉之急",
+      "resultPath": "data/analysis-results/eleven-p074.json",
+      "media": {
+        "durationSeconds": 2373.699,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 285,
+        "blurred": 0,
+        "duplicates": 15,
+        "keepRatio": 0.95
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p075-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p075",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P75 第75期：异界幻象（黎明杀机联动任务）",
+      "resultPath": "data/analysis-results/eleven-p075.json",
+      "media": {
+        "durationSeconds": 985.799,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 250,
+        "blurred": 0,
+        "duplicates": 50,
+        "keepRatio": 0.833333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p076-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p076",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P76 第76期：称王之梦（明智光秀）",
+      "resultPath": "data/analysis-results/eleven-p076.json",
+      "media": {
+        "durationSeconds": 1775.166,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 282,
+        "blurred": 0,
+        "duplicates": 18,
+        "keepRatio": 0.94
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p077-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p077",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P77 第77期：面具背后的男人（足利义昭）",
+      "resultPath": "data/analysis-results/eleven-p077.json",
+      "media": {
+        "durationSeconds": 2182.533,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 285,
+        "blurred": 0,
+        "duplicates": 15,
+        "keepRatio": 0.95
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p078-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p078",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P78 第78期：穷途末路",
+      "resultPath": "data/analysis-results/eleven-p078.json",
+      "media": {
+        "durationSeconds": 1013.533,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 180,
+        "kept": 177,
+        "blurred": 0,
+        "duplicates": 3,
+        "keepRatio": 0.983333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p079-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p079",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P79 第79期：袖剑的真义",
+      "resultPath": "data/analysis-results/eleven-p079.json",
+      "media": {
+        "durationSeconds": 2099.199,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 248,
+        "blurred": 0,
+        "duplicates": 52,
+        "keepRatio": 0.826667
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "eleven-p080-v2",
+      "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p080",
+      "authorizationId": "auth-eleven-game-world-20260719",
+      "author": "11的游戏世界",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P80 第80期：走出暗影【完结】",
+      "resultPath": "data/analysis-results/eleven-p080.json",
+      "media": {
+        "durationSeconds": 1590.233,
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 300,
+        "kept": 253,
+        "blurred": 0,
+        "duplicates": 47,
+        "keepRatio": 0.843333
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-05-v1",
+      "externalSourceId": "bili-dada-acshadows-05",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】05 骑射试炼（解锁技能）",
+      "resultPath": "data/analysis-results/dada-05.json",
+      "media": {
+        "durationSeconds": 170.866,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 171,
+        "kept": 49,
+        "blurred": 0,
+        "duplicates": 122,
+        "keepRatio": 0.28655
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-07-v1",
+      "externalSourceId": "bili-dada-acshadows-07",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】07 武形试炼（解锁技能）",
+      "resultPath": "data/analysis-results/dada-07.json",
+      "media": {
+        "durationSeconds": 184.799,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 185,
+        "kept": 31,
+        "blurred": 0,
+        "duplicates": 154,
+        "keepRatio": 0.167568
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-09-v1",
+      "externalSourceId": "bili-dada-acshadows-09",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】09 开局配装（奈绪江 短刀飞跃流）",
+      "resultPath": "data/analysis-results/dada-09.json",
+      "media": {
+        "durationSeconds": 761.333,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 240,
+        "kept": 151,
+        "blurred": 0,
+        "duplicates": 89,
+        "keepRatio": 0.629167
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-10-v1",
+      "externalSourceId": "bili-dada-acshadows-10",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】10 弥助配装（丹心居合流）",
+      "resultPath": "data/analysis-results/dada-10.json",
+      "media": {
+        "durationSeconds": 364.999,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 183,
+        "kept": 78,
+        "blurred": 0,
+        "duplicates": 105,
+        "keepRatio": 0.42623
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-11-v1",
+      "externalSourceId": "bili-dada-acshadows-11",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】11 穿甲饰品（龙吟 锦鲤之力）",
+      "resultPath": "data/analysis-results/dada-11.json",
+      "media": {
+        "durationSeconds": 311.866,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 156,
+        "kept": 85,
+        "blurred": 0,
+        "duplicates": 71,
+        "keepRatio": 0.544872
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-13-v1",
+      "externalSourceId": "bili-dada-acshadows-13",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】13 中期配装（弥助）",
+      "resultPath": "data/analysis-results/dada-13.json",
+      "media": {
+        "durationSeconds": 284.433,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 143,
+        "kept": 76,
+        "blurred": 0,
+        "duplicates": 67,
+        "keepRatio": 0.531469
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-17-v1",
+      "externalSourceId": "bili-dada-acshadows-17",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】17 黑潮配装（模改领域10层）",
+      "resultPath": "data/analysis-results/dada-17.json",
+      "media": {
+        "durationSeconds": 153.633,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 77,
+        "kept": 39,
+        "blurred": 0,
+        "duplicates": 38,
+        "keepRatio": 0.506494
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-18-v1",
+      "externalSourceId": "bili-dada-acshadows-18",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】18 王者之剑（弥助最强武器）",
+      "resultPath": "data/analysis-results/dada-18.json",
+      "media": {
+        "durationSeconds": 110.7,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 56,
+        "kept": 26,
+        "blurred": 0,
+        "duplicates": 30,
+        "keepRatio": 0.464286
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-19-v1",
+      "externalSourceId": "bili-dada-acshadows-19",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】19 爆炸苦无（最强远程）",
+      "resultPath": "data/analysis-results/dada-19.json",
+      "media": {
+        "durationSeconds": 174.167,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 88,
+        "kept": 53,
+        "blurred": 0,
+        "duplicates": 35,
+        "keepRatio": 0.602273
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-20-v2-correct-source",
+      "externalSourceId": "bili-dada-acshadows-20",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】20 锁链晕眩流（奈绪江配装）",
+      "resultPath": "data/analysis-results/dada-20.json",
+      "media": {
+        "durationSeconds": 134.733,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 135,
+        "kept": 67,
+        "blurred": 0,
+        "duplicates": 68,
+        "keepRatio": 0.496296
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-21-v1",
+      "externalSourceId": "bili-dada-acshadows-21",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】21 短刀飞跃流（奈绪江配装）",
+      "resultPath": "data/analysis-results/dada-21.json",
+      "media": {
+        "durationSeconds": 140.767,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 71,
+        "kept": 47,
+        "blurred": 0,
+        "duplicates": 24,
+        "keepRatio": 0.661972
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-22-v1",
+      "externalSourceId": "bili-dada-acshadows-22",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】22 暴击眩晕棍（奈绪江配装）",
+      "resultPath": "data/analysis-results/dada-22.json",
+      "media": {
+        "durationSeconds": 115.3,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 58,
+        "kept": 28,
+        "blurred": 0,
+        "duplicates": 30,
+        "keepRatio": 0.482759
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-23-v1",
+      "externalSourceId": "bili-dada-acshadows-23",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 新手攻略】23 巨浪武士刀（最强配装）",
+      "resultPath": "data/analysis-results/dada-23.json",
+      "media": {
+        "durationSeconds": 156.933,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 79,
+        "kept": 48,
+        "blurred": 0,
+        "duplicates": 31,
+        "keepRatio": 0.607595
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-16-v1",
+      "externalSourceId": "bili-dada-acshadows-16",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "【刺客信条影 黑潮】16 秒杀全BOSS",
+      "resultPath": "data/analysis-results/dada-16.json",
+      "media": {
+        "durationSeconds": 62.833,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 32,
+        "kept": 28,
+        "blurred": 0,
+        "duplicates": 4,
+        "keepRatio": 0.875
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-01-v1",
+      "externalSourceId": "bili-dada-acshadows-01",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗01 九字真言（22个位置）",
+      "resultPath": "data/analysis-results/dada-01.json",
+      "media": {
+        "durationSeconds": 230.299,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 231,
+        "kept": 41,
+        "blurred": 0,
+        "duplicates": 190,
+        "keepRatio": 0.177489
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-02-v1",
+      "externalSourceId": "bili-dada-acshadows-02",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
+      "resultPath": "data/analysis-results/dada-02.json",
+      "media": {
+        "durationSeconds": 270.633,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 271,
+        "kept": 59,
+        "blurred": 0,
+        "duplicates": 212,
+        "keepRatio": 0.217712
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-temples-36-v1",
+      "externalSourceId": "bili-dada-acshadows-03",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗03 寺庙全收集（36个位置）",
+      "resultPath": "data/analysis-results/dada-temples-36.json",
+      "media": {
+        "durationSeconds": 259.799,
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 260,
+        "kept": 42,
+        "blurred": 0,
+        "duplicates": 218,
+        "keepRatio": 0.161538
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-04-v1",
+      "externalSourceId": "bili-dada-acshadows-04",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗04 技能点收集（109个技能点）",
+      "resultPath": "data/analysis-results/dada-04.json",
+      "media": {
+        "durationSeconds": 260.933,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 261,
+        "kept": 75,
+        "blurred": 0,
+        "duplicates": 186,
+        "keepRatio": 0.287356
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-06-v2-correct-source",
+      "externalSourceId": "bili-dada-acshadows-06",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗06 秘道试炼（解锁技能）",
+      "resultPath": "data/analysis-results/dada-06.json",
+      "media": {
+        "durationSeconds": 106.266,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 107,
+        "kept": 18,
+        "blurred": 0,
+        "duplicates": 89,
+        "keepRatio": 0.168224
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-08-v2-correct-source",
+      "externalSourceId": "bili-dada-acshadows-08",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗08 古坟试炼（解锁技能）",
+      "resultPath": "data/analysis-results/dada-08.json",
+      "media": {
+        "durationSeconds": 124.333,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 125,
+        "kept": 20,
+        "blurred": 0,
+        "duplicates": 105,
+        "keepRatio": 0.16
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-12-v2-correct-source",
+      "externalSourceId": "bili-dada-acshadows-12",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗12 饕餮之刃（250%伤害）",
+      "resultPath": "data/analysis-results/dada-12.json",
+      "media": {
+        "durationSeconds": 589.733,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 480,
+        "kept": 199,
+        "blurred": 0,
+        "duplicates": 281,
+        "keepRatio": 0.414583
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-14-v2-correct-source",
+      "externalSourceId": "bili-dada-acshadows-14",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗14 锁链出血流",
+      "resultPath": "data/analysis-results/dada-14.json",
+      "media": {
+        "durationSeconds": 413.766,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 414,
+        "kept": 192,
+        "blurred": 0,
+        "duplicates": 222,
+        "keepRatio": 0.463768
+      },
+      "matchedRegions": []
+    },
+    {
+      "jobId": "dada-15-v1",
+      "externalSourceId": "bili-dada-acshadows-15",
+      "authorizationId": "auth-dada-20260718",
+      "author": "不再犹豫的达达猪",
+      "title": "〖刺客信条影 新手攻略〗15 毕业配装（奈绪江 弥助）",
+      "resultPath": "data/analysis-results/dada-15.json",
+      "media": {
+        "durationSeconds": 456.133,
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "videoRetained": false,
+        "framePixelsRetained": false
+      },
+      "scan": {
+        "sampled": 229,
+        "kept": 173,
+        "blurred": 0,
+        "duplicates": 56,
+        "keepRatio": 0.755459
+      },
+      "matchedRegions": []
+    }
+  ],
+  "safety": {
+    "officialMapGeometryExtracted": false,
+    "thirdPartyPixelsRetained": false,
+    "unsupportedGeometryInferred": false,
+    "existingCoordinatesModified": false,
+    "pilotModelGenerated": false
+  },
+  "nextAction": "review selected tile, then search for and authorize videos that resolve its building, road, water, terrain and camera-pose evidence gaps"
+}
