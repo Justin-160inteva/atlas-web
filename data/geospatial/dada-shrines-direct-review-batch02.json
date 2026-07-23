@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-23T10:06:30.212493Z",
+  "generatedAt": "2026-07-23T10:07:47.296353Z",
   "status": "partial-review",
   "stage": "direct-shrine-popup-independent-review-batch02",
-  "evidenceFingerprint": "8d24950fba0f67b5361cbe50056e73102468279056bd5a91115117a084c88dc8",
+  "evidenceFingerprint": "791f5a7c30a1806496087ec59996294f8a529c9d9ed0c7de8e0ad253bb9478af",
   "batch": {
     "ordinals": [
       9,
@@ -28,13 +28,13 @@
   },
   "counts": {
     "candidateCount": 6,
-    "confirmed": 0,
+    "confirmed": 4,
     "unresolved": 0,
     "successfulReviewerModels": 1,
     "failedReviewerModels": 1,
     "requestedBatchCallsThisRun": 4,
     "reusedBatchCallsThisRun": 0,
-    "persistedBatchPackets": 2
+    "persistedBatchPackets": 3
   },
   "evidence": [
     {
@@ -45,7 +45,7 @@
       "locationId": "location-mapgenie-437898",
       "candidateTitle": "Kasugataisha Shrine",
       "filename": "S09-E15-117.867s-popup.jpg",
-      "sha256": "f072af27215548a9ccbdc7f2b43197c5f73daa57e79ac4164a3a7105da2e8c64",
+      "sha256": "35a56c77d5912873ff101e42315f32be392ad7390885bd36d26484c60cc9fbe6",
       "width": 900,
       "height": 634
     },
@@ -57,7 +57,7 @@
       "locationId": "location-mapgenie-438333",
       "candidateTitle": "Hinode Shrine",
       "filename": "S10-E16-120.800s-popup.jpg",
-      "sha256": "10f70e7f471cf447882c2d820825031f98fc779e5f82d557d262b4984dc1afb7",
+      "sha256": "5f05e697a34620f9eb3c8fedebc2fea292114fa6d5e9c313a0c98113cdef7fd9",
       "width": 900,
       "height": 658
     },
@@ -69,7 +69,7 @@
       "locationId": "location-mapgenie-434406",
       "candidateTitle": "Kasuga Shrine",
       "filename": "S11-E18-133.867s-popup.jpg",
-      "sha256": "c110da2f646a531ee204709e34165fd19d1000c28af4879e8b7c461503e01852",
+      "sha256": "96c2dfeebef64e06172322bb49a2f89c9fd6a264edaa66a1f37ba4ad4f30a610",
       "width": 900,
       "height": 495
     },
@@ -93,7 +93,7 @@
       "locationId": "location-mapgenie-437835",
       "candidateTitle": "Iwashimizu Hachiman Shrine",
       "filename": "S13-E21-148.800s-popup.jpg",
-      "sha256": "3fdd23ae0463b6ef44e9185a2215a587879a33649d2012a31328aca70790726f",
+      "sha256": "1bd1c9b6ebeb2d088a0a15ce7ce2a38ef1806648baf57a194bc631b9549b5795",
       "width": 900,
       "height": 665
     },
@@ -105,7 +105,7 @@
       "locationId": "location-mapgenie-435872",
       "candidateTitle": "Nagahama Hachimangu Shrine",
       "filename": "S14-E23-160.000s-popup.jpg",
-      "sha256": "77ea306cd5cfe05df1ac989fc6d6af2b433ce9bf32cd6f89856e39ebc8853ac7",
+      "sha256": "19d63c07f03a30bf3dd309d0fda89ba98ef307251fb411289c5b0dfedb2596ae",
       "width": 900,
       "height": 671
     }
@@ -119,13 +119,13 @@
         11,
         12
       ],
-      "reviewedAt": "2026-07-23T10:06:10.099663Z",
+      "reviewedAt": "2026-07-23T10:07:22.986908Z",
       "reviews": [
         {
           "ordinal": 9,
           "matchesExpectedLabel": true,
           "visibleLabel": "春日大社",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "reasonZhCN": "标题清晰可见，完全匹配预期标签“春日大社”。",
           "selectedLocationId": "location-mapgenie-437898"
         },
@@ -133,7 +133,7 @@
           "ordinal": 10,
           "matchesExpectedLabel": true,
           "visibleLabel": "日出神社",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "reasonZhCN": "标题清晰可见，完全匹配预期标签“日出神社”。",
           "selectedLocationId": "location-mapgenie-438333"
         },
@@ -141,7 +141,7 @@
           "ordinal": 11,
           "matchesExpectedLabel": true,
           "visibleLabel": "春日神社",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "reasonZhCN": "标题清晰可见，完全匹配预期标签“春日神社”。",
           "selectedLocationId": "location-mapgenie-434406"
         },
@@ -149,7 +149,7 @@
           "ordinal": 12,
           "matchesExpectedLabel": true,
           "visibleLabel": "敢国神社",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "reasonZhCN": "标题清晰可见，完全匹配预期标签“敢国神社”。",
           "selectedLocationId": "location-mapgenie-434366"
         }
@@ -161,14 +161,14 @@
         13,
         14
       ],
-      "reviewedAt": "2026-07-23T10:06:19.741402Z",
+      "reviewedAt": "2026-07-23T10:07:30.649414Z",
       "reviews": [
         {
           "ordinal": 13,
           "matchesExpectedLabel": true,
           "visibleLabel": "石清水八幡宫",
           "confidence": 0.95,
-          "reasonZhCN": "弹出窗口顶部的中文名称与预期标签完全匹配，且文字清晰可读。",
+          "reasonZhCN": "标题“石清水八幡宫”与预期标签完全匹配，字体清晰可辨。",
           "selectedLocationId": "location-mapgenie-437835"
         },
         {
@@ -176,8 +176,52 @@
           "matchesExpectedLabel": true,
           "visibleLabel": "长滨八幡宫",
           "confidence": 0.95,
-          "reasonZhCN": "弹出窗口顶部的中文名称与预期标签完全匹配，且文字清晰可读。",
+          "reasonZhCN": "标题“长滨八幡宫”与预期标签完全匹配，字体清晰可辨。",
           "selectedLocationId": "location-mapgenie-435872"
+        }
+      ]
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "ordinals": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "reviewedAt": "2026-07-23T10:07:40.795885Z",
+      "reviews": [
+        {
+          "ordinal": 9,
+          "matchesExpectedLabel": true,
+          "visibleLabel": "春日大社",
+          "confidence": 0.95,
+          "reasonZhCN": "与预期标签完全匹配",
+          "selectedLocationId": "location-mapgenie-437898"
+        },
+        {
+          "ordinal": 10,
+          "matchesExpectedLabel": true,
+          "visibleLabel": "日出神社",
+          "confidence": 0.95,
+          "reasonZhCN": "与预期标签完全匹配",
+          "selectedLocationId": "location-mapgenie-438333"
+        },
+        {
+          "ordinal": 11,
+          "matchesExpectedLabel": true,
+          "visibleLabel": "春日神社",
+          "confidence": 0.95,
+          "reasonZhCN": "与预期标签完全匹配",
+          "selectedLocationId": "location-mapgenie-434406"
+        },
+        {
+          "ordinal": 12,
+          "matchesExpectedLabel": true,
+          "visibleLabel": "敢国神社",
+          "confidence": 0.95,
+          "reasonZhCN": "与预期标签完全匹配",
+          "selectedLocationId": "location-mapgenie-434366"
         }
       ]
     }
@@ -188,18 +232,25 @@
       "event": 15,
       "expectedLabelZhCN": "春日大社",
       "locationId": "location-mapgenie-437898",
-      "status": "partial-review",
-      "promotionReady": false,
+      "status": "confirmed",
+      "promotionReady": true,
       "reviewers": {
         "openai/gpt-4.1-mini": {
           "ordinal": 9,
           "matchesExpectedLabel": true,
           "visibleLabel": "春日大社",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "reasonZhCN": "标题清晰可见，完全匹配预期标签“春日大社”。",
           "selectedLocationId": "location-mapgenie-437898"
         },
-        "openai/gpt-4o-mini": null
+        "openai/gpt-4o-mini": {
+          "ordinal": 9,
+          "matchesExpectedLabel": true,
+          "visibleLabel": "春日大社",
+          "confidence": 0.95,
+          "reasonZhCN": "与预期标签完全匹配",
+          "selectedLocationId": "location-mapgenie-437898"
+        }
       }
     },
     {
@@ -207,18 +258,25 @@
       "event": 16,
       "expectedLabelZhCN": "日出神社",
       "locationId": "location-mapgenie-438333",
-      "status": "partial-review",
-      "promotionReady": false,
+      "status": "confirmed",
+      "promotionReady": true,
       "reviewers": {
         "openai/gpt-4.1-mini": {
           "ordinal": 10,
           "matchesExpectedLabel": true,
           "visibleLabel": "日出神社",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "reasonZhCN": "标题清晰可见，完全匹配预期标签“日出神社”。",
           "selectedLocationId": "location-mapgenie-438333"
         },
-        "openai/gpt-4o-mini": null
+        "openai/gpt-4o-mini": {
+          "ordinal": 10,
+          "matchesExpectedLabel": true,
+          "visibleLabel": "日出神社",
+          "confidence": 0.95,
+          "reasonZhCN": "与预期标签完全匹配",
+          "selectedLocationId": "location-mapgenie-438333"
+        }
       }
     },
     {
@@ -226,18 +284,25 @@
       "event": 18,
       "expectedLabelZhCN": "春日神社",
       "locationId": "location-mapgenie-434406",
-      "status": "partial-review",
-      "promotionReady": false,
+      "status": "confirmed",
+      "promotionReady": true,
       "reviewers": {
         "openai/gpt-4.1-mini": {
           "ordinal": 11,
           "matchesExpectedLabel": true,
           "visibleLabel": "春日神社",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "reasonZhCN": "标题清晰可见，完全匹配预期标签“春日神社”。",
           "selectedLocationId": "location-mapgenie-434406"
         },
-        "openai/gpt-4o-mini": null
+        "openai/gpt-4o-mini": {
+          "ordinal": 11,
+          "matchesExpectedLabel": true,
+          "visibleLabel": "春日神社",
+          "confidence": 0.95,
+          "reasonZhCN": "与预期标签完全匹配",
+          "selectedLocationId": "location-mapgenie-434406"
+        }
       }
     },
     {
@@ -245,18 +310,25 @@
       "event": 19,
       "expectedLabelZhCN": "敢国神社",
       "locationId": "location-mapgenie-434366",
-      "status": "partial-review",
-      "promotionReady": false,
+      "status": "confirmed",
+      "promotionReady": true,
       "reviewers": {
         "openai/gpt-4.1-mini": {
           "ordinal": 12,
           "matchesExpectedLabel": true,
           "visibleLabel": "敢国神社",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "reasonZhCN": "标题清晰可见，完全匹配预期标签“敢国神社”。",
           "selectedLocationId": "location-mapgenie-434366"
         },
-        "openai/gpt-4o-mini": null
+        "openai/gpt-4o-mini": {
+          "ordinal": 12,
+          "matchesExpectedLabel": true,
+          "visibleLabel": "敢国神社",
+          "confidence": 0.95,
+          "reasonZhCN": "与预期标签完全匹配",
+          "selectedLocationId": "location-mapgenie-434366"
+        }
       }
     },
     {
@@ -272,7 +344,7 @@
           "matchesExpectedLabel": true,
           "visibleLabel": "石清水八幡宫",
           "confidence": 0.95,
-          "reasonZhCN": "弹出窗口顶部的中文名称与预期标签完全匹配，且文字清晰可读。",
+          "reasonZhCN": "标题“石清水八幡宫”与预期标签完全匹配，字体清晰可辨。",
           "selectedLocationId": "location-mapgenie-437835"
         },
         "openai/gpt-4o-mini": null
@@ -291,7 +363,7 @@
           "matchesExpectedLabel": true,
           "visibleLabel": "长滨八幡宫",
           "confidence": 0.95,
-          "reasonZhCN": "弹出窗口顶部的中文名称与预期标签完全匹配，且文字清晰可读。",
+          "reasonZhCN": "标题“长滨八幡宫”与预期标签完全匹配，字体清晰可辨。",
           "selectedLocationId": "location-mapgenie-435872"
         },
         "openai/gpt-4o-mini": null
@@ -299,16 +371,6 @@
     }
   ],
   "errors": [
-    {
-      "model": "openai/gpt-4o-mini",
-      "ordinals": [
-        9,
-        10,
-        11,
-        12
-      ],
-      "error": "HTTP 429: Too many requests. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).\n"
-    },
     {
       "model": "openai/gpt-4o-mini",
       "ordinals": [
