@@ -6,8 +6,7 @@ on:
     paths:
       - '.github/workflows/dada-shrines-scene-segmentation.yml'
       - 'tools/detect_dada_shrine_scene_segments.py'
-      - 'tools/review_dada_shrine_scene_segments.py'
-      - 'tools/apply_shrine_scene_review_timeout_patch.py'
+      - 'tools/review_dada_shrine_scene_segments_v2.py'
       - 'tools/build_dada_shrines_geospatial_stage1.py'
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
@@ -17,8 +16,7 @@ on:
     paths:
       - '.github/workflows/dada-shrines-scene-segmentation.yml'
       - 'tools/detect_dada_shrine_scene_segments.py'
-      - 'tools/review_dada_shrine_scene_segments.py'
-      - 'tools/apply_shrine_scene_review_timeout_patch.py'
+      - 'tools/review_dada_shrine_scene_segments_v2.py'
       - 'tools/build_dada_shrines_geospatial_stage1.py'
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
@@ -35,7 +33,7 @@ concurrency:
 jobs:
   segment-review-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - name: Check out repository branch
         uses: actions/checkout@v4
@@ -48,16 +46,12 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Apply bounded model retry timing
-        run: python tools/apply_shrine_scene_review_timeout_patch.py
-
       - name: Compile scene-aware tools
         run: |
           python -m py_compile \
-            tools/apply_shrine_scene_review_timeout_patch.py \
             tools/build_dada_shrines_geospatial_stage1.py \
             tools/detect_dada_shrine_scene_segments.py \
-            tools/review_dada_shrine_scene_segments.py \
+            tools/review_dada_shrine_scene_segments_v2.py \
             tools/build_geospatial_progress.py \
             tools/analyze_authorized_video_v2.py \
             tools/analyze_authorized_video_v4.py
@@ -113,16 +107,16 @@ jobs:
             --start-slot 1 \
             --end-slot 14
 
-      - name: Review scene events with resumable two-model consensus
+      - name: Review isolated high-resolution event batches
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python tools/review_dada_shrine_scene_segments.py \
+          python tools/review_dada_shrine_scene_segments_v2.py \
             --evidence-dir /tmp/dada-shrine-scene-evidence \
             --manifest data/geospatial/dada-shrines-27-scene-evidence-manifest.json \
             --output data/geospatial/dada-shrines-27-anchors-batch01.json
 
-      - name: Read model-review state
+      - name: Read reviewer-pool state
         id: state
         run: |
           python - <<'PY'
@@ -131,17 +125,22 @@ jobs:
           from pathlib import Path
 
           result = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01.json').read_text(encoding='utf-8'))
-          complete = result['counts']['successfulModels'] == 2 and result['counts']['failedModels'] == 0
+          complete = result['counts']['successfulReviewerPools'] == 2 and result['counts']['failedReviewerPools'] == 0
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
-              handle.write(f'models_complete={str(complete).lower()}\n')
+              handle.write(f'pools_complete={str(complete).lower()}\n')
               handle.write(f'confirmed={result["counts"]["confirmed"]}\n')
-              handle.write(f'successful_models={result["counts"]["successfulModels"]}\n')
-              handle.write(f'failed_models={result["counts"]["failedModels"]}\n')
-          print(json.dumps({'complete': complete, 'counts': result['counts'], 'errors': result['modelErrors']}, ensure_ascii=False))
+              handle.write(f'successful_pools={result["counts"]["successfulReviewerPools"]}\n')
+              handle.write(f'failed_pools={result["counts"]["failedReviewerPools"]}\n')
+          print(json.dumps({
+              'complete': complete,
+              'counts': result['counts'],
+              'selectedReviewerPools': result['selectedReviewerPools'],
+              'errors': result['errors'],
+          }, ensure_ascii=False))
           PY
 
       - name: Reconcile confirmed anchors into global progress
-        if: steps.state.outputs.models_complete == 'true'
+        if: steps.state.outputs.pools_complete == 'true'
         run: |
           python - <<'PY'
           import json
@@ -152,12 +151,12 @@ jobs:
           job_path = Path('data/analysis-jobs/dada-shrines-27-geospatial.json')
           job = json.loads(job_path.read_text(encoding='utf-8'))
           confirmed = int(anchors['counts']['confirmed'])
-          job['status'] = 'scene-aware-batch01-complete'
+          job['status'] = 'high-resolution-event-batch01-complete'
           job['linkedSlotCount'] = confirmed
           job['unlinkedSlotCount'] = 27 - confirmed
           job['batch01Path'] = 'data/geospatial/dada-shrines-27-anchors-batch01.json'
           job['segmentationPath'] = 'data/geospatial/dada-shrines-27-scene-segments.json'
-          job['nextAction'] = 'review unresolved scene events and then continue events 15-27'
+          job['nextAction'] = 'review unresolved events and then continue events 15-27'
           job['updatedAt'] = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
           job_path.write_text(json.dumps(job, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
@@ -166,10 +165,10 @@ jobs:
       - name: Write non-pixel scene review status
         if: always() && steps.state.outcome == 'success'
         env:
-          MODELS_COMPLETE: ${{ steps.state.outputs.models_complete }}
+          POOLS_COMPLETE: ${{ steps.state.outputs.pools_complete }}
           CONFIRMED: ${{ steps.state.outputs.confirmed }}
-          SUCCESSFUL_MODELS: ${{ steps.state.outputs.successful_models }}
-          FAILED_MODELS: ${{ steps.state.outputs.failed_models }}
+          SUCCESSFUL_POOLS: ${{ steps.state.outputs.successful_pools }}
+          FAILED_POOLS: ${{ steps.state.outputs.failed_pools }}
         run: |
           python - <<'PY'
           import json
@@ -180,24 +179,28 @@ jobs:
           segmentation = json.loads(Path('data/geospatial/dada-shrines-27-scene-segments.json').read_text(encoding='utf-8'))
           anchors = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01.json').read_text(encoding='utf-8'))
           payload = {
-              'schemaVersion': 1,
-              'status': 'complete' if os.environ.get('MODELS_COMPLETE') == 'true' else 'partial-model-review',
-              'stage': 'scene-aware-shrine-segmentation-and-review',
+              'schemaVersion': 2,
+              'status': 'complete' if os.environ.get('POOLS_COMPLETE') == 'true' else 'partial-reviewer-pools',
+              'stage': 'scene-aware-high-resolution-event-review',
               'generatedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
               'counts': {
                   'segments': segmentation['counts']['segments'],
                   'boundaries': segmentation['counts']['boundaries'],
                   'selectedSegments': segmentation['counts']['selectedSegments'],
                   'confirmedAnchors': int(os.environ.get('CONFIRMED') or 0),
-                  'successfulModels': int(os.environ.get('SUCCESSFUL_MODELS') or 0),
-                  'failedModels': int(os.environ.get('FAILED_MODELS') or 0),
+                  'successfulReviewerPools': int(os.environ.get('SUCCESSFUL_POOLS') or 0),
+                  'failedReviewerPools': int(os.environ.get('FAILED_POOLS') or 0),
+                  'requestedBatchCallsThisRun': anchors['counts']['requestedBatchCallsThisRun'],
+                  'reusedBatchCallsThisRun': anchors['counts']['reusedBatchCallsThisRun'],
+                  'persistedBatchPackets': anchors['counts']['persistedBatchPackets'],
               },
               'minimumSegmentDurationSeconds': segmentation['quality']['minimumSegmentDurationSeconds'],
               'maximumSegmentDurationSeconds': segmentation['quality']['maximumSegmentDurationSeconds'],
               'evidenceFingerprint': anchors['evidenceFingerprint'],
-              'requestedModelsThisRun': anchors['requestedModelsThisRun'],
-              'reusedModelsThisRun': anchors['reusedModelsThisRun'],
-              'modelErrors': anchors['modelErrors'],
+              'selectedReviewerModels': {
+                  packet['reviewerPool']: packet['model'] for packet in anchors['selectedReviewerPools']
+              },
+              'errors': anchors['errors'],
               'outputs': {
                   'segments': 'data/geospatial/dada-shrines-27-scene-segments.json',
                   'manifest': 'data/geospatial/dada-shrines-27-scene-evidence-manifest.json',
@@ -233,17 +236,18 @@ jobs:
           assert manifest['batch'] == {'startSlot': 1, 'endSlot': 14, 'targetSlots': 14}
           assert manifest['extraction']['frameCount'] == 42
           assert manifest['extraction']['representativeFrameCount'] == 14
-          assert manifest['extraction']['contactSheetCount'] == 2
           assert manifest['privacy']['repositoryContainsPixels'] is False
+          assert anchors['schemaVersion'] == 3
+          assert anchors['reviewStrategyVersion'] == 2
           assert anchors['counts']['reviewedSlots'] == 14
           assert anchors['counts']['confirmed'] + anchors['counts']['unresolved'] == 14
-          assert anchors['counts']['successfulModels'] in {0, 1, 2}
-          assert anchors['counts']['failedModels'] == 2 - anchors['counts']['successfulModels']
+          assert anchors['counts']['successfulReviewerPools'] in {0, 1, 2}
+          assert anchors['counts']['failedReviewerPools'] == 2 - anchors['counts']['successfulReviewerPools']
           assert len({row['locationId'] for row in anchors['anchors']}) == anchors['counts']['confirmed']
           assert all(row['confidence'] >= .92 for row in anchors['anchors'])
-          assert all(row['resolutionMethod'] == 'two-model-scene-aware-direct-visual-consensus' for row in anchors['anchors'])
+          assert all(row['resolutionMethod'] == 'two-pool-high-resolution-scene-event-consensus' for row in anchors['anchors'])
           assert anchors['privacy']['repositoryContainsPixels'] is False
-          if anchors['counts']['successfulModels'] < 2:
+          if anchors['counts']['successfulReviewerPools'] < 2:
               assert anchors['counts']['confirmed'] == 0
           else:
               progress = json.loads(Path('data/geospatial/geospatial-progress.json').read_text(encoding='utf-8'))
@@ -263,7 +267,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
-            tools/review_dada_shrine_scene_segments.py \
             data/analysis-index.json \
             data/analysis-jobs/dada-temples-36-geospatial.json \
             data/analysis-jobs/dada-shrines-27-geospatial.json \
@@ -278,7 +281,7 @@ jobs:
             echo 'No non-pixel scene-review changes.'
             exit 0
           fi
-          git commit -m 'Detect shrine scenes and persist resumable review [skip ci]'
+          git commit -m 'Review shrine events in isolated high-resolution batches [skip ci]'
           for attempt in 1 2 3 4 5 6; do
             if git pull --rebase origin "$TARGET_BRANCH" && git push origin "HEAD:$TARGET_BRANCH"; then
               exit 0
