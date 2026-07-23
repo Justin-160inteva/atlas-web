@@ -69,9 +69,15 @@
     "contactSheetsPerVideo": 6,
     "artifactRetentionDays": 1,
     "selectionBuckets": {
-      "sharp": 32,
-      "sceneTransition": 32,
-      "visualDiversity": 32
+      "temporalCoverage": 32,
+      "sharp": 24,
+      "sceneTransition": 24,
+      "balancedFill": 16
+    },
+    "coverageGates": {
+      "minimumEndCoverageRatio": 0.95,
+      "maximumGapAsDurationFraction": 0.041666667,
+      "requireNearStartFrame": true
     },
     "downloadPagePolicy": "use the job batch.cid and page explicitly; never default to the first page of a multipart video"
   },
