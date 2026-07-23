@@ -1,0 +1,190 @@
+name: Geospatial Calibration Control Points
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/geospatial-calibration-control-points.yml'
+      - 'tools/build_geospatial_calibration_control_points.py'
+      - 'data/geospatial/geospatial-calibration-control-points-trigger.json'
+      - 'data/geospatial/geospatial-progress.json'
+      - 'data/geospatial/dada-temples-36-anchors-final.json'
+      - 'data/geospatial/dada-shrines-27-anchors-batch01.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: geospatial-calibration-control-points-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile calibration builder
+        run: python -m py_compile tools/build_geospatial_calibration_control_points.py
+
+      - name: Record authoritative input hashes
+        id: inputs
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          paths = {
+              'temples': Path('data/geospatial/dada-temples-36-anchors-final.json'),
+              'shrines': Path('data/geospatial/dada-shrines-27-anchors-batch01.json'),
+          }
+          values = {name: hashlib.sha256(path.read_bytes()).hexdigest() for name, path in paths.items()}
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              for name, value in values.items():
+                  handle.write(f'{name}_sha256={value}\n')
+          print(json.dumps(values, ensure_ascii=False))
+          PY
+
+      - name: Build deterministic calibration split
+        run: python tools/build_geospatial_calibration_control_points.py
+
+      - name: Validate control points, holdouts and blocking state
+        env:
+          TEMPLES_SHA256: ${{ steps.inputs.outputs.temples_sha256 }}
+          SHRINES_SHA256: ${{ steps.inputs.outputs.shrines_sha256 }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          for path, expected in (
+              ('data/geospatial/dada-temples-36-anchors-final.json', os.environ['TEMPLES_SHA256']),
+              ('data/geospatial/dada-shrines-27-anchors-batch01.json', os.environ['SHRINES_SHA256']),
+          ):
+              assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == expected
+
+          controls = json.loads(Path('data/geospatial/geospatial-calibration-control-points.json').read_text(encoding='utf-8'))
+          readiness = json.loads(Path('data/geospatial/geospatial-calibration-readiness.json').read_text(encoding='utf-8'))
+          progress = json.loads(Path('data/geospatial/geospatial-progress.json').read_text(encoding='utf-8'))
+
+          expected_counts = {
+              'anchorPool': 50,
+              'calibrationControlPoints': 24,
+              'validationHoldouts': 12,
+              'reservePoints': 14,
+              'regions': 9,
+          }
+          assert controls['status'] == 'calibration-control-point-set-ready'
+          assert controls['counts'] == expected_counts
+          assert len(controls['calibrationControlPoints']) == 24
+          assert len(controls['validationHoldouts']) == 12
+          assert len(controls['reservePoints']) == 14
+          combined = controls['calibrationControlPoints'] + controls['validationHoldouts'] + controls['reservePoints']
+          assert len(combined) == 50
+          assert len({row['locationId'] for row in combined}) == 50
+          assert len({(round(row['atlas']['x'], 12), round(row['atlas']['y'], 12)) for row in combined}) == 50
+          assert all(row['confidence'] >= .92 for row in combined)
+          assert controls['pixelTransformContract']['status'] == 'blocked-pending-final-base-dimensions-and-crop'
+          assert controls['pixelTransformContract']['candidateModelsInOrder'] == ['similarity', 'affine', 'projective-homography']
+          assert controls['pixelTransformContract']['acceptancePolicy']['all12HoldoutsRequired'] is True
+
+          assert readiness['status'] == 'control-points-ready-pixel-calibration-blocked'
+          assert readiness['counts'] == expected_counts
+          assert readiness['distribution']['missingControlRegions'] == []
+          assert readiness['distribution']['missingControlQuadrants'] == []
+          assert readiness['geometry']['controlToAllHullAreaRatio'] >= .90
+          assert len(readiness['distribution']['controlRegions']) == 9
+          assert set(readiness['distribution']['controlQuadrants']) == {'north-west', 'north-east', 'south-west', 'south-east'}
+          positive_gates = {key: value for key, value in readiness['gates'].items() if key != 'repositoryContainsPixels'}
+          assert all(positive_gates.values())
+          assert readiness['gates']['repositoryContainsPixels'] is False
+          assert readiness['safety'] == {
+              'noPixelCoordinatesInvented': True,
+              'noTransformClaimed': True,
+              'finalBaseStillNotStarted': True,
+              'repositoryContainsPixels': False,
+          }
+
+          assert progress['status'] == 'phase1-complete'
+          assert progress['phase1']['confirmedAnchors'] == 50
+          assert progress['phase1']['progressPercent'] == 100.0
+          assert progress['stageGates']['confirmedGeospatialAnchors'] == {'status': 'complete', 'count': 50}
+          assert progress['stageGates']['finalOriginalUltraHdBase'] == {'status': 'not_started'}
+          calibration = progress['stageGates']['coordinateAndOverlayCalibration']
+          assert calibration == {
+              'status': 'in_progress',
+              'controlPointSetStatus': 'ready',
+              'confirmedAnchorPool': 50,
+              'calibrationControlPoints': 24,
+              'validationHoldouts': 12,
+              'reservePoints': 14,
+              'pixelTransformStatus': 'blocked_pending_final_base_dimensions_and_crop',
+              'controlPointPath': 'data/geospatial/geospatial-calibration-control-points.json',
+              'readinessPath': 'data/geospatial/geospatial-calibration-readiness.json',
+          }
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          print(json.dumps({
+              'counts': expected_counts,
+              'hullCoverage': readiness['geometry']['controlToAllHullAreaRatio'],
+              'controlRegions': readiness['distribution']['controlRegions'],
+              'controlQuadrants': readiness['distribution']['controlQuadrants'],
+              'nextAction': readiness['nextAction'],
+          }, ensure_ascii=False))
+          PY
+
+      - name: Stage non-pixel calibration readiness outputs
+        run: |
+          rm -rf /tmp/geospatial-calibration-publish
+          mkdir -p /tmp/geospatial-calibration-publish/data/geospatial
+          cp data/geospatial/geospatial-calibration-control-points.json \
+            /tmp/geospatial-calibration-publish/data/geospatial/
+          cp data/geospatial/geospatial-calibration-readiness.json \
+            /tmp/geospatial-calibration-publish/data/geospatial/
+          cp data/geospatial/geospatial-progress.json \
+            /tmp/geospatial-calibration-publish/data/geospatial/
+
+      - name: Atomically publish calibration readiness
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial
+            cp /tmp/geospatial-calibration-publish/data/geospatial/geospatial-calibration-control-points.json data/geospatial/
+            cp /tmp/geospatial-calibration-publish/data/geospatial/geospatial-calibration-readiness.json data/geospatial/
+            cp /tmp/geospatial-calibration-publish/data/geospatial/geospatial-progress.json data/geospatial/
+            git add \
+              data/geospatial/geospatial-calibration-control-points.json \
+              data/geospatial/geospatial-calibration-readiness.json \
+              data/geospatial/geospatial-progress.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Build 24-point calibration and 12-point validation split [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Delete transient publish staging
+        if: always()
+        run: |
+          rm -rf /tmp/geospatial-calibration-publish
+          test ! -e /tmp/geospatial-calibration-publish
