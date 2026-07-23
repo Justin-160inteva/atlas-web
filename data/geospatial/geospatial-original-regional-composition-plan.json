@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "status": "approved-for-draft-generation",
+  "stage": "original-regional-composition",
+  "canvas": {
+    "width": 4096,
+    "height": 4096,
+    "sourceFormat": "svg",
+    "editableSourceRequired": true,
+    "finalCanvasFrozen": false
+  },
+  "artDirection": {
+    "name": "Atlas Sumi Cartography",
+    "description": "An original Japanese ink-and-aged-paper cartographic composition designed specifically for Atlas.",
+    "visualLanguage": [
+      "deep ink ocean",
+      "warm mineral paper land mass",
+      "muted regional washes",
+      "hand-drawn contour construction bands",
+      "restrained vermilion anchor accents",
+      "antique brass composition guides"
+    ],
+    "palette": {
+      "ocean": "#0b1013",
+      "oceanLine": "#29373d",
+      "land": "#d4c39d",
+      "landHighlight": "#eadfc4",
+      "ink": "#1e1b18",
+      "softInk": "#554d43",
+      "vermilion": "#9b352f",
+      "brass": "#b18a4b",
+      "paperLight": "#efe5cd"
+    },
+    "externalFonts": false,
+    "externalTextures": false,
+    "externalImages": false
+  },
+  "constructionRules": {
+    "globalLandSilhouetteInput": "global point-distribution construction hull",
+    "regionMassInput": "ten region point-distribution construction hulls",
+    "regionGeometryIsFinalBoundary": false,
+    "coastlineIsFinal": false,
+    "terrainIsFinal": false,
+    "adjacencyLinesAreFinalRoads": false,
+    "unassignedLocationsShownAsGuides": true,
+    "confirmedAnchorsShownAsAlignmentMarks": true,
+    "thirdPartyRegionGeometryAllowed": false,
+    "thirdPartyRasterAllowed": false,
+    "thirdPartyVectorAllowed": false
+  },
+  "outputs": {
+    "svgPath": "assets/original-map/atlas-original-regional-composition-v1.svg",
+    "manifestPath": "data/geospatial/geospatial-original-regional-composition-v1.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  },
+  "acceptance": {
+    "realRegions": 10,
+    "regionAssignedLocations": 3425,
+    "unassignedLocations": 5,
+    "confirmedAnchors": 50,
+    "externalResourceReferences": 0,
+    "embeddedRasterImages": 0,
+    "finalBaseApproval": false
+  },
+  "nextAction": "generate and review the first repository-owned editable regional composition before authored terrain detailing"
+}

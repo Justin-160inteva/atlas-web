@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "requestedAt": "2026-07-23T17:00:00Z",
+  "runNonce": "original-regional-composition-v1-run-2",
+  "inputs": {
+    "planPath": "data/geospatial/geospatial-original-regional-composition-plan.json",
+    "skeletonPath": "data/geospatial/geospatial-original-authored-base-skeleton.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  },
+  "expected": {
+    "canvasWidth": 4096,
+    "canvasHeight": 4096,
+    "locations": 3430,
+    "regionAssignedLocations": 3425,
+    "unassignedLocations": 5,
+    "regions": 10,
+    "confirmedAnchors": 50,
+    "adjacencyEdges": 20
+  },
+  "outputs": {
+    "svgPath": "assets/original-map/atlas-original-regional-composition-v1.svg",
+    "manifestPath": "data/geospatial/geospatial-original-regional-composition-v1.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  }
+}
