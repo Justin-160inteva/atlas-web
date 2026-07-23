@@ -1,1172 +1,506 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-07-23T01:48:47.368588Z",
-  "stage": "shrine-anchor-batch01-two-model-bulk-review",
-  "status": "complete",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-23T09:49:23.792197Z",
+  "stage": "direct-shrine-anchor-promotion-batch01",
+  "status": "partial",
   "source": {
     "bvid": "BV1aFXaYmEDZ",
     "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
     "authorizationId": "auth-dada-20260718",
-    "stage1Path": "data/geospatial/dada-shrines-27-stage1.json",
-    "evidenceManifestPath": "data/geospatial/dada-shrines-27-batch01-evidence-manifest.json"
+    "candidatePackagePath": "data/geospatial/dada-shrines-27-anchor-candidates.json",
+    "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
+    "catalogProofPath": "data/geospatial/dada-shrines-catalog-completeness-proof.json"
   },
   "counts": {
-    "reviewedSlots": 14,
-    "confirmed": 0,
-    "unresolved": 14,
-    "candidateShrines": 32,
-    "successfulModels": 1,
-    "failedModels": 1
+    "eligibleSequenceCandidates": 27,
+    "reviewedCandidates": 8,
+    "confirmed": 8,
+    "unresolved": 19,
+    "coordinatesWritten": 8,
+    "mapShrineCandidates": 32,
+    "excludedAwajiCandidates": 5
   },
   "policy": {
-    "models": [
-      "openai/gpt-4.1",
-      "openai/gpt-4o-mini"
-    ],
+    "minimumIndependentModels": 2,
     "minimumConfidencePerModel": 0.92,
-    "requireTwoModelConsensus": true,
-    "allowedEvidenceTypes": [
-      "direct_map_label",
-      "direct_popup_text",
-      "unique_highlight_with_readable_text"
-    ],
+    "programmaticVisibleLabelEquality": true,
     "uniqueLocationAssignment": true,
-    "repositoryContainsEvidencePixels": false,
-    "modelRequestCount": 2
+    "uniqueCoordinateAssignment": true,
+    "crossCategoryLocationOverlapRejected": true,
+    "crossCategoryCoordinateOverlapRejected": true,
+    "coordinatesMustMatchCanonicalLocations": true,
+    "repositoryContainsEvidencePixels": false
   },
-  "anchors": [],
+  "anchors": [
+    {
+      "directPopupOrdinal": 1,
+      "popupEvent": 2,
+      "representativeTimeSeconds": 19.2,
+      "observedLabelZh": "高原熊野神社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent vision models directly transcribed the same popup title; deterministic normalized label equality matched the expected catalog candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 19.2,
+          "popupSha256": "44dc04e479111d78dc107a322266547dbaa7bfe2daeda57de9b64edb4157a07c",
+          "sourcePopupSha256": "f69421003127c3b571ff9d4a5a1d89dab0001bfcc3d11c11ee4cc4e240387fa5",
+          "sourceTitleSha256": "33e5d4f5084ec811c32b680c6496a6f3b960d3db3cf604cb8192241e8369083e"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "高原熊野神社",
+          "confidence": 0.98,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "高原熊野神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437477",
+      "title": "Takahara Kumano Shrine",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.6703544142210421,
+        "y": 0.07009538296927205
+      },
+      "sourceLocationId": 437477
+    },
+    {
+      "directPopupOrdinal": 2,
+      "popupEvent": 4,
+      "representativeTimeSeconds": 55.733,
+      "observedLabelZh": "熊野那智大社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent vision models directly transcribed the same popup title; deterministic normalized label equality matched the expected catalog candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 55.733,
+          "popupSha256": "00224360b999ff78c16a7c3399c331bf1349b38d31d9bfba61d14ce5a84d62ae",
+          "sourcePopupSha256": "f9016ccf7ffd55fbcfc6d11a2c3824c5e10172e020e7d0c2932eee4ed5334472",
+          "sourceTitleSha256": "cc6682b9577a6513630c22adeb4e5d7e5e35c63ec32e095785400e0e21a0d74a"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "熊野那智大社",
+          "confidence": 0.97,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "熊野那智大社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436647",
+      "title": "Kumano Nachi Taisha",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.8616821190684543,
+        "y": 0.06849184295765275
+      },
+      "sourceLocationId": 436647
+    },
+    {
+      "directPopupOrdinal": 3,
+      "popupEvent": 5,
+      "representativeTimeSeconds": 59.733,
+      "observedLabelZh": "熊野本宫大社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent vision models directly transcribed the same popup title; deterministic normalized label equality matched the expected catalog candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 59.733,
+          "popupSha256": "dcf3194d2c8a1333b5c362bc47790db69d0733ea9e5bfb568c89e3abf926d243",
+          "sourcePopupSha256": "8770c6a19cac67b4a4b8fe5015a1e49ca585dc49622116289187177277f5b716",
+          "sourceTitleSha256": "c608a99494e392f22773751c073d7528f08eb61e367683ac19c8d2b37690175d"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "熊野本宫大社",
+          "confidence": 0.97,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "熊野本宫大社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
+      "status": "confirmed",
+      "locationId": "location-mapgenie-437483",
+      "title": "Kumano Hongu Taisha",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.7749663621957775,
+        "y": 0.12509203374510244
+      },
+      "sourceLocationId": 437483
+    },
+    {
+      "directPopupOrdinal": 4,
+      "popupEvent": 7,
+      "representativeTimeSeconds": 73.333,
+      "observedLabelZh": "熊野速玉大社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent vision models directly transcribed the same popup title; deterministic normalized label equality matched the expected catalog candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 73.333,
+          "popupSha256": "2d64c174526b0a460d7d4ebb8f5f1192810d2e2d82072966c46c1a34e30345e3",
+          "sourcePopupSha256": "16c18f4da9542570716953437807e8f03e71b939e47d342c68bfaf961ebea49e",
+          "sourceTitleSha256": "92faa47a581399dba4013eb2d36c504484c6ffabe202608bb123df97ebce9841"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "熊野速玉大社",
+          "confidence": 0.97,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "熊野速玉大社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436521",
+      "title": "Kumano Hayatama Taisha",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.9597505634584845,
+        "y": 0.13758915803353386
+      },
+      "sourceLocationId": 436521
+    },
+    {
+      "directPopupOrdinal": 5,
+      "popupEvent": 8,
+      "representativeTimeSeconds": 77.067,
+      "observedLabelZh": "神仓神社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent vision models directly transcribed the same popup title; deterministic normalized label equality matched the expected catalog candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 77.067,
+          "popupSha256": "d63ac4b665abe0fe14a92f5a7d2b44d21bb218cebf61d992b8583a043e626c86",
+          "sourcePopupSha256": "887ead9dfe856d8bdd1efa8561b75d9dc54ed6fafcaca13cbabd02e9b7f92a26",
+          "sourceTitleSha256": "0eac41106a569fc70919ba5e86266cf007fde434fbd4b80f9bc9534a0a29f419"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "神仓神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "神仓神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
+      "status": "confirmed",
+      "locationId": "location-mapgenie-436509",
+      "title": "Kamikura Shrine",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.9541811822707411,
+        "y": 0.11381478695007442
+      },
+      "sourceLocationId": 436509
+    },
+    {
+      "directPopupOrdinal": 6,
+      "popupEvent": 10,
+      "representativeTimeSeconds": 90.133,
+      "observedLabelZh": "丹生川上神社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent vision models directly transcribed the same popup title; deterministic normalized label equality matched the expected catalog candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 90.133,
+          "popupSha256": "41e5c783f430f55cdfb9ff667dd7c8d866b5902eaf5d5b520a5a6d6c970e9b52",
+          "sourcePopupSha256": "762c85d2a02f20ce7104a87c561e48a32feaeb448a8a2499489c33e6fdbb27b3",
+          "sourceTitleSha256": "8a0203909097aa392bc984fc40733295b9357325584456a39578d1322b35da89"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "丹生川上神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "丹生川上神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435783",
+      "title": "Niukawakami Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.8042686412283679,
+        "y": 0.2418127848588703
+      },
+      "sourceLocationId": 435783
+    },
+    {
+      "directPopupOrdinal": 7,
+      "popupEvent": 12,
+      "representativeTimeSeconds": 102.133,
+      "observedLabelZh": "住吉神社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent vision models directly transcribed the same popup title; deterministic normalized label equality matched the expected catalog candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 102.133,
+          "popupSha256": "677b2d4f7e681728fe4f13a3cf2e61c95106c6ec8218aebb0a02aceef7312259",
+          "sourcePopupSha256": "ec93d610752560525807824fc9a871d65a20b2adc161cedae928bd407774c0ac",
+          "sourceTitleSha256": "e5a70093114c995a8e8517dbeee347816cd7b30c28ac5b806f983649da600b78"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "住吉神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "住吉神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
+      "status": "confirmed",
+      "locationId": "location-mapgenie-434532",
+      "title": "Sumiyoshi Shrine",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.3677235530116198,
+        "y": 0.2481869687856497
+      },
+      "sourceLocationId": 434532
+    },
+    {
+      "directPopupOrdinal": 8,
+      "popupEvent": 14,
+      "representativeTimeSeconds": 115.467,
+      "observedLabelZh": "大神神社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent vision models directly transcribed the same popup title; deterministic normalized label equality matched the expected catalog candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 115.467,
+          "popupSha256": "570b61bc1fd0a402a91146b15fa781be45accc4f1f37c03f1894dcb446f44c62",
+          "sourcePopupSha256": "b365de0eb0ba4d3f1ab4ecd363d784e627ae86ebd1308f042a30c901846a81db",
+          "sourceTitleSha256": "d2f40bba6cce9cfcfbf287fe6c92565e33af51c026ad9ff5fa95a0ae03d980dc"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "大神神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "大神神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
+      "status": "confirmed",
+      "locationId": "location-mapgenie-435742",
+      "title": "Omiwa Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.683671741429812,
+        "y": 0.33366282022865384
+      },
+      "sourceLocationId": 435742
+    }
+  ],
   "unresolved": [
     {
-      "videoPosition": 1,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 1,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 1.804,
-          "sha256": "68dfac6115a791ecf07e0f7a4ace90c05abf99c20559fc03f62634b524fc1e4f"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 8.219,
-          "sha256": "2eb1d738eb5bf87f0c9f1037d883a73fe72175549681559d0a23e0d57835c361"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 5.011,
-          "sha256": "7b6a68afd1bd4bf6acde2c99dac216a6eb22a683589c39ed04400d3db2ad6314"
-        }
-      ]
+      "directPopupOrdinal": 9,
+      "popupEvent": 15,
+      "locationId": "location-mapgenie-437898",
+      "title": "Kasugataisha Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 2,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 2,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 11.827,
-          "sha256": "d1a5fb5bf4f1442071bc4c4e28430a81cacdbc4969700095f23c299b0d79d1f5"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 18.243,
-          "sha256": "fcc33ed24b22718146f2d72b922c396c64bf4306627bee2c1267df35d02257c0"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 15.035,
-          "sha256": "4e08244c063883fe5da9617e3d79af91eba9f6a1b0c703aa7cb9dfc23c935a24"
-        }
-      ]
+      "directPopupOrdinal": 10,
+      "popupEvent": 16,
+      "locationId": "location-mapgenie-438333",
+      "title": "Hinode Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 3,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 3,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 21.851,
-          "sha256": "1d16f1947beb188a80c409cc8691539cc204f78c7d18d11ea615d437fa2b9325"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 28.266,
-          "sha256": "a469631dded09b995fe401ba26bcc8a9f61eeeec78321d4ff331828797a6f9c5"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 25.059,
-          "sha256": "12d7ab9b77c5e07afa483a074f0e52c314ad77f5ce2866b6de14a36e1de96343"
-        }
-      ]
+      "directPopupOrdinal": 11,
+      "popupEvent": 18,
+      "locationId": "location-mapgenie-434406",
+      "title": "Kasuga Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 4,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 4,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 31.874,
-          "sha256": "adacb9f10d7776d68e88b124d1d56a23d59a7582f8d504b604a01cb4ca1c8f07"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 38.29,
-          "sha256": "e2b37fbfa1c9579db9e51b9cb6a2019fe09513b52aebfe1c4833fbd9eaa36847"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 35.082,
-          "sha256": "953662e4e7bdde1073dec7dde4dd1387786f3efe9e4075175cdaf5639a84eb4a"
-        }
-      ]
+      "directPopupOrdinal": 12,
+      "popupEvent": 19,
+      "locationId": "location-mapgenie-434366",
+      "title": "Aekuni Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 5,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 5,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 41.898,
-          "sha256": "2efed816143bdce0e9c3b22d35cab2a4e3642273c8da78993984c6c1a2c83290"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 48.313,
-          "sha256": "61b8854c6cd87c0b5b5742cc41cde7331e3283d3aed75650dc303532bd10deae"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 45.105,
-          "sha256": "dd051b68fb6540b21240bfb42315d2855d0b91c6159f34926596a959c9a17064"
-        }
-      ]
+      "directPopupOrdinal": 13,
+      "popupEvent": 21,
+      "locationId": "location-mapgenie-437835",
+      "title": "Iwashimizu Hachiman Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 6,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 6,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 51.921,
-          "sha256": "3fea38ce859ac9dd6b94d7abef4aff0b559ae0fded1e7d5ae4f23a1b6e4c94f5"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 58.337,
-          "sha256": "64c1dcd2e088028a515a47317d89adbdd0269f7abcd75e365025f5a9a3f1d182"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 55.129,
-          "sha256": "480823466ac38acbce113d0f1aa3ba96ac6cbe4f0fc6ee314a165234ddffa1f0"
-        }
-      ]
+      "directPopupOrdinal": 14,
+      "popupEvent": 23,
+      "locationId": "location-mapgenie-435872",
+      "title": "Nagahama Hachimangu Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 7,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 7,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 61.945,
-          "sha256": "0433d8c5c142555e9a7a8c86f84550a05eee98e80ed810d3b5951f03e74bfe29"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 68.36,
-          "sha256": "9efe34b4f7d261089efad66981dc7eb7aaba3087ac13dd5b75c606659fda28ad"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 65.153,
-          "sha256": "ba94507cd13dd2cb510c268bac1885f7cd84aa18ceeade9f395546887ed7b472"
-        }
-      ]
+      "directPopupOrdinal": 15,
+      "popupEvent": 25,
+      "locationId": "location-mapgenie-434692",
+      "title": "Nishinomiya Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 8,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 8,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 71.968,
-          "sha256": "5b02b1ee4a5170eb24214dfbe0d9928a2eeac48b3d62ce668dfa2beda013cbd3"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 78.384,
-          "sha256": "088a464c43a37bf4176dafe38b0d6430bd73b05a11b507a564fe2d484dc0558d"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 75.176,
-          "sha256": "998092ad4dbbf50eaeb3681e132fac27f9958ab7102b4963ae9bf9a9d010b17a"
-        }
-      ]
+      "directPopupOrdinal": 16,
+      "popupEvent": 27,
+      "locationId": "location-mapgenie-437384",
+      "title": "Takasago Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 9,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 9,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 81.992,
-          "sha256": "4e4de66f3e5a32c27c8ab9526711cf26a61c0da44ea718081d8988f19827e4d3"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 88.407,
-          "sha256": "1bddb26884b0ec5cd4bd1ab601342cd2124e3b31722c8cec7b46a908aaaaa422"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 85.2,
-          "sha256": "c781e845c22e5a14bda525bd95159b6a4ef825fd17300bc2ebf7a7e46338ef93"
-        }
-      ]
+      "directPopupOrdinal": 17,
+      "popupEvent": 28,
+      "locationId": "location-mapgenie-434986",
+      "title": "Ishinohoden Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 10,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 10,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 92.015,
-          "sha256": "c50ae6ae3f9f1e2b96a4f3c909362238313ce46b1e3eb4df1544990b1759a220"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 98.43,
-          "sha256": "03879d2d7837a16bcd5a48e3faab133767e2fca15f1b8eb8d6a67bfe59f31d82"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 95.222,
-          "sha256": "283e81c84ea113811088946ae42522556b3105790411482d3ae033b8b0acb8e1"
-        }
-      ]
+      "directPopupOrdinal": 18,
+      "popupEvent": 29,
+      "locationId": "location-mapgenie-434988",
+      "title": "Itatehyozu Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 11,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 11,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 102.038,
-          "sha256": "ac71d13e5adea42e657602e4af04802e218426cebca3dc6ddcc218f7a0ea2d8b"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 108.454,
-          "sha256": "076b9967c2917dc0b8fc23191d1506535357d07e743582a577aef89ac4c6088e"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 105.246,
-          "sha256": "ee9d83f54272b33ff12104b8177136ef71efa2415d5778e5e95cad9515419f06"
-        }
-      ]
+      "directPopupOrdinal": 19,
+      "popupEvent": 31,
+      "locationId": "location-mapgenie-437663",
+      "title": "Kaya Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 12,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 12,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 112.062,
-          "sha256": "9be4855ce8f0198bf52a3e536ad75621fdee0593cba57d82d8bd16e42eae0867"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 118.477,
-          "sha256": "702d646f7658d6eb7c489d2ba59f174053ade52f4d026aa8f43ba34b12dfe6c4"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 115.269,
-          "sha256": "e74e9e2ae92c0cdc5668591fa61d285350a1622c3d45f265f19acf204e2be87b"
-        }
-      ]
+      "directPopupOrdinal": 20,
+      "popupEvent": 33,
+      "locationId": "location-mapgenie-438225",
+      "title": "Atago Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 13,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 13,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 122.085,
-          "sha256": "504401911bd25b608178880e62e1ef4145cb902953593143fbf4074bf169a1ff"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 128.501,
-          "sha256": "1dab09e8194ee3e92a25f66ae4972fe297525cc244c27fa3066f2c5694c5e4e6"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 125.293,
-          "sha256": "5f029c5431f2cab36e512379fcedc75f456dfa41c75aff12e7acc768ef02717a"
-        }
-      ]
+      "directPopupOrdinal": 21,
+      "popupEvent": 35,
+      "locationId": "location-mapgenie-438198",
+      "title": "Onitake Shrine",
+      "status": "pending-independent-review"
     },
     {
-      "videoPosition": 14,
-      "status": "unresolved",
-      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
-      "modelReviews": [
-        {
-          "slot": 14,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "evidence": [
-        {
-          "role": "early",
-          "timeSeconds": 132.109,
-          "sha256": "9badc632ce0da1ca7382a417cdb012122b6d08de0c6b226778eec733426969b1"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 138.524,
-          "sha256": "9ff7287c7db567571f8b8aeff74bc25d07d5c3bd66dc718c2b32556176f8e6bf"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 135.317,
-          "sha256": "3c7d7c89b028f64ffd9796305443db7552e30c7acd49064a017ba7793454ebec"
-        }
-      ]
+      "directPopupOrdinal": 22,
+      "popupEvent": 37,
+      "locationId": "location-mapgenie-437865",
+      "title": "Gion Shrine",
+      "status": "pending-independent-review"
+    },
+    {
+      "directPopupOrdinal": 23,
+      "popupEvent": 38,
+      "locationId": "location-mapgenie-438281",
+      "title": "Kamigamo Shrine",
+      "status": "pending-independent-review"
+    },
+    {
+      "directPopupOrdinal": 24,
+      "popupEvent": 40,
+      "locationId": "location-mapgenie-437262",
+      "title": "Shirahige Shrine",
+      "status": "pending-independent-review"
+    },
+    {
+      "directPopupOrdinal": 25,
+      "popupEvent": 42,
+      "locationId": "location-mapgenie-435994",
+      "title": "Wakasahiko Shrine",
+      "status": "pending-independent-review"
+    },
+    {
+      "directPopupOrdinal": 26,
+      "popupEvent": 44,
+      "locationId": "location-mapgenie-437096",
+      "title": "Jogu Shrine",
+      "status": "pending-independent-review"
+    },
+    {
+      "locationId": "location-mapgenie-438414",
+      "title": "Tokei Shrine",
+      "status": "blocked-pending-independent-resolution",
+      "reason": "direct pairwise geometry review did not reach two-model consensus"
     }
-  ],
-  "reviews": [
-    {
-      "slot": 1,
-      "modelReviews": [
-        {
-          "slot": 1,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 1.804,
-          "sha256": "68dfac6115a791ecf07e0f7a4ace90c05abf99c20559fc03f62634b524fc1e4f"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 8.219,
-          "sha256": "2eb1d738eb5bf87f0c9f1037d883a73fe72175549681559d0a23e0d57835c361"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 5.011,
-          "sha256": "7b6a68afd1bd4bf6acde2c99dac216a6eb22a683589c39ed04400d3db2ad6314"
-        }
-      ]
-    },
-    {
-      "slot": 2,
-      "modelReviews": [
-        {
-          "slot": 2,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 11.827,
-          "sha256": "d1a5fb5bf4f1442071bc4c4e28430a81cacdbc4969700095f23c299b0d79d1f5"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 18.243,
-          "sha256": "fcc33ed24b22718146f2d72b922c396c64bf4306627bee2c1267df35d02257c0"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 15.035,
-          "sha256": "4e08244c063883fe5da9617e3d79af91eba9f6a1b0c703aa7cb9dfc23c935a24"
-        }
-      ]
-    },
-    {
-      "slot": 3,
-      "modelReviews": [
-        {
-          "slot": 3,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 21.851,
-          "sha256": "1d16f1947beb188a80c409cc8691539cc204f78c7d18d11ea615d437fa2b9325"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 28.266,
-          "sha256": "a469631dded09b995fe401ba26bcc8a9f61eeeec78321d4ff331828797a6f9c5"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 25.059,
-          "sha256": "12d7ab9b77c5e07afa483a074f0e52c314ad77f5ce2866b6de14a36e1de96343"
-        }
-      ]
-    },
-    {
-      "slot": 4,
-      "modelReviews": [
-        {
-          "slot": 4,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 31.874,
-          "sha256": "adacb9f10d7776d68e88b124d1d56a23d59a7582f8d504b604a01cb4ca1c8f07"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 38.29,
-          "sha256": "e2b37fbfa1c9579db9e51b9cb6a2019fe09513b52aebfe1c4833fbd9eaa36847"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 35.082,
-          "sha256": "953662e4e7bdde1073dec7dde4dd1387786f3efe9e4075175cdaf5639a84eb4a"
-        }
-      ]
-    },
-    {
-      "slot": 5,
-      "modelReviews": [
-        {
-          "slot": 5,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 41.898,
-          "sha256": "2efed816143bdce0e9c3b22d35cab2a4e3642273c8da78993984c6c1a2c83290"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 48.313,
-          "sha256": "61b8854c6cd87c0b5b5742cc41cde7331e3283d3aed75650dc303532bd10deae"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 45.105,
-          "sha256": "dd051b68fb6540b21240bfb42315d2855d0b91c6159f34926596a959c9a17064"
-        }
-      ]
-    },
-    {
-      "slot": 6,
-      "modelReviews": [
-        {
-          "slot": 6,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 51.921,
-          "sha256": "3fea38ce859ac9dd6b94d7abef4aff0b559ae0fded1e7d5ae4f23a1b6e4c94f5"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 58.337,
-          "sha256": "64c1dcd2e088028a515a47317d89adbdd0269f7abcd75e365025f5a9a3f1d182"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 55.129,
-          "sha256": "480823466ac38acbce113d0f1aa3ba96ac6cbe4f0fc6ee314a165234ddffa1f0"
-        }
-      ]
-    },
-    {
-      "slot": 7,
-      "modelReviews": [
-        {
-          "slot": 7,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 61.945,
-          "sha256": "0433d8c5c142555e9a7a8c86f84550a05eee98e80ed810d3b5951f03e74bfe29"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 68.36,
-          "sha256": "9efe34b4f7d261089efad66981dc7eb7aaba3087ac13dd5b75c606659fda28ad"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 65.153,
-          "sha256": "ba94507cd13dd2cb510c268bac1885f7cd84aa18ceeade9f395546887ed7b472"
-        }
-      ]
-    },
-    {
-      "slot": 8,
-      "modelReviews": [
-        {
-          "slot": 8,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 71.968,
-          "sha256": "5b02b1ee4a5170eb24214dfbe0d9928a2eeac48b3d62ce668dfa2beda013cbd3"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 78.384,
-          "sha256": "088a464c43a37bf4176dafe38b0d6430bd73b05a11b507a564fe2d484dc0558d"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 75.176,
-          "sha256": "998092ad4dbbf50eaeb3681e132fac27f9958ab7102b4963ae9bf9a9d010b17a"
-        }
-      ]
-    },
-    {
-      "slot": 9,
-      "modelReviews": [
-        {
-          "slot": 9,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 81.992,
-          "sha256": "4e4de66f3e5a32c27c8ab9526711cf26a61c0da44ea718081d8988f19827e4d3"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 88.407,
-          "sha256": "1bddb26884b0ec5cd4bd1ab601342cd2124e3b31722c8cec7b46a908aaaaa422"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 85.2,
-          "sha256": "c781e845c22e5a14bda525bd95159b6a4ef825fd17300bc2ebf7a7e46338ef93"
-        }
-      ]
-    },
-    {
-      "slot": 10,
-      "modelReviews": [
-        {
-          "slot": 10,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 92.015,
-          "sha256": "c50ae6ae3f9f1e2b96a4f3c909362238313ce46b1e3eb4df1544990b1759a220"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 98.43,
-          "sha256": "03879d2d7837a16bcd5a48e3faab133767e2fca15f1b8eb8d6a67bfe59f31d82"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 95.222,
-          "sha256": "283e81c84ea113811088946ae42522556b3105790411482d3ae033b8b0acb8e1"
-        }
-      ]
-    },
-    {
-      "slot": 11,
-      "modelReviews": [
-        {
-          "slot": 11,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 102.038,
-          "sha256": "ac71d13e5adea42e657602e4af04802e218426cebca3dc6ddcc218f7a0ea2d8b"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 108.454,
-          "sha256": "076b9967c2917dc0b8fc23191d1506535357d07e743582a577aef89ac4c6088e"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 105.246,
-          "sha256": "ee9d83f54272b33ff12104b8177136ef71efa2415d5778e5e95cad9515419f06"
-        }
-      ]
-    },
-    {
-      "slot": 12,
-      "modelReviews": [
-        {
-          "slot": 12,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 112.062,
-          "sha256": "9be4855ce8f0198bf52a3e536ad75621fdee0593cba57d82d8bd16e42eae0867"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 118.477,
-          "sha256": "702d646f7658d6eb7c489d2ba59f174053ade52f4d026aa8f43ba34b12dfe6c4"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 115.269,
-          "sha256": "e74e9e2ae92c0cdc5668591fa61d285350a1622c3d45f265f19acf204e2be87b"
-        }
-      ]
-    },
-    {
-      "slot": 13,
-      "modelReviews": [
-        {
-          "slot": 13,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 122.085,
-          "sha256": "504401911bd25b608178880e62e1ef4145cb902953593143fbf4074bf169a1ff"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 128.501,
-          "sha256": "1dab09e8194ee3e92a25f66ae4972fe297525cc244c27fa3066f2c5694c5e4e6"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 125.293,
-          "sha256": "5f029c5431f2cab36e512379fcedc75f456dfa41c75aff12e7acc768ef02717a"
-        }
-      ]
-    },
-    {
-      "slot": 14,
-      "modelReviews": [
-        {
-          "slot": 14,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三福神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 1.0,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
-        }
-      ],
-      "modelErrors": [
-        {
-          "model": "openai/gpt-4.1",
-          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-        }
-      ],
-      "consensusLocationId": null,
-      "consensusPassed": false,
-      "frames": [
-        {
-          "role": "early",
-          "timeSeconds": 132.109,
-          "sha256": "9badc632ce0da1ca7382a417cdb012122b6d08de0c6b226778eec733426969b1"
-        },
-        {
-          "role": "late",
-          "timeSeconds": 138.524,
-          "sha256": "9ff7287c7db567571f8b8aeff74bc25d07d5c3bd66dc718c2b32556176f8e6bf"
-        },
-        {
-          "role": "middle",
-          "timeSeconds": 135.317,
-          "sha256": "3c7d7c89b028f64ffd9796305443db7552e30c7acd49064a017ba7793454ebec"
-        }
-      ]
-    }
-  ],
-  "modelErrors": [
-    {
-      "model": "openai/gpt-4.1",
-      "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-    }
-  ],
-  "privacy": {
-    "repositoryContainsPixels": false,
-    "persistedEvidence": "timestamps, SHA-256 hashes, visible text, model decisions and existing Atlas coordinates only"
-  }
+  ]
 }

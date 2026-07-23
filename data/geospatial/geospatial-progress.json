@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "generatedAt": "2026-07-23T00:55:16.994277Z",
+  "generatedAt": "2026-07-23T09:49:23.919049Z",
   "status": "phase1-in-progress",
   "phase1": {
     "targetConfirmedAnchors": 50,
-    "confirmedAnchors": 36,
-    "remainingToTarget": 14,
-    "progressPercent": 72.0,
+    "confirmedAnchors": 44,
+    "remainingToTarget": 6,
+    "progressPercent": 88.0,
     "nextSource": "不再犹豫的达达猪·神社全收集（27个位置）"
   },
   "globalCoverage": {
     "totalLocations": 3430,
-    "confirmedAnchorLocations": 36,
-    "locationCoveragePercent": 1.0496,
+    "confirmedAnchorLocations": 44,
+    "locationCoveragePercent": 1.2828,
     "noteZhCN": "该比例只表示3430个点位中已有直接地理锚点的数量，不等同于最终底图整体完成度。"
   },
   "stageGates": {
@@ -24,7 +24,7 @@
     },
     "confirmedGeospatialAnchors": {
       "status": "in_progress",
-      "count": 36
+      "count": 44
     },
     "finalOriginalUltraHdBase": {
       "status": "not_started"
@@ -50,8 +50,8 @@
     {
       "id": "dada-shrines-27-batch01",
       "path": "data/geospatial/dada-shrines-27-anchors-batch01.json",
-      "exists": false,
-      "confirmedAnchors": 0,
+      "exists": true,
+      "confirmedAnchors": 8,
       "required": false
     }
   ],
@@ -61,13 +61,13 @@
   },
   "anchorsByRegion": {
     "HARIMA": 4,
-    "IZUMI SETTSU": 3,
-    "KII": 6,
+    "IZUMI SETTSU": 4,
+    "KII": 11,
     "OMI": 6,
     "TAMBA": 2,
     "WAKASA": 2,
     "YAMASHIRO": 10,
-    "YAMATO": 3
+    "YAMATO": 5
   },
   "anchors": [
     {
@@ -161,6 +161,21 @@
       "resolutionMethod": "reviewed-visual-evidence"
     },
     {
+      "locationId": "location-mapgenie-434532",
+      "title": "Sumiyoshi Shrine",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.3677235530116198,
+        "y": 0.2481869687856497
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
       "locationId": "location-mapgenie-434396",
       "title": "Tennoji Temple",
       "regionId": "region-3147-izumi-settsu",
@@ -206,6 +221,21 @@
       "resolutionMethod": "direct-popup"
     },
     {
+      "locationId": "location-mapgenie-436509",
+      "title": "Kamikura Shrine",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.9541811822707411,
+        "y": 0.11381478695007442
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
       "locationId": "location-mapgenie-436455",
       "title": "Kongobuji Temple",
       "regionId": "region-3152-kii",
@@ -236,6 +266,51 @@
       "resolutionMethod": "reviewed-visual-evidence"
     },
     {
+      "locationId": "location-mapgenie-436521",
+      "title": "Kumano Hayatama Taisha",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.9597505634584845,
+        "y": 0.13758915803353386
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
+      "locationId": "location-mapgenie-437483",
+      "title": "Kumano Hongu Taisha",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.7749663621957775,
+        "y": 0.12509203374510244
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
+      "locationId": "location-mapgenie-436647",
+      "title": "Kumano Nachi Taisha",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.8616821190684543,
+        "y": 0.06849184295765275
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
       "locationId": "location-mapgenie-437327",
       "title": "Negoroji Temple Grounds",
       "regionId": "region-3152-kii",
@@ -264,6 +339,21 @@
       "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
       "sourceVideoPosition": 5,
       "resolutionMethod": "pairwise-spatial-sequence"
+    },
+    {
+      "locationId": "location-mapgenie-437477",
+      "title": "Takahara Kumano Shrine",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.6703544142210421,
+        "y": 0.07009538296927205
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
     },
     {
       "locationId": "location-mapgenie-435886",
@@ -581,6 +671,21 @@
       "resolutionMethod": "reviewed-visual-evidence"
     },
     {
+      "locationId": "location-mapgenie-435783",
+      "title": "Niukawakami Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.8042686412283679,
+        "y": 0.2418127848588703
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
       "locationId": "location-mapgenie-435786",
       "title": "Nyoirinji Temple",
       "regionId": "region-3151-yamato",
@@ -594,6 +699,21 @@
       "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
       "sourceVideoPosition": 1,
       "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-435742",
+      "title": "Omiwa Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.683671741429812,
+        "y": 0.33366282022865384
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
     },
     {
       "locationId": "location-mapgenie-437901",
