@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T09:47:02.884886Z",
+  "status": "promotion-complete",
+  "stage": "shrine-direct-review-batch01-to-canonical-anchor-set",
+  "counts": {
+    "promoted": 8,
+    "remaining": 19,
+    "templeAnchorsCompared": 36,
+    "duplicateLocationIds": 0,
+    "duplicateCoordinates": 0
+  },
+  "minimumPromotedConfidence": 0.95,
+  "promotedLocationIds": [
+    "location-mapgenie-434532",
+    "location-mapgenie-435742",
+    "location-mapgenie-435783",
+    "location-mapgenie-436509",
+    "location-mapgenie-436521",
+    "location-mapgenie-436647",
+    "location-mapgenie-437477",
+    "location-mapgenie-437483"
+  ],
+  "safety": {
+    "reviewComplete": true,
+    "twoModelsPerAnchor": true,
+    "minimumConfidenceMet": true,
+    "candidateStageLocationCoordinatesMatch": true,
+    "canonicalLocationCoordinatesMatch": true,
+    "noTempleLocationOverlap": true,
+    "noTempleCoordinateOverlap": true,
+    "uniqueShrineLocations": true,
+    "uniqueShrineCoordinates": true,
+    "repositoryContainsNoPixels": true
+  }
+}
