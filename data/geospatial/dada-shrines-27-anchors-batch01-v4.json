@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "reviewStrategyVersion": 2,
-  "generatedAt": "2026-07-23T02:10:27.461546Z",
+  "generatedAt": "2026-07-23T02:12:44.746814Z",
   "stage": "shrine-anchor-batch01-high-resolution-event-batches",
   "status": "partial-reviewer-pools",
   "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
@@ -20,9 +20,9 @@
     "candidateShrines": 32,
     "successfulReviewerPools": 1,
     "failedReviewerPools": 1,
-    "requestedBatchCallsThisRun": 4,
-    "reusedBatchCallsThisRun": 6,
-    "persistedBatchPackets": 8,
+    "requestedBatchCallsThisRun": 3,
+    "reusedBatchCallsThisRun": 8,
+    "persistedBatchPackets": 9,
     "duplicateCandidateIdsRejected": 0
   },
   "policy": {
@@ -214,7 +214,7 @@
           "reasonZhCN": "从E14事件的代表帧中弹窗直接读取到神社名称“春日神社”和区域“伊贺”"
         }
       ],
-      "selectedAt": "2026-07-23T02:10:06.305345Z"
+      "selectedAt": "2026-07-23T02:12:35.144419Z"
     }
   ],
   "batchPackets": [
@@ -577,6 +577,52 @@
           "reasonZhCN": "从E09的图中直接读取到上賀茂神社的文字"
         }
       ]
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        10,
+        11,
+        12
+      ],
+      "reviewedAt": "2026-07-23T02:12:42.018244Z",
+      "source": "fresh-high-resolution-event-batch",
+      "reviews": [
+        {
+          "slot": 10,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-436509",
+          "visibleLabel": "天王寺塔",
+          "regionClue": "AWAJI",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E10的图中直接读取到地点名称"
+        },
+        {
+          "slot": 11,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-436521",
+          "visibleLabel": "兴福寺五重塔",
+          "regionClue": "KII",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E12的图中直接读取到地点名称"
+        },
+        {
+          "slot": 12,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.5,
+          "reasonZhCN": "E11的图中无法清楚读取地点名称"
+        }
+      ]
     }
   ],
   "requestedBatchCallsThisRun": [
@@ -593,27 +639,17 @@
       "reviewerPool": "vision-reviewer",
       "model": "openai/gpt-4o-mini",
       "slots": [
-        4,
-        5,
-        6
-      ]
-    },
-    {
-      "reviewerPool": "vision-reviewer",
-      "model": "openai/gpt-4o-mini",
-      "slots": [
-        7,
-        8,
-        9
-      ]
-    },
-    {
-      "reviewerPool": "vision-reviewer",
-      "model": "openai/gpt-4o-mini",
-      "slots": [
         10,
         11,
         12
+      ]
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        13,
+        14
       ]
     }
   ],
@@ -670,6 +706,24 @@
         2,
         3
       ]
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        7,
+        8,
+        9
+      ]
     }
   ],
   "errors": [
@@ -687,11 +741,10 @@
       "reviewerPool": "vision-reviewer",
       "model": "openai/gpt-4o-mini",
       "slots": [
-        10,
-        11,
-        12
+        13,
+        14
       ],
-      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
     }
   ],
   "duplicateCandidateIdsRejected": [],
@@ -729,11 +782,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -786,11 +838,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -843,11 +894,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -900,11 +950,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -957,11 +1006,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1015,11 +1063,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1072,11 +1119,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1130,11 +1176,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1187,11 +1232,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1244,11 +1288,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1301,11 +1344,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1358,11 +1400,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1415,11 +1456,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1472,11 +1512,10 @@
           "reviewerPool": "vision-reviewer",
           "model": "openai/gpt-4o-mini",
           "slots": [
-            10,
-            11,
-            12
+            13,
+            14
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [

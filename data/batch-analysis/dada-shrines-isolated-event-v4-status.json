@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "status": "partial-reviewer-pools",
   "stage": "scene-aware-isolated-one-frame-event-review-v4",
-  "generatedAt": "2026-07-23T02:10:27.515182Z",
+  "generatedAt": "2026-07-23T02:12:44.815205Z",
   "promotionStatus": "not-promoted-to-canonical",
   "counts": {
     "segments": 27,
@@ -11,9 +11,9 @@
     "confirmedAnchors": 0,
     "successfulReviewerPools": 1,
     "failedReviewerPools": 1,
-    "requestedBatchCallsThisRun": 4,
-    "reusedBatchCallsThisRun": 6,
-    "persistedBatchPackets": 8
+    "requestedBatchCallsThisRun": 3,
+    "reusedBatchCallsThisRun": 8,
+    "persistedBatchPackets": 9
   },
   "requestShape": {
     "eventsPerRequest": 3,
@@ -40,11 +40,10 @@
       "reviewerPool": "vision-reviewer",
       "model": "openai/gpt-4o-mini",
       "slots": [
-        10,
-        11,
-        12
+        13,
+        14
       ],
-      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[10, 11, 12]: HTTP Error 429: Too Many Requests"
+      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
     }
   ],
   "canonicalProtection": {
