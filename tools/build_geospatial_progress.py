@@ -20,6 +20,8 @@ TEMPLE_ANCHORS_PATH = ROOT / "data/geospatial/dada-temples-36-anchors-final.json
 SHRINE_BATCH_PATH = ROOT / "data/geospatial/dada-shrines-27-anchors-batch01.json"
 OUTPUT_PATH = ROOT / "data/geospatial/geospatial-progress.json"
 TEMPLE_JOB_PATH = ROOT / "data/analysis-jobs/dada-temples-36-geospatial.json"
+TEMPLE_EXTERNAL_SOURCE_ID = "bili-dada-acshadows-03"
+SHRINE_EXTERNAL_SOURCE_ID = "bili-dada-acshadows-02"
 
 
 def load(path: Path, default: Any = None) -> Any:
@@ -63,6 +65,13 @@ def confirmed_rows(document: dict[str, Any] | None, source_name: str, path: Path
             "resolutionMethod": row.get("resolutionMethod") or "reviewed-visual-evidence",
         })
     return rows
+
+
+def source_matches(item: dict[str, Any], external_source_id: str, canonical_result_path: str) -> bool:
+    return (
+        str(item.get("externalSourceId") or "") == external_source_id
+        or str(item.get("resultPath") or "") == canonical_result_path
+    )
 
 
 def main() -> int:
@@ -121,16 +130,15 @@ def main() -> int:
     shrine_index_matches = 0
     shrine_anchor_count = len(registered_sets[1]["rows"])
     for item in analysis_index.get("items", []):
-        result_path = item.get("resultPath")
         pipeline = item.setdefault("pipeline", {})
-        if result_path == "data/analysis-results/dada-temples-36.json":
+        if source_matches(item, TEMPLE_EXTERNAL_SOURCE_ID, "data/analysis-results/dada-temples-36.json"):
             pipeline["geospatialAnchoringCompleted"] = True
             pipeline["geospatialAnchorCount"] = 36
             pipeline["geospatialAnchorTargetCount"] = 36
             pipeline["geospatialAnchorSet"] = "data/geospatial/dada-temples-36-anchors-final.json"
             pipeline["geospatialAnchoringUpdatedAt"] = timestamp
             temple_index_matches += 1
-        elif result_path == "data/analysis-results/dada-02.json":
+        elif source_matches(item, SHRINE_EXTERNAL_SOURCE_ID, "data/analysis-results/dada-02.json"):
             pipeline["geospatialAnchoringCompleted"] = shrine_anchor_count == 27
             pipeline["geospatialAnchorCount"] = shrine_anchor_count
             pipeline["geospatialAnchorTargetCount"] = 27
@@ -140,10 +148,10 @@ def main() -> int:
             )
             pipeline["geospatialAnchoringUpdatedAt"] = timestamp
             shrine_index_matches += 1
-    if temple_index_matches != 1:
-        raise RuntimeError(f"Expected one temple analysis-index item, found {temple_index_matches}")
-    if shrine_index_matches != 1:
-        raise RuntimeError(f"Expected one shrine analysis-index item, found {shrine_index_matches}")
+    if temple_index_matches < 1:
+        raise RuntimeError("No temple analysis-index item matched the stable external source ID")
+    if shrine_index_matches < 1:
+        raise RuntimeError("No shrine analysis-index item matched the stable external source ID")
     analysis_index["updatedAt"] = timestamp
     write(ANALYSIS_INDEX_PATH, analysis_index)
 
@@ -198,6 +206,10 @@ def main() -> int:
             "physicalDeviceVerification": {"status": "pending_final_base"},
         },
         "sources": source_summaries,
+        "analysisIndexMatches": {
+            "temple": temple_index_matches,
+            "shrine": shrine_index_matches,
+        },
         "anchorsByRegion": dict(sorted(by_region.items())),
         "anchors": confirmed,
         "safety": {
@@ -217,6 +229,7 @@ def main() -> int:
         "phase1Percent": payload["phase1"]["progressPercent"],
         "globalLocationCoveragePercent": payload["globalCoverage"]["locationCoveragePercent"],
         "shrineAnchors": shrine_anchor_count,
+        "analysisIndexMatches": payload["analysisIndexMatches"],
     }, ensure_ascii=False))
     return 0
 
