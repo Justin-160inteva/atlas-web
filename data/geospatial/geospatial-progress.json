@@ -1,0 +1,621 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "generatedAt": "2026-07-23T00:55:16.994277Z",
+  "status": "phase1-in-progress",
+  "phase1": {
+    "targetConfirmedAnchors": 50,
+    "confirmedAnchors": 36,
+    "remainingToTarget": 14,
+    "progressPercent": 72.0,
+    "nextSource": "不再犹豫的达达猪·神社全收集（27个位置）"
+  },
+  "globalCoverage": {
+    "totalLocations": 3430,
+    "confirmedAnchorLocations": 36,
+    "locationCoveragePercent": 1.0496,
+    "noteZhCN": "该比例只表示3430个点位中已有直接地理锚点的数量，不等同于最终底图整体完成度。"
+  },
+  "stageGates": {
+    "authorizedVideoAnalysis": {
+      "status": "complete",
+      "elevenSeries": "80/80",
+      "dadaCatalog": "23/23"
+    },
+    "confirmedGeospatialAnchors": {
+      "status": "in_progress",
+      "count": 36
+    },
+    "finalOriginalUltraHdBase": {
+      "status": "not_started"
+    },
+    "coordinateAndOverlayCalibration": {
+      "status": "in_progress"
+    },
+    "responsiveCompatibilityValidation": {
+      "status": "pending_final_base"
+    },
+    "physicalDeviceVerification": {
+      "status": "pending_final_base"
+    }
+  },
+  "sources": [
+    {
+      "id": "dada-temples-36-final",
+      "path": "data/geospatial/dada-temples-36-anchors-final.json",
+      "exists": true,
+      "confirmedAnchors": 36,
+      "required": true
+    },
+    {
+      "id": "dada-shrines-27-batch01",
+      "path": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "exists": false,
+      "confirmedAnchors": 0,
+      "required": false
+    }
+  ],
+  "analysisIndexMatches": {
+    "temple": 1,
+    "shrine": 1
+  },
+  "anchorsByRegion": {
+    "HARIMA": 4,
+    "IZUMI SETTSU": 3,
+    "KII": 6,
+    "OMI": 6,
+    "TAMBA": 2,
+    "WAKASA": 2,
+    "YAMASHIRO": 10,
+    "YAMATO": 3
+  },
+  "anchors": [
+    {
+      "locationId": "location-mapgenie-437692",
+      "title": "Aga Hontokuji Temple",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.03242485991559547,
+        "y": 0.340236799904092
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 18,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437593",
+      "title": "Kyokaiji Temple",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.28614862179050804,
+        "y": 0.4429996162734424
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 19,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437649",
+      "title": "Mitsunodo Hall",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.08293388814483968,
+        "y": 0.4345237450128953
+      },
+      "confidence": 0.98,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 17,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437563",
+      "title": "Tanjosan Myoyoji Temple",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.31494259495709565,
+        "y": 0.377046362874794
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 20,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-434575",
+      "title": "Gansenji Temple",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.32905018890290694,
+        "y": 0.20318994873057825
+      },
+      "confidence": 0.98,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 7,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-434352",
+      "title": "Makinoodera Temple",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.4523928963629584,
+        "y": 0.22308044192946913
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 9,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-434396",
+      "title": "Tennoji Temple",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.41326186880938465,
+        "y": 0.2600484327482181
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 10,
+      "resolutionMethod": "direct-popup"
+    },
+    {
+      "locationId": "location-mapgenie-437468",
+      "title": "Dojoji Temple",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.43493684909684427,
+        "y": 0.045493858770252665
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 6,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-436436",
+      "title": "Jison-in",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.5136262942272466,
+        "y": 0.12626085067470377
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 4,
+      "resolutionMethod": "direct-popup"
+    },
+    {
+      "locationId": "location-mapgenie-436455",
+      "title": "Kongobuji Temple",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.6460391324830552,
+        "y": 0.12899936596177894
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 2,
+      "resolutionMethod": "direct-popup"
+    },
+    {
+      "locationId": "location-mapgenie-436442",
+      "title": "Koyasan Danjo Garan",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.6219051911595341,
+        "y": 0.12017897845444545
+      },
+      "confidence": 0.98,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 3,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437327",
+      "title": "Negoroji Temple Grounds",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.44793750738488863,
+        "y": 0.17048022129208368
+      },
+      "confidence": 0.94,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 8,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-436387",
+      "title": "Saika Temple Grounds",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.35266401688087,
+        "y": 0.0874796558963375
+      },
+      "confidence": 0.94,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 5,
+      "resolutionMethod": "pairwise-spatial-sequence"
+    },
+    {
+      "locationId": "location-mapgenie-435886",
+      "title": "Daikichiji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.9637426733723486,
+        "y": 0.8530512449651859
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 16,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-436781",
+      "title": "Enryakuji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.5373994654141981,
+        "y": 0.6338666648834057
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 29,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-435908",
+      "title": "Hogonji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.8091070270583754,
+        "y": 0.8262108554791456
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 15,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-435820",
+      "title": "Isakiji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.844885067686574,
+        "y": 0.7013996992738424
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 13,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-435055",
+      "title": "Miidera",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.5808598285846504,
+        "y": 0.5613345251664825
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 30,
+      "resolutionMethod": "direct-popup"
+    },
+    {
+      "locationId": "location-mapgenie-436705",
+      "title": "Sokenji Temple",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.8248891896856565,
+        "y": 0.6376887026766942
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 14,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-435078",
+      "title": "Annonji Temple",
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "atlas": {
+        "x": 0.1907882991022417,
+        "y": 0.5331024804986199
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 21,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-438261",
+      "title": "Sukyoji Temple",
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "atlas": {
+        "x": 0.018727370004443758,
+        "y": 0.669736613924803
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 22,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-438274",
+      "title": "Gokurakuji Temple",
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "atlas": {
+        "x": 0.4244034804476575,
+        "y": 0.712306882873084
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 24,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437090",
+      "title": "Saifukuji Temple",
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "atlas": {
+        "x": 0.47095051971997626,
+        "y": 0.9517743587991078
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 23,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437840",
+      "title": "Byodoin Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.5240467794920997,
+        "y": 0.5049248996573004
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 31,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437937",
+      "title": "Ginkakuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.46018441580494396,
+        "y": 0.6115683513535592
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 27,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-434779",
+      "title": "Honnoji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.42290973541828836,
+        "y": 0.5543952769769042
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 35,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-436340",
+      "title": "Kinkakuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.36313407185415186,
+        "y": 0.6175440225077901
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 28,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-435009",
+      "title": "Kiyomizudera Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.4800240114900417,
+        "y": 0.5556913055245005
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 32,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-436354",
+      "title": "Kuramadera Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.3564152512960737,
+        "y": 0.6769113849392722
+      },
+      "confidence": 0.96,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 25,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-434811",
+      "title": "Shokokuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.408649905945848,
+        "y": 0.6102500869482436
+      },
+      "confidence": 0.96,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 26,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437845",
+      "title": "Tenryuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.3629835853789299,
+        "y": 0.555912341033825
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 34,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437825",
+      "title": "Tofukuji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.4483269179591908,
+        "y": 0.5202207586926959
+      },
+      "confidence": 0.98,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 33,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-434774",
+      "title": "Toji Temple",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.42107265828894136,
+        "y": 0.5316641587529491
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 36,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437869",
+      "title": "Kofukuji Temple",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.6670603066017703,
+        "y": 0.36631999776198065
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 12,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-435786",
+      "title": "Nyoirinji Temple",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.8198902201841759,
+        "y": 0.2394874082869948
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 1,
+      "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-437901",
+      "title": "Todaiji Temple",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.6773513413720571,
+        "y": 0.3974926760282593
+      },
+      "confidence": 0.99,
+      "sourceName": "不再犹豫的达达猪·寺庙36处",
+      "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
+      "sourceVideoPosition": 11,
+      "resolutionMethod": "reviewed-visual-evidence"
+    }
+  ],
+  "safety": {
+    "uniqueLocationAssignments": true,
+    "minimumTempleConfidenceMet": true,
+    "minimumShrineConfidenceMet": true,
+    "repositoryContainsNoEvidencePixels": true,
+    "approximateCoordinatesNotInvented": true
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "status": "complete",
+  "stage": "candidate-index-and-temporal-scaffold",
+  "generatedAt": "2026-07-23T00:55:16.898070Z",
+  "checks": {
+    "analysisStatusExact": true,
+    "authorExact": true,
+    "titleExact": true,
+    "bvidExact": true,
+    "claimedShrineCount27": true,
+    "videoNotRetained": true,
+    "framePixelsNotRetained": true,
+    "shrineCategoryExact": true,
+    "mapShrineCountMatchesCategory": true,
+    "temporalSlots27": true,
+    "noAutomaticLocationLinks": true
+  },
+  "counts": {
+    "videoClaimedShrines": 27,
+    "mapShrineCandidates": 32,
+    "temporalSlots": 27,
+    "linkedSlots": 0,
+    "unlinkedSlots": 27
+  },
+  "outputPath": "data/geospatial/dada-shrines-27-stage1.json",
+  "jobPath": "data/analysis-jobs/dada-shrines-27-geospatial.json"
+}

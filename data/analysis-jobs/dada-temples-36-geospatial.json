@@ -1,13 +1,16 @@
 {
   "schemaVersion": 1,
   "jobId": "dada-temples-36-geospatial-v1",
-  "status": "stage1-complete-evidence-pending",
+  "status": "complete",
   "sourceResultPath": "data/analysis-results/dada-temples-36.json",
   "stage1Path": "data/geospatial/dada-temples-36-stage1.json",
   "targetSlotCount": 36,
   "candidateTempleCount": 38,
-  "linkedSlotCount": 0,
+  "linkedSlotCount": 36,
   "pixelPolicy": "transient artifacts only; no video or frame pixels committed to the repository",
-  "nextAction": "extract and review transient map/title evidence for the 36 provisional slots",
-  "updatedAt": "2026-07-19T11:10:27.506157Z"
+  "nextAction": "use confirmed temple anchors in global calibration and continue with shrine batch 01",
+  "updatedAt": "2026-07-23T00:55:16.994277Z",
+  "unlinkedSlotCount": 0,
+  "finalAnchorSetPath": "data/geospatial/dada-temples-36-anchors-final.json",
+  "minimumConfidence": 0.9
 }
