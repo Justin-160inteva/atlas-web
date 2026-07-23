@@ -1,0 +1,344 @@
+name: Dada Shrine Isolated Event Review v4
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/dada-shrines-isolated-event-review-v4.yml'
+      - 'tools/detect_dada_shrine_scene_segments.py'
+      - 'tools/review_dada_shrine_scene_segments_v2.py'
+      - 'tools/apply_shrine_event_payload_patch.py'
+      - 'tools/build_dada_shrines_geospatial_stage1.py'
+      - 'data/geospatial/geospatial-vision-policy.json'
+      - 'data/geospatial/dada-shrines-scene-segmentation-trigger.json'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/dada-shrines-isolated-event-review-v4.yml'
+      - 'tools/detect_dada_shrine_scene_segments.py'
+      - 'tools/review_dada_shrine_scene_segments_v2.py'
+      - 'tools/apply_shrine_event_payload_patch.py'
+      - 'tools/build_dada_shrines_geospatial_stage1.py'
+      - 'data/geospatial/geospatial-vision-policy.json'
+      - 'data/geospatial/dada-shrines-scene-segmentation-trigger.json'
+
+permissions:
+  contents: write
+  models: read
+
+concurrency:
+  group: dada-shrines-isolated-v4-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Check out repository branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Record canonical shrine anchor hash
+        id: canonical
+        run: |
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          path = Path('data/geospatial/dada-shrines-27-anchors-batch01.json')
+          digest = hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else 'absent'
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'sha256={digest}\n')
+          print({'canonicalAnchorSha256': digest})
+          PY
+
+      - name: Apply one-frame event payload patch
+        run: python tools/apply_shrine_event_payload_patch.py
+
+      - name: Compile scene-aware tools
+        run: |
+          python -m py_compile \
+            tools/apply_shrine_event_payload_patch.py \
+            tools/build_dada_shrines_geospatial_stage1.py \
+            tools/detect_dada_shrine_scene_segments.py \
+            tools/review_dada_shrine_scene_segments_v2.py \
+            tools/analyze_authorized_video_v2.py \
+            tools/analyze_authorized_video_v4.py
+
+      - name: Install transient media dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Rebuild shrine candidate index locally
+        run: python tools/build_dada_shrines_geospatial_stage1.py
+
+      - name: Download authorized shrine video transiently
+        id: download
+        run: |
+          rm -rf /tmp/dada-shrine-v4-video /tmp/dada-shrine-v4-evidence /tmp/dada-shrine-v4-publish
+          mkdir -p /tmp/dada-shrine-v4-video /tmp/dada-shrine-v4-evidence /tmp/dada-shrine-v4-publish
+          PYTHONPATH=tools python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import analyze_authorized_video_v4 as resilient
+
+          workdir = Path('/tmp/dada-shrine-v4-video')
+          video_path, attempts = resilient.runner.download_with_fallbacks(
+              'https://www.bilibili.com/video/BV1aFXaYmEDZ/', workdir
+          )
+          (workdir / 'download-attempts.json').write_text(
+              json.dumps(attempts, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          if not video_path.is_file() or video_path.stat().st_size < 1024:
+              raise RuntimeError('resilient downloader produced no usable shrine video')
+          strategy = next(row['strategy'] for row in attempts if row.get('success'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'video_path={video_path.resolve()}\n')
+              handle.write(f'download_strategy={strategy}\n')
+          print(json.dumps({
+              'videoPath': str(video_path),
+              'bytes': video_path.stat().st_size,
+              'strategy': strategy,
+          }, ensure_ascii=False))
+          PY
+
+      - name: Detect 27 scene-aware shrine segments
+        env:
+          VIDEO_PATH: ${{ steps.download.outputs.video_path }}
+        run: |
+          python tools/detect_dada_shrine_scene_segments.py \
+            --video "$VIDEO_PATH" \
+            --output-dir /tmp/dada-shrine-v4-evidence \
+            --run-id '${{ github.run_id }}' \
+            --artifact-name 'dada-shrine-v4-evidence-${{ github.run_id }}' \
+            --segment-count 27 \
+            --sample-interval 0.25 \
+            --boundary-window-fraction 0.42 \
+            --start-slot 1 \
+            --end-slot 14
+
+      - name: Review isolated one-frame event batches
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python tools/review_dada_shrine_scene_segments_v2.py \
+            --evidence-dir /tmp/dada-shrine-v4-evidence \
+            --manifest data/geospatial/dada-shrines-27-scene-evidence-manifest.json \
+            --output data/geospatial/dada-shrines-27-anchors-batch01-v4.json
+
+      - name: Write isolated non-pixel v4 status
+        id: state
+        env:
+          CANONICAL_SHA256: ${{ steps.canonical.outputs.sha256 }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          segmentation = json.loads(
+              Path('data/geospatial/dada-shrines-27-scene-segments.json').read_text(encoding='utf-8')
+          )
+          anchors = json.loads(
+              Path('data/geospatial/dada-shrines-27-anchors-batch01-v4.json').read_text(encoding='utf-8')
+          )
+          canonical_path = Path('data/geospatial/dada-shrines-27-anchors-batch01.json')
+          canonical_after = (
+              hashlib.sha256(canonical_path.read_bytes()).hexdigest()
+              if canonical_path.exists() else 'absent'
+          )
+          complete = (
+              anchors['counts']['successfulReviewerPools'] == 2
+              and anchors['counts']['failedReviewerPools'] == 0
+          )
+          payload = {
+              'schemaVersion': 4,
+              'status': 'complete' if complete else 'partial-reviewer-pools',
+              'stage': 'scene-aware-isolated-one-frame-event-review-v4',
+              'generatedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+              'promotionStatus': 'not-promoted-to-canonical',
+              'counts': {
+                  'segments': segmentation['counts']['segments'],
+                  'boundaries': segmentation['counts']['boundaries'],
+                  'selectedSegments': segmentation['counts']['selectedSegments'],
+                  'confirmedAnchors': anchors['counts']['confirmed'],
+                  'successfulReviewerPools': anchors['counts']['successfulReviewerPools'],
+                  'failedReviewerPools': anchors['counts']['failedReviewerPools'],
+                  'requestedBatchCallsThisRun': anchors['counts']['requestedBatchCallsThisRun'],
+                  'reusedBatchCallsThisRun': anchors['counts']['reusedBatchCallsThisRun'],
+                  'persistedBatchPackets': anchors['counts']['persistedBatchPackets'],
+              },
+              'requestShape': {
+                  'eventsPerRequest': anchors['policy']['eventsPerRequest'],
+                  'framesPerEvent': anchors['policy']['framesPerEvent'],
+              },
+              'minimumSegmentDurationSeconds': segmentation['quality']['minimumSegmentDurationSeconds'],
+              'maximumSegmentDurationSeconds': segmentation['quality']['maximumSegmentDurationSeconds'],
+              'evidenceFingerprint': anchors['evidenceFingerprint'],
+              'selectedReviewerModels': {
+                  packet['reviewerPool']: packet['model']
+                  for packet in anchors['selectedReviewerPools']
+              },
+              'errors': anchors['errors'],
+              'canonicalProtection': {
+                  'beforeSha256': os.environ['CANONICAL_SHA256'],
+                  'afterSha256': canonical_after,
+                  'unchanged': os.environ['CANONICAL_SHA256'] == canonical_after,
+              },
+              'outputs': {
+                  'segments': 'data/geospatial/dada-shrines-27-scene-segments.json',
+                  'manifest': 'data/geospatial/dada-shrines-27-scene-evidence-manifest.json',
+                  'isolatedAnchors': 'data/geospatial/dada-shrines-27-anchors-batch01-v4.json',
+                  'canonicalAnchors': 'data/geospatial/dada-shrines-27-anchors-batch01.json',
+              },
+              'privacy': {
+                  'repositoryContainsPixels': False,
+                  'transientPixelsDeletedBeforeJobExit': True,
+              },
+          }
+          path = Path('data/batch-analysis/dada-shrines-isolated-event-v4-status.json')
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'pools_complete={str(complete).lower()}\n')
+              handle.write(f'confirmed={anchors["counts"]["confirmed"]}\n')
+          print(json.dumps(payload, ensure_ascii=False))
+          PY
+
+      - name: Validate review, canonical isolation and privacy gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          segmentation = json.loads(
+              Path('data/geospatial/dada-shrines-27-scene-segments.json').read_text(encoding='utf-8')
+          )
+          manifest = json.loads(
+              Path('data/geospatial/dada-shrines-27-scene-evidence-manifest.json').read_text(encoding='utf-8')
+          )
+          anchors = json.loads(
+              Path('data/geospatial/dada-shrines-27-anchors-batch01-v4.json').read_text(encoding='utf-8')
+          )
+          status = json.loads(
+              Path('data/batch-analysis/dada-shrines-isolated-event-v4-status.json').read_text(encoding='utf-8')
+          )
+          assert segmentation['status'] == 'complete'
+          assert segmentation['counts']['boundaries'] == 26
+          assert segmentation['counts']['segments'] == 27
+          assert segmentation['counts']['selectedSegments'] == 14
+          assert segmentation['quality']['strictlyIncreasingBoundaries'] is True
+          assert segmentation['quality']['minimumSegmentDurationSeconds'] >= 2.0
+          assert segmentation['quality']['noCoordinatesAssigned'] is True
+          assert manifest['batch'] == {'startSlot': 1, 'endSlot': 14, 'targetSlots': 14}
+          assert manifest['extraction']['frameCount'] == 42
+          assert manifest['extraction']['representativeFrameCount'] == 14
+          assert manifest['privacy']['repositoryContainsPixels'] is False
+          assert anchors['schemaVersion'] == 3
+          assert anchors['reviewStrategyVersion'] == 2
+          assert anchors['counts']['reviewedSlots'] == 14
+          assert anchors['counts']['confirmed'] + anchors['counts']['unresolved'] == 14
+          assert anchors['counts']['successfulReviewerPools'] in {0, 1, 2}
+          assert anchors['counts']['failedReviewerPools'] == 2 - anchors['counts']['successfulReviewerPools']
+          assert anchors['policy']['eventsPerRequest'] == 3
+          assert anchors['policy']['framesPerEvent'] == 1
+          assert len({row['locationId'] for row in anchors['anchors']}) == anchors['counts']['confirmed']
+          assert all(row['confidence'] >= .92 for row in anchors['anchors'])
+          assert all(
+              row['resolutionMethod'] == 'two-pool-high-resolution-scene-event-consensus'
+              for row in anchors['anchors']
+          )
+          assert anchors['privacy']['repositoryContainsPixels'] is False
+          assert status['canonicalProtection']['unchanged'] is True
+          if anchors['counts']['successfulReviewerPools'] < 2:
+              assert anchors['counts']['confirmed'] == 0
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          print(json.dumps({
+              'segmentation': segmentation['counts'],
+              'review': anchors['counts'],
+              'canonicalProtection': status['canonicalProtection'],
+          }, ensure_ascii=False))
+          PY
+
+      - name: Stage non-pixel outputs for artifact and atomic publish
+        run: |
+          rm -rf /tmp/dada-shrine-v4-publish
+          mkdir -p \
+            /tmp/dada-shrine-v4-publish/data/geospatial \
+            /tmp/dada-shrine-v4-publish/data/batch-analysis
+          cp data/geospatial/dada-shrines-27-scene-segments.json \
+            /tmp/dada-shrine-v4-publish/data/geospatial/
+          cp data/geospatial/dada-shrines-27-scene-evidence-manifest.json \
+            /tmp/dada-shrine-v4-publish/data/geospatial/
+          cp data/geospatial/dada-shrines-27-anchors-batch01-v4.json \
+            /tmp/dada-shrine-v4-publish/data/geospatial/
+          cp data/batch-analysis/dada-shrines-isolated-event-v4-status.json \
+            /tmp/dada-shrine-v4-publish/data/batch-analysis/
+          find /tmp/dada-shrine-v4-publish -type f \( -name '*.jpg' -o -name '*.png' -o -name '*.mp4' \) | grep . && exit 1 || true
+
+      - name: Upload one-day non-pixel diagnostic artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-shrine-v4-nonpixel-${{ github.run_id }}
+          path: /tmp/dada-shrine-v4-publish
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
+
+      - name: Atomically publish isolated non-pixel v4 results
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial data/batch-analysis
+            cp /tmp/dada-shrine-v4-publish/data/geospatial/*.json data/geospatial/
+            cp /tmp/dada-shrine-v4-publish/data/batch-analysis/*.json data/batch-analysis/
+            git add \
+              data/geospatial/dada-shrines-27-scene-segments.json \
+              data/geospatial/dada-shrines-27-scene-evidence-manifest.json \
+              data/geospatial/dada-shrines-27-anchors-batch01-v4.json \
+              data/batch-analysis/dada-shrines-isolated-event-v4-status.json
+            if git diff --cached --quiet; then
+              echo 'No isolated non-pixel v4 changes.'
+              exit 0
+            fi
+            git commit -m 'Persist atomic isolated shrine review v4 [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then
+              exit 0
+            fi
+            sleep $((attempt * 5))
+          done
+          exit 1
+
+      - name: Delete all transient video and frame pixels
+        if: always()
+        run: |
+          rm -rf \
+            /tmp/dada-shrine-v4-video \
+            /tmp/dada-shrine-v4-evidence \
+            /tmp/dada-shrine-v4-publish
+          test ! -e /tmp/dada-shrine-v4-video
+          test ! -e /tmp/dada-shrine-v4-evidence
+          test ! -e /tmp/dada-shrine-v4-publish
+          find . -type f \( -name '*.mp4' -o -name '*.webm' -o -name '*.flv' -o -name '*.jpg' \) -not -path './assets/*' -delete
