@@ -1,0 +1,961 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T00:51:42.896826Z",
+  "stage": "candidate-index-and-temporal-scaffold",
+  "status": "ready-for-transient-evidence-extraction",
+  "source": {
+    "analysisResultPath": "data/analysis-results/dada-02.json",
+    "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
+    "bvid": "BV1aFXaYmEDZ",
+    "durationSeconds": 270.633,
+    "authorizationId": "auth-dada-20260718",
+    "videoRetained": false,
+    "framePixelsRetained": false
+  },
+  "counts": {
+    "videoClaimedShrines": 27,
+    "mapShrineCandidates": 32,
+    "temporalSlots": 27,
+    "linkedSlots": 0,
+    "unlinkedSlots": 27
+  },
+  "shrineCategory": {
+    "id": "category-12313-shrine",
+    "title": "Shrine",
+    "reportedLocationCount": 32
+  },
+  "candidateShrines": [
+    {
+      "locationId": "location-mapgenie-479952",
+      "title": "Fukura Hachiman Shrine",
+      "regionId": "region-3304-awaji",
+      "regionTitle": "AWAJI",
+      "atlas": {
+        "x": 0.06936873794696181,
+        "y": 0.1542056830496181
+      },
+      "sourceLocationId": 479952,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-479948",
+      "title": "Izanagi Shrine",
+      "regionId": "region-3304-awaji",
+      "regionTitle": "AWAJI",
+      "atlas": {
+        "x": 0.11650164954023051,
+        "y": 0.2100894286657952
+      },
+      "sourceLocationId": 479948,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-479949",
+      "title": "Sannomiya Shrine",
+      "regionId": "region-3304-awaji",
+      "regionTitle": "AWAJI",
+      "atlas": {
+        "x": 0.09455307417376459,
+        "y": 0.18419089233823494
+      },
+      "sourceLocationId": 479949,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-479945",
+      "title": "Sumoto Hachiman Shrine",
+      "regionId": "region-3304-awaji",
+      "regionTitle": "AWAJI",
+      "atlas": {
+        "x": 0.1225829529444999,
+        "y": 0.17437435623308029
+      },
+      "sourceLocationId": 479945,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-479955",
+      "title": "Yura Minato Shrine",
+      "regionId": "region-3304-awaji",
+      "regionTitle": "AWAJI",
+      "atlas": {
+        "x": 0.14604743811769866,
+        "y": 0.14959379884161447
+      },
+      "sourceLocationId": 479955,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-434986",
+      "title": "Ishinohoden Shrine",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.1478511767865179,
+        "y": 0.3506533364610798
+      },
+      "sourceLocationId": 434986,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-434988",
+      "title": "Itatehyozu Shrine",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.11033645270052654,
+        "y": 0.35644610707250524
+      },
+      "sourceLocationId": 434988,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-437663",
+      "title": "Kaya Shrine",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.07429337436496233,
+        "y": 0.46127926897464866
+      },
+      "sourceLocationId": 437663,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-437384",
+      "title": "Takasago Shrine",
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "atlas": {
+        "x": 0.17177007090513147,
+        "y": 0.3123177607486415
+      },
+      "sourceLocationId": 437384,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-434366",
+      "title": "Aekuni Shrine",
+      "regionId": "region-3145-iga",
+      "regionTitle": "IGA",
+      "atlas": {
+        "x": 0.8147981121570409,
+        "y": 0.4959698485984753
+      },
+      "sourceLocationId": 434366,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-434406",
+      "title": "Kasuga Shrine",
+      "regionId": "region-3145-iga",
+      "regionTitle": "IGA",
+      "atlas": {
+        "x": 0.8239192643456859,
+        "y": 0.5213101711229416
+      },
+      "sourceLocationId": 434406,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-434692",
+      "title": "Nishinomiya Shrine",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.2471894538547761,
+        "y": 0.3214726109400621
+      },
+      "sourceLocationId": 434692,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-434532",
+      "title": "Sumiyoshi Shrine",
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "atlas": {
+        "x": 0.3677235530116198,
+        "y": 0.2481869687856497
+      },
+      "sourceLocationId": 434532,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-436509",
+      "title": "Kamikura Shrine",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.9541811822707411,
+        "y": 0.11381478695007442
+      },
+      "sourceLocationId": 436509,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-436521",
+      "title": "Kumano Hayatama Taisha",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.9597505634584845,
+        "y": 0.13758915803353386
+      },
+      "sourceLocationId": 436521,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-437483",
+      "title": "Kumano Hongu Taisha",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.7749663621957775,
+        "y": 0.12509203374510244
+      },
+      "sourceLocationId": 437483,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-436647",
+      "title": "Kumano Nachi Taisha",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.8616821190684543,
+        "y": 0.06849184295765275
+      },
+      "sourceLocationId": 436647,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-437477",
+      "title": "Takahara Kumano Shrine",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.6703544142210421,
+        "y": 0.07009538296927205
+      },
+      "sourceLocationId": 437477,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-438414",
+      "title": "Tokei Shrine",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.597490422478546,
+        "y": 0.054553336053108734
+      },
+      "sourceLocationId": 438414,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-435872",
+      "title": "Nagahama Hachimangu Shrine",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.907397076900275,
+        "y": 0.8289754576871045
+      },
+      "sourceLocationId": 435872,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-437262",
+      "title": "Shirahige Shrine",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.6957349593727838,
+        "y": 0.7228303333219921
+      },
+      "sourceLocationId": 437262,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-438225",
+      "title": "Atago Shrine",
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "atlas": {
+        "x": 0.2594227174786374,
+        "y": 0.5838458405437389
+      },
+      "sourceLocationId": 438225,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-438198",
+      "title": "Onitake Shrine",
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "atlas": {
+        "x": 0.07485427594985104,
+        "y": 0.6701130011446356
+      },
+      "sourceLocationId": 438198,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-437096",
+      "title": "Jogu Shrine",
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "atlas": {
+        "x": 0.44173014099361235,
+        "y": 0.9717329126814641
+      },
+      "sourceLocationId": 437096,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-435994",
+      "title": "Wakasahiko Shrine",
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "atlas": {
+        "x": 0.4454914263348556,
+        "y": 0.7954637739102275
+      },
+      "sourceLocationId": 435994,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-437865",
+      "title": "Gion Shrine",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.46723082703685787,
+        "y": 0.5824291585522139
+      },
+      "sourceLocationId": 437865,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-437835",
+      "title": "Iwashimizu Hachiman Shrine",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.47350001332936703,
+        "y": 0.48808759981220823
+      },
+      "sourceLocationId": 437835,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-438281",
+      "title": "Kamigamo Shrine",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.4107567636292296,
+        "y": 0.6381326997486308
+      },
+      "sourceLocationId": 438281,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-438333",
+      "title": "Hinode Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.6915196381586003,
+        "y": 0.4159236925582696
+      },
+      "sourceLocationId": 438333,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-437898",
+      "title": "Kasugataisha Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.7027346111033367,
+        "y": 0.3802398806115776
+      },
+      "sourceLocationId": 437898,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-435783",
+      "title": "Niukawakami Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.8042686412283679,
+        "y": 0.2418127848588703
+      },
+      "sourceLocationId": 435783,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    },
+    {
+      "locationId": "location-mapgenie-435742",
+      "title": "Omiwa Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.683671741429812,
+        "y": 0.33366282022865384
+      },
+      "sourceLocationId": 435742,
+      "sourceSystem": "mapgenie",
+      "existingStatus": "imported_unverified",
+      "existingVerified": false
+    }
+  ],
+  "temporalScaffold": {
+    "method": "equal-duration provisional slots with descriptor representatives",
+    "confidence": "provisional-not-geospatially-linked",
+    "slots": [
+      {
+        "slot": 1,
+        "startSeconds": 0.0,
+        "endSeconds": 10.023,
+        "centerSeconds": 5.012,
+        "descriptorCount": 3,
+        "representativeDescriptor": {
+          "time": 0.0,
+          "sharpness": 619.5015,
+          "edgeDensity": 0.013698,
+          "difference": 1.0,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 3.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 2,
+        "startSeconds": 10.023,
+        "endSeconds": 20.047,
+        "centerSeconds": 15.035,
+        "descriptorCount": 3,
+        "representativeDescriptor": {
+          "time": 17.0,
+          "sharpness": 1462.9141,
+          "edgeDensity": 0.093021,
+          "difference": 0.208116,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 18.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 3,
+        "startSeconds": 20.047,
+        "endSeconds": 30.07,
+        "centerSeconds": 25.059,
+        "descriptorCount": 5,
+        "representativeDescriptor": {
+          "time": 27.0,
+          "sharpness": 2388.9207,
+          "edgeDensity": 0.127535,
+          "difference": 0.5125,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 27.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 4,
+        "startSeconds": 30.07,
+        "endSeconds": 40.094,
+        "centerSeconds": 35.082,
+        "descriptorCount": 9,
+        "representativeDescriptor": {
+          "time": 39.0,
+          "sharpness": 2028.7581,
+          "edgeDensity": 0.092587,
+          "difference": 0.448026,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 32.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 5,
+        "startSeconds": 40.094,
+        "endSeconds": 50.117,
+        "centerSeconds": 45.105,
+        "descriptorCount": 3,
+        "representativeDescriptor": {
+          "time": 46.0,
+          "sharpness": 1382.9925,
+          "edgeDensity": 0.077309,
+          "difference": 0.685156,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 41.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 6,
+        "startSeconds": 50.117,
+        "endSeconds": 60.141,
+        "centerSeconds": 55.129,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 58.0,
+          "sharpness": 1458.8621,
+          "edgeDensity": 0.078194,
+          "difference": 0.106363,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 7,
+        "startSeconds": 60.141,
+        "endSeconds": 70.164,
+        "centerSeconds": 65.152,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 70.0,
+          "sharpness": 1509.0325,
+          "edgeDensity": 0.06276,
+          "difference": 0.068803,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 8,
+        "startSeconds": 70.164,
+        "endSeconds": 80.188,
+        "centerSeconds": 75.176,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 71.0,
+          "sharpness": 1667.6222,
+          "edgeDensity": 0.085521,
+          "difference": 0.109637,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 71.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 9,
+        "startSeconds": 80.188,
+        "endSeconds": 90.211,
+        "centerSeconds": 85.199,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 83.0,
+          "sharpness": 1671.2722,
+          "edgeDensity": 0.104913,
+          "difference": 0.086458,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 83.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 10,
+        "startSeconds": 90.211,
+        "endSeconds": 100.234,
+        "centerSeconds": 95.223,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 95.0,
+          "sharpness": 1520.8254,
+          "edgeDensity": 0.097812,
+          "difference": 0.056031,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 11,
+        "startSeconds": 100.234,
+        "endSeconds": 110.258,
+        "centerSeconds": 105.246,
+        "descriptorCount": 3,
+        "representativeDescriptor": {
+          "time": 102.0,
+          "sharpness": 1609.8395,
+          "edgeDensity": 0.108507,
+          "difference": 0.116789,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 12,
+        "startSeconds": 110.258,
+        "endSeconds": 120.281,
+        "centerSeconds": 115.27,
+        "descriptorCount": 3,
+        "representativeDescriptor": {
+          "time": 114.0,
+          "sharpness": 1767.1531,
+          "edgeDensity": 0.101233,
+          "difference": 0.173684,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 117.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 13,
+        "startSeconds": 120.281,
+        "endSeconds": 130.305,
+        "centerSeconds": 125.293,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 122.0,
+          "sharpness": 1629.1982,
+          "edgeDensity": 0.106493,
+          "difference": 0.114485,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 122.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 14,
+        "startSeconds": 130.305,
+        "endSeconds": 140.328,
+        "centerSeconds": 135.316,
+        "descriptorCount": 2,
+        "representativeDescriptor": {
+          "time": 134.0,
+          "sharpness": 1761.0413,
+          "edgeDensity": 0.10559,
+          "difference": 0.069739,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 134.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 15,
+        "startSeconds": 140.328,
+        "endSeconds": 150.352,
+        "centerSeconds": 145.34,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 147.0,
+          "sharpness": 1463.6913,
+          "edgeDensity": 0.103837,
+          "difference": 0.139715,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 16,
+        "startSeconds": 150.352,
+        "endSeconds": 160.375,
+        "centerSeconds": 155.363,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 152.0,
+          "sharpness": 884.4022,
+          "edgeDensity": 0.081788,
+          "difference": 0.181264,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 17,
+        "startSeconds": 160.375,
+        "endSeconds": 170.399,
+        "centerSeconds": 165.387,
+        "descriptorCount": 2,
+        "representativeDescriptor": {
+          "time": 163.0,
+          "sharpness": 1530.9651,
+          "edgeDensity": 0.100694,
+          "difference": 0.316589,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 18,
+        "startSeconds": 170.399,
+        "endSeconds": 180.422,
+        "centerSeconds": 175.41,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 175.0,
+          "sharpness": 1455.2505,
+          "edgeDensity": 0.101875,
+          "difference": 0.012527,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 19,
+        "startSeconds": 180.422,
+        "endSeconds": 190.445,
+        "centerSeconds": 185.434,
+        "descriptorCount": 4,
+        "representativeDescriptor": {
+          "time": 181.0,
+          "sharpness": 1607.4988,
+          "edgeDensity": 0.099635,
+          "difference": 0.17646,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 20,
+        "startSeconds": 190.445,
+        "endSeconds": 200.469,
+        "centerSeconds": 195.457,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 192.0,
+          "sharpness": 1657.1464,
+          "edgeDensity": 0.110694,
+          "difference": 0.17928,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 192.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 21,
+        "startSeconds": 200.469,
+        "endSeconds": 210.492,
+        "centerSeconds": 205.481,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 204.0,
+          "sharpness": 1621.8609,
+          "edgeDensity": 0.11651,
+          "difference": 0.042371,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 204.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 22,
+        "startSeconds": 210.492,
+        "endSeconds": 220.516,
+        "centerSeconds": 215.504,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 216.0,
+          "sharpness": 1513.5363,
+          "edgeDensity": 0.117622,
+          "difference": 0.056865,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 23,
+        "startSeconds": 220.516,
+        "endSeconds": 230.539,
+        "centerSeconds": 225.527,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 228.0,
+          "sharpness": 1733.2026,
+          "edgeDensity": 0.122135,
+          "difference": 0.0446,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 228.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 24,
+        "startSeconds": 230.539,
+        "endSeconds": 240.563,
+        "centerSeconds": 235.551,
+        "descriptorCount": 1,
+        "representativeDescriptor": {
+          "time": 240.0,
+          "sharpness": 1604.8621,
+          "edgeDensity": 0.11316,
+          "difference": 0.031435,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": null,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 25,
+        "startSeconds": 240.563,
+        "endSeconds": 250.586,
+        "centerSeconds": 245.574,
+        "descriptorCount": 4,
+        "representativeDescriptor": {
+          "time": 242.0,
+          "sharpness": 1723.3741,
+          "edgeDensity": 0.11691,
+          "difference": 0.370312,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 247.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 26,
+        "startSeconds": 250.586,
+        "endSeconds": 260.61,
+        "centerSeconds": 255.598,
+        "descriptorCount": 3,
+        "representativeDescriptor": {
+          "time": 257.0,
+          "sharpness": 1888.893,
+          "edgeDensity": 0.11684,
+          "difference": 0.139783,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 257.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      },
+      {
+        "slot": 27,
+        "startSeconds": 260.61,
+        "endSeconds": 270.633,
+        "centerSeconds": 265.621,
+        "descriptorCount": 59,
+        "representativeDescriptor": {
+          "time": 0.0,
+          "sharpness": 619.5015,
+          "edgeDensity": 0.013698,
+          "difference": 1.0,
+          "borrowedFromNearestSlot": false
+        },
+        "bestClearFrameTime": 3.0,
+        "linkedLocationId": null,
+        "linkConfidence": "unlinked"
+      }
+    ]
+  },
+  "noGuessPolicy": {
+    "enabled": true,
+    "reason": "Numeric descriptors alone cannot identify shrine names or coordinates.",
+    "requiredEvidenceBeforeLink": [
+      "transient authorized frame containing a readable map popup or location label",
+      "candidate identity selected from the 32-item Shrine index",
+      "minimum confidence and unique location assignment checks"
+    ]
+  },
+  "nextStage": {
+    "name": "transient-shrine-popup-evidence-and-model-review",
+    "firstBatchSlots": [
+      1,
+      14
+    ],
+    "mayDownloadAuthorizedVideo": true,
+    "mayCommitPixels": false,
+    "mustDeleteVideoAndFrames": true
+  }
+}
