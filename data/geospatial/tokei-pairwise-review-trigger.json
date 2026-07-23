@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "requestedAt": "2026-07-23T08:00:00Z",
+  "mode": "tokei-pairwise-two-model-geometry-review",
+  "target": {
+    "locationId": "location-mapgenie-438414",
+    "title": "Tokei Shrine"
+  },
+  "evidence": {
+    "directNeighborLocationId": "location-mapgenie-437477",
+    "directNeighborTitle": "Takahara Kumano Shrine",
+    "sourceTimesSeconds": [16.75, 17.75]
+  },
+  "policy": {
+    "models": ["openai/gpt-4.1-mini", "openai/gpt-4o-mini"],
+    "minimumConfidencePerModel": 0.92,
+    "requireTwoIndependentModels": true,
+    "modifyCanonicalAnchor": false
+  }
+}
