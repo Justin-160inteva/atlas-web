@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-23T20:30:00Z",
+  "status": "visual-review-complete-pilot-evidence-incomplete",
+  "stage": "2p5d-sakai-visual-evidence-review",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "sourceManifest": "data/geospatial/geospatial-2p5d-sakai-transient-evidence-manifest.json",
+  "sourceRunId": "30040243661",
+  "pilotScope": {
+    "id": "izumi-settsu-sakai-urban-core-v1",
+    "title": "Sakai urban and waterfront core",
+    "normalizedBounds": {
+      "minX": 0.315,
+      "minY": 0.218,
+      "maxX": 0.3425,
+      "maxY": 0.2425
+    }
+  },
+  "reviewMethod": {
+    "artifactsReviewed": 4,
+    "contactSheetsReviewed": 24,
+    "candidateFramesReviewed": 384,
+    "frameResolution": "480x270",
+    "pixelsPersistedToRepository": false,
+    "reviewBasis": "temporary one-day low-resolution contact sheets and labeled timestamps",
+    "geometryProduced": false
+  },
+  "videoReviews": [
+    {
+      "jobId": "eleven-p013-v2",
+      "page": 13,
+      "artifact": "atlas-sakai-2p5d-eleven-p013-v2-30040243661",
+      "reviewStatus": "coverage-invalid-for-full-video-sakai-search",
+      "pilotRelevance": "insufficient",
+      "sakaiConfidence": "unconfirmed",
+      "coverageObserved": {
+        "firstReviewedSecond": 0.5,
+        "lastReviewedSecond": 886.0,
+        "sourceDurationSeconds": 4780.467,
+        "reviewedFractionApproximate": 0.185,
+        "problem": "all 96 selected frames were concentrated in the first approximately 14 minutes 46 seconds because the legacy numeric descriptor set did not cover the full source duration"
+      },
+      "observedSceneTypes": [
+        "forest-and-bamboo-paths",
+        "rural-shrine-and-torii",
+        "small-fort-or-castle-compound",
+        "tiled-roofs-and-courtyards",
+        "stealth-combat-interiors"
+      ],
+      "usefulWindows": [
+        {
+          "startSeconds": 219.0,
+          "endSeconds": 398.0,
+          "evidenceTypes": [
+            "fortified-building-roofs",
+            "courtyard-relationships",
+            "wall-and-gate-modules"
+          ],
+          "sakaiConfidence": "unconfirmed",
+          "modelingDisposition": "retain-for-generic-fortified-settlement-module-reference-only"
+        }
+      ],
+      "excludedFromPilotGeometryBecause": [
+        "the reviewed sample does not cover most of P13",
+        "no reviewed timestamp establishes that the observed structures are inside the selected Sakai tile",
+        "full-duration rescan is required before deciding whether P13 contains Sakai urban or waterfront evidence"
+      ],
+      "nextAction": "run a P13-only full-duration stratified rescan before any Sakai geometry decision"
+    },
+    {
+      "jobId": "eleven-p014-v2",
+      "page": 14,
+      "artifact": "atlas-sakai-2p5d-eleven-p014-v2-30040243661",
+      "reviewStatus": "reviewed-rerouted-to-adjacent-temple-and-terrain-evidence",
+      "pilotRelevance": "low",
+      "sakaiConfidence": "not-established",
+      "observedSceneTypes": [
+        "temple-compound",
+        "tiled-roofs-and-enclosed-yards",
+        "mountain-roads",
+        "fields-and-rural-paths",
+        "waterfall-and-cave",
+        "bamboo-and-forest"
+      ],
+      "usefulWindows": [
+        {
+          "startSeconds": 1633.0,
+          "endSeconds": 1875.0,
+          "evidenceTypes": [
+            "temple-roof-modules",
+            "courtyard-spacing",
+            "gate-and-wall-relations",
+            "mountain-temple-approach"
+          ],
+          "sakaiConfidence": "not-established",
+          "modelingDisposition": "reroute-to-gansenji-or-adjacent-temple-terrain-evidence-pool"
+        }
+      ],
+      "excludedFromPilotGeometryBecause": [
+        "the contact sheets do not show a dense commercial city or clear waterfront core",
+        "the strongest evidence is better matched to the deferred Gansenji and mountain-terrain scope",
+        "no stable landmark ties the reviewed scenes to the selected Sakai urban bounds"
+      ],
+      "nextAction": "retain timestamps for the later Gansenji and mountain-terrain tile"
+    },
+    {
+      "jobId": "eleven-p015-v2",
+      "page": 15,
+      "artifact": "atlas-sakai-2p5d-eleven-p015-v2-30040243661",
+      "reviewStatus": "strongest-current-urban-and-waterfront-candidate",
+      "pilotRelevance": "high-but-unconfirmed",
+      "sakaiConfidence": "probable-for-selected-windows",
+      "observedSceneTypes": [
+        "dense-tiled-roof-settlement",
+        "fortified-urban-compound",
+        "river-or-waterfront-edge",
+        "wooden-workshop-and-storage-district",
+        "street-axis-and-gates",
+        "temple-or-large-compound",
+        "elevated-city-and-river-panorama",
+        "in-game-map-and-codex-screens"
+      ],
+      "usefulWindows": [
+        {
+          "startSeconds": 905.0,
+          "endSeconds": 922.0,
+          "evidenceTypes": [
+            "elevated-city-panorama",
+            "roof-density",
+            "water-and-settlement-relationship",
+            "large-scale-orientation"
+          ],
+          "sakaiConfidence": "probable",
+          "modelingDisposition": "priority-candidate-for-macro-layout-calibration"
+        },
+        {
+          "startSeconds": 2587.0,
+          "endSeconds": 2699.0,
+          "evidenceTypes": [
+            "settlement-road",
+            "watchtower-or-gate",
+            "waterfront-opening",
+            "building-and-road-scale"
+          ],
+          "sakaiConfidence": "probable",
+          "modelingDisposition": "priority-candidate-for-road-and-waterfront-evidence"
+        },
+        {
+          "startSeconds": 2735.0,
+          "endSeconds": 3004.0,
+          "evidenceTypes": [
+            "dense-wooden-commercial-or-workshop-district",
+            "barrels-and-storage",
+            "street-width",
+            "timber-structures",
+            "water-access"
+          ],
+          "sakaiConfidence": "probable",
+          "modelingDisposition": "highest-priority-candidate-for-first-building-block-reconstruction"
+        },
+        {
+          "startSeconds": 3146.0,
+          "endSeconds": 3374.0,
+          "evidenceTypes": [
+            "elevated-tiled-roof-compound",
+            "courtyard-layout",
+            "roof-orientation",
+            "wall-and-path-connections"
+          ],
+          "sakaiConfidence": "unconfirmed",
+          "modelingDisposition": "secondary-building-module-evidence"
+        },
+        {
+          "startSeconds": 3927.0,
+          "endSeconds": 4206.0,
+          "evidenceTypes": [
+            "roof-traversal",
+            "compound-connectivity",
+            "path-and-wall-relations"
+          ],
+          "sakaiConfidence": "unconfirmed",
+          "modelingDisposition": "secondary-connectivity-evidence"
+        }
+      ],
+      "screensRequiringCorrelation": [
+        {
+          "approximateSecond": 277.0,
+          "type": "in-game-map",
+          "potentialUse": "identify a rectangular walled settlement and correlate the immediately adjacent world footage"
+        },
+        {
+          "approximateSecond": 2985.0,
+          "type": "illustrated-codex-or-map",
+          "potentialUse": "cross-check settlement identity without extracting official geometry"
+        },
+        {
+          "approximateSecond": 4223.0,
+          "type": "in-game-map",
+          "potentialUse": "correlate late roof traversal with existing marker coordinates"
+        },
+        {
+          "approximateSecond": 4417.0,
+          "type": "in-game-map",
+          "potentialUse": "verify region or mission context only"
+        }
+      ],
+      "remainingUncertainty": [
+        "the contact sheets contain multiple fortified, temple and rural scenes that may not all belong to Sakai",
+        "mission titles, marker positions and repeated landmarks must be correlated before assigning any footprint to the pilot tile",
+        "the reviewed frames alone are insufficient for metrically accurate building footprints"
+      ],
+      "nextAction": "perform targeted dense extraction around 15:05, 43:07-50:03 and nearby map transitions, then create a landmark correspondence graph"
+    },
+    {
+      "jobId": "eleven-p016-v2",
+      "page": 16,
+      "artifact": "atlas-sakai-2p5d-eleven-p016-v2-30040243661",
+      "reviewStatus": "reviewed-rerouted-to-cave-and-rural-evidence",
+      "pilotRelevance": "none-for-urban-core",
+      "sakaiConfidence": "not-established",
+      "observedSceneTypes": [
+        "cave-and-underground-passage",
+        "rock-doors-and-underground-chambers",
+        "rural-fields-and-forest-roads",
+        "bamboo-camp",
+        "mountain-panorama",
+        "dialogue-and-quest-scenes",
+        "regional-map-screens"
+      ],
+      "usefulWindows": [
+        {
+          "startSeconds": 0.5,
+          "endSeconds": 567.0,
+          "evidenceTypes": [
+            "cave-navigation",
+            "underground-door-and-chamber-modules"
+          ],
+          "sakaiConfidence": "not-established",
+          "modelingDisposition": "retain-for-future-cave-or-underground-layer"
+        },
+        {
+          "startSeconds": 597.0,
+          "endSeconds": 891.0,
+          "evidenceTypes": [
+            "rural-road",
+            "field-and-forest-transition",
+            "mountain-silhouette",
+            "small-camp"
+          ],
+          "sakaiConfidence": "not-established",
+          "modelingDisposition": "retain-for-future-rural-terrain-module"
+        }
+      ],
+      "excludedFromPilotGeometryBecause": [
+        "no reviewed scene shows a dense commercial waterfront city",
+        "the dominant content is underground or rural",
+        "map screens are suitable only for context correlation and not geometry extraction"
+      ],
+      "nextAction": "exclude from the Sakai urban pilot and retain for later cave/rural coverage"
+    }
+  ],
+  "pilotReadiness": {
+    "status": "not-ready-for-building-footprint-modeling",
+    "strongestSourceJobId": "eleven-p015-v2",
+    "candidateWindows": 5,
+    "confirmedSakaiWindows": 0,
+    "probableSakaiWindows": 3,
+    "requirementsBeforeGeometry": [
+      "complete a P13 full-duration stratified rescan",
+      "densely rescan P15 around the probable urban and waterfront windows",
+      "correlate world footage with mission names, existing coordinates and repeated landmarks",
+      "identify at least two views of the same building or street segment from different camera positions",
+      "record confidence and source timestamps for every building, road and waterfront segment"
+    ]
+  },
+  "recommendedPilotRevision": {
+    "retainRegion": "IZUMI SETTSU",
+    "retainGeneralScope": "Sakai urban and waterfront core",
+    "doNotExpandScope": true,
+    "primaryVideo": "eleven-p015-v2",
+    "requiredSupplementaryScan": "eleven-p013-v2-full-duration",
+    "deferredEvidencePools": {
+      "eleven-p014-v2": "Gansenji temple and mountain terrain",
+      "eleven-p016-v2": "cave and rural terrain"
+    }
+  },
+  "safety": {
+    "sourceFramesCommitted": false,
+    "officialMapGeometryExtracted": false,
+    "buildingFootprintsGenerated": false,
+    "roadGeometryGenerated": false,
+    "waterGeometryGenerated": false,
+    "unsupportedSceneIdentityAssumed": false
+  },
+  "nextAction": "run the P13 full-duration correction and a targeted dense P15 Sakai candidate scan before creating the first derived structural evidence graph"
+}
