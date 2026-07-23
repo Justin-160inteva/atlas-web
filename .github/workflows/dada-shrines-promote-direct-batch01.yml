@@ -1,0 +1,237 @@
+name: Dada Shrines Promote Direct Batch 01
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/dada-shrines-promote-direct-batch01.yml'
+      - 'tools/promote_dada_shrine_direct_review_batch01.py'
+      - 'tools/build_geospatial_progress.py'
+      - 'data/geospatial/dada-shrines-promote-direct-batch01-trigger.json'
+      - 'data/geospatial/dada-shrines-direct-review-batch01.json'
+      - 'data/geospatial/dada-shrines-27-anchor-candidates.json'
+      - 'data/geospatial/dada-shrines-27-stage1.json'
+      - 'data/geospatial/dada-temples-36-anchors-final.json'
+      - 'data/locations.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-shrines-promote-direct-batch01-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile promotion and progress tools
+        run: |
+          python -m py_compile \
+            tools/promote_dada_shrine_direct_review_batch01.py \
+            tools/build_geospatial_progress.py
+
+      - name: Record immutable evidence input hashes
+        id: inputs
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          paths = {
+              'review': Path('data/geospatial/dada-shrines-direct-review-batch01.json'),
+              'candidates': Path('data/geospatial/dada-shrines-27-anchor-candidates.json'),
+              'stage1': Path('data/geospatial/dada-shrines-27-stage1.json'),
+              'temples': Path('data/geospatial/dada-temples-36-anchors-final.json'),
+              'locations': Path('data/locations.json'),
+          }
+          values = {name: hashlib.sha256(path.read_bytes()).hexdigest() for name, path in paths.items()}
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              for name, value in values.items():
+                  handle.write(f'{name}_sha256={value}\n')
+          print(json.dumps(values, ensure_ascii=False))
+          PY
+
+      - name: Promote eight independently confirmed shrine anchors
+        run: python tools/promote_dada_shrine_direct_review_batch01.py
+
+      - name: Reconcile authoritative geospatial progress
+        run: python tools/build_geospatial_progress.py
+
+      - name: Validate promotion, global ledger and immutable inputs
+        env:
+          REVIEW_SHA256: ${{ steps.inputs.outputs.review_sha256 }}
+          CANDIDATES_SHA256: ${{ steps.inputs.outputs.candidates_sha256 }}
+          STAGE1_SHA256: ${{ steps.inputs.outputs.stage1_sha256 }}
+          TEMPLES_SHA256: ${{ steps.inputs.outputs.temples_sha256 }}
+          LOCATIONS_SHA256: ${{ steps.inputs.outputs.locations_sha256 }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import math
+          import os
+          from pathlib import Path
+
+          immutable = {
+              'review': ('data/geospatial/dada-shrines-direct-review-batch01.json', os.environ['REVIEW_SHA256']),
+              'candidates': ('data/geospatial/dada-shrines-27-anchor-candidates.json', os.environ['CANDIDATES_SHA256']),
+              'stage1': ('data/geospatial/dada-shrines-27-stage1.json', os.environ['STAGE1_SHA256']),
+              'temples': ('data/geospatial/dada-temples-36-anchors-final.json', os.environ['TEMPLES_SHA256']),
+              'locations': ('data/locations.json', os.environ['LOCATIONS_SHA256']),
+          }
+          for name, (path, expected) in immutable.items():
+              actual = hashlib.sha256(Path(path).read_bytes()).hexdigest()
+              assert actual == expected, f'{name} input changed during promotion'
+
+          anchors = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01.json').read_text(encoding='utf-8'))
+          report = json.loads(Path('data/geospatial/dada-shrines-direct-promotion-batch01.json').read_text(encoding='utf-8'))
+          progress = json.loads(Path('data/geospatial/geospatial-progress.json').read_text(encoding='utf-8'))
+          index = json.loads(Path('data/analysis-index.json').read_text(encoding='utf-8'))
+          temples = json.loads(Path('data/geospatial/dada-temples-36-anchors-final.json').read_text(encoding='utf-8'))
+
+          assert anchors['schemaVersion'] == 2
+          assert anchors['status'] == 'partial'
+          assert anchors['counts'] == {
+              'eligibleSequenceCandidates': 27,
+              'reviewedCandidates': 8,
+              'confirmed': 8,
+              'unresolved': 19,
+              'coordinatesWritten': 8,
+              'mapShrineCandidates': 32,
+              'excludedAwajiCandidates': 5,
+          }
+          assert len(anchors['anchors']) == 8
+          assert len(anchors['unresolved']) == 19
+          assert len({row['locationId'] for row in anchors['anchors']}) == 8
+          assert len({(round(row['atlas']['x'], 12), round(row['atlas']['y'], 12)) for row in anchors['anchors']}) == 8
+          assert all(row['status'] == 'confirmed' for row in anchors['anchors'])
+          assert all(row['confidence'] >= .92 for row in anchors['anchors'])
+          assert all(len(row['reviewers']) == 2 for row in anchors['anchors'])
+          assert anchors['policy']['repositoryContainsEvidencePixels'] is False
+
+          assert report['status'] == 'promotion-complete'
+          assert report['counts'] == {
+              'promoted': 8,
+              'remaining': 19,
+              'templeAnchorsCompared': 36,
+              'duplicateLocationIds': 0,
+              'duplicateCoordinates': 0,
+          }
+          assert report['minimumPromotedConfidence'] >= .92
+          assert len(report['promotedLocationIds']) == 8
+          assert all(report['safety'].values())
+
+          temple_ids = {row['locationId'] for row in temples['anchors'] if row.get('status') == 'confirmed'}
+          shrine_ids = {row['locationId'] for row in anchors['anchors']}
+          assert len(temple_ids) == 36
+          assert not temple_ids.intersection(shrine_ids)
+
+          assert progress['phase1'] == {
+              'targetConfirmedAnchors': 50,
+              'confirmedAnchors': 44,
+              'remainingToTarget': 6,
+              'progressPercent': 88.0,
+              'nextSource': '不再犹豫的达达猪·神社全收集（27个位置）',
+          }
+          assert progress['globalCoverage']['totalLocations'] == 3430
+          assert progress['globalCoverage']['confirmedAnchorLocations'] == 44
+          assert math.isclose(progress['globalCoverage']['locationCoveragePercent'], 1.2828, abs_tol=1e-9)
+          assert progress['stageGates']['confirmedGeospatialAnchors'] == {'status': 'in_progress', 'count': 44}
+          assert all(progress['safety'].values())
+          shrine_sources = [row for row in progress['sources'] if row['id'] == 'dada-shrines-27-batch01']
+          assert len(shrine_sources) == 1
+          assert shrine_sources[0]['exists'] is True
+          assert shrine_sources[0]['confirmedAnchors'] == 8
+
+          shrine_index = [
+              item for item in index['items']
+              if item.get('externalSourceId') == 'bili-dada-acshadows-02'
+              or item.get('resultPath') == 'data/analysis-results/dada-02.json'
+          ]
+          assert len(shrine_index) >= 1
+          assert all(item['pipeline']['geospatialAnchorCount'] == 8 for item in shrine_index)
+          assert all(item['pipeline']['geospatialAnchorTargetCount'] == 27 for item in shrine_index)
+          assert all(item['pipeline']['geospatialAnchoringCompleted'] is False for item in shrine_index)
+          assert all(item['pipeline']['geospatialAnchorSet'] == 'data/geospatial/dada-shrines-27-anchors-batch01.json' for item in shrine_index)
+
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          print(json.dumps({
+              'promoted': 8,
+              'phase1': progress['phase1'],
+              'coverage': progress['globalCoverage'],
+          }, ensure_ascii=False))
+          PY
+
+      - name: Stage canonical anchors and reconciled ledgers
+        run: |
+          rm -rf /tmp/dada-shrine-promotion-publish
+          mkdir -p \
+            /tmp/dada-shrine-promotion-publish/data/geospatial \
+            /tmp/dada-shrine-promotion-publish/data/analysis-jobs \
+            /tmp/dada-shrine-promotion-publish/data
+          cp data/geospatial/dada-shrines-27-anchors-batch01.json \
+            /tmp/dada-shrine-promotion-publish/data/geospatial/
+          cp data/geospatial/dada-shrines-direct-promotion-batch01.json \
+            /tmp/dada-shrine-promotion-publish/data/geospatial/
+          cp data/geospatial/geospatial-progress.json \
+            /tmp/dada-shrine-promotion-publish/data/geospatial/
+          cp data/analysis-index.json \
+            /tmp/dada-shrine-promotion-publish/data/
+          cp data/analysis-jobs/dada-temples-36-geospatial.json \
+            /tmp/dada-shrine-promotion-publish/data/analysis-jobs/
+
+      - name: Atomically publish canonical anchors and reconciled ledgers
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial data/analysis-jobs
+            cp /tmp/dada-shrine-promotion-publish/data/geospatial/dada-shrines-27-anchors-batch01.json \
+              data/geospatial/
+            cp /tmp/dada-shrine-promotion-publish/data/geospatial/dada-shrines-direct-promotion-batch01.json \
+              data/geospatial/
+            cp /tmp/dada-shrine-promotion-publish/data/geospatial/geospatial-progress.json \
+              data/geospatial/
+            cp /tmp/dada-shrine-promotion-publish/data/analysis-index.json \
+              data/
+            cp /tmp/dada-shrine-promotion-publish/data/analysis-jobs/dada-temples-36-geospatial.json \
+              data/analysis-jobs/
+            git add \
+              data/geospatial/dada-shrines-27-anchors-batch01.json \
+              data/geospatial/dada-shrines-direct-promotion-batch01.json \
+              data/geospatial/geospatial-progress.json \
+              data/analysis-index.json \
+              data/analysis-jobs/dada-temples-36-geospatial.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Promote 8 shrine anchors and reconcile phase 1 to 44/50 [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Delete transient publish staging
+        if: always()
+        run: |
+          rm -rf /tmp/dada-shrine-promotion-publish
+          test ! -e /tmp/dada-shrine-promotion-publish
