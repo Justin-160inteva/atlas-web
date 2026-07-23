@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "status": "approved-for-draft-generation",
+  "stage": "original-terrain-and-coastline-art",
+  "canvas": {
+    "width": 4096,
+    "height": 4096,
+    "coordinateInsetPixels": 270,
+    "sourceFormat": "svg",
+    "editableSourceRequired": true,
+    "finalCanvasFrozen": false
+  },
+  "artDirection": {
+    "name": "Atlas Sumi Terrain",
+    "description": "A repository-owned Japanese ink terrain and coastline treatment authored specifically for Atlas.",
+    "palette": {
+      "ocean": "#0b1013",
+      "oceanDeep": "#070b0d",
+      "oceanLine": "#29373d",
+      "land": "#d4c39d",
+      "landHighlight": "#eadfc4",
+      "ink": "#1e1b18",
+      "softInk": "#554d43",
+      "mountainInk": "#3e3932",
+      "forest": "#566b52",
+      "forestDark": "#34453a",
+      "river": "#587987",
+      "riverHighlight": "#a9c0bd",
+      "vermilion": "#9b352f",
+      "brass": "#b18a4b",
+      "paperLight": "#efe5cd"
+    },
+    "externalFonts": false,
+    "externalTextures": false,
+    "externalImages": false
+  },
+  "authoredLayers": {
+    "coastline": {
+      "method": "double ink shoreline plus authored coastal hachures around the ten smoothed region masses",
+      "factualClaim": false
+    },
+    "mountains": {
+      "method": "deterministic ridge symbols generated from region centroids, hull scale and stable region-id seeds",
+      "factualClaim": false
+    },
+    "forests": {
+      "method": "deterministic tree clusters distributed inside region composition masses",
+      "factualClaim": false
+    },
+    "rivers": {
+      "method": "one or more original flowing curves per region, clipped to authored land",
+      "factualClaim": false
+    },
+    "routes": {
+      "method": "curved composition corridors derived from the twenty region adjacency suggestions",
+      "factualClaim": false
+    },
+    "anchors": {
+      "method": "retain all fifty confirmed alignment anchors as independent verification guides",
+      "factualClaim": true
+    }
+  },
+  "forbiddenInputs": [
+    "legacy world-map-4096 pixels as geometry",
+    "regions.json polygon geometry",
+    "third-party map raster images",
+    "third-party map vector paths",
+    "traced coastlines, terrain, rivers, roads, labels or textures",
+    "external fonts, images or textures"
+  ],
+  "outputs": {
+    "svgPath": "assets/original-map/atlas-original-terrain-coastline-v1.svg",
+    "manifestPath": "data/geospatial/geospatial-original-terrain-coastline-v1.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  },
+  "acceptance": {
+    "canvasWidth": 4096,
+    "canvasHeight": 4096,
+    "regions": 10,
+    "confirmedAnchors": 50,
+    "unassignedLocations": 5,
+    "adjacencyEdges": 20,
+    "minimumMountainSymbols": 60,
+    "minimumForestSymbols": 100,
+    "minimumRiverPaths": 10,
+    "routeCorridors": 20,
+    "externalResourceReferences": 0,
+    "embeddedRasterImages": 0,
+    "finalBaseApproval": false
+  },
+  "nextAction": "generate and visually review the first repository-owned terrain and coastline draft before final labels, iconography and canvas freeze"
+}

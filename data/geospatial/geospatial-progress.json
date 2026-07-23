@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "generatedAt": "2026-07-23T17:00:00Z",
+  "generatedAt": "2026-07-23T17:30:00Z",
   "status": "phase1-complete",
   "phase1": {
     "targetConfirmedAnchors": 50,
@@ -37,7 +37,7 @@
         "calibrationAuthority": false
       },
       "authoredBase": {
-        "status": "regional_composition_draft_ready",
+        "status": "terrain_coastline_draft_ready",
         "skeletonPath": "data/geospatial/geospatial-original-authored-base-skeleton.json",
         "locationCount": 3430,
         "regionAssignedLocationCount": 3425,
@@ -48,7 +48,7 @@
         "unanchoredRegionIds": [
           "region-3304-awaji"
         ],
-        "nextStage": "original_terrain_and_coastline_art",
+        "nextStage": "original_labels_icons_and_final_canvas_review",
         "compositionPath": "assets/original-map/atlas-original-regional-composition-v1.svg",
         "compositionManifestPath": "data/geospatial/geospatial-original-regional-composition-v1.json",
         "compositionSha256": "f29655c1a58e1d0206a191856a5337162be7d4906c1b1b6f81600c582ad27f6c",
@@ -57,7 +57,21 @@
           "height": 4096
         },
         "editableSourceFormat": "svg",
-        "finalCanvasFrozen": false
+        "finalCanvasFrozen": false,
+        "terrainCoastlinePath": "assets/original-map/atlas-original-terrain-coastline-v1.svg",
+        "terrainCoastlineManifestPath": "data/geospatial/geospatial-original-terrain-coastline-v1.json",
+        "terrainCoastlineSha256": "7b72f41378fc6b9d0f73385e9ee6386eb7f2d8a3fd1bcd4abab8f092c56ac704",
+        "terrainCoastlineDimensions": {
+          "width": 4096,
+          "height": 4096
+        },
+        "terrainLayerCounts": {
+          "mountains": 106,
+          "forests": 175,
+          "rivers": 15,
+          "routes": 20,
+          "coastlineHachures": 118
+        }
       }
     },
     "coordinateAndOverlayCalibration": {
@@ -70,7 +84,7 @@
       "pixelTransformStatus": "blocked_pending_original_authored_final_canvas",
       "controlPointPath": "data/geospatial/geospatial-calibration-control-points.json",
       "readinessPath": "data/geospatial/geospatial-calibration-readiness.json",
-      "blockingReason": "pixel calibration begins only after the original authored canvas is approved and frozen"
+      "blockingReason": "pixel calibration begins only after the original authored final canvas is reviewed and frozen"
     },
     "responsiveCompatibilityValidation": {
       "status": "pending_original_authored_final_base"
@@ -877,9 +891,12 @@
     "legacyPreviewIsNonAuthoritative": true,
     "realRegionCount": 10,
     "unassignedLocationCount": 5,
-    "nextAction": "review composition and continue original terrain/coastline art",
+    "nextAction": "review terrain/coastline art and continue labels, icons and final-canvas preparation",
     "regionalCompositionStatus": "draft_ready",
     "regionalCompositionPath": "assets/original-map/atlas-original-regional-composition-v1.svg",
-    "regionalCompositionManifestPath": "data/geospatial/geospatial-original-regional-composition-v1.json"
+    "regionalCompositionManifestPath": "data/geospatial/geospatial-original-regional-composition-v1.json",
+    "terrainCoastlineStatus": "draft_ready",
+    "terrainCoastlinePath": "assets/original-map/atlas-original-terrain-coastline-v1.svg",
+    "terrainCoastlineManifestPath": "data/geospatial/geospatial-original-terrain-coastline-v1.json"
   }
 }
