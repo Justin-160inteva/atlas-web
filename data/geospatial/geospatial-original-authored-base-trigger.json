@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "requestedAt": "2026-07-23T16:07:00Z",
-  "runNonce": "original-authored-base-skeleton-v1-run-1",
+  "requestedAt": "2026-07-23T16:11:00Z",
+  "runNonce": "original-authored-base-skeleton-v1-run-2",
   "strategyPath": "data/geospatial/geospatial-original-authored-base-plan.json",
   "inputs": {
     "locationsPath": "data/locations.json",
@@ -11,7 +11,11 @@
   },
   "expected": {
     "locations": 3430,
-    "regions": 9,
+    "regions": 10,
+    "confirmedAnchorCoveredRegions": 9,
+    "unanchoredRegionIds": [
+      "region-3304-awaji"
+    ],
     "confirmedAnchors": 50,
     "densityGridSize": 32,
     "nearestRegionNeighbors": 3
