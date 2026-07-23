@@ -2,22 +2,18 @@ name: Dada Shrines Direct Review Batch 02
 
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - '.github/workflows/dada-shrines-direct-review-batch02.yml'
-      - 'tools/apply_shrine_direct_review_batch02_patch.py'
-      - 'tools/review_dada_shrine_direct_candidates_batch01.py'
-      - 'tools/reconcile_dada_shrine_direct_review_batch01.py'
-      - 'data/geospatial/dada-shrines-direct-review-batch02-trigger.json'
-      - 'data/geospatial/dada-shrines-27-anchor-candidates.json'
-      - 'data/geospatial/dada-shrines-popup-event-census.json'
+    inputs:
+      target_branch:
+        description: Branch to review and publish the non-pixel result to
+        required: true
+        default: geospatial-shrine-scene-segmentation-v1
 
 permissions:
   contents: write
   models: read
 
 concurrency:
-  group: dada-shrines-direct-review-batch02-${{ github.ref }}
+  group: dada-shrines-direct-review-batch02-${{ inputs.target_branch }}
   cancel-in-progress: true
 
 jobs:
@@ -25,11 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - name: Check out PR head
+      - name: Check out target branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ inputs.target_branch }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -115,7 +111,7 @@ jobs:
       - name: Persist partial raw review on reconciliation failure
         if: failure()
         env:
-          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+          TARGET_BRANCH: ${{ inputs.target_branch }}
         run: |
           python - <<'PY'
           import json
@@ -202,7 +198,7 @@ jobs:
 
       - name: Atomically publish non-pixel review result
         env:
-          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+          TARGET_BRANCH: ${{ inputs.target_branch }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
