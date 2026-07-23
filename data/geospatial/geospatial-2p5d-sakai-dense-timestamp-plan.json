@@ -1,0 +1,3982 @@
+{
+  "schemaVersion": 1,
+  "status": "dense-timestamp-plan-ready",
+  "stage": "2p5d-sakai-targeted-dense-evidence",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "pilotScope": {
+    "id": "izumi-settsu-sakai-urban-core-v1",
+    "title": "Sakai urban and waterfront core",
+    "normalizedBounds": {
+      "minX": 0.315,
+      "minY": 0.218,
+      "maxX": 0.3425,
+      "maxY": 0.2425
+    }
+  },
+  "sampling": {
+    "intervalSeconds": 3.0,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "artifactRetentionDays": 1,
+    "jpegQuality": 84
+  },
+  "counts": {
+    "videos": 2,
+    "frames": 651,
+    "contactSheets": 42
+  },
+  "videos": [
+    {
+      "jobId": "eleven-p013-v2",
+      "jobPath": "data/analysis-jobs/eleven-p013.json",
+      "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/?p=13",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P13 第13期：和泉·摄津（收集1）",
+      "page": 13,
+      "cid": 28949022042,
+      "expectedDurationSeconds": 4780.166,
+      "frameCount": 231,
+      "contactSheetCount": 15,
+      "windowCounts": {
+        "p13-waterfront-overview-and-workyard": 74,
+        "p13-continuous-street-axis": 81,
+        "p13-ship-and-waterfront-market": 74
+      },
+      "timestamps": [
+        {
+          "time": 388.44,
+          "bucket": "context",
+          "windowId": null,
+          "purpose": "map, mission or transition context only; never a geometry source"
+        },
+        {
+          "time": 1388.0,
+          "bucket": "context",
+          "windowId": null,
+          "purpose": "map, mission or transition context only; never a geometry source"
+        },
+        {
+          "time": 3200.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3203.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3206.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3209.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3212.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3215.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3218.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3221.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3224.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3227.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3230.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3233.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3236.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3239.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3242.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3245.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3248.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3251.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3254.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3257.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3260.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3263.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3266.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3269.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3272.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3275.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3278.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3281.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3284.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3287.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3290.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3293.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3296.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3299.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3302.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3305.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3308.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3311.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3314.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3317.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3320.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3323.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3326.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3329.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3332.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3335.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3338.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3341.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3344.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3347.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3350.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3353.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3356.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3359.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3362.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3365.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3368.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3371.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3374.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3377.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3380.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3383.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3386.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3389.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3392.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3395.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3398.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3401.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3404.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3407.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3410.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3413.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3416.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3419.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-waterfront-overview-and-workyard",
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "time": 3660.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3663.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3666.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3669.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3672.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3675.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3678.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3681.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3684.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3687.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3690.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3693.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3696.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3699.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3702.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3705.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3708.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3711.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3714.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3717.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3720.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3723.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3726.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3729.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3732.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3735.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3738.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3741.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3744.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3747.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3750.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3753.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3756.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3759.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3762.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3765.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3768.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3771.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3774.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3777.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3780.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3783.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3786.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3789.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3792.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3795.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3798.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3801.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3804.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3807.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3810.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3813.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3816.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3819.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3822.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3825.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3828.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3831.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3834.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3837.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3840.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3843.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3846.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3849.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3852.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3855.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3858.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3861.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3864.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3867.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3870.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3873.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3876.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3879.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3882.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3885.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3888.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3891.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3894.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3897.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 3900.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-continuous-street-axis",
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "time": 4560.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4563.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4566.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4569.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4572.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4575.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4578.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4581.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4584.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4587.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4590.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4593.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4596.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4599.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4602.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4605.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4608.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4611.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4614.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4617.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4620.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4623.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4626.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4629.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4632.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4635.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4638.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4641.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4644.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4647.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4650.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4653.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4656.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4659.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4662.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4665.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4668.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4671.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4674.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4677.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4680.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4683.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4686.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4689.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4692.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4695.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4698.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4701.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4704.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4707.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4710.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4713.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4716.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4719.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4722.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4725.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4728.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4731.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4734.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4737.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4740.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4743.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4746.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4749.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4752.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4755.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4758.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4761.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4764.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4767.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4770.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4773.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4776.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        },
+        {
+          "time": 4779.0,
+          "bucket": "denseWindow",
+          "windowId": "p13-ship-and-waterfront-market",
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        }
+      ]
+    },
+    {
+      "jobId": "eleven-p015-v2",
+      "jobPath": "data/analysis-jobs/eleven-p015.json",
+      "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/?p=15",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P15 第15期：和泉·摄津（收集3）",
+      "page": 15,
+      "cid": 28949941205,
+      "expectedDurationSeconds": 4435.066,
+      "frameCount": 420,
+      "contactSheetCount": 27,
+      "windowCounts": {
+        "p15-elevated-city-panorama": 31,
+        "p15-road-workshop-and-waterfront": 167,
+        "p15-roof-compounds-and-courtyards": 101,
+        "p15-roof-traversal-and-connectivity": 117
+      },
+      "timestamps": [
+        {
+          "time": 277.0,
+          "bucket": "context",
+          "windowId": null,
+          "purpose": "map, mission or transition context only; never a geometry source"
+        },
+        {
+          "time": 870.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 873.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 876.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 879.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 882.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 885.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 888.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 891.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 894.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 897.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 900.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 903.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 906.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 909.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 912.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 915.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 918.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 921.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 924.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 927.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 930.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 933.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 936.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 939.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 942.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 945.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 948.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 951.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 954.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 957.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 960.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-elevated-city-panorama",
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "time": 2540.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2543.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2546.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2549.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2552.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2555.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2558.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2561.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2564.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2567.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2570.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2573.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2576.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2579.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2582.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2585.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2588.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2591.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2594.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2597.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2600.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2603.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2606.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2609.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2612.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2615.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2618.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2621.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2624.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2627.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2630.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2633.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2636.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2639.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2642.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2645.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2648.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2651.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2654.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2657.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2660.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2663.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2666.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2669.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2672.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2675.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2678.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2681.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2684.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2687.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2690.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2693.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2696.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2699.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2702.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2705.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2708.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2711.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2714.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2717.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2720.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2723.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2726.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2729.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2732.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2735.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2738.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2741.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2744.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2747.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2750.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2753.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2756.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2759.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2762.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2765.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2768.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2771.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2774.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2777.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2780.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2783.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2786.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2789.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2792.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2795.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2798.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2801.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2804.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2807.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2810.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2813.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2816.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2819.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2822.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2825.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2828.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2831.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2834.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2837.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2840.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2843.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2846.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2849.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2852.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2855.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2858.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2861.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2864.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2867.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2870.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2873.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2876.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2879.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2882.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2885.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2888.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2891.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2894.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2897.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2900.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2903.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2906.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2909.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2912.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2915.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2918.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2921.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2924.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2927.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2930.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2933.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2936.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2939.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2942.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2945.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2948.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2951.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2954.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2957.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2960.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2963.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2966.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2969.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2972.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2975.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2978.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2981.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2984.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2985.0,
+          "bucket": "context",
+          "windowId": null,
+          "purpose": "map, mission or transition context only; never a geometry source"
+        },
+        {
+          "time": 2987.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2990.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2993.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2996.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 2999.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3002.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3005.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3008.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3011.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3014.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3017.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3020.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3023.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3026.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3029.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3032.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3035.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3038.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-road-workshop-and-waterfront",
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "time": 3100.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3103.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3106.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3109.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3112.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3115.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3118.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3121.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3124.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3127.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3130.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3133.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3136.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3139.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3142.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3145.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3148.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3151.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3154.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3157.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3160.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3163.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3166.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3169.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3172.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3175.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3178.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3181.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3184.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3187.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3190.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3193.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3196.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3199.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3202.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3205.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3208.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3211.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3214.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3217.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3220.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3223.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3226.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3229.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3232.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3235.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3238.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3241.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3244.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3247.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3250.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3253.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3256.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3259.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3262.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3265.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3268.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3271.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3274.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3277.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3280.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3283.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3286.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3289.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3292.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3295.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3298.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3301.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3304.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3307.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3310.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3313.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3316.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3319.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3322.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3325.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3328.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3331.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3334.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3337.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3340.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3343.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3346.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3349.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3352.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3355.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3358.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3361.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3364.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3367.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3370.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3373.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3376.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3379.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3382.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3385.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3388.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3391.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3394.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3397.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3400.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-compounds-and-courtyards",
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "time": 3880.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3883.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3886.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3889.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3892.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3895.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3898.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3901.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3904.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3907.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3910.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3913.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3916.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3919.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3922.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3925.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3928.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3931.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3934.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3937.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3940.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3943.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3946.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3949.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3952.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3955.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3958.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3961.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3964.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3967.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3970.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3973.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3976.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3979.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3982.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3985.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3988.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3991.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3994.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 3997.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4000.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4003.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4006.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4009.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4012.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4015.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4018.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4021.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4024.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4027.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4030.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4033.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4036.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4039.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4042.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4045.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4048.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4051.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4054.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4057.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4060.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4063.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4066.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4069.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4072.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4075.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4078.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4081.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4084.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4087.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4090.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4093.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4096.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4099.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4102.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4105.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4108.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4111.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4114.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4117.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4120.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4123.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4126.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4129.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4132.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4135.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4138.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4141.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4144.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4147.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4150.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4153.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4156.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4159.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4162.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4165.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4168.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4171.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4174.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4177.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4180.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4183.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4186.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4189.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4192.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4195.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4198.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4201.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4204.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4207.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4210.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4213.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4216.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4219.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4222.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4223.0,
+          "bucket": "context",
+          "windowId": null,
+          "purpose": "map, mission or transition context only; never a geometry source"
+        },
+        {
+          "time": 4225.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4228.0,
+          "bucket": "denseWindow",
+          "windowId": "p15-roof-traversal-and-connectivity",
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        },
+        {
+          "time": 4417.0,
+          "bucket": "context",
+          "windowId": null,
+          "purpose": "map, mission or transition context only; never a geometry source"
+        }
+      ]
+    }
+  ],
+  "safety": {
+    "pixelsGenerated": false,
+    "videosDownloaded": false,
+    "geometryGenerated": false,
+    "sourceCoordinatesModified": false
+  },
+  "nextAction": "download P13 and P15 transiently by explicit CID and extract only the targeted dense windows"
+}
