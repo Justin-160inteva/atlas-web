@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T21:35:00Z",
+  "status": "authorization-candidates-ready-no-unapproved-analysis",
+  "stage": "2p5d-sakai-specific-video-authorization",
+  "pilotScope": {
+    "id": "izumi-settsu-sakai-urban-core-v1",
+    "title": "Sakai urban and waterfront core",
+    "normalizedBounds": {
+      "minX": 0.315,
+      "minY": 0.218,
+      "maxX": 0.3425,
+      "maxY": 0.2425
+    }
+  },
+  "reason": "The authorized P13/P15 dense review produced no accepted Sakai landmark correspondence. P15 waterfront workshop evidence was explicitly tied to Amagasaki, while P13 retained only unanchored Sakai candidates. Sakai-specific continuous traversal evidence is required before any footprint is modeled.",
+  "existingAuthorizedSourceAudit": {
+    "authorizationsChecked": [
+      "auth-eleven-game-world-20260719",
+      "auth-dada-20260718"
+    ],
+    "result": "no additional already-authorized Sakai-specific continuous urban walkthrough was identified beyond the analyzed Eleven catalog material",
+    "geometryEligibleFromExistingSources": false
+  },
+  "evidenceTargets": [
+    {
+      "id": "sakai-firearm-district-continuous-route",
+      "priority": 1,
+      "need": "continuous traversal through the Sakai Firearm District with visible building fronts, intersections, gates and street width"
+    },
+    {
+      "id": "imai-house-main-street-office-route",
+      "priority": 1,
+      "need": "Imai house, the adjacent main street and the followed route toward the office, including repeated landmarks from more than one direction"
+    },
+    {
+      "id": "sakai-port-long-pier-and-money-changer-district",
+      "priority": 1,
+      "need": "Port of Sakai, long pier, Money Changer District and the road or canal connections between them"
+    },
+    {
+      "id": "southwest-coast-ship-and-vendors",
+      "priority": 2,
+      "need": "southwest coastal shops, vendor area, large ship, shoreline access and nearby building blocks"
+    },
+    {
+      "id": "north-stream-tea-merchant-route",
+      "priority": 2,
+      "need": "north-side stream, tea merchant route, bridges or crossings and surrounding buildings"
+    },
+    {
+      "id": "full-city-perimeter-and-elevated-views",
+      "priority": 2,
+      "need": "extended free roam around the city perimeter plus elevated views that relate roof blocks to streets and waterfront"
+    }
+  ],
+  "authorizationRequestScope": {
+    "required": [
+      "permission to download the public video transiently for local project analysis",
+      "permission for computer-vision analysis and private low-resolution keyframe review",
+      "permission to create original derived 2D or low-detail 3D reconstructions of buildings, roads, terrain and water relationships",
+      "permission to publish the resulting original interactive map and non-pixel derived structural data",
+      "permission to cite the author name, video title and original video link as attribution"
+    ],
+    "excluded": [
+      "no redistribution of the full original video",
+      "no public publication of extracted source frames",
+      "no claim of copyright transfer",
+      "no sublicensing of the original video",
+      "no commercial, advertising or paid use unless separately approved in writing"
+    ],
+    "suggestedChineseRequest": "你好，我们正在制作一个非商业的《刺客信条：影》原创互动地图项目，希望在获得你明确许可后，从公开视频页面临时下载你的视频用于本地分析，提取不公开的低清关键帧来研究堺城的房屋、街道、港口和地形关系，并据此重新制作原创2D或低模3D地图。我们不会转载完整视频、不会公开原始画面，会在地图资料中标注作者、视频标题和原链接。请问你是否同意上述范围？商业化、广告或收费使用不包含在本次申请中。"
+  },
+  "candidates": [
+    {
+      "rank": 1,
+      "author": "侑依",
+      "platform": "哔哩哔哩",
+      "bvid": "BV1pQdvYnEkq",
+      "url": "https://www.bilibili.com/video/BV1pQdvYnEkq/",
+      "relevantParts": [
+        {"title": "刺客信条：影 （5） 堺城", "duration": "42:16"},
+        {"title": "刺客信条：影 （6） 堺城", "duration": "1:15:37"}
+      ],
+      "totalRelevantDuration": "1:57:53",
+      "priorityReason": "two long Sakai-specific parts are the strongest current candidate for continuous street traversal, repeated buildings and broad city coverage",
+      "expectedEvidence": [
+        "continuous urban traversal",
+        "multiple approaches to the same streets and compounds",
+        "city perimeter and waterfront transitions",
+        "long-duration context for identifying repeated landmarks"
+      ],
+      "authorizationStatus": "not-requested",
+      "analysisStatus": "prohibited-until-authorization-recorded"
+    },
+    {
+      "rank": 2,
+      "author": "LucherChu",
+      "platform": "哔哩哔哩",
+      "bvid": "BV1BHXNYUEVc",
+      "url": "https://www.bilibili.com/video/BV1BHXNYUEVc/",
+      "relevantParts": [
+        {
+          "title": "铁匠之路 寻遍堺城 完美礼物 人靠衣装 茶会 直奔主题",
+          "duration": "1:33:55"
+        },
+        {
+          "title": "和泉·摄津探索/同步点/收集相关分集",
+          "duration": "multiple parts"
+        }
+      ],
+      "captureQuality": "4K60, RTX 5080, maximum settings as described by the uploader",
+      "priorityReason": "highest apparent image-quality candidate and a very long Sakai mission chain, useful for individual roof and facade characteristics",
+      "expectedEvidence": [
+        "high-clarity building materials and roof details",
+        "named mission and location context",
+        "Sakai route continuity",
+        "possible elevated or viewpoint evidence"
+      ],
+      "authorizationStatus": "not-requested",
+      "analysisStatus": "prohibited-until-authorization-recorded"
+    },
+    {
+      "rank": 3,
+      "author": "紫雨carol",
+      "platform": "哔哩哔哩",
+      "bvid": "BV1o6XVYBEwr",
+      "url": "https://www.bilibili.com/video/BV1o6XVYBEwr/",
+      "relevantParts": [
+        {"title": "寻遍堺城", "duration": "56:04"}
+      ],
+      "priorityReason": "a long single-purpose Sakai route is suitable for validating street continuity and filling gaps left by the first two candidates",
+      "expectedEvidence": [
+        "mission route through multiple districts",
+        "street and building sequence",
+        "named-location transitions"
+      ],
+      "authorizationStatus": "not-requested",
+      "analysisStatus": "prohibited-until-authorization-recorded"
+    },
+    {
+      "rank": 4,
+      "author": "claudehotline",
+      "platform": "哔哩哔哩",
+      "bvid": "BV1Z3QfYcE49",
+      "url": "https://www.bilibili.com/video/BV1Z3QfYcE49/",
+      "relevantParts": [
+        {"title": "P5 主线-寻遍堺城", "duration": "50:22"}
+      ],
+      "captureQuality": "4K HDR as described by the uploader",
+      "priorityReason": "long high-quality Sakai main-story coverage that may provide clearer colors and building surfaces",
+      "expectedEvidence": [
+        "main-story route context",
+        "high-clarity facades and streets",
+        "possible mission-map correlation"
+      ],
+      "authorizationStatus": "not-requested",
+      "analysisStatus": "prohibited-until-authorization-recorded"
+    },
+    {
+      "rank": 5,
+      "author": "AleRenSa",
+      "platform": "哔哩哔哩",
+      "bvid": "BV1jPZjYtEk7",
+      "url": "https://www.bilibili.com/video/BV1jPZjYtEk7/",
+      "relevantParts": [
+        {"title": "08 寻遍堺城", "duration": "14:49"}
+      ],
+      "captureQuality": "PS5 Pro, expert difficulty and immersive settings as described by the uploader",
+      "priorityReason": "short focused route is useful for named mission and location correlation even though it is unlikely to cover the full city",
+      "expectedEvidence": [
+        "compact mission route",
+        "location identity confirmation",
+        "targeted cross-check of streets seen in longer videos"
+      ],
+      "authorizationStatus": "not-requested",
+      "analysisStatus": "prohibited-until-authorization-recorded"
+    },
+    {
+      "rank": 6,
+      "author": "干游戏的Raynor",
+      "platform": "哔哩哔哩",
+      "bvid": "BV12QZMYpEtB",
+      "url": "https://www.bilibili.com/video/BV12QZMYpEtB/",
+      "relevantParts": [
+        {
+          "title": "第一幕：从头再来（真幕府：黄金铁炮）—寻遍堺城、人靠衣装、完美礼物、茶会、直奔主题",
+          "duration": "43:46"
+        }
+      ],
+      "priorityReason": "long no-damage mission sequence may preserve continuous traversal and stable camera movement",
+      "pageNotice": "the public page states that re-uploading without authorization is prohibited; explicit project authorization is required",
+      "authorizationStatus": "not-requested",
+      "analysisStatus": "prohibited-until-authorization-recorded"
+    },
+    {
+      "rank": 7,
+      "author": "逃洛洛",
+      "platform": "哔哩哔哩",
+      "bvid": "BV1YuWJzHE8W",
+      "url": "https://www.bilibili.com/video/BV1YuWJzHE8W/",
+      "relevantParts": [
+        {"title": "刺客信条：影 07【寻遍堺城】", "duration": "22:28"}
+      ],
+      "priorityReason": "medium-length focused route suitable as a supplementary independent camera path",
+      "authorizationStatus": "not-requested",
+      "analysisStatus": "prohibited-until-authorization-recorded"
+    },
+    {
+      "rank": 8,
+      "author": "小热Neko",
+      "platform": "哔哩哔哩",
+      "bvid": "BV1pJdEYMELF",
+      "url": "https://www.bilibili.com/video/BV1pJdEYMELF/",
+      "relevantParts": [
+        {"title": "奈绪江-5：寻遍堺城", "duration": "19:40"}
+      ],
+      "priorityReason": "focused supplementary route that may add a different traversal direction",
+      "authorizationStatus": "not-requested",
+      "analysisStatus": "prohibited-until-authorization-recorded"
+    },
+    {
+      "rank": 9,
+      "author": "玉骨秀心",
+      "platform": "哔哩哔哩",
+      "bvid": "BV1CsXsY7ESs",
+      "url": "https://www.bilibili.com/video/BV1CsXsY7ESs/",
+      "relevantParts": [
+        {"title": "03铁匠之路-对话平次、心与身、寻遍堺城-井宗久-铁匠们", "duration": null}
+      ],
+      "priorityReason": "mission-specific sequence may help correlate Imai Sokyu, blacksmith and Sakai route context",
+      "authorizationStatus": "not-requested",
+      "analysisStatus": "prohibited-until-authorization-recorded"
+    }
+  ],
+  "recommendedContactOrder": [
+    "侑依",
+    "LucherChu",
+    "紫雨carol",
+    "claudehotline",
+    "AleRenSa"
+  ],
+  "minimumAuthorizationSetToResumePilot": {
+    "preferred": "one long continuous Sakai source plus one independent high-quality or focused Sakai source",
+    "minimum": "at least one explicitly authorized source that shows a named Sakai route and two independent views of the same street, building block or dock",
+    "geometryStillBlockedUntilEvidenceReview": true
+  },
+  "safety": {
+    "candidateVideosDownloaded": false,
+    "candidateFramesExtracted": false,
+    "unapprovedComputerVisionRun": false,
+    "officialMapGeometryExtracted": false,
+    "buildingFootprintsGenerated": false,
+    "unsupportedSakaiIdentityAssumed": false
+  },
+  "nextAction": "request authorization in the recommended order, record the exact approved scope and proof digest, then run a targeted transient scan only for approved sources"
+}

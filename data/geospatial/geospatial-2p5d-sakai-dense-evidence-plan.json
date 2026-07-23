@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "stage": "2p5d-sakai-targeted-dense-evidence",
+  "status": "plan-ready",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "pilotScope": {
+    "id": "izumi-settsu-sakai-urban-core-v1",
+    "title": "Sakai urban and waterfront core",
+    "normalizedBounds": {
+      "minX": 0.315,
+      "minY": 0.218,
+      "maxX": 0.3425,
+      "maxY": 0.2425
+    }
+  },
+  "sourceReview": "data/geospatial/geospatial-2p5d-sakai-visual-evidence-review.json",
+  "sampling": {
+    "intervalSeconds": 3.0,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "artifactRetentionDays": 1,
+    "jpegQuality": 84
+  },
+  "videos": [
+    {
+      "jobId": "eleven-p013-v2",
+      "jobPath": "data/analysis-jobs/eleven-p013.json",
+      "page": 13,
+      "cid": 28949022042,
+      "expectedDurationSeconds": 4780.166,
+      "windows": [
+        {
+          "id": "p13-waterfront-overview-and-workyard",
+          "startSeconds": 3200.0,
+          "endSeconds": 3420.0,
+          "purpose": "elevated waterfront settlement, timber platforms, storage and work-yard relationships"
+        },
+        {
+          "id": "p13-continuous-street-axis",
+          "startSeconds": 3660.0,
+          "endSeconds": 3900.0,
+          "purpose": "continuous street traversal, house entrances, walls, road width and street furniture"
+        },
+        {
+          "id": "p13-ship-and-waterfront-market",
+          "startSeconds": 4560.0,
+          "endSeconds": 4780.0,
+          "purpose": "large sailing ship, dock edge, waterfront market and port identity cues"
+        }
+      ],
+      "contextTimestamps": [388.44, 1388.0],
+      "expectedFrameCount": 231,
+      "expectedContactSheetCount": 15
+    },
+    {
+      "jobId": "eleven-p015-v2",
+      "jobPath": "data/analysis-jobs/eleven-p015.json",
+      "page": 15,
+      "cid": 28949941205,
+      "expectedDurationSeconds": 4435.066,
+      "windows": [
+        {
+          "id": "p15-elevated-city-panorama",
+          "startSeconds": 870.0,
+          "endSeconds": 960.0,
+          "purpose": "elevated city panorama, roof density and water-settlement relationship"
+        },
+        {
+          "id": "p15-road-workshop-and-waterfront",
+          "startSeconds": 2540.0,
+          "endSeconds": 3040.0,
+          "purpose": "road and waterfront opening, timber workshops, storage yards and building-road scale"
+        },
+        {
+          "id": "p15-roof-compounds-and-courtyards",
+          "startSeconds": 3100.0,
+          "endSeconds": 3400.0,
+          "purpose": "roof compounds, courtyards and wall-path connections"
+        },
+        {
+          "id": "p15-roof-traversal-and-connectivity",
+          "startSeconds": 3880.0,
+          "endSeconds": 4230.0,
+          "purpose": "roof traversal, compound connectivity and repeated building modules"
+        }
+      ],
+      "contextTimestamps": [277.0, 2985.0, 4223.0, 4417.0],
+      "expectedFrameCount": 420,
+      "expectedContactSheetCount": 27
+    }
+  ],
+  "reviewTargets": [
+    "identify repeated roofs, gates, towers, walls and street segments across camera positions",
+    "identify water edges, docks, bridges, boats and shoreline access points",
+    "separate Sakai candidates from unrelated forts, temples and rural settlements",
+    "record only timestamps and derived landmark relationships after visual review",
+    "require at least two independent views before any structure enters the pilot model"
+  ],
+  "safety": {
+    "sourceFramesCommitted": false,
+    "originalVideoCommitted": false,
+    "officialMapGeometryExtracted": false,
+    "automaticGeometryGenerated": false,
+    "humanReviewRequiredBeforeCorrespondenceGraph": true
+  },
+  "outputs": {
+    "timestampPlan": "data/geospatial/geospatial-2p5d-sakai-dense-timestamp-plan.json",
+    "artifactManifest": "data/geospatial/geospatial-2p5d-sakai-dense-evidence-manifest.json",
+    "workflowOutcome": "data/batch-analysis/geospatial-2p5d-sakai-dense-evidence-workflow.json"
+  }
+}
