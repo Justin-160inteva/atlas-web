@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/geospatial-original-authored-base-skeleton.yml'
       - 'tools/build_geospatial_original_authored_base_skeleton.py'
+      - 'tools/run_geospatial_original_authored_base_skeleton_with_diagnostic.py'
       - 'data/geospatial/geospatial-original-authored-base-plan.json'
       - 'data/geospatial/geospatial-original-authored-base-trigger.json'
       - 'data/geospatial/geospatial-progress.json'
@@ -36,8 +37,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Compile original-base builder
-        run: python -m py_compile tools/build_geospatial_original_authored_base_skeleton.py
+      - name: Compile original-base builders
+        run: |
+          python -m py_compile \
+            tools/build_geospatial_original_authored_base_skeleton.py \
+            tools/run_geospatial_original_authored_base_skeleton_with_diagnostic.py
 
       - name: Record protected pixel hashes
         id: protected
@@ -54,7 +58,28 @@ jobs:
           PY
 
       - name: Build original authored spatial skeleton
-        run: python tools/build_geospatial_original_authored_base_skeleton.py
+        run: python tools/run_geospatial_original_authored_base_skeleton_with_diagnostic.py
+
+      - name: Persist build diagnostic on failure
+        if: failure() && hashFiles('data/geospatial/geospatial-original-authored-base-diagnostic.json') != ''
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          cp data/geospatial/geospatial-original-authored-base-diagnostic.json /tmp/original-authored-base-diagnostic.json
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial
+            cp /tmp/original-authored-base-diagnostic.json data/geospatial/geospatial-original-authored-base-diagnostic.json
+            git add data/geospatial/geospatial-original-authored-base-diagnostic.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Record original authored skeleton failure diagnostic [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 4))
+          done
+          exit 1
 
       - name: Validate authorship strategy and generated skeleton
         env:
