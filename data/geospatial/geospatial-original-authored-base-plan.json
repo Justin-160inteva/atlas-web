@@ -34,12 +34,20 @@
     "finalTerrainRequiresAuthoredArtDirection": true,
     "allFinalAssetsRequireRepositoryOwnedSourceFiles": true
   },
+  "scope": {
+    "allLocationRegions": 10,
+    "confirmedAnchorCoveredRegions": 9,
+    "currentlyUnanchoredExtensionRegions": [
+      "region-3304-awaji"
+    ],
+    "unanchoredRegionsRemainConstructionOnly": true
+  },
   "phases": [
     {
       "id": "skeleton",
       "status": "in_progress",
       "output": "data/geospatial/geospatial-original-authored-base-skeleton.json",
-      "gate": "3430 locations grouped into 9 regions with deterministic hulls, density field and adjacency graph"
+      "gate": "3430 locations grouped into 10 regions, including 9 anchor-covered main regions and the currently unanchored AWAJI extension, with deterministic hulls, density field and adjacency graph"
     },
     {
       "id": "regional-composition",
