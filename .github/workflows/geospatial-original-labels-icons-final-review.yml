@@ -6,8 +6,10 @@ on:
     paths:
       - '.github/workflows/geospatial-original-labels-icons-final-review.yml'
       - 'tools/build_geospatial_original_labels_icons_final_review.py'
+      - 'tools/apply_geospatial_unassigned_location_disposition.py'
       - 'data/geospatial/geospatial-original-labels-icons-final-review-plan.json'
       - 'data/geospatial/geospatial-original-labels-icons-final-review-trigger.json'
+      - 'data/geospatial/geospatial-unassigned-location-disposition.json'
       - 'data/geospatial/geospatial-original-authored-base-skeleton.json'
       - 'data/geospatial/geospatial-original-terrain-coastline-v1.json'
       - 'assets/original-map/atlas-original-terrain-coastline-v1.svg'
@@ -17,14 +19,14 @@ on:
 permissions:
   contents: write
 
-concurrency:
+dconcurrency:
   group: geospatial-original-labels-icons-final-review-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Check out PR head
         uses: actions/checkout@v4
@@ -37,8 +39,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Compile labels and icon generator
-        run: python -m py_compile tools/build_geospatial_original_labels_icons_final_review.py
+      - name: Compile labels icon and disposition tools
+        run: |
+          python -m py_compile \
+            tools/build_geospatial_original_labels_icons_final_review.py \
+            tools/apply_geospatial_unassigned_location_disposition.py
 
       - name: Record protected source hashes
         id: protected
@@ -63,6 +68,9 @@ jobs:
       - name: Generate original labels icons and review candidate
         run: python tools/build_geospatial_original_labels_icons_final_review.py
 
+      - name: Apply no-inference unassigned location disposition
+        run: python tools/apply_geospatial_unassigned_location_disposition.py
+
       - name: Validate labels icons authorship and freeze readiness
         env:
           LEGACY_SHA256: ${{ steps.protected.outputs.legacy_sha256 }}
@@ -79,6 +87,7 @@ jobs:
           svg_path = Path('assets/original-map/atlas-original-labels-icons-final-review-v1.svg')
           manifest_path = Path('data/geospatial/geospatial-original-labels-icons-final-review-v1.json')
           readiness_path = Path('data/geospatial/geospatial-original-final-canvas-readiness.json')
+          disposition_path = Path('data/geospatial/geospatial-unassigned-location-disposition.json')
           progress_path = Path('data/geospatial/geospatial-progress.json')
           legacy_path = Path('assets/world-map-4096.webp')
           terrain_path = Path('assets/original-map/atlas-original-terrain-coastline-v1.svg')
@@ -87,6 +96,7 @@ jobs:
           svg = svg_path.read_text(encoding='utf-8')
           manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
           readiness = json.loads(readiness_path.read_text(encoding='utf-8'))
+          disposition = json.loads(disposition_path.read_text(encoding='utf-8'))
           progress = json.loads(progress_path.read_text(encoding='utf-8'))
           digest = hashlib.sha256(svg_path.read_bytes()).hexdigest()
 
@@ -150,6 +160,14 @@ jobs:
           assert len({row['categoryId'] for row in manifest['categoryMappings']}) == 44
           assert len(manifest['regionLabelPlacements']) == 10
           assert manifest['anchorIconSummary']['shrine'] + manifest['anchorIconSummary']['temple'] == 50
+          assert manifest['unassignedLocationDisposition'] == {
+              'status': 'resolved',
+              'path': str(disposition_path),
+              'policy': 'retain_as_global_overlay_without_region_inference',
+              'locationCount': 5,
+              'regionMembershipInferred': False,
+              'globalVisibilityPreserved': True,
+          }
           assert manifest['authorship'] == {
               'strategy': 'fully-original-authored-visual-base',
               'terrainSvgUsedAsRepositoryOwnedBase': True,
@@ -162,12 +180,20 @@ jobs:
           }
           assert all(value is False for value in manifest['claims'].values())
 
-          assert readiness['status'] == 'final-canvas-review-candidate-blocked'
+          assert disposition['status'] == 'approved'
+          assert disposition['policy'] == 'retain_as_global_overlay_without_region_inference'
+          assert len(disposition['locations']) == 5
+          assert all(row['disposition'] == 'retain_global_overlay' and row['regionId'] is None for row in disposition['locations'])
+          assert all(disposition['safety'].values())
+
+          assert readiness['status'] == 'final-canvas-review-candidate-awaiting-human-approval'
           assert readiness['automatedGateStatus'] == 'passed'
           assert all(readiness['automatedGates'].values())
-          assert readiness['blockerCount'] == 2
-          assert [row['id'] for row in readiness['blockers']] == ['unassigned-locations', 'human-visual-review']
-          assert len(readiness['unassignedLocationGuides']) == 5
+          assert readiness['unassignedLocationDisposition']['status'] == 'resolved'
+          assert readiness['unassignedLocationDisposition']['locationCount'] == 5
+          assert readiness['unassignedLocationDisposition']['regionMembershipInferred'] is False
+          assert readiness['blockerCount'] == 1
+          assert [row['id'] for row in readiness['blockers']] == ['human-visual-review']
           assert readiness['humanVisualReview']['status'] == 'not_recorded'
           assert readiness['finalCanvasFreeze']['eligible'] is False
           assert readiness['finalCanvasFreeze']['frozen'] is False
@@ -184,7 +210,9 @@ jobs:
           assert authored['regionLabelCount'] == 10
           assert authored['confirmedAnchorIconCount'] == 50
           assert authored['labelOverlapCount'] == 0
+          assert authored['unassignedLocationDispositionStatus'] == 'resolved_retained_global_overlay'
           assert authored['finalCanvasFrozen'] is False
+          assert authored['finalCanvasFreezeStatus'] == 'blocked_pending_human_visual_review'
           assert authored['nextStage'] == 'human_visual_review_and_final_canvas_freeze'
           assert progress['stageGates']['coordinateAndOverlayCalibration']['pixelTransformStatus'] == 'blocked_pending_original_authored_final_canvas'
 
@@ -200,9 +228,33 @@ jobs:
               'asset': manifest['asset'],
               'counts': manifest['counts'],
               'automatedGateStatus': readiness['automatedGateStatus'],
-              'blockers': readiness['blockers'],
+              'remainingBlockers': readiness['blockers'],
           }, ensure_ascii=False))
           PY
+
+      - name: Install SVG preview renderer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends librsvg2-bin
+
+      - name: Render visual review preview
+        run: |
+          rm -rf /tmp/atlas-final-review-preview
+          mkdir -p /tmp/atlas-final-review-preview
+          rsvg-convert \
+            --width 1600 \
+            --height 1600 \
+            assets/original-map/atlas-original-labels-icons-final-review-v1.svg \
+            --output /tmp/atlas-final-review-preview/atlas-original-labels-icons-final-review-v1.png
+          test -s /tmp/atlas-final-review-preview/atlas-original-labels-icons-final-review-v1.png
+
+      - name: Upload visual review preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-original-labels-icons-final-review-preview
+          path: /tmp/atlas-final-review-preview/atlas-original-labels-icons-final-review-v1.png
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Stage labels icons review outputs
         run: |
@@ -244,8 +296,10 @@ jobs:
           done
           exit 1
 
-      - name: Delete transient publish staging
+      - name: Delete transient staging
         if: always()
         run: |
           rm -rf /tmp/original-labels-icons-final-review-publish
+          rm -rf /tmp/atlas-final-review-preview
           test ! -e /tmp/original-labels-icons-final-review-publish
+          test ! -e /tmp/atlas-final-review-preview
