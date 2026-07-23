@@ -1,0 +1,374 @@
+name: Geospatial Sakai 2.5D Dense Evidence
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tools/build_geospatial_2p5d_sakai_dense_timestamps.py'
+      - 'tools/extract_geospatial_2p5d_sakai_dense_evidence.py'
+      - 'tools/download_authorized_bilibili_page_by_cid.py'
+      - 'data/geospatial/geospatial-2p5d-sakai-dense-evidence-plan.json'
+      - 'data/geospatial/geospatial-2p5d-sakai-visual-evidence-review.json'
+      - 'data/analysis-jobs/eleven-p013.json'
+      - 'data/analysis-jobs/eleven-p015.json'
+      - 'data/authorizations.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: geospatial-sakai-2p5d-dense-evidence-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile dense evidence tools
+        run: |
+          python -m py_compile \
+            tools/build_geospatial_2p5d_sakai_dense_timestamps.py \
+            tools/extract_geospatial_2p5d_sakai_dense_evidence.py \
+            tools/download_authorized_bilibili_page_by_cid.py
+
+      - name: Build deterministic dense timestamp plan
+        run: python tools/build_geospatial_2p5d_sakai_dense_timestamps.py
+
+      - name: Validate authorization, CID locks and exact counts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          plan = json.loads(Path('data/geospatial/geospatial-2p5d-sakai-dense-evidence-plan.json').read_text(encoding='utf-8'))
+          timestamps = json.loads(Path('data/geospatial/geospatial-2p5d-sakai-dense-timestamp-plan.json').read_text(encoding='utf-8'))
+          authorizations = json.loads(Path('data/authorizations.json').read_text(encoding='utf-8'))
+          auth = next(row for row in authorizations['records'] if row['id'] == plan['authorizationId'])
+
+          assert auth['status'] == 'active'
+          for key in (
+              'localDownloadAndAnalysis',
+              'downloadFromPublicVideoPage',
+              'computerVisionAnalysis',
+              'privateLowResolutionKeyframes',
+              'original2DVectorReconstruction',
+              'original3DReconstruction',
+              'roadReconstruction',
+              'terrainReconstruction',
+              'waterAndBoundaryReconstruction',
+              'geospatialAnchoring',
+          ):
+              assert auth['scope'][key] is True, key
+
+          assert timestamps['status'] == 'dense-timestamp-plan-ready'
+          assert timestamps['counts'] == {'videos': 2, 'frames': 651, 'contactSheets': 42}
+          assert timestamps['safety'] == {
+              'pixelsGenerated': False,
+              'videosDownloaded': False,
+              'geometryGenerated': False,
+              'sourceCoordinatesModified': False,
+          }
+
+          expected = {
+              'eleven-p013-v2': {'page': 13, 'cid': 28949022042, 'frames': 231, 'sheets': 15},
+              'eleven-p015-v2': {'page': 15, 'cid': 28949941205, 'frames': 420, 'sheets': 27},
+          }
+          assert {row['jobId'] for row in timestamps['videos']} == set(expected)
+          for video in timestamps['videos']:
+              row = expected[video['jobId']]
+              assert video['page'] == row['page']
+              assert video['cid'] == row['cid']
+              assert video['frameCount'] == row['frames']
+              assert video['contactSheetCount'] == row['sheets']
+              assert len(video['timestamps']) == row['frames']
+              assert len({item['time'] for item in video['timestamps']}) == row['frames']
+              assert all(item['bucket'] in {'denseWindow', 'context'} for item in video['timestamps'])
+              assert all(0 <= item['time'] < video['expectedDurationSeconds'] for item in video['timestamps'])
+
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          print(json.dumps({'status': timestamps['status'], 'counts': timestamps['counts']}, ensure_ascii=False))
+          PY
+
+  extract:
+    needs: plan
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - job_id: eleven-p013-v2
+            job_path: data/analysis-jobs/eleven-p013.json
+            expected_frames: 231
+            expected_sheets: 15
+          - job_id: eleven-p015-v2
+            job_path: data/analysis-jobs/eleven-p015.json
+            expected_frames: 420
+            expected_sheets: 27
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install transient dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy opencv-python-headless curl-cffi
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg curl
+
+      - name: Compile and build dense timestamp plan locally
+        run: |
+          python -m py_compile \
+            tools/build_geospatial_2p5d_sakai_dense_timestamps.py \
+            tools/extract_geospatial_2p5d_sakai_dense_evidence.py \
+            tools/download_authorized_bilibili_page_by_cid.py
+          python tools/build_geospatial_2p5d_sakai_dense_timestamps.py
+
+      - name: Download authorized page by explicit CID
+        run: |
+          rm -rf /tmp/sakai-dense-video-${{ matrix.job_id }} /tmp/sakai-dense-evidence-${{ matrix.job_id }}
+          mkdir -p /tmp/sakai-dense-video-${{ matrix.job_id }} /tmp/sakai-dense-evidence-${{ matrix.job_id }}
+          python tools/download_authorized_bilibili_page_by_cid.py \
+            --job '${{ matrix.job_path }}' \
+            --output-dir /tmp/sakai-dense-video-${{ matrix.job_id }} \
+            --quality 32
+
+      - name: Extract targeted 640x360 transient evidence
+        run: |
+          python tools/extract_geospatial_2p5d_sakai_dense_evidence.py \
+            --video /tmp/sakai-dense-video-${{ matrix.job_id }}/${{ matrix.job_id }}.mp4 \
+            --job-id '${{ matrix.job_id }}' \
+            --output-dir /tmp/sakai-dense-evidence-${{ matrix.job_id }} \
+            --run-id '${{ github.run_id }}'
+
+      - name: Run per-video dense evidence gate
+        env:
+          JOB_ID: ${{ matrix.job_id }}
+          EXPECTED_FRAMES: ${{ matrix.expected_frames }}
+          EXPECTED_SHEETS: ${{ matrix.expected_sheets }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          job_id = os.environ['JOB_ID']
+          expected_frames = int(os.environ['EXPECTED_FRAMES'])
+          expected_sheets = int(os.environ['EXPECTED_SHEETS'])
+          root = Path(f'/tmp/sakai-dense-evidence-{job_id}')
+          manifest = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
+
+          assert manifest['status'] == 'dense-transient-artifact-ready'
+          assert manifest['jobId'] == job_id
+          assert manifest['authorizationId'] == 'auth-eleven-game-world-20260719'
+          assert len(manifest['extraction']['frames']) == expected_frames
+          assert len(manifest['extraction']['contactSheets']) == expected_sheets
+          assert all((root / row['filename']).is_file() for row in manifest['extraction']['frames'])
+          assert all((root / row['filename']).is_file() for row in manifest['extraction']['contactSheets'])
+          assert all(row['descriptor']['averageHash'] for row in manifest['extraction']['frames'])
+          assert manifest['privacy'] == {
+              'repositoryContainsPixels': False,
+              'artifactContainsTransientPixels': True,
+              'artifactRetentionDays': 1,
+              'originalVideoIncludedInArtifact': False,
+          }
+          assert manifest['safety'] == {
+              'geometryGenerated': False,
+              'automaticLandmarkMatchProduced': False,
+          }
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          print(json.dumps({
+              'jobId': job_id,
+              'frames': expected_frames,
+              'contactSheets': expected_sheets,
+              'downloadedDurationSeconds': manifest['source']['downloadedDurationSeconds'],
+          }, ensure_ascii=False))
+          PY
+
+      - name: Upload one-day dense evidence artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-sakai-dense-${{ matrix.job_id }}-${{ github.run_id }}
+          path: /tmp/sakai-dense-evidence-${{ matrix.job_id }}
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
+
+      - name: Delete transient source and evidence pixels
+        if: always()
+        run: |
+          rm -rf /tmp/sakai-dense-video-${{ matrix.job_id }} /tmp/sakai-dense-evidence-${{ matrix.job_id }}
+          test ! -e /tmp/sakai-dense-video-${{ matrix.job_id }}
+          test ! -e /tmp/sakai-dense-evidence-${{ matrix.job_id }}
+          find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' -o -name '*.flv' -o -name '*.jpg' \) -not -path './assets/*' -delete
+
+  finalize:
+    needs: [plan, extract]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Rebuild timestamp plan and write non-pixel manifests
+        run: |
+          python tools/build_geospatial_2p5d_sakai_dense_timestamps.py
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          plan_path = Path('data/geospatial/geospatial-2p5d-sakai-dense-evidence-plan.json')
+          timestamp_path = Path('data/geospatial/geospatial-2p5d-sakai-dense-timestamp-plan.json')
+          plan = json.loads(plan_path.read_text(encoding='utf-8'))
+          timestamps = json.loads(timestamp_path.read_text(encoding='utf-8'))
+          run_id = os.environ['GITHUB_RUN_ID']
+          generated_at = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+
+          payload = {
+              'schemaVersion': 1,
+              'generatedAt': generated_at,
+              'status': 'dense-transient-artifacts-uploaded-awaiting-landmark-review',
+              'stage': plan['stage'],
+              'runId': run_id,
+              'authorizationId': plan['authorizationId'],
+              'pilotScope': plan['pilotScope'],
+              'timestampPlanPath': plan['outputs']['timestampPlan'],
+              'counts': {
+                  'videos': 2,
+                  'frames': 651,
+                  'contactSheets': 42,
+                  'artifacts': 2,
+              },
+              'artifacts': [
+                  {
+                      'jobId': video['jobId'],
+                      'name': f"atlas-sakai-dense-{video['jobId']}-{run_id}",
+                      'frameCount': video['frameCount'],
+                      'contactSheetCount': video['contactSheetCount'],
+                      'retentionDays': 1,
+                      'containsOriginalVideo': False,
+                      'containsLowResolutionReviewFrames': True,
+                  }
+                  for video in timestamps['videos']
+              ],
+              'privacy': {
+                  'repositoryContainsPixels': False,
+                  'artifactContainsTransientPixels': True,
+                  'originalVideoRetained': False,
+                  'artifactRetentionDays': 1,
+              },
+              'safety': {
+                  'geometryGenerated': False,
+                  'automaticLandmarkCorrespondenceAccepted': False,
+                  'humanReviewRequired': True,
+              },
+              'nextAction': 'review P13 and P15 dense contact sheets, then record only non-pixel repeated-landmark correspondences supported by at least two independent views',
+          }
+          manifest_path = Path(plan['outputs']['artifactManifest'])
+          manifest_path.parent.mkdir(parents=True, exist_ok=True)
+          manifest_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          outcome = {
+              'schemaVersion': 1,
+              'status': 'success',
+              'runId': run_id,
+              'stage': plan['stage'],
+              'timestampPlan': plan['outputs']['timestampPlan'],
+              'artifactManifest': plan['outputs']['artifactManifest'],
+              'recordedAt': generated_at,
+          }
+          outcome_path = Path(plan['outputs']['workflowOutcome'])
+          outcome_path.parent.mkdir(parents=True, exist_ok=True)
+          outcome_path.write_text(json.dumps(outcome, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Validate final non-pixel outputs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          timestamps = json.loads(Path('data/geospatial/geospatial-2p5d-sakai-dense-timestamp-plan.json').read_text(encoding='utf-8'))
+          manifest = json.loads(Path('data/geospatial/geospatial-2p5d-sakai-dense-evidence-manifest.json').read_text(encoding='utf-8'))
+          assert timestamps['counts'] == {'videos': 2, 'frames': 651, 'contactSheets': 42}
+          assert manifest['status'] == 'dense-transient-artifacts-uploaded-awaiting-landmark-review'
+          assert manifest['counts'] == {'videos': 2, 'frames': 651, 'contactSheets': 42, 'artifacts': 2}
+          assert len(manifest['artifacts']) == 2
+          assert manifest['privacy']['repositoryContainsPixels'] is False
+          assert manifest['safety']['geometryGenerated'] is False
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          PY
+
+      - name: Stage non-pixel dense evidence outputs
+        run: |
+          rm -rf /tmp/sakai-dense-finalize
+          mkdir -p /tmp/sakai-dense-finalize/data/geospatial /tmp/sakai-dense-finalize/data/batch-analysis
+          cp data/geospatial/geospatial-2p5d-sakai-dense-timestamp-plan.json /tmp/sakai-dense-finalize/data/geospatial/
+          cp data/geospatial/geospatial-2p5d-sakai-dense-evidence-manifest.json /tmp/sakai-dense-finalize/data/geospatial/
+          cp data/batch-analysis/geospatial-2p5d-sakai-dense-evidence-workflow.json /tmp/sakai-dense-finalize/data/batch-analysis/
+
+      - name: Publish dense evidence manifests atomically
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial data/batch-analysis
+            cp /tmp/sakai-dense-finalize/data/geospatial/*.json data/geospatial/
+            cp /tmp/sakai-dense-finalize/data/batch-analysis/*.json data/batch-analysis/
+            git add \
+              data/geospatial/geospatial-2p5d-sakai-dense-timestamp-plan.json \
+              data/geospatial/geospatial-2p5d-sakai-dense-evidence-manifest.json \
+              data/batch-analysis/geospatial-2p5d-sakai-dense-evidence-workflow.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Record targeted dense Sakai evidence package [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Delete finalization staging
+        if: always()
+        run: |
+          rm -rf /tmp/sakai-dense-finalize
+          test ! -e /tmp/sakai-dense-finalize
