@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "stage": "2p5d-pilot-coverage-audit",
+  "status": "contract-ready",
+  "purpose": "Select the first building-level 2.5D reconstruction sample using repository evidence instead of visual guesswork.",
+  "inputs": {
+    "regions": "data/regions.json",
+    "locations": "data/locations.json",
+    "categories": "data/categories.json",
+    "analysisIndex": "data/analysis-index.json",
+    "geospatialProgress": "data/geospatial/geospatial-progress.json"
+  },
+  "regionAliases": {
+    "AWAJI": ["awaji", "淡路", "淡路岛", "淡路島"],
+    "HARIMA": ["harima", "播磨"],
+    "IGA": ["iga", "伊贺", "伊賀"],
+    "IZUMI SETTSU": ["izumi settsu", "izumi-settsu", "和泉摄津", "和泉攝津", "摄津", "攝津", "和泉"],
+    "KII": ["kii", "纪伊", "紀伊"],
+    "OMI": ["omi", "近江"],
+    "TAMBA": ["tamba", "丹波"],
+    "WAKASA": ["wakasa", "若狭", "若狹"],
+    "YAMASHIRO": ["yamashiro", "山城"],
+    "YAMATO": ["yamato", "大和"]
+  },
+  "weights": {
+    "authorizedVideoEvidence": 0.45,
+    "geospatialReadiness": 0.30,
+    "sceneDiversity": 0.25
+  },
+  "pilotRequirements": {
+    "minimumExplicitAuthorizedVideos": 1,
+    "minimumConfirmedAnchors": 1,
+    "minimumLocationCount": 20,
+    "minimumDistinctCategories": 4,
+    "preferredSampleContains": [
+      "building-or-landmark",
+      "road-or-route-evidence",
+      "water-or-coast-evidence",
+      "terrain-or-vegetation-evidence"
+    ],
+    "forbidUnsupportedGeometryInference": true,
+    "humanApprovalRequiredBeforeModeling": true
+  },
+  "selectionPolicy": {
+    "regionSelection": "highest score among regions satisfying hard evidence gates",
+    "sampleTileSelection": "densest normalized coordinate cell containing at least one confirmed anchor and the widest category diversity",
+    "evidenceGapPolicy": "record missing evidence explicitly and search for additional videos before reconstruction",
+    "officialMapRole": "macro orientation reference only; no tracing, vectorization, texture reuse or geometry extraction"
+  },
+  "outputs": {
+    "audit": "data/geospatial/geospatial-2p5d-pilot-coverage-audit.json",
+    "authorizationSearchBrief": "data/geospatial/geospatial-2p5d-pilot-video-authorization-brief.json",
+    "progress": "data/geospatial/geospatial-progress.json"
+  }
+}
