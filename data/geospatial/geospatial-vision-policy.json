@@ -28,9 +28,9 @@
   "request": {
     "temperature": 0.0,
     "maximumOutputTokens": 1600,
-    "timeoutSeconds": 90,
-    "maximumAttempts": 2,
-    "maximumRetryAfterSeconds": 30,
+    "timeoutSeconds": 75,
+    "maximumAttempts": 1,
+    "maximumRetryAfterSeconds": 20,
     "delayBetweenRequestsSeconds": 2,
     "eventsPerRequest": 4,
     "framesPerEvent": 3
