@@ -216,8 +216,8 @@ def main() -> int:
             "uniqueLocationAssignments": len(confirmed) == len({row["locationId"] for row in confirmed}),
             "minimumTempleConfidenceMet": all(row["confidence"] >= 0.9 for row in registered_sets[0]["rows"]),
             "minimumShrineConfidenceMet": all(row["confidence"] >= 0.92 for row in registered_sets[1]["rows"]),
-            "repositoryContainsEvidencePixels": False,
-            "approximateCoordinatesInvented": False,
+            "repositoryContainsNoEvidencePixels": True,
+            "approximateCoordinatesNotInvented": True,
         },
     }
     if not all(payload["safety"].values()):
