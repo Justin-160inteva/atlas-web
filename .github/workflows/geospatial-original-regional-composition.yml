@@ -1,0 +1,186 @@
+name: Geospatial Original Regional Composition
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/geospatial-original-regional-composition.yml'
+      - 'tools/build_geospatial_original_regional_composition.py'
+      - 'data/geospatial/geospatial-original-regional-composition-plan.json'
+      - 'data/geospatial/geospatial-original-regional-composition-trigger.json'
+      - 'data/geospatial/geospatial-original-authored-base-skeleton.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: geospatial-original-regional-composition-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile composition generator
+        run: python -m py_compile tools/build_geospatial_original_regional_composition.py
+
+      - name: Record protected legacy preview hash
+        id: protected
+        run: |
+          python - <<'PY'
+          import hashlib, os
+          from pathlib import Path
+          path = Path('assets/world-map-4096.webp')
+          digest = hashlib.sha256(path.read_bytes()).hexdigest()
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'legacy_sha256={digest}\n')
+          PY
+
+      - name: Generate original editable SVG composition
+        run: python tools/build_geospatial_original_regional_composition.py
+
+      - name: Validate asset authorship, structure and progress
+        env:
+          LEGACY_SHA256: ${{ steps.protected.outputs.legacy_sha256 }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          svg_path = Path('assets/original-map/atlas-original-regional-composition-v1.svg')
+          manifest_path = Path('data/geospatial/geospatial-original-regional-composition-v1.json')
+          progress_path = Path('data/geospatial/geospatial-progress.json')
+          legacy_path = Path('assets/world-map-4096.webp')
+
+          svg = svg_path.read_text(encoding='utf-8')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          progress = json.loads(progress_path.read_text(encoding='utf-8'))
+          digest = hashlib.sha256(svg_path.read_bytes()).hexdigest()
+
+          assert svg.startswith('<?xml version="1.0" encoding="UTF-8"?>')
+          assert '<svg ' in svg
+          assert 'width="4096"' in svg and 'height="4096"' in svg
+          assert 'viewBox="0 0 4096 4096"' in svg
+          assert '<image' not in svg.lower()
+          assert 'data:image/' not in svg.lower()
+          assert '@import' not in svg.lower()
+          assert not re.search(r'(?:href|src)\s*=\s*["\'](?:https?:|//)', svg, re.I)
+          assert not re.search(r'url\(\s*["\']?https?://', svg, re.I)
+          assert svg.count('class="region-mass"') == 10
+          assert svg.count('class="confirmed-anchor"') == 50
+          assert svg.count('class="unassigned-guide"') == 5
+          assert 'id="original-land-silhouette"' in svg
+          assert 'id="regional-masses"' in svg
+          assert 'id="confirmed-anchor-guides"' in svg
+          assert 'id="unassigned-location-guides"' in svg
+
+          assert manifest['status'] == 'original-regional-composition-draft-ready'
+          assert manifest['asset']['path'] == str(svg_path)
+          assert manifest['asset']['format'] == 'svg'
+          assert manifest['asset']['width'] == 4096
+          assert manifest['asset']['height'] == 4096
+          assert manifest['asset']['sha256'] == digest
+          assert manifest['asset']['sizeBytes'] == svg_path.stat().st_size
+          assert manifest['asset']['editableSource'] is True
+          assert manifest['asset']['repositoryOwned'] is True
+          assert manifest['counts']['locations'] == 3430
+          assert manifest['counts']['regionAssignedLocations'] == 3425
+          assert manifest['counts']['unassignedLocations'] == 5
+          assert manifest['counts']['regions'] == 10
+          assert manifest['counts']['confirmedAnchors'] == 50
+          assert manifest['counts']['adjacencyEdges'] == 20
+          assert manifest['authorship'] == {
+              'strategy': 'fully-original-authored-visual-base',
+              'thirdPartyRasterUsed': False,
+              'thirdPartyVectorUsed': False,
+              'regionsJsonGeometryUsed': False,
+              'legacyRenderBaseRead': False,
+              'externalImages': 0,
+              'externalFonts': 0,
+              'embeddedRasterImages': 0,
+              'proceduralSvgDefinitionsOnly': True,
+          }
+          assert all(value is False for value in manifest['claims'].values())
+
+          final_base = progress['stageGates']['finalOriginalUltraHdBase']['authoredBase']
+          assert final_base['status'] == 'regional_composition_draft_ready'
+          assert final_base['compositionPath'] == str(svg_path)
+          assert final_base['compositionManifestPath'] == str(manifest_path)
+          assert final_base['compositionSha256'] == digest
+          assert final_base['compositionDimensions'] == {'width': 4096, 'height': 4096}
+          assert final_base['editableSourceFormat'] == 'svg'
+          assert final_base['finalCanvasFrozen'] is False
+          assert final_base['nextStage'] == 'original_terrain_and_coastline_art'
+          assert progress['originalAuthoredBase']['regionalCompositionStatus'] == 'draft_ready'
+          assert progress['stageGates']['coordinateAndOverlayCalibration']['pixelTransformStatus'] == 'blocked_pending_original_authored_final_canvas'
+
+          assert hashlib.sha256(legacy_path.read_bytes()).hexdigest() == os.environ['LEGACY_SHA256']
+          assert not list(Path('assets/original-map').glob('*.png'))
+          assert not list(Path('assets/original-map').glob('*.jpg'))
+          assert not list(Path('assets/original-map').glob('*.webp'))
+
+          print(json.dumps({
+              'status': manifest['status'],
+              'asset': manifest['asset'],
+              'counts': manifest['counts'],
+              'externalResources': 0,
+              'finalBaseApproved': False,
+          }, ensure_ascii=False))
+          PY
+
+      - name: Stage authored composition outputs
+        run: |
+          rm -rf /tmp/original-regional-composition-publish
+          mkdir -p /tmp/original-regional-composition-publish/assets/original-map
+          mkdir -p /tmp/original-regional-composition-publish/data/geospatial
+          cp assets/original-map/atlas-original-regional-composition-v1.svg \
+            /tmp/original-regional-composition-publish/assets/original-map/
+          cp data/geospatial/geospatial-original-regional-composition-v1.json \
+            /tmp/original-regional-composition-publish/data/geospatial/
+          cp data/geospatial/geospatial-progress.json \
+            /tmp/original-regional-composition-publish/data/geospatial/
+
+      - name: Atomically publish editable composition
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p assets/original-map data/geospatial
+            cp /tmp/original-regional-composition-publish/assets/original-map/atlas-original-regional-composition-v1.svg assets/original-map/
+            cp /tmp/original-regional-composition-publish/data/geospatial/geospatial-original-regional-composition-v1.json data/geospatial/
+            cp /tmp/original-regional-composition-publish/data/geospatial/geospatial-progress.json data/geospatial/
+            git add \
+              assets/original-map/atlas-original-regional-composition-v1.svg \
+              data/geospatial/geospatial-original-regional-composition-v1.json \
+              data/geospatial/geospatial-progress.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Generate original regional composition SVG [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Delete transient publish staging
+        if: always()
+        run: |
+          rm -rf /tmp/original-regional-composition-publish
+          test ! -e /tmp/original-regional-composition-publish
