@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "requestedAt": "2026-07-23T10:50:00Z",
+  "runNonce": "geospatial-final-base-audit-scaffold-v1",
+  "mode": "audit-existing-render-base-only",
+  "candidate": {
+    "path": "assets/world-map-4096.webp",
+    "role": "current-render-base-candidate",
+    "expectedFormat": "webp",
+    "expectedWidth": 4096,
+    "expectedHeight": 4096,
+    "finalBaseApproved": false
+  },
+  "authorization": {
+    "status": "repository-existing-asset-unverified-provenance",
+    "sourceUrl": null,
+    "license": null,
+    "approvedBy": null
+  },
+  "crop": {
+    "status": "unfixed",
+    "left": null,
+    "top": null,
+    "width": null,
+    "height": null
+  },
+  "overlayOrigin": {
+    "status": "unfixed",
+    "x": null,
+    "y": null
+  },
+  "policy": {
+    "modifyCandidatePixels": false,
+    "inventPixelCoordinates": false,
+    "claimFinalBaseWithoutApproval": false,
+    "fitTransformBeforeFinalCrop": false
+  }
+}
