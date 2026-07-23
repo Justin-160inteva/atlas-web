@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "status": "approved-for-draft-generation",
+  "stage": "original-labels-icons-and-final-canvas-review",
+  "strategy": "fully_original_authored_visual_base",
+  "canvas": {
+    "width": 4096,
+    "height": 4096,
+    "sourceFormat": "svg",
+    "editableSourceRequired": true,
+    "finalCanvasFrozen": false
+  },
+  "sourcePolicy": {
+    "terrainSvgPath": "assets/original-map/atlas-original-terrain-coastline-v1.svg",
+    "terrainSvgRole": "repository_owned_authored_base",
+    "thirdPartyRasterAllowed": false,
+    "thirdPartyVectorAllowed": false,
+    "externalFontsAllowed": false,
+    "externalImagesAllowed": false,
+    "embeddedRasterAllowed": false
+  },
+  "labelSystem": {
+    "regionLabelCount": 10,
+    "placement": "deterministic collision-aware placement around region centroids",
+    "minimumCanvasMarginPixels": 110,
+    "plateWidthPixels": 390,
+    "plateHeightPixels": 104,
+    "reservedRectangles": [
+      {"id": "title-block", "x": 90, "y": 70, "width": 1420, "height": 250},
+      {"id": "existing-legend", "x": 90, "y": 3720, "width": 1570, "height": 290},
+      {"id": "icon-legend", "x": 2460, "y": 3350, "width": 1510, "height": 650}
+    ],
+    "maximumLabelOverlapCount": 0,
+    "hidePreviousRegionLabels": true
+  },
+  "iconSystem": {
+    "coreSymbolCount": 9,
+    "coreSymbols": [
+      {"id": "atlas-icon-location", "title": "Locations"},
+      {"id": "atlas-icon-service", "title": "Services"},
+      {"id": "atlas-icon-collectible", "title": "Collectibles"},
+      {"id": "atlas-icon-equipment", "title": "Equipment"},
+      {"id": "atlas-icon-npc", "title": "NPCs"},
+      {"id": "atlas-icon-other", "title": "Other"},
+      {"id": "atlas-icon-activity", "title": "Activities"},
+      {"id": "atlas-icon-shrine", "title": "Shrine"},
+      {"id": "atlas-icon-temple", "title": "Temple"}
+    ],
+    "categoryCount": 44,
+    "groupCount": 7,
+    "confirmedAnchorMarkers": 50,
+    "dynamicLocationMarkersRemainFrontendControlled": true,
+    "categoryMappingRules": {
+      "category-12313-shrine": "atlas-icon-shrine",
+      "category-12349-small-shrine": "atlas-icon-shrine",
+      "category-12311-temple": "atlas-icon-temple",
+      "group-2100-locations": "atlas-icon-location",
+      "group-2101-services": "atlas-icon-service",
+      "group-2102-collectibles": "atlas-icon-collectible",
+      "group-2103-equipment": "atlas-icon-equipment",
+      "group-2104-npc-s": "atlas-icon-npc",
+      "group-2105-other": "atlas-icon-other",
+      "group-2106-activities": "atlas-icon-activity"
+    }
+  },
+  "finalCanvasReview": {
+    "candidateMayBeGenerated": true,
+    "automaticFreezeAllowed": false,
+    "requiredBeforeFreeze": [
+      "all 44 categories mapped to an original core symbol",
+      "all 10 region labels placed without reserved-panel or label overlap",
+      "all 50 confirmed anchors rendered with original shrine or temple symbols",
+      "five unassigned locations explicitly retained or classified",
+      "human visual review recorded",
+      "immutable final candidate hash recorded"
+    ],
+    "knownBlockingItems": [
+      "five locations still have no region_id",
+      "human visual approval has not been recorded"
+    ]
+  },
+  "outputs": {
+    "svgPath": "assets/original-map/atlas-original-labels-icons-final-review-v1.svg",
+    "manifestPath": "data/geospatial/geospatial-original-labels-icons-final-review-v1.json",
+    "readinessPath": "data/geospatial/geospatial-original-final-canvas-readiness.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  },
+  "nextAction": "generate the repository-owned labels and icon system, then evaluate final-canvas freeze readiness without freezing automatically"
+}
