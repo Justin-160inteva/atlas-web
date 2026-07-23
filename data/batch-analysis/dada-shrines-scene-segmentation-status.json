@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "status": "partial-model-review",
+  "stage": "scene-aware-shrine-segmentation-and-review",
+  "generatedAt": "2026-07-23T01:40:44.855158Z",
+  "counts": {
+    "segments": 27,
+    "boundaries": 26,
+    "selectedSegments": 14,
+    "confirmedAnchors": 0,
+    "successfulModels": 1,
+    "failedModels": 1
+  },
+  "minimumSegmentDurationSeconds": 5.067,
+  "maximumSegmentDurationSeconds": 16.533,
+  "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
+  "requestedModelsThisRun": [
+    "openai/gpt-4.1",
+    "openai/gpt-4o-mini"
+  ],
+  "reusedModelsThisRun": [],
+  "modelErrors": [
+    {
+      "model": "openai/gpt-4.1",
+      "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+    }
+  ],
+  "outputs": {
+    "segments": "data/geospatial/dada-shrines-27-scene-segments.json",
+    "manifest": "data/geospatial/dada-shrines-27-scene-evidence-manifest.json",
+    "anchors": "data/geospatial/dada-shrines-27-anchors-batch01.json"
+  },
+  "privacy": {
+    "repositoryContainsPixels": false,
+    "transientPixelsDeletedBeforeJobExit": true
+  }
+}

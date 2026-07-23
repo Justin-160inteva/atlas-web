@@ -1,0 +1,1068 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T01:39:54.376119Z",
+  "status": "complete",
+  "stage": "scene-aware-temporal-segmentation",
+  "source": {
+    "bvid": "BV1aFXaYmEDZ",
+    "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
+    "authorizationId": "auth-dada-20260718",
+    "durationSeconds": 270.675
+  },
+  "method": {
+    "segmentCount": 27,
+    "sampleIntervalSeconds": 0.25,
+    "boundaryWindowFraction": 0.42,
+    "transitionScore": "0.50 grayscale MAD + 0.25 dHash distance + 0.20 HSV histogram distance + 0.05 edge-density change",
+    "boundarySelection": "strongest visual-change peak near each expected inter-item boundary",
+    "representativeSelection": "highest sharpness/edge/stability score inside each detected segment"
+  },
+  "counts": {
+    "denseSamples": 1015,
+    "boundaries": 26,
+    "segments": 27,
+    "selectedSegments": 14
+  },
+  "boundaries": [
+    {
+      "boundary": 1,
+      "nominalTimeSeconds": 10.025,
+      "detectedTimeSeconds": 9.6,
+      "offsetSeconds": -0.425,
+      "searchWindowSeconds": [
+        5.814,
+        14.235
+      ],
+      "transitionScore": 0.40095,
+      "localMedianScore": 0.001965,
+      "prominence": 0.398985,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.242459,
+        "hashDistance": 0.375,
+        "histogramDistance": 0.901969,
+        "edgeDensityChange": 0.013941
+      }
+    },
+    {
+      "boundary": 2,
+      "nominalTimeSeconds": 20.05,
+      "detectedTimeSeconds": 16.533,
+      "offsetSeconds": -3.517,
+      "searchWindowSeconds": [
+        15.839,
+        24.26
+      ],
+      "transitionScore": 0.083647,
+      "localMedianScore": 0.006682,
+      "prominence": 0.076965,
+      "confidence": 0.8104,
+      "components": {
+        "meanAbsoluteDifference": 0.052285,
+        "hashDistance": 0.140625,
+        "histogramDistance": 0.096188,
+        "edgeDensityChange": 0.007778
+      }
+    },
+    {
+      "boundary": 3,
+      "nominalTimeSeconds": 30.075,
+      "detectedTimeSeconds": 26.133,
+      "offsetSeconds": -3.942,
+      "searchWindowSeconds": [
+        25.864,
+        34.285
+      ],
+      "transitionScore": 0.348653,
+      "localMedianScore": 0.127818,
+      "prominence": 0.220835,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.151867,
+        "hashDistance": 0.296875,
+        "histogramDistance": 0.926499,
+        "edgeDensityChange": 0.033003
+      }
+    },
+    {
+      "boundary": 4,
+      "nominalTimeSeconds": 40.1,
+      "detectedTimeSeconds": 36.267,
+      "offsetSeconds": -3.833,
+      "searchWindowSeconds": [
+        35.889,
+        44.31
+      ],
+      "transitionScore": 0.192277,
+      "localMedianScore": 0.0952,
+      "prominence": 0.097077,
+      "confidence": 0.9516,
+      "components": {
+        "meanAbsoluteDifference": 0.082057,
+        "hashDistance": 0.421875,
+        "histogramDistance": 0.216675,
+        "edgeDensityChange": 0.006111
+      }
+    },
+    {
+      "boundary": 5,
+      "nominalTimeSeconds": 50.125,
+      "detectedTimeSeconds": 52.8,
+      "offsetSeconds": 2.675,
+      "searchWindowSeconds": [
+        45.914,
+        54.335
+      ],
+      "transitionScore": 0.074011,
+      "localMedianScore": 0.02043,
+      "prominence": 0.053581,
+      "confidence": 0.7238,
+      "components": {
+        "meanAbsoluteDifference": 0.048568,
+        "hashDistance": 0.09375,
+        "histogramDistance": 0.093875,
+        "edgeDensityChange": 0.018785
+      }
+    },
+    {
+      "boundary": 6,
+      "nominalTimeSeconds": 60.15,
+      "detectedTimeSeconds": 62.667,
+      "offsetSeconds": 2.517,
+      "searchWindowSeconds": [
+        55.939,
+        64.36
+      ],
+      "transitionScore": 0.257975,
+      "localMedianScore": 0.008543,
+      "prominence": 0.249433,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.167449,
+        "hashDistance": 0.046875,
+        "histogramDistance": 0.74318,
+        "edgeDensityChange": 0.03474
+      }
+    },
+    {
+      "boundary": 7,
+      "nominalTimeSeconds": 70.175,
+      "detectedTimeSeconds": 70.4,
+      "offsetSeconds": 0.225,
+      "searchWindowSeconds": [
+        65.964,
+        74.385
+      ],
+      "transitionScore": 0.125442,
+      "localMedianScore": 0.007963,
+      "prominence": 0.117479,
+      "confidence": 0.9819,
+      "components": {
+        "meanAbsoluteDifference": 0.051301,
+        "hashDistance": 0.171875,
+        "histogramDistance": 0.23682,
+        "edgeDensityChange": 0.023646
+      }
+    },
+    {
+      "boundary": 8,
+      "nominalTimeSeconds": 80.2,
+      "detectedTimeSeconds": 79.467,
+      "offsetSeconds": -0.733,
+      "searchWindowSeconds": [
+        75.989,
+        84.41
+      ],
+      "transitionScore": 0.451783,
+      "localMedianScore": 0.005022,
+      "prominence": 0.446761,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.344162,
+        "hashDistance": 0.234375,
+        "histogramDistance": 0.962795,
+        "edgeDensityChange": 0.071372
+      }
+    },
+    {
+      "boundary": 9,
+      "nominalTimeSeconds": 90.225,
+      "detectedTimeSeconds": 92.533,
+      "offsetSeconds": 2.308,
+      "searchWindowSeconds": [
+        86.014,
+        94.435
+      ],
+      "transitionScore": 0.388788,
+      "localMedianScore": 0.066138,
+      "prominence": 0.32265,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.300983,
+        "hashDistance": 0.09375,
+        "histogramDistance": 0.923635,
+        "edgeDensityChange": 0.07533
+      }
+    },
+    {
+      "boundary": 10,
+      "nominalTimeSeconds": 100.25,
+      "detectedTimeSeconds": 100.267,
+      "offsetSeconds": 0.017,
+      "searchWindowSeconds": [
+        96.039,
+        104.46
+      ],
+      "transitionScore": 0.091148,
+      "localMedianScore": 0.007585,
+      "prominence": 0.083563,
+      "confidence": 0.8418,
+      "components": {
+        "meanAbsoluteDifference": 0.048446,
+        "hashDistance": 0.0625,
+        "histogramDistance": 0.210772,
+        "edgeDensityChange": 0.022865
+      }
+    },
+    {
+      "boundary": 11,
+      "nominalTimeSeconds": 110.275,
+      "detectedTimeSeconds": 106.133,
+      "offsetSeconds": -4.142,
+      "searchWindowSeconds": [
+        106.064,
+        114.485
+      ],
+      "transitionScore": 0.55391,
+      "localMedianScore": 0.010973,
+      "prominence": 0.542937,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.407917,
+        "hashDistance": 0.484375,
+        "histogramDistance": 0.925328,
+        "edgeDensityChange": 0.109479
+      }
+    },
+    {
+      "boundary": 12,
+      "nominalTimeSeconds": 120.3,
+      "detectedTimeSeconds": 116.8,
+      "offsetSeconds": -3.5,
+      "searchWindowSeconds": [
+        116.089,
+        124.51
+      ],
+      "transitionScore": 0.078738,
+      "localMedianScore": 0.007263,
+      "prominence": 0.071475,
+      "confidence": 0.7862,
+      "components": {
+        "meanAbsoluteDifference": 0.03674,
+        "hashDistance": 0.15625,
+        "histogramDistance": 0.105176,
+        "edgeDensityChange": 0.000677
+      }
+    },
+    {
+      "boundary": 13,
+      "nominalTimeSeconds": 130.325,
+      "detectedTimeSeconds": 130.133,
+      "offsetSeconds": -0.192,
+      "searchWindowSeconds": [
+        126.114,
+        134.535
+      ],
+      "transitionScore": 0.143311,
+      "localMedianScore": 0.033677,
+      "prominence": 0.109634,
+      "confidence": 0.9907,
+      "components": {
+        "meanAbsoluteDifference": 0.052876,
+        "hashDistance": 0.234375,
+        "histogramDistance": 0.221708,
+        "edgeDensityChange": 0.034844
+      }
+    },
+    {
+      "boundary": 14,
+      "nominalTimeSeconds": 140.35,
+      "detectedTimeSeconds": 140.267,
+      "offsetSeconds": -0.083,
+      "searchWindowSeconds": [
+        136.139,
+        144.56
+      ],
+      "transitionScore": 0.301485,
+      "localMedianScore": 0.019043,
+      "prominence": 0.282442,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.243478,
+        "hashDistance": 0.03125,
+        "histogramDistance": 0.691436,
+        "edgeDensityChange": 0.084115
+      }
+    },
+    {
+      "boundary": 15,
+      "nominalTimeSeconds": 150.375,
+      "detectedTimeSeconds": 151.733,
+      "offsetSeconds": 1.358,
+      "searchWindowSeconds": [
+        146.164,
+        154.585
+      ],
+      "transitionScore": 0.385847,
+      "localMedianScore": 0.023373,
+      "prominence": 0.362474,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.30611,
+        "hashDistance": 0.0625,
+        "histogramDistance": 0.935659,
+        "edgeDensityChange": 0.075087
+      }
+    },
+    {
+      "boundary": 16,
+      "nominalTimeSeconds": 160.4,
+      "detectedTimeSeconds": 162.4,
+      "offsetSeconds": 2.0,
+      "searchWindowSeconds": [
+        156.189,
+        164.61
+      ],
+      "transitionScore": 0.347429,
+      "localMedianScore": 0.025619,
+      "prominence": 0.32181,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.293768,
+        "hashDistance": 0.03125,
+        "histogramDistance": 0.792723,
+        "edgeDensityChange": 0.085469
+      }
+    },
+    {
+      "boundary": 17,
+      "nominalTimeSeconds": 170.425,
+      "detectedTimeSeconds": 174.4,
+      "offsetSeconds": 3.975,
+      "searchWindowSeconds": [
+        166.214,
+        174.635
+      ],
+      "transitionScore": 0.32353,
+      "localMedianScore": 0.03692,
+      "prominence": 0.28661,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.123396,
+        "hashDistance": 0.140625,
+        "histogramDistance": 0.525954,
+        "edgeDensityChange": 0.039358
+      }
+    },
+    {
+      "boundary": 18,
+      "nominalTimeSeconds": 180.45,
+      "detectedTimeSeconds": 179.467,
+      "offsetSeconds": -0.983,
+      "searchWindowSeconds": [
+        176.239,
+        184.66
+      ],
+      "transitionScore": 0.117249,
+      "localMedianScore": 0.039049,
+      "prominence": 0.0782,
+      "confidence": 0.863,
+      "components": {
+        "meanAbsoluteDifference": 0.058631,
+        "hashDistance": 0.21875,
+        "histogramDistance": 0.124287,
+        "edgeDensityChange": 0.020972
+      }
+    },
+    {
+      "boundary": 19,
+      "nominalTimeSeconds": 190.475,
+      "detectedTimeSeconds": 191.467,
+      "offsetSeconds": 0.992,
+      "searchWindowSeconds": [
+        186.264,
+        194.685
+      ],
+      "transitionScore": 0.475824,
+      "localMedianScore": 0.012801,
+      "prominence": 0.463023,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.356879,
+        "hashDistance": 0.28125,
+        "histogramDistance": 0.923728,
+        "edgeDensityChange": 0.105816
+      }
+    },
+    {
+      "boundary": 20,
+      "nominalTimeSeconds": 200.5,
+      "detectedTimeSeconds": 202.667,
+      "offsetSeconds": 2.167,
+      "searchWindowSeconds": [
+        196.289,
+        204.71
+      ],
+      "transitionScore": 0.270339,
+      "localMedianScore": 0.046229,
+      "prominence": 0.22411,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.181517,
+        "hashDistance": 0.03125,
+        "histogramDistance": 0.768004,
+        "edgeDensityChange": 0.045417
+      }
+    },
+    {
+      "boundary": 21,
+      "nominalTimeSeconds": 210.525,
+      "detectedTimeSeconds": 209.067,
+      "offsetSeconds": -1.458,
+      "searchWindowSeconds": [
+        206.314,
+        214.735
+      ],
+      "transitionScore": 0.106288,
+      "localMedianScore": 0.004123,
+      "prominence": 0.102165,
+      "confidence": 0.9216,
+      "components": {
+        "meanAbsoluteDifference": 0.056449,
+        "hashDistance": 0.125,
+        "histogramDistance": 0.187713,
+        "edgeDensityChange": 0.023177
+      }
+    },
+    {
+      "boundary": 22,
+      "nominalTimeSeconds": 220.55,
+      "detectedTimeSeconds": 222.133,
+      "offsetSeconds": 1.583,
+      "searchWindowSeconds": [
+        216.339,
+        224.76
+      ],
+      "transitionScore": 0.097799,
+      "localMedianScore": 0.009203,
+      "prominence": 0.088596,
+      "confidence": 0.8671,
+      "components": {
+        "meanAbsoluteDifference": 0.056221,
+        "hashDistance": 0.140625,
+        "histogramDistance": 0.123424,
+        "edgeDensityChange": 0.024618
+      }
+    },
+    {
+      "boundary": 23,
+      "nominalTimeSeconds": 230.575,
+      "detectedTimeSeconds": 227.733,
+      "offsetSeconds": -2.842,
+      "searchWindowSeconds": [
+        226.364,
+        234.785
+      ],
+      "transitionScore": 0.339828,
+      "localMedianScore": 0.040718,
+      "prominence": 0.29911,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.24791,
+        "hashDistance": 0.0625,
+        "histogramDistance": 0.838043,
+        "edgeDensityChange": 0.081597
+      }
+    },
+    {
+      "boundary": 24,
+      "nominalTimeSeconds": 240.6,
+      "detectedTimeSeconds": 241.333,
+      "offsetSeconds": 0.733,
+      "searchWindowSeconds": [
+        236.389,
+        244.81
+      ],
+      "transitionScore": 0.330145,
+      "localMedianScore": 0.027126,
+      "prominence": 0.303019,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.24668,
+        "hashDistance": 0.046875,
+        "histogramDistance": 0.830851,
+        "edgeDensityChange": 0.072292
+      }
+    },
+    {
+      "boundary": 25,
+      "nominalTimeSeconds": 250.625,
+      "detectedTimeSeconds": 250.667,
+      "offsetSeconds": 0.042,
+      "searchWindowSeconds": [
+        246.414,
+        254.835
+      ],
+      "transitionScore": 0.374309,
+      "localMedianScore": 0.013697,
+      "prominence": 0.360612,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.297298,
+        "hashDistance": 0.046875,
+        "histogramDistance": 0.925224,
+        "edgeDensityChange": 0.07224
+      }
+    },
+    {
+      "boundary": 26,
+      "nominalTimeSeconds": 260.65,
+      "detectedTimeSeconds": 260.0,
+      "offsetSeconds": -0.65,
+      "searchWindowSeconds": [
+        256.439,
+        264.86
+      ],
+      "transitionScore": 0.274543,
+      "localMedianScore": 0.012404,
+      "prominence": 0.262139,
+      "confidence": 1.0,
+      "components": {
+        "meanAbsoluteDifference": 0.184977,
+        "hashDistance": 0.046875,
+        "histogramDistance": 0.756018,
+        "edgeDensityChange": 0.04783
+      }
+    }
+  ],
+  "segments": [
+    {
+      "slot": 1,
+      "startSeconds": 0.0,
+      "endSeconds": 9.6,
+      "durationSeconds": 9.6,
+      "representativeTimeSeconds": 2.667,
+      "representativeScore": 5.466405,
+      "representativeSharpness": 2606.4308,
+      "representativeTransitionScore": 0.00064,
+      "representativeDhashHex": "0760576b00000000",
+      "frameTimes": {
+        "before": 1.417,
+        "representative": 2.667,
+        "after": 3.917
+      },
+      "nextRepresentativeHashDistance": 0.484375
+    },
+    {
+      "slot": 2,
+      "startSeconds": 9.6,
+      "endSeconds": 16.533,
+      "durationSeconds": 6.933,
+      "representativeTimeSeconds": 13.867,
+      "representativeScore": 5.416839,
+      "representativeSharpness": 1650.761,
+      "representativeTransitionScore": 0.001506,
+      "representativeDhashHex": "b2f0f4f0e6d0e8e0",
+      "frameTimes": {
+        "before": 12.619,
+        "representative": 13.867,
+        "after": 15.115
+      },
+      "previousRepresentativeHashDistance": 0.484375,
+      "nextRepresentativeHashDistance": 0.171875
+    },
+    {
+      "slot": 3,
+      "startSeconds": 16.533,
+      "endSeconds": 26.133,
+      "durationSeconds": 9.6,
+      "representativeTimeSeconds": 18.933,
+      "representativeScore": 5.5136,
+      "representativeSharpness": 1674.9255,
+      "representativeTransitionScore": 0.002066,
+      "representativeDhashHex": "b2f0f0c4e4e4f0f0",
+      "frameTimes": {
+        "before": 17.683,
+        "representative": 18.933,
+        "after": 20.183
+      },
+      "previousRepresentativeHashDistance": 0.171875,
+      "nextRepresentativeHashDistance": 0.421875
+    },
+    {
+      "slot": 4,
+      "startSeconds": 26.133,
+      "endSeconds": 36.267,
+      "durationSeconds": 10.134,
+      "representativeTimeSeconds": 33.333,
+      "representativeScore": 5.643887,
+      "representativeSharpness": 2095.765,
+      "representativeTransitionScore": 0.01078,
+      "representativeDhashHex": "e8b4141918d2f0d0",
+      "frameTimes": {
+        "before": 32.083,
+        "representative": 33.333,
+        "after": 34.583
+      },
+      "previousRepresentativeHashDistance": 0.421875,
+      "nextRepresentativeHashDistance": 0.390625
+    },
+    {
+      "slot": 5,
+      "startSeconds": 36.267,
+      "endSeconds": 52.8,
+      "durationSeconds": 16.533,
+      "representativeTimeSeconds": 44.267,
+      "representativeScore": 5.765825,
+      "representativeSharpness": 2143.941,
+      "representativeTransitionScore": 0.010541,
+      "representativeDhashHex": "da9a4bcbd0d8f1b0",
+      "frameTimes": {
+        "before": 43.017,
+        "representative": 44.267,
+        "after": 45.517
+      },
+      "previousRepresentativeHashDistance": 0.390625,
+      "nextRepresentativeHashDistance": 0.390625
+    },
+    {
+      "slot": 6,
+      "startSeconds": 52.8,
+      "endSeconds": 62.667,
+      "durationSeconds": 9.867,
+      "representativeTimeSeconds": 56.0,
+      "representativeScore": 5.293612,
+      "representativeSharpness": 1486.4846,
+      "representativeTransitionScore": 0.002826,
+      "representativeDhashHex": "b0f0d2c2e2e2e0f1",
+      "frameTimes": {
+        "before": 54.75,
+        "representative": 56.0,
+        "after": 57.25
+      },
+      "previousRepresentativeHashDistance": 0.390625,
+      "nextRepresentativeHashDistance": 0.234375
+    },
+    {
+      "slot": 7,
+      "startSeconds": 62.667,
+      "endSeconds": 70.4,
+      "durationSeconds": 7.733,
+      "representativeTimeSeconds": 68.267,
+      "representativeScore": 5.505956,
+      "representativeSharpness": 1802.4198,
+      "representativeTransitionScore": 0.001528,
+      "representativeDhashHex": "b2f0f0e4e4d8e8e0",
+      "frameTimes": {
+        "before": 67.017,
+        "representative": 68.267,
+        "after": 69.517
+      },
+      "previousRepresentativeHashDistance": 0.234375,
+      "nextRepresentativeHashDistance": 0.234375
+    },
+    {
+      "slot": 8,
+      "startSeconds": 70.4,
+      "endSeconds": 79.467,
+      "durationSeconds": 9.067,
+      "representativeTimeSeconds": 73.867,
+      "representativeScore": 5.488183,
+      "representativeSharpness": 1830.3248,
+      "representativeTransitionScore": 0.002403,
+      "representativeDhashHex": "b8f8cccccce8e0e1",
+      "frameTimes": {
+        "before": 72.617,
+        "representative": 73.867,
+        "after": 75.117
+      },
+      "previousRepresentativeHashDistance": 0.234375,
+      "nextRepresentativeHashDistance": 0.1875
+    },
+    {
+      "slot": 9,
+      "startSeconds": 79.467,
+      "endSeconds": 92.533,
+      "durationSeconds": 13.066,
+      "representativeTimeSeconds": 84.533,
+      "representativeScore": 5.586631,
+      "representativeSharpness": 1669.3738,
+      "representativeTransitionScore": 0.001117,
+      "representativeDhashHex": "b0e0e0c8ccf0f0f0",
+      "frameTimes": {
+        "before": 83.283,
+        "representative": 84.533,
+        "after": 85.783
+      },
+      "previousRepresentativeHashDistance": 0.1875,
+      "nextRepresentativeHashDistance": 0.15625
+    },
+    {
+      "slot": 10,
+      "startSeconds": 92.533,
+      "endSeconds": 100.267,
+      "durationSeconds": 7.734,
+      "representativeTimeSeconds": 97.6,
+      "representativeScore": 5.475973,
+      "representativeSharpness": 1551.1261,
+      "representativeTransitionScore": 0.002504,
+      "representativeDhashHex": "72f0f0d8d8d0f8f0",
+      "frameTimes": {
+        "before": 96.35,
+        "representative": 97.6,
+        "after": 98.85
+      },
+      "previousRepresentativeHashDistance": 0.15625,
+      "nextRepresentativeHashDistance": 0.09375
+    },
+    {
+      "slot": 11,
+      "startSeconds": 100.267,
+      "endSeconds": 106.133,
+      "durationSeconds": 5.866,
+      "representativeTimeSeconds": 102.667,
+      "representativeScore": 5.541596,
+      "representativeSharpness": 1611.6603,
+      "representativeTransitionScore": 0.003439,
+      "representativeDhashHex": "30f0f0989898f8f0",
+      "frameTimes": {
+        "before": 101.611,
+        "representative": 102.667,
+        "after": 103.723
+      },
+      "previousRepresentativeHashDistance": 0.09375,
+      "nextRepresentativeHashDistance": 0.234375
+    },
+    {
+      "slot": 12,
+      "startSeconds": 106.133,
+      "endSeconds": 116.8,
+      "durationSeconds": 10.667,
+      "representativeTimeSeconds": 109.067,
+      "representativeScore": 5.696021,
+      "representativeSharpness": 1809.2142,
+      "representativeTransitionScore": 0.001748,
+      "representativeDhashHex": "b0f0f0e2e2f0f0f0",
+      "frameTimes": {
+        "before": 107.817,
+        "representative": 109.067,
+        "after": 110.317
+      },
+      "previousRepresentativeHashDistance": 0.234375,
+      "nextRepresentativeHashDistance": 0.140625
+    },
+    {
+      "slot": 13,
+      "startSeconds": 116.8,
+      "endSeconds": 130.133,
+      "durationSeconds": 13.333,
+      "representativeTimeSeconds": 121.067,
+      "representativeScore": 5.628042,
+      "representativeSharpness": 1794.9853,
+      "representativeTransitionScore": 0.002827,
+      "representativeDhashHex": "b2f2e6e2e8e0f8f0",
+      "frameTimes": {
+        "before": 119.817,
+        "representative": 121.067,
+        "after": 122.317
+      },
+      "previousRepresentativeHashDistance": 0.140625,
+      "nextRepresentativeHashDistance": 0.265625
+    },
+    {
+      "slot": 14,
+      "startSeconds": 130.133,
+      "endSeconds": 140.267,
+      "durationSeconds": 10.134,
+      "representativeTimeSeconds": 133.867,
+      "representativeScore": 5.610553,
+      "representativeSharpness": 1760.3102,
+      "representativeTransitionScore": 0.002053,
+      "representativeDhashHex": "b0f0d8dcd8e8f0f1",
+      "frameTimes": {
+        "before": 132.617,
+        "representative": 133.867,
+        "after": 135.117
+      },
+      "previousRepresentativeHashDistance": 0.265625,
+      "nextRepresentativeHashDistance": 0.234375
+    },
+    {
+      "slot": 15,
+      "startSeconds": 140.267,
+      "endSeconds": 151.733,
+      "durationSeconds": 11.466,
+      "representativeTimeSeconds": 144.533,
+      "representativeScore": 5.600578,
+      "representativeSharpness": 1528.9477,
+      "representativeTransitionScore": 0.001553,
+      "representativeDhashHex": "72f4f4c8e8e0e0e0",
+      "frameTimes": {
+        "before": 143.283,
+        "representative": 144.533,
+        "after": 145.783
+      },
+      "previousRepresentativeHashDistance": 0.234375,
+      "nextRepresentativeHashDistance": 0.203125
+    },
+    {
+      "slot": 16,
+      "startSeconds": 151.733,
+      "endSeconds": 162.4,
+      "durationSeconds": 10.667,
+      "representativeTimeSeconds": 154.4,
+      "representativeScore": 5.633293,
+      "representativeSharpness": 1786.291,
+      "representativeTransitionScore": 0.001658,
+      "representativeDhashHex": "b2f0f0e6e4e4e4e8",
+      "frameTimes": {
+        "before": 153.15,
+        "representative": 154.4,
+        "after": 155.65
+      },
+      "previousRepresentativeHashDistance": 0.203125,
+      "nextRepresentativeHashDistance": 0.265625
+    },
+    {
+      "slot": 17,
+      "startSeconds": 162.4,
+      "endSeconds": 174.4,
+      "durationSeconds": 12.0,
+      "representativeTimeSeconds": 172.8,
+      "representativeScore": 5.560695,
+      "representativeSharpness": 1580.3756,
+      "representativeTransitionScore": 0.002392,
+      "representativeDhashHex": "72e8f8e8f8f8e8e9",
+      "frameTimes": {
+        "before": 171.55,
+        "representative": 172.8,
+        "after": 174.05
+      },
+      "previousRepresentativeHashDistance": 0.265625,
+      "nextRepresentativeHashDistance": 0.203125
+    },
+    {
+      "slot": 18,
+      "startSeconds": 174.4,
+      "endSeconds": 179.467,
+      "durationSeconds": 5.067,
+      "representativeTimeSeconds": 177.333,
+      "representativeScore": 5.438743,
+      "representativeSharpness": 1500.3383,
+      "representativeTransitionScore": 0.002356,
+      "representativeDhashHex": "b2f0e0ecccf8f8f8",
+      "frameTimes": {
+        "before": 176.421,
+        "representative": 177.333,
+        "after": 178.245
+      },
+      "previousRepresentativeHashDistance": 0.203125,
+      "nextRepresentativeHashDistance": 0.265625
+    },
+    {
+      "slot": 19,
+      "startSeconds": 179.467,
+      "endSeconds": 191.467,
+      "durationSeconds": 12.0,
+      "representativeTimeSeconds": 182.133,
+      "representativeScore": 5.488579,
+      "representativeSharpness": 1602.6227,
+      "representativeTransitionScore": 0.00311,
+      "representativeDhashHex": "b0f0d8989898f2f2",
+      "frameTimes": {
+        "before": 180.883,
+        "representative": 182.133,
+        "after": 183.383
+      },
+      "previousRepresentativeHashDistance": 0.265625,
+      "nextRepresentativeHashDistance": 0.234375
+    },
+    {
+      "slot": 20,
+      "startSeconds": 191.467,
+      "endSeconds": 202.667,
+      "durationSeconds": 11.2,
+      "representativeTimeSeconds": 194.667,
+      "representativeScore": 5.635767,
+      "representativeSharpness": 1731.3071,
+      "representativeTransitionScore": 0.002077,
+      "representativeDhashHex": "b1f0f0ccccf8f8f8",
+      "frameTimes": {
+        "before": 193.417,
+        "representative": 194.667,
+        "after": 195.917
+      },
+      "previousRepresentativeHashDistance": 0.234375,
+      "nextRepresentativeHashDistance": 0.15625
+    },
+    {
+      "slot": 21,
+      "startSeconds": 202.667,
+      "endSeconds": 209.067,
+      "durationSeconds": 6.4,
+      "representativeTimeSeconds": 206.933,
+      "representativeScore": 5.621226,
+      "representativeSharpness": 1656.0717,
+      "representativeTransitionScore": 0.003393,
+      "representativeDhashHex": "b0f0e0e4e6f0f0f0",
+      "frameTimes": {
+        "before": 205.781,
+        "representative": 206.933,
+        "after": 208.085
+      },
+      "previousRepresentativeHashDistance": 0.15625,
+      "nextRepresentativeHashDistance": 0.15625
+    },
+    {
+      "slot": 22,
+      "startSeconds": 209.067,
+      "endSeconds": 222.133,
+      "durationSeconds": 13.066,
+      "representativeTimeSeconds": 211.467,
+      "representativeScore": 5.661163,
+      "representativeSharpness": 1732.6677,
+      "representativeTransitionScore": 0.003182,
+      "representativeDhashHex": "f2f0d2e2f2f0f8f0",
+      "frameTimes": {
+        "before": 210.217,
+        "representative": 211.467,
+        "after": 212.717
+      },
+      "previousRepresentativeHashDistance": 0.15625,
+      "nextRepresentativeHashDistance": 0.25
+    },
+    {
+      "slot": 23,
+      "startSeconds": 222.133,
+      "endSeconds": 227.733,
+      "durationSeconds": 5.6,
+      "representativeTimeSeconds": 224.0,
+      "representativeScore": 5.522998,
+      "representativeSharpness": 1605.2542,
+      "representativeTransitionScore": 0.002078,
+      "representativeDhashHex": "64e4e4e4e4f0f0f0",
+      "frameTimes": {
+        "before": 222.992,
+        "representative": 224.0,
+        "after": 225.008
+      },
+      "previousRepresentativeHashDistance": 0.25,
+      "nextRepresentativeHashDistance": 0.34375
+    },
+    {
+      "slot": 24,
+      "startSeconds": 227.733,
+      "endSeconds": 241.333,
+      "durationSeconds": 13.6,
+      "representativeTimeSeconds": 229.6,
+      "representativeScore": 5.741669,
+      "representativeSharpness": 1791.2642,
+      "representativeTransitionScore": 0.001521,
+      "representativeDhashHex": "b1f1f0da98e0e0f0",
+      "frameTimes": {
+        "before": 228.35,
+        "representative": 229.6,
+        "after": 230.85
+      },
+      "previousRepresentativeHashDistance": 0.34375,
+      "nextRepresentativeHashDistance": 0.203125
+    },
+    {
+      "slot": 25,
+      "startSeconds": 241.333,
+      "endSeconds": 250.667,
+      "durationSeconds": 9.334,
+      "representativeTimeSeconds": 244.267,
+      "representativeScore": 5.725236,
+      "representativeSharpness": 1799.3309,
+      "representativeTransitionScore": 0.001517,
+      "representativeDhashHex": "32f0f4dcccece8f0",
+      "frameTimes": {
+        "before": 243.017,
+        "representative": 244.267,
+        "after": 245.517
+      },
+      "previousRepresentativeHashDistance": 0.203125,
+      "nextRepresentativeHashDistance": 0.21875
+    },
+    {
+      "slot": 26,
+      "startSeconds": 250.667,
+      "endSeconds": 260.0,
+      "durationSeconds": 9.333,
+      "representativeTimeSeconds": 258.133,
+      "representativeScore": 5.74816,
+      "representativeSharpness": 1889.1615,
+      "representativeTransitionScore": 0.002548,
+      "representativeDhashHex": "30f8e6e6e6e4f0f0",
+      "frameTimes": {
+        "before": 256.883,
+        "representative": 258.133,
+        "after": 259.383
+      },
+      "previousRepresentativeHashDistance": 0.21875,
+      "nextRepresentativeHashDistance": 0.21875
+    },
+    {
+      "slot": 27,
+      "startSeconds": 260.0,
+      "endSeconds": 270.675,
+      "durationSeconds": 10.675,
+      "representativeTimeSeconds": 264.0,
+      "representativeScore": 5.41089,
+      "representativeSharpness": 1651.7226,
+      "representativeTransitionScore": 0.001826,
+      "representativeDhashHex": "b0f0f2f0f8f8f0f0",
+      "frameTimes": {
+        "before": 262.75,
+        "representative": 264.0,
+        "after": 265.25
+      },
+      "previousRepresentativeHashDistance": 0.21875
+    }
+  ],
+  "quality": {
+    "strictlyIncreasingBoundaries": true,
+    "minimumSegmentDurationSeconds": 5.067,
+    "maximumSegmentDurationSeconds": 16.533,
+    "adjacentRepresentativeHashDistances": [
+      0.484375,
+      0.171875,
+      0.421875,
+      0.390625,
+      0.390625,
+      0.234375,
+      0.234375,
+      0.1875,
+      0.15625,
+      0.09375,
+      0.234375,
+      0.140625,
+      0.265625,
+      0.234375,
+      0.203125,
+      0.265625,
+      0.203125,
+      0.265625,
+      0.234375,
+      0.15625,
+      0.15625,
+      0.25,
+      0.34375,
+      0.203125,
+      0.21875,
+      0.21875
+    ],
+    "noCoordinatesAssigned": true
+  }
+}

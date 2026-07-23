@@ -116,7 +116,7 @@ def call_model(
     }, ensure_ascii=False).encode("utf-8")
 
     last_error: Exception | None = None
-    for attempt in range(1, 4):
+    for attempt in range(1, 3):
         request = urllib.request.Request(endpoint, data=payload, method="POST", headers={
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {token}",
@@ -124,7 +124,7 @@ def call_model(
             "X-GitHub-Api-Version": "2022-11-28",
         })
         try:
-            with urllib.request.urlopen(request, timeout=timeout) as response:
+            with urllib.request.urlopen(request, timeout=min(timeout, 90)) as response:
                 body = json.loads(response.read().decode("utf-8"))
             parsed = parse_content(body["choices"][0]["message"]["content"])
             parsed["model"] = model
@@ -136,11 +136,11 @@ def call_model(
                 retry_after = int(exc.headers.get("Retry-After") or 0)
             except (TypeError, ValueError):
                 retry_after = 0
-            if attempt < 3:
-                time.sleep(max(retry_after, 12 * attempt))
+            if attempt < 2:
+                time.sleep(min(30, max(retry_after, 12 * attempt)))
         except (urllib.error.URLError, TimeoutError, KeyError, json.JSONDecodeError) as exc:
             last_error = exc
-            if attempt < 3:
+            if attempt < 2:
                 time.sleep(8 * attempt)
     raise RuntimeError(f"scene model review failed with {model}: {last_error}")
 
