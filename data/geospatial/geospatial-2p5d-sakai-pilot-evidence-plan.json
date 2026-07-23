@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "stage": "2p5d-sakai-transient-evidence",
+  "status": "plan-ready",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "sourceAuthor": "11的游戏世界",
+  "region": {
+    "id": "region-3147-izumi-settsu",
+    "title": "IZUMI SETTSU"
+  },
+  "parentAudit": "data/geospatial/geospatial-2p5d-pilot-coverage-audit.json",
+  "parentCandidateTile": {
+    "normalizedBounds": {
+      "minX": 0.3125,
+      "minY": 0.1875,
+      "maxX": 0.375,
+      "maxY": 0.25
+    }
+  },
+  "pilotScope": {
+    "id": "izumi-settsu-sakai-urban-core-v1",
+    "title": "Sakai urban and waterfront core",
+    "normalizedBounds": {
+      "minX": 0.315,
+      "minY": 0.218,
+      "maxX": 0.3425,
+      "maxY": 0.2425
+    },
+    "includedEvidenceTargets": [
+      "Commerce and Craft at Sakai",
+      "Foreign Trade at Sakai",
+      "Independence and Culture at Sakai",
+      "Money Changer District",
+      "Port Trader",
+      "Gear Vendor",
+      "Ornament Vendor",
+      "Dress for Success",
+      "Drive the Point Home",
+      "Imai Sokyū"
+    ],
+    "deferredAdjacentTargets": [
+      "Gansenji Temple",
+      "Mount Kongo",
+      "Mount Kongo Retreat",
+      "Izumi Coast",
+      "Old Kofun"
+    ],
+    "reason": "The urban core provides the strongest first test of individual roofs, street blocks, waterfront structure, commercial districts and interactive marker placement without mixing distant mountain and temple sub-scenes into one model."
+  },
+  "authorizedVideoJobs": [
+    "data/analysis-jobs/eleven-p013.json",
+    "data/analysis-jobs/eleven-p014.json",
+    "data/analysis-jobs/eleven-p015.json",
+    "data/analysis-jobs/eleven-p016.json"
+  ],
+  "existingNumericResults": [
+    "data/analysis-results/eleven-p013.json",
+    "data/analysis-results/eleven-p014.json",
+    "data/analysis-results/eleven-p015.json",
+    "data/analysis-results/eleven-p016.json"
+  ],
+  "extraction": {
+    "phase": "transient-visual-review-before-geometry",
+    "frameWidth": 480,
+    "frameHeight": 270,
+    "selectedFramesPerVideo": 96,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "contactSheetsPerVideo": 6,
+    "artifactRetentionDays": 1,
+    "selectionBuckets": {
+      "sharp": 32,
+      "sceneTransition": 32,
+      "visualDiversity": 32
+    },
+    "downloadPagePolicy": "use the job batch.cid and page explicitly; never default to the first page of a multipart video"
+  },
+  "visualReviewQuestions": [
+    "Which timestamps show the Sakai waterfront or harbor edge?",
+    "Which timestamps show continuous street traversal through the commercial core?",
+    "Which timestamps provide elevated or wide views of roof blocks and courtyards?",
+    "Which stable landmarks repeat across multiple camera directions?",
+    "Can building scale be related to roads, bridges, canals or waterfront structures?",
+    "Which frames are menus, loading screens or unrelated travel and must be excluded?"
+  ],
+  "retention": {
+    "repositoryOriginalVideo": false,
+    "repositoryFramePixels": false,
+    "transientLowResolutionEvidenceArtifact": true,
+    "artifactMaximumRetentionDays": 1,
+    "persistOnlyTimestampsAndDerivedEvidence": true
+  },
+  "safety": {
+    "officialMapGeometrySource": false,
+    "thirdPartyFramePublication": false,
+    "automaticBuildingGeometryGeneration": false,
+    "automaticRoadGeometryGeneration": false,
+    "humanVisualReviewRequired": true
+  },
+  "outputs": {
+    "timestampPlan": "data/geospatial/geospatial-2p5d-sakai-transient-timestamp-plan.json",
+    "artifactManifest": "data/geospatial/geospatial-2p5d-sakai-transient-evidence-manifest.json",
+    "workflowOutcome": "data/batch-analysis/geospatial-2p5d-sakai-transient-evidence-workflow.json"
+  }
+}
