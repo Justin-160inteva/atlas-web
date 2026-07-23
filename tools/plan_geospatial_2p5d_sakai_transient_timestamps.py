@@ -176,7 +176,6 @@ def fill_temporal_supplements(
         raise RuntimeError("cannot add temporal supplements without a positive duration")
 
     added = 0
-    # Use an increasingly dense deterministic grid while keeping clear of the start/end slates.
     for multiplier in (4, 8, 16, 32):
         slots = max(target * multiplier, needed * multiplier)
         for index in range(slots):
@@ -273,6 +272,9 @@ def main() -> int:
             "timestamps": selected,
         })
 
+    temporal_supplements_by_video = {
+        row["jobId"]: row["temporalSupplementCount"] for row in videos if row["temporalSupplementCount"]
+    }
     payload = {
         "schemaVersion": 1,
         "status": "transient-timestamp-plan-ready",
@@ -290,7 +292,11 @@ def main() -> int:
             "videos": len(videos),
             "timestampsPerVideo": target_count,
             "totalTimestamps": sum(row["timestampCount"] for row in videos),
-            "temporalSupplements": sum(row["temporalSupplementCount"] for row in videos),
+        },
+        "temporalSupplementAudit": {
+            "total": sum(row["temporalSupplementCount"] for row in videos),
+            "byVideo": temporal_supplements_by_video,
+            "meaning": "review timestamps without a corresponding legacy numeric descriptor; the authorized video will be read transiently at these times",
         },
         "videos": videos,
         "safety": {
@@ -298,7 +304,6 @@ def main() -> int:
             "videosDownloaded": False,
             "geometryGenerated": False,
             "existingAnalysisModified": False,
-            "temporalSupplementsMisrepresentedAsNumericEvidence": False,
         },
         "nextAction": "download the four authorized pages transiently by explicit CID and extract one-day low-resolution review artifacts",
     }
@@ -307,7 +312,7 @@ def main() -> int:
         "status": payload["status"],
         "videos": payload["counts"]["videos"],
         "totalTimestamps": payload["counts"]["totalTimestamps"],
-        "temporalSupplements": payload["counts"]["temporalSupplements"],
+        "temporalSupplements": payload["temporalSupplementAudit"]["total"],
         "output": str(output_path.relative_to(ROOT)),
     }, ensure_ascii=False))
     return 0
