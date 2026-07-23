@@ -8,7 +8,6 @@ on:
       - 'tools/detect_dada_shrine_scene_segments.py'
       - 'tools/review_dada_shrine_scene_segments_v2.py'
       - 'tools/build_dada_shrines_geospatial_stage1.py'
-      - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
       - 'data/geospatial/dada-shrines-scene-segmentation-trigger.json'
   push:
@@ -18,7 +17,6 @@ on:
       - 'tools/detect_dada_shrine_scene_segments.py'
       - 'tools/review_dada_shrine_scene_segments_v2.py'
       - 'tools/build_dada_shrines_geospatial_stage1.py'
-      - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
       - 'data/geospatial/dada-shrines-scene-segmentation-trigger.json'
 
@@ -52,7 +50,6 @@ jobs:
             tools/build_dada_shrines_geospatial_stage1.py \
             tools/detect_dada_shrine_scene_segments.py \
             tools/review_dada_shrine_scene_segments_v2.py \
-            tools/build_geospatial_progress.py \
             tools/analyze_authorized_video_v2.py \
             tools/analyze_authorized_video_v4.py
 
@@ -63,7 +60,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      - name: Rebuild shrine candidate index
+      - name: Rebuild shrine candidate index locally
         run: python tools/build_dada_shrines_geospatial_stage1.py
 
       - name: Download authorized shrine video transiently
@@ -114,7 +111,7 @@ jobs:
           python tools/review_dada_shrine_scene_segments_v2.py \
             --evidence-dir /tmp/dada-shrine-scene-evidence \
             --manifest data/geospatial/dada-shrines-27-scene-evidence-manifest.json \
-            --output data/geospatial/dada-shrines-27-anchors-batch01.json
+            --output data/geospatial/dada-shrines-27-anchors-batch01-v2.json
 
       - name: Read reviewer-pool state
         id: state
@@ -124,7 +121,7 @@ jobs:
           import os
           from pathlib import Path
 
-          result = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01.json').read_text(encoding='utf-8'))
+          result = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01-v2.json').read_text(encoding='utf-8'))
           complete = result['counts']['successfulReviewerPools'] == 2 and result['counts']['failedReviewerPools'] == 0
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
               handle.write(f'pools_complete={str(complete).lower()}\n')
@@ -134,35 +131,14 @@ jobs:
           print(json.dumps({
               'complete': complete,
               'counts': result['counts'],
-              'selectedReviewerPools': result['selectedReviewerPools'],
+              'selectedReviewerModels': {
+                  packet['reviewerPool']: packet['model'] for packet in result['selectedReviewerPools']
+              },
               'errors': result['errors'],
           }, ensure_ascii=False))
           PY
 
-      - name: Reconcile confirmed anchors into global progress
-        if: steps.state.outputs.pools_complete == 'true'
-        run: |
-          python - <<'PY'
-          import json
-          from datetime import datetime, timezone
-          from pathlib import Path
-
-          anchors = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01.json').read_text(encoding='utf-8'))
-          job_path = Path('data/analysis-jobs/dada-shrines-27-geospatial.json')
-          job = json.loads(job_path.read_text(encoding='utf-8'))
-          confirmed = int(anchors['counts']['confirmed'])
-          job['status'] = 'high-resolution-event-batch01-complete'
-          job['linkedSlotCount'] = confirmed
-          job['unlinkedSlotCount'] = 27 - confirmed
-          job['batch01Path'] = 'data/geospatial/dada-shrines-27-anchors-batch01.json'
-          job['segmentationPath'] = 'data/geospatial/dada-shrines-27-scene-segments.json'
-          job['nextAction'] = 'review unresolved events and then continue events 15-27'
-          job['updatedAt'] = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
-          job_path.write_text(json.dumps(job, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-          PY
-          python tools/build_geospatial_progress.py
-
-      - name: Write non-pixel scene review status
+      - name: Write isolated non-pixel review status
         if: always() && steps.state.outcome == 'success'
         env:
           POOLS_COMPLETE: ${{ steps.state.outputs.pools_complete }}
@@ -177,12 +153,13 @@ jobs:
           from pathlib import Path
 
           segmentation = json.loads(Path('data/geospatial/dada-shrines-27-scene-segments.json').read_text(encoding='utf-8'))
-          anchors = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01.json').read_text(encoding='utf-8'))
+          anchors = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01-v2.json').read_text(encoding='utf-8'))
           payload = {
               'schemaVersion': 2,
               'status': 'complete' if os.environ.get('POOLS_COMPLETE') == 'true' else 'partial-reviewer-pools',
-              'stage': 'scene-aware-high-resolution-event-review',
+              'stage': 'scene-aware-high-resolution-event-review-v2',
               'generatedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+              'promotionStatus': 'not-promoted-to-canonical',
               'counts': {
                   'segments': segmentation['counts']['segments'],
                   'boundaries': segmentation['counts']['boundaries'],
@@ -204,19 +181,20 @@ jobs:
               'outputs': {
                   'segments': 'data/geospatial/dada-shrines-27-scene-segments.json',
                   'manifest': 'data/geospatial/dada-shrines-27-scene-evidence-manifest.json',
-                  'anchors': 'data/geospatial/dada-shrines-27-anchors-batch01.json',
+                  'isolatedAnchors': 'data/geospatial/dada-shrines-27-anchors-batch01-v2.json',
+                  'canonicalAnchors': 'data/geospatial/dada-shrines-27-anchors-batch01.json'
               },
               'privacy': {
                   'repositoryContainsPixels': False,
                   'transientPixelsDeletedBeforeJobExit': True,
               },
           }
-          path = Path('data/batch-analysis/dada-shrines-scene-segmentation-status.json')
+          path = Path('data/batch-analysis/dada-shrines-scene-segmentation-v2-status.json')
           path.parent.mkdir(parents=True, exist_ok=True)
           path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
 
-      - name: Validate segmentation, review and privacy gates
+      - name: Validate isolated segmentation and review gates
         if: steps.state.outcome == 'success'
         run: |
           python - <<'PY'
@@ -225,7 +203,7 @@ jobs:
 
           segmentation = json.loads(Path('data/geospatial/dada-shrines-27-scene-segments.json').read_text(encoding='utf-8'))
           manifest = json.loads(Path('data/geospatial/dada-shrines-27-scene-evidence-manifest.json').read_text(encoding='utf-8'))
-          anchors = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01.json').read_text(encoding='utf-8'))
+          anchors = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01-v2.json').read_text(encoding='utf-8'))
           assert segmentation['status'] == 'complete'
           assert segmentation['counts']['boundaries'] == 26
           assert segmentation['counts']['segments'] == 27
@@ -249,17 +227,21 @@ jobs:
           assert anchors['privacy']['repositoryContainsPixels'] is False
           if anchors['counts']['successfulReviewerPools'] < 2:
               assert anchors['counts']['confirmed'] == 0
-          else:
-              progress = json.loads(Path('data/geospatial/geospatial-progress.json').read_text(encoding='utf-8'))
-              assert progress['phase1']['confirmedAnchors'] == 36 + anchors['counts']['confirmed']
-              assert all(progress['safety'].values())
           assert not list(Path('data').rglob('*.jpg'))
           assert not list(Path('data').rglob('*.png'))
           assert not list(Path('data').rglob('*.mp4'))
           print(json.dumps({'segmentation': segmentation['counts'], 'review': anchors['counts']}, ensure_ascii=False))
           PY
 
-      - name: Commit non-pixel segmentation and review results
+      - name: Restore locally regenerated canonical scaffold files
+        if: steps.state.outcome == 'success'
+        run: |
+          git checkout -- \
+            data/geospatial/dada-shrines-27-stage1.json \
+            data/analysis-jobs/dada-shrines-27-geospatial.json \
+            data/batch-analysis/dada-shrines-27-geospatial-status.json
+
+      - name: Commit isolated non-pixel v2 results
         if: steps.state.outcome == 'success'
         env:
           TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
@@ -267,21 +249,15 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
-            data/analysis-index.json \
-            data/analysis-jobs/dada-temples-36-geospatial.json \
-            data/analysis-jobs/dada-shrines-27-geospatial.json \
-            data/geospatial/dada-shrines-27-stage1.json \
             data/geospatial/dada-shrines-27-scene-segments.json \
             data/geospatial/dada-shrines-27-scene-evidence-manifest.json \
-            data/geospatial/dada-shrines-27-anchors-batch01.json \
-            data/geospatial/geospatial-progress.json \
-            data/batch-analysis/dada-shrines-27-geospatial-status.json \
-            data/batch-analysis/dada-shrines-scene-segmentation-status.json
+            data/geospatial/dada-shrines-27-anchors-batch01-v2.json \
+            data/batch-analysis/dada-shrines-scene-segmentation-v2-status.json
           if git diff --cached --quiet; then
-            echo 'No non-pixel scene-review changes.'
+            echo 'No isolated non-pixel v2 changes.'
             exit 0
           fi
-          git commit -m 'Review shrine events in isolated high-resolution batches [skip ci]'
+          git commit -m 'Review shrine events in isolated high-resolution batches v2 [skip ci]'
           for attempt in 1 2 3 4 5 6; do
             if git pull --rebase origin "$TARGET_BRANCH" && git push origin "HEAD:$TARGET_BRANCH"; then
               exit 0
