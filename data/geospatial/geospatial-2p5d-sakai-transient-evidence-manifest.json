@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T20:22:48.091707Z",
+  "status": "transient-artifacts-uploaded-awaiting-visual-review",
+  "stage": "2p5d-sakai-transient-evidence",
+  "runId": "30040243661",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "pilotScope": {
+    "id": "izumi-settsu-sakai-urban-core-v1",
+    "title": "Sakai urban and waterfront core",
+    "normalizedBounds": {
+      "minX": 0.315,
+      "minY": 0.218,
+      "maxX": 0.3425,
+      "maxY": 0.2425
+    },
+    "includedEvidenceTargets": [
+      "Commerce and Craft at Sakai",
+      "Foreign Trade at Sakai",
+      "Independence and Culture at Sakai",
+      "Money Changer District",
+      "Port Trader",
+      "Gear Vendor",
+      "Ornament Vendor",
+      "Dress for Success",
+      "Drive the Point Home",
+      "Imai Sokyū"
+    ],
+    "deferredAdjacentTargets": [
+      "Gansenji Temple",
+      "Mount Kongo",
+      "Mount Kongo Retreat",
+      "Izumi Coast",
+      "Old Kofun"
+    ],
+    "reason": "The urban core provides the strongest first test of individual roofs, street blocks, waterfront structure, commercial districts and interactive marker placement without mixing distant mountain and temple sub-scenes into one model."
+  },
+  "timestampPlanPath": "data/geospatial/geospatial-2p5d-sakai-transient-timestamp-plan.json",
+  "counts": {
+    "videos": 4,
+    "frames": 384,
+    "contactSheets": 24,
+    "artifacts": 4
+  },
+  "artifacts": [
+    {
+      "jobId": "eleven-p013-v2",
+      "name": "atlas-sakai-2p5d-eleven-p013-v2-30040243661",
+      "retentionDays": 1,
+      "containsOriginalVideo": false,
+      "containsLowResolutionReviewFrames": true
+    },
+    {
+      "jobId": "eleven-p014-v2",
+      "name": "atlas-sakai-2p5d-eleven-p014-v2-30040243661",
+      "retentionDays": 1,
+      "containsOriginalVideo": false,
+      "containsLowResolutionReviewFrames": true
+    },
+    {
+      "jobId": "eleven-p015-v2",
+      "name": "atlas-sakai-2p5d-eleven-p015-v2-30040243661",
+      "retentionDays": 1,
+      "containsOriginalVideo": false,
+      "containsLowResolutionReviewFrames": true
+    },
+    {
+      "jobId": "eleven-p016-v2",
+      "name": "atlas-sakai-2p5d-eleven-p016-v2-30040243661",
+      "retentionDays": 1,
+      "containsOriginalVideo": false,
+      "containsLowResolutionReviewFrames": true
+    }
+  ],
+  "privacy": {
+    "repositoryContainsPixels": false,
+    "artifactContainsTransientPixels": true,
+    "originalVideoRetained": false,
+    "visualReviewRequiredBeforeDerivedGeometry": true
+  },
+  "nextAction": "download the four one-day artifacts, visually identify Sakai urban/waterfront time windows, then record only derived structural evidence and timestamps"
+}

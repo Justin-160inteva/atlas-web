@@ -1,0 +1,3210 @@
+{
+  "schemaVersion": 1,
+  "status": "transient-timestamp-plan-ready",
+  "stage": "2p5d-sakai-transient-evidence",
+  "pilotScope": {
+    "id": "izumi-settsu-sakai-urban-core-v1",
+    "title": "Sakai urban and waterfront core",
+    "normalizedBounds": {
+      "minX": 0.315,
+      "minY": 0.218,
+      "maxX": 0.3425,
+      "maxY": 0.2425
+    },
+    "includedEvidenceTargets": [
+      "Commerce and Craft at Sakai",
+      "Foreign Trade at Sakai",
+      "Independence and Culture at Sakai",
+      "Money Changer District",
+      "Port Trader",
+      "Gear Vendor",
+      "Ornament Vendor",
+      "Dress for Success",
+      "Drive the Point Home",
+      "Imai Sokyū"
+    ],
+    "deferredAdjacentTargets": [
+      "Gansenji Temple",
+      "Mount Kongo",
+      "Mount Kongo Retreat",
+      "Izumi Coast",
+      "Old Kofun"
+    ],
+    "reason": "The urban core provides the strongest first test of individual roofs, street blocks, waterfront structure, commercial districts and interactive marker placement without mixing distant mountain and temple sub-scenes into one model."
+  },
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "selectionPolicy": {
+    "buckets": {
+      "sharp": 32,
+      "sceneTransition": 32,
+      "visualDiversity": 32
+    },
+    "pixelDataUsed": false,
+    "source": "legacy numeric descriptors plus deterministic full-duration supplements",
+    "temporalSupplementsAreNumericEvidence": false
+  },
+  "counts": {
+    "videos": 4,
+    "timestampsPerVideo": 96,
+    "totalTimestamps": 384
+  },
+  "temporalSupplementAudit": {
+    "total": 8,
+    "byVideo": {
+      "eleven-p013-v2": 8
+    }
+  },
+  "videos": [
+    {
+      "jobId": "eleven-p013-v2",
+      "jobPath": "data/analysis-jobs/eleven-p013.json",
+      "resultPath": "data/analysis-results/eleven-p013.json",
+      "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/?p=13",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P13 第13期：和泉·摄津（收集1）",
+      "page": 13,
+      "cid": 28949022042,
+      "durationSeconds": 4780.166,
+      "sourceFileSha256": "5cb4c2f8f5ebb7090366e53f0436a0b825b3dad5b88be934a3f9009686194cc5",
+      "numericDescriptorCount": 88,
+      "temporalSupplementCount": 8,
+      "timestampCount": 96,
+      "timestamps": [
+        {
+          "time": 0.5,
+          "bucket": "sceneTransition",
+          "sharpness": 271.9109,
+          "edgeDensity": 0.003837,
+          "difference": 1.0,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 6.224,
+          "bucket": "temporalSupplement",
+          "sharpness": null,
+          "edgeDensity": null,
+          "difference": null,
+          "numericDescriptorAvailable": false,
+          "reason": "full-duration transient coverage beyond the legacy numeric descriptor set"
+        },
+        {
+          "time": 9.96,
+          "bucket": "sharp",
+          "sharpness": 1852.4435,
+          "edgeDensity": 0.116858,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 18.673,
+          "bucket": "temporalSupplement",
+          "sharpness": null,
+          "edgeDensity": null,
+          "difference": null,
+          "numericDescriptorAvailable": false,
+          "reason": "full-duration transient coverage beyond the legacy numeric descriptor set"
+        },
+        {
+          "time": 19.92,
+          "bucket": "sceneTransition",
+          "sharpness": 632.6601,
+          "edgeDensity": 0.114358,
+          "difference": 0.664844,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 29.88,
+          "bucket": "balancedFill",
+          "sharpness": 263.7807,
+          "edgeDensity": 0.015,
+          "difference": 0.442224,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 31.121,
+          "bucket": "temporalSupplement",
+          "sharpness": null,
+          "edgeDensity": null,
+          "difference": null,
+          "numericDescriptorAvailable": false,
+          "reason": "full-duration transient coverage beyond the legacy numeric descriptor set"
+        },
+        {
+          "time": 39.84,
+          "bucket": "sharp",
+          "sharpness": 1271.456,
+          "edgeDensity": 0.135347,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 43.569,
+          "bucket": "temporalSupplement",
+          "sharpness": null,
+          "edgeDensity": null,
+          "difference": null,
+          "numericDescriptorAvailable": false,
+          "reason": "full-duration transient coverage beyond the legacy numeric descriptor set"
+        },
+        {
+          "time": 49.8,
+          "bucket": "sceneTransition",
+          "sharpness": 380.9699,
+          "edgeDensity": 0.085417,
+          "difference": 0.557112,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 56.018,
+          "bucket": "temporalSupplement",
+          "sharpness": null,
+          "edgeDensity": null,
+          "difference": null,
+          "numericDescriptorAvailable": false,
+          "reason": "full-duration transient coverage beyond the legacy numeric descriptor set"
+        },
+        {
+          "time": 59.76,
+          "bucket": "sharp",
+          "sharpness": 1175.5181,
+          "edgeDensity": 0.201007,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 68.466,
+          "bucket": "temporalSupplement",
+          "sharpness": null,
+          "edgeDensity": null,
+          "difference": null,
+          "numericDescriptorAvailable": false,
+          "reason": "full-duration transient coverage beyond the legacy numeric descriptor set"
+        },
+        {
+          "time": 69.72,
+          "bucket": "sceneTransition",
+          "sharpness": 873.9801,
+          "edgeDensity": 0.157899,
+          "difference": 0.591703,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 79.68,
+          "bucket": "balancedFill",
+          "sharpness": 973.3303,
+          "edgeDensity": 0.147708,
+          "difference": 0.402034,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 80.914,
+          "bucket": "temporalSupplement",
+          "sharpness": null,
+          "edgeDensity": null,
+          "difference": null,
+          "numericDescriptorAvailable": false,
+          "reason": "full-duration transient coverage beyond the legacy numeric descriptor set"
+        },
+        {
+          "time": 89.64,
+          "bucket": "temporalCoverage",
+          "sharpness": 646.4179,
+          "edgeDensity": 0.093976,
+          "difference": 0.272144,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 93.363,
+          "bucket": "temporalSupplement",
+          "sharpness": null,
+          "edgeDensity": null,
+          "difference": null,
+          "numericDescriptorAvailable": false,
+          "reason": "full-duration transient coverage beyond the legacy numeric descriptor set"
+        },
+        {
+          "time": 99.6,
+          "bucket": "balancedFill",
+          "sharpness": 1065.3033,
+          "edgeDensity": 0.155278,
+          "difference": 0.486075,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 109.56,
+          "bucket": "sharp",
+          "sharpness": 1403.8676,
+          "edgeDensity": 0.147743,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 119.52,
+          "bucket": "temporalCoverage",
+          "sharpness": 897.4868,
+          "edgeDensity": 0.146736,
+          "difference": 0.492971,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 129.48,
+          "bucket": "balancedFill",
+          "sharpness": 969.0734,
+          "edgeDensity": 0.155764,
+          "difference": 0.445568,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 139.44,
+          "bucket": "sharp",
+          "sharpness": 1142.4458,
+          "edgeDensity": 0.175885,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 149.4,
+          "bucket": "sharp",
+          "sharpness": 1486.1494,
+          "edgeDensity": 0.219028,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 159.36,
+          "bucket": "sceneTransition",
+          "sharpness": 266.5,
+          "edgeDensity": 0.003906,
+          "difference": 0.603906,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 169.32,
+          "bucket": "sceneTransition",
+          "sharpness": 868.698,
+          "edgeDensity": 0.142118,
+          "difference": 0.59375,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 179.28,
+          "bucket": "sceneTransition",
+          "sharpness": 751.4986,
+          "edgeDensity": 0.093524,
+          "difference": 0.56647,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 189.24,
+          "bucket": "balancedFill",
+          "sharpness": 807.3537,
+          "edgeDensity": 0.131806,
+          "difference": 0.492775,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 199.2,
+          "bucket": "temporalCoverage",
+          "sharpness": 800.9902,
+          "edgeDensity": 0.131615,
+          "difference": 0.404995,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 209.16,
+          "bucket": "sharp",
+          "sharpness": 1295.8251,
+          "edgeDensity": 0.152535,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 219.12,
+          "bucket": "sceneTransition",
+          "sharpness": 798.6686,
+          "edgeDensity": 0.100503,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 229.08,
+          "bucket": "sceneTransition",
+          "sharpness": 374.2713,
+          "edgeDensity": 0.116493,
+          "difference": 0.644531,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 239.04,
+          "bucket": "balancedFill",
+          "sharpness": 496.3437,
+          "edgeDensity": 0.122309,
+          "difference": 0.388364,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 249.0,
+          "bucket": "balancedFill",
+          "sharpness": 769.4069,
+          "edgeDensity": 0.162465,
+          "difference": 0.32565,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 258.96,
+          "bucket": "temporalCoverage",
+          "sharpness": 470.3279,
+          "edgeDensity": 0.108194,
+          "difference": 0.271855,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 278.88,
+          "bucket": "sceneTransition",
+          "sharpness": 477.7005,
+          "edgeDensity": 0.013715,
+          "difference": 0.654687,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 288.84,
+          "bucket": "sceneTransition",
+          "sharpness": 575.4284,
+          "edgeDensity": 0.022691,
+          "difference": 0.598379,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 298.8,
+          "bucket": "sharp",
+          "sharpness": 1071.5671,
+          "edgeDensity": 0.183646,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 308.76,
+          "bucket": "balancedFill",
+          "sharpness": 1013.7384,
+          "edgeDensity": 0.137344,
+          "difference": 0.382473,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 318.72,
+          "bucket": "sceneTransition",
+          "sharpness": 551.1346,
+          "edgeDensity": 0.067535,
+          "difference": 0.606945,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 328.68,
+          "bucket": "balancedFill",
+          "sharpness": 653.7745,
+          "edgeDensity": 0.052969,
+          "difference": 0.434631,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 338.64,
+          "bucket": "sceneTransition",
+          "sharpness": 746.6234,
+          "edgeDensity": 0.085469,
+          "difference": 0.583594,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 348.6,
+          "bucket": "temporalCoverage",
+          "sharpness": 793.9308,
+          "edgeDensity": 0.108976,
+          "difference": 0.469933,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 358.56,
+          "bucket": "sceneTransition",
+          "sharpness": 789.3298,
+          "edgeDensity": 0.111979,
+          "difference": 0.640047,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 368.52,
+          "bucket": "sceneTransition",
+          "sharpness": 861.1922,
+          "edgeDensity": 0.136146,
+          "difference": 0.535256,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 378.48,
+          "bucket": "sharp",
+          "sharpness": 1082.6891,
+          "edgeDensity": 0.156875,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 388.44,
+          "bucket": "sharp",
+          "sharpness": 1495.6153,
+          "edgeDensity": 0.136007,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 398.4,
+          "bucket": "sharp",
+          "sharpness": 1285.285,
+          "edgeDensity": 0.194497,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 408.36,
+          "bucket": "sharp",
+          "sharpness": 2096.0088,
+          "edgeDensity": 0.19474,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 418.32,
+          "bucket": "sharp",
+          "sharpness": 1097.3707,
+          "edgeDensity": 0.093438,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 428.28,
+          "bucket": "sharp",
+          "sharpness": 1270.7647,
+          "edgeDensity": 0.085399,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 438.24,
+          "bucket": "sharp",
+          "sharpness": 1987.638,
+          "edgeDensity": 0.17724,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 448.2,
+          "bucket": "sceneTransition",
+          "sharpness": 876.4109,
+          "edgeDensity": 0.130938,
+          "difference": 0.623229,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 458.16,
+          "bucket": "sceneTransition",
+          "sharpness": 1003.5176,
+          "edgeDensity": 0.131719,
+          "difference": 0.682125,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 468.12,
+          "bucket": "sharp",
+          "sharpness": 1082.9856,
+          "edgeDensity": 0.069028,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 478.08,
+          "bucket": "sharp",
+          "sharpness": 1782.9388,
+          "edgeDensity": 0.185903,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 488.04,
+          "bucket": "temporalCoverage",
+          "sharpness": 543.7541,
+          "edgeDensity": 0.022153,
+          "difference": 0.364624,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 498.0,
+          "bucket": "balancedFill",
+          "sharpness": 774.7017,
+          "edgeDensity": 0.046163,
+          "difference": 0.444991,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 507.96,
+          "bucket": "temporalCoverage",
+          "sharpness": 565.5031,
+          "edgeDensity": 0.040781,
+          "difference": 0.405455,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 517.92,
+          "bucket": "sceneTransition",
+          "sharpness": 671.9606,
+          "edgeDensity": 0.097378,
+          "difference": 0.563281,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 527.88,
+          "bucket": "sceneTransition",
+          "sharpness": 809.719,
+          "edgeDensity": 0.114896,
+          "difference": 0.644531,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 537.84,
+          "bucket": "temporalCoverage",
+          "sharpness": 730.9941,
+          "edgeDensity": 0.041927,
+          "difference": 0.471629,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 547.8,
+          "bucket": "balancedFill",
+          "sharpness": 659.0954,
+          "edgeDensity": 0.028229,
+          "difference": 0.314197,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 557.76,
+          "bucket": "balancedFill",
+          "sharpness": 740.5945,
+          "edgeDensity": 0.069722,
+          "difference": 0.412608,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 567.72,
+          "bucket": "temporalCoverage",
+          "sharpness": 759.9384,
+          "edgeDensity": 0.030208,
+          "difference": 0.273289,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 577.68,
+          "bucket": "sceneTransition",
+          "sharpness": 598.0738,
+          "edgeDensity": 0.048663,
+          "difference": 0.620192,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 587.64,
+          "bucket": "sceneTransition",
+          "sharpness": 624.4176,
+          "edgeDensity": 0.016667,
+          "difference": 0.644531,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 597.6,
+          "bucket": "sceneTransition",
+          "sharpness": 621.184,
+          "edgeDensity": 0.084479,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 607.56,
+          "bucket": "sharp",
+          "sharpness": 1657.6388,
+          "edgeDensity": 0.090069,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 617.52,
+          "bucket": "sharp",
+          "sharpness": 1108.9201,
+          "edgeDensity": 0.121024,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 627.48,
+          "bucket": "balancedFill",
+          "sharpness": 855.5819,
+          "edgeDensity": 0.132674,
+          "difference": 0.473176,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 637.44,
+          "bucket": "sceneTransition",
+          "sharpness": 967.2181,
+          "edgeDensity": 0.159427,
+          "difference": 0.659751,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 647.4,
+          "bucket": "sceneTransition",
+          "sharpness": 884.5187,
+          "edgeDensity": 0.100573,
+          "difference": 0.539743,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 657.36,
+          "bucket": "sceneTransition",
+          "sharpness": 276.785,
+          "edgeDensity": 0.003924,
+          "difference": 0.695312,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 677.28,
+          "bucket": "sceneTransition",
+          "sharpness": 1059.201,
+          "edgeDensity": 0.135642,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 687.24,
+          "bucket": "sharp",
+          "sharpness": 2224.312,
+          "edgeDensity": 0.123628,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 697.2,
+          "bucket": "sharp",
+          "sharpness": 1421.511,
+          "edgeDensity": 0.147378,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 707.16,
+          "bucket": "sceneTransition",
+          "sharpness": 571.2185,
+          "edgeDensity": 0.03776,
+          "difference": 0.644531,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 717.12,
+          "bucket": "temporalCoverage",
+          "sharpness": 686.2066,
+          "edgeDensity": 0.064358,
+          "difference": 0.358505,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 727.08,
+          "bucket": "sharp",
+          "sharpness": 1171.3013,
+          "edgeDensity": 0.097118,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 737.04,
+          "bucket": "sceneTransition",
+          "sharpness": 1041.2838,
+          "edgeDensity": 0.066615,
+          "difference": 0.534588,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 747.0,
+          "bucket": "sharp",
+          "sharpness": 1351.5429,
+          "edgeDensity": 0.158229,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 756.96,
+          "bucket": "sharp",
+          "sharpness": 2019.2863,
+          "edgeDensity": 0.214375,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 766.92,
+          "bucket": "sceneTransition",
+          "sharpness": 673.7201,
+          "edgeDensity": 0.02717,
+          "difference": 0.624219,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 776.88,
+          "bucket": "sharp",
+          "sharpness": 2185.9083,
+          "edgeDensity": 0.127656,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 786.84,
+          "bucket": "sharp",
+          "sharpness": 2562.4041,
+          "edgeDensity": 0.172934,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 796.8,
+          "bucket": "temporalCoverage",
+          "sharpness": 632.9583,
+          "edgeDensity": 0.049983,
+          "difference": 0.428746,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 806.76,
+          "bucket": "sharp",
+          "sharpness": 2339.693,
+          "edgeDensity": 0.169132,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 816.72,
+          "bucket": "sharp",
+          "sharpness": 2021.8549,
+          "edgeDensity": 0.141753,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 826.68,
+          "bucket": "sceneTransition",
+          "sharpness": 778.0024,
+          "edgeDensity": 0.091146,
+          "difference": 0.563281,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 836.64,
+          "bucket": "sharp",
+          "sharpness": 2064.7165,
+          "edgeDensity": 0.132431,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 846.6,
+          "bucket": "sceneTransition",
+          "sharpness": 847.4668,
+          "edgeDensity": 0.050868,
+          "difference": 0.553125,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 856.56,
+          "bucket": "sharp",
+          "sharpness": 2965.1815,
+          "edgeDensity": 0.174201,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 866.52,
+          "bucket": "balancedFill",
+          "sharpness": 918.5963,
+          "edgeDensity": 0.090573,
+          "difference": 0.487917,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 876.48,
+          "bucket": "temporalCoverage",
+          "sharpness": 586.1115,
+          "edgeDensity": 0.062431,
+          "difference": 0.355405,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 886.44,
+          "bucket": "sceneTransition",
+          "sharpness": 870.5875,
+          "edgeDensity": 0.134479,
+          "difference": 0.675,
+          "numericDescriptorAvailable": true
+        }
+      ]
+    },
+    {
+      "jobId": "eleven-p014-v2",
+      "jobPath": "data/analysis-jobs/eleven-p014.json",
+      "resultPath": "data/analysis-results/eleven-p014.json",
+      "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/?p=14",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P14 第14期：和泉·摄津（收集2）",
+      "page": 14,
+      "cid": 28949614304,
+      "durationSeconds": 3880.933,
+      "sourceFileSha256": "ee2e8069e4cac24a9daa25c11bdc2dbe666fcf586c731584b6355a1b6304d6c3",
+      "numericDescriptorCount": 476,
+      "temporalSupplementCount": 0,
+      "timestampCount": 96,
+      "timestamps": [
+        {
+          "time": 0.5,
+          "bucket": "sceneTransition",
+          "sharpness": 271.8432,
+          "edgeDensity": 0.003924,
+          "difference": 1.0,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 56.597,
+          "bucket": "temporalCoverage",
+          "sharpness": 1866.9993,
+          "edgeDensity": 0.116476,
+          "difference": 0.563011,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 72.767,
+          "bucket": "sharp",
+          "sharpness": 3168.1884,
+          "edgeDensity": 0.177813,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 88.938,
+          "bucket": "sharp",
+          "sharpness": 2246.1365,
+          "edgeDensity": 0.215417,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 113.194,
+          "bucket": "sceneTransition",
+          "sharpness": 458.6766,
+          "edgeDensity": 0.030799,
+          "difference": 0.721226,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 177.876,
+          "bucket": "temporalCoverage",
+          "sharpness": 480.1197,
+          "edgeDensity": 0.050833,
+          "difference": 0.347076,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 194.047,
+          "bucket": "sceneTransition",
+          "sharpness": 341.3622,
+          "edgeDensity": 0.039514,
+          "difference": 0.746094,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 299.155,
+          "bucket": "temporalCoverage",
+          "sharpness": 684.1764,
+          "edgeDensity": 0.032101,
+          "difference": 0.404084,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 363.837,
+          "bucket": "sceneTransition",
+          "sharpness": 858.4359,
+          "edgeDensity": 0.056997,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 420.434,
+          "bucket": "temporalCoverage",
+          "sharpness": 1097.502,
+          "edgeDensity": 0.101858,
+          "difference": 0.545469,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 509.372,
+          "bucket": "sceneTransition",
+          "sharpness": 671.0312,
+          "edgeDensity": 0.082708,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 533.628,
+          "bucket": "temporalCoverage",
+          "sharpness": 404.0601,
+          "edgeDensity": 0.023698,
+          "difference": 0.537126,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 622.566,
+          "bucket": "sceneTransition",
+          "sharpness": 434.6639,
+          "edgeDensity": 0.021458,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 654.907,
+          "bucket": "temporalCoverage",
+          "sharpness": 601.7074,
+          "edgeDensity": 0.013889,
+          "difference": 0.644531,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 679.163,
+          "bucket": "sceneTransition",
+          "sharpness": 335.2223,
+          "edgeDensity": 0.008316,
+          "difference": 0.735937,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 751.931,
+          "bucket": "sceneTransition",
+          "sharpness": 388.5527,
+          "edgeDensity": 0.013142,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 776.187,
+          "bucket": "temporalCoverage",
+          "sharpness": 674.4973,
+          "edgeDensity": 0.015799,
+          "difference": 0.343489,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 897.466,
+          "bucket": "temporalCoverage",
+          "sharpness": 434.9583,
+          "edgeDensity": 0.058767,
+          "difference": 0.626983,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 913.636,
+          "bucket": "sceneTransition",
+          "sharpness": 375.5882,
+          "edgeDensity": 0.008993,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 970.233,
+          "bucket": "sceneTransition",
+          "sharpness": 554.7801,
+          "edgeDensity": 0.054062,
+          "difference": 0.766406,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1018.745,
+          "bucket": "temporalCoverage",
+          "sharpness": 1264.6357,
+          "edgeDensity": 0.082396,
+          "difference": 0.195985,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1140.024,
+          "bucket": "temporalCoverage",
+          "sharpness": 849.8397,
+          "edgeDensity": 0.060156,
+          "difference": 0.595707,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1172.365,
+          "bucket": "sceneTransition",
+          "sharpness": 913.1224,
+          "edgeDensity": 0.119965,
+          "difference": 0.766406,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1196.621,
+          "bucket": "sceneTransition",
+          "sharpness": 477.1563,
+          "edgeDensity": 0.050556,
+          "difference": 0.738001,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1228.962,
+          "bucket": "sceneTransition",
+          "sharpness": 1451.9908,
+          "edgeDensity": 0.13625,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1269.389,
+          "bucket": "temporalCoverage",
+          "sharpness": 544.2925,
+          "edgeDensity": 0.067153,
+          "difference": 0.630792,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1342.156,
+          "bucket": "sceneTransition",
+          "sharpness": 613.5712,
+          "edgeDensity": 0.050226,
+          "difference": 0.746094,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1398.753,
+          "bucket": "temporalCoverage",
+          "sharpness": 754.4952,
+          "edgeDensity": 0.074931,
+          "difference": 0.428989,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1511.947,
+          "bucket": "temporalCoverage",
+          "sharpness": 588.2498,
+          "edgeDensity": 0.053003,
+          "difference": 0.553125,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1528.117,
+          "bucket": "sceneTransition",
+          "sharpness": 1137.1189,
+          "edgeDensity": 0.122882,
+          "difference": 0.776563,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1544.288,
+          "bucket": "sharp",
+          "sharpness": 2538.1374,
+          "edgeDensity": 0.157691,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1608.97,
+          "bucket": "sceneTransition",
+          "sharpness": 928.4595,
+          "edgeDensity": 0.087986,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1633.226,
+          "bucket": "temporalCoverage",
+          "sharpness": 1095.2226,
+          "edgeDensity": 0.072222,
+          "difference": 0.675,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1738.335,
+          "bucket": "sharp",
+          "sharpness": 3204.6289,
+          "edgeDensity": 0.157292,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1746.42,
+          "bucket": "sharp",
+          "sharpness": 4760.8023,
+          "edgeDensity": 0.203733,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1754.505,
+          "bucket": "temporalCoverage",
+          "sharpness": 1484.8738,
+          "edgeDensity": 0.172049,
+          "difference": 0.599783,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1762.591,
+          "bucket": "sceneTransition",
+          "sharpness": 1281.8601,
+          "edgeDensity": 0.03658,
+          "difference": 0.777313,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1778.761,
+          "bucket": "sharp",
+          "sharpness": 2468.1383,
+          "edgeDensity": 0.127135,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1786.846,
+          "bucket": "sharp",
+          "sharpness": 3268.799,
+          "edgeDensity": 0.231476,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1794.932,
+          "bucket": "sceneTransition",
+          "sharpness": 1038.9258,
+          "edgeDensity": 0.191753,
+          "difference": 0.784981,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1827.273,
+          "bucket": "sharp",
+          "sharpness": 2356.0867,
+          "edgeDensity": 0.137031,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1835.358,
+          "bucket": "sharp",
+          "sharpness": 4890.0876,
+          "edgeDensity": 0.17125,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1851.529,
+          "bucket": "sceneTransition",
+          "sharpness": 1024.3567,
+          "edgeDensity": 0.094861,
+          "difference": 0.76676,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1875.784,
+          "bucket": "temporalCoverage",
+          "sharpness": 748.5405,
+          "edgeDensity": 0.092465,
+          "difference": 0.417199,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1900.04,
+          "bucket": "sceneTransition",
+          "sharpness": 1305.2734,
+          "edgeDensity": 0.163924,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1908.126,
+          "bucket": "sceneTransition",
+          "sharpness": 1461.5332,
+          "edgeDensity": 0.084705,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1980.893,
+          "bucket": "sharp",
+          "sharpness": 2890.1231,
+          "edgeDensity": 0.178785,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1988.978,
+          "bucket": "sharp",
+          "sharpness": 2691.8092,
+          "edgeDensity": 0.172344,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1997.064,
+          "bucket": "balancedFill",
+          "sharpness": 1930.3097,
+          "edgeDensity": 0.194531,
+          "difference": 0.325919,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2005.149,
+          "bucket": "temporalCoverage",
+          "sharpness": 1431.0187,
+          "edgeDensity": 0.211823,
+          "difference": 0.705469,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2069.831,
+          "bucket": "sharp",
+          "sharpness": 2843.313,
+          "edgeDensity": 0.197326,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2086.002,
+          "bucket": "sharp",
+          "sharpness": 2004.7722,
+          "edgeDensity": 0.158125,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2102.172,
+          "bucket": "sceneTransition",
+          "sharpness": 634.6818,
+          "edgeDensity": 0.057326,
+          "difference": 0.795499,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2110.257,
+          "bucket": "sharp",
+          "sharpness": 2666.8564,
+          "edgeDensity": 0.12342,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2118.343,
+          "bucket": "sharp",
+          "sharpness": 4808.9518,
+          "edgeDensity": 0.22599,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2126.428,
+          "bucket": "temporalCoverage",
+          "sharpness": 1898.2923,
+          "edgeDensity": 0.168698,
+          "difference": 0.555537,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2174.94,
+          "bucket": "sceneTransition",
+          "sharpness": 1136.8989,
+          "edgeDensity": 0.128819,
+          "difference": 0.746094,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2247.707,
+          "bucket": "temporalCoverage",
+          "sharpness": 499.7656,
+          "edgeDensity": 0.060451,
+          "difference": 0.550348,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2255.792,
+          "bucket": "sharp",
+          "sharpness": 2295.2092,
+          "edgeDensity": 0.166476,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2368.986,
+          "bucket": "temporalCoverage",
+          "sharpness": 488.9639,
+          "edgeDensity": 0.031094,
+          "difference": 0.202507,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2417.498,
+          "bucket": "sceneTransition",
+          "sharpness": 1645.473,
+          "edgeDensity": 0.183559,
+          "difference": 0.805519,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2482.18,
+          "bucket": "temporalCoverage",
+          "sharpness": 802.0485,
+          "edgeDensity": 0.051319,
+          "difference": 0.624219,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2603.459,
+          "bucket": "temporalCoverage",
+          "sharpness": 933.796,
+          "edgeDensity": 0.09658,
+          "difference": 0.616164,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2716.653,
+          "bucket": "sharp",
+          "sharpness": 2631.2935,
+          "edgeDensity": 0.124809,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2732.824,
+          "bucket": "temporalCoverage",
+          "sharpness": 722.1906,
+          "edgeDensity": 0.121024,
+          "difference": 0.624219,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2854.103,
+          "bucket": "temporalCoverage",
+          "sharpness": 802.344,
+          "edgeDensity": 0.067604,
+          "difference": 0.498148,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2918.785,
+          "bucket": "balancedFill",
+          "sharpness": 1968.4176,
+          "edgeDensity": 0.09441,
+          "difference": 0.196165,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2975.382,
+          "bucket": "temporalCoverage",
+          "sharpness": 457.8042,
+          "edgeDensity": 0.104427,
+          "difference": 0.413499,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2983.467,
+          "bucket": "sceneTransition",
+          "sharpness": 1582.6408,
+          "edgeDensity": 0.161979,
+          "difference": 0.748631,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3088.576,
+          "bucket": "sceneTransition",
+          "sharpness": 1387.6839,
+          "edgeDensity": 0.165556,
+          "difference": 0.73071,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3096.661,
+          "bucket": "temporalCoverage",
+          "sharpness": 814.1284,
+          "edgeDensity": 0.09526,
+          "difference": 0.447123,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3153.258,
+          "bucket": "sceneTransition",
+          "sharpness": 440.4151,
+          "edgeDensity": 0.01901,
+          "difference": 0.740213,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3177.514,
+          "bucket": "sharp",
+          "sharpness": 2578.8278,
+          "edgeDensity": 0.15224,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3185.599,
+          "bucket": "balancedFill",
+          "sharpness": 1974.2902,
+          "edgeDensity": 0.152656,
+          "difference": 0.484514,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3193.685,
+          "bucket": "sharp",
+          "sharpness": 2816.2663,
+          "edgeDensity": 0.120573,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3217.941,
+          "bucket": "sceneTransition",
+          "sharpness": 560.8128,
+          "edgeDensity": 0.060521,
+          "difference": 0.75625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3234.111,
+          "bucket": "sharp",
+          "sharpness": 2797.995,
+          "edgeDensity": 0.118524,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3250.282,
+          "bucket": "sharp",
+          "sharpness": 2758.9717,
+          "edgeDensity": 0.14408,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3266.452,
+          "bucket": "sceneTransition",
+          "sharpness": 714.4526,
+          "edgeDensity": 0.136962,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3282.623,
+          "bucket": "sharp",
+          "sharpness": 4556.7261,
+          "edgeDensity": 0.2075,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3339.22,
+          "bucket": "temporalCoverage",
+          "sharpness": 351.4793,
+          "edgeDensity": 0.05276,
+          "difference": 0.573438,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3355.39,
+          "bucket": "sceneTransition",
+          "sharpness": 1078.0103,
+          "edgeDensity": 0.166372,
+          "difference": 0.741319,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3395.817,
+          "bucket": "sharp",
+          "sharpness": 2216.1213,
+          "edgeDensity": 0.179375,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3452.414,
+          "bucket": "sharp",
+          "sharpness": 2497.3364,
+          "edgeDensity": 0.187569,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3460.499,
+          "bucket": "sharp",
+          "sharpness": 2944.9304,
+          "edgeDensity": 0.232986,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3500.925,
+          "bucket": "sharp",
+          "sharpness": 2806.6559,
+          "edgeDensity": 0.151875,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3509.011,
+          "bucket": "sharp",
+          "sharpness": 2025.0065,
+          "edgeDensity": 0.161285,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3517.096,
+          "bucket": "sharp",
+          "sharpness": 3303.1259,
+          "edgeDensity": 0.262986,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3533.266,
+          "bucket": "balancedFill",
+          "sharpness": 1937.0324,
+          "edgeDensity": 0.141389,
+          "difference": 0.491368,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3541.352,
+          "bucket": "sharp",
+          "sharpness": 2476.626,
+          "edgeDensity": 0.169792,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3573.693,
+          "bucket": "temporalCoverage",
+          "sharpness": 1147.5781,
+          "edgeDensity": 0.100417,
+          "difference": 0.496328,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3581.778,
+          "bucket": "sceneTransition",
+          "sharpness": 747.1921,
+          "edgeDensity": 0.06441,
+          "difference": 0.766406,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3654.546,
+          "bucket": "sharp",
+          "sharpness": 2291.9789,
+          "edgeDensity": 0.200573,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3694.972,
+          "bucket": "temporalCoverage",
+          "sharpness": 785.4978,
+          "edgeDensity": 0.053125,
+          "difference": 0.502344,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3783.91,
+          "bucket": "sceneTransition",
+          "sharpness": 506.7513,
+          "edgeDensity": 0.030104,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3816.251,
+          "bucket": "temporalCoverage",
+          "sharpness": 591.3646,
+          "edgeDensity": 0.027917,
+          "difference": 0.206562,
+          "numericDescriptorAvailable": true
+        }
+      ]
+    },
+    {
+      "jobId": "eleven-p015-v2",
+      "jobPath": "data/analysis-jobs/eleven-p015.json",
+      "resultPath": "data/analysis-results/eleven-p015.json",
+      "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/?p=15",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P15 第15期：和泉·摄津（收集3）",
+      "page": 15,
+      "cid": 28949941205,
+      "durationSeconds": 4435.066,
+      "sourceFileSha256": "48612c92a92da4c1dd4b4cde75da2bd1ced248b41a05b389be3831cf229c8d41",
+      "numericDescriptorCount": 470,
+      "temporalSupplementCount": 0,
+      "timestampCount": 96,
+      "timestamps": [
+        {
+          "time": 0.5,
+          "bucket": "sceneTransition",
+          "sharpness": 274.7843,
+          "edgeDensity": 0.003924,
+          "difference": 1.0,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 64.694,
+          "bucket": "temporalCoverage",
+          "sharpness": 660.3856,
+          "edgeDensity": 0.058038,
+          "difference": 0.513929,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 110.904,
+          "bucket": "sceneTransition",
+          "sharpness": 1341.9218,
+          "edgeDensity": 0.074271,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 120.146,
+          "bucket": "sharp",
+          "sharpness": 2100.7687,
+          "edgeDensity": 0.095556,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 129.388,
+          "bucket": "sharp",
+          "sharpness": 1977.7145,
+          "edgeDensity": 0.103264,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 221.808,
+          "bucket": "temporalCoverage",
+          "sharpness": 1769.1046,
+          "edgeDensity": 0.197656,
+          "difference": 0.484924,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 249.534,
+          "bucket": "sceneTransition",
+          "sharpness": 612.2692,
+          "edgeDensity": 0.085295,
+          "difference": 0.710187,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 277.26,
+          "bucket": "sceneTransition",
+          "sharpness": 1382.5009,
+          "edgeDensity": 0.099931,
+          "difference": 0.735937,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 351.196,
+          "bucket": "temporalCoverage",
+          "sharpness": 914.8874,
+          "edgeDensity": 0.06474,
+          "difference": 0.229917,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 499.068,
+          "bucket": "temporalCoverage",
+          "sharpness": 784.1151,
+          "edgeDensity": 0.102326,
+          "difference": 0.382155,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 637.698,
+          "bucket": "temporalCoverage",
+          "sharpness": 987.3967,
+          "edgeDensity": 0.064375,
+          "difference": 0.573438,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 767.086,
+          "bucket": "temporalCoverage",
+          "sharpness": 786.163,
+          "edgeDensity": 0.030799,
+          "difference": 0.22692,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 877.99,
+          "bucket": "sceneTransition",
+          "sharpness": 587.9134,
+          "edgeDensity": 0.037569,
+          "difference": 0.776563,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 905.716,
+          "bucket": "temporalCoverage",
+          "sharpness": 410.3199,
+          "edgeDensity": 0.051146,
+          "difference": 0.357749,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1044.346,
+          "bucket": "temporalCoverage",
+          "sharpness": 785.546,
+          "edgeDensity": 0.066111,
+          "difference": 0.604329,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1127.524,
+          "bucket": "sceneTransition",
+          "sharpness": 1193.2945,
+          "edgeDensity": 0.112344,
+          "difference": 0.705469,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1173.734,
+          "bucket": "temporalCoverage",
+          "sharpness": 697.2426,
+          "edgeDensity": 0.085955,
+          "difference": 0.424342,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1312.364,
+          "bucket": "temporalCoverage",
+          "sharpness": 814.0224,
+          "edgeDensity": 0.069479,
+          "difference": 0.41202,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1377.058,
+          "bucket": "sceneTransition",
+          "sharpness": 1134.1259,
+          "edgeDensity": 0.071927,
+          "difference": 0.776563,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1395.542,
+          "bucket": "sceneTransition",
+          "sharpness": 1017.4305,
+          "edgeDensity": 0.084149,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1404.784,
+          "bucket": "sceneTransition",
+          "sharpness": 876.1698,
+          "edgeDensity": 0.097743,
+          "difference": 0.766406,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1450.994,
+          "bucket": "temporalCoverage",
+          "sharpness": 627.3853,
+          "edgeDensity": 0.04974,
+          "difference": 0.566959,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1580.382,
+          "bucket": "temporalCoverage",
+          "sharpness": 587.9197,
+          "edgeDensity": 0.083819,
+          "difference": 0.630251,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1589.624,
+          "bucket": "sceneTransition",
+          "sharpness": 1452.6704,
+          "edgeDensity": 0.104826,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1719.012,
+          "bucket": "temporalCoverage",
+          "sharpness": 718.2577,
+          "edgeDensity": 0.077483,
+          "difference": 0.457223,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1829.916,
+          "bucket": "sharp",
+          "sharpness": 2248.4272,
+          "edgeDensity": 0.17401,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1857.642,
+          "bucket": "balancedFill",
+          "sharpness": 1765.6373,
+          "edgeDensity": 0.159792,
+          "difference": 0.505714,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1866.884,
+          "bucket": "temporalCoverage",
+          "sharpness": 547.6933,
+          "edgeDensity": 0.046163,
+          "difference": 0.583987,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1996.272,
+          "bucket": "temporalCoverage",
+          "sharpness": 726.8654,
+          "edgeDensity": 0.102656,
+          "difference": 0.478293,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2060.966,
+          "bucket": "sceneTransition",
+          "sharpness": 368.0173,
+          "edgeDensity": 0.090104,
+          "difference": 0.759771,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2088.692,
+          "bucket": "balancedFill",
+          "sharpness": 1763.1075,
+          "edgeDensity": 0.205226,
+          "difference": 0.365631,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2125.66,
+          "bucket": "sceneTransition",
+          "sharpness": 1432.6216,
+          "edgeDensity": 0.180052,
+          "difference": 0.796875,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2134.902,
+          "bucket": "temporalCoverage",
+          "sharpness": 805.4411,
+          "edgeDensity": 0.129861,
+          "difference": 0.502344,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2199.596,
+          "bucket": "sharp",
+          "sharpness": 1895.5154,
+          "edgeDensity": 0.170469,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2273.532,
+          "bucket": "temporalCoverage",
+          "sharpness": 589.5003,
+          "edgeDensity": 0.018924,
+          "difference": 0.447033,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2328.984,
+          "bucket": "sharp",
+          "sharpness": 1990.7853,
+          "edgeDensity": 0.110521,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2338.226,
+          "bucket": "balancedFill",
+          "sharpness": 1811.9692,
+          "edgeDensity": 0.112135,
+          "difference": 0.410059,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2421.404,
+          "bucket": "temporalCoverage",
+          "sharpness": 519.9308,
+          "edgeDensity": 0.06658,
+          "difference": 0.435362,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2504.582,
+          "bucket": "sharp",
+          "sharpness": 1938.8273,
+          "edgeDensity": 0.147517,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2523.066,
+          "bucket": "sharp",
+          "sharpness": 2985.0296,
+          "edgeDensity": 0.206892,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2541.55,
+          "bucket": "sharp",
+          "sharpness": 3083.2161,
+          "edgeDensity": 0.209844,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2550.792,
+          "bucket": "sceneTransition",
+          "sharpness": 545.0209,
+          "edgeDensity": 0.048576,
+          "difference": 0.766406,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2560.034,
+          "bucket": "balancedFill",
+          "sharpness": 1840.2234,
+          "edgeDensity": 0.116181,
+          "difference": 0.459129,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2569.276,
+          "bucket": "balancedFill",
+          "sharpness": 1771.8617,
+          "edgeDensity": 0.141528,
+          "difference": 0.575509,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2587.76,
+          "bucket": "sharp",
+          "sharpness": 2149.2292,
+          "edgeDensity": 0.217726,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2597.002,
+          "bucket": "balancedFill",
+          "sharpness": 1809.092,
+          "edgeDensity": 0.179427,
+          "difference": 0.456932,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2661.696,
+          "bucket": "balancedFill",
+          "sharpness": 1834.1483,
+          "edgeDensity": 0.109167,
+          "difference": 0.624219,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2698.664,
+          "bucket": "temporalCoverage",
+          "sharpness": 1351.1402,
+          "edgeDensity": 0.112378,
+          "difference": 0.640825,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2735.632,
+          "bucket": "sharp",
+          "sharpness": 2009.284,
+          "edgeDensity": 0.134809,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2754.116,
+          "bucket": "sharp",
+          "sharpness": 3694.042,
+          "edgeDensity": 0.191337,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2763.358,
+          "bucket": "sharp",
+          "sharpness": 3855.8275,
+          "edgeDensity": 0.196319,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2772.6,
+          "bucket": "sharp",
+          "sharpness": 1991.9802,
+          "edgeDensity": 0.159323,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2781.842,
+          "bucket": "sharp",
+          "sharpness": 2578.0563,
+          "edgeDensity": 0.223472,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2791.084,
+          "bucket": "sharp",
+          "sharpness": 4052.1554,
+          "edgeDensity": 0.221753,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2800.326,
+          "bucket": "sharp",
+          "sharpness": 2634.5202,
+          "edgeDensity": 0.133958,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2828.052,
+          "bucket": "sharp",
+          "sharpness": 2517.7914,
+          "edgeDensity": 0.142222,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2837.294,
+          "bucket": "sharp",
+          "sharpness": 2095.7044,
+          "edgeDensity": 0.240399,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2846.536,
+          "bucket": "sceneTransition",
+          "sharpness": 1382.1443,
+          "edgeDensity": 0.144722,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2865.02,
+          "bucket": "sharp",
+          "sharpness": 2253.2546,
+          "edgeDensity": 0.169444,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2874.262,
+          "bucket": "sceneTransition",
+          "sharpness": 618.799,
+          "edgeDensity": 0.059115,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2901.988,
+          "bucket": "sharp",
+          "sharpness": 2739.8863,
+          "edgeDensity": 0.145712,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2929.714,
+          "bucket": "sceneTransition",
+          "sharpness": 939.0312,
+          "edgeDensity": 0.076285,
+          "difference": 0.766406,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2966.682,
+          "bucket": "sceneTransition",
+          "sharpness": 1080.6075,
+          "edgeDensity": 0.15441,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 2985.166,
+          "bucket": "sharp",
+          "sharpness": 2572.8235,
+          "edgeDensity": 0.184427,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3003.65,
+          "bucket": "sharp",
+          "sharpness": 2446.4009,
+          "edgeDensity": 0.199653,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3077.586,
+          "bucket": "balancedFill",
+          "sharpness": 1845.5519,
+          "edgeDensity": 0.251997,
+          "difference": 0.654687,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3086.828,
+          "bucket": "sharp",
+          "sharpness": 6657.6714,
+          "edgeDensity": 0.273142,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3096.07,
+          "bucket": "sharp",
+          "sharpness": 5800.3134,
+          "edgeDensity": 0.241649,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3105.312,
+          "bucket": "sharp",
+          "sharpness": 2817.8851,
+          "edgeDensity": 0.19533,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3114.554,
+          "bucket": "sharp",
+          "sharpness": 4975.4736,
+          "edgeDensity": 0.230434,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3133.038,
+          "bucket": "sharp",
+          "sharpness": 5294.7813,
+          "edgeDensity": 0.260642,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3160.764,
+          "bucket": "sceneTransition",
+          "sharpness": 645.4527,
+          "edgeDensity": 0.033316,
+          "difference": 0.746094,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3206.974,
+          "bucket": "sharp",
+          "sharpness": 2243.9245,
+          "edgeDensity": 0.184375,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3243.942,
+          "bucket": "sharp",
+          "sharpness": 2077.8979,
+          "edgeDensity": 0.231806,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3308.636,
+          "bucket": "sharp",
+          "sharpness": 2398.2414,
+          "edgeDensity": 0.181858,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3336.362,
+          "bucket": "balancedFill",
+          "sharpness": 1790.0381,
+          "edgeDensity": 0.167882,
+          "difference": 0.349342,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3373.33,
+          "bucket": "temporalCoverage",
+          "sharpness": 883.9109,
+          "edgeDensity": 0.178212,
+          "difference": 0.459531,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3511.96,
+          "bucket": "temporalCoverage",
+          "sharpness": 612.4243,
+          "edgeDensity": 0.038542,
+          "difference": 0.420467,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3595.138,
+          "bucket": "sceneTransition",
+          "sharpness": 751.9033,
+          "edgeDensity": 0.077465,
+          "difference": 0.776563,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3613.622,
+          "bucket": "sceneTransition",
+          "sharpness": 652.9429,
+          "edgeDensity": 0.042431,
+          "difference": 0.746094,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3632.106,
+          "bucket": "sceneTransition",
+          "sharpness": 674.728,
+          "edgeDensity": 0.019809,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3650.59,
+          "bucket": "sceneTransition",
+          "sharpness": 560.7779,
+          "edgeDensity": 0.014601,
+          "difference": 0.732786,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3715.284,
+          "bucket": "sceneTransition",
+          "sharpness": 748.8364,
+          "edgeDensity": 0.027309,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3779.978,
+          "bucket": "temporalCoverage",
+          "sharpness": 582.9213,
+          "edgeDensity": 0.032622,
+          "difference": 0.313921,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 3927.85,
+          "bucket": "temporalCoverage",
+          "sharpness": 579.206,
+          "edgeDensity": 0.055781,
+          "difference": 0.459596,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4011.028,
+          "bucket": "sceneTransition",
+          "sharpness": 1199.8143,
+          "edgeDensity": 0.164201,
+          "difference": 0.735937,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4075.722,
+          "bucket": "temporalCoverage",
+          "sharpness": 755.2671,
+          "edgeDensity": 0.048872,
+          "difference": 0.501669,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4084.964,
+          "bucket": "sceneTransition",
+          "sharpness": 1025.542,
+          "edgeDensity": 0.070677,
+          "difference": 0.746094,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4094.206,
+          "bucket": "sceneTransition",
+          "sharpness": 846.5677,
+          "edgeDensity": 0.075191,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4168.142,
+          "bucket": "sceneTransition",
+          "sharpness": 1091.5665,
+          "edgeDensity": 0.065729,
+          "difference": 0.725781,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4195.868,
+          "bucket": "sceneTransition",
+          "sharpness": 816.4465,
+          "edgeDensity": 0.042743,
+          "difference": 0.75625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4205.11,
+          "bucket": "temporalCoverage",
+          "sharpness": 693.7985,
+          "edgeDensity": 0.04908,
+          "difference": 0.411173,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4223.594,
+          "bucket": "sceneTransition",
+          "sharpness": 1537.1526,
+          "edgeDensity": 0.123681,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4343.74,
+          "bucket": "sceneTransition",
+          "sharpness": 975.8311,
+          "edgeDensity": 0.059653,
+          "difference": 0.766406,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4371.466,
+          "bucket": "sceneTransition",
+          "sharpness": 822.6691,
+          "edgeDensity": 0.037135,
+          "difference": 0.738128,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 4417.676,
+          "bucket": "sceneTransition",
+          "sharpness": 1346.7458,
+          "edgeDensity": 0.115503,
+          "difference": 0.766406,
+          "numericDescriptorAvailable": true
+        }
+      ]
+    },
+    {
+      "jobId": "eleven-p016-v2",
+      "jobPath": "data/analysis-jobs/eleven-p016.json",
+      "resultPath": "data/analysis-results/eleven-p016.json",
+      "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/?p=16",
+      "title": "【刺客信条：影】4K 最高难度 全任务 全收集 全剧情流程通关攻略 开放世界动作冒险游戏 - Assassin's Creed Shadows【完结】 · P16 第16期：和泉·摄津（收集4）",
+      "page": 16,
+      "cid": 28952888873,
+      "durationSeconds": 1335.866,
+      "sourceFileSha256": "e396465fda9c44f4fa5c2eef00ef5a60e3b33812c472a2173e115226feb4ee5d",
+      "numericDescriptorCount": 319,
+      "temporalSupplementCount": 0,
+      "timestampCount": 96,
+      "timestamps": [
+        {
+          "time": 0.5,
+          "bucket": "sceneTransition",
+          "sharpness": 276.9738,
+          "edgeDensity": 0.00401,
+          "difference": 1.0,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 12.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 370.6009,
+          "edgeDensity": 0.025903,
+          "difference": 0.444972,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 18.0,
+          "bucket": "sharp",
+          "sharpness": 1057.2803,
+          "edgeDensity": 0.092795,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 24.0,
+          "bucket": "sharp",
+          "sharpness": 1697.8995,
+          "edgeDensity": 0.117882,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 30.0,
+          "bucket": "sharp",
+          "sharpness": 1048.5403,
+          "edgeDensity": 0.051719,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 36.0,
+          "bucket": "sceneTransition",
+          "sharpness": 623.2231,
+          "edgeDensity": 0.041667,
+          "difference": 0.664844,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 42.0,
+          "bucket": "sceneTransition",
+          "sharpness": 416.996,
+          "edgeDensity": 0.043976,
+          "difference": 0.654687,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 45.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 401.6521,
+          "edgeDensity": 0.030417,
+          "difference": 0.548153,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 75.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 420.536,
+          "edgeDensity": 0.021545,
+          "difference": 0.356898,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 105.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 347.3103,
+          "edgeDensity": 0.026181,
+          "difference": 0.548304,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 123.0,
+          "bucket": "balancedFill",
+          "sharpness": 818.9146,
+          "edgeDensity": 0.034774,
+          "difference": 0.542969,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 126.0,
+          "bucket": "sceneTransition",
+          "sharpness": 606.4341,
+          "edgeDensity": 0.015816,
+          "difference": 0.654687,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 135.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 645.193,
+          "edgeDensity": 0.020729,
+          "difference": 0.576113,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 147.0,
+          "bucket": "sharp",
+          "sharpness": 1049.0337,
+          "edgeDensity": 0.038073,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 165.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 394.5406,
+          "edgeDensity": 0.014063,
+          "difference": 0.553125,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 174.0,
+          "bucket": "sceneTransition",
+          "sharpness": 353.86,
+          "edgeDensity": 0.011597,
+          "difference": 0.695312,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 177.0,
+          "bucket": "sceneTransition",
+          "sharpness": 405.5981,
+          "edgeDensity": 0.021337,
+          "difference": 0.705469,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 195.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 569.2504,
+          "edgeDensity": 0.024271,
+          "difference": 0.348954,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 198.0,
+          "bucket": "sharp",
+          "sharpness": 998.001,
+          "edgeDensity": 0.104236,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 201.0,
+          "bucket": "sceneTransition",
+          "sharpness": 409.2089,
+          "edgeDensity": 0.013368,
+          "difference": 0.654687,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 225.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 550.3931,
+          "edgeDensity": 0.014236,
+          "difference": 0.390703,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 228.0,
+          "bucket": "sceneTransition",
+          "sharpness": 726.2024,
+          "edgeDensity": 0.029427,
+          "difference": 0.691878,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 240.0,
+          "bucket": "sceneTransition",
+          "sharpness": 376.5297,
+          "edgeDensity": 0.018038,
+          "difference": 0.705469,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 255.0,
+          "bucket": "sharp",
+          "sharpness": 1079.0177,
+          "edgeDensity": 0.066042,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 261.0,
+          "bucket": "balancedFill",
+          "sharpness": 749.083,
+          "edgeDensity": 0.037986,
+          "difference": 0.421005,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 264.0,
+          "bucket": "sharp",
+          "sharpness": 833.4163,
+          "edgeDensity": 0.035712,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 267.0,
+          "bucket": "sharp",
+          "sharpness": 975.9864,
+          "edgeDensity": 0.085816,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 285.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 581.7528,
+          "edgeDensity": 0.015087,
+          "difference": 0.105982,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 315.0,
+          "bucket": "sceneTransition",
+          "sharpness": 595.4552,
+          "edgeDensity": 0.013646,
+          "difference": 0.685156,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 327.0,
+          "bucket": "balancedFill",
+          "sharpness": 730.6855,
+          "edgeDensity": 0.039705,
+          "difference": 0.178586,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 342.0,
+          "bucket": "sharp",
+          "sharpness": 1087.5894,
+          "edgeDensity": 0.058247,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 345.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 419.2943,
+          "edgeDensity": 0.012014,
+          "difference": 0.618763,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 363.0,
+          "bucket": "sceneTransition",
+          "sharpness": 346.3294,
+          "edgeDensity": 0.009705,
+          "difference": 0.687206,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 366.0,
+          "bucket": "sceneTransition",
+          "sharpness": 348.154,
+          "edgeDensity": 0.017396,
+          "difference": 0.654687,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 375.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 363.0481,
+          "edgeDensity": 0.017205,
+          "difference": 0.543907,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 378.0,
+          "bucket": "sceneTransition",
+          "sharpness": 394.8445,
+          "edgeDensity": 0.024792,
+          "difference": 0.714549,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 396.0,
+          "bucket": "sceneTransition",
+          "sharpness": 386.6584,
+          "edgeDensity": 0.018038,
+          "difference": 0.654687,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 402.0,
+          "bucket": "sceneTransition",
+          "sharpness": 457.9848,
+          "edgeDensity": 0.041667,
+          "difference": 0.766406,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 405.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 345.8613,
+          "edgeDensity": 0.022292,
+          "difference": 0.330361,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 435.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 452.2082,
+          "edgeDensity": 0.033177,
+          "difference": 0.535202,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 438.0,
+          "bucket": "sceneTransition",
+          "sharpness": 345.36,
+          "edgeDensity": 0.009236,
+          "difference": 0.746094,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 441.0,
+          "bucket": "sceneTransition",
+          "sharpness": 435.4618,
+          "edgeDensity": 0.031424,
+          "difference": 0.827344,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 462.0,
+          "bucket": "sceneTransition",
+          "sharpness": 347.2727,
+          "edgeDensity": 0.00934,
+          "difference": 0.698693,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 465.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 343.6508,
+          "edgeDensity": 0.01,
+          "difference": 0.587461,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 486.0,
+          "bucket": "balancedFill",
+          "sharpness": 779.9943,
+          "edgeDensity": 0.059722,
+          "difference": 0.525288,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 495.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 344.3273,
+          "edgeDensity": 0.009149,
+          "difference": 0.607329,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 501.0,
+          "bucket": "sceneTransition",
+          "sharpness": 456.6271,
+          "edgeDensity": 0.019358,
+          "difference": 0.764298,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 525.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 350.773,
+          "edgeDensity": 0.011597,
+          "difference": 0.532813,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 546.0,
+          "bucket": "sharp",
+          "sharpness": 917.8579,
+          "edgeDensity": 0.054497,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 552.0,
+          "bucket": "sceneTransition",
+          "sharpness": 661.4773,
+          "edgeDensity": 0.042396,
+          "difference": 0.652648,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 555.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 666.9717,
+          "edgeDensity": 0.041806,
+          "difference": 0.621453,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 567.0,
+          "bucket": "sceneTransition",
+          "sharpness": 375.3134,
+          "edgeDensity": 0.013767,
+          "difference": 0.670618,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 576.0,
+          "bucket": "sceneTransition",
+          "sharpness": 427.1761,
+          "edgeDensity": 0.019253,
+          "difference": 0.729668,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 585.0,
+          "bucket": "sharp",
+          "sharpness": 1802.9702,
+          "edgeDensity": 0.126736,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 597.0,
+          "bucket": "sceneTransition",
+          "sharpness": 603.2007,
+          "edgeDensity": 0.097726,
+          "difference": 0.66092,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 606.0,
+          "bucket": "sharp",
+          "sharpness": 1333.4053,
+          "edgeDensity": 0.119774,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 615.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 652.9198,
+          "edgeDensity": 0.060208,
+          "difference": 0.289388,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 624.0,
+          "bucket": "sharp",
+          "sharpness": 873.3154,
+          "edgeDensity": 0.108177,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 645.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 521.6888,
+          "edgeDensity": 0.059774,
+          "difference": 0.573298,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 654.0,
+          "bucket": "sharp",
+          "sharpness": 941.1064,
+          "edgeDensity": 0.066684,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 666.0,
+          "bucket": "sharp",
+          "sharpness": 973.9381,
+          "edgeDensity": 0.066389,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 699.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 297.0102,
+          "edgeDensity": 0.005365,
+          "difference": 0.624219,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 702.0,
+          "bucket": "sceneTransition",
+          "sharpness": 361.0093,
+          "edgeDensity": 0.031528,
+          "difference": 0.675,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 717.0,
+          "bucket": "sceneTransition",
+          "sharpness": 304.5559,
+          "edgeDensity": 0.005208,
+          "difference": 0.644531,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 720.0,
+          "bucket": "sceneTransition",
+          "sharpness": 362.1783,
+          "edgeDensity": 0.029653,
+          "difference": 0.654687,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 732.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 466.4571,
+          "edgeDensity": 0.025399,
+          "difference": 0.290123,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 756.0,
+          "bucket": "balancedFill",
+          "sharpness": 780.5086,
+          "edgeDensity": 0.053924,
+          "difference": 0.493895,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 768.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 470.0011,
+          "edgeDensity": 0.053698,
+          "difference": 0.624212,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 771.0,
+          "bucket": "sharp",
+          "sharpness": 836.8675,
+          "edgeDensity": 0.092431,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 774.0,
+          "bucket": "sceneTransition",
+          "sharpness": 536.6471,
+          "edgeDensity": 0.044913,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 780.0,
+          "bucket": "sharp",
+          "sharpness": 1144.4305,
+          "edgeDensity": 0.094601,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 783.0,
+          "bucket": "sharp",
+          "sharpness": 1176.2618,
+          "edgeDensity": 0.093438,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 789.0,
+          "bucket": "sharp",
+          "sharpness": 1627.3633,
+          "edgeDensity": 0.139618,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 792.0,
+          "bucket": "sceneTransition",
+          "sharpness": 287.7169,
+          "edgeDensity": 0.006406,
+          "difference": 0.715625,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 795.0,
+          "bucket": "sharp",
+          "sharpness": 1093.9848,
+          "edgeDensity": 0.065781,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 801.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 223.4841,
+          "edgeDensity": 0.01717,
+          "difference": 0.573438,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 825.0,
+          "bucket": "sharp",
+          "sharpness": 940.0981,
+          "edgeDensity": 0.084931,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 831.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 606.2151,
+          "edgeDensity": 0.053333,
+          "difference": 0.293829,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 849.0,
+          "bucket": "balancedFill",
+          "sharpness": 739.2344,
+          "edgeDensity": 0.04684,
+          "difference": 0.392057,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 861.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 674.8265,
+          "edgeDensity": 0.042448,
+          "difference": 0.460402,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 873.0,
+          "bucket": "sharp",
+          "sharpness": 874.1011,
+          "edgeDensity": 0.051181,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 876.0,
+          "bucket": "sharp",
+          "sharpness": 1260.3056,
+          "edgeDensity": 0.091892,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 879.0,
+          "bucket": "sceneTransition",
+          "sharpness": 722.2117,
+          "edgeDensity": 0.037708,
+          "difference": 0.656588,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 891.0,
+          "bucket": "sharp",
+          "sharpness": 943.4823,
+          "edgeDensity": 0.04816,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 900.0,
+          "bucket": "sharp",
+          "sharpness": 820.0883,
+          "edgeDensity": 0.046007,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 903.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 813.6654,
+          "edgeDensity": 0.0475,
+          "difference": 0.484708,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 915.0,
+          "bucket": "sharp",
+          "sharpness": 841.0848,
+          "edgeDensity": 0.040208,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 921.0,
+          "bucket": "sharp",
+          "sharpness": 879.6274,
+          "edgeDensity": 0.047257,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 954.0,
+          "bucket": "sceneTransition",
+          "sharpness": 279.9615,
+          "edgeDensity": 0.003889,
+          "difference": 0.724623,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 990.0,
+          "bucket": "temporalCoverage",
+          "sharpness": 393.7822,
+          "edgeDensity": 0.017066,
+          "difference": 0.254531,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 996.0,
+          "bucket": "balancedFill",
+          "sharpness": 769.7715,
+          "edgeDensity": 0.067378,
+          "difference": 0.323048,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1005.0,
+          "bucket": "sceneTransition",
+          "sharpness": 546.6559,
+          "edgeDensity": 0.070747,
+          "difference": 0.721683,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1011.0,
+          "bucket": "sceneTransition",
+          "sharpness": 638.6997,
+          "edgeDensity": 0.055625,
+          "difference": 0.705469,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1026.0,
+          "bucket": "sharp",
+          "sharpness": 1512.675,
+          "edgeDensity": 0.093316,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1029.0,
+          "bucket": "sharp",
+          "sharpness": 1588.3869,
+          "edgeDensity": 0.138698,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        },
+        {
+          "time": 1035.0,
+          "bucket": "sharp",
+          "sharpness": 994.0298,
+          "edgeDensity": 0.047587,
+          "difference": null,
+          "numericDescriptorAvailable": true
+        }
+      ]
+    }
+  ],
+  "safety": {
+    "framePixelsGenerated": false,
+    "videosDownloaded": false,
+    "geometryGenerated": false,
+    "existingAnalysisModified": false
+  },
+  "nextAction": "download the four authorized pages transiently by explicit CID and extract one-day low-resolution review artifacts"
+}
