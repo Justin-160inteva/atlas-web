@@ -1,14 +1,15 @@
 {
   "schemaVersion": 1,
-  "requestedAt": "2026-07-23T08:05:00Z",
-  "runNonce": "catalog-proof-child-pr-v1",
-  "mode": "direct-popup-catalog-set-difference",
+  "requestedAt": "2026-07-23T09:10:00Z",
+  "runNonce": "shrine-anchor-candidate-package-run-v1",
+  "mode": "direct-popup-catalog-set-difference-and-candidate-package",
   "expected": {
     "allCandidates": 32,
     "excludedAwaji": 5,
     "eligibleCandidates": 27,
     "directPopupMappings": 26,
-    "uniqueMissingLocationId": "location-mapgenie-438414"
+    "uniqueMissingLocationId": "location-mapgenie-438414",
+    "candidatePackageSize": 27
   },
   "policy": {
     "assignCoordinates": false,
