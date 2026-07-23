@@ -8,8 +8,8 @@
     "format": "svg",
     "width": 4096,
     "height": 4096,
-    "sizeBytes": 196987,
-    "sha256": "93b9f6166ff8bc9f3ca75c06063917bf0b5e08fac430b14fed178cb589f9b75f",
+    "sizeBytes": 197506,
+    "sha256": "39dd63ce7cb94a0846181264b3a12139529582ecb5d10d27368c2257396cb016",
     "editableSource": true,
     "repositoryOwned": true
   },
@@ -20,7 +20,7 @@
     "data/geospatial/geospatial-original-authored-base-skeleton.json": "1f23cb4fbdfa8150bf2ccc2156bde0da5b6b136b52ae771277c7a406446b34f4",
     "data/categories.json": "df439a46b4de7f1843bbec0266eee56e5df9bf0a3093554970837bb865012c83",
     "data/locations.json": "57b4c06065f46ebcd37033f13df0c5964b3b085ce92c23b6cdcdf5765a3cbdb2",
-    "data/geospatial/geospatial-progress.json": "a4a0650f66c82f44946c61dae0a3fa9cfaa63aaedbffbd28b7344ec195244748"
+    "data/geospatial/geospatial-progress.json": "2e23dd358adfed14c24e801e826290b109bcf7fce918edbf6ee67c41a16e3d66"
   },
   "counts": {
     "locations": 3430,
@@ -490,5 +490,12 @@
     "locationCount": 5,
     "regionMembershipInferred": false,
     "globalVisibilityPreserved": true
+  },
+  "visualReviewAdjustments": {
+    "status": "adjusted_after_rendered_preview",
+    "regionUnderlayStrokeWidth": 7,
+    "coastlineInkStrokeWidth": 6,
+    "routeLineStrokeWidth": 4,
+    "purpose": "reduce overlapping internal outlines and preserve terrain/label hierarchy"
   }
 }

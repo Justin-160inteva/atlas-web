@@ -102,6 +102,15 @@
       <path d="M -17 -9 L 0 -18 L 17 -9 L 12 -9 L 12 -3 L -12 -3 L -12 -9 Z M -16 5 L 0 -3 L 16 5 L 11 5 L 11 11 L -11 11 L -11 5 Z M -14 18 L 14 18 M -8 11 L -8 18 M 8 11 L 8 18" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
     </symbol>
 
+  
+    <style id="atlas-final-review-visual-balance">
+      #land-region-underlays path { stroke-width:7px !important; stroke-opacity:.32 !important; }
+      .coastline-ink { stroke-width:6px !important; opacity:.36 !important; }
+      .coastline-light { stroke-width:2px !important; opacity:.30 !important; }
+      .route-underlay { stroke-width:8px !important; opacity:.24 !important; }
+      .route-line { stroke-width:4px !important; opacity:.50 !important; stroke-dasharray:14 22 !important; }
+    </style>
+
   </defs>
 
   <rect width="4096" height="4096" fill="url(#oceanGradient)"/>
@@ -148,7 +157,7 @@
       <rect width="1190" height="210" rx="30" fill="#070b0d" fill-opacity=".90" stroke="#9b352f" stroke-width="5"/>
       <text x="48" y="70" class="atlas-review-title">FINAL CANVAS REVIEW CANDIDATE</text>
       <text x="48" y="116" class="atlas-review-text">AUTOMATED GATES PASSED · CANVAS NOT FROZEN</text>
-      <text x="48" y="157" class="atlas-review-text">BLOCKED: 5 UNASSIGNED LOCATIONS · HUMAN VISUAL REVIEW</text>
+      <text x="48" y="157" class="atlas-review-text">UNASSIGNED RETAINED GLOBALLY · BLOCKED: HUMAN VISUAL REVIEW</text>
     </g>
   </g>
 </svg>

@@ -7,8 +7,8 @@
     "format": "svg",
     "width": 4096,
     "height": 4096,
-    "sizeBytes": 196987,
-    "sha256": "93b9f6166ff8bc9f3ca75c06063917bf0b5e08fac430b14fed178cb589f9b75f",
+    "sizeBytes": 197506,
+    "sha256": "39dd63ce7cb94a0846181264b3a12139529582ecb5d10d27368c2257396cb016",
     "editableSource": true,
     "repositoryOwned": true
   },
@@ -22,7 +22,8 @@
     "confirmedAnchorIconsExact": true,
     "allAnchorsUseShrineOrTempleSymbols": true,
     "externalResourcesAbsent": true,
-    "previousTerrainSvgUnmodified": true
+    "previousTerrainSvgUnmodified": true,
+    "visualBalanceOverridesApplied": true
   },
   "automatedGateStatus": "passed",
   "blockers": [
@@ -95,5 +96,12 @@
     "locationCount": 5,
     "regionMembershipInferred": false,
     "globalVisibilityPreserved": true
+  },
+  "visualBalanceReview": {
+    "status": "adjusted_after_rendered_preview",
+    "regionUnderlayStrokeWidth": 7,
+    "coastlineInkStrokeWidth": 6,
+    "routeLineStrokeWidth": 4,
+    "purpose": "reduce overlapping internal outlines and preserve terrain/label hierarchy"
   }
 }
