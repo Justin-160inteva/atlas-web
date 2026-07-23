@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/dada-shrines-promote-direct-batch02.yml'
       - 'tools/promote_dada_shrine_direct_review_batch02.py'
+      - 'tools/run_dada_shrine_promotion_batch02_with_diagnostic.py'
       - 'tools/apply_geospatial_phase1_completion_patch.py'
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/dada-shrines-promote-direct-batch02-trigger.json'
@@ -46,6 +47,7 @@ jobs:
         run: |
           python -m py_compile \
             tools/promote_dada_shrine_direct_review_batch02.py \
+            tools/run_dada_shrine_promotion_batch02_with_diagnostic.py \
             tools/promote_dada_shrine_direct_review_batch01.py \
             tools/build_geospatial_progress.py
 
@@ -73,7 +75,28 @@ jobs:
           PY
 
       - name: Promote six independently confirmed shrine anchors
-        run: python tools/promote_dada_shrine_direct_review_batch02.py
+        run: python tools/run_dada_shrine_promotion_batch02_with_diagnostic.py
+
+      - name: Persist promotion diagnostic on failure
+        if: failure() && hashFiles('data/geospatial/dada-shrines-direct-promotion-batch02-diagnostic.json') != ''
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          cp data/geospatial/dada-shrines-direct-promotion-batch02-diagnostic.json /tmp/promotion-b02-diagnostic.json
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial
+            cp /tmp/promotion-b02-diagnostic.json data/geospatial/dada-shrines-direct-promotion-batch02-diagnostic.json
+            git add data/geospatial/dada-shrines-direct-promotion-batch02-diagnostic.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Record shrine promotion batch-two failure diagnostic [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
 
       - name: Reconcile authoritative geospatial progress
         run: python tools/build_geospatial_progress.py
