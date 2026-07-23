@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "requestedAt": "2026-07-23T10:40:00Z",
+  "input": {
+    "confirmedAnchorPool": 50,
+    "controlPointTarget": 24,
+    "validationHoldoutTarget": 12,
+    "reserveTarget": 14
+  },
+  "policy": {
+    "preserveAllRegions": true,
+    "preserveGlobalBoundaryExtremes": true,
+    "useDeterministicFarthestPointFill": true,
+    "excludeHoldoutsFromFit": true,
+    "inventPixelCoordinates": false,
+    "claimTransformBeforeFinalBase": false
+  }
+}
