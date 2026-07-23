@@ -199,7 +199,7 @@ def main() -> int:
         },
         "stageGates": {
             "authorizedVideoAnalysis": {"status": "complete", "elevenSeries": "80/80", "dadaCatalog": "23/23"},
-            "confirmedGeospatialAnchors": {"status": "in_progress", "count": len(confirmed)},
+            "confirmedGeospatialAnchors": {"status": "complete" if len(confirmed) >= target else "in_progress", "count": len(confirmed)},
             "finalOriginalUltraHdBase": {"status": "not_started"},
             "coordinateAndOverlayCalibration": {"status": "in_progress"},
             "responsiveCompatibilityValidation": {"status": "pending_final_base"},

@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "generatedAt": "2026-07-23T10:12:50.056929Z",
-  "status": "phase1-in-progress",
+  "generatedAt": "2026-07-23T10:12:47.586027Z",
+  "status": "phase1-complete",
   "phase1": {
     "targetConfirmedAnchors": 50,
-    "confirmedAnchors": 44,
-    "remainingToTarget": 6,
-    "progressPercent": 88.0,
-    "nextSource": "不再犹豫的达达猪·神社全收集（27个位置）"
+    "confirmedAnchors": 50,
+    "remainingToTarget": 0,
+    "progressPercent": 100.0,
+    "nextSource": null
   },
   "globalCoverage": {
     "totalLocations": 3430,
-    "confirmedAnchorLocations": 44,
-    "locationCoveragePercent": 1.2828,
+    "confirmedAnchorLocations": 50,
+    "locationCoveragePercent": 1.4577,
     "noteZhCN": "该比例只表示3430个点位中已有直接地理锚点的数量，不等同于最终底图整体完成度。"
   },
   "stageGates": {
@@ -23,8 +23,8 @@
       "dadaCatalog": "23/23"
     },
     "confirmedGeospatialAnchors": {
-      "status": "in_progress",
-      "count": 44
+      "status": "complete",
+      "count": 50
     },
     "finalOriginalUltraHdBase": {
       "status": "not_started"
@@ -51,7 +51,7 @@
       "id": "dada-shrines-27-batch01",
       "path": "data/geospatial/dada-shrines-27-anchors-batch01.json",
       "exists": true,
-      "confirmedAnchors": 8,
+      "confirmedAnchors": 14,
       "required": false
     }
   ],
@@ -61,13 +61,14 @@
   },
   "anchorsByRegion": {
     "HARIMA": 4,
+    "IGA": 2,
     "IZUMI SETTSU": 4,
     "KII": 11,
-    "OMI": 6,
+    "OMI": 7,
     "TAMBA": 2,
     "WAKASA": 2,
-    "YAMASHIRO": 10,
-    "YAMATO": 5
+    "YAMASHIRO": 11,
+    "YAMATO": 7
   },
   "anchors": [
     {
@@ -129,6 +130,36 @@
       "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
       "sourceVideoPosition": 20,
       "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-434366",
+      "title": "Aekuni Shrine",
+      "regionId": "region-3145-iga",
+      "regionTitle": "IGA",
+      "atlas": {
+        "x": 0.8147981121570409,
+        "y": 0.4959698485984753
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
+      "locationId": "location-mapgenie-434406",
+      "title": "Kasuga Shrine",
+      "regionId": "region-3145-iga",
+      "regionTitle": "IGA",
+      "atlas": {
+        "x": 0.8239192643456859,
+        "y": 0.5213101711229416
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
     },
     {
       "locationId": "location-mapgenie-434575",
@@ -431,6 +462,21 @@
       "resolutionMethod": "direct-popup"
     },
     {
+      "locationId": "location-mapgenie-435872",
+      "title": "Nagahama Hachimangu Shrine",
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.907397076900275,
+        "y": 0.8289754576871045
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
       "locationId": "location-mapgenie-436705",
       "title": "Sokenji Temple",
       "regionId": "region-3144-omi",
@@ -551,6 +597,21 @@
       "resolutionMethod": "reviewed-visual-evidence"
     },
     {
+      "locationId": "location-mapgenie-437835",
+      "title": "Iwashimizu Hachiman Shrine",
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.47350001332936703,
+        "y": 0.48808759981220823
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
       "locationId": "location-mapgenie-436340",
       "title": "Kinkakuji Temple",
       "regionId": "region-3148-yamashiro",
@@ -654,6 +715,36 @@
       "sourcePath": "data/geospatial/dada-temples-36-anchors-final.json",
       "sourceVideoPosition": 36,
       "resolutionMethod": "reviewed-visual-evidence"
+    },
+    {
+      "locationId": "location-mapgenie-438333",
+      "title": "Hinode Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.6915196381586003,
+        "y": 0.4159236925582696
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
+    },
+    {
+      "locationId": "location-mapgenie-437898",
+      "title": "Kasugataisha Shrine",
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.7027346111033367,
+        "y": 0.3802398806115776
+      },
+      "confidence": 0.95,
+      "sourceName": "不再犹豫的达达猪·神社第一批",
+      "sourcePath": "data/geospatial/dada-shrines-27-anchors-batch01.json",
+      "sourceVideoPosition": null,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus"
     },
     {
       "locationId": "location-mapgenie-437869",

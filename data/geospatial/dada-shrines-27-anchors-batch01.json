@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-23T10:12:49.963899Z",
-  "stage": "direct-shrine-anchor-promotion-batch01",
+  "generatedAt": "2026-07-23T10:12:47.468099Z",
+  "stage": "direct-shrine-anchor-promotion-batches01-02",
   "status": "partial",
   "source": {
     "bvid": "BV1aFXaYmEDZ",
@@ -9,14 +9,18 @@
     "authorizationId": "auth-dada-20260718",
     "candidatePackagePath": "data/geospatial/dada-shrines-27-anchor-candidates.json",
     "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch01.json",
-    "catalogProofPath": "data/geospatial/dada-shrines-catalog-completeness-proof.json"
+    "catalogProofPath": "data/geospatial/dada-shrines-catalog-completeness-proof.json",
+    "reviewResultPaths": [
+      "data/geospatial/dada-shrines-direct-review-batch01.json",
+      "data/geospatial/dada-shrines-direct-review-batch02.json"
+    ]
   },
   "counts": {
     "eligibleSequenceCandidates": 27,
-    "reviewedCandidates": 8,
-    "confirmed": 8,
-    "unresolved": 19,
-    "coordinatesWritten": 8,
+    "reviewedCandidates": 14,
+    "confirmed": 14,
+    "unresolved": 13,
+    "coordinatesWritten": 14,
     "mapShrineCandidates": 32,
     "excludedAwajiCandidates": 5
   },
@@ -367,51 +371,261 @@
         "y": 0.33366282022865384
       },
       "sourceLocationId": 435742
-    }
-  ],
-  "unresolved": [
+    },
     {
       "directPopupOrdinal": 9,
       "popupEvent": 15,
+      "representativeTimeSeconds": 117.867,
+      "observedLabelZh": "春日大社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent models transcribed the same popup title and deterministic normalized equality matched the expected candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 117.867,
+          "popupSha256": "35a56c77d5912873ff101e42315f32be392ad7390885bd36d26484c60cc9fbe6",
+          "sourcePopupSha256": "bcef13a933655e847640a3adc5bfd74493f9b2e324460b7926c981b7d1bebbf8",
+          "sourceTitleSha256": "fe6db8a4332893e8da0c3f303412c4242282969e0bcecd352612734abbf862ba"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "春日大社",
+          "confidence": 0.98,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "春日大社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch02.json",
+      "status": "confirmed",
       "locationId": "location-mapgenie-437898",
       "title": "Kasugataisha Shrine",
-      "status": "pending-independent-review"
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.7027346111033367,
+        "y": 0.3802398806115776
+      },
+      "sourceLocationId": 437898
     },
     {
       "directPopupOrdinal": 10,
       "popupEvent": 16,
+      "representativeTimeSeconds": 120.8,
+      "observedLabelZh": "日出神社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent models transcribed the same popup title and deterministic normalized equality matched the expected candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 120.8,
+          "popupSha256": "5f05e697a34620f9eb3c8fedebc2fea292114fa6d5e9c313a0c98113cdef7fd9",
+          "sourcePopupSha256": "eb144cf87e326456a8ea572bec8fdd7e721cf13c746f83b90a761cb6691326e2",
+          "sourceTitleSha256": "d45b1b8f5606f060aa7a6ccea4f59bf1ec380bb84dd701b210f526206638c277"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "日出神社",
+          "confidence": 0.98,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "日出神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch02.json",
+      "status": "confirmed",
       "locationId": "location-mapgenie-438333",
       "title": "Hinode Shrine",
-      "status": "pending-independent-review"
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "atlas": {
+        "x": 0.6915196381586003,
+        "y": 0.4159236925582696
+      },
+      "sourceLocationId": 438333
     },
     {
       "directPopupOrdinal": 11,
       "popupEvent": 18,
+      "representativeTimeSeconds": 133.867,
+      "observedLabelZh": "春日神社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent models transcribed the same popup title and deterministic normalized equality matched the expected candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 133.867,
+          "popupSha256": "96c2dfeebef64e06172322bb49a2f89c9fd6a264edaa66a1f37ba4ad4f30a610",
+          "sourcePopupSha256": "eae3403ed0a1e8344be3bf3bed3c819da2fec75262d91ee09f27c373cc002c51",
+          "sourceTitleSha256": "c43fac48d201698956b961195684b0cc4134384106d299439e65247934985cd9"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "春日神社",
+          "confidence": 0.98,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "春日神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch02.json",
+      "status": "confirmed",
       "locationId": "location-mapgenie-434406",
       "title": "Kasuga Shrine",
-      "status": "pending-independent-review"
+      "regionId": "region-3145-iga",
+      "regionTitle": "IGA",
+      "atlas": {
+        "x": 0.8239192643456859,
+        "y": 0.5213101711229416
+      },
+      "sourceLocationId": 434406
     },
     {
       "directPopupOrdinal": 12,
       "popupEvent": 19,
+      "representativeTimeSeconds": 137.333,
+      "observedLabelZh": "敢国神社",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent models transcribed the same popup title and deterministic normalized equality matched the expected candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 137.333,
+          "popupSha256": "ae83f49197c47dab23d750e5426bc0f9291c176559139298bf37f1c3800a0225",
+          "sourcePopupSha256": "11760ecc6caa0cffeaa1544821ab79bbc26125a8168b37e152ed22fc0d80fd81",
+          "sourceTitleSha256": "64bdb4572fbf56ff8f73343b398b72d0fa279ac7d0c9f9d16f4ca0d26e5fb995"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "敢国神社",
+          "confidence": 0.98,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "敢国神社",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch02.json",
+      "status": "confirmed",
       "locationId": "location-mapgenie-434366",
       "title": "Aekuni Shrine",
-      "status": "pending-independent-review"
+      "regionId": "region-3145-iga",
+      "regionTitle": "IGA",
+      "atlas": {
+        "x": 0.8147981121570409,
+        "y": 0.4959698485984753
+      },
+      "sourceLocationId": 434366
     },
     {
       "directPopupOrdinal": 13,
       "popupEvent": 21,
+      "representativeTimeSeconds": 148.8,
+      "observedLabelZh": "石清水八幡宫",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent models transcribed the same popup title and deterministic normalized equality matched the expected candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 148.8,
+          "popupSha256": "1bd1c9b6ebeb2d088a0a15ce7ce2a38ef1806648baf57a194bc631b9549b5795",
+          "sourcePopupSha256": "1640ef5d8a1b8eac24526743d6fd15c83e120325d108d18b53af7ac5e1d76a89",
+          "sourceTitleSha256": "b181d4cd47923710a6cb5e254181647846f9b7317eec1fecce55c4c28c3751a3"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "石清水八幡宫",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "石清水八幡宫",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch02.json",
+      "status": "confirmed",
       "locationId": "location-mapgenie-437835",
       "title": "Iwashimizu Hachiman Shrine",
-      "status": "pending-independent-review"
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "atlas": {
+        "x": 0.47350001332936703,
+        "y": 0.48808759981220823
+      },
+      "sourceLocationId": 437835
     },
     {
       "directPopupOrdinal": 14,
       "popupEvent": 23,
+      "representativeTimeSeconds": 160.0,
+      "observedLabelZh": "长滨八幡宫",
+      "confidence": 0.95,
+      "resolutionMethod": "direct-popup-two-model-programmatic-label-consensus",
+      "basis": "Two independent models transcribed the same popup title and deterministic normalized equality matched the expected candidate.",
+      "evidence": [
+        {
+          "timeSeconds": 160.0,
+          "popupSha256": "19d63c07f03a30bf3dd309d0fda89ba98ef307251fb411289c5b0dfedb2596ae",
+          "sourcePopupSha256": "62eaf178b2f9f3c7fde73928aceef40427f32b315ca530038f5521d020b0d690",
+          "sourceTitleSha256": "b5cbd7820f659b7bd63f84d7d3c546c50cab36da9fb4619d9ca67331eac94834"
+        }
+      ],
+      "reviewers": [
+        {
+          "model": "openai/gpt-4.1-mini",
+          "visibleLabel": "长滨八幡宫",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "visibleLabel": "长滨八幡宫",
+          "confidence": 0.95,
+          "programmaticLabelMatch": true
+        }
+      ],
+      "reviewResultPath": "data/geospatial/dada-shrines-direct-review-batch02.json",
+      "status": "confirmed",
       "locationId": "location-mapgenie-435872",
       "title": "Nagahama Hachimangu Shrine",
-      "status": "pending-independent-review"
-    },
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "atlas": {
+        "x": 0.907397076900275,
+        "y": 0.8289754576871045
+      },
+      "sourceLocationId": 435872
+    }
+  ],
+  "unresolved": [
     {
       "directPopupOrdinal": 15,
       "popupEvent": 25,
