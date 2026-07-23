@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "requestedAt": "2026-07-23T17:20:00Z",
+  "runNonce": "original-terrain-coastline-v1",
+  "inputs": {
+    "planPath": "data/geospatial/geospatial-original-terrain-coastline-plan.json",
+    "skeletonPath": "data/geospatial/geospatial-original-authored-base-skeleton.json",
+    "compositionManifestPath": "data/geospatial/geospatial-original-regional-composition-v1.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  },
+  "expected": {
+    "canvasWidth": 4096,
+    "canvasHeight": 4096,
+    "coordinateInsetPixels": 270,
+    "locations": 3430,
+    "regionAssignedLocations": 3425,
+    "unassignedLocations": 5,
+    "regions": 10,
+    "confirmedAnchors": 50,
+    "adjacencyEdges": 20,
+    "minimumMountainSymbols": 60,
+    "minimumForestSymbols": 100,
+    "minimumRiverPaths": 10,
+    "routeCorridors": 20
+  },
+  "outputs": {
+    "svgPath": "assets/original-map/atlas-original-terrain-coastline-v1.svg",
+    "manifestPath": "data/geospatial/geospatial-original-terrain-coastline-v1.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  }
+}
