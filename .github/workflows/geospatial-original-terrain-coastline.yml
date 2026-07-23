@@ -1,0 +1,229 @@
+name: Geospatial Original Terrain and Coastline
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/geospatial-original-terrain-coastline.yml'
+      - 'tools/build_geospatial_original_terrain_coastline.py'
+      - 'data/geospatial/geospatial-original-terrain-coastline-plan.json'
+      - 'data/geospatial/geospatial-original-terrain-coastline-trigger.json'
+      - 'data/geospatial/geospatial-original-authored-base-skeleton.json'
+      - 'data/geospatial/geospatial-original-regional-composition-v1.json'
+      - 'assets/original-map/atlas-original-regional-composition-v1.svg'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: geospatial-original-terrain-coastline-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile terrain generator
+        run: python -m py_compile tools/build_geospatial_original_terrain_coastline.py
+
+      - name: Record protected source hashes
+        id: protected
+        run: |
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          paths = {
+              'legacy': Path('assets/world-map-4096.webp'),
+              'composition': Path('assets/original-map/atlas-original-regional-composition-v1.svg'),
+          }
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              for key, path in paths.items():
+                  digest = hashlib.sha256(path.read_bytes()).hexdigest()
+                  handle.write(f'{key}_sha256={digest}\n')
+                  print({'path': str(path), 'sha256': digest})
+          PY
+
+      - name: Generate original terrain and coastline SVG
+        run: python tools/build_geospatial_original_terrain_coastline.py
+
+      - name: Validate terrain authorship, structure and progress
+        env:
+          LEGACY_SHA256: ${{ steps.protected.outputs.legacy_sha256 }}
+          COMPOSITION_SHA256: ${{ steps.protected.outputs.composition_sha256 }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          svg_path = Path('assets/original-map/atlas-original-terrain-coastline-v1.svg')
+          manifest_path = Path('data/geospatial/geospatial-original-terrain-coastline-v1.json')
+          progress_path = Path('data/geospatial/geospatial-progress.json')
+          legacy_path = Path('assets/world-map-4096.webp')
+          composition_path = Path('assets/original-map/atlas-original-regional-composition-v1.svg')
+
+          svg = svg_path.read_text(encoding='utf-8')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          progress = json.loads(progress_path.read_text(encoding='utf-8'))
+          digest = hashlib.sha256(svg_path.read_bytes()).hexdigest()
+
+          assert svg.startswith('<?xml version="1.0" encoding="UTF-8"?>')
+          assert '<svg ' in svg
+          assert 'width="4096"' in svg and 'height="4096"' in svg
+          assert 'viewBox="0 0 4096 4096"' in svg
+          assert '<image' not in svg.lower()
+          assert 'data:image/' not in svg.lower()
+          assert '@import' not in svg.lower()
+          assert not re.search(r'(?:href|src)\s*=\s*["\'](?:https?:|//)', svg, re.I)
+          assert not re.search(r'url\(\s*["\']?https?://', svg, re.I)
+
+          required_ids = {
+              'original-land-silhouette',
+              'authored-route-corridors',
+              'authored-forests',
+              'authored-mountains',
+              'authored-rivers',
+              'authored-coastline',
+              'confirmed-anchor-guides',
+              'unassigned-location-guides',
+          }
+          for identifier in required_ids:
+              assert f'id="{identifier}"' in svg
+
+          mountain_count = svg.count('class="mountain-symbol"')
+          forest_count = svg.count('class="forest-symbol"')
+          river_count = svg.count('class="river-path"')
+          route_count = svg.count('class="route-corridor"')
+          hachure_count = svg.count('class="coast-hachure"')
+          assert mountain_count >= 60
+          assert forest_count >= 100
+          assert river_count >= 10
+          assert route_count == 20
+          assert hachure_count >= 100
+          assert svg.count('class="confirmed-anchor"') == 50
+          assert svg.count('class="unassigned-guide"') == 5
+
+          assert manifest['status'] == 'original-terrain-coastline-draft-ready'
+          assert manifest['asset']['path'] == str(svg_path)
+          assert manifest['asset']['format'] == 'svg'
+          assert manifest['asset']['width'] == 4096
+          assert manifest['asset']['height'] == 4096
+          assert manifest['asset']['sha256'] == digest
+          assert manifest['asset']['sizeBytes'] == svg_path.stat().st_size
+          assert manifest['asset']['editableSource'] is True
+          assert manifest['asset']['repositoryOwned'] is True
+          assert manifest['counts']['locations'] == 3430
+          assert manifest['counts']['regionAssignedLocations'] == 3425
+          assert manifest['counts']['unassignedLocations'] == 5
+          assert manifest['counts']['regions'] == 10
+          assert manifest['counts']['confirmedAnchors'] == 50
+          assert manifest['counts']['adjacencyEdges'] == 20
+          assert manifest['counts']['mountainSymbols'] == mountain_count
+          assert manifest['counts']['forestSymbols'] == forest_count
+          assert manifest['counts']['riverPaths'] == river_count
+          assert manifest['counts']['routeCorridors'] == route_count
+          assert manifest['counts']['coastlineHachures'] == hachure_count
+          assert manifest['authorship'] == {
+              'strategy': 'fully-original-authored-visual-base',
+              'thirdPartyRasterUsed': False,
+              'thirdPartyVectorUsed': False,
+              'regionsJsonGeometryUsed': False,
+              'legacyRenderBaseRead': False,
+              'regionalCompositionSvgParsedForGeometry': False,
+              'externalImages': 0,
+              'externalFonts': 0,
+              'embeddedRasterImages': 0,
+              'proceduralSvgDefinitionsOnly': True,
+          }
+          assert all(value is False for value in manifest['claims'].values())
+
+          authored = progress['stageGates']['finalOriginalUltraHdBase']['authoredBase']
+          assert authored['status'] == 'terrain_coastline_draft_ready'
+          assert authored['terrainCoastlinePath'] == str(svg_path)
+          assert authored['terrainCoastlineManifestPath'] == str(manifest_path)
+          assert authored['terrainCoastlineSha256'] == digest
+          assert authored['terrainCoastlineDimensions'] == {'width': 4096, 'height': 4096}
+          assert authored['terrainLayerCounts'] == {
+              'mountains': mountain_count,
+              'forests': forest_count,
+              'rivers': river_count,
+              'routes': route_count,
+              'coastlineHachures': hachure_count,
+          }
+          assert authored['finalCanvasFrozen'] is False
+          assert authored['nextStage'] == 'original_labels_icons_and_final_canvas_review'
+          assert progress['originalAuthoredBase']['terrainCoastlineStatus'] == 'draft_ready'
+          assert progress['stageGates']['coordinateAndOverlayCalibration']['pixelTransformStatus'] == 'blocked_pending_original_authored_final_canvas'
+
+          assert hashlib.sha256(legacy_path.read_bytes()).hexdigest() == os.environ['LEGACY_SHA256']
+          assert hashlib.sha256(composition_path.read_bytes()).hexdigest() == os.environ['COMPOSITION_SHA256']
+          assert not list(Path('assets/original-map').glob('*.png'))
+          assert not list(Path('assets/original-map').glob('*.jpg'))
+          assert not list(Path('assets/original-map').glob('*.webp'))
+
+          print(json.dumps({
+              'status': manifest['status'],
+              'asset': manifest['asset'],
+              'counts': manifest['counts'],
+              'externalResources': 0,
+              'finalBaseApproved': False,
+          }, ensure_ascii=False))
+          PY
+
+      - name: Stage authored terrain outputs
+        run: |
+          rm -rf /tmp/original-terrain-coastline-publish
+          mkdir -p /tmp/original-terrain-coastline-publish/assets/original-map
+          mkdir -p /tmp/original-terrain-coastline-publish/data/geospatial
+          cp assets/original-map/atlas-original-terrain-coastline-v1.svg \
+            /tmp/original-terrain-coastline-publish/assets/original-map/
+          cp data/geospatial/geospatial-original-terrain-coastline-v1.json \
+            /tmp/original-terrain-coastline-publish/data/geospatial/
+          cp data/geospatial/geospatial-progress.json \
+            /tmp/original-terrain-coastline-publish/data/geospatial/
+
+      - name: Atomically publish editable terrain draft
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p assets/original-map data/geospatial
+            cp /tmp/original-terrain-coastline-publish/assets/original-map/atlas-original-terrain-coastline-v1.svg assets/original-map/
+            cp /tmp/original-terrain-coastline-publish/data/geospatial/geospatial-original-terrain-coastline-v1.json data/geospatial/
+            cp /tmp/original-terrain-coastline-publish/data/geospatial/geospatial-progress.json data/geospatial/
+            git add \
+              assets/original-map/atlas-original-terrain-coastline-v1.svg \
+              data/geospatial/geospatial-original-terrain-coastline-v1.json \
+              data/geospatial/geospatial-progress.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Generate original terrain and coastline SVG [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Delete transient publish staging
+        if: always()
+        run: |
+          rm -rf /tmp/original-terrain-coastline-publish
+          test ! -e /tmp/original-terrain-coastline-publish
