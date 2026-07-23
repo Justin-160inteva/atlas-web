@@ -1,16 +1,14 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-07-23T01:44:13.585107Z",
-  "stage": "shrine-anchor-batch01-scene-aware-two-model-review",
-  "status": "partial-model-review",
-  "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T01:48:47.368588Z",
+  "stage": "shrine-anchor-batch01-two-model-bulk-review",
+  "status": "complete",
   "source": {
     "bvid": "BV1aFXaYmEDZ",
     "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
     "authorizationId": "auth-dada-20260718",
     "stage1Path": "data/geospatial/dada-shrines-27-stage1.json",
-    "segmentationPath": "data/geospatial/dada-shrines-27-scene-segments.json",
-    "evidenceManifestPath": "data/geospatial/dada-shrines-27-scene-evidence-manifest.json"
+    "evidenceManifestPath": "data/geospatial/dada-shrines-27-batch01-evidence-manifest.json"
   },
   "counts": {
     "reviewedSlots": 14,
@@ -18,10 +16,7 @@
     "unresolved": 14,
     "candidateShrines": 32,
     "successfulModels": 1,
-    "failedModels": 1,
-    "requestedModelsThisRun": 1,
-    "reusedModelsThisRun": 1,
-    "duplicateCandidateIdsRejected": 0
+    "failedModels": 1
   },
   "policy": {
     "models": [
@@ -36,730 +31,568 @@
       "unique_highlight_with_readable_text"
     ],
     "uniqueLocationAssignment": true,
-    "sceneAwareSegmentationRequired": true,
-    "repositoryContainsEvidencePixels": false
+    "repositoryContainsEvidencePixels": false,
+    "modelRequestCount": 2
   },
-  "modelPackets": [
-    {
-      "model": "openai/gpt-4o-mini",
-      "source": "reused-persisted-text-review",
-      "reviewedAt": "2026-07-23T01:40:44.753401Z",
-      "reviews": [
-        {
-          "slot": 1,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479945",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 2,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479945",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 3,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479945",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 4,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "富士山",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 5,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 6,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 7,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 8,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 9,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 10,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 11,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 12,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 13,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        },
-        {
-          "slot": 14,
-          "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
-          "regionClue": "AWAJI",
-          "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
-        }
-      ]
-    }
-  ],
-  "modelErrors": [
-    {
-      "model": "openai/gpt-4.1",
-      "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
-    }
-  ],
-  "requestedModelsThisRun": [
-    "openai/gpt-4.1"
-  ],
-  "reusedModelsThisRun": [
-    "openai/gpt-4o-mini"
-  ],
-  "duplicateCandidateIdsRejected": [],
   "anchors": [],
   "unresolved": [
     {
       "videoPosition": 1,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 1,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479945",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 3.917,
-          "sha256": "de50228ab504636bf84eeb244f4f55fa026aae230d2c9006f83d8236ec8f73c2"
+          "role": "early",
+          "timeSeconds": 1.804,
+          "sha256": "68dfac6115a791ecf07e0f7a4ace90c05abf99c20559fc03f62634b524fc1e4f"
         },
         {
-          "role": "before",
-          "timeSeconds": 1.417,
-          "sha256": "f8091148d953a27ae523af4780e153c322953d7fc922210ce5127a8751775325"
+          "role": "late",
+          "timeSeconds": 8.219,
+          "sha256": "2eb1d738eb5bf87f0c9f1037d883a73fe72175549681559d0a23e0d57835c361"
         },
         {
-          "role": "representative",
-          "timeSeconds": 2.667,
-          "sha256": "b3c711c6d04b3e11fcc48c758c7230b935f854e932d3eb1d9fcec4539f5fe6e3"
+          "role": "middle",
+          "timeSeconds": 5.011,
+          "sha256": "7b6a68afd1bd4bf6acde2c99dac216a6eb22a683589c39ed04400d3db2ad6314"
         }
       ]
     },
     {
       "videoPosition": 2,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 2,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479945",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 15.115,
-          "sha256": "50f61b6279690b85b8f53de05ffab0e241941ac1d42586f567c7ba3fffee8fe8"
+          "role": "early",
+          "timeSeconds": 11.827,
+          "sha256": "d1a5fb5bf4f1442071bc4c4e28430a81cacdbc4969700095f23c299b0d79d1f5"
         },
         {
-          "role": "before",
-          "timeSeconds": 12.619,
-          "sha256": "20438d210e31ce3c59c7d5e0c20b1d5950a8d711310e7c5c5be1238aa45b40ee"
+          "role": "late",
+          "timeSeconds": 18.243,
+          "sha256": "fcc33ed24b22718146f2d72b922c396c64bf4306627bee2c1267df35d02257c0"
         },
         {
-          "role": "representative",
-          "timeSeconds": 13.867,
-          "sha256": "0adf2bcc6a3e40ce9d57d694eb50464be057067cd46af95f6c4807d646d6c6b9"
+          "role": "middle",
+          "timeSeconds": 15.035,
+          "sha256": "4e08244c063883fe5da9617e3d79af91eba9f6a1b0c703aa7cb9dfc23c935a24"
         }
       ]
     },
     {
       "videoPosition": 3,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 3,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479945",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 20.183,
-          "sha256": "8b1220b35bdf9b5d356922e24313d72fc45192c621b8592efd2dcc883fa7c69a"
+          "role": "early",
+          "timeSeconds": 21.851,
+          "sha256": "1d16f1947beb188a80c409cc8691539cc204f78c7d18d11ea615d437fa2b9325"
         },
         {
-          "role": "before",
-          "timeSeconds": 17.683,
-          "sha256": "5dc7988e6203ae14bd054ebdeac89a77ca73e0190f79d1451e2f722cc6fc694f"
+          "role": "late",
+          "timeSeconds": 28.266,
+          "sha256": "a469631dded09b995fe401ba26bcc8a9f61eeeec78321d4ff331828797a6f9c5"
         },
         {
-          "role": "representative",
-          "timeSeconds": 18.933,
-          "sha256": "2f75caf40ad8add6d45f6b6864988da973afbd35abc3afe433309233d27515d0"
+          "role": "middle",
+          "timeSeconds": 25.059,
+          "sha256": "12d7ab9b77c5e07afa483a074f0e52c314ad77f5ce2866b6de14a36e1de96343"
         }
       ]
     },
     {
       "videoPosition": 4,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 4,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "富士山",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 34.583,
-          "sha256": "a00753cff23ff1730ec9e05bfa67cff14ce1af90b732cfbfef4d96a30e8bd926"
+          "role": "early",
+          "timeSeconds": 31.874,
+          "sha256": "adacb9f10d7776d68e88b124d1d56a23d59a7582f8d504b604a01cb4ca1c8f07"
         },
         {
-          "role": "before",
-          "timeSeconds": 32.083,
-          "sha256": "7df4d19bba5b789badd2fe43bbadaa6baea71897a653c67d8bb1a9a2af625567"
+          "role": "late",
+          "timeSeconds": 38.29,
+          "sha256": "e2b37fbfa1c9579db9e51b9cb6a2019fe09513b52aebfe1c4833fbd9eaa36847"
         },
         {
-          "role": "representative",
-          "timeSeconds": 33.333,
-          "sha256": "bc8a7871c93f066de9571aec112fd815fcb89d4a988b162d449038fa83780e36"
+          "role": "middle",
+          "timeSeconds": 35.082,
+          "sha256": "953662e4e7bdde1073dec7dde4dd1387786f3efe9e4075175cdaf5639a84eb4a"
         }
       ]
     },
     {
       "videoPosition": 5,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 5,
           "model": "openai/gpt-4o-mini",
           "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三宫神社",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 45.517,
-          "sha256": "b4dee27e8a7f5ec71362c76e4eea40ad09dfff111b9fcbf265e4558700e9bf7c"
+          "role": "early",
+          "timeSeconds": 41.898,
+          "sha256": "2efed816143bdce0e9c3b22d35cab2a4e3642273c8da78993984c6c1a2c83290"
         },
         {
-          "role": "before",
-          "timeSeconds": 43.017,
-          "sha256": "38dbfffe3b4ef952d1351f88378f913fc0078f4ca6e9a281869640ee187c2047"
+          "role": "late",
+          "timeSeconds": 48.313,
+          "sha256": "61b8854c6cd87c0b5b5742cc41cde7331e3283d3aed75650dc303532bd10deae"
         },
         {
-          "role": "representative",
-          "timeSeconds": 44.267,
-          "sha256": "eb837fc8a13af72341a51ec4ffe6056b381592c09f3d01f488f95e75e467d4e3"
+          "role": "middle",
+          "timeSeconds": 45.105,
+          "sha256": "dd051b68fb6540b21240bfb42315d2855d0b91c6159f34926596a959c9a17064"
         }
       ]
     },
     {
       "videoPosition": 6,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 6,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 57.25,
-          "sha256": "a048a6b7306993077f90a6eca187ca31a80922d422ea18cb3d4c83ce1ed99509"
+          "role": "early",
+          "timeSeconds": 51.921,
+          "sha256": "3fea38ce859ac9dd6b94d7abef4aff0b559ae0fded1e7d5ae4f23a1b6e4c94f5"
         },
         {
-          "role": "before",
-          "timeSeconds": 54.75,
-          "sha256": "2c669facb80cffc5f5fb07ae8f16cb814cd38b70172d699ac050fb57b51daa93"
+          "role": "late",
+          "timeSeconds": 58.337,
+          "sha256": "64c1dcd2e088028a515a47317d89adbdd0269f7abcd75e365025f5a9a3f1d182"
         },
         {
-          "role": "representative",
-          "timeSeconds": 56.0,
-          "sha256": "2643a57c7a936fc7c2a1e43b8b8a9878b74a00ff96571a740ed38af8bab8ec52"
+          "role": "middle",
+          "timeSeconds": 55.129,
+          "sha256": "480823466ac38acbce113d0f1aa3ba96ac6cbe4f0fc6ee314a165234ddffa1f0"
         }
       ]
     },
     {
       "videoPosition": 7,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 7,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 69.517,
-          "sha256": "7efb9cac664c2d01c01eccd0e4eb9680ece6ac77138fe85eb70f5bb921dea7de"
+          "role": "early",
+          "timeSeconds": 61.945,
+          "sha256": "0433d8c5c142555e9a7a8c86f84550a05eee98e80ed810d3b5951f03e74bfe29"
         },
         {
-          "role": "before",
-          "timeSeconds": 67.017,
-          "sha256": "a2347eb56bb2a929450d3e7fbbfa310b98bc139e2599f30984abfd868ac1bf26"
+          "role": "late",
+          "timeSeconds": 68.36,
+          "sha256": "9efe34b4f7d261089efad66981dc7eb7aaba3087ac13dd5b75c606659fda28ad"
         },
         {
-          "role": "representative",
-          "timeSeconds": 68.267,
-          "sha256": "138a7f2247d44cfc1b223d2ffad63946fe93ac7a9204523434f3dee5100ddfd0"
+          "role": "middle",
+          "timeSeconds": 65.153,
+          "sha256": "ba94507cd13dd2cb510c268bac1885f7cd84aa18ceeade9f395546887ed7b472"
         }
       ]
     },
     {
       "videoPosition": 8,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 8,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 75.117,
-          "sha256": "8d2710a12f029c71d12a4319e267fb3276e1ee4b1acbf4f92bcd34c893762874"
+          "role": "early",
+          "timeSeconds": 71.968,
+          "sha256": "5b02b1ee4a5170eb24214dfbe0d9928a2eeac48b3d62ce668dfa2beda013cbd3"
         },
         {
-          "role": "before",
-          "timeSeconds": 72.617,
-          "sha256": "1606c9ee626f65e5b80b845ef95d5d3914a824a8ef46c00822325bbe0300e9c2"
+          "role": "late",
+          "timeSeconds": 78.384,
+          "sha256": "088a464c43a37bf4176dafe38b0d6430bd73b05a11b507a564fe2d484dc0558d"
         },
         {
-          "role": "representative",
-          "timeSeconds": 73.867,
-          "sha256": "98a6f4787c98b40d23f5dd0a821f5f5246f9df394393e8a73e51709a48a3cbee"
+          "role": "middle",
+          "timeSeconds": 75.176,
+          "sha256": "998092ad4dbbf50eaeb3681e132fac27f9958ab7102b4963ae9bf9a9d010b17a"
         }
       ]
     },
     {
       "videoPosition": 9,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 9,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 85.783,
-          "sha256": "165bfce61f301cf9d643d829c4f788429d703f15453e6bf5e830abc9d8d795ae"
+          "role": "early",
+          "timeSeconds": 81.992,
+          "sha256": "4e4de66f3e5a32c27c8ab9526711cf26a61c0da44ea718081d8988f19827e4d3"
         },
         {
-          "role": "before",
-          "timeSeconds": 83.283,
-          "sha256": "1775c480b43b60b349b32a72c48788cdc9fae02073c9178acf48ec89d1208a48"
+          "role": "late",
+          "timeSeconds": 88.407,
+          "sha256": "1bddb26884b0ec5cd4bd1ab601342cd2124e3b31722c8cec7b46a908aaaaa422"
         },
         {
-          "role": "representative",
-          "timeSeconds": 84.533,
-          "sha256": "034f5b7c2854b8e32db0db4122edaa8b34a8b168e2554a275fc3a6931b7370fc"
+          "role": "middle",
+          "timeSeconds": 85.2,
+          "sha256": "c781e845c22e5a14bda525bd95159b6a4ef825fd17300bc2ebf7a7e46338ef93"
         }
       ]
     },
     {
       "videoPosition": 10,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 10,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 98.85,
-          "sha256": "887445b22a5c74adcc1fe0fec96e836f87b19d5b650a77ccea2392121295a9a0"
+          "role": "early",
+          "timeSeconds": 92.015,
+          "sha256": "c50ae6ae3f9f1e2b96a4f3c909362238313ce46b1e3eb4df1544990b1759a220"
         },
         {
-          "role": "before",
-          "timeSeconds": 96.35,
-          "sha256": "96c6fd6be9e769e34aa2a432bc342442be81edc747340c942ee7303c214fc0f0"
+          "role": "late",
+          "timeSeconds": 98.43,
+          "sha256": "03879d2d7837a16bcd5a48e3faab133767e2fca15f1b8eb8d6a67bfe59f31d82"
         },
         {
-          "role": "representative",
-          "timeSeconds": 97.6,
-          "sha256": "7773bc90187a17670402f972385c49307f632539d67ca88e76bada6a0abca722"
+          "role": "middle",
+          "timeSeconds": 95.222,
+          "sha256": "283e81c84ea113811088946ae42522556b3105790411482d3ae033b8b0acb8e1"
         }
       ]
     },
     {
       "videoPosition": 11,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 11,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 103.723,
-          "sha256": "6c34e1a21576911844331987b1dc305492cf7cc4c78a760229b2b2232fc13cdf"
+          "role": "early",
+          "timeSeconds": 102.038,
+          "sha256": "ac71d13e5adea42e657602e4af04802e218426cebca3dc6ddcc218f7a0ea2d8b"
         },
         {
-          "role": "before",
-          "timeSeconds": 101.611,
-          "sha256": "4982f6a364dc1b70e9b2413aa165bcbefb1cacd927e2cbc25306b55e87f61089"
+          "role": "late",
+          "timeSeconds": 108.454,
+          "sha256": "076b9967c2917dc0b8fc23191d1506535357d07e743582a577aef89ac4c6088e"
         },
         {
-          "role": "representative",
-          "timeSeconds": 102.667,
-          "sha256": "f2cb3da0f4098fa1a1bb785b47bac4830486a4998fa38e9a317171294c9a9afb"
+          "role": "middle",
+          "timeSeconds": 105.246,
+          "sha256": "ee9d83f54272b33ff12104b8177136ef71efa2415d5778e5e95cad9515419f06"
         }
       ]
     },
     {
       "videoPosition": 12,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 12,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 110.317,
-          "sha256": "83b9d573dca9ecba604a138971f5617a005bcc8bc5292d3fd9ce37ae73493d05"
+          "role": "early",
+          "timeSeconds": 112.062,
+          "sha256": "9be4855ce8f0198bf52a3e536ad75621fdee0593cba57d82d8bd16e42eae0867"
         },
         {
-          "role": "before",
-          "timeSeconds": 107.817,
-          "sha256": "cd6d0abfc25902d006c71b9f2c501e1d1ecf0d2c7b8e0c5a773e8ec1dfe29731"
+          "role": "late",
+          "timeSeconds": 118.477,
+          "sha256": "702d646f7658d6eb7c489d2ba59f174053ade52f4d026aa8f43ba34b12dfe6c4"
         },
         {
-          "role": "representative",
-          "timeSeconds": 109.067,
-          "sha256": "d87bb19b6dbf30f56e2e7b19066a002b0d697bae3b3f74766c6dd78b97ec232e"
+          "role": "middle",
+          "timeSeconds": 115.269,
+          "sha256": "e74e9e2ae92c0cdc5668591fa61d285350a1622c3d45f265f19acf204e2be87b"
         }
       ]
     },
     {
       "videoPosition": 13,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 13,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 122.317,
-          "sha256": "bdbdf3f66425b956061acd94d561389cadced724951557e636d0aff6d8f02777"
+          "role": "early",
+          "timeSeconds": 122.085,
+          "sha256": "504401911bd25b608178880e62e1ef4145cb902953593143fbf4074bf169a1ff"
         },
         {
-          "role": "before",
-          "timeSeconds": 119.817,
-          "sha256": "6f41e95734c079f978b0f4dbf3315bb228cf225674c8f31e9ef87d86a6e93133"
+          "role": "late",
+          "timeSeconds": 128.501,
+          "sha256": "1dab09e8194ee3e92a25f66ae4972fe297525cc244c27fa3066f2c5694c5e4e6"
         },
         {
-          "role": "representative",
-          "timeSeconds": 121.067,
-          "sha256": "8ed4d5c0be2419728543b32285e8ab3a5bd83252a6f91c1551265e3db7dfbea5"
+          "role": "middle",
+          "timeSeconds": 125.293,
+          "sha256": "5f029c5431f2cab36e512379fcedc75f456dfa41c75aff12e7acc768ef02717a"
         }
       ]
     },
     {
       "videoPosition": 14,
       "status": "unresolved",
-      "reason": "two_model_scene_consensus_or_direct_evidence_not_met",
+      "reason": "bulk_two_model_consensus_or_direct_evidence_not_met",
       "modelReviews": [
         {
           "slot": 14,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
         }
       ],
       "modelErrors": [
         {
           "model": "openai/gpt-4.1",
-          "error": "scene model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
         {
-          "role": "after",
-          "timeSeconds": 135.117,
-          "sha256": "4798a67241570d2858b4b12f677ba3530acf26359da63ead1481ea3511be26e0"
+          "role": "early",
+          "timeSeconds": 132.109,
+          "sha256": "9badc632ce0da1ca7382a417cdb012122b6d08de0c6b226778eec733426969b1"
         },
         {
-          "role": "before",
-          "timeSeconds": 132.617,
-          "sha256": "9b4f42617c4e5c2de063c6974028381af3511f6e1d623379ad10b769474f315a"
+          "role": "late",
+          "timeSeconds": 138.524,
+          "sha256": "9ff7287c7db567571f8b8aeff74bc25d07d5c3bd66dc718c2b32556176f8e6bf"
         },
         {
-          "role": "representative",
-          "timeSeconds": 133.867,
-          "sha256": "96d702ad338a91130bbbda9060d3ff527db72f59ad239775fae191545858ce69"
+          "role": "middle",
+          "timeSeconds": 135.317,
+          "sha256": "3c7d7c89b028f64ffd9796305443db7552e30c7acd49064a017ba7793454ebec"
         }
       ]
     }
@@ -771,34 +604,39 @@
         {
           "slot": 1,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479945",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 3.917,
-          "sha256": "de50228ab504636bf84eeb244f4f55fa026aae230d2c9006f83d8236ec8f73c2"
+          "role": "early",
+          "timeSeconds": 1.804,
+          "sha256": "68dfac6115a791ecf07e0f7a4ace90c05abf99c20559fc03f62634b524fc1e4f"
         },
         {
-          "role": "before",
-          "timeSeconds": 1.417,
-          "sha256": "f8091148d953a27ae523af4780e153c322953d7fc922210ce5127a8751775325"
+          "role": "late",
+          "timeSeconds": 8.219,
+          "sha256": "2eb1d738eb5bf87f0c9f1037d883a73fe72175549681559d0a23e0d57835c361"
         },
         {
-          "role": "representative",
-          "timeSeconds": 2.667,
-          "sha256": "b3c711c6d04b3e11fcc48c758c7230b935f854e932d3eb1d9fcec4539f5fe6e3"
+          "role": "middle",
+          "timeSeconds": 5.011,
+          "sha256": "7b6a68afd1bd4bf6acde2c99dac216a6eb22a683589c39ed04400d3db2ad6314"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 2,
@@ -806,34 +644,39 @@
         {
           "slot": 2,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479945",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 15.115,
-          "sha256": "50f61b6279690b85b8f53de05ffab0e241941ac1d42586f567c7ba3fffee8fe8"
+          "role": "early",
+          "timeSeconds": 11.827,
+          "sha256": "d1a5fb5bf4f1442071bc4c4e28430a81cacdbc4969700095f23c299b0d79d1f5"
         },
         {
-          "role": "before",
-          "timeSeconds": 12.619,
-          "sha256": "20438d210e31ce3c59c7d5e0c20b1d5950a8d711310e7c5c5be1238aa45b40ee"
+          "role": "late",
+          "timeSeconds": 18.243,
+          "sha256": "fcc33ed24b22718146f2d72b922c396c64bf4306627bee2c1267df35d02257c0"
         },
         {
-          "role": "representative",
-          "timeSeconds": 13.867,
-          "sha256": "0adf2bcc6a3e40ce9d57d694eb50464be057067cd46af95f6c4807d646d6c6b9"
+          "role": "middle",
+          "timeSeconds": 15.035,
+          "sha256": "4e08244c063883fe5da9617e3d79af91eba9f6a1b0c703aa7cb9dfc23c935a24"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 3,
@@ -841,34 +684,39 @@
         {
           "slot": 3,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479945",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 20.183,
-          "sha256": "8b1220b35bdf9b5d356922e24313d72fc45192c621b8592efd2dcc883fa7c69a"
+          "role": "early",
+          "timeSeconds": 21.851,
+          "sha256": "1d16f1947beb188a80c409cc8691539cc204f78c7d18d11ea615d437fa2b9325"
         },
         {
-          "role": "before",
-          "timeSeconds": 17.683,
-          "sha256": "5dc7988e6203ae14bd054ebdeac89a77ca73e0190f79d1451e2f722cc6fc694f"
+          "role": "late",
+          "timeSeconds": 28.266,
+          "sha256": "a469631dded09b995fe401ba26bcc8a9f61eeeec78321d4ff331828797a6f9c5"
         },
         {
-          "role": "representative",
-          "timeSeconds": 18.933,
-          "sha256": "2f75caf40ad8add6d45f6b6864988da973afbd35abc3afe433309233d27515d0"
+          "role": "middle",
+          "timeSeconds": 25.059,
+          "sha256": "12d7ab9b77c5e07afa483a074f0e52c314ad77f5ce2866b6de14a36e1de96343"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 4,
@@ -876,34 +724,39 @@
         {
           "slot": 4,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "富士山",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 34.583,
-          "sha256": "a00753cff23ff1730ec9e05bfa67cff14ce1af90b732cfbfef4d96a30e8bd926"
+          "role": "early",
+          "timeSeconds": 31.874,
+          "sha256": "adacb9f10d7776d68e88b124d1d56a23d59a7582f8d504b604a01cb4ca1c8f07"
         },
         {
-          "role": "before",
-          "timeSeconds": 32.083,
-          "sha256": "7df4d19bba5b789badd2fe43bbadaa6baea71897a653c67d8bb1a9a2af625567"
+          "role": "late",
+          "timeSeconds": 38.29,
+          "sha256": "e2b37fbfa1c9579db9e51b9cb6a2019fe09513b52aebfe1c4833fbd9eaa36847"
         },
         {
-          "role": "representative",
-          "timeSeconds": 33.333,
-          "sha256": "bc8a7871c93f066de9571aec112fd815fcb89d4a988b162d449038fa83780e36"
+          "role": "middle",
+          "timeSeconds": 35.082,
+          "sha256": "953662e4e7bdde1073dec7dde4dd1387786f3efe9e4075175cdaf5639a84eb4a"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 5,
@@ -912,33 +765,38 @@
           "slot": 5,
           "model": "openai/gpt-4o-mini",
           "selectedLocationId": "location-mapgenie-479948",
-          "visibleLabel": "上三宫神社",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 45.517,
-          "sha256": "b4dee27e8a7f5ec71362c76e4eea40ad09dfff111b9fcbf265e4558700e9bf7c"
+          "role": "early",
+          "timeSeconds": 41.898,
+          "sha256": "2efed816143bdce0e9c3b22d35cab2a4e3642273c8da78993984c6c1a2c83290"
         },
         {
-          "role": "before",
-          "timeSeconds": 43.017,
-          "sha256": "38dbfffe3b4ef952d1351f88378f913fc0078f4ca6e9a281869640ee187c2047"
+          "role": "late",
+          "timeSeconds": 48.313,
+          "sha256": "61b8854c6cd87c0b5b5742cc41cde7331e3283d3aed75650dc303532bd10deae"
         },
         {
-          "role": "representative",
-          "timeSeconds": 44.267,
-          "sha256": "eb837fc8a13af72341a51ec4ffe6056b381592c09f3d01f488f95e75e467d4e3"
+          "role": "middle",
+          "timeSeconds": 45.105,
+          "sha256": "dd051b68fb6540b21240bfb42315d2855d0b91c6159f34926596a959c9a17064"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 6,
@@ -946,34 +804,39 @@
         {
           "slot": 6,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 57.25,
-          "sha256": "a048a6b7306993077f90a6eca187ca31a80922d422ea18cb3d4c83ce1ed99509"
+          "role": "early",
+          "timeSeconds": 51.921,
+          "sha256": "3fea38ce859ac9dd6b94d7abef4aff0b559ae0fded1e7d5ae4f23a1b6e4c94f5"
         },
         {
-          "role": "before",
-          "timeSeconds": 54.75,
-          "sha256": "2c669facb80cffc5f5fb07ae8f16cb814cd38b70172d699ac050fb57b51daa93"
+          "role": "late",
+          "timeSeconds": 58.337,
+          "sha256": "64c1dcd2e088028a515a47317d89adbdd0269f7abcd75e365025f5a9a3f1d182"
         },
         {
-          "role": "representative",
-          "timeSeconds": 56.0,
-          "sha256": "2643a57c7a936fc7c2a1e43b8b8a9878b74a00ff96571a740ed38af8bab8ec52"
+          "role": "middle",
+          "timeSeconds": 55.129,
+          "sha256": "480823466ac38acbce113d0f1aa3ba96ac6cbe4f0fc6ee314a165234ddffa1f0"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 7,
@@ -981,34 +844,39 @@
         {
           "slot": 7,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 69.517,
-          "sha256": "7efb9cac664c2d01c01eccd0e4eb9680ece6ac77138fe85eb70f5bb921dea7de"
+          "role": "early",
+          "timeSeconds": 61.945,
+          "sha256": "0433d8c5c142555e9a7a8c86f84550a05eee98e80ed810d3b5951f03e74bfe29"
         },
         {
-          "role": "before",
-          "timeSeconds": 67.017,
-          "sha256": "a2347eb56bb2a929450d3e7fbbfa310b98bc139e2599f30984abfd868ac1bf26"
+          "role": "late",
+          "timeSeconds": 68.36,
+          "sha256": "9efe34b4f7d261089efad66981dc7eb7aaba3087ac13dd5b75c606659fda28ad"
         },
         {
-          "role": "representative",
-          "timeSeconds": 68.267,
-          "sha256": "138a7f2247d44cfc1b223d2ffad63946fe93ac7a9204523434f3dee5100ddfd0"
+          "role": "middle",
+          "timeSeconds": 65.153,
+          "sha256": "ba94507cd13dd2cb510c268bac1885f7cd84aa18ceeade9f395546887ed7b472"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 8,
@@ -1016,34 +884,39 @@
         {
           "slot": 8,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 75.117,
-          "sha256": "8d2710a12f029c71d12a4319e267fb3276e1ee4b1acbf4f92bcd34c893762874"
+          "role": "early",
+          "timeSeconds": 71.968,
+          "sha256": "5b02b1ee4a5170eb24214dfbe0d9928a2eeac48b3d62ce668dfa2beda013cbd3"
         },
         {
-          "role": "before",
-          "timeSeconds": 72.617,
-          "sha256": "1606c9ee626f65e5b80b845ef95d5d3914a824a8ef46c00822325bbe0300e9c2"
+          "role": "late",
+          "timeSeconds": 78.384,
+          "sha256": "088a464c43a37bf4176dafe38b0d6430bd73b05a11b507a564fe2d484dc0558d"
         },
         {
-          "role": "representative",
-          "timeSeconds": 73.867,
-          "sha256": "98a6f4787c98b40d23f5dd0a821f5f5246f9df394393e8a73e51709a48a3cbee"
+          "role": "middle",
+          "timeSeconds": 75.176,
+          "sha256": "998092ad4dbbf50eaeb3681e132fac27f9958ab7102b4963ae9bf9a9d010b17a"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 9,
@@ -1051,34 +924,39 @@
         {
           "slot": 9,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 85.783,
-          "sha256": "165bfce61f301cf9d643d829c4f788429d703f15453e6bf5e830abc9d8d795ae"
+          "role": "early",
+          "timeSeconds": 81.992,
+          "sha256": "4e4de66f3e5a32c27c8ab9526711cf26a61c0da44ea718081d8988f19827e4d3"
         },
         {
-          "role": "before",
-          "timeSeconds": 83.283,
-          "sha256": "1775c480b43b60b349b32a72c48788cdc9fae02073c9178acf48ec89d1208a48"
+          "role": "late",
+          "timeSeconds": 88.407,
+          "sha256": "1bddb26884b0ec5cd4bd1ab601342cd2124e3b31722c8cec7b46a908aaaaa422"
         },
         {
-          "role": "representative",
-          "timeSeconds": 84.533,
-          "sha256": "034f5b7c2854b8e32db0db4122edaa8b34a8b168e2554a275fc3a6931b7370fc"
+          "role": "middle",
+          "timeSeconds": 85.2,
+          "sha256": "c781e845c22e5a14bda525bd95159b6a4ef825fd17300bc2ebf7a7e46338ef93"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 10,
@@ -1086,34 +964,39 @@
         {
           "slot": 10,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 98.85,
-          "sha256": "887445b22a5c74adcc1fe0fec96e836f87b19d5b650a77ccea2392121295a9a0"
+          "role": "early",
+          "timeSeconds": 92.015,
+          "sha256": "c50ae6ae3f9f1e2b96a4f3c909362238313ce46b1e3eb4df1544990b1759a220"
         },
         {
-          "role": "before",
-          "timeSeconds": 96.35,
-          "sha256": "96c6fd6be9e769e34aa2a432bc342442be81edc747340c942ee7303c214fc0f0"
+          "role": "late",
+          "timeSeconds": 98.43,
+          "sha256": "03879d2d7837a16bcd5a48e3faab133767e2fca15f1b8eb8d6a67bfe59f31d82"
         },
         {
-          "role": "representative",
-          "timeSeconds": 97.6,
-          "sha256": "7773bc90187a17670402f972385c49307f632539d67ca88e76bada6a0abca722"
+          "role": "middle",
+          "timeSeconds": 95.222,
+          "sha256": "283e81c84ea113811088946ae42522556b3105790411482d3ae033b8b0acb8e1"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 11,
@@ -1121,34 +1004,39 @@
         {
           "slot": 11,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 103.723,
-          "sha256": "6c34e1a21576911844331987b1dc305492cf7cc4c78a760229b2b2232fc13cdf"
+          "role": "early",
+          "timeSeconds": 102.038,
+          "sha256": "ac71d13e5adea42e657602e4af04802e218426cebca3dc6ddcc218f7a0ea2d8b"
         },
         {
-          "role": "before",
-          "timeSeconds": 101.611,
-          "sha256": "4982f6a364dc1b70e9b2413aa165bcbefb1cacd927e2cbc25306b55e87f61089"
+          "role": "late",
+          "timeSeconds": 108.454,
+          "sha256": "076b9967c2917dc0b8fc23191d1506535357d07e743582a577aef89ac4c6088e"
         },
         {
-          "role": "representative",
-          "timeSeconds": 102.667,
-          "sha256": "f2cb3da0f4098fa1a1bb785b47bac4830486a4998fa38e9a317171294c9a9afb"
+          "role": "middle",
+          "timeSeconds": 105.246,
+          "sha256": "ee9d83f54272b33ff12104b8177136ef71efa2415d5778e5e95cad9515419f06"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 12,
@@ -1156,34 +1044,39 @@
         {
           "slot": 12,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 110.317,
-          "sha256": "83b9d573dca9ecba604a138971f5617a005bcc8bc5292d3fd9ce37ae73493d05"
+          "role": "early",
+          "timeSeconds": 112.062,
+          "sha256": "9be4855ce8f0198bf52a3e536ad75621fdee0593cba57d82d8bd16e42eae0867"
         },
         {
-          "role": "before",
-          "timeSeconds": 107.817,
-          "sha256": "cd6d0abfc25902d006c71b9f2c501e1d1ecf0d2c7b8e0c5a773e8ec1dfe29731"
+          "role": "late",
+          "timeSeconds": 118.477,
+          "sha256": "702d646f7658d6eb7c489d2ba59f174053ade52f4d026aa8f43ba34b12dfe6c4"
         },
         {
-          "role": "representative",
-          "timeSeconds": 109.067,
-          "sha256": "d87bb19b6dbf30f56e2e7b19066a002b0d697bae3b3f74766c6dd78b97ec232e"
+          "role": "middle",
+          "timeSeconds": 115.269,
+          "sha256": "e74e9e2ae92c0cdc5668591fa61d285350a1622c3d45f265f19acf204e2be87b"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 13,
@@ -1191,34 +1084,39 @@
         {
           "slot": 13,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 122.317,
-          "sha256": "bdbdf3f66425b956061acd94d561389cadced724951557e636d0aff6d8f02777"
+          "role": "early",
+          "timeSeconds": 122.085,
+          "sha256": "504401911bd25b608178880e62e1ef4145cb902953593143fbf4074bf169a1ff"
         },
         {
-          "role": "before",
-          "timeSeconds": 119.817,
-          "sha256": "6f41e95734c079f978b0f4dbf3315bb228cf225674c8f31e9ef87d86a6e93133"
+          "role": "late",
+          "timeSeconds": 128.501,
+          "sha256": "1dab09e8194ee3e92a25f66ae4972fe297525cc244c27fa3066f2c5694c5e4e6"
         },
         {
-          "role": "representative",
-          "timeSeconds": 121.067,
-          "sha256": "8ed4d5c0be2419728543b32285e8ab3a5bd83252a6f91c1551265e3db7dfbea5"
+          "role": "middle",
+          "timeSeconds": 125.293,
+          "sha256": "5f029c5431f2cab36e512379fcedc75f456dfa41c75aff12e7acc768ef02717a"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
     },
     {
       "slot": 14,
@@ -1226,38 +1124,49 @@
         {
           "slot": 14,
           "model": "openai/gpt-4o-mini",
-          "selectedLocationId": "location-mapgenie-479949",
-          "visibleLabel": "上三宫神社",
+          "selectedLocationId": "location-mapgenie-479948",
+          "visibleLabel": "上三福神社",
           "regionClue": "AWAJI",
           "evidenceType": "direct_popup_text",
-          "confidence": 0.9,
-          "reasonZhCN": "画面中直接读取到的神社名称和区域"
+          "confidence": 1.0,
+          "reasonZhCN": "画面中直接读取到的神社名称和区域信息"
+        }
+      ],
+      "modelErrors": [
+        {
+          "model": "openai/gpt-4.1",
+          "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
         }
       ],
       "consensusLocationId": null,
-      "consensusPassedBeforeUniquenessGate": false,
+      "consensusPassed": false,
       "frames": [
         {
-          "role": "after",
-          "timeSeconds": 135.117,
-          "sha256": "4798a67241570d2858b4b12f677ba3530acf26359da63ead1481ea3511be26e0"
+          "role": "early",
+          "timeSeconds": 132.109,
+          "sha256": "9badc632ce0da1ca7382a417cdb012122b6d08de0c6b226778eec733426969b1"
         },
         {
-          "role": "before",
-          "timeSeconds": 132.617,
-          "sha256": "9b4f42617c4e5c2de063c6974028381af3511f6e1d623379ad10b769474f315a"
+          "role": "late",
+          "timeSeconds": 138.524,
+          "sha256": "9ff7287c7db567571f8b8aeff74bc25d07d5c3bd66dc718c2b32556176f8e6bf"
         },
         {
-          "role": "representative",
-          "timeSeconds": 133.867,
-          "sha256": "96d702ad338a91130bbbda9060d3ff527db72f59ad239775fae191545858ce69"
+          "role": "middle",
+          "timeSeconds": 135.317,
+          "sha256": "3c7d7c89b028f64ffd9796305443db7552e30c7acd49064a017ba7793454ebec"
         }
-      ],
-      "consensusPassedAfterUniquenessGate": false
+      ]
+    }
+  ],
+  "modelErrors": [
+    {
+      "model": "openai/gpt-4.1",
+      "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 429: Too Many Requests"
     }
   ],
   "privacy": {
     "repositoryContainsPixels": false,
-    "persistedEvidence": "scene boundaries, timestamps, SHA-256 hashes, visible text, model decisions and existing Atlas coordinates only"
+    "persistedEvidence": "timestamps, SHA-256 hashes, visible text, model decisions and existing Atlas coordinates only"
   }
 }
