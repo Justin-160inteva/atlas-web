@@ -9,6 +9,7 @@ on:
       - 'tools/build_dada_shrines_geospatial_stage1.py'
       - 'tools/extract_dada_shrine_anchor_batch.py'
       - 'tools/review_dada_shrine_anchor_batch_bulk.py'
+      - 'tools/report_geospatial_reconcile_diagnostics.py'
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
       - 'data/geospatial/dada-shrines-anchor-batch01-trigger.json'
@@ -18,6 +19,7 @@ on:
       - 'tools/build_dada_shrines_geospatial_stage1.py'
       - 'tools/extract_dada_shrine_anchor_batch.py'
       - 'tools/review_dada_shrine_anchor_batch_bulk.py'
+      - 'tools/report_geospatial_reconcile_diagnostics.py'
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
       - 'data/geospatial/dada-shrines-anchor-batch01-trigger.json'
@@ -52,6 +54,7 @@ jobs:
             tools/build_dada_shrines_geospatial_stage1.py \
             tools/extract_dada_shrine_anchor_batch.py \
             tools/review_dada_shrine_anchor_batch_bulk.py \
+            tools/report_geospatial_reconcile_diagnostics.py \
             tools/build_geospatial_progress.py \
             tools/analyze_authorized_video_v2.py \
             tools/analyze_authorized_video_v4.py
@@ -113,6 +116,9 @@ jobs:
             --manifest data/geospatial/dada-shrines-27-batch01-evidence-manifest.json \
             --output data/geospatial/dada-shrines-27-anchors-batch01.json
 
+      - name: Record non-pixel reconcile preflight
+        run: python tools/report_geospatial_reconcile_diagnostics.py
+
       - name: Reconcile global geospatial progress
         run: |
           python - <<'PY'
@@ -142,6 +148,7 @@ jobs:
           manifest = json.loads(Path('data/geospatial/dada-shrines-27-batch01-evidence-manifest.json').read_text(encoding='utf-8'))
           anchors = json.loads(Path('data/geospatial/dada-shrines-27-anchors-batch01.json').read_text(encoding='utf-8'))
           progress = json.loads(Path('data/geospatial/geospatial-progress.json').read_text(encoding='utf-8'))
+          diagnostic = json.loads(Path('data/geospatial/geospatial-reconcile-diagnostic.json').read_text(encoding='utf-8'))
           assert manifest['batch'] == {'startSlot': 1, 'endSlot': 14, 'targetSlots': 14}
           assert manifest['extraction']['frameCount'] == 42
           assert manifest['extraction']['contactSheetCount'] == 5
@@ -155,6 +162,7 @@ jobs:
           assert all(row['confidence'] >= .92 for row in anchors['anchors'])
           assert all(row['resolutionMethod'] == 'two-model-bulk-direct-visual-consensus' for row in anchors['anchors'])
           assert anchors['privacy']['repositoryContainsPixels'] is False
+          assert all(diagnostic['preflight'].values())
           assert progress['phase1']['confirmedAnchors'] == 36 + anchors['counts']['confirmed']
           assert progress['phase1']['confirmedAnchors'] <= 50
           assert all(progress['safety'].values())
@@ -167,7 +175,40 @@ jobs:
           )
           PY
 
+      - name: Publish failed non-pixel diagnostics to PR branch
+        if: failure() && github.event_name == 'pull_request'
+        env:
+          TARGET_BRANCH: ${{ github.head_ref }}
+        run: |
+          mkdir -p /tmp/geospatial-diagnostics/data/geospatial /tmp/geospatial-diagnostics/data/analysis-jobs /tmp/geospatial-diagnostics/data/batch-analysis
+          for file in \
+            data/geospatial/dada-shrines-27-stage1.json \
+            data/geospatial/dada-shrines-27-batch01-evidence-manifest.json \
+            data/geospatial/dada-shrines-27-anchors-batch01.json \
+            data/geospatial/geospatial-reconcile-diagnostic.json \
+            data/analysis-jobs/dada-shrines-27-geospatial.json \
+            data/batch-analysis/dada-shrines-27-geospatial-status.json; do
+            if [ -f "$file" ]; then
+              mkdir -p "/tmp/geospatial-diagnostics/$(dirname "$file")"
+              cp "$file" "/tmp/geospatial-diagnostics/$file"
+            fi
+          done
+          git reset --hard HEAD
+          git clean -fd
+          cp -a /tmp/geospatial-diagnostics/. .
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/geospatial data/analysis-jobs/dada-shrines-27-geospatial.json data/batch-analysis/dada-shrines-27-geospatial-status.json
+          if git diff --cached --quiet; then
+            echo 'No non-pixel failure diagnostics to publish.'
+            exit 0
+          fi
+          git commit -m 'Record shrine anchor reconcile diagnostics [skip ci]'
+          git pull --rebase origin "$TARGET_BRANCH"
+          git push origin "HEAD:$TARGET_BRANCH"
+
       - name: Commit non-pixel shrine anchor results
+        if: success()
         env:
           TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
         run: |
@@ -180,6 +221,7 @@ jobs:
             data/geospatial/dada-shrines-27-stage1.json \
             data/geospatial/dada-shrines-27-batch01-evidence-manifest.json \
             data/geospatial/dada-shrines-27-anchors-batch01.json \
+            data/geospatial/geospatial-reconcile-diagnostic.json \
             data/geospatial/geospatial-progress.json \
             data/batch-analysis/dada-shrines-27-geospatial-status.json
           if git diff --cached --quiet; then
