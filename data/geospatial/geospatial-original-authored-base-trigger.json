@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "requestedAt": "2026-07-23T16:31:00Z",
+  "runNonce": "original-authored-base-skeleton-v1-run-6-isolated",
+  "strategyPath": "data/geospatial/geospatial-original-authored-base-plan.json",
+  "inputs": {
+    "locationsPath": "data/locations.json",
+    "regionsPath": "data/regions.json",
+    "progressPath": "data/geospatial/geospatial-progress.json",
+    "calibrationControlPointsPath": "data/geospatial/geospatial-calibration-control-points.json"
+  },
+  "expected": {
+    "locations": 3430,
+    "regions": 10,
+    "confirmedAnchorCoveredRegions": 9,
+    "unanchoredRegionIds": [
+      "region-3304-awaji"
+    ],
+    "unassignedLocations": 5,
+    "confirmedAnchors": 50,
+    "densityGridSize": 32,
+    "nearestRegionNeighbors": 3
+  },
+  "outputs": {
+    "skeletonPath": "data/geospatial/geospatial-original-authored-base-skeleton.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  }
+}

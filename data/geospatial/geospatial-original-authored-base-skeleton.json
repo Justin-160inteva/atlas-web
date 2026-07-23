@@ -1,0 +1,2290 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T16:31:00Z",
+  "status": "original-authored-spatial-skeleton-ready",
+  "stage": "fully-original-map-spatial-construction",
+  "strategy": "fully-original-authored-visual-base",
+  "coordinateSystem": "atlas-normalized-top-left-origin",
+  "sourceHashes": {
+    "data/locations.json": "57b4c06065f46ebcd37033f13df0c5964b3b085ce92c23b6cdcdf5765a3cbdb2",
+    "data/regions.json": "48f03b1c513dc8e8f37a3087b560ab9b2c17469f714c2b04f776ccd50135191d",
+    "data/geospatial/geospatial-progress.json": "3806e74b41c12790d9c99cd8ba61aba7eda14bd15aed206ba6fb7596d19af6f6",
+    "data/geospatial/geospatial-calibration-control-points.json": "7910118d4af317ae39605750be1c5b13147889b6a237d8f08dc36a3d85152bde",
+    "data/geospatial/geospatial-original-authored-base-plan.json": "29c8541f6bb54fd734ddad9c29bf16239d7ab325e336921660009192927419fc"
+  },
+  "counts": {
+    "locations": 3430,
+    "regionAssignedLocations": 3425,
+    "unassignedLocations": 5,
+    "regions": 10,
+    "confirmedAnchorCoveredRegions": 9,
+    "confirmedAnchors": 50,
+    "regionAdjacencyEdges": 20,
+    "densityGridSize": 32
+  },
+  "globalConstructionEnvelope": {
+    "hull": [
+      {
+        "x": 0.0,
+        "y": 0.73764534
+      },
+      {
+        "x": 0.04078485,
+        "y": 0.13631889
+      },
+      {
+        "x": 0.36463713,
+        "y": 0.04505
+      },
+      {
+        "x": 0.49390427,
+        "y": 0.02372499
+      },
+      {
+        "x": 0.77180401,
+        "y": 0.0
+      },
+      {
+        "x": 0.89630446,
+        "y": 0.02518696
+      },
+      {
+        "x": 1.0,
+        "y": 0.13709461
+      },
+      {
+        "x": 0.98594389,
+        "y": 0.79746892
+      },
+      {
+        "x": 0.96346658,
+        "y": 0.86061267
+      },
+      {
+        "x": 0.52362877,
+        "y": 0.99598768
+      },
+      {
+        "x": 0.41939255,
+        "y": 1.0
+      },
+      {
+        "x": 0.41395545,
+        "y": 0.99758499
+      },
+      {
+        "x": 0.00093275,
+        "y": 0.74088192
+      }
+    ],
+    "area": 0.83775042,
+    "meaning": "point-distribution guide only; final coastline and silhouette must be authored"
+  },
+  "regions": [
+    {
+      "regionId": "region-3144-omi",
+      "regionTitle": "OMI",
+      "locationCount": 444,
+      "confirmedAnchorCount": 7,
+      "centroid": {
+        "x": 0.7678531,
+        "y": 0.69397763
+      },
+      "boundingBox": {
+        "minimumX": 0.48355897,
+        "maximumX": 0.98594389,
+        "minimumY": 0.52552134,
+        "maximumY": 0.91982977,
+        "width": 0.50238492,
+        "height": 0.39430843
+      },
+      "constructionHull": [
+        {
+          "x": 0.48355897,
+          "y": 0.6646363
+        },
+        {
+          "x": 0.58686084,
+          "y": 0.54030964
+        },
+        {
+          "x": 0.60563637,
+          "y": 0.52670893
+        },
+        {
+          "x": 0.64242118,
+          "y": 0.52552134
+        },
+        {
+          "x": 0.70364049,
+          "y": 0.53538898
+        },
+        {
+          "x": 0.86628097,
+          "y": 0.56922958
+        },
+        {
+          "x": 0.91135275,
+          "y": 0.61713494
+        },
+        {
+          "x": 0.96998705,
+          "y": 0.70062207
+        },
+        {
+          "x": 0.98594389,
+          "y": 0.79746892
+        },
+        {
+          "x": 0.96346658,
+          "y": 0.86061267
+        },
+        {
+          "x": 0.75402943,
+          "y": 0.91982977
+        }
+      ],
+      "constructionHullArea": 0.12812608,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-605032",
+          "x": 0.48355897,
+          "y": 0.6646363
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-438118",
+          "x": 0.98594389,
+          "y": 0.79746892
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-436751",
+          "x": 0.64242118,
+          "y": 0.52552134
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-435926",
+          "x": 0.75402943,
+          "y": 0.91982977
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    },
+    {
+      "regionId": "region-3145-iga",
+      "regionTitle": "IGA",
+      "locationCount": 187,
+      "confirmedAnchorCount": 2,
+      "centroid": {
+        "x": 0.80924939,
+        "y": 0.4705355
+      },
+      "boundingBox": {
+        "minimumX": 0.7328687,
+        "maximumX": 0.89673432,
+        "minimumY": 0.36931051,
+        "maximumY": 0.5252673,
+        "width": 0.16386562,
+        "height": 0.15595678
+      },
+      "constructionHull": [
+        {
+          "x": 0.7328687,
+          "y": 0.4418244
+        },
+        {
+          "x": 0.7347893,
+          "y": 0.43135692
+        },
+        {
+          "x": 0.74270727,
+          "y": 0.41491972
+        },
+        {
+          "x": 0.75115399,
+          "y": 0.40092232
+        },
+        {
+          "x": 0.75169355,
+          "y": 0.4003181
+        },
+        {
+          "x": 0.81505986,
+          "y": 0.36931051
+        },
+        {
+          "x": 0.84861534,
+          "y": 0.39284741
+        },
+        {
+          "x": 0.89673432,
+          "y": 0.48912209
+        },
+        {
+          "x": 0.89005583,
+          "y": 0.49725107
+        },
+        {
+          "x": 0.85744554,
+          "y": 0.52137727
+        },
+        {
+          "x": 0.85657235,
+          "y": 0.52196359
+        },
+        {
+          "x": 0.81658952,
+          "y": 0.5252673
+        },
+        {
+          "x": 0.78677947,
+          "y": 0.51827996
+        },
+        {
+          "x": 0.76046514,
+          "y": 0.50082008
+        },
+        {
+          "x": 0.74762918,
+          "y": 0.48016415
+        }
+      ],
+      "constructionHullArea": 0.01711482,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-438326",
+          "x": 0.7328687,
+          "y": 0.4418244
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-434411",
+          "x": 0.89673432,
+          "y": 0.48912209
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-437221",
+          "x": 0.81505986,
+          "y": 0.36931051
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-435107",
+          "x": 0.81658952,
+          "y": 0.5252673
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    },
+    {
+      "regionId": "region-3146-wakasa",
+      "regionTitle": "WAKASA",
+      "locationCount": 305,
+      "confirmedAnchorCount": 2,
+      "centroid": {
+        "x": 0.45097103,
+        "y": 0.85626791
+      },
+      "boundingBox": {
+        "minimumX": 0.24090474,
+        "maximumX": 0.6583676,
+        "minimumY": 0.68855364,
+        "maximumY": 1.0,
+        "width": 0.41746286,
+        "height": 0.31144636
+      },
+      "constructionHull": [
+        {
+          "x": 0.24090474,
+          "y": 0.80558689
+        },
+        {
+          "x": 0.24194965,
+          "y": 0.7455382
+        },
+        {
+          "x": 0.25189618,
+          "y": 0.6922576
+        },
+        {
+          "x": 0.48801838,
+          "y": 0.68855364
+        },
+        {
+          "x": 0.48830342,
+          "y": 0.68874761
+        },
+        {
+          "x": 0.50192732,
+          "y": 0.69841334
+        },
+        {
+          "x": 0.62607147,
+          "y": 0.85612792
+        },
+        {
+          "x": 0.6583676,
+          "y": 0.94760378
+        },
+        {
+          "x": 0.52362877,
+          "y": 0.99598768
+        },
+        {
+          "x": 0.41939255,
+          "y": 1.0
+        },
+        {
+          "x": 0.41395545,
+          "y": 0.99758499
+        },
+        {
+          "x": 0.24280572,
+          "y": 0.81216119
+        }
+      ],
+      "constructionHullArea": 0.09055573,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-454752",
+          "x": 0.24090474,
+          "y": 0.80558689
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-435927",
+          "x": 0.6583676,
+          "y": 0.94760378
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-501463",
+          "x": 0.48801838,
+          "y": 0.68855364
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-437192",
+          "x": 0.41939255,
+          "y": 1.0
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    },
+    {
+      "regionId": "region-3147-izumi-settsu",
+      "regionTitle": "IZUMI SETTSU",
+      "locationCount": 494,
+      "confirmedAnchorCount": 4,
+      "centroid": {
+        "x": 0.39520731,
+        "y": 0.31895593
+      },
+      "boundingBox": {
+        "minimumX": 0.05606438,
+        "maximumX": 0.93776827,
+        "minimumY": 0.19199896,
+        "maximumY": 0.83842842,
+        "width": 0.88170388,
+        "height": 0.64642946
+      },
+      "constructionHull": [
+        {
+          "x": 0.05606438,
+          "y": 0.66194028
+        },
+        {
+          "x": 0.28133111,
+          "y": 0.20879032
+        },
+        {
+          "x": 0.35287491,
+          "y": 0.19199896
+        },
+        {
+          "x": 0.45573946,
+          "y": 0.21907511
+        },
+        {
+          "x": 0.49831661,
+          "y": 0.23467301
+        },
+        {
+          "x": 0.86806853,
+          "y": 0.50866176
+        },
+        {
+          "x": 0.93776827,
+          "y": 0.83842842
+        },
+        {
+          "x": 0.43983847,
+          "y": 0.81446472
+        }
+      ],
+      "constructionHullArea": 0.36723228,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-454302",
+          "x": 0.05606438,
+          "y": 0.66194028
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-454299",
+          "x": 0.93776827,
+          "y": 0.83842842
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-436378",
+          "x": 0.35287491,
+          "y": 0.19199896
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-454299",
+          "x": 0.93776827,
+          "y": 0.83842842
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    },
+    {
+      "regionId": "region-3148-yamashiro",
+      "regionTitle": "YAMASHIRO",
+      "locationCount": 358,
+      "confirmedAnchorCount": 11,
+      "centroid": {
+        "x": 0.4336173,
+        "y": 0.54926414
+      },
+      "boundingBox": {
+        "minimumX": 0.29761301,
+        "maximumX": 0.70094108,
+        "minimumY": 0.43585949,
+        "maximumY": 0.68291675,
+        "width": 0.40332807,
+        "height": 0.24705726
+      },
+      "constructionHull": [
+        {
+          "x": 0.29761301,
+          "y": 0.60273914
+        },
+        {
+          "x": 0.33572872,
+          "y": 0.48519288
+        },
+        {
+          "x": 0.3933694,
+          "y": 0.45966044
+        },
+        {
+          "x": 0.41547127,
+          "y": 0.45086308
+        },
+        {
+          "x": 0.64326906,
+          "y": 0.43585949
+        },
+        {
+          "x": 0.69433628,
+          "y": 0.47135382
+        },
+        {
+          "x": 0.69898838,
+          "y": 0.4758202
+        },
+        {
+          "x": 0.70094108,
+          "y": 0.47924409
+        },
+        {
+          "x": 0.45965198,
+          "y": 0.66804872
+        },
+        {
+          "x": 0.35723744,
+          "y": 0.68291675
+        },
+        {
+          "x": 0.33753597,
+          "y": 0.66387339
+        }
+      ],
+      "constructionHullArea": 0.06082063,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-438308",
+          "x": 0.29761301,
+          "y": 0.60273914
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-439253",
+          "x": 0.70094108,
+          "y": 0.47924409
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-439246",
+          "x": 0.64326906,
+          "y": 0.43585949
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-436359",
+          "x": 0.35723744,
+          "y": 0.68291675
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    },
+    {
+      "regionId": "region-3149-harima",
+      "regionTitle": "HARIMA",
+      "locationCount": 373,
+      "confirmedAnchorCount": 4,
+      "centroid": {
+        "x": 0.17426383,
+        "y": 0.38505212
+      },
+      "boundingBox": {
+        "minimumX": 0.0287514,
+        "maximumX": 0.33084668,
+        "minimumY": 0.29656486,
+        "maximumY": 0.48493607,
+        "width": 0.30209528,
+        "height": 0.18837121
+      },
+      "constructionHull": [
+        {
+          "x": 0.0287514,
+          "y": 0.3456367
+        },
+        {
+          "x": 0.02903333,
+          "y": 0.33979736
+        },
+        {
+          "x": 0.0460405,
+          "y": 0.31707018
+        },
+        {
+          "x": 0.04806484,
+          "y": 0.31594424
+        },
+        {
+          "x": 0.1848447,
+          "y": 0.29656486
+        },
+        {
+          "x": 0.18777374,
+          "y": 0.29685782
+        },
+        {
+          "x": 0.21531681,
+          "y": 0.30391226
+        },
+        {
+          "x": 0.32219166,
+          "y": 0.37353321
+        },
+        {
+          "x": 0.33084668,
+          "y": 0.39397255
+        },
+        {
+          "x": 0.31245618,
+          "y": 0.42116766
+        },
+        {
+          "x": 0.28913102,
+          "y": 0.44707117
+        },
+        {
+          "x": 0.20265744,
+          "y": 0.47104182
+        },
+        {
+          "x": 0.12324622,
+          "y": 0.48493607
+        },
+        {
+          "x": 0.04409792,
+          "y": 0.4842132
+        }
+      ],
+      "constructionHullArea": 0.04311872,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-438158",
+          "x": 0.0287514,
+          "y": 0.3456367
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-438431",
+          "x": 0.33084668,
+          "y": 0.39397255
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-437611",
+          "x": 0.1848447,
+          "y": 0.29656486
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-440256",
+          "x": 0.12324622,
+          "y": 0.48493607
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    },
+    {
+      "regionId": "region-3150-tamba",
+      "regionTitle": "TAMBA",
+      "locationCount": 317,
+      "confirmedAnchorCount": 2,
+      "centroid": {
+        "x": 0.13133585,
+        "y": 0.60662112
+      },
+      "boundingBox": {
+        "minimumX": 0.0,
+        "maximumX": 0.28536137,
+        "minimumY": 0.48208207,
+        "maximumY": 0.74469911,
+        "width": 0.28536137,
+        "height": 0.26261704
+      },
+      "constructionHull": [
+        {
+          "x": 0.0,
+          "y": 0.73764534
+        },
+        {
+          "x": 0.02217237,
+          "y": 0.5853312
+        },
+        {
+          "x": 0.02973486,
+          "y": 0.57419935
+        },
+        {
+          "x": 0.10814006,
+          "y": 0.49632688
+        },
+        {
+          "x": 0.21137608,
+          "y": 0.48208207
+        },
+        {
+          "x": 0.27975806,
+          "y": 0.51886012
+        },
+        {
+          "x": 0.28536137,
+          "y": 0.56329742
+        },
+        {
+          "x": 0.21872085,
+          "y": 0.68052554
+        },
+        {
+          "x": 0.1737706,
+          "y": 0.72370687
+        },
+        {
+          "x": 0.00731349,
+          "y": 0.74469911
+        },
+        {
+          "x": 0.00093275,
+          "y": 0.74088192
+        }
+      ],
+      "constructionHullArea": 0.05187001,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-450460",
+          "x": 0.0,
+          "y": 0.73764534
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-438450",
+          "x": 0.28536137,
+          "y": 0.56329742
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-450441",
+          "x": 0.21137608,
+          "y": 0.48208207
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-438442",
+          "x": 0.00731349,
+          "y": 0.74469911
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    },
+    {
+      "regionId": "region-3151-yamato",
+      "regionTitle": "YAMATO",
+      "locationCount": 298,
+      "confirmedAnchorCount": 7,
+      "centroid": {
+        "x": 0.69771597,
+        "y": 0.31313027
+      },
+      "boundingBox": {
+        "minimumX": 0.59403948,
+        "maximumX": 0.85233784,
+        "minimumY": 0.17879629,
+        "maximumY": 0.41592369,
+        "width": 0.25829836,
+        "height": 0.2371274
+      },
+      "constructionHull": [
+        {
+          "x": 0.59403948,
+          "y": 0.36099065
+        },
+        {
+          "x": 0.60962679,
+          "y": 0.28648348
+        },
+        {
+          "x": 0.62902369,
+          "y": 0.19761909
+        },
+        {
+          "x": 0.63118033,
+          "y": 0.19647128
+        },
+        {
+          "x": 0.68564377,
+          "y": 0.18929828
+        },
+        {
+          "x": 0.83290298,
+          "y": 0.17879629
+        },
+        {
+          "x": 0.85211926,
+          "y": 0.21817381
+        },
+        {
+          "x": 0.85233784,
+          "y": 0.21928741
+        },
+        {
+          "x": 0.83516423,
+          "y": 0.29234342
+        },
+        {
+          "x": 0.80347857,
+          "y": 0.33215872
+        },
+        {
+          "x": 0.70035783,
+          "y": 0.41374523
+        },
+        {
+          "x": 0.69151964,
+          "y": 0.41592369
+        },
+        {
+          "x": 0.6165351,
+          "y": 0.40503972
+        },
+        {
+          "x": 0.59822311,
+          "y": 0.38221889
+        }
+      ],
+      "constructionHullArea": 0.04431923,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-438789",
+          "x": 0.59403948,
+          "y": 0.36099065
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-439601",
+          "x": 0.85233784,
+          "y": 0.21928741
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-449349",
+          "x": 0.83290298,
+          "y": 0.17879629
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-438333",
+          "x": 0.69151964,
+          "y": 0.41592369
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    },
+    {
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "locationCount": 384,
+      "confirmedAnchorCount": 11,
+      "centroid": {
+        "x": 0.63287948,
+        "y": 0.10514337
+      },
+      "boundingBox": {
+        "minimumX": 0.33818579,
+        "maximumX": 1.0,
+        "minimumY": 0.0,
+        "maximumY": 0.66508601,
+        "width": 0.66181421,
+        "height": 0.66508601
+      },
+      "constructionHull": [
+        {
+          "x": 0.33818579,
+          "y": 0.0932886
+        },
+        {
+          "x": 0.34915664,
+          "y": 0.05054782
+        },
+        {
+          "x": 0.35298468,
+          "y": 0.04915038
+        },
+        {
+          "x": 0.36463713,
+          "y": 0.04505
+        },
+        {
+          "x": 0.49390427,
+          "y": 0.02372499
+        },
+        {
+          "x": 0.77180401,
+          "y": 0.0
+        },
+        {
+          "x": 0.89630446,
+          "y": 0.02518696
+        },
+        {
+          "x": 1.0,
+          "y": 0.13709461
+        },
+        {
+          "x": 0.97757856,
+          "y": 0.1813059
+        },
+        {
+          "x": 0.48271912,
+          "y": 0.66508601
+        },
+        {
+          "x": 0.35015879,
+          "y": 0.15919753
+        }
+      ],
+      "constructionHullArea": 0.24988492,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-434973",
+          "x": 0.33818579,
+          "y": 0.0932886
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-463510",
+          "x": 1.0,
+          "y": 0.13709461
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-437548",
+          "x": 0.77180401,
+          "y": 0.0
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-605027",
+          "x": 0.48271912,
+          "y": 0.66508601
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    },
+    {
+      "regionId": "region-3304-awaji",
+      "regionTitle": "AWAJI",
+      "locationCount": 265,
+      "confirmedAnchorCount": 0,
+      "centroid": {
+        "x": 0.12310138,
+        "y": 0.17821708
+      },
+      "boundingBox": {
+        "minimumX": 0.04078485,
+        "maximumX": 0.16220879,
+        "minimumY": 0.12612262,
+        "maximumY": 0.24171303,
+        "width": 0.12142394,
+        "height": 0.11559041
+      },
+      "constructionHull": [
+        {
+          "x": 0.04078485,
+          "y": 0.13631889
+        },
+        {
+          "x": 0.09088356,
+          "y": 0.12612262
+        },
+        {
+          "x": 0.13541974,
+          "y": 0.13767879
+        },
+        {
+          "x": 0.15140035,
+          "y": 0.14540096
+        },
+        {
+          "x": 0.16178945,
+          "y": 0.15249025
+        },
+        {
+          "x": 0.16220879,
+          "y": 0.15695349
+        },
+        {
+          "x": 0.16115248,
+          "y": 0.23226297
+        },
+        {
+          "x": 0.14656606,
+          "y": 0.24088949
+        },
+        {
+          "x": 0.14041269,
+          "y": 0.24171303
+        },
+        {
+          "x": 0.11252128,
+          "y": 0.2150406
+        },
+        {
+          "x": 0.07018446,
+          "y": 0.1722773
+        }
+      ],
+      "constructionHullArea": 0.00792361,
+      "extremeGuides": {
+        "minimumX": {
+          "locationId": "location-mapgenie-481168",
+          "x": 0.04078485,
+          "y": 0.13631889
+        },
+        "maximumX": {
+          "locationId": "location-mapgenie-481165",
+          "x": 0.16220879,
+          "y": 0.15695349
+        },
+        "minimumY": {
+          "locationId": "location-mapgenie-518206",
+          "x": 0.09088356,
+          "y": 0.12612262
+        },
+        "maximumY": {
+          "locationId": "location-mapgenie-503827",
+          "x": 0.14041269,
+          "y": 0.24171303
+        }
+      },
+      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
+    }
+  ],
+  "anchorCoveredRegionIds": [
+    "region-3144-omi",
+    "region-3145-iga",
+    "region-3146-wakasa",
+    "region-3147-izumi-settsu",
+    "region-3148-yamashiro",
+    "region-3149-harima",
+    "region-3150-tamba",
+    "region-3151-yamato",
+    "region-3152-kii"
+  ],
+  "unanchoredRegionIds": [
+    "region-3304-awaji"
+  ],
+  "unassignedLocationGuides": [
+    {
+      "locationId": "location-mapgenie-479929",
+      "title": "News from Hattori Hanzo",
+      "categoryId": "category-12341-quest",
+      "x": 0.51733454,
+      "y": 0.30912601,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-479932",
+      "title": "The Puppet Show",
+      "categoryId": "category-12341-quest",
+      "x": 0.24999967,
+      "y": 0.3147586,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-481173",
+      "title": "Painting Memories",
+      "categoryId": "category-12341-quest",
+      "x": 0.51823943,
+      "y": 0.31126713,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-605004",
+      "title": "Black Tides",
+      "categoryId": "category-12341-quest",
+      "x": 0.34626155,
+      "y": 0.06273667,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-605006",
+      "title": "Horizon",
+      "categoryId": "category-12352-rift",
+      "x": 0.78012489,
+      "y": 0.01950241,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    }
+  ],
+  "compositionAdjacency": [
+    {
+      "fromRegionId": "region-3144-omi",
+      "toRegionId": "region-3145-iga",
+      "centroidDistance": 0.22724445,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3144-omi",
+      "toRegionId": "region-3146-wakasa",
+      "centroidDistance": 0.35602301,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3144-omi",
+      "toRegionId": "region-3148-yamashiro",
+      "centroidDistance": 0.36421911,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3145-iga",
+      "toRegionId": "region-3148-yamashiro",
+      "centroidDistance": 0.38379377,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3145-iga",
+      "toRegionId": "region-3151-yamato",
+      "centroidDistance": 0.19291477,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3145-iga",
+      "toRegionId": "region-3152-kii",
+      "centroidDistance": 0.40573113,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3146-wakasa",
+      "toRegionId": "region-3148-yamashiro",
+      "centroidDistance": 0.30749385,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3146-wakasa",
+      "toRegionId": "region-3150-tamba",
+      "centroidDistance": 0.40557388,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3147-izumi-settsu",
+      "toRegionId": "region-3148-yamashiro",
+      "centroidDistance": 0.23348919,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3147-izumi-settsu",
+      "toRegionId": "region-3149-harima",
+      "centroidDistance": 0.23061814,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3147-izumi-settsu",
+      "toRegionId": "region-3150-tamba",
+      "centroidDistance": 0.39035805,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3147-izumi-settsu",
+      "toRegionId": "region-3151-yamato",
+      "centroidDistance": 0.30256475,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3147-izumi-settsu",
+      "toRegionId": "region-3152-kii",
+      "centroidDistance": 0.3196934,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3147-izumi-settsu",
+      "toRegionId": "region-3304-awaji",
+      "centroidDistance": 0.30634794,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3148-yamashiro",
+      "toRegionId": "region-3149-harima",
+      "centroidDistance": 0.30696874,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3148-yamashiro",
+      "toRegionId": "region-3150-tamba",
+      "centroidDistance": 0.30767499,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3149-harima",
+      "toRegionId": "region-3150-tamba",
+      "centroidDistance": 0.22568924,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3149-harima",
+      "toRegionId": "region-3304-awaji",
+      "centroidDistance": 0.21306884,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3150-tamba",
+      "toRegionId": "region-3304-awaji",
+      "centroidDistance": 0.42848317,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3151-yamato",
+      "toRegionId": "region-3152-kii",
+      "centroidDistance": 0.21785849,
+      "meaning": "composition-neighbor suggestion only"
+    }
+  ],
+  "locationDensityGrid": {
+    "size": 32,
+    "origin": "top-left",
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        7,
+        0,
+        3,
+        3,
+        1,
+        2,
+        3,
+        3,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        0,
+        5,
+        8,
+        1,
+        2,
+        2,
+        8,
+        4,
+        0,
+        2,
+        4,
+        0,
+        1,
+        7,
+        1,
+        3,
+        6,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        23,
+        2,
+        0,
+        2,
+        0,
+        0,
+        2,
+        1,
+        4,
+        3,
+        13,
+        1,
+        3,
+        5,
+        7,
+        0,
+        10,
+        6,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        16,
+        0,
+        2,
+        1,
+        0,
+        4,
+        0,
+        0,
+        5,
+        15,
+        2,
+        4,
+        1,
+        1,
+        9,
+        2,
+        4,
+        0,
+        1,
+        5,
+        0
+      ],
+      [
+        0,
+        5,
+        25,
+        7,
+        45,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        1,
+        2,
+        10,
+        0,
+        5,
+        0,
+        4,
+        0,
+        11,
+        3,
+        0,
+        1,
+        3,
+        2,
+        0,
+        5,
+        2,
+        2,
+        8,
+        6
+      ],
+      [
+        0,
+        0,
+        14,
+        46,
+        44,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        3,
+        19,
+        0,
+        0,
+        4,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        12,
+        3,
+        1,
+        4,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        21,
+        10,
+        0,
+        0,
+        0,
+        0,
+        5,
+        5,
+        9,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        2,
+        5,
+        3,
+        6,
+        8,
+        4,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        38,
+        4,
+        0,
+        0,
+        0,
+        5,
+        30,
+        17,
+        6,
+        3,
+        12,
+        6,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        6,
+        4,
+        10,
+        4,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        21,
+        14,
+        4,
+        13,
+        1,
+        2,
+        0,
+        2,
+        0,
+        0,
+        5,
+        7,
+        5,
+        2,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        6,
+        0,
+        6,
+        10,
+        7,
+        43,
+        1,
+        2,
+        1,
+        7,
+        9,
+        0,
+        1,
+        15,
+        11,
+        2,
+        12,
+        1,
+        3,
+        6,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        9,
+        5,
+        0,
+        1,
+        22,
+        9,
+        7,
+        9,
+        24,
+        3,
+        6,
+        10,
+        21,
+        4,
+        5,
+        17,
+        1,
+        1,
+        2,
+        5,
+        5,
+        4,
+        8,
+        18,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        20,
+        12,
+        9,
+        2,
+        12,
+        11,
+        10,
+        5,
+        6,
+        8,
+        9,
+        3,
+        2,
+        2,
+        1,
+        2,
+        0,
+        37,
+        3,
+        17,
+        3,
+        9,
+        5,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        19,
+        22,
+        0,
+        24,
+        8,
+        27,
+        14,
+        5,
+        9,
+        5,
+        4,
+        4,
+        7,
+        9,
+        2,
+        1,
+        0,
+        11,
+        4,
+        11,
+        8,
+        0,
+        2,
+        9,
+        4,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6,
+        3,
+        1,
+        6,
+        3,
+        0,
+        15,
+        12,
+        1,
+        4,
+        0,
+        10,
+        19,
+        4,
+        3,
+        0,
+        0,
+        0,
+        2,
+        2,
+        4,
+        4,
+        14,
+        7,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        10,
+        17,
+        6,
+        4,
+        3,
+        1,
+        1,
+        7,
+        0,
+        0,
+        1,
+        30,
+        0,
+        2,
+        0,
+        0,
+        1,
+        3,
+        4,
+        1,
+        0,
+        5,
+        8,
+        5,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        0,
+        3,
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        2,
+        3,
+        2,
+        21,
+        12,
+        6,
+        3,
+        4,
+        1,
+        0,
+        3,
+        1,
+        4,
+        1,
+        19,
+        11,
+        6,
+        13,
+        4,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        2,
+        1,
+        5,
+        7,
+        5,
+        2,
+        0,
+        0,
+        6,
+        4,
+        18,
+        8,
+        2,
+        7,
+        1,
+        0,
+        2,
+        4,
+        0,
+        0,
+        0,
+        2,
+        9,
+        19,
+        32,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        10,
+        1,
+        5,
+        3,
+        31,
+        15,
+        0,
+        3,
+        8,
+        4,
+        25,
+        6,
+        10,
+        1,
+        0,
+        14,
+        14,
+        2,
+        3,
+        3,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        9,
+        22,
+        6,
+        2,
+        6,
+        15,
+        2,
+        7,
+        6,
+        3,
+        4,
+        2,
+        13,
+        29,
+        7,
+        4,
+        7,
+        2,
+        1,
+        2,
+        1,
+        1,
+        0,
+        7,
+        3,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        1,
+        1,
+        0,
+        2,
+        6,
+        0,
+        0,
+        4,
+        2,
+        6,
+        14,
+        11,
+        10,
+        3,
+        0,
+        0,
+        3,
+        3,
+        1,
+        0,
+        1,
+        3,
+        3,
+        9,
+        12,
+        3,
+        2,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        2,
+        2,
+        33,
+        2,
+        0,
+        0,
+        0,
+        0,
+        4,
+        3,
+        3,
+        7,
+        7,
+        0,
+        1,
+        11,
+        2,
+        12,
+        26,
+        0,
+        0,
+        1,
+        7,
+        9,
+        20,
+        39,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        5,
+        5,
+        9,
+        0,
+        8,
+        0,
+        3,
+        0,
+        0,
+        0,
+        1,
+        10,
+        3,
+        2,
+        3,
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        4,
+        0,
+        0,
+        0
+      ],
+      [
+        14,
+        25,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        2,
+        1,
+        0,
+        1,
+        0,
+        3,
+        0,
+        8,
+        1,
+        0,
+        4,
+        0,
+        0,
+        1,
+        2,
+        0,
+        9,
+        0,
+        4,
+        2,
+        2,
+        5,
+        0,
+        1
+      ],
+      [
+        7,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        3,
+        3,
+        10,
+        2,
+        3,
+        0,
+        5,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        2,
+        18,
+        4,
+        0,
+        6,
+        0,
+        4,
+        0,
+        1,
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        0,
+        1,
+        2,
+        0,
+        0,
+        4,
+        4,
+        0,
+        0,
+        0,
+        1,
+        6,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        4,
+        2,
+        1,
+        0,
+        24,
+        2,
+        4,
+        1,
+        1,
+        1,
+        8,
+        0,
+        1,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        29,
+        4,
+        9,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        37,
+        4,
+        0,
+        4,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        8,
+        4,
+        0,
+        2,
+        6,
+        4,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        6,
+        2,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        3,
+        2,
+        1,
+        9,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        11,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        1,
+        5,
+        2,
+        2,
+        11,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        1,
+        0,
+        4,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        2,
+        5,
+        26,
+        3,
+        3,
+        4,
+        8,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        9,
+        1,
+        12,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "meaning": "location density guide for authored visual hierarchy; not terrain evidence"
+  },
+  "nextArtStage": {
+    "status": "ready_for_original_regional_composition",
+    "requiredDecisions": [
+      "classify or intentionally retain the five unassigned global locations",
+      "author original outer land silhouette and water negative space",
+      "author ten region masses without tracing third-party map boundaries",
+      "define original terrain hierarchy and travel corridors",
+      "approve a repository-owned editable source format before raster export"
+    ]
+  },
+  "safety": {
+    "thirdPartyMapPixelsRead": false,
+    "thirdPartyMapVectorsRead": false,
+    "legacyRenderBaseUsedForGeometry": false,
+    "regionsJsonGeometryUsed": false,
+    "finalCoastlineClaimed": false,
+    "finalRegionBoundariesClaimed": false,
+    "pixelCoordinatesInvented": false,
+    "repositoryPixelsModified": false
+  }
+}
