@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "reviewStrategyVersion": 2,
-  "generatedAt": "2026-07-23T01:54:48.476527Z",
+  "generatedAt": "2026-07-23T01:58:09.506585Z",
   "stage": "shrine-anchor-batch01-high-resolution-event-batches",
   "status": "partial-reviewer-pools",
   "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
@@ -18,11 +18,11 @@
     "confirmed": 0,
     "unresolved": 14,
     "candidateShrines": 32,
-    "successfulReviewerPools": 0,
-    "failedReviewerPools": 2,
-    "requestedBatchCallsThisRun": 3,
+    "successfulReviewerPools": 1,
+    "failedReviewerPools": 1,
+    "requestedBatchCallsThisRun": 7,
     "reusedBatchCallsThisRun": 0,
-    "persistedBatchPackets": 0,
+    "persistedBatchPackets": 5,
     "duplicateCandidateIdsRejected": 0
   },
   "policy": {
@@ -43,7 +43,7 @@
         "minimumCompleteReviewers": 1
       }
     ],
-    "eventsPerRequest": 4,
+    "eventsPerRequest": 3,
     "framesPerEvent": 3,
     "minimumConfidencePerReviewerPool": 0.92,
     "requireTwoIndependentReviewerPools": true,
@@ -52,8 +52,392 @@
     "rejectGlobalDuplicateAssignments": true,
     "repositoryContainsEvidencePixels": false
   },
-  "selectedReviewerPools": [],
-  "batchPackets": [],
+  "selectedReviewerPools": [
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "reviews": [
+        {
+          "slot": 1,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "三张图均无任何可辨识的地点名称或地图弹窗文字，仅为视频开头和标题画面"
+        },
+        {
+          "slot": 2,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-436521",
+          "visibleLabel": "上三栖高地",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 1.0,
+          "reasonZhCN": "三张图均显示地图弹窗文字“上三栖高地”，地图右侧显示区域“纪伊”"
+        },
+        {
+          "slot": 3,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "高原熊野神社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 第二张图地图弹窗清晰显示“高原熊野神社”，地图右侧显示区域“纪伊”",
+          "duplicateSelectionRejected": "location-mapgenie-437483"
+        },
+        {
+          "slot": 4,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "葛原熊野神社",
+          "regionClue": "",
+          "evidenceType": "direct_map_label",
+          "confidence": 0.6,
+          "reasonZhCN": "从E04的三张图中均可直接读取神社名称“葛原熊野神社”，但该名称不在候选列表中，故无法匹配具体候选ID。"
+        },
+        {
+          "slot": 5,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-434366",
+          "visibleLabel": "地图上显示“纪伊”区域及神社图标",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.95,
+          "reasonZhCN": "E05最后一张图为地图界面，显示区域“纪伊”，且神社图标位置与候选中IGA区域的“Aekuni Shrine”相符，结合前两张图神社外观推断为该神社。"
+        },
+        {
+          "slot": 6,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "熊野那智大社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 E06前三张图均为地图界面，弹窗显示神社名称“熊野那智大社”，且位于“纪伊”区域，候选中对应“Kumano Nachi Taisha”。",
+          "duplicateSelectionRejected": "location-mapgenie-437483"
+        },
+        {
+          "slot": 7,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "神仓神社瞭望台",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E07的三张图中间图清楚读取到地图弹窗文字“神仓神社瞭望台”，区域标注为“纪伊”"
+        },
+        {
+          "slot": 8,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "熊野速玉大社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 从E08的三张图中间图清楚读取到地图弹窗文字“熊野速玉大社”，区域标注为“纪伊”，对应候选中Kumano Hongu Taisha",
+          "duplicateSelectionRejected": "location-mapgenie-437483"
+        },
+        {
+          "slot": 9,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "如意轮寺瀑布",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E09的三张图中间图清楚读取到地图弹窗文字“如意轮寺瀑布”，区域标注为“大和”，但候选列表中无对应地点，故selectedLocationId为null"
+        },
+        {
+          "slot": 10,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "天王寺塔",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E10事件的三张图中，第二张图弹窗显示了“天王寺塔”，地图右侧显示区域文字“大和”，但该名称不在候选神社列表中，故无法匹配具体候选ID。"
+        },
+        {
+          "slot": 11,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "住吉神社",
+          "regionClue": "",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E11事件的三张图中，第二张图弹窗显示“住吉神社”，但地图上无明显区域文字，且该名称不在候选神社列表中，无法匹配具体候选ID。"
+        },
+        {
+          "slot": 12,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "兴福寺五重塔",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E12事件的三张图中，第二张图弹窗显示“兴福寺五重塔”，地图右侧显示区域文字“大和”，但该名称不在候选神社列表中，无法匹配具体候选ID。"
+        },
+        {
+          "slot": 13,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "日出神社",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E13代表图中弹窗直接读取到“日出神社”和右侧地图区域文字“大和”"
+        },
+        {
+          "slot": 14,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "春日神社",
+          "regionClue": "伊贺",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E14代表图中弹窗直接读取到“春日神社”和右侧地图区域文字“伊贺”"
+        }
+      ],
+      "selectedAt": "2026-07-23T01:57:59.994455Z"
+    }
+  ],
+  "batchPackets": [
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        1,
+        2,
+        3
+      ],
+      "reviewedAt": "2026-07-23T01:57:12.357101Z",
+      "source": "fresh-high-resolution-event-batch",
+      "reviews": [
+        {
+          "slot": 1,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "三张图均无任何可辨识的地点名称或地图弹窗文字，仅为视频开头和标题画面"
+        },
+        {
+          "slot": 2,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-436521",
+          "visibleLabel": "上三栖高地",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 1.0,
+          "reasonZhCN": "三张图均显示地图弹窗文字“上三栖高地”，地图右侧显示区域“纪伊”"
+        },
+        {
+          "slot": 3,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-437483",
+          "visibleLabel": "高原熊野神社",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 1.0,
+          "reasonZhCN": "第二张图地图弹窗清晰显示“高原熊野神社”，地图右侧显示区域“纪伊”"
+        }
+      ]
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        4,
+        5,
+        6
+      ],
+      "reviewedAt": "2026-07-23T01:57:25.856878Z",
+      "source": "fresh-high-resolution-event-batch",
+      "reviews": [
+        {
+          "slot": 4,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "葛原熊野神社",
+          "regionClue": "",
+          "evidenceType": "direct_map_label",
+          "confidence": 0.6,
+          "reasonZhCN": "从E04的三张图中均可直接读取神社名称“葛原熊野神社”，但该名称不在候选列表中，故无法匹配具体候选ID。"
+        },
+        {
+          "slot": 5,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-434366",
+          "visibleLabel": "地图上显示“纪伊”区域及神社图标",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.95,
+          "reasonZhCN": "E05最后一张图为地图界面，显示区域“纪伊”，且神社图标位置与候选中IGA区域的“Aekuni Shrine”相符，结合前两张图神社外观推断为该神社。"
+        },
+        {
+          "slot": 6,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-437483",
+          "visibleLabel": "熊野那智大社",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.95,
+          "reasonZhCN": "E06前三张图均为地图界面，弹窗显示神社名称“熊野那智大社”，且位于“纪伊”区域，候选中对应“Kumano Nachi Taisha”。"
+        }
+      ]
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        7,
+        8,
+        9
+      ],
+      "reviewedAt": "2026-07-23T01:57:38.868273Z",
+      "source": "fresh-high-resolution-event-batch",
+      "reviews": [
+        {
+          "slot": 7,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "神仓神社瞭望台",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E07的三张图中间图清楚读取到地图弹窗文字“神仓神社瞭望台”，区域标注为“纪伊”"
+        },
+        {
+          "slot": 8,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-437483",
+          "visibleLabel": "熊野速玉大社",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 1.0,
+          "reasonZhCN": "从E08的三张图中间图清楚读取到地图弹窗文字“熊野速玉大社”，区域标注为“纪伊”，对应候选中Kumano Hongu Taisha"
+        },
+        {
+          "slot": 9,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "如意轮寺瀑布",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E09的三张图中间图清楚读取到地图弹窗文字“如意轮寺瀑布”，区域标注为“大和”，但候选列表中无对应地点，故selectedLocationId为null"
+        }
+      ]
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        10,
+        11,
+        12
+      ],
+      "reviewedAt": "2026-07-23T01:57:49.812812Z",
+      "source": "fresh-high-resolution-event-batch",
+      "reviews": [
+        {
+          "slot": 10,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "天王寺塔",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E10事件的三张图中，第二张图弹窗显示了“天王寺塔”，地图右侧显示区域文字“大和”，但该名称不在候选神社列表中，故无法匹配具体候选ID。"
+        },
+        {
+          "slot": 11,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "住吉神社",
+          "regionClue": "",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E11事件的三张图中，第二张图弹窗显示“住吉神社”，但地图上无明显区域文字，且该名称不在候选神社列表中，无法匹配具体候选ID。"
+        },
+        {
+          "slot": 12,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "兴福寺五重塔",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E12事件的三张图中，第二张图弹窗显示“兴福寺五重塔”，地图右侧显示区域文字“大和”，但该名称不在候选神社列表中，无法匹配具体候选ID。"
+        }
+      ]
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        13,
+        14
+      ],
+      "reviewedAt": "2026-07-23T01:57:57.994245Z",
+      "source": "fresh-high-resolution-event-batch",
+      "reviews": [
+        {
+          "slot": 13,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "日出神社",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E13代表图中弹窗直接读取到“日出神社”和右侧地图区域文字“大和”"
+        },
+        {
+          "slot": 14,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "春日神社",
+          "regionClue": "伊贺",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E14代表图中弹窗直接读取到“春日神社”和右侧地图区域文字“伊贺”"
+        }
+      ]
+    }
+  ],
   "requestedBatchCallsThisRun": [
     {
       "reviewerPool": "reasoning-reviewer",
@@ -61,8 +445,7 @@
       "slots": [
         1,
         2,
-        3,
-        4
+        3
       ]
     },
     {
@@ -71,8 +454,42 @@
       "slots": [
         1,
         2,
-        3,
-        4
+        3
+      ]
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        13,
+        14
       ]
     },
     {
@@ -81,8 +498,7 @@
       "slots": [
         1,
         2,
-        3,
-        4
+        3
       ]
     }
   ],
@@ -94,21 +510,9 @@
       "slots": [
         1,
         2,
-        3,
-        4
+        3
       ],
-      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-    },
-    {
-      "reviewerPool": "reasoning-reviewer",
-      "model": "openai/gpt-4.1-mini",
-      "slots": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
     },
     {
       "reviewerPool": "vision-reviewer",
@@ -116,10 +520,9 @@
       "slots": [
         1,
         2,
-        3,
-        4
+        3
       ],
-      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+      "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
     }
   ],
   "duplicateCandidateIdsRejected": [],
@@ -129,7 +532,19 @@
       "videoPosition": 1,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 1,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "三张图均无任何可辨识的地点名称或地图弹窗文字，仅为视频开头和标题画面"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -137,21 +552,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -159,10 +562,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -187,7 +589,19 @@
       "videoPosition": 2,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 2,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-436521",
+          "visibleLabel": "上三栖高地",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 1.0,
+          "reasonZhCN": "三张图均显示地图弹窗文字“上三栖高地”，地图右侧显示区域“纪伊”"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -195,21 +609,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -217,10 +619,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -245,7 +646,20 @@
       "videoPosition": 3,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 3,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "高原熊野神社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 第二张图地图弹窗清晰显示“高原熊野神社”，地图右侧显示区域“纪伊”",
+          "duplicateSelectionRejected": "location-mapgenie-437483"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -253,21 +667,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -275,10 +677,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -303,7 +704,19 @@
       "videoPosition": 4,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 4,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "葛原熊野神社",
+          "regionClue": "",
+          "evidenceType": "direct_map_label",
+          "confidence": 0.6,
+          "reasonZhCN": "从E04的三张图中均可直接读取神社名称“葛原熊野神社”，但该名称不在候选列表中，故无法匹配具体候选ID。"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -311,21 +724,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -333,10 +734,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -361,7 +761,19 @@
       "videoPosition": 5,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 5,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-434366",
+          "visibleLabel": "地图上显示“纪伊”区域及神社图标",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.95,
+          "reasonZhCN": "E05最后一张图为地图界面，显示区域“纪伊”，且神社图标位置与候选中IGA区域的“Aekuni Shrine”相符，结合前两张图神社外观推断为该神社。"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -369,21 +781,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -391,10 +791,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -419,7 +818,20 @@
       "videoPosition": 6,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 6,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "熊野那智大社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 E06前三张图均为地图界面，弹窗显示神社名称“熊野那智大社”，且位于“纪伊”区域，候选中对应“Kumano Nachi Taisha”。",
+          "duplicateSelectionRejected": "location-mapgenie-437483"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -427,21 +839,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -449,10 +849,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -477,7 +876,19 @@
       "videoPosition": 7,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 7,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "神仓神社瞭望台",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E07的三张图中间图清楚读取到地图弹窗文字“神仓神社瞭望台”，区域标注为“纪伊”"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -485,21 +896,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -507,10 +906,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -535,7 +933,20 @@
       "videoPosition": 8,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 8,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "熊野速玉大社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 从E08的三张图中间图清楚读取到地图弹窗文字“熊野速玉大社”，区域标注为“纪伊”，对应候选中Kumano Hongu Taisha",
+          "duplicateSelectionRejected": "location-mapgenie-437483"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -543,21 +954,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -565,10 +964,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -593,7 +991,19 @@
       "videoPosition": 9,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 9,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "如意轮寺瀑布",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E09的三张图中间图清楚读取到地图弹窗文字“如意轮寺瀑布”，区域标注为“大和”，但候选列表中无对应地点，故selectedLocationId为null"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -601,21 +1011,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -623,10 +1021,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -651,7 +1048,19 @@
       "videoPosition": 10,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 10,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "天王寺塔",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E10事件的三张图中，第二张图弹窗显示了“天王寺塔”，地图右侧显示区域文字“大和”，但该名称不在候选神社列表中，故无法匹配具体候选ID。"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -659,21 +1068,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -681,10 +1078,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -709,7 +1105,19 @@
       "videoPosition": 11,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 11,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "住吉神社",
+          "regionClue": "",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E11事件的三张图中，第二张图弹窗显示“住吉神社”，但地图上无明显区域文字，且该名称不在候选神社列表中，无法匹配具体候选ID。"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -717,21 +1125,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -739,10 +1135,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -767,7 +1162,19 @@
       "videoPosition": 12,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 12,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "兴福寺五重塔",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E12事件的三张图中，第二张图弹窗显示“兴福寺五重塔”，地图右侧显示区域文字“大和”，但该名称不在候选神社列表中，无法匹配具体候选ID。"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -775,21 +1182,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -797,10 +1192,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -825,7 +1219,19 @@
       "videoPosition": 13,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 13,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "日出神社",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E13代表图中弹窗直接读取到“日出神社”和右侧地图区域文字“大和”"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -833,21 +1239,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -855,10 +1249,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -883,7 +1276,19 @@
       "videoPosition": 14,
       "status": "unresolved",
       "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 14,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "春日神社",
+          "regionClue": "伊贺",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E14代表图中弹窗直接读取到“春日神社”和右侧地图区域文字“伊贺”"
+        }
+      ],
       "errors": [
         {
           "reviewerPool": "reasoning-reviewer",
@@ -891,21 +1296,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-        },
-        {
-          "reviewerPool": "reasoning-reviewer",
-          "model": "openai/gpt-4.1-mini",
-          "slots": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
         },
         {
           "reviewerPool": "vision-reviewer",
@@ -913,10 +1306,9 @@
           "slots": [
             1,
             2,
-            3,
-            4
+            3
           ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+          "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
         }
       ],
       "evidence": [
@@ -941,7 +1333,19 @@
   "reviews": [
     {
       "slot": 1,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 1,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "三张图均无任何可辨识的地点名称或地图弹窗文字，仅为视频开头和标题画面"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -964,7 +1368,19 @@
     },
     {
       "slot": 2,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 2,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-436521",
+          "visibleLabel": "上三栖高地",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 1.0,
+          "reasonZhCN": "三张图均显示地图弹窗文字“上三栖高地”，地图右侧显示区域“纪伊”"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -987,7 +1403,20 @@
     },
     {
       "slot": 3,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 3,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "高原熊野神社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 第二张图地图弹窗清晰显示“高原熊野神社”，地图右侧显示区域“纪伊”",
+          "duplicateSelectionRejected": "location-mapgenie-437483"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1010,7 +1439,19 @@
     },
     {
       "slot": 4,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 4,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "葛原熊野神社",
+          "regionClue": "",
+          "evidenceType": "direct_map_label",
+          "confidence": 0.6,
+          "reasonZhCN": "从E04的三张图中均可直接读取神社名称“葛原熊野神社”，但该名称不在候选列表中，故无法匹配具体候选ID。"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1033,7 +1474,19 @@
     },
     {
       "slot": 5,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 5,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": "location-mapgenie-434366",
+          "visibleLabel": "地图上显示“纪伊”区域及神社图标",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.95,
+          "reasonZhCN": "E05最后一张图为地图界面，显示区域“纪伊”，且神社图标位置与候选中IGA区域的“Aekuni Shrine”相符，结合前两张图神社外观推断为该神社。"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1056,7 +1509,20 @@
     },
     {
       "slot": 6,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 6,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "熊野那智大社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 E06前三张图均为地图界面，弹窗显示神社名称“熊野那智大社”，且位于“纪伊”区域，候选中对应“Kumano Nachi Taisha”。",
+          "duplicateSelectionRejected": "location-mapgenie-437483"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1079,7 +1545,19 @@
     },
     {
       "slot": 7,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 7,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "神仓神社瞭望台",
+          "regionClue": "纪伊",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E07的三张图中间图清楚读取到地图弹窗文字“神仓神社瞭望台”，区域标注为“纪伊”"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1102,7 +1580,20 @@
     },
     {
       "slot": 8,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 8,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "熊野速玉大社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 从E08的三张图中间图清楚读取到地图弹窗文字“熊野速玉大社”，区域标注为“纪伊”，对应候选中Kumano Hongu Taisha",
+          "duplicateSelectionRejected": "location-mapgenie-437483"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1125,7 +1616,19 @@
     },
     {
       "slot": 9,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 9,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "如意轮寺瀑布",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E09的三张图中间图清楚读取到地图弹窗文字“如意轮寺瀑布”，区域标注为“大和”，但候选列表中无对应地点，故selectedLocationId为null"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1148,7 +1651,19 @@
     },
     {
       "slot": 10,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 10,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "天王寺塔",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E10事件的三张图中，第二张图弹窗显示了“天王寺塔”，地图右侧显示区域文字“大和”，但该名称不在候选神社列表中，故无法匹配具体候选ID。"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1171,7 +1686,19 @@
     },
     {
       "slot": 11,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 11,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "住吉神社",
+          "regionClue": "",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E11事件的三张图中，第二张图弹窗显示“住吉神社”，但地图上无明显区域文字，且该名称不在候选神社列表中，无法匹配具体候选ID。"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1194,7 +1721,19 @@
     },
     {
       "slot": 12,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 12,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "兴福寺五重塔",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E12事件的三张图中，第二张图弹窗显示“兴福寺五重塔”，地图右侧显示区域文字“大和”，但该名称不在候选神社列表中，无法匹配具体候选ID。"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1217,7 +1756,19 @@
     },
     {
       "slot": 13,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 13,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "日出神社",
+          "regionClue": "大和",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E13代表图中弹窗直接读取到“日出神社”和右侧地图区域文字“大和”"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [
@@ -1240,7 +1791,19 @@
     },
     {
       "slot": 14,
-      "reviewerPoolReviews": [],
+      "reviewerPoolReviews": [
+        {
+          "slot": 14,
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "春日神社",
+          "regionClue": "伊贺",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.6,
+          "reasonZhCN": "从E14代表图中弹窗直接读取到“春日神社”和右侧地图区域文字“伊贺”"
+        }
+      ],
       "consensusLocationId": null,
       "consensusPassedBeforeGlobalUniquenessGate": false,
       "frames": [

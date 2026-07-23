@@ -2,23 +2,25 @@
   "schemaVersion": 2,
   "status": "partial-reviewer-pools",
   "stage": "scene-aware-high-resolution-event-review-v2",
-  "generatedAt": "2026-07-23T01:54:48.589235Z",
+  "generatedAt": "2026-07-23T01:58:09.594418Z",
   "promotionStatus": "not-promoted-to-canonical",
   "counts": {
     "segments": 27,
     "boundaries": 26,
     "selectedSegments": 14,
     "confirmedAnchors": 0,
-    "successfulReviewerPools": 0,
-    "failedReviewerPools": 2,
-    "requestedBatchCallsThisRun": 3,
+    "successfulReviewerPools": 1,
+    "failedReviewerPools": 1,
+    "requestedBatchCallsThisRun": 7,
     "reusedBatchCallsThisRun": 0,
-    "persistedBatchPackets": 0
+    "persistedBatchPackets": 5
   },
   "minimumSegmentDurationSeconds": 5.067,
   "maximumSegmentDurationSeconds": 16.533,
   "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
-  "selectedReviewerModels": {},
+  "selectedReviewerModels": {
+    "reasoning-reviewer": "openai/gpt-4.1-mini"
+  },
   "errors": [
     {
       "reviewerPool": "reasoning-reviewer",
@@ -26,21 +28,9 @@
       "slots": [
         1,
         2,
-        3,
-        4
+        3
       ],
-      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
-    },
-    {
-      "reviewerPool": "reasoning-reviewer",
-      "model": "openai/gpt-4.1-mini",
-      "slots": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
     },
     {
       "reviewerPool": "vision-reviewer",
@@ -48,10 +38,9 @@
       "slots": [
         1,
         2,
-        3,
-        4
+        3
       ],
-      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+      "error": "model returned incomplete batch: got [1], expected [1, 2, 3]"
     }
   ],
   "outputs": {
