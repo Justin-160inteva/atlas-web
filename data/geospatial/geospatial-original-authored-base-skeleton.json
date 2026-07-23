@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-23T16:14:00Z",
+  "generatedAt": "2026-07-23T16:18:00Z",
   "status": "original-authored-spatial-skeleton-ready",
   "stage": "fully-original-map-spatial-construction",
   "strategy": "fully-original-authored-visual-base",
@@ -8,15 +8,18 @@
   "sourceHashes": {
     "data/locations.json": "57b4c06065f46ebcd37033f13df0c5964b3b085ce92c23b6cdcdf5765a3cbdb2",
     "data/regions.json": "48f03b1c513dc8e8f37a3087b560ab9b2c17469f714c2b04f776ccd50135191d",
-    "data/geospatial/geospatial-progress.json": "beec7206410c83d21dab784871204236bce44b41ec46629da03cdf274f3c107f",
+    "data/geospatial/geospatial-progress.json": "a1e7d75fcfec6ff6fc2440780e0c8dde56b55ca615983fe7185386f2ffa91722",
     "data/geospatial/geospatial-calibration-control-points.json": "7910118d4af317ae39605750be1c5b13147889b6a237d8f08dc36a3d85152bde",
-    "data/geospatial/geospatial-original-authored-base-plan.json": "43b4bd395d2cf499bf75ff26216aae4a7d7a5523e769f663cf9f577ea3999da0"
+    "data/geospatial/geospatial-original-authored-base-plan.json": "29c8541f6bb54fd734ddad9c29bf16239d7ab325e336921660009192927419fc"
   },
   "counts": {
     "locations": 3430,
-    "regions": 11,
+    "regionAssignedLocations": 3425,
+    "unassignedLocations": 5,
+    "regions": 10,
+    "confirmedAnchorCoveredRegions": 9,
     "confirmedAnchors": 50,
-    "regionAdjacencyEdges": 21,
+    "regionAdjacencyEdges": 20,
     "densityGridSize": 32
   },
   "globalConstructionEnvelope": {
@@ -78,66 +81,6 @@
     "meaning": "point-distribution guide only; final coastline and silhouette must be authored"
   },
   "regions": [
-    {
-      "regionId": "None",
-      "regionTitle": "None",
-      "locationCount": 5,
-      "confirmedAnchorCount": 0,
-      "centroid": {
-        "x": 0.48239201,
-        "y": 0.20347816
-      },
-      "boundingBox": {
-        "minimumX": 0.24999967,
-        "maximumX": 0.78012489,
-        "minimumY": 0.01950241,
-        "maximumY": 0.3147586,
-        "width": 0.53012522,
-        "height": 0.29525618
-      },
-      "constructionHull": [
-        {
-          "x": 0.24999967,
-          "y": 0.3147586
-        },
-        {
-          "x": 0.34626155,
-          "y": 0.06273667
-        },
-        {
-          "x": 0.78012489,
-          "y": 0.01950241
-        },
-        {
-          "x": 0.51823943,
-          "y": 0.31126713
-        }
-      ],
-      "constructionHullArea": 0.0912649,
-      "extremeGuides": {
-        "minimumX": {
-          "locationId": "location-mapgenie-479932",
-          "x": 0.24999967,
-          "y": 0.3147586
-        },
-        "maximumX": {
-          "locationId": "location-mapgenie-605006",
-          "x": 0.78012489,
-          "y": 0.01950241
-        },
-        "minimumY": {
-          "locationId": "location-mapgenie-605006",
-          "x": 0.78012489,
-          "y": 0.01950241
-        },
-        "maximumY": {
-          "locationId": "location-mapgenie-479932",
-          "x": 0.24999967,
-          "y": 0.3147586
-        }
-      },
-      "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
-    },
     {
       "regionId": "region-3144-omi",
       "regionTitle": "OMI",
@@ -1051,31 +994,63 @@
       "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary"
     }
   ],
+  "anchorCoveredRegionIds": [
+    "region-3144-omi",
+    "region-3145-iga",
+    "region-3146-wakasa",
+    "region-3147-izumi-settsu",
+    "region-3148-yamashiro",
+    "region-3149-harima",
+    "region-3150-tamba",
+    "region-3151-yamato",
+    "region-3152-kii"
+  ],
+  "unanchoredRegionIds": [
+    "region-3304-awaji"
+  ],
+  "unassignedLocationGuides": [
+    {
+      "locationId": "location-mapgenie-479929",
+      "title": "News from Hattori Hanzo",
+      "categoryId": "category-12341-quest",
+      "x": 0.51733454,
+      "y": 0.30912601,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-479932",
+      "title": "The Puppet Show",
+      "categoryId": "category-12341-quest",
+      "x": 0.24999967,
+      "y": 0.3147586,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-481173",
+      "title": "Painting Memories",
+      "categoryId": "category-12341-quest",
+      "x": 0.51823943,
+      "y": 0.31126713,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-605004",
+      "title": "Black Tides",
+      "categoryId": "category-12341-quest",
+      "x": 0.34626155,
+      "y": 0.06273667,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-605006",
+      "title": "Horizon",
+      "categoryId": "category-12352-rift",
+      "x": 0.78012489,
+      "y": 0.01950241,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    }
+  ],
   "compositionAdjacency": [
-    {
-      "fromRegionId": "None",
-      "toRegionId": "region-3147-izumi-settsu",
-      "centroidDistance": 0.14469377,
-      "meaning": "composition-neighbor suggestion only"
-    },
-    {
-      "fromRegionId": "None",
-      "toRegionId": "region-3151-yamato",
-      "centroidDistance": 0.24163607,
-      "meaning": "composition-neighbor suggestion only"
-    },
-    {
-      "fromRegionId": "None",
-      "toRegionId": "region-3152-kii",
-      "centroidDistance": 0.1797671,
-      "meaning": "composition-neighbor suggestion only"
-    },
-    {
-      "fromRegionId": "None",
-      "toRegionId": "region-3304-awaji",
-      "centroidDistance": 0.36017757,
-      "meaning": "composition-neighbor suggestion only"
-    },
     {
       "fromRegionId": "region-3144-omi",
       "toRegionId": "region-3145-iga",
@@ -1107,6 +1082,12 @@
       "meaning": "composition-neighbor suggestion only"
     },
     {
+      "fromRegionId": "region-3145-iga",
+      "toRegionId": "region-3152-kii",
+      "centroidDistance": 0.40573113,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
       "fromRegionId": "region-3146-wakasa",
       "toRegionId": "region-3148-yamashiro",
       "centroidDistance": 0.30749385,
@@ -1134,6 +1115,12 @@
       "fromRegionId": "region-3147-izumi-settsu",
       "toRegionId": "region-3150-tamba",
       "centroidDistance": 0.39035805,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3147-izumi-settsu",
+      "toRegionId": "region-3151-yamato",
+      "centroidDistance": 0.30256475,
       "meaning": "composition-neighbor suggestion only"
     },
     {
@@ -1170,6 +1157,12 @@
       "fromRegionId": "region-3149-harima",
       "toRegionId": "region-3304-awaji",
       "centroidDistance": 0.21306884,
+      "meaning": "composition-neighbor suggestion only"
+    },
+    {
+      "fromRegionId": "region-3150-tamba",
+      "toRegionId": "region-3304-awaji",
+      "centroidDistance": 0.42848317,
       "meaning": "composition-neighbor suggestion only"
     },
     {
@@ -2277,8 +2270,9 @@
   "nextArtStage": {
     "status": "ready_for_original_regional_composition",
     "requiredDecisions": [
+      "classify or intentionally retain the five unassigned global locations",
       "author original outer land silhouette and water negative space",
-      "author nine region masses without tracing third-party map boundaries",
+      "author ten region masses without tracing third-party map boundaries",
       "define original terrain hierarchy and travel corridors",
       "approve a repository-owned editable source format before raster export"
     ]
@@ -2287,6 +2281,7 @@
     "thirdPartyMapPixelsRead": false,
     "thirdPartyMapVectorsRead": false,
     "legacyRenderBaseUsedForGeometry": false,
+    "regionsJsonGeometryUsed": false,
     "finalCoastlineClaimed": false,
     "finalRegionBoundariesClaimed": false,
     "pixelCoordinatesInvented": false,
