@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T16:10:55.147770Z",
+  "status": "original-authored-skeleton-build-failed",
+  "errorType": "RuntimeError",
+  "errorMessage": "expected 10 represented regions, found 11",
+  "tracebackTail": [
+    "Traceback (most recent call last):",
+    "  File \"/home/runner/work/atlas-web/atlas-web/tools/run_geospatial_original_authored_base_skeleton_with_diagnostic.py\", line 18, in main",
+    "    result = builder.main()",
+    "             ^^^^^^^^^^^^^^",
+    "  File \"/home/runner/work/atlas-web/atlas-web/tools/build_geospatial_original_authored_base_skeleton.py\", line 156, in main",
+    "    raise RuntimeError(f\"expected {expected['regions']} represented regions, found {len(grouped)}\")",
+    "RuntimeError: expected 10 represented regions, found 11"
+  ],
+  "safety": {
+    "legacyRenderBaseModified": false,
+    "thirdPartyMapPixelsRead": false,
+    "finalMapClaimed": false
+  }
+}
