@@ -6,18 +6,21 @@ on:
     paths:
       - '.github/workflows/tokei-pairwise-map-evidence.yml'
       - 'tools/extract_tokei_pairwise_map_evidence.py'
+      - 'tools/review_tokei_pairwise_map_evidence.py'
+      - 'data/geospatial/tokei-pairwise-review-trigger.json'
 
 permissions:
   contents: write
+  models: read
 
 concurrency:
   group: tokei-pairwise-map-evidence-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  extract:
+  extract-review:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: Check out PR head
         uses: actions/checkout@v4
@@ -30,10 +33,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Compile targeted extractor
+      - name: Compile targeted evidence tools
         run: |
           python -m py_compile \
             tools/extract_tokei_pairwise_map_evidence.py \
+            tools/review_tokei_pairwise_map_evidence.py \
             tools/analyze_authorized_video_v2.py \
             tools/analyze_authorized_video_v4.py
 
@@ -48,7 +52,10 @@ jobs:
         id: download
         run: |
           rm -rf /tmp/tokei-pairwise-video /tmp/tokei-pairwise-evidence /tmp/tokei-pairwise-publish
-          mkdir -p /tmp/tokei-pairwise-video /tmp/tokei-pairwise-evidence /tmp/tokei-pairwise-publish/data/geospatial
+          mkdir -p \
+            /tmp/tokei-pairwise-video \
+            /tmp/tokei-pairwise-evidence/review \
+            /tmp/tokei-pairwise-publish/data/geospatial
           PYTHONPATH=tools python - <<'PY'
           import json
           import os
@@ -80,7 +87,46 @@ jobs:
             --end 22.0 \
             --interval 0.25
 
-      - name: Validate targeted package and privacy gates
+      - name: Review pairwise geometry with two independent models
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          VIDEO_PATH: ${{ steps.download.outputs.video_path }}
+        run: |
+          python tools/review_tokei_pairwise_map_evidence.py \
+            --video "$VIDEO_PATH" \
+            --work-dir /tmp/tokei-pairwise-evidence/review \
+            --output data/geospatial/tokei-pairwise-map-review.json
+
+      - name: Read review state
+        id: state
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(Path('data/geospatial/tokei-pairwise-map-review.json').read_text(encoding='utf-8'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'status={result["status"]}\n')
+              handle.write(f'successful_models={result["counts"]["successfulModels"]}\n')
+              handle.write(f'failed_models={result["counts"]["failedModels"]}\n')
+          print(json.dumps({
+              'status': result['status'],
+              'counts': result['counts'],
+              'reviews': [
+                  {
+                      'model': row['model'],
+                      'verdict': row['verdict'],
+                      'candidate': row['selectedLocationId'],
+                      'confidence': row['confidence'],
+                  }
+                  for row in result['reviewPackets']
+              ],
+              'errors': result['errors'],
+          }, ensure_ascii=False))
+          PY
+
+      - name: Validate targeted package, review isolation and privacy gates
         run: |
           python - <<'PY'
           import json
@@ -89,7 +135,11 @@ jobs:
           manifest = json.loads(
               Path('data/geospatial/tokei-pairwise-map-evidence-manifest.json').read_text(encoding='utf-8')
           )
+          review = json.loads(
+              Path('data/geospatial/tokei-pairwise-map-review.json').read_text(encoding='utf-8')
+          )
           root = Path('/tmp/tokei-pairwise-evidence')
+          composite = root / 'review' / review['composite']['filename']
           assert manifest['status'] == 'transient-targeted-map-evidence-ready'
           assert manifest['target']['missingCandidateId'] == 'location-mapgenie-438414'
           assert manifest['target']['directlyIdentifiedNeighborId'] == 'location-mapgenie-437477'
@@ -99,12 +149,25 @@ jobs:
           assert manifest['privacy']['repositoryContainsPixels'] is False
           assert all((root / row['filename']).is_file() for row in manifest['frames'])
           assert all((root / row['filename']).is_file() for row in manifest['contactSheets'])
+          assert review['status'] in {'confirmed', 'complete-unresolved', 'partial-review'}
+          assert review['target']['locationId'] == 'location-mapgenie-438414'
+          assert review['target']['directNeighborLocationId'] == 'location-mapgenie-437477'
+          assert review['counts']['successfulModels'] + review['counts']['failedModels'] == 2
+          assert review['policy']['coordinatesAssigned'] is False
+          assert review['policy']['canonicalAnchorModified'] is False
+          assert review['privacy']['repositoryContainsPixels'] is False
+          assert composite.is_file()
+          if review['status'] == 'confirmed':
+              assert len(review['reviewPackets']) == 2
+              assert all(row['verdict'] == 'confirmed' for row in review['reviewPackets'])
+              assert all(row['selectedLocationId'] == 'location-mapgenie-438414' for row in review['reviewPackets'])
+              assert all(row['confidence'] >= .92 for row in review['reviewPackets'])
           assert not list(Path('data').rglob('*.jpg'))
           assert not list(Path('data').rglob('*.png'))
           assert not list(Path('data').rglob('*.mp4'))
           PY
 
-      - name: Upload one-day targeted map evidence
+      - name: Upload one-day targeted map evidence and review composite
         uses: actions/upload-artifact@v4
         with:
           name: tokei-pairwise-map-evidence-${{ github.run_id }}
@@ -113,12 +176,14 @@ jobs:
           compression-level: 6
           if-no-files-found: error
 
-      - name: Stage non-pixel manifest
+      - name: Stage non-pixel evidence and review results
         run: |
           cp data/geospatial/tokei-pairwise-map-evidence-manifest.json \
             /tmp/tokei-pairwise-publish/data/geospatial/
+          cp data/geospatial/tokei-pairwise-map-review.json \
+            /tmp/tokei-pairwise-publish/data/geospatial/
 
-      - name: Atomically publish non-pixel manifest
+      - name: Atomically publish non-pixel evidence and review results
         env:
           TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
         run: |
@@ -130,9 +195,13 @@ jobs:
             mkdir -p data/geospatial
             cp /tmp/tokei-pairwise-publish/data/geospatial/tokei-pairwise-map-evidence-manifest.json \
               data/geospatial/
-            git add data/geospatial/tokei-pairwise-map-evidence-manifest.json
+            cp /tmp/tokei-pairwise-publish/data/geospatial/tokei-pairwise-map-review.json \
+              data/geospatial/
+            git add \
+              data/geospatial/tokei-pairwise-map-evidence-manifest.json \
+              data/geospatial/tokei-pairwise-map-review.json
             if git diff --cached --quiet; then exit 0; fi
-            git commit -m 'Record targeted Tokei pairwise evidence manifest [skip ci]'
+            git commit -m 'Review targeted Tokei pairwise map evidence [skip ci]'
             if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
             sleep $((attempt * 5))
           done
