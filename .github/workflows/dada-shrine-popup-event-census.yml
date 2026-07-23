@@ -1,0 +1,159 @@
+name: Dada Shrine Popup Event Census
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/dada-shrine-popup-event-census.yml'
+      - 'tools/detect_dada_shrine_popup_events.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dada-shrine-popup-event-census-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile popup detector
+        run: |
+          python -m py_compile \
+            tools/detect_dada_shrine_popup_events.py \
+            tools/analyze_authorized_video_v2.py \
+            tools/analyze_authorized_video_v4.py
+
+      - name: Install transient dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download authorized shrine video transiently
+        id: download
+        run: |
+          rm -rf /tmp/dada-shrine-popup-video /tmp/dada-shrine-popup-events /tmp/dada-shrine-popup-publish
+          mkdir -p /tmp/dada-shrine-popup-video /tmp/dada-shrine-popup-events /tmp/dada-shrine-popup-publish/data/geospatial
+          PYTHONPATH=tools python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import analyze_authorized_video_v4 as resilient
+
+          workdir = Path('/tmp/dada-shrine-popup-video')
+          video_path, attempts = resilient.runner.download_with_fallbacks(
+              'https://www.bilibili.com/video/BV1aFXaYmEDZ/', workdir
+          )
+          if not video_path.is_file() or video_path.stat().st_size < 1024:
+              raise RuntimeError('download did not produce a usable shrine video')
+          strategy = next(row['strategy'] for row in attempts if row.get('success'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'video_path={video_path.resolve()}\n')
+              handle.write(f'download_strategy={strategy}\n')
+          print(json.dumps({'video': str(video_path), 'strategy': strategy}, ensure_ascii=False))
+          PY
+
+      - name: Detect stable map-popup events across full video
+        env:
+          VIDEO_PATH: ${{ steps.download.outputs.video_path }}
+        run: |
+          python tools/detect_dada_shrine_popup_events.py \
+            --video "$VIDEO_PATH" \
+            --output-dir /tmp/dada-shrine-popup-events \
+            --run-id '${{ github.run_id }}' \
+            --sample-interval 0.25 \
+            --maximum-gap 0.65 \
+            --title-change-threshold 0.255 \
+            --minimum-samples 2
+
+      - name: Validate popup census and privacy gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          census = json.loads(
+              Path('data/geospatial/dada-shrines-popup-event-census.json').read_text(encoding='utf-8')
+          )
+          root = Path('/tmp/dada-shrine-popup-events')
+          assert census['status'] == 'popup-event-census-complete'
+          assert census['counts']['sampledFrames'] >= 900
+          assert 15 <= census['counts']['stableEvents'] <= 80
+          assert census['counts']['contactSheets'] >= 2
+          assert census['method']['coordinatesAssigned'] is False
+          assert census['privacy']['repositoryContainsPixels'] is False
+          assert census['privacy']['artifactContainsTransientPopupPixels'] is True
+          assert all(
+              (root / row['popupFilename']).is_file()
+              and (root / row['titleFilename']).is_file()
+              for row in census['artifactFiles']['eventCrops']
+          )
+          assert all(
+              (root / row['filename']).is_file()
+              for row in census['artifactFiles']['contactSheets']
+          )
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          print(json.dumps(census['counts'], ensure_ascii=False))
+          PY
+
+      - name: Upload one-day popup-event artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-shrine-popup-events-${{ github.run_id }}
+          path: /tmp/dada-shrine-popup-events
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
+
+      - name: Stage non-pixel census for atomic publish
+        run: |
+          cp data/geospatial/dada-shrines-popup-event-census.json \
+            /tmp/dada-shrine-popup-publish/data/geospatial/
+
+      - name: Atomically publish non-pixel popup census
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial
+            cp /tmp/dada-shrine-popup-publish/data/geospatial/dada-shrines-popup-event-census.json \
+              data/geospatial/
+            git add data/geospatial/dada-shrines-popup-event-census.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Detect stable shrine map-popup events [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 5))
+          done
+          exit 1
+
+      - name: Delete transient video and popup pixels
+        if: always()
+        run: |
+          rm -rf \
+            /tmp/dada-shrine-popup-video \
+            /tmp/dada-shrine-popup-events \
+            /tmp/dada-shrine-popup-publish
+          test ! -e /tmp/dada-shrine-popup-video
+          test ! -e /tmp/dada-shrine-popup-events
+          test ! -e /tmp/dada-shrine-popup-publish
