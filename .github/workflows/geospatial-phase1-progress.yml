@@ -1,0 +1,102 @@
+name: Geospatial Phase 1 Progress
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/geospatial-phase1-progress.yml'
+      - 'tools/build_geospatial_progress.py'
+      - 'tools/build_dada_shrines_geospatial_stage1.py'
+      - 'data/geospatial/dada-temples-36-anchors-final.json'
+      - 'data/geospatial/dada-shrines-27-anchors-batch01.json'
+      - 'data/geospatial/geospatial-phase1-trigger.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: geospatial-phase1-progress-main
+  cancel-in-progress: true
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build shrine stage-one scaffold
+        run: |
+          python -m py_compile tools/build_dada_shrines_geospatial_stage1.py tools/build_geospatial_progress.py
+          python tools/build_dada_shrines_geospatial_stage1.py
+
+      - name: Reconcile confirmed anchor progress
+        run: python tools/build_geospatial_progress.py
+
+      - name: Validate progress and privacy invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          progress = json.loads(Path('data/geospatial/geospatial-progress.json').read_text(encoding='utf-8'))
+          shrine = json.loads(Path('data/geospatial/dada-shrines-27-stage1.json').read_text(encoding='utf-8'))
+          index = json.loads(Path('data/analysis-index.json').read_text(encoding='utf-8'))
+          temple_job = json.loads(Path('data/analysis-jobs/dada-temples-36-geospatial.json').read_text(encoding='utf-8'))
+
+          assert progress['phase1']['confirmedAnchors'] >= 36
+          assert progress['phase1']['targetConfirmedAnchors'] == 50
+          assert progress['phase1']['progressPercent'] >= 72
+          assert progress['globalCoverage']['totalLocations'] == 3430
+          assert all(progress['safety'].values())
+          assert shrine['counts']['videoClaimedShrines'] == 27
+          assert shrine['counts']['mapShrineCandidates'] == 32
+          assert shrine['counts']['linkedSlots'] == 0
+          assert temple_job['status'] == 'complete'
+          assert temple_job['linkedSlotCount'] == 36
+          matches = [item for item in index['items'] if item.get('resultPath') == 'data/analysis-results/dada-temples-36.json']
+          assert len(matches) == 1
+          assert matches[0]['pipeline']['geospatialAnchoringCompleted'] is True
+          assert matches[0]['pipeline']['geospatialAnchorCount'] == 36
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          print(
+              f"Geospatial phase 1: {progress['phase1']['confirmedAnchors']}/50 "
+              f"({progress['phase1']['progressPercent']}%); shrine scaffold ready."
+          )
+          PY
+
+      - name: Commit geospatial progress and shrine scaffold
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/analysis-index.json \
+            data/analysis-jobs/dada-temples-36-geospatial.json \
+            data/analysis-jobs/dada-shrines-27-geospatial.json \
+            data/geospatial/geospatial-progress.json \
+            data/geospatial/dada-shrines-27-stage1.json \
+            data/batch-analysis/dada-shrines-27-geospatial-status.json
+          if git diff --cached --quiet; then
+            echo 'No geospatial progress changes.'
+            exit 0
+          fi
+          git commit -m 'Register 36 confirmed anchors and prepare shrine batch [skip ci]'
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 4))
+          done
+          exit 1
