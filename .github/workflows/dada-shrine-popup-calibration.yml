@@ -1,0 +1,116 @@
+name: Dada Shrine Popup Calibration
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/dada-shrine-popup-calibration.yml'
+      - 'tools/extract_dada_shrine_popup_calibration.py'
+      - 'data/geospatial/dada-shrines-27-scene-segments.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dada-shrine-popup-calibration-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile calibration extractor
+        run: |
+          python -m py_compile \
+            tools/extract_dada_shrine_popup_calibration.py \
+            tools/analyze_authorized_video_v2.py \
+            tools/analyze_authorized_video_v4.py
+
+      - name: Install transient dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless numpy
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download authorized shrine video transiently
+        id: download
+        run: |
+          rm -rf /tmp/dada-shrine-calibration-video /tmp/dada-shrine-calibration-frames
+          mkdir -p /tmp/dada-shrine-calibration-video /tmp/dada-shrine-calibration-frames
+          PYTHONPATH=tools python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import analyze_authorized_video_v4 as resilient
+
+          workdir = Path('/tmp/dada-shrine-calibration-video')
+          video_path, attempts = resilient.runner.download_with_fallbacks(
+              'https://www.bilibili.com/video/BV1aFXaYmEDZ/', workdir
+          )
+          if not video_path.is_file() or video_path.stat().st_size < 1024:
+              raise RuntimeError('download did not produce a usable shrine video')
+          strategy = next(row['strategy'] for row in attempts if row.get('success'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'video_path={video_path.resolve()}\n')
+              handle.write(f'download_strategy={strategy}\n')
+          print(json.dumps({'video': str(video_path), 'strategy': strategy}, ensure_ascii=False))
+          PY
+
+      - name: Extract 14 full-resolution representative frames
+        env:
+          VIDEO_PATH: ${{ steps.download.outputs.video_path }}
+        run: |
+          python tools/extract_dada_shrine_popup_calibration.py \
+            --video "$VIDEO_PATH" \
+            --output-dir /tmp/dada-shrine-calibration-frames \
+            --start-slot 1 \
+            --end-slot 14 \
+            --run-id '${{ github.run_id }}'
+
+      - name: Validate transient calibration package
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('/tmp/dada-shrine-calibration-frames')
+          manifest = json.loads((root / 'calibration-manifest.json').read_text(encoding='utf-8'))
+          assert manifest['status'] == 'transient-popup-calibration-ready'
+          assert len(manifest['frames']) == 14
+          assert [row['slot'] for row in manifest['frames']] == list(range(1, 15))
+          assert all((root / row['filename']).is_file() for row in manifest['frames'])
+          assert all(row['width'] == 1280 and row['height'] == 720 for row in manifest['frames'])
+          assert manifest['privacy']['repositoryContainsPixels'] is False
+          assert manifest['privacy']['artifactContainsTransientPixels'] is True
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          PY
+
+      - name: Upload one-day popup calibration artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-shrine-popup-calibration-${{ github.run_id }}
+          path: /tmp/dada-shrine-calibration-frames
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
+
+      - name: Delete transient video and calibration pixels
+        if: always()
+        run: |
+          rm -rf /tmp/dada-shrine-calibration-video /tmp/dada-shrine-calibration-frames
+          test ! -e /tmp/dada-shrine-calibration-video
+          test ! -e /tmp/dada-shrine-calibration-frames
