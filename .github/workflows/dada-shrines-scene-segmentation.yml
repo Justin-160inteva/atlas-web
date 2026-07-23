@@ -7,6 +7,7 @@ on:
       - '.github/workflows/dada-shrines-scene-segmentation.yml'
       - 'tools/detect_dada_shrine_scene_segments.py'
       - 'tools/review_dada_shrine_scene_segments.py'
+      - 'tools/apply_shrine_scene_review_timeout_patch.py'
       - 'tools/build_dada_shrines_geospatial_stage1.py'
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
@@ -17,6 +18,7 @@ on:
       - '.github/workflows/dada-shrines-scene-segmentation.yml'
       - 'tools/detect_dada_shrine_scene_segments.py'
       - 'tools/review_dada_shrine_scene_segments.py'
+      - 'tools/apply_shrine_scene_review_timeout_patch.py'
       - 'tools/build_dada_shrines_geospatial_stage1.py'
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
@@ -33,7 +35,7 @@ concurrency:
 jobs:
   segment-review-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
       - name: Check out repository branch
         uses: actions/checkout@v4
@@ -46,9 +48,13 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Apply bounded model retry timing
+        run: python tools/apply_shrine_scene_review_timeout_patch.py
+
       - name: Compile scene-aware tools
         run: |
           python -m py_compile \
+            tools/apply_shrine_scene_review_timeout_patch.py \
             tools/build_dada_shrines_geospatial_stage1.py \
             tools/detect_dada_shrine_scene_segments.py \
             tools/review_dada_shrine_scene_segments.py \
@@ -257,6 +263,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
+            tools/review_dada_shrine_scene_segments.py \
             data/analysis-index.json \
             data/analysis-jobs/dada-temples-36-geospatial.json \
             data/analysis-jobs/dada-shrines-27-geospatial.json \
