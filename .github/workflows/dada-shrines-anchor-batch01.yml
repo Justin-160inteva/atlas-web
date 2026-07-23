@@ -8,7 +8,7 @@ on:
       - '.github/workflows/dada-shrines-anchor-batch01.yml'
       - 'tools/build_dada_shrines_geospatial_stage1.py'
       - 'tools/extract_dada_shrine_anchor_batch.py'
-      - 'tools/review_dada_shrine_anchor_batch.py'
+      - 'tools/review_dada_shrine_anchor_batch_bulk.py'
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
       - 'data/geospatial/dada-shrines-anchor-batch01-trigger.json'
@@ -17,7 +17,7 @@ on:
       - '.github/workflows/dada-shrines-anchor-batch01.yml'
       - 'tools/build_dada_shrines_geospatial_stage1.py'
       - 'tools/extract_dada_shrine_anchor_batch.py'
-      - 'tools/review_dada_shrine_anchor_batch.py'
+      - 'tools/review_dada_shrine_anchor_batch_bulk.py'
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
       - 'data/geospatial/dada-shrines-anchor-batch01-trigger.json'
@@ -33,7 +33,7 @@ concurrency:
 jobs:
   extract-review-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 45
     steps:
       - name: Check out repository branch
         uses: actions/checkout@v4
@@ -51,7 +51,7 @@ jobs:
           python -m py_compile \
             tools/build_dada_shrines_geospatial_stage1.py \
             tools/extract_dada_shrine_anchor_batch.py \
-            tools/review_dada_shrine_anchor_batch.py \
+            tools/review_dada_shrine_anchor_batch_bulk.py \
             tools/build_geospatial_progress.py \
             tools/analyze_authorized_video_v2.py \
             tools/analyze_authorized_video_v4.py
@@ -104,11 +104,11 @@ jobs:
             --start-slot 1 \
             --end-slot 14
 
-      - name: Review direct visual evidence with two models
+      - name: Bulk-review direct evidence with two models
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python tools/review_dada_shrine_anchor_batch.py \
+          python tools/review_dada_shrine_anchor_batch_bulk.py \
             --evidence-dir /tmp/dada-shrines-batch01-evidence \
             --manifest data/geospatial/dada-shrines-27-batch01-evidence-manifest.json \
             --output data/geospatial/dada-shrines-27-anchors-batch01.json
@@ -144,12 +144,16 @@ jobs:
           progress = json.loads(Path('data/geospatial/geospatial-progress.json').read_text(encoding='utf-8'))
           assert manifest['batch'] == {'startSlot': 1, 'endSlot': 14, 'targetSlots': 14}
           assert manifest['extraction']['frameCount'] == 42
+          assert manifest['extraction']['contactSheetCount'] == 5
           assert manifest['privacy']['repositoryContainsPixels'] is False
           assert anchors['counts']['reviewedSlots'] == 14
           assert anchors['counts']['confirmed'] + anchors['counts']['unresolved'] == 14
+          assert anchors['counts']['successfulModels'] == 2
+          assert anchors['counts']['failedModels'] == 0
+          assert anchors['policy']['modelRequestCount'] == 2
           assert len({row['locationId'] for row in anchors['anchors']}) == anchors['counts']['confirmed']
           assert all(row['confidence'] >= .92 for row in anchors['anchors'])
-          assert all(row['resolutionMethod'] == 'two-model-direct-visual-consensus' for row in anchors['anchors'])
+          assert all(row['resolutionMethod'] == 'two-model-bulk-direct-visual-consensus' for row in anchors['anchors'])
           assert anchors['privacy']['repositoryContainsPixels'] is False
           assert progress['phase1']['confirmedAnchors'] == 36 + anchors['counts']['confirmed']
           assert progress['phase1']['confirmedAnchors'] <= 50
