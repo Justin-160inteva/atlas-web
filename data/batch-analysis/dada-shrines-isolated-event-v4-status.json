@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 4,
+  "status": "partial-reviewer-pools",
+  "stage": "scene-aware-isolated-one-frame-event-review-v4",
+  "generatedAt": "2026-07-23T02:07:54.449249Z",
+  "promotionStatus": "not-promoted-to-canonical",
+  "counts": {
+    "segments": 27,
+    "boundaries": 26,
+    "selectedSegments": 14,
+    "confirmedAnchors": 0,
+    "successfulReviewerPools": 1,
+    "failedReviewerPools": 1,
+    "requestedBatchCallsThisRun": 8,
+    "reusedBatchCallsThisRun": 0,
+    "persistedBatchPackets": 6
+  },
+  "requestShape": {
+    "eventsPerRequest": 3,
+    "framesPerEvent": 1
+  },
+  "minimumSegmentDurationSeconds": 5.067,
+  "maximumSegmentDurationSeconds": 16.533,
+  "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
+  "selectedReviewerModels": {
+    "reasoning-reviewer": "openai/gpt-4.1-mini"
+  },
+  "errors": [
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1",
+      "slots": [
+        1,
+        2,
+        3
+      ],
+      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        4,
+        5,
+        6
+      ],
+      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[4, 5, 6]: HTTP Error 429: Too Many Requests"
+    }
+  ],
+  "canonicalProtection": {
+    "beforeSha256": "fcdb4ea43bc6f70838ded68b52c753bc97957b3223991f7b65a77530cf871b38",
+    "afterSha256": "fcdb4ea43bc6f70838ded68b52c753bc97957b3223991f7b65a77530cf871b38",
+    "unchanged": true
+  },
+  "outputs": {
+    "segments": "data/geospatial/dada-shrines-27-scene-segments.json",
+    "manifest": "data/geospatial/dada-shrines-27-scene-evidence-manifest.json",
+    "isolatedAnchors": "data/geospatial/dada-shrines-27-anchors-batch01-v4.json",
+    "canonicalAnchors": "data/geospatial/dada-shrines-27-anchors-batch01.json"
+  },
+  "privacy": {
+    "repositoryContainsPixels": false,
+    "transientPixelsDeletedBeforeJobExit": true
+  }
+}
