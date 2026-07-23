@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "requestedAt": "2026-07-23T18:45:00Z",
+  "runNonce": "original-labels-icons-final-review-v1-anchor-safe-run-3",
+  "inputs": {
+    "planPath": "data/geospatial/geospatial-original-labels-icons-final-review-plan.json",
+    "terrainSvgPath": "assets/original-map/atlas-original-terrain-coastline-v1.svg",
+    "terrainManifestPath": "data/geospatial/geospatial-original-terrain-coastline-v1.json",
+    "skeletonPath": "data/geospatial/geospatial-original-authored-base-skeleton.json",
+    "categoriesPath": "data/categories.json",
+    "locationsPath": "data/locations.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  },
+  "expected": {
+    "canvasWidth": 4096,
+    "canvasHeight": 4096,
+    "coordinateInsetPixels": 270,
+    "locations": 3430,
+    "regionAssignedLocations": 3425,
+    "unassignedLocations": 5,
+    "regions": 10,
+    "categories": 44,
+    "groups": 7,
+    "coreSymbols": 9,
+    "confirmedAnchors": 50,
+    "regionLabels": 10,
+    "maximumLabelOverlaps": 0,
+    "maximumReservedPanelOverlaps": 0
+  },
+  "outputs": {
+    "svgPath": "assets/original-map/atlas-original-labels-icons-final-review-v1.svg",
+    "manifestPath": "data/geospatial/geospatial-original-labels-icons-final-review-v1.json",
+    "readinessPath": "data/geospatial/geospatial-original-final-canvas-readiness.json",
+    "progressPath": "data/geospatial/geospatial-progress.json"
+  }
+}

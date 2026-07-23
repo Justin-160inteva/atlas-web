@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "decidedAt": "2026-07-23T18:10:00Z",
+  "status": "approved",
+  "policy": "retain_as_global_overlay_without_region_inference",
+  "reason": "No reliable repository evidence assigns these locations to a region. Retaining them globally preserves the factual coordinates without inventing region membership.",
+  "locations": [
+    {
+      "locationId": "location-mapgenie-479929",
+      "title": "News from Hattori Hanzo",
+      "categoryId": "category-12341-quest",
+      "disposition": "retain_global_overlay",
+      "regionId": null
+    },
+    {
+      "locationId": "location-mapgenie-479932",
+      "title": "The Puppet Show",
+      "categoryId": "category-12341-quest",
+      "disposition": "retain_global_overlay",
+      "regionId": null
+    },
+    {
+      "locationId": "location-mapgenie-481173",
+      "title": "Painting Memories",
+      "categoryId": "category-12341-quest",
+      "disposition": "retain_global_overlay",
+      "regionId": null
+    },
+    {
+      "locationId": "location-mapgenie-605004",
+      "title": "Black Tides",
+      "categoryId": "category-12341-quest",
+      "disposition": "retain_global_overlay",
+      "regionId": null
+    },
+    {
+      "locationId": "location-mapgenie-605006",
+      "title": "Horizon",
+      "categoryId": "category-12352-rift",
+      "disposition": "retain_global_overlay",
+      "regionId": null
+    }
+  ],
+  "safety": {
+    "regionMembershipInferred": false,
+    "coordinatesChanged": false,
+    "locationsRemoved": false,
+    "globalVisibilityPreserved": true
+  }
+}

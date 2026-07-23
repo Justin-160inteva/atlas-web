@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T18:45:00Z",
+  "status": "final-canvas-review-candidate-awaiting-human-approval",
+  "candidate": {
+    "path": "assets/original-map/atlas-original-labels-icons-final-review-v1.svg",
+    "format": "svg",
+    "width": 4096,
+    "height": 4096,
+    "sizeBytes": 197532,
+    "sha256": "a258990dc8a099e1d96c8707aae5cadd63570e5236a4efe278b793ba498ac668",
+    "editableSource": true,
+    "repositoryOwned": true
+  },
+  "automatedGates": {
+    "terrainSourceHashMatches": true,
+    "categoryMappingsComplete": true,
+    "coreSymbolCountExact": true,
+    "regionLabelCountExact": true,
+    "labelOverlapCountWithinLimit": true,
+    "reservedPanelOverlapCountWithinLimit": true,
+    "confirmedAnchorIconsExact": true,
+    "allAnchorsUseShrineOrTempleSymbols": true,
+    "externalResourcesAbsent": true,
+    "previousTerrainSvgUnmodified": true,
+    "visualBalanceOverridesApplied": true,
+    "anchorLabelOverlapCountWithinLimit": true
+  },
+  "automatedGateStatus": "passed",
+  "blockers": [
+    {
+      "id": "human-visual-review",
+      "count": 1,
+      "detail": "a human visual approval record is required before final canvas freeze"
+    }
+  ],
+  "blockerCount": 1,
+  "unassignedLocationGuides": [
+    {
+      "locationId": "location-mapgenie-479929",
+      "title": "News from Hattori Hanzo",
+      "categoryId": "category-12341-quest",
+      "x": 0.51733454,
+      "y": 0.30912601,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-479932",
+      "title": "The Puppet Show",
+      "categoryId": "category-12341-quest",
+      "x": 0.24999967,
+      "y": 0.3147586,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-481173",
+      "title": "Painting Memories",
+      "categoryId": "category-12341-quest",
+      "x": 0.51823943,
+      "y": 0.31126713,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-605004",
+      "title": "Black Tides",
+      "categoryId": "category-12341-quest",
+      "x": 0.34626155,
+      "y": 0.06273667,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    },
+    {
+      "locationId": "location-mapgenie-605006",
+      "title": "Horizon",
+      "categoryId": "category-12352-rift",
+      "x": 0.78012489,
+      "y": 0.01950241,
+      "meaning": "global construction point pending region classification; excluded from region hulls"
+    }
+  ],
+  "humanVisualReview": {
+    "status": "not_recorded",
+    "approvedBy": null,
+    "approvedAt": null,
+    "notes": null
+  },
+  "finalCanvasFreeze": {
+    "eligible": false,
+    "frozen": false,
+    "frozenSha256": null,
+    "reason": "all automated and unassigned-location disposition gates passed; human visual approval remains required"
+  },
+  "nextAction": "complete human visual review, then record approval and freeze the immutable final canvas hash",
+  "unassignedLocationDisposition": {
+    "status": "resolved",
+    "path": "data/geospatial/geospatial-unassigned-location-disposition.json",
+    "policy": "retain_as_global_overlay_without_region_inference",
+    "locationCount": 5,
+    "regionMembershipInferred": false,
+    "globalVisibilityPreserved": true
+  },
+  "visualBalanceReview": {
+    "status": "adjusted_after_rendered_preview",
+    "regionUnderlayStrokeWidth": 7,
+    "coastlineInkStrokeWidth": 6,
+    "routeLineStrokeWidth": 4,
+    "purpose": "reduce overlapping internal outlines and preserve terrain/label hierarchy"
+  }
+}
