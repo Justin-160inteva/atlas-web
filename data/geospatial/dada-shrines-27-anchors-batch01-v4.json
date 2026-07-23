@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "reviewStrategyVersion": 2,
-  "generatedAt": "2026-07-23T02:14:59.853899Z",
+  "generatedAt": "2026-07-23T02:19:49.282773Z",
   "stage": "shrine-anchor-batch01-high-resolution-event-batches",
   "status": "complete",
   "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
@@ -20,8 +20,8 @@
     "candidateShrines": 32,
     "successfulReviewerPools": 2,
     "failedReviewerPools": 0,
-    "requestedBatchCallsThisRun": 2,
-    "reusedBatchCallsThisRun": 9,
+    "requestedBatchCallsThisRun": 1,
+    "reusedBatchCallsThisRun": 10,
     "persistedBatchPackets": 10,
     "duplicateCandidateIdsRejected": 0
   },
@@ -214,7 +214,7 @@
           "reasonZhCN": "从E14事件的代表帧中弹窗直接读取到神社名称“春日神社”和区域“伊贺”"
         }
       ],
-      "selectedAt": "2026-07-23T02:14:52.288095Z"
+      "selectedAt": "2026-07-23T02:19:49.282624Z"
     },
     {
       "reviewerPool": "vision-reviewer",
@@ -381,7 +381,7 @@
           "reasonZhCN": "从E14的图中直接读取到春日神社的文字"
         }
       ],
-      "selectedAt": "2026-07-23T02:14:59.853783Z"
+      "selectedAt": "2026-07-23T02:19:49.282688Z"
     }
   ],
   "batchPackets": [
@@ -835,14 +835,6 @@
         2,
         3
       ]
-    },
-    {
-      "reviewerPool": "vision-reviewer",
-      "model": "openai/gpt-4o-mini",
-      "slots": [
-        13,
-        14
-      ]
     }
   ],
   "reusedBatchCallsThisRun": [
@@ -924,6 +916,14 @@
         10,
         11,
         12
+      ]
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        13,
+        14
       ]
     }
   ],
