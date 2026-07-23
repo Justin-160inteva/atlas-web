@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T21:20:00Z",
+  "status": "authorized-primary-source-found",
+  "stage": "2p5d-sakai-video-source-selection",
+  "pilotScopeId": "izumi-settsu-sakai-urban-core-v1",
+  "currentAuthorizationRegistry": "data/authorizations.json",
+  "primarySource": {
+    "priority": 1,
+    "authorizationStatus": "active-existing-author-level-authorization",
+    "authorizationId": "auth-eleven-game-world-20260719",
+    "author": "11的游戏世界",
+    "platform": "哔哩哔哩",
+    "jobId": "eleven-p006-v2",
+    "jobPath": "data/analysis-jobs/eleven-p006.json",
+    "resultPath": "data/analysis-results/eleven-p006.json",
+    "externalSourceId": "bili-eleven-acshadows-BV1FdQ9YdEcN-p006",
+    "url": "https://www.bilibili.com/video/BV1FdQ9YdEcN/?p=6",
+    "title": "第6期：黄金铁炮（若狭）",
+    "page": 6,
+    "cid": 28948103844,
+    "durationSeconds": 3106.066,
+    "reason": "the Golden Teppo storyline includes the Searching Sakai sequence and related Sakai missions; the account-level project authorization already permits download, transient visual review, original 2D/3D reconstruction, road/terrain/water analysis and derived map publication",
+    "nextAction": "run a Sakai-specific full-duration and context-aware transient scan before contacting external creators"
+  },
+  "fallbackAuthorizationCandidates": [
+    {
+      "priority": 2,
+      "authorizationStatus": "not-authorized",
+      "author": "侑依",
+      "platform": "哔哩哔哩",
+      "containerBvid": "BV1pQdvYnEkq",
+      "videos": [
+        {
+          "url": "https://www.bilibili.com/video/BV1pQdvYnEkq/?p=5",
+          "title": "刺客信条：影 （5） 堺城",
+          "duration": "42:16"
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV1pQdvYnEkq/?p=6",
+          "title": "刺客信条：影 （6） 堺城",
+          "duration": "01:15:37"
+        }
+      ],
+      "value": "nearly two hours explicitly labeled Sakai; strongest fallback for continuous streets, roofs, waterfront and repeated landmark coverage",
+      "contactRoute": "Bilibili direct message"
+    },
+    {
+      "priority": 3,
+      "authorizationStatus": "not-authorized",
+      "author": "康妮Konic6362",
+      "platform": "哔哩哔哩",
+      "containerBvid": "BV1AnQNYxEsJ",
+      "videos": [
+        {
+          "url": "https://www.bilibili.com/video/BV1AnQNYxEsJ/?p=6",
+          "title": "寻遍堺城",
+          "duration": "25:23"
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV1AnQNYxEsJ/?p=7",
+          "title": "人靠衣装",
+          "duration": "09:06"
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV1AnQNYxEsJ/?p=8",
+          "title": "完美礼物",
+          "duration": "09:40"
+        }
+      ],
+      "value": "continuous story sequence around Sakai and Imai Sokyu; useful for route identity and repeated structures",
+      "contactRoute": "Bilibili direct message or the cooperation contact listed on the creator page"
+    },
+    {
+      "priority": 4,
+      "authorizationStatus": "not-authorized",
+      "author": "全职游戏up",
+      "platform": "哔哩哔哩",
+      "containerBvid": "BV17iXwYrE2Y",
+      "videos": [
+        {
+          "url": "https://www.bilibili.com/video/BV17iXwYrE2Y/?p=18",
+          "title": "寻遍堺城",
+          "duration": "34:13"
+        }
+      ],
+      "value": "long Sakai mission footage and likely continuous city traversal",
+      "contactRoute": "Bilibili direct message"
+    },
+    {
+      "priority": 5,
+      "authorizationStatus": "not-authorized",
+      "author": "小洪的游戏小屋",
+      "platform": "哔哩哔哩",
+      "containerBvid": "BV1FzxizXEQ7",
+      "videos": [
+        {
+          "url": "https://www.bilibili.com/video/BV1FzxizXEQ7/",
+          "title": "主线5：黄金铁炮（寻遍堺城、人靠衣装、完美礼物、茶会、直奔主题）",
+          "qualityClaim": "PS5 4K HDR"
+        }
+      ],
+      "value": "high-resolution full Sakai story segment; potentially valuable for roof materials and building details",
+      "contactRoute": "Bilibili direct message"
+    },
+    {
+      "priority": 6,
+      "authorizationStatus": "not-authorized",
+      "author": "逃洛洛",
+      "platform": "哔哩哔哩",
+      "containerBvid": "BV1YuWJzHE8W",
+      "videos": [
+        {
+          "url": "https://www.bilibili.com/video/BV1YuWJzHE8W/?p=7",
+          "title": "寻遍堺城",
+          "duration": "22:28"
+        }
+      ],
+      "value": "separate Sakai playthrough suitable for cross-view landmark verification",
+      "contactRoute": "Bilibili direct message"
+    },
+    {
+      "priority": 7,
+      "authorizationStatus": "not-authorized",
+      "author": "Kibbles Gaming",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=_8owR70wiqY",
+      "title": "Assassins Creed Shadows searching sakai guide / walkthrough",
+      "value": "mission-specific independent route reference",
+      "contactRoute": "creator business/social contact on YouTube channel"
+    },
+    {
+      "priority": 8,
+      "authorizationStatus": "not-authorized",
+      "author": "ZaFrostPet",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=GG4tThTPzWY",
+      "title": "Searching Sakai Assassin's Creed Shadows",
+      "duration": "approximately 08:10",
+      "value": "concise mission route with explicit Imai Sokyu context",
+      "contactRoute": "creator business/social contact on YouTube channel"
+    }
+  ],
+  "authorizationRequestScopeForFallbacks": [
+    "download the named public video pages for local transient analysis",
+    "create private low-resolution contact sheets for visual review",
+    "derive original building, road, waterfront and terrain relationships without publishing source frames",
+    "publish only the original Atlas reconstruction, timestamp evidence metadata and required attribution",
+    "exclude redistribution of the original video and any commercial use unless separately approved"
+  ],
+  "decision": {
+    "contactExternalCreatorsNow": false,
+    "reason": "an already-authorized source specifically containing the Sakai storyline has been identified and must be evaluated first",
+    "fallbackTrigger": "contact external creators only if P06 lacks sufficient multi-view building, street and waterfront coverage for the pilot"
+  }
+}
