@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "requestedAt": "2026-07-23T10:20:00Z",
+  "batch": {
+    "reviewPath": "data/geospatial/dada-shrines-direct-review-batch02.json",
+    "ordinals": [9, 10, 11, 12, 13, 14],
+    "expectedPromotedThisBatch": 6,
+    "expectedTotalShrineAnchors": 14,
+    "expectedGlobalConfirmedAnchors": 50,
+    "phase1Target": 50
+  },
+  "policy": {
+    "minimumIndependentModels": 2,
+    "minimumConfidencePerModel": 0.92,
+    "rejectTempleLocationOverlap": true,
+    "rejectTempleCoordinateOverlap": true,
+    "rejectExistingShrineOverlap": true,
+    "requireCanonicalLocationCoordinateMatch": true,
+    "repositoryContainsPixels": false
+  }
+}
