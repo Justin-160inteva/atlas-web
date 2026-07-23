@@ -74,16 +74,23 @@ jobs:
           assert plan['legacyRenderBase']['finalBaseCandidate'] is False
           assert plan['legacyRenderBase']['calibrationAuthority'] is False
           assert plan['authorshipContract']['visualArtworkOriginal'] is True
+          assert plan['scope']['allLocationRegions'] == 10
+          assert plan['scope']['confirmedAnchorCoveredRegions'] == 9
+          assert plan['scope']['currentlyUnanchoredExtensionRegions'] == ['region-3304-awaji']
 
           assert skeleton['status'] == 'original-authored-spatial-skeleton-ready'
           assert skeleton['counts']['locations'] == 3430
-          assert skeleton['counts']['regions'] == 9
+          assert skeleton['counts']['regions'] == 10
           assert skeleton['counts']['confirmedAnchors'] == 50
           assert skeleton['counts']['densityGridSize'] == 32
-          assert len(skeleton['regions']) == 9
+          assert len(skeleton['regions']) == 10
           assert sum(row['locationCount'] for row in skeleton['regions']) == 3430
           assert sum(row['confirmedAnchorCount'] for row in skeleton['regions']) == 50
           assert all(len(row['constructionHull']) >= 3 for row in skeleton['regions'])
+          covered = sorted(row['regionId'] for row in skeleton['regions'] if row['confirmedAnchorCount'] > 0)
+          unanchored = sorted(row['regionId'] for row in skeleton['regions'] if row['confirmedAnchorCount'] == 0)
+          assert len(covered) == 9
+          assert unanchored == ['region-3304-awaji']
           assert len(skeleton['locationDensityGrid']['rows']) == 32
           assert all(len(row) == 32 for row in skeleton['locationDensityGrid']['rows'])
           assert sum(sum(row) for row in skeleton['locationDensityGrid']['rows']) == 3430
@@ -94,6 +101,7 @@ jobs:
           assert final_base['legacyRenderBase']['role'] == 'temporary_development_preview_only'
           assert final_base['legacyRenderBase']['finalBaseCandidate'] is False
           assert final_base['authoredBase']['status'] == 'spatial_skeleton_ready'
+          assert final_base['authoredBase']['regionCount'] == 10
           assert progress['originalAuthoredBase']['legacyPreviewIsNonAuthoritative'] is True
           assert progress['stageGates']['coordinateAndOverlayCalibration']['pixelTransformStatus'] == 'blocked_pending_original_authored_final_canvas'
 
@@ -107,6 +115,8 @@ jobs:
               'status': skeleton['status'],
               'locations': skeleton['counts']['locations'],
               'regions': skeleton['counts']['regions'],
+              'anchorCoveredRegions': len(covered),
+              'unanchoredRegions': unanchored,
               'anchors': skeleton['counts']['confirmedAnchors'],
               'adjacencyEdges': skeleton['counts']['regionAdjacencyEdges'],
               'nextArtStage': skeleton['nextArtStage']['status'],
