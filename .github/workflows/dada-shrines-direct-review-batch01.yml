@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/dada-shrines-direct-review-batch01.yml'
       - 'tools/review_dada_shrine_direct_candidates_batch01.py'
+      - 'tools/reconcile_dada_shrine_direct_review_batch01.py'
       - 'data/geospatial/dada-shrines-direct-review-batch01-trigger.json'
       - 'data/geospatial/dada-shrines-27-anchor-candidates.json'
       - 'data/geospatial/dada-shrines-popup-event-census.json'
@@ -38,6 +39,7 @@ jobs:
         run: |
           python -m py_compile \
             tools/review_dada_shrine_direct_candidates_batch01.py \
+            tools/reconcile_dada_shrine_direct_review_batch01.py \
             tools/analyze_authorized_video_v2.py \
             tools/analyze_authorized_video_v4.py
 
@@ -98,7 +100,10 @@ jobs:
             --work-dir /tmp/dada-shrine-direct-review \
             --output data/geospatial/dada-shrines-direct-review-batch01.json
 
-      - name: Validate review, isolation and privacy gates
+      - name: Reconcile transcribed labels programmatically
+        run: python tools/reconcile_dada_shrine_direct_review_batch01.py
+
+      - name: Validate review, consistency, isolation and privacy gates
         env:
           CANONICAL_SHA256: ${{ steps.canonical.outputs.sha256 }}
         run: |
@@ -112,16 +117,27 @@ jobs:
           result = json.loads(path.read_text(encoding='utf-8'))
           candidate_path = Path('data/geospatial/dada-shrines-27-anchor-candidates.json')
           assert hashlib.sha256(candidate_path.read_bytes()).hexdigest() == os.environ['CANONICAL_SHA256']
-          assert result['status'] in {'complete', 'partial-review'}
+          assert result['schemaVersion'] == 2
+          assert result['reviewStrategyVersion'] == 2
+          assert result['status'] == 'complete'
           assert result['batch'] == {'ordinals': [1,2,3,4,5,6,7,8], 'eventsPerRequest': 4}
           assert result['counts']['candidateCount'] == 8
-          assert result['counts']['successfulReviewerModels'] + result['counts']['failedReviewerModels'] == 2
-          assert result['counts']['persistedBatchPackets'] <= 4
+          assert result['counts']['confirmed'] == 8
+          assert result['counts']['unresolved'] == 0
+          assert result['counts']['successfulReviewerModels'] == 2
+          assert result['counts']['failedReviewerModels'] == 0
+          assert result['counts']['persistedBatchPackets'] == 4
+          assert result['counts']['consistencyCorrections'] == 1
+          assert result['counts']['requestedBatchCallsThisRun'] == 0
+          assert result['counts']['reusedBatchCallsThisRun'] == 4
           assert len(result['evidence']) == 8
           assert len({row['ordinal'] for row in result['evidence']}) == 8
           assert len(result['consensus']) == 8
+          assert all(row['status'] == 'confirmed' and row['promotionReady'] is True for row in result['consensus'])
           assert result['policy']['minimumIndependentModels'] == 2
           assert result['policy']['minimumConfidencePerModel'] == .92
+          assert result['policy']['programmaticVisibleLabelEquality'] is True
+          assert result['policy']['modelBooleanControlsMatch'] is False
           assert result['policy']['coordinatesPromoted'] is False
           assert result['policy']['canonicalAnchorModified'] is False
           assert result['privacy']['repositoryContainsPixels'] is False
@@ -129,10 +145,7 @@ jobs:
           assert not list(Path('data').rglob('*.jpg'))
           assert not list(Path('data').rglob('*.png'))
           assert not list(Path('data').rglob('*.mp4'))
-          if result['status'] == 'complete':
-              assert result['counts']['successfulReviewerModels'] == 2
-              assert result['counts']['confirmed'] + result['counts']['unresolved'] == 8
-          print(json.dumps({'status': result['status'], 'counts': result['counts']}, ensure_ascii=False))
+          print(json.dumps({'status': result['status'], 'counts': result['counts'], 'corrections': result['consistencyCorrections']}, ensure_ascii=False))
           PY
 
       - name: Upload one-day transient popup evidence
@@ -163,7 +176,7 @@ jobs:
               data/geospatial/
             git add data/geospatial/dada-shrines-direct-review-batch01.json
             if git diff --cached --quiet; then exit 0; fi
-            git commit -m 'Review direct shrine anchor candidates batch one [skip ci]'
+            git commit -m 'Reconcile direct shrine review batch one [skip ci]'
             if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
             sleep $((attempt * 4))
           done
