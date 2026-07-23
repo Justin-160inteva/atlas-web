@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "generatedAt": "2026-07-23T13:32:05.876764Z",
+  "generatedAt": "2026-07-23T16:14:00Z",
   "status": "phase1-complete",
   "phase1": {
     "targetConfirmedAnchors": 50,
@@ -28,20 +28,22 @@
     },
     "finalOriginalUltraHdBase": {
       "status": "in_progress",
-      "candidateAuditStatus": "current-render-base-audited-final-base-blocked",
-      "candidatePath": "assets/world-map-4096.webp",
-      "candidateSha256": "d022cf54293a32375429743e7f6d7c7dc06b5bca2d25d9fd22aa1428daa9f762",
-      "candidateDimensions": {
-        "width": 4096,
-        "height": 4096
+      "strategy": "fully_original_authored_visual_base",
+      "strategyPath": "data/geospatial/geospatial-original-authored-base-plan.json",
+      "legacyRenderBase": {
+        "path": "assets/world-map-4096.webp",
+        "role": "temporary_development_preview_only",
+        "finalBaseCandidate": false,
+        "calibrationAuthority": false
       },
-      "auditPath": "data/geospatial/geospatial-final-base-candidate-audit.json",
-      "blockingItems": [
-        "final base source authorization and provenance are not approved",
-        "final base crop rectangle is not fixed",
-        "overlay pixel origin is not fixed",
-        "current render asset has not been approved as the final original ultra-HD base"
-      ]
+      "authoredBase": {
+        "status": "spatial_skeleton_ready",
+        "skeletonPath": "data/geospatial/geospatial-original-authored-base-skeleton.json",
+        "locationCount": 3430,
+        "regionCount": 11,
+        "confirmedAnchorCount": 50,
+        "nextStage": "original_regional_composition"
+      }
     },
     "coordinateAndOverlayCalibration": {
       "status": "in_progress",
@@ -50,15 +52,16 @@
       "calibrationControlPoints": 24,
       "validationHoldouts": 12,
       "reservePoints": 14,
-      "pixelTransformStatus": "blocked_pending_final_base_approval_crop_and_origin",
+      "pixelTransformStatus": "blocked_pending_original_authored_final_canvas",
       "controlPointPath": "data/geospatial/geospatial-calibration-control-points.json",
-      "readinessPath": "data/geospatial/geospatial-calibration-readiness.json"
+      "readinessPath": "data/geospatial/geospatial-calibration-readiness.json",
+      "blockingReason": "pixel calibration begins only after the original authored canvas is approved and frozen"
     },
     "responsiveCompatibilityValidation": {
-      "status": "pending_final_base"
+      "status": "pending_original_authored_final_base"
     },
     "physicalDeviceVerification": {
-      "status": "pending_final_base"
+      "status": "pending_original_authored_final_base"
     }
   },
   "sources": [
@@ -850,5 +853,13 @@
     "minimumShrineConfidenceMet": true,
     "repositoryContainsNoEvidencePixels": true,
     "approximateCoordinatesNotInvented": true
+  },
+  "originalAuthoredBase": {
+    "strategyStatus": "approved_in_development",
+    "skeletonStatus": "ready",
+    "strategyPath": "data/geospatial/geospatial-original-authored-base-plan.json",
+    "skeletonPath": "data/geospatial/geospatial-original-authored-base-skeleton.json",
+    "legacyPreviewIsNonAuthoritative": true,
+    "nextAction": "author original regional composition from the deterministic skeleton"
   }
 }
