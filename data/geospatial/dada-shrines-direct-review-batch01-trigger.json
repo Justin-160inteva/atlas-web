@@ -1,15 +1,18 @@
 {
-  "schemaVersion": 1,
-  "requestedAt": "2026-07-23T09:25:00Z",
-  "runNonce": "shrine-direct-review-batch01-run-v1",
+  "schemaVersion": 2,
+  "requestedAt": "2026-07-23T09:30:00Z",
+  "runNonce": "shrine-direct-review-batch01-reconcile-run-v1",
   "batch": {
     "ordinals": [1, 2, 3, 4, 5, 6, 7, 8],
     "models": ["openai/gpt-4.1-mini", "openai/gpt-4o-mini"],
-    "minimumConfidencePerModel": 0.92
+    "minimumConfidencePerModel": 0.92,
+    "reuseExistingReviewPackets": true
   },
   "policy": {
     "cropPopupOnly": true,
     "programmaticLocationIdMapping": true,
+    "programmaticVisibleLabelEquality": true,
+    "modelBooleanControlsMatch": false,
     "promoteCoordinates": false,
     "modifyCanonicalAnchor": false
   }
