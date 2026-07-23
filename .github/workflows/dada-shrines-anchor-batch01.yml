@@ -12,13 +12,22 @@ on:
       - 'tools/build_geospatial_progress.py'
       - 'data/geospatial/geospatial-vision-policy.json'
       - 'data/geospatial/dada-shrines-anchor-batch01-trigger.json'
+  pull_request:
+    paths:
+      - '.github/workflows/dada-shrines-anchor-batch01.yml'
+      - 'tools/build_dada_shrines_geospatial_stage1.py'
+      - 'tools/extract_dada_shrine_anchor_batch.py'
+      - 'tools/review_dada_shrine_anchor_batch.py'
+      - 'tools/build_geospatial_progress.py'
+      - 'data/geospatial/geospatial-vision-policy.json'
+      - 'data/geospatial/dada-shrines-anchor-batch01-trigger.json'
 
 permissions:
   contents: write
   models: read
 
 concurrency:
-  group: dada-shrines-anchor-batch01-main
+  group: dada-shrines-anchor-batch01-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -26,10 +35,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 55
     steps:
-      - name: Check out latest main
+      - name: Check out repository branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -154,6 +164,8 @@ jobs:
           PY
 
       - name: Commit non-pixel shrine anchor results
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -166,9 +178,13 @@ jobs:
             data/geospatial/dada-shrines-27-anchors-batch01.json \
             data/geospatial/geospatial-progress.json \
             data/batch-analysis/dada-shrines-27-geospatial-status.json
+          if git diff --cached --quiet; then
+            echo 'No non-pixel shrine anchor changes.'
+            exit 0
+          fi
           git commit -m 'Review shrine anchor batch 01 and update geospatial progress [skip ci]'
           for attempt in 1 2 3 4 5 6; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
+            if git pull --rebase origin "$TARGET_BRANCH" && git push origin "HEAD:$TARGET_BRANCH"; then
               exit 0
             fi
             git rebase --abort || true
