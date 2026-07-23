@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/dada-shrine-popup-event-census.yml'
       - 'tools/detect_dada_shrine_popup_events.py'
+      - 'tools/apply_shrine_popup_aspect_patch.py'
 
 permissions:
   contents: write
@@ -30,9 +31,13 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Enable tall full-popup panels
+        run: python tools/apply_shrine_popup_aspect_patch.py
+
       - name: Compile popup detector
         run: |
           python -m py_compile \
+            tools/apply_shrine_popup_aspect_patch.py \
             tools/detect_dada_shrine_popup_events.py \
             tools/analyze_authorized_video_v2.py \
             tools/analyze_authorized_video_v4.py
@@ -93,7 +98,7 @@ jobs:
           root = Path('/tmp/dada-shrine-popup-events')
           assert census['status'] == 'popup-event-census-complete'
           assert census['counts']['sampledFrames'] >= 900
-          assert 15 <= census['counts']['stableEvents'] <= 80
+          assert 15 <= census['counts']['stableEvents'] <= 90
           assert census['counts']['contactSheets'] >= 2
           assert census['method']['coordinatesAssigned'] is False
           assert census['privacy']['repositoryContainsPixels'] is False
@@ -107,6 +112,10 @@ jobs:
               (root / row['filename']).is_file()
               for row in census['artifactFiles']['contactSheets']
           )
+          assert any(
+              row['box']['width'] / max(1, row['box']['height']) < 1.15
+              for row in census['events']
+          ), 'relaxed detector did not retain any tall popup panel'
           assert not list(Path('data').rglob('*.jpg'))
           assert not list(Path('data').rglob('*.png'))
           assert not list(Path('data').rglob('*.mp4'))
@@ -141,7 +150,7 @@ jobs:
               data/geospatial/
             git add data/geospatial/dada-shrines-popup-event-census.json
             if git diff --cached --quiet; then exit 0; fi
-            git commit -m 'Detect stable shrine map-popup events [skip ci]'
+            git commit -m 'Detect tall and standard shrine map-popup events [skip ci]'
             if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
             sleep $((attempt * 5))
           done
