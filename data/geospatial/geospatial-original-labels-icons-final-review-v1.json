@@ -1,0 +1,486 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T18:00:00Z",
+  "status": "original-labels-icons-final-review-candidate-ready",
+  "stage": "original-labels-icons-and-final-canvas-review",
+  "asset": {
+    "path": "assets/original-map/atlas-original-labels-icons-final-review-v1.svg",
+    "format": "svg",
+    "width": 4096,
+    "height": 4096,
+    "sizeBytes": 196987,
+    "sha256": "93b9f6166ff8bc9f3ca75c06063917bf0b5e08fac430b14fed178cb589f9b75f",
+    "editableSource": true,
+    "repositoryOwned": true
+  },
+  "sourceHashes": {
+    "data/geospatial/geospatial-original-labels-icons-final-review-plan.json": "4ab1cae243fea407b7a37e323d1befb0020be07b6802c8ed9072be8957db26d4",
+    "assets/original-map/atlas-original-terrain-coastline-v1.svg": "7b72f41378fc6b9d0f73385e9ee6386eb7f2d8a3fd1bcd4abab8f092c56ac704",
+    "data/geospatial/geospatial-original-terrain-coastline-v1.json": "669d02643f9e4e572f72e8fc2b6f8e6083685cc942e6eda49bf506243c5333e6",
+    "data/geospatial/geospatial-original-authored-base-skeleton.json": "1f23cb4fbdfa8150bf2ccc2156bde0da5b6b136b52ae771277c7a406446b34f4",
+    "data/categories.json": "df439a46b4de7f1843bbec0266eee56e5df9bf0a3093554970837bb865012c83",
+    "data/locations.json": "57b4c06065f46ebcd37033f13df0c5964b3b085ce92c23b6cdcdf5765a3cbdb2",
+    "data/geospatial/geospatial-progress.json": "c95a78fea2d9f0e96db61246513b0047a4560235c817027c2f2b2ff96d2dc453"
+  },
+  "counts": {
+    "locations": 3430,
+    "regionAssignedLocations": 3425,
+    "unassignedLocations": 5,
+    "regions": 10,
+    "categories": 44,
+    "categoryGroups": 7,
+    "coreSymbols": 9,
+    "confirmedAnchorIcons": 50,
+    "labelOverlaps": 0,
+    "reservedPanelOverlaps": 0
+  },
+  "categoryMappings": [
+    {
+      "categoryId": "category-12312-castle",
+      "categoryTitle": "Castle",
+      "groupId": "group-2100-locations",
+      "symbolId": "atlas-icon-location"
+    },
+    {
+      "categoryId": "category-12310-fort",
+      "categoryTitle": "Fort",
+      "groupId": "group-2100-locations",
+      "symbolId": "atlas-icon-location"
+    },
+    {
+      "categoryId": "category-12452-hostile-landmark",
+      "categoryTitle": "Hostile Landmark",
+      "groupId": "group-2100-locations",
+      "symbolId": "atlas-icon-location"
+    },
+    {
+      "categoryId": "category-12307-kakurega",
+      "categoryTitle": "Kakurega",
+      "groupId": "group-2100-locations",
+      "symbolId": "atlas-icon-location"
+    },
+    {
+      "categoryId": "category-12309-landmark",
+      "categoryTitle": "Landmark",
+      "groupId": "group-2100-locations",
+      "symbolId": "atlas-icon-location"
+    },
+    {
+      "categoryId": "category-12355-sub-region",
+      "categoryTitle": "Sub-Region",
+      "groupId": "group-2100-locations",
+      "symbolId": "atlas-icon-location"
+    },
+    {
+      "categoryId": "category-12308-viewpoint",
+      "categoryTitle": "Viewpoint",
+      "groupId": "group-2100-locations",
+      "symbolId": "atlas-icon-location"
+    },
+    {
+      "categoryId": "category-12321-gear-vendor",
+      "categoryTitle": "Gear Vendor",
+      "groupId": "group-2101-services",
+      "symbolId": "atlas-icon-service"
+    },
+    {
+      "categoryId": "category-12320-ornament-vendor",
+      "categoryTitle": "Ornament Vendor",
+      "groupId": "group-2101-services",
+      "symbolId": "atlas-icon-service"
+    },
+    {
+      "categoryId": "category-12359-port-trader",
+      "categoryTitle": "Port Trader",
+      "groupId": "group-2101-services",
+      "symbolId": "atlas-icon-service"
+    },
+    {
+      "categoryId": "category-12325-cultural-discovery",
+      "categoryTitle": "Cultural Discovery",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-13644-glyph",
+      "categoryTitle": "Glyph",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12315-jizo-statue",
+      "categoryTitle": "Jizo Statue",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12332-kamon-crest",
+      "categoryTitle": "Kamon Crest",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12326-kano-painting",
+      "categoryTitle": "Kano Painting",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12342-legendary-chest",
+      "categoryTitle": "Legendary Chest",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12330-legendary-sumi-e",
+      "categoryTitle": "Legendary Sumi-e",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12358-local-dish",
+      "categoryTitle": "Local Dish",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12328-music",
+      "categoryTitle": "Music",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12327-origami-butterfly",
+      "categoryTitle": "Origami Butterfly",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12323-sumi-e",
+      "categoryTitle": "Sumi-e",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12331-tea-bowl",
+      "categoryTitle": "Tea Bowl",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12329-valuable-object",
+      "categoryTitle": "Valuable Object",
+      "groupId": "group-2102-collectibles",
+      "symbolId": "atlas-icon-collectible"
+    },
+    {
+      "categoryId": "category-12333-weapon-part",
+      "categoryTitle": "Weapon Part",
+      "groupId": "group-2103-equipment",
+      "symbolId": "atlas-icon-equipment"
+    },
+    {
+      "categoryId": "category-12341-quest",
+      "categoryTitle": "Quest",
+      "groupId": "group-2104-npc-s",
+      "symbolId": "atlas-icon-npc"
+    },
+    {
+      "categoryId": "category-12317-target",
+      "categoryTitle": "Target",
+      "groupId": "group-2104-npc-s",
+      "symbolId": "atlas-icon-npc"
+    },
+    {
+      "categoryId": "category-12354-hidden-trail",
+      "categoryTitle": "Hidden Trail",
+      "groupId": "group-2106-activities",
+      "symbolId": "atlas-icon-activity"
+    },
+    {
+      "categoryId": "category-12357-horse-archery",
+      "categoryTitle": "Horse Archery",
+      "groupId": "group-2106-activities",
+      "symbolId": "atlas-icon-activity"
+    },
+    {
+      "categoryId": "category-12360-kata",
+      "categoryTitle": "Kata",
+      "groupId": "group-2106-activities",
+      "symbolId": "atlas-icon-activity"
+    },
+    {
+      "categoryId": "category-12356-kofun",
+      "categoryTitle": "Kofun",
+      "groupId": "group-2106-activities",
+      "symbolId": "atlas-icon-activity"
+    },
+    {
+      "categoryId": "category-12314-kuji-kiri",
+      "categoryTitle": "Kuji-kiri",
+      "groupId": "group-2106-activities",
+      "symbolId": "atlas-icon-activity"
+    },
+    {
+      "categoryId": "category-12352-rift",
+      "categoryTitle": "Rift",
+      "groupId": "group-2106-activities",
+      "symbolId": "atlas-icon-activity"
+    },
+    {
+      "categoryId": "category-12313-shrine",
+      "categoryTitle": "Shrine",
+      "groupId": "group-2106-activities",
+      "symbolId": "atlas-icon-shrine"
+    },
+    {
+      "categoryId": "category-12311-temple",
+      "categoryTitle": "Temple",
+      "groupId": "group-2106-activities",
+      "symbolId": "atlas-icon-temple"
+    },
+    {
+      "categoryId": "category-13645-alarm-bell",
+      "categoryTitle": "Alarm Bell",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-other"
+    },
+    {
+      "categoryId": "category-12346-chest",
+      "categoryTitle": "Chest",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-other"
+    },
+    {
+      "categoryId": "category-12345-easter-egg",
+      "categoryTitle": "Easter Egg",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-other"
+    },
+    {
+      "categoryId": "category-12348-keys",
+      "categoryTitle": "Keys",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-other"
+    },
+    {
+      "categoryId": "category-12351-kura-key",
+      "categoryTitle": "Kura Key",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-other"
+    },
+    {
+      "categoryId": "category-12324-lost-page",
+      "categoryTitle": "Lost Page",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-other"
+    },
+    {
+      "categoryId": "category-12344-miscellaneous",
+      "categoryTitle": "Miscellaneous",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-other"
+    },
+    {
+      "categoryId": "category-12347-samurai-daisho",
+      "categoryTitle": "Samurai Daisho",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-other"
+    },
+    {
+      "categoryId": "category-12349-small-shrine",
+      "categoryTitle": "Small Shrine",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-shrine"
+    },
+    {
+      "categoryId": "category-12350-stockpile",
+      "categoryTitle": "Stockpile",
+      "groupId": "group-2105-other",
+      "symbolId": "atlas-icon-other"
+    }
+  ],
+  "regionLabelPlacements": [
+    {
+      "id": "region-3152-kii",
+      "x": 2325.52,
+      "y": 591.89,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 2520.52,
+      "centerY": 643.89,
+      "targetX": 2520.52,
+      "targetY": 643.89,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "KII",
+      "locationCount": 384,
+      "confirmedAnchorCount": 11
+    },
+    {
+      "id": "region-3304-awaji",
+      "x": 512.75,
+      "y": 851.74,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 707.75,
+      "centerY": 903.74,
+      "targetX": 707.75,
+      "targetY": 903.74,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "AWAJI",
+      "locationCount": 265,
+      "confirmedAnchorCount": 0
+    },
+    {
+      "id": "region-3151-yamato",
+      "x": 2556.08,
+      "y": 1331.49,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 2751.08,
+      "centerY": 1383.49,
+      "targetX": 2751.08,
+      "targetY": 1383.49,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "YAMATO",
+      "locationCount": 298,
+      "confirmedAnchorCount": 7
+    },
+    {
+      "id": "region-3147-izumi-settsu",
+      "x": 1480.36,
+      "y": 1352.21,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 1675.36,
+      "centerY": 1404.21,
+      "targetX": 1675.36,
+      "targetY": 1404.21,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "IZUMI SETTSU",
+      "locationCount": 494,
+      "confirmedAnchorCount": 4
+    },
+    {
+      "id": "region-3149-harima",
+      "x": 694.68,
+      "y": 1587.25,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 889.68,
+      "centerY": 1639.25,
+      "targetX": 889.68,
+      "targetY": 1639.25,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "HARIMA",
+      "locationCount": 373,
+      "confirmedAnchorCount": 4
+    },
+    {
+      "id": "region-3145-iga",
+      "x": 2952.69,
+      "y": 1891.22,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 3147.69,
+      "centerY": 1943.22,
+      "targetX": 3147.69,
+      "targetY": 1943.22,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "IGA",
+      "locationCount": 187,
+      "confirmedAnchorCount": 2
+    },
+    {
+      "id": "region-3148-yamashiro",
+      "x": 1616.94,
+      "y": 2171.18,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 1811.94,
+      "centerY": 2223.18,
+      "targetX": 1811.94,
+      "targetY": 2223.18,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "YAMASHIRO",
+      "locationCount": 358,
+      "confirmedAnchorCount": 11
+    },
+    {
+      "id": "region-3150-tamba",
+      "x": 542.03,
+      "y": 2375.14,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 737.03,
+      "centerY": 2427.14,
+      "targetX": 737.03,
+      "targetY": 2427.14,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "TAMBA",
+      "locationCount": 317,
+      "confirmedAnchorCount": 2
+    },
+    {
+      "id": "region-3144-omi",
+      "x": 2805.49,
+      "y": 2685.78,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 3000.49,
+      "centerY": 2737.78,
+      "targetX": 3000.49,
+      "targetY": 2737.78,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "OMI",
+      "locationCount": 444,
+      "confirmedAnchorCount": 7
+    },
+    {
+      "id": "region-3146-wakasa",
+      "x": 1678.65,
+      "y": 3262.89,
+      "width": 390.0,
+      "height": 104.0,
+      "centerX": 1873.65,
+      "centerY": 3314.89,
+      "targetX": 1873.65,
+      "targetY": 3314.89,
+      "offsetX": 0.0,
+      "offsetY": 0.0,
+      "regionTitle": "WAKASA",
+      "locationCount": 305,
+      "confirmedAnchorCount": 2
+    }
+  ],
+  "anchorIconSummary": {
+    "shrine": 14,
+    "temple": 36
+  },
+  "authorship": {
+    "strategy": "fully-original-authored-visual-base",
+    "terrainSvgUsedAsRepositoryOwnedBase": true,
+    "thirdPartyRasterUsed": false,
+    "thirdPartyVectorUsed": false,
+    "externalImages": 0,
+    "externalFonts": 0,
+    "embeddedRasterImages": 0,
+    "proceduralSvgDefinitionsOnly": true
+  },
+  "claims": {
+    "finalBaseApproved": false,
+    "finalCanvasFrozen": false,
+    "humanVisualReviewComplete": false,
+    "pixelCalibrationComplete": false
+  },
+  "nextAction": "review the generated candidate, resolve five unassigned locations, then record human approval and freeze an immutable final canvas hash"
+}
