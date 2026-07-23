@@ -85,7 +85,9 @@
         "regionLabelCount": 10,
         "confirmedAnchorIconCount": 50,
         "labelOverlapCount": 0,
-        "finalCanvasFreezeStatus": "blocked_pending_human_visual_review_and_unassigned_location_disposition"
+        "finalCanvasFreezeStatus": "blocked_pending_human_visual_review",
+        "unassignedLocationDispositionPath": "data/geospatial/geospatial-unassigned-location-disposition.json",
+        "unassignedLocationDispositionStatus": "resolved_retained_global_overlay"
       }
     },
     "coordinateAndOverlayCalibration": {
@@ -905,7 +907,7 @@
     "legacyPreviewIsNonAuthoritative": true,
     "realRegionCount": 10,
     "unassignedLocationCount": 5,
-    "nextAction": "complete human visual review and resolve five unassigned locations before final canvas freeze",
+    "nextAction": "complete human visual review before final canvas freeze",
     "regionalCompositionStatus": "draft_ready",
     "regionalCompositionPath": "assets/original-map/atlas-original-regional-composition-v1.svg",
     "regionalCompositionManifestPath": "data/geospatial/geospatial-original-regional-composition-v1.json",
@@ -915,6 +917,7 @@
     "labelsIconsStatus": "review_candidate_ready",
     "labelsIconsPath": "assets/original-map/atlas-original-labels-icons-final-review-v1.svg",
     "finalCanvasReadinessPath": "data/geospatial/geospatial-original-final-canvas-readiness.json",
-    "finalCanvasFrozen": false
+    "finalCanvasFrozen": false,
+    "unassignedLocationDispositionStatus": "resolved_retained_global_overlay"
   }
 }

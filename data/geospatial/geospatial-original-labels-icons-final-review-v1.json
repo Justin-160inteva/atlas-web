@@ -482,5 +482,13 @@
     "humanVisualReviewComplete": false,
     "pixelCalibrationComplete": false
   },
-  "nextAction": "review the generated candidate, resolve five unassigned locations, then record human approval and freeze an immutable final canvas hash"
+  "nextAction": "complete human visual review, then record approval and freeze the immutable final canvas hash",
+  "unassignedLocationDisposition": {
+    "status": "resolved",
+    "path": "data/geospatial/geospatial-unassigned-location-disposition.json",
+    "policy": "retain_as_global_overlay_without_region_inference",
+    "locationCount": 5,
+    "regionMembershipInferred": false,
+    "globalVisibilityPreserved": true
+  }
 }

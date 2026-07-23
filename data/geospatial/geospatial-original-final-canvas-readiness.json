@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-07-23T18:00:00Z",
-  "status": "final-canvas-review-candidate-blocked",
+  "status": "final-canvas-review-candidate-awaiting-human-approval",
   "candidate": {
     "path": "assets/original-map/atlas-original-labels-icons-final-review-v1.svg",
     "format": "svg",
@@ -27,17 +27,12 @@
   "automatedGateStatus": "passed",
   "blockers": [
     {
-      "id": "unassigned-locations",
-      "count": 5,
-      "detail": "five locations still have no region_id and must be classified or explicitly retained"
-    },
-    {
       "id": "human-visual-review",
       "count": 1,
       "detail": "a human visual approval record is required before final canvas freeze"
     }
   ],
-  "blockerCount": 2,
+  "blockerCount": 1,
   "unassignedLocationGuides": [
     {
       "locationId": "location-mapgenie-479929",
@@ -90,7 +85,15 @@
     "eligible": false,
     "frozen": false,
     "frozenSha256": null,
-    "reason": "automated gates passed, but unassigned-location disposition and human visual approval remain unresolved"
+    "reason": "all automated and unassigned-location disposition gates passed; human visual approval remains required"
   },
-  "nextAction": "complete human visual review and decide how to handle the five unassigned locations"
+  "nextAction": "complete human visual review, then record approval and freeze the immutable final canvas hash",
+  "unassignedLocationDisposition": {
+    "status": "resolved",
+    "path": "data/geospatial/geospatial-unassigned-location-disposition.json",
+    "policy": "retain_as_global_overlay_without_region_inference",
+    "locationCount": 5,
+    "regionMembershipInferred": false,
+    "globalVisibilityPreserved": true
+  }
 }
