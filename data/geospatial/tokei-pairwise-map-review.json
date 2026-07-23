@@ -1,8 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-23T07:42:53.301456Z",
+  "reviewStrategyVersion": 2,
+  "generatedAt": "2026-07-23T07:53:12.096903Z",
   "status": "complete-unresolved",
-  "stage": "tokei-pairwise-two-model-geometry-review",
+  "stage": "tokei-pairwise-two-model-binary-geometry-review-v2",
   "evidenceFingerprint": "81b0ef1887a81e5b1163a9fa9bac22664c51a8a72436498e79e2f8bf0261f1f1",
   "target": {
     "locationId": "location-mapgenie-438414",
@@ -17,16 +18,16 @@
     ],
     "minimumConfidencePerModel": 0.92,
     "requireTwoIndependentModels": true,
-    "requireDirectTakaharaPopup": true,
-    "requireUniqueWestMarkerGeometry": true,
+    "binaryModelOutput": true,
+    "programmaticTargetIdMapping": true,
     "coordinatesAssigned": false,
     "canonicalAnchorModified": false
   },
   "counts": {
     "successfulModels": 2,
     "failedModels": 0,
-    "requestedModelsThisRun": 2,
-    "reusedModelsThisRun": 0
+    "requestedModelsThisRun": 1,
+    "reusedModelsThisRun": 1
   },
   "reviewPackets": [
     {
@@ -46,15 +47,17 @@
     },
     {
       "model": "openai/gpt-4o-mini",
-      "reviewedAt": "2026-07-23T07:42:50.301234Z",
+      "reviewedAt": "2026-07-23T07:53:09.096685Z",
       "verdict": "unresolved",
-      "selectedLocationId": "location-mapgenie-437477",
-      "confidence": 0.95,
+      "selectedLocationId": null,
+      "confidence": 0.85,
+      "binaryAnswer": false,
       "observations": [
-        "Panel A shows a distinct shrine marker west/left of the Takahara marker.",
-        "The geometry of the markers uniquely identifies Tokei Shrine as the only candidate west of Takahara."
+        "The west marker is not distinctly identifiable as Tokei Shrine based on the provided visuals.",
+        "Other shrines are present in the vicinity, complicating the identification."
       ],
-      "reasonZhCN": "面板A显示了在高原熊野神社左侧的独特神社标记，且几何形状唯一地确认了它是东纪神社。"
+      "reasonZhCN": "西侧标记未能明确识别为特定的东纪神社，且周围有其他神社存在，导致识别复杂。",
+      "reviewSchema": "binary-tokei-west-marker-v2"
     }
   ],
   "errors": [],
