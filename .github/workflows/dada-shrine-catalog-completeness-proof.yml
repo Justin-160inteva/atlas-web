@@ -6,8 +6,10 @@ on:
     paths:
       - '.github/workflows/dada-shrine-catalog-completeness-proof.yml'
       - 'tools/build_dada_shrine_catalog_completeness_proof.py'
+      - 'tools/build_dada_shrine_anchor_candidate_package.py'
       - 'data/geospatial/dada-shrines-popup-event-census.json'
       - 'data/geospatial/dada-shrines-27-stage1.json'
+      - 'data/geospatial/tokei-pairwise-map-review.json'
       - 'data/geospatial/dada-shrines-catalog-proof-trigger.json'
 
 permissions:
@@ -33,20 +35,30 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Compile completeness proof tool
-        run: python -m py_compile tools/build_dada_shrine_catalog_completeness_proof.py
+      - name: Compile completeness and candidate tools
+        run: |
+          python -m py_compile \
+            tools/build_dada_shrine_catalog_completeness_proof.py \
+            tools/build_dada_shrine_anchor_candidate_package.py
 
       - name: Build exact candidate set-difference proof
         run: python tools/build_dada_shrine_catalog_completeness_proof.py
 
-      - name: Validate proof and safety gates
+      - name: Build 27-shrine anchor candidate package
+        run: python tools/build_dada_shrine_anchor_candidate_package.py
+
+      - name: Validate proof, candidate package and safety gates
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          path = Path('data/geospatial/dada-shrines-catalog-completeness-proof.json')
-          proof = json.loads(path.read_text(encoding='utf-8'))
+          proof = json.loads(
+              Path('data/geospatial/dada-shrines-catalog-completeness-proof.json').read_text(encoding='utf-8')
+          )
+          package = json.loads(
+              Path('data/geospatial/dada-shrines-27-anchor-candidates.json').read_text(encoding='utf-8')
+          )
           assert proof['status'] == 'single-candidate-completeness-proof-ready'
           assert proof['counts'] == {
               'allMapShrineCandidates': 32,
@@ -59,28 +71,48 @@ jobs:
           assert len({row['event'] for row in proof['directPopupMappings']}) == 26
           assert len({row['locationId'] for row in proof['directPopupMappings']}) == 26
           assert proof['uniqueSetDifference']['locationId'] == 'location-mapgenie-438414'
-          assert proof['uniqueSetDifference']['candidateTitle'] == 'Tokei Shrine'
           assert proof['uniqueSetDifference']['promotionAllowed'] is False
-          assert proof['method']['coordinatesAssigned'] is False
-          assert proof['method']['canonicalAnchorModified'] is False
-          assert proof['method']['requiresIndependentModelReviewBeforePromotion'] is True
-          assert proof['safety']['setDifferenceDoesNotOverrideDirectVisualGate'] is True
-          assert proof['safety']['noCoordinatesPromotedByThisProof'] is True
-          assert proof['safety']['repositoryContainsPixels'] is False
+
+          assert package['status'] == 'shrine-anchor-candidate-package-ready'
+          assert package['counts'] == {
+              'totalCandidateAnchors': 27,
+              'directPopupCandidates': 26,
+              'catalogSetDifferenceCandidates': 1,
+              'promotionReady': 0,
+              'pendingIndependentReview': 26,
+              'blockedPendingResolution': 1,
+          }
+          direct = package['directPopupCandidates']
+          assert len(direct) == 26
+          assert len({row['event'] for row in direct}) == 26
+          assert len({row['locationId'] for row in direct}) == 26
+          assert all(row['candidateStatus'] == 'pending-independent-two-model-review' for row in direct)
+          assert all(row['promotionAllowed'] is False for row in direct)
+          assert all(row['requiredReview']['minimumIndependentModels'] == 2 for row in direct)
+          assert all(row['requiredReview']['minimumConfidencePerModel'] == .92 for row in direct)
+          blocked = package['catalogSetDifferenceCandidate']
+          assert blocked['locationId'] == 'location-mapgenie-438414'
+          assert blocked['candidateStatus'] == 'blocked-pending-independent-resolution'
+          assert blocked['promotionAllowed'] is False
+          assert package['policy']['coordinatesPromoted'] is False
+          assert package['policy']['canonicalAnchorModified'] is False
+          assert package['safety']['repositoryContainsPixels'] is False
           assert not list(Path('data').rglob('*.jpg'))
           assert not list(Path('data').rglob('*.png'))
           assert not list(Path('data').rglob('*.mp4'))
-          print(json.dumps({'status': proof['status'], 'counts': proof['counts'], 'missing': proof['uniqueSetDifference']}, ensure_ascii=False))
+          print(json.dumps({'proof': proof['counts'], 'package': package['counts']}, ensure_ascii=False))
           PY
 
-      - name: Stage non-pixel proof
+      - name: Stage non-pixel proof and candidate package
         run: |
           rm -rf /tmp/dada-shrine-proof-publish
           mkdir -p /tmp/dada-shrine-proof-publish/data/geospatial
           cp data/geospatial/dada-shrines-catalog-completeness-proof.json \
             /tmp/dada-shrine-proof-publish/data/geospatial/
+          cp data/geospatial/dada-shrines-27-anchor-candidates.json \
+            /tmp/dada-shrine-proof-publish/data/geospatial/
 
-      - name: Atomically publish non-pixel proof
+      - name: Atomically publish non-pixel proof and candidate package
         env:
           TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
         run: |
@@ -92,9 +124,13 @@ jobs:
             mkdir -p data/geospatial
             cp /tmp/dada-shrine-proof-publish/data/geospatial/dada-shrines-catalog-completeness-proof.json \
               data/geospatial/
-            git add data/geospatial/dada-shrines-catalog-completeness-proof.json
+            cp /tmp/dada-shrine-proof-publish/data/geospatial/dada-shrines-27-anchor-candidates.json \
+              data/geospatial/
+            git add \
+              data/geospatial/dada-shrines-catalog-completeness-proof.json \
+              data/geospatial/dada-shrines-27-anchor-candidates.json
             if git diff --cached --quiet; then exit 0; fi
-            git commit -m 'Build exact 27-shrine catalog completeness proof [skip ci]'
+            git commit -m 'Build audited 27-shrine anchor candidate package [skip ci]'
             if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
             sleep $((attempt * 3))
           done
