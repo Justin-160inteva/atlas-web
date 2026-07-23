@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-23T21:05:00Z",
+  "status": "correction-review-complete-sakai-evidence-not-confirmed",
+  "stage": "2p5d-sakai-correction-visual-review",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "sourceArtifactManifest": "data/geospatial/geospatial-2p5d-sakai-correction-artifact-manifest.json",
+  "sourceTimestampPlan": "data/geospatial/geospatial-2p5d-sakai-correction-timestamp-plan.json",
+  "sourceRunId": "30043220095",
+  "pilotScope": {
+    "id": "izumi-settsu-sakai-urban-core-v1",
+    "title": "Sakai urban and waterfront core",
+    "normalizedBounds": {
+      "minX": 0.315,
+      "minY": 0.218,
+      "maxX": 0.3425,
+      "maxY": 0.2425
+    }
+  },
+  "reviewMethod": {
+    "artifactsReviewed": 2,
+    "candidateFramesReviewed": 288,
+    "contactSheetsReviewed": 18,
+    "p13Frames": 96,
+    "p15Frames": 192,
+    "frameResolution": "640x360",
+    "pixelsPersistedToRepository": false,
+    "geometryProduced": false,
+    "identityRule": "world footage is not assigned to the Sakai pilot unless a map, codex, mission context or repeated landmark establishes the location"
+  },
+  "scanReviews": [
+    {
+      "scanId": "p13-full-duration-correction",
+      "sourceJobId": "eleven-p013-v2",
+      "page": 13,
+      "artifact": "atlas-sakai-2p5d-p13-full-duration-correction-30043220095",
+      "scanStatus": "full-duration-coverage-passed",
+      "coverage": {
+        "frameCount": 96,
+        "contactSheetCount": 6,
+        "coveredDurationFractionMinimumGate": 0.97,
+        "allFourDurationQuartersRepresented": true,
+        "minimumFramesPerQuarter": 16
+      },
+      "identityConclusion": {
+        "status": "confirmed-non-sakai-for-key-urban-port-sequence",
+        "confirmedLocation": "Osaka",
+        "region": "IZUMI SETTSU",
+        "confidence": "high",
+        "basis": [
+          "an in-game map near 64:06 identifies the urban/waterfront sequence as Osaka",
+          "subsequent footage shows a market, timber workshops, waterfront settlement, harbor, ships and navigable water connected to that context"
+        ]
+      },
+      "usefulWindows": [
+        {
+          "startSeconds": 3697,
+          "endSeconds": 3846,
+          "evidenceTypes": [
+            "dense-timber-market",
+            "workshop-and-storage-structures",
+            "street-width",
+            "water-channel-context",
+            "map-identity-context"
+          ],
+          "locationAssignment": "Osaka",
+          "modelingDisposition": "reroute-to-osaka-market-and-waterfront-evidence-pool"
+        },
+        {
+          "startSeconds": 4219,
+          "endSeconds": 4444,
+          "evidenceTypes": [
+            "waterfront-settlement",
+            "storage-sheds",
+            "shops-and-residential-structures",
+            "road-to-water-relationship"
+          ],
+          "locationAssignment": "Osaka",
+          "modelingDisposition": "reroute-to-osaka-waterfront-settlement-evidence-pool"
+        },
+        {
+          "startSeconds": 4518,
+          "endSeconds": 4742,
+          "evidenceTypes": [
+            "harbor-edge",
+            "water-surface",
+            "boats-and-ships",
+            "dock-and-navigation-context"
+          ],
+          "locationAssignment": "Osaka",
+          "modelingDisposition": "reroute-to-osaka-harbor-evidence-pool"
+        }
+      ],
+      "sakaiDisposition": "excluded-from-sakai-geometry",
+      "reason": "the corrected full-duration scan confirms that the strongest port and market sequence belongs to Osaka, not Sakai"
+    },
+    {
+      "scanId": "p15-urban-dense-candidate",
+      "sourceJobId": "eleven-p015-v2",
+      "page": 15,
+      "artifact": "atlas-sakai-2p5d-p15-urban-dense-candidate-30043220095",
+      "scanStatus": "all-dense-window-gates-passed",
+      "coverage": {
+        "frameCount": 192,
+        "contactSheetCount": 12,
+        "candidateWindowsRepresented": 5,
+        "contextWindowsRepresented": 4
+      },
+      "identityConclusion": {
+        "status": "confirmed-non-sakai-for-key-workshop-waterfront-sequence",
+        "confirmedLocation": "Amagasaki",
+        "region": "IZUMI SETTSU",
+        "confidence": "high",
+        "basis": [
+          "a cultural-discovery/codex screen near 49:45 explicitly reads Amagasaki and Araki Murashige",
+          "the surrounding dense timber workshop, storage, waterfront and roof sequences are linked to that context",
+          "a later map context is consistent with the Amagasaki water settlement rather than the selected Sakai tile"
+        ]
+      },
+      "usefulWindows": [
+        {
+          "startSeconds": 880,
+          "endSeconds": 950,
+          "evidenceTypes": [
+            "elevated-settlement-panorama",
+            "water-and-roof-density",
+            "fortified-or-large-compound-context"
+          ],
+          "locationAssignment": "unconfirmed-subscene-within-IZUMI-SETTSU",
+          "modelingDisposition": "retain-only-after-independent-identity-correlation"
+        },
+        {
+          "startSeconds": 2560,
+          "endSeconds": 3030,
+          "evidenceTypes": [
+            "dense-timber-workshop-district",
+            "storage-and-barrels",
+            "waterfront-access",
+            "street-and-building-scale",
+            "map-and-codex-identity-context"
+          ],
+          "locationAssignment": "Amagasaki",
+          "modelingDisposition": "reroute-to-amagasaki-workshop-and-waterfront-evidence-pool"
+        },
+        {
+          "startSeconds": 3120,
+          "endSeconds": 3415,
+          "evidenceTypes": [
+            "tiled-roof-compound",
+            "courtyard-and-wall-relations",
+            "roof-orientation"
+          ],
+          "locationAssignment": "probable-Amagasaki-context",
+          "modelingDisposition": "retain-in-amagasaki-evidence-pool-pending-landmark-correlation"
+        },
+        {
+          "startSeconds": 3900,
+          "endSeconds": 4230,
+          "evidenceTypes": [
+            "roof-traversal",
+            "compound-connectivity",
+            "water-settlement-map-context"
+          ],
+          "locationAssignment": "probable-Amagasaki-context",
+          "modelingDisposition": "retain-in-amagasaki-evidence-pool-pending-landmark-correlation"
+        }
+      ],
+      "sakaiDisposition": "excluded-from-sakai-geometry",
+      "reason": "the dense scan confirms that the strongest commercial/workshop waterfront evidence belongs to Amagasaki, not Sakai"
+    }
+  ],
+  "pilotReadiness": {
+    "status": "blocked-pending-sakai-specific-authorized-video",
+    "confirmedSakaiWindows": 0,
+    "confirmedSakaiBuildingViews": 0,
+    "confirmedSakaiRoadSequences": 0,
+    "confirmedSakaiWaterfrontViews": 0,
+    "buildingFootprintModelingAllowed": false,
+    "roadModelingAllowed": false,
+    "waterfrontModelingAllowed": false,
+    "reason": "all strong urban and waterfront footage from the corrected sources has been identified as Osaka or Amagasaki"
+  },
+  "evidenceRouting": {
+    "Osaka": {
+      "sourceJobs": [
+        "eleven-p013-v2"
+      ],
+      "evidenceTypes": [
+        "market",
+        "workshops",
+        "waterfront-settlement",
+        "harbor",
+        "ships"
+      ]
+    },
+    "Amagasaki": {
+      "sourceJobs": [
+        "eleven-p015-v2"
+      ],
+      "evidenceTypes": [
+        "timber-workshop-district",
+        "storage",
+        "waterfront-access",
+        "tiled-roof-compounds",
+        "roof-connectivity"
+      ]
+    },
+    "Gansenji-and-mountain-terrain": {
+      "sourceJobs": [
+        "eleven-p014-v2"
+      ]
+    },
+    "cave-and-rural-terrain": {
+      "sourceJobs": [
+        "eleven-p016-v2"
+      ]
+    }
+  },
+  "safety": {
+    "sourceFramesCommitted": false,
+    "officialMapGeometryExtracted": false,
+    "SakaiGeometryGenerated": false,
+    "OsakaGeometryGenerated": false,
+    "AmagasakiGeometryGenerated": false,
+    "unsupportedLocationIdentityAssumed": false,
+    "existingCoordinatesModified": false
+  },
+  "nextAction": "find a video that explicitly covers Sakai streets, port, markets and building layout, obtain or verify authorization, then perform a Sakai-specific transient scan before any pilot geometry is created"
+}
