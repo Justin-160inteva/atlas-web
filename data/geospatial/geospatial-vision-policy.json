@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "release": "0.9.4.8",
   "enabled": true,
   "provider": "github-models",
@@ -8,11 +8,32 @@
     "openai/gpt-4.1",
     "openai/gpt-4o-mini"
   ],
+  "reviewerPools": [
+    {
+      "id": "reasoning-reviewer",
+      "models": [
+        "openai/gpt-4.1",
+        "openai/gpt-4.1-mini"
+      ],
+      "minimumCompleteReviewers": 1
+    },
+    {
+      "id": "vision-reviewer",
+      "models": [
+        "openai/gpt-4o-mini"
+      ],
+      "minimumCompleteReviewers": 1
+    }
+  ],
   "request": {
     "temperature": 0.0,
-    "maximumOutputTokens": 1200,
-    "timeoutSeconds": 150,
-    "delayBetweenRequestsSeconds": 2
+    "maximumOutputTokens": 1600,
+    "timeoutSeconds": 90,
+    "maximumAttempts": 2,
+    "maximumRetryAfterSeconds": 30,
+    "delayBetweenRequestsSeconds": 2,
+    "eventsPerRequest": 4,
+    "framesPerEvent": 3
   },
   "confirmation": {
     "requireTwoModelConsensus": true,
@@ -38,6 +59,8 @@
     "numericDescriptorsAloneCannotConfirmLocation": true,
     "modelGuessWithoutReadableEvidenceMustRemainUnresolved": true,
     "duplicateCandidateAssignmentsMustRemainUnresolved": true,
-    "modelDisagreementMustRemainUnresolved": true
+    "modelDisagreementMustRemainUnresolved": true,
+    "contactSheetCrossEventLeakageMustRemainUnresolved": true,
+    "fallbackModelMustRemainIndependentFromOtherReviewerPool": true
   }
 }
