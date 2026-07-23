@@ -186,6 +186,27 @@ jobs:
           }, ensure_ascii=False))
           PY
 
+      - name: Render temporary visual review preview
+        run: |
+          python -m pip install --quiet cairosvg
+          python - <<'PY'
+          import cairosvg
+          cairosvg.svg2png(
+              url='assets/original-map/atlas-original-terrain-coastline-v1.svg',
+              write_to='/tmp/atlas-original-terrain-coastline-preview.png',
+              output_width=1600,
+              output_height=1600,
+          )
+          PY
+
+      - name: Upload visual review preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-terrain-coastline-preview
+          path: /tmp/atlas-original-terrain-coastline-preview.png
+          retention-days: 7
+          if-no-files-found: error
+
       - name: Stage authored terrain outputs
         run: |
           rm -rf /tmp/original-terrain-coastline-publish
