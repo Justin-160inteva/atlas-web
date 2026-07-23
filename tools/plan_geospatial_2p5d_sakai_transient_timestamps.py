@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Select deterministic transient review timestamps for the Sakai 2.5D pilot.
 
-The planner uses existing numeric-only authorized-video results. It does not read or
-create frame pixels. Three balanced buckets are selected per video: sharp frames,
-scene transitions, and visual-diversity representatives.
+The planner primarily uses existing numeric-only authorized-video results. It does not
+read or create frame pixels. Three evidence-driven buckets are selected per video:
+sharp frames, scene transitions, and visual-diversity representatives. When an older
+numeric scan contains fewer unique descriptors than the review target, the remaining
+timestamps are distributed deterministically across the authorized video's duration and
+are explicitly marked as temporal supplements rather than invented numeric evidence.
 """
 from __future__ import annotations
 
@@ -68,6 +71,7 @@ def pick_ranked(
             "sharpness": float(row.get("sharpness") or 0),
             "edgeDensity": float(row.get("edgeDensity") or 0),
             "difference": float(row.get("difference") or 0),
+            "numericDescriptorAvailable": True,
         })
         if len(output) == count:
             break
@@ -121,6 +125,7 @@ def pick_diverse(
             "sharpness": float(row.get("sharpness") or 0),
             "edgeDensity": float(row.get("edgeDensity") or 0),
             "difference": float(row.get("difference") or 0),
+            "numericDescriptorAvailable": True,
         })
     return output
 
@@ -153,7 +158,47 @@ def fill_remaining(
                 "sharpness": float(row.get("sharpness") or 0),
                 "edgeDensity": float(row.get("edgeDensity") or 0),
                 "difference": float(row.get("difference") or 0),
+                "numericDescriptorAvailable": True,
             })
+
+
+def fill_temporal_supplements(
+    *,
+    duration_seconds: float,
+    target: int,
+    selected: list[dict[str, Any]],
+) -> int:
+    """Fill a sparse legacy scan using explicit, uniformly distributed review times."""
+    needed = target - len(selected)
+    if needed <= 0:
+        return 0
+    if duration_seconds <= 0:
+        raise RuntimeError("cannot add temporal supplements without a positive duration")
+
+    added = 0
+    # Use an increasingly dense deterministic grid while keeping clear of the start/end slates.
+    for multiplier in (4, 8, 16, 32):
+        slots = max(target * multiplier, needed * multiplier)
+        for index in range(slots):
+            if len(selected) >= target:
+                return added
+            fraction = (index + 0.5) / slots
+            time_value = max(0.5, min(duration_seconds - 0.5, duration_seconds * fraction))
+            if not separated(time_value, selected, 1.0):
+                continue
+            selected.append({
+                "time": round(time_value, 3),
+                "bucket": "temporalSupplement",
+                "sharpness": None,
+                "edgeDensity": None,
+                "difference": None,
+                "numericDescriptorAvailable": False,
+                "reason": "legacy numeric scan had fewer unique descriptors than the transient review target",
+            })
+            added += 1
+    if len(selected) < target:
+        raise RuntimeError(f"failed to add enough temporal supplements: {len(selected)}/{target}")
+    return added
 
 
 def main() -> int:
@@ -172,8 +217,9 @@ def main() -> int:
         if result.get("source", {}).get("authorizationId") != plan["authorizationId"]:
             raise RuntimeError(f"authorization mismatch: {result_path}")
         descriptors = list(result.get("descriptors") or [])
-        if len(descriptors) < target_count:
-            raise RuntimeError(f"not enough numeric descriptors in {result_path}: {len(descriptors)}")
+        if len(descriptors) < 24:
+            raise RuntimeError(f"numeric result is too sparse for evidence-driven planning: {result_path} ({len(descriptors)})")
+        duration_seconds = float(result.get("media", {}).get("durationSeconds") or 0)
 
         selected: list[dict[str, Any]] = []
         selected.extend(pick_ranked(
@@ -199,6 +245,11 @@ def main() -> int:
             minimum_seconds=8.0,
         ))
         fill_remaining(descriptors, target=target_count, selected=selected)
+        supplement_count = fill_temporal_supplements(
+            duration_seconds=duration_seconds,
+            target=target_count,
+            selected=selected,
+        )
         selected = sorted(selected[:target_count], key=lambda row: float(row["time"]))
         if len(selected) != target_count:
             raise RuntimeError(f"failed to select {target_count} timestamps for {job['id']}: {len(selected)}")
@@ -214,8 +265,10 @@ def main() -> int:
             "title": job["title"],
             "page": batch.get("page"),
             "cid": batch.get("cid"),
-            "durationSeconds": result.get("media", {}).get("durationSeconds"),
+            "durationSeconds": duration_seconds,
             "sourceFileSha256": result.get("media", {}).get("fileSha256"),
+            "numericDescriptorCount": len(descriptors),
+            "temporalSupplementCount": supplement_count,
             "timestampCount": len(selected),
             "timestamps": selected,
         })
@@ -230,12 +283,14 @@ def main() -> int:
             "buckets": buckets,
             "minimumInitialSeparationSeconds": 8,
             "pixelDataUsed": False,
-            "source": "existing numeric-only authorized analysis results",
+            "source": "existing numeric-only authorized analysis results, with explicit temporal supplements only where a legacy scan is sparse",
+            "temporalSupplementsAreNumericEvidence": False,
         },
         "counts": {
             "videos": len(videos),
             "timestampsPerVideo": target_count,
             "totalTimestamps": sum(row["timestampCount"] for row in videos),
+            "temporalSupplements": sum(row["temporalSupplementCount"] for row in videos),
         },
         "videos": videos,
         "safety": {
@@ -243,6 +298,7 @@ def main() -> int:
             "videosDownloaded": False,
             "geometryGenerated": False,
             "existingAnalysisModified": False,
+            "temporalSupplementsMisrepresentedAsNumericEvidence": False,
         },
         "nextAction": "download the four authorized pages transiently by explicit CID and extract one-day low-resolution review artifacts",
     }
@@ -251,6 +307,7 @@ def main() -> int:
         "status": payload["status"],
         "videos": payload["counts"]["videos"],
         "totalTimestamps": payload["counts"]["totalTimestamps"],
+        "temporalSupplements": payload["counts"]["temporalSupplements"],
         "output": str(output_path.relative_to(ROOT)),
     }, ensure_ascii=False))
     return 0
