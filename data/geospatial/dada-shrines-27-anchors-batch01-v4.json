@@ -1,9 +1,9 @@
 {
   "schemaVersion": 3,
   "reviewStrategyVersion": 2,
-  "generatedAt": "2026-07-23T02:12:44.746814Z",
+  "generatedAt": "2026-07-23T02:14:59.853899Z",
   "stage": "shrine-anchor-batch01-high-resolution-event-batches",
-  "status": "partial-reviewer-pools",
+  "status": "complete",
   "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
   "source": {
     "bvid": "BV1aFXaYmEDZ",
@@ -18,11 +18,11 @@
     "confirmed": 0,
     "unresolved": 14,
     "candidateShrines": 32,
-    "successfulReviewerPools": 1,
-    "failedReviewerPools": 1,
-    "requestedBatchCallsThisRun": 3,
-    "reusedBatchCallsThisRun": 8,
-    "persistedBatchPackets": 9,
+    "successfulReviewerPools": 2,
+    "failedReviewerPools": 0,
+    "requestedBatchCallsThisRun": 2,
+    "reusedBatchCallsThisRun": 9,
+    "persistedBatchPackets": 10,
     "duplicateCandidateIdsRejected": 0
   },
   "policy": {
@@ -214,7 +214,174 @@
           "reasonZhCN": "从E14事件的代表帧中弹窗直接读取到神社名称“春日神社”和区域“伊贺”"
         }
       ],
-      "selectedAt": "2026-07-23T02:12:35.144419Z"
+      "selectedAt": "2026-07-23T02:14:52.288095Z"
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "reviews": [
+        {
+          "slot": 1,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E02的图中直接读取到地点名称和区域信息",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
+        },
+        {
+          "slot": 2,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E03的图中直接读取到地点名称和区域信息",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
+        },
+        {
+          "slot": 3,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.5,
+          "reasonZhCN": "E01的图中无法清楚读取地点信息"
+        },
+        {
+          "slot": 4,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E04的图中直接读取到地点名称和区域信息。",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
+        },
+        {
+          "slot": 5,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E05的图中直接读取到地点名称和区域信息。",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
+        },
+        {
+          "slot": 6,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434366",
+          "visibleLabel": "高山",
+          "regionClue": "HARIMA",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E06的图中直接读取到地点名称和区域信息。"
+        },
+        {
+          "slot": 7,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-479952",
+          "visibleLabel": "福良八幡神社",
+          "regionClue": "淡路",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E07的图中直接读取到福良八幡神社的文字"
+        },
+        {
+          "slot": 8,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "熊野速玉大社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-436521被该模型分配给多个事件，按唯一性规则全部拒绝。 从E08的图中直接读取到熊野速玉大社的文字",
+          "duplicateSelectionRejected": "location-mapgenie-436521"
+        },
+        {
+          "slot": 9,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-438281",
+          "visibleLabel": "上賀茂神社",
+          "regionClue": "山城",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E09的图中直接读取到上賀茂神社的文字"
+        },
+        {
+          "slot": 10,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-436509",
+          "visibleLabel": "天王寺塔",
+          "regionClue": "AWAJI",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E10的图中直接读取到地点名称"
+        },
+        {
+          "slot": 11,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "兴福寺五重塔",
+          "regionClue": "KII",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-436521被该模型分配给多个事件，按唯一性规则全部拒绝。 从E12的图中直接读取到地点名称",
+          "duplicateSelectionRejected": "location-mapgenie-436521"
+        },
+        {
+          "slot": 12,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.5,
+          "reasonZhCN": "E11的图中无法清楚读取地点名称"
+        },
+        {
+          "slot": 13,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434406",
+          "visibleLabel": "日出神社",
+          "regionClue": "伊賀",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E13的图中直接读取到日出神社的文字"
+        },
+        {
+          "slot": 14,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434692",
+          "visibleLabel": "春日神社",
+          "regionClue": "IZUMI SETTSU",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E14的图中直接读取到春日神社的文字"
+        }
+      ],
+      "selectedAt": "2026-07-23T02:14:59.853783Z"
     }
   ],
   "batchPackets": [
@@ -623,6 +790,40 @@
           "reasonZhCN": "E11的图中无法清楚读取地点名称"
         }
       ]
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        13,
+        14
+      ],
+      "reviewedAt": "2026-07-23T02:14:57.853567Z",
+      "source": "fresh-high-resolution-event-batch",
+      "reviews": [
+        {
+          "slot": 13,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434406",
+          "visibleLabel": "日出神社",
+          "regionClue": "伊賀",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E13的图中直接读取到日出神社的文字"
+        },
+        {
+          "slot": 14,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434692",
+          "visibleLabel": "春日神社",
+          "regionClue": "IZUMI SETTSU",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E14的图中直接读取到春日神社的文字"
+        }
+      ]
     }
   ],
   "requestedBatchCallsThisRun": [
@@ -633,15 +834,6 @@
         1,
         2,
         3
-      ]
-    },
-    {
-      "reviewerPool": "vision-reviewer",
-      "model": "openai/gpt-4o-mini",
-      "slots": [
-        10,
-        11,
-        12
       ]
     },
     {
@@ -724,6 +916,15 @@
         8,
         9
       ]
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        10,
+        11,
+        12
+      ]
     }
   ],
   "errors": [
@@ -736,15 +937,6 @@
         3
       ],
       "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-    },
-    {
-      "reviewerPool": "vision-reviewer",
-      "model": "openai/gpt-4o-mini",
-      "slots": [
-        13,
-        14
-      ],
-      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
     }
   ],
   "duplicateCandidateIdsRejected": [],
@@ -765,6 +957,18 @@
           "evidenceType": "insufficient",
           "confidence": 0.5,
           "reasonZhCN": "E01事件图中无任何地点文字，仅为标题和水印，无法识别具体神社位置"
+        },
+        {
+          "slot": 1,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E02的图中直接读取到地点名称和区域信息",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
         }
       ],
       "errors": [
@@ -777,15 +981,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -821,6 +1016,18 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "E02事件图中地图弹窗显示“上三栖高地”，右侧区域标注“纪伊”，但无神社名称，无法对应候选神社"
+        },
+        {
+          "slot": 2,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E03的图中直接读取到地点名称和区域信息",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
         }
       ],
       "errors": [
@@ -833,15 +1040,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -877,6 +1075,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "E03事件图中地图弹窗显示“高原熊野神社”，区域为“纪伊”，但候选列表中无完全匹配的神社名称，无法确定对应候选"
+        },
+        {
+          "slot": 3,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.5,
+          "reasonZhCN": "E01的图中无法清楚读取地点信息"
         }
       ],
       "errors": [
@@ -889,15 +1098,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -933,6 +1133,18 @@
           "evidenceType": "direct_map_label",
           "confidence": 0.6,
           "reasonZhCN": "从E04事件的代表帧图中读取到“高原熊野神社”文字，图中无区域文字，无法对应候选神社名称，故置信度不高。"
+        },
+        {
+          "slot": 4,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E04的图中直接读取到地点名称和区域信息。",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
         }
       ],
       "errors": [
@@ -945,15 +1157,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -989,6 +1192,18 @@
           "evidenceType": "direct_map_label",
           "confidence": 0.6,
           "reasonZhCN": "从E05事件的代表帧图中读取到“高原熊野神社”文字，图中无区域文字，无法对应候选神社名称，故置信度不高。"
+        },
+        {
+          "slot": 5,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E05的图中直接读取到地点名称和区域信息。",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
         }
       ],
       "errors": [
@@ -1001,15 +1216,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1046,6 +1252,17 @@
           "confidence": 0.6,
           "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 从E06事件的代表帧图中地图弹窗清晰显示“熊野那智大社”及区域“纪伊”，对应候选神社ID location-mapgenie-437483。",
           "duplicateSelectionRejected": "location-mapgenie-437483"
+        },
+        {
+          "slot": 6,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434366",
+          "visibleLabel": "高山",
+          "regionClue": "HARIMA",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E06的图中直接读取到地点名称和区域信息。"
         }
       ],
       "errors": [
@@ -1058,15 +1275,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1102,6 +1310,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E07事件的代表帧图中读取到弹窗文字“神仓神社瞭望台”和地图区域“纪伊”"
+        },
+        {
+          "slot": 7,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-479952",
+          "visibleLabel": "福良八幡神社",
+          "regionClue": "淡路",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E07的图中直接读取到福良八幡神社的文字"
         }
       ],
       "errors": [
@@ -1114,15 +1333,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1159,6 +1369,18 @@
           "confidence": 0.6,
           "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 从E08事件的代表帧图中读取到弹窗文字“熊野速玉大社”和地图区域“纪伊”",
           "duplicateSelectionRejected": "location-mapgenie-437483"
+        },
+        {
+          "slot": 8,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "熊野速玉大社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-436521被该模型分配给多个事件，按唯一性规则全部拒绝。 从E08的图中直接读取到熊野速玉大社的文字",
+          "duplicateSelectionRejected": "location-mapgenie-436521"
         }
       ],
       "errors": [
@@ -1171,15 +1393,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1215,6 +1428,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E09事件的代表帧图中读取到弹窗文字“如意轮寺瀑布”和地图区域“纪伊”"
+        },
+        {
+          "slot": 9,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-438281",
+          "visibleLabel": "上賀茂神社",
+          "regionClue": "山城",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E09的图中直接读取到上賀茂神社的文字"
         }
       ],
       "errors": [
@@ -1227,15 +1451,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1271,6 +1486,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E10的图中读取到弹窗文字“天王寺塔”，但地图区域文字不明确，无法对应候选神社，故selectedLocationId为null。"
+        },
+        {
+          "slot": 10,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-436509",
+          "visibleLabel": "天王寺塔",
+          "regionClue": "AWAJI",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E10的图中直接读取到地点名称"
         }
       ],
       "errors": [
@@ -1283,15 +1509,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1327,6 +1544,18 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E11的图中读取到弹窗文字“住吉神社”，但地图区域文字不明确，且候选列表中无该名称，故selectedLocationId为null。"
+        },
+        {
+          "slot": 11,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "兴福寺五重塔",
+          "regionClue": "KII",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-436521被该模型分配给多个事件，按唯一性规则全部拒绝。 从E12的图中直接读取到地点名称",
+          "duplicateSelectionRejected": "location-mapgenie-436521"
         }
       ],
       "errors": [
@@ -1339,15 +1568,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1383,6 +1603,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E12的图中读取到弹窗文字“兴福寺五重塔”，但地图区域文字不明确，且候选列表中无该名称，故selectedLocationId为null。"
+        },
+        {
+          "slot": 12,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.5,
+          "reasonZhCN": "E11的图中无法清楚读取地点名称"
         }
       ],
       "errors": [
@@ -1395,15 +1626,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1439,6 +1661,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E13事件的代表帧中弹窗直接读取到神社名称“日出神社”和区域“大和”"
+        },
+        {
+          "slot": 13,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434406",
+          "visibleLabel": "日出神社",
+          "regionClue": "伊賀",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E13的图中直接读取到日出神社的文字"
         }
       ],
       "errors": [
@@ -1451,15 +1684,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1495,6 +1719,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E14事件的代表帧中弹窗直接读取到神社名称“春日神社”和区域“伊贺”"
+        },
+        {
+          "slot": 14,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434692",
+          "visibleLabel": "春日神社",
+          "regionClue": "IZUMI SETTSU",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E14的图中直接读取到春日神社的文字"
         }
       ],
       "errors": [
@@ -1507,15 +1742,6 @@
             3
           ],
           "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3]: HTTP Error 429: Too Many Requests"
-        },
-        {
-          "reviewerPool": "vision-reviewer",
-          "model": "openai/gpt-4o-mini",
-          "slots": [
-            13,
-            14
-          ],
-          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[13, 14]: HTTP Error 429: Too Many Requests"
         }
       ],
       "evidence": [
@@ -1551,6 +1777,18 @@
           "evidenceType": "insufficient",
           "confidence": 0.5,
           "reasonZhCN": "E01事件图中无任何地点文字，仅为标题和水印，无法识别具体神社位置"
+        },
+        {
+          "slot": 1,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E02的图中直接读取到地点名称和区域信息",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
         }
       ],
       "consensusLocationId": null,
@@ -1586,6 +1824,18 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "E02事件图中地图弹窗显示“上三栖高地”，右侧区域标注“纪伊”，但无神社名称，无法对应候选神社"
+        },
+        {
+          "slot": 2,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E03的图中直接读取到地点名称和区域信息",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
         }
       ],
       "consensusLocationId": null,
@@ -1621,6 +1871,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "E03事件图中地图弹窗显示“高原熊野神社”，区域为“纪伊”，但候选列表中无完全匹配的神社名称，无法确定对应候选"
+        },
+        {
+          "slot": 3,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.5,
+          "reasonZhCN": "E01的图中无法清楚读取地点信息"
         }
       ],
       "consensusLocationId": null,
@@ -1656,6 +1917,18 @@
           "evidenceType": "direct_map_label",
           "confidence": 0.6,
           "reasonZhCN": "从E04事件的代表帧图中读取到“高原熊野神社”文字，图中无区域文字，无法对应候选神社名称，故置信度不高。"
+        },
+        {
+          "slot": 4,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E04的图中直接读取到地点名称和区域信息。",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
         }
       ],
       "consensusLocationId": null,
@@ -1691,6 +1964,18 @@
           "evidenceType": "direct_map_label",
           "confidence": 0.6,
           "reasonZhCN": "从E05事件的代表帧图中读取到“高原熊野神社”文字，图中无区域文字，无法对应候选神社名称，故置信度不高。"
+        },
+        {
+          "slot": 5,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "上三极高地",
+          "regionClue": "AWAJI",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-479949被该模型分配给多个事件，按唯一性规则全部拒绝。 从E05的图中直接读取到地点名称和区域信息。",
+          "duplicateSelectionRejected": "location-mapgenie-479949"
         }
       ],
       "consensusLocationId": null,
@@ -1727,6 +2012,17 @@
           "confidence": 0.6,
           "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 从E06事件的代表帧图中地图弹窗清晰显示“熊野那智大社”及区域“纪伊”，对应候选神社ID location-mapgenie-437483。",
           "duplicateSelectionRejected": "location-mapgenie-437483"
+        },
+        {
+          "slot": 6,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434366",
+          "visibleLabel": "高山",
+          "regionClue": "HARIMA",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E06的图中直接读取到地点名称和区域信息。"
         }
       ],
       "consensusLocationId": null,
@@ -1762,6 +2058,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E07事件的代表帧图中读取到弹窗文字“神仓神社瞭望台”和地图区域“纪伊”"
+        },
+        {
+          "slot": 7,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-479952",
+          "visibleLabel": "福良八幡神社",
+          "regionClue": "淡路",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E07的图中直接读取到福良八幡神社的文字"
         }
       ],
       "consensusLocationId": null,
@@ -1798,6 +2105,18 @@
           "confidence": 0.6,
           "reasonZhCN": "同一候选location-mapgenie-437483被该模型分配给多个事件，按唯一性规则全部拒绝。 从E08事件的代表帧图中读取到弹窗文字“熊野速玉大社”和地图区域“纪伊”",
           "duplicateSelectionRejected": "location-mapgenie-437483"
+        },
+        {
+          "slot": 8,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "熊野速玉大社",
+          "regionClue": "纪伊",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-436521被该模型分配给多个事件，按唯一性规则全部拒绝。 从E08的图中直接读取到熊野速玉大社的文字",
+          "duplicateSelectionRejected": "location-mapgenie-436521"
         }
       ],
       "consensusLocationId": null,
@@ -1833,6 +2152,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E09事件的代表帧图中读取到弹窗文字“如意轮寺瀑布”和地图区域“纪伊”"
+        },
+        {
+          "slot": 9,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-438281",
+          "visibleLabel": "上賀茂神社",
+          "regionClue": "山城",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E09的图中直接读取到上賀茂神社的文字"
         }
       ],
       "consensusLocationId": null,
@@ -1868,6 +2198,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E10的图中读取到弹窗文字“天王寺塔”，但地图区域文字不明确，无法对应候选神社，故selectedLocationId为null。"
+        },
+        {
+          "slot": 10,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-436509",
+          "visibleLabel": "天王寺塔",
+          "regionClue": "AWAJI",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E10的图中直接读取到地点名称"
         }
       ],
       "consensusLocationId": null,
@@ -1903,6 +2244,18 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E11的图中读取到弹窗文字“住吉神社”，但地图区域文字不明确，且候选列表中无该名称，故selectedLocationId为null。"
+        },
+        {
+          "slot": 11,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "兴福寺五重塔",
+          "regionClue": "KII",
+          "evidenceType": "insufficient",
+          "confidence": 0.6,
+          "reasonZhCN": "同一候选location-mapgenie-436521被该模型分配给多个事件，按唯一性规则全部拒绝。 从E12的图中直接读取到地点名称",
+          "duplicateSelectionRejected": "location-mapgenie-436521"
         }
       ],
       "consensusLocationId": null,
@@ -1938,6 +2291,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E12的图中读取到弹窗文字“兴福寺五重塔”，但地图区域文字不明确，且候选列表中无该名称，故selectedLocationId为null。"
+        },
+        {
+          "slot": 12,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": null,
+          "visibleLabel": "",
+          "regionClue": "",
+          "evidenceType": "insufficient",
+          "confidence": 0.5,
+          "reasonZhCN": "E11的图中无法清楚读取地点名称"
         }
       ],
       "consensusLocationId": null,
@@ -1973,6 +2337,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E13事件的代表帧中弹窗直接读取到神社名称“日出神社”和区域“大和”"
+        },
+        {
+          "slot": 13,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434406",
+          "visibleLabel": "日出神社",
+          "regionClue": "伊賀",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E13的图中直接读取到日出神社的文字"
         }
       ],
       "consensusLocationId": null,
@@ -2008,6 +2383,17 @@
           "evidenceType": "direct_popup_text",
           "confidence": 0.6,
           "reasonZhCN": "从E14事件的代表帧中弹窗直接读取到神社名称“春日神社”和区域“伊贺”"
+        },
+        {
+          "slot": 14,
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "selectedLocationId": "location-mapgenie-434692",
+          "visibleLabel": "春日神社",
+          "regionClue": "IZUMI SETTSU",
+          "evidenceType": "direct_popup_text",
+          "confidence": 0.9,
+          "reasonZhCN": "从E14的图中直接读取到春日神社的文字"
         }
       ],
       "consensusLocationId": null,
