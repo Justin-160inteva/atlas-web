@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "requestedAt": "2026-07-23T01:20:00Z",
+  "mode": "scene-aware-segmentation-and-resumable-two-model-review",
+  "source": {
+    "author": "不再犹豫的达达猪",
+    "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
+    "bvid": "BV1aFXaYmEDZ",
+    "authorizationId": "auth-dada-20260718"
+  },
+  "segmentation": {
+    "targetSegments": 27,
+    "sampleIntervalSeconds": 0.25,
+    "boundarySearchWindowFraction": 0.42,
+    "firstReviewBatch": [1, 14]
+  },
+  "review": {
+    "resumableModelPackets": true,
+    "requestOnlyMissingModels": true,
+    "requireTwoModelConsensus": true,
+    "minimumConfidencePerModel": 0.92,
+    "requireDirectReadableLocationText": true,
+    "rejectDuplicateCandidateAssignments": true
+  },
+  "privacy": {
+    "commitPixels": false,
+    "deleteVideoAndFramesBeforeJobExit": true
+  }
+}
