@@ -2,12 +2,13 @@
 """Run strict shrine promotion and persist a non-pixel diagnostic before re-raising failures."""
 from __future__ import annotations
 
+import importlib
 import json
 import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 
-import promote_dada_shrine_direct_review_batch01 as promotion
+import apply_shrine_promotion_positive_safety_patch as positive_safety_patch
 
 ROOT = Path(__file__).resolve().parents[1]
 DIAGNOSTIC_PATH = ROOT / "data/geospatial/dada-shrines-direct-promotion-batch01-diagnostic.json"
@@ -26,6 +27,8 @@ def write(value: dict) -> None:
 
 def main() -> int:
     try:
+        positive_safety_patch.main()
+        promotion = importlib.import_module("promote_dada_shrine_direct_review_batch01")
         return promotion.main()
     except Exception as error:
         diagnostic = {
