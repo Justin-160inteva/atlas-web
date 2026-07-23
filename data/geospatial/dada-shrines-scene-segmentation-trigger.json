@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "release": "0.9.4.8",
-  "requestedAt": "2026-07-23T02:12:00Z",
-  "mode": "resume-final-missing-isolated-v4-vision-batches",
+  "requestedAt": "2026-07-23T02:14:00Z",
+  "mode": "resume-final-two-isolated-v4-vision-events",
   "source": {
     "author": "不再犹豫的达达猪",
     "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
@@ -22,8 +22,8 @@
     "framesPerEvent": 1,
     "resumableBatchPackets": true,
     "reuseCompletedReasoningPool": true,
-    "reuseCompletedVisionSlots": [1, 9],
-    "requestMissingVisionSlots": [10, 14],
+    "reuseCompletedVisionSlots": [1, 12],
+    "requestMissingVisionSlots": [13, 14],
     "requireTwoIndependentReviewerPools": true,
     "minimumConfidencePerReviewerPool": 0.92,
     "requireDirectReadableLocationText": true,
