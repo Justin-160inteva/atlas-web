@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "generatedAt": "2026-07-23T10:12:47.586027Z",
+  "generatedAt": "2026-07-23T10:34:01.641408Z",
   "status": "phase1-complete",
   "phase1": {
     "targetConfirmedAnchors": 50,
@@ -30,7 +30,15 @@
       "status": "not_started"
     },
     "coordinateAndOverlayCalibration": {
-      "status": "in_progress"
+      "status": "in_progress",
+      "controlPointSetStatus": "ready",
+      "confirmedAnchorPool": 50,
+      "calibrationControlPoints": 24,
+      "validationHoldouts": 12,
+      "reservePoints": 14,
+      "pixelTransformStatus": "blocked_pending_final_base_dimensions_and_crop",
+      "controlPointPath": "data/geospatial/geospatial-calibration-control-points.json",
+      "readinessPath": "data/geospatial/geospatial-calibration-readiness.json"
     },
     "responsiveCompatibilityValidation": {
       "status": "pending_final_base"
