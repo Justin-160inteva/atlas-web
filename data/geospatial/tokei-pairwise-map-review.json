@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reviewStrategyVersion": 2,
-  "generatedAt": "2026-07-23T07:53:56.963481Z",
+  "generatedAt": "2026-07-23T09:07:12.425663Z",
   "status": "complete-unresolved",
   "stage": "tokei-pairwise-two-model-binary-geometry-review-v2",
   "evidenceFingerprint": "81b0ef1887a81e5b1163a9fa9bac22664c51a8a72436498e79e2f8bf0261f1f1",
@@ -26,8 +26,8 @@
   "counts": {
     "successfulModels": 2,
     "failedModels": 0,
-    "requestedModelsThisRun": 1,
-    "reusedModelsThisRun": 1
+    "requestedModelsThisRun": 0,
+    "reusedModelsThisRun": 2
   },
   "reviewPackets": [
     {
@@ -74,5 +74,403 @@
   "privacy": {
     "repositoryContainsPixels": false,
     "transientCompositeDeletedByWorkflow": true
+  },
+  "catalogCompletenessProof": {
+    "schemaVersion": 1,
+    "generatedAt": "2026-07-23T09:07:12.204377Z",
+    "status": "single-candidate-completeness-proof-ready",
+    "stage": "direct-popup-catalog-set-difference",
+    "source": {
+      "bvid": "BV1aFXaYmEDZ",
+      "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
+      "authorizationId": "auth-dada-20260718",
+      "videoClaimedShrines": 27
+    },
+    "counts": {
+      "allMapShrineCandidates": 32,
+      "excludedAwajiCandidates": 5,
+      "eligibleSequenceCandidates": 27,
+      "directReadableShrinePopups": 26,
+      "setDifferenceCandidates": 1
+    },
+    "method": {
+      "candidateScope": "all stage-one Shrine candidates excluding region AWAJI",
+      "directEvidenceRequirement": "stable popup event with readable shrine title",
+      "candidateMappingUniqueness": true,
+      "setDifferenceApplied": true,
+      "coordinatesAssigned": false,
+      "canonicalAnchorModified": false,
+      "requiresIndependentModelReviewBeforePromotion": true
+    },
+    "excludedAwajiCandidateIds": [
+      "location-mapgenie-479945",
+      "location-mapgenie-479948",
+      "location-mapgenie-479949",
+      "location-mapgenie-479952",
+      "location-mapgenie-479955"
+    ],
+    "directPopupMappings": [
+      {
+        "event": 2,
+        "representativeTimeSeconds": 19.2,
+        "visibleLabelZhCN": "高原熊野神社",
+        "locationId": "location-mapgenie-437477",
+        "candidateTitle": "Takahara Kumano Shrine",
+        "regionId": "region-3152-kii",
+        "regionTitle": "KII",
+        "popupSha256": "f69421003127c3b571ff9d4a5a1d89dab0001bfcc3d11c11ee4cc4e240387fa5",
+        "titleSha256": "33e5d4f5084ec811c32b680c6496a6f3b960d3db3cf604cb8192241e8369083e",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 4,
+        "representativeTimeSeconds": 55.733,
+        "visibleLabelZhCN": "熊野那智大社",
+        "locationId": "location-mapgenie-436647",
+        "candidateTitle": "Kumano Nachi Taisha",
+        "regionId": "region-3152-kii",
+        "regionTitle": "KII",
+        "popupSha256": "f9016ccf7ffd55fbcfc6d11a2c3824c5e10172e020e7d0c2932eee4ed5334472",
+        "titleSha256": "cc6682b9577a6513630c22adeb4e5d7e5e35c63ec32e095785400e0e21a0d74a",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 5,
+        "representativeTimeSeconds": 59.733,
+        "visibleLabelZhCN": "熊野本宫大社",
+        "locationId": "location-mapgenie-437483",
+        "candidateTitle": "Kumano Hongu Taisha",
+        "regionId": "region-3152-kii",
+        "regionTitle": "KII",
+        "popupSha256": "8770c6a19cac67b4a4b8fe5015a1e49ca585dc49622116289187177277f5b716",
+        "titleSha256": "c608a99494e392f22773751c073d7528f08eb61e367683ac19c8d2b37690175d",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 7,
+        "representativeTimeSeconds": 73.333,
+        "visibleLabelZhCN": "熊野速玉大社",
+        "locationId": "location-mapgenie-436521",
+        "candidateTitle": "Kumano Hayatama Taisha",
+        "regionId": "region-3152-kii",
+        "regionTitle": "KII",
+        "popupSha256": "16c18f4da9542570716953437807e8f03e71b939e47d342c68bfaf961ebea49e",
+        "titleSha256": "92faa47a581399dba4013eb2d36c504484c6ffabe202608bb123df97ebce9841",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 8,
+        "representativeTimeSeconds": 77.067,
+        "visibleLabelZhCN": "神仓神社",
+        "locationId": "location-mapgenie-436509",
+        "candidateTitle": "Kamikura Shrine",
+        "regionId": "region-3152-kii",
+        "regionTitle": "KII",
+        "popupSha256": "887ead9dfe856d8bdd1efa8561b75d9dc54ed6fafcaca13cbabd02e9b7f92a26",
+        "titleSha256": "0eac41106a569fc70919ba5e86266cf007fde434fbd4b80f9bc9534a0a29f419",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 10,
+        "representativeTimeSeconds": 90.133,
+        "visibleLabelZhCN": "丹生川上神社",
+        "locationId": "location-mapgenie-435783",
+        "candidateTitle": "Niukawakami Shrine",
+        "regionId": "region-3151-yamato",
+        "regionTitle": "YAMATO",
+        "popupSha256": "762c85d2a02f20ce7104a87c561e48a32feaeb448a8a2499489c33e6fdbb27b3",
+        "titleSha256": "8a0203909097aa392bc984fc40733295b9357325584456a39578d1322b35da89",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 12,
+        "representativeTimeSeconds": 102.133,
+        "visibleLabelZhCN": "住吉神社",
+        "locationId": "location-mapgenie-434532",
+        "candidateTitle": "Sumiyoshi Shrine",
+        "regionId": "region-3147-izumi-settsu",
+        "regionTitle": "IZUMI SETTSU",
+        "popupSha256": "ec93d610752560525807824fc9a871d65a20b2adc161cedae928bd407774c0ac",
+        "titleSha256": "e5a70093114c995a8e8517dbeee347816cd7b30c28ac5b806f983649da600b78",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 14,
+        "representativeTimeSeconds": 115.467,
+        "visibleLabelZhCN": "大神神社",
+        "locationId": "location-mapgenie-435742",
+        "candidateTitle": "Omiwa Shrine",
+        "regionId": "region-3151-yamato",
+        "regionTitle": "YAMATO",
+        "popupSha256": "b365de0eb0ba4d3f1ab4ecd363d784e627ae86ebd1308f042a30c901846a81db",
+        "titleSha256": "d2f40bba6cce9cfcfbf287fe6c92565e33af51c026ad9ff5fa95a0ae03d980dc",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 15,
+        "representativeTimeSeconds": 117.867,
+        "visibleLabelZhCN": "春日大社",
+        "locationId": "location-mapgenie-437898",
+        "candidateTitle": "Kasugataisha Shrine",
+        "regionId": "region-3151-yamato",
+        "regionTitle": "YAMATO",
+        "popupSha256": "bcef13a933655e847640a3adc5bfd74493f9b2e324460b7926c981b7d1bebbf8",
+        "titleSha256": "fe6db8a4332893e8da0c3f303412c4242282969e0bcecd352612734abbf862ba",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 16,
+        "representativeTimeSeconds": 120.8,
+        "visibleLabelZhCN": "日出神社",
+        "locationId": "location-mapgenie-438333",
+        "candidateTitle": "Hinode Shrine",
+        "regionId": "region-3151-yamato",
+        "regionTitle": "YAMATO",
+        "popupSha256": "eb144cf87e326456a8ea572bec8fdd7e721cf13c746f83b90a761cb6691326e2",
+        "titleSha256": "d45b1b8f5606f060aa7a6ccea4f59bf1ec380bb84dd701b210f526206638c277",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 18,
+        "representativeTimeSeconds": 133.867,
+        "visibleLabelZhCN": "春日神社",
+        "locationId": "location-mapgenie-434406",
+        "candidateTitle": "Kasuga Shrine",
+        "regionId": "region-3145-iga",
+        "regionTitle": "IGA",
+        "popupSha256": "eae3403ed0a1e8344be3bf3bed3c819da2fec75262d91ee09f27c373cc002c51",
+        "titleSha256": "c43fac48d201698956b961195684b0cc4134384106d299439e65247934985cd9",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 19,
+        "representativeTimeSeconds": 137.333,
+        "visibleLabelZhCN": "敢国神社",
+        "locationId": "location-mapgenie-434366",
+        "candidateTitle": "Aekuni Shrine",
+        "regionId": "region-3145-iga",
+        "regionTitle": "IGA",
+        "popupSha256": "11760ecc6caa0cffeaa1544821ab79bbc26125a8168b37e152ed22fc0d80fd81",
+        "titleSha256": "64bdb4572fbf56ff8f73343b398b72d0fa279ac7d0c9f9d16f4ca0d26e5fb995",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 21,
+        "representativeTimeSeconds": 148.8,
+        "visibleLabelZhCN": "石清水八幡宫",
+        "locationId": "location-mapgenie-437835",
+        "candidateTitle": "Iwashimizu Hachiman Shrine",
+        "regionId": "region-3148-yamashiro",
+        "regionTitle": "YAMASHIRO",
+        "popupSha256": "1640ef5d8a1b8eac24526743d6fd15c83e120325d108d18b53af7ac5e1d76a89",
+        "titleSha256": "b181d4cd47923710a6cb5e254181647846f9b7317eec1fecce55c4c28c3751a3",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 23,
+        "representativeTimeSeconds": 160.0,
+        "visibleLabelZhCN": "长滨八幡宫",
+        "locationId": "location-mapgenie-435872",
+        "candidateTitle": "Nagahama Hachimangu Shrine",
+        "regionId": "region-3144-omi",
+        "regionTitle": "OMI",
+        "popupSha256": "62eaf178b2f9f3c7fde73928aceef40427f32b315ca530038f5521d020b0d690",
+        "titleSha256": "b5cbd7820f659b7bd63f84d7d3c546c50cab36da9fb4619d9ca67331eac94834",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 25,
+        "representativeTimeSeconds": 171.2,
+        "visibleLabelZhCN": "西宫神社",
+        "locationId": "location-mapgenie-434692",
+        "candidateTitle": "Nishinomiya Shrine",
+        "regionId": "region-3147-izumi-settsu",
+        "regionTitle": "IZUMI SETTSU",
+        "popupSha256": "ab3d2fe021ac89d5b7f708e09195cf06f07802409c4d8976cc28153dc00e225f",
+        "titleSha256": "fefe091be4fa3bb0f60a8ebacfd25eb95e06b50653dbe03ad43f7315d00389d5",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 27,
+        "representativeTimeSeconds": 182.4,
+        "visibleLabelZhCN": "高砂神社",
+        "locationId": "location-mapgenie-437384",
+        "candidateTitle": "Takasago Shrine",
+        "regionId": "region-3149-harima",
+        "regionTitle": "HARIMA",
+        "popupSha256": "ea8007c84512262bafbfb36ac12bd27a5cac650f6ab202acb155ede65206743c",
+        "titleSha256": "d61e9f86259303b1a0861a648086d731a9c256746f7494dc0ed2b47bc15f41c7",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 28,
+        "representativeTimeSeconds": 185.067,
+        "visibleLabelZhCN": "生石神社",
+        "locationId": "location-mapgenie-434986",
+        "candidateTitle": "Ishinohoden Shrine",
+        "regionId": "region-3149-harima",
+        "regionTitle": "HARIMA",
+        "popupSha256": "e8fd3b318179c1d361ce6b2ad7c5e4247ced394fcf15665fd1ada3a6e5084ae7",
+        "titleSha256": "457dac4be464260f46a4768707367c45516a0a523648e9e6f498dc0a10eb12e5",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 29,
+        "representativeTimeSeconds": 188.8,
+        "visibleLabelZhCN": "射楯兵主神社",
+        "locationId": "location-mapgenie-434988",
+        "candidateTitle": "Itatehyozu Shrine",
+        "regionId": "region-3149-harima",
+        "regionTitle": "HARIMA",
+        "popupSha256": "e938f305a6eafb22ad4a036fa7d0c7df1c41e2383f95a36059434419b4f57d7b",
+        "titleSha256": "68f6aa8f603fba823254170b35962b008d5b1be18c7a069226008569319004f1",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 31,
+        "representativeTimeSeconds": 200.0,
+        "visibleLabelZhCN": "加舎神社",
+        "locationId": "location-mapgenie-437663",
+        "candidateTitle": "Kaya Shrine",
+        "regionId": "region-3149-harima",
+        "regionTitle": "HARIMA",
+        "popupSha256": "a7c1b1fedc067d819eed2d55a3b89577e1476f7d9d1d40b03da42a4c62119a64",
+        "titleSha256": "be57957a90cab737ca9864213f5a27bea98a646081a976d5f924dffa1587dba4",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 33,
+        "representativeTimeSeconds": 211.2,
+        "visibleLabelZhCN": "爱宕神社",
+        "locationId": "location-mapgenie-438225",
+        "candidateTitle": "Atago Shrine",
+        "regionId": "region-3150-tamba",
+        "regionTitle": "TAMBA",
+        "popupSha256": "5d3e87355bca6c6b4c9f23c805c27f7ee61d68c9ca0825ecad0fce19a99bc18a",
+        "titleSha256": "8c276889c3af5abdd7ee59f5c1a470f994578313ee4d1ec2ea5f11693b1da26d",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 35,
+        "representativeTimeSeconds": 224.267,
+        "visibleLabelZhCN": "鬼岳神社",
+        "locationId": "location-mapgenie-438198",
+        "candidateTitle": "Onitake Shrine",
+        "regionId": "region-3150-tamba",
+        "regionTitle": "TAMBA",
+        "popupSha256": "5ca4af9cd879adda687b9de317e04bc7850f014bfbfe9b328450ff4a41f93bbc",
+        "titleSha256": "5dab1c437947514367b8cf46ffc8a8ac64bc9ce240f5b1080778aa9a44a70b60",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 37,
+        "representativeTimeSeconds": 235.733,
+        "visibleLabelZhCN": "祇园神社",
+        "locationId": "location-mapgenie-437865",
+        "candidateTitle": "Gion Shrine",
+        "regionId": "region-3148-yamashiro",
+        "regionTitle": "YAMASHIRO",
+        "popupSha256": "20e00068d3422acc8fd103191009c9c69530fc9c7532442d83615ddba10ef3b6",
+        "titleSha256": "f4d18ee8d3a703c38fafe023d94dd5ce2d8839fa4a0891dc6d28c9d3988b6e50",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 38,
+        "representativeTimeSeconds": 239.2,
+        "visibleLabelZhCN": "上贺茂神社",
+        "locationId": "location-mapgenie-438281",
+        "candidateTitle": "Kamigamo Shrine",
+        "regionId": "region-3148-yamashiro",
+        "regionTitle": "YAMASHIRO",
+        "popupSha256": "30ad11d70078852443d1e45969a15b2f9fe4834fa0ccc90a965ea5fabb9e9256",
+        "titleSha256": "29385921d4e66ec0e32b8bc7389213f32a61b282d1d2a09f4d64a6be39c3cf32",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 40,
+        "representativeTimeSeconds": 247.733,
+        "visibleLabelZhCN": "白须神社",
+        "locationId": "location-mapgenie-437262",
+        "candidateTitle": "Shirahige Shrine",
+        "regionId": "region-3144-omi",
+        "regionTitle": "OMI",
+        "popupSha256": "68e156097a0fc8a345ff9b21b0c37fe299784c0818add0c85de27eeb97932713",
+        "titleSha256": "fdef0b51482d0aed5953149bd6d0d6b166c409085eff5f062100381264ab6633",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 42,
+        "representativeTimeSeconds": 258.4,
+        "visibleLabelZhCN": "若狭彦神社",
+        "locationId": "location-mapgenie-435994",
+        "candidateTitle": "Wakasahiko Shrine",
+        "regionId": "region-3146-wakasa",
+        "regionTitle": "WAKASA",
+        "popupSha256": "3a1baef8bb1b6b370f35e1cac4fb0589b2902361fe9ad8bd4198d63abf467994",
+        "titleSha256": "b753c6413034cefce5a5ed894f3c52e03ef2da4412a81afb2129897741c929da",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      },
+      {
+        "event": 44,
+        "representativeTimeSeconds": 268.267,
+        "visibleLabelZhCN": "常宫神社",
+        "locationId": "location-mapgenie-437096",
+        "candidateTitle": "Jogu Shrine",
+        "regionId": "region-3146-wakasa",
+        "regionTitle": "WAKASA",
+        "popupSha256": "2b6e1b1e90c95b413a1123e2d328f3897fa988eac5e58ecd7c1f51d1927fc70e",
+        "titleSha256": "2e535abf44f5745e7fcfa4bf8ce93d0828bb461cdd4084d50a6c1937347969fb",
+        "evidenceType": "direct_readable_popup_title",
+        "coordinatesAssigned": false
+      }
+    ],
+    "uniqueSetDifference": {
+      "locationId": "location-mapgenie-438414",
+      "candidateTitle": "Tokei Shrine",
+      "regionId": "region-3152-kii",
+      "regionTitle": "KII",
+      "atlas": {
+        "x": 0.597490422478546,
+        "y": 0.054553336053108734
+      },
+      "inferenceType": "complete-catalog-single-set-difference",
+      "promotionAllowed": false
+    },
+    "safety": {
+      "pairwiseGeometryReviewStatus": "complete-unresolved",
+      "setDifferenceDoesNotOverrideDirectVisualGate": true,
+      "noCoordinatesPromotedByThisProof": true,
+      "repositoryContainsPixels": false
+    }
+  },
+  "catalogCompletenessProofEmbedded": true,
+  "promotionDecision": {
+    "allowed": false,
+    "reason": "pairwise visual review remains unresolved; catalog proof requires independent review"
   }
 }
