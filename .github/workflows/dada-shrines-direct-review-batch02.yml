@@ -1,0 +1,195 @@
+name: Dada Shrines Direct Review Batch 02
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/dada-shrines-direct-review-batch02.yml'
+      - 'tools/apply_shrine_direct_review_batch02_patch.py'
+      - 'tools/review_dada_shrine_direct_candidates_batch01.py'
+      - 'tools/reconcile_dada_shrine_direct_review_batch01.py'
+      - 'data/geospatial/dada-shrines-direct-review-batch02-trigger.json'
+      - 'data/geospatial/dada-shrines-27-anchor-candidates.json'
+      - 'data/geospatial/dada-shrines-popup-event-census.json'
+
+permissions:
+  contents: write
+  models: read
+
+concurrency:
+  group: dada-shrines-direct-review-batch02-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Patch shared review tools for ordinals 9-14
+        run: python tools/apply_shrine_direct_review_batch02_patch.py
+
+      - name: Compile review tools
+        run: |
+          python -m py_compile \
+            tools/review_dada_shrine_direct_candidates_batch01.py \
+            tools/reconcile_dada_shrine_direct_review_batch01.py \
+            tools/analyze_authorized_video_v2.py \
+            tools/analyze_authorized_video_v4.py
+
+      - name: Install transient media dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'yt-dlp[default,curl-cffi]' opencv-python-headless
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Record immutable candidate package hash
+        id: canonical
+        run: |
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+          path = Path('data/geospatial/dada-shrines-27-anchor-candidates.json')
+          digest = hashlib.sha256(path.read_bytes()).hexdigest()
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'sha256={digest}\n')
+          PY
+
+      - name: Download authorized shrine video transiently
+        id: download
+        run: |
+          rm -rf /tmp/dada-shrine-direct-video-b02 /tmp/dada-shrine-direct-review-b02 /tmp/dada-shrine-direct-publish-b02
+          mkdir -p \
+            /tmp/dada-shrine-direct-video-b02 \
+            /tmp/dada-shrine-direct-review-b02 \
+            /tmp/dada-shrine-direct-publish-b02/data/geospatial
+          PYTHONPATH=tools python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import analyze_authorized_video_v4 as resilient
+
+          workdir = Path('/tmp/dada-shrine-direct-video-b02')
+          video_path, attempts = resilient.runner.download_with_fallbacks(
+              'https://www.bilibili.com/video/BV1aFXaYmEDZ/', workdir
+          )
+          if not video_path.is_file() or video_path.stat().st_size < 1024:
+              raise RuntimeError('download did not produce a usable shrine video')
+          strategy = next(row['strategy'] for row in attempts if row.get('success'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'video_path={video_path.resolve()}\n')
+              handle.write(f'download_strategy={strategy}\n')
+          print(json.dumps({'video': str(video_path), 'strategy': strategy}, ensure_ascii=False))
+          PY
+
+      - name: Review direct popup candidates 9-14
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          VIDEO_PATH: ${{ steps.download.outputs.video_path }}
+        run: |
+          python tools/review_dada_shrine_direct_candidates_batch01.py \
+            --video "$VIDEO_PATH" \
+            --work-dir /tmp/dada-shrine-direct-review-b02 \
+            --output data/geospatial/dada-shrines-direct-review-batch02.json
+
+      - name: Reconcile transcribed labels programmatically
+        run: python tools/reconcile_dada_shrine_direct_review_batch01.py
+
+      - name: Validate review, consistency, isolation and privacy gates
+        env:
+          CANDIDATE_SHA256: ${{ steps.canonical.outputs.sha256 }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(Path('data/geospatial/dada-shrines-direct-review-batch02.json').read_text(encoding='utf-8'))
+          candidate_path = Path('data/geospatial/dada-shrines-27-anchor-candidates.json')
+          assert hashlib.sha256(candidate_path.read_bytes()).hexdigest() == os.environ['CANDIDATE_SHA256']
+          assert result['schemaVersion'] == 2
+          assert result['reviewStrategyVersion'] == 2
+          assert result['status'] == 'complete'
+          assert result['batch'] == {'ordinals': [9,10,11,12,13,14], 'eventsPerRequest': 4}
+          assert result['counts']['candidateCount'] == 6
+          assert result['counts']['confirmed'] == 6
+          assert result['counts']['unresolved'] == 0
+          assert result['counts']['successfulReviewerModels'] == 2
+          assert result['counts']['failedReviewerModels'] == 0
+          assert result['counts']['persistedBatchPackets'] == 4
+          assert result['counts']['requestedBatchCallsThisRun'] + result['counts']['reusedBatchCallsThisRun'] == 4
+          assert len(result['evidence']) == 6
+          assert [row['ordinal'] for row in result['evidence']] == [9,10,11,12,13,14]
+          assert len(result['consensus']) == 6
+          assert all(row['status'] == 'confirmed' and row['promotionReady'] is True for row in result['consensus'])
+          assert result['policy']['minimumIndependentModels'] == 2
+          assert result['policy']['minimumConfidencePerModel'] == .92
+          assert result['policy']['programmaticVisibleLabelEquality'] is True
+          assert result['policy']['modelBooleanControlsMatch'] is False
+          assert result['policy']['coordinatesPromoted'] is False
+          assert result['policy']['canonicalAnchorModified'] is False
+          assert result['privacy']['repositoryContainsPixels'] is False
+          assert all((Path('/tmp/dada-shrine-direct-review-b02') / row['filename']).is_file() for row in result['evidence'])
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          assert not list(Path('data').rglob('*.mp4'))
+          print(json.dumps({'status': result['status'], 'counts': result['counts']}, ensure_ascii=False))
+          PY
+
+      - name: Upload one-day transient popup evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: dada-shrines-direct-review-batch02-${{ github.run_id }}
+          path: /tmp/dada-shrine-direct-review-b02
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
+
+      - name: Stage non-pixel review result
+        run: |
+          cp data/geospatial/dada-shrines-direct-review-batch02.json \
+            /tmp/dada-shrine-direct-publish-b02/data/geospatial/
+
+      - name: Atomically publish non-pixel review result
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial
+            cp /tmp/dada-shrine-direct-publish-b02/data/geospatial/dada-shrines-direct-review-batch02.json \
+              data/geospatial/
+            git add data/geospatial/dada-shrines-direct-review-batch02.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Review direct shrine anchor candidates batch two [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Delete transient video and popup pixels
+        if: always()
+        run: |
+          rm -rf \
+            /tmp/dada-shrine-direct-video-b02 \
+            /tmp/dada-shrine-direct-review-b02 \
+            /tmp/dada-shrine-direct-publish-b02
+          test ! -e /tmp/dada-shrine-direct-video-b02
+          test ! -e /tmp/dada-shrine-direct-review-b02
+          test ! -e /tmp/dada-shrine-direct-publish-b02
