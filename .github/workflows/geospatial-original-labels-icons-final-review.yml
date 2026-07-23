@@ -7,6 +7,7 @@ on:
       - '.github/workflows/geospatial-original-labels-icons-final-review.yml'
       - 'tools/build_geospatial_original_labels_icons_final_review.py'
       - 'tools/apply_geospatial_unassigned_location_disposition.py'
+      - 'tools/refine_geospatial_final_review_visual_layout.py'
       - 'tools/validate_geospatial_original_labels_icons_final_review.py'
       - 'data/geospatial/geospatial-original-labels-icons-final-review-plan.json'
       - 'data/geospatial/geospatial-original-labels-icons-final-review-trigger.json'
@@ -45,6 +46,7 @@ jobs:
           python -m py_compile \
             tools/build_geospatial_original_labels_icons_final_review.py \
             tools/apply_geospatial_unassigned_location_disposition.py \
+            tools/refine_geospatial_final_review_visual_layout.py \
             tools/validate_geospatial_original_labels_icons_final_review.py
 
       - name: Record protected source hashes
@@ -69,6 +71,9 @@ jobs:
 
       - name: Apply no-inference unassigned location disposition
         run: python tools/apply_geospatial_unassigned_location_disposition.py
+
+      - name: Refine anchor-aware visual layout
+        run: python tools/refine_geospatial_final_review_visual_layout.py
 
       - name: Validate authorship and freeze readiness
         env:
