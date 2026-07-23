@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Shared helpers for targeted Tokei/Takahara map evidence review.
 
-When executed directly this module delegates to the binary v2 reviewer. Keeping the frame
-extraction and composite construction here allows v2 to reuse one audited evidence pipeline
-while removing candidate-ID generation from model output.
+When executed directly this module delegates to the v3 reviewer, which runs the binary visual
+review and embeds the exact 27-shrine catalog completeness proof in the published result.
 """
 from __future__ import annotations
 
@@ -107,6 +106,6 @@ def build_composite(video: Path, output_dir: Path) -> tuple[Path, dict[str, Any]
 
 
 if __name__ == "__main__":
-    from review_tokei_pairwise_map_evidence_v2 import main as binary_main
+    from review_tokei_pairwise_map_evidence_v3 import main as proof_main
 
-    raise SystemExit(binary_main())
+    raise SystemExit(proof_main())
