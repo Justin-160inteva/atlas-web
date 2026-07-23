@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Build a deterministic construction skeleton for Atlas's fully original map artwork.
 
-This tool consumes factual repository coordinates only. It does not read, trace, sample, or
-modify any raster/vector map artwork. Region hulls are point-distribution construction guides,
-not claimed game boundaries or final coastlines.
+Only factual repository point coordinates are consumed. Third-party map pixels, vectors and the
+geometry field in regions.json are intentionally ignored. Region hulls are construction guides,
+not final coastlines or official boundaries.
 """
 from __future__ import annotations
 
@@ -72,11 +72,13 @@ def convex_hull(points: list[tuple[float, float]]) -> list[tuple[float, float]]:
 def polygon_area(points: list[tuple[float, float]]) -> float:
     if len(points) < 3:
         return 0.0
-    return abs(sum(
-        points[index][0] * points[(index + 1) % len(points)][1]
-        - points[(index + 1) % len(points)][0] * points[index][1]
-        for index in range(len(points))
-    )) / 2
+    return abs(
+        sum(
+            points[index][0] * points[(index + 1) % len(points)][1]
+            - points[(index + 1) % len(points)][0] * points[index][1]
+            for index in range(len(points))
+        )
+    ) / 2
 
 
 def rounded_point(point: tuple[float, float]) -> dict[str, float]:
@@ -131,11 +133,17 @@ def main() -> int:
         raise RuntimeError(f"expected {expected['locations']} locations, found {len(locations)}")
 
     region_rows = normalize_regions(load_json(regions_path))
-    region_names = {str(row["id"]): region_title(row) for row in region_rows if row.get("id") is not None}
+    region_names = {
+        str(row["id"]): region_title(row)
+        for row in region_rows
+        if row.get("id") is not None
+    }
 
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    unassigned: list[dict[str, Any]] = []
     all_points: list[tuple[float, float]] = []
     seen_ids: set[str] = set()
+
     for row in locations:
         if not isinstance(row, dict):
             raise RuntimeError("every location must be an object")
@@ -143,17 +151,25 @@ def main() -> int:
         if not location_id or location_id in seen_ids:
             raise RuntimeError(f"missing or duplicate location id: {location_id!r}")
         seen_ids.add(location_id)
-        region_id = str(row.get("region_id", ""))
-        if not region_id:
-            raise RuntimeError(f"location {location_id} has no region_id")
         point = location_point(row)
         row_copy = dict(row)
         row_copy["_point"] = point
-        grouped[region_id].append(row_copy)
         all_points.append(point)
 
+        raw_region_id = row.get("region_id")
+        if raw_region_id is None or str(raw_region_id).strip() == "":
+            unassigned.append(row_copy)
+        else:
+            grouped[str(raw_region_id)].append(row_copy)
+
     if len(grouped) != expected["regions"]:
-        raise RuntimeError(f"expected {expected['regions']} represented regions, found {len(grouped)}")
+        raise RuntimeError(
+            f"expected {expected['regions']} real represented regions, found {len(grouped)}: {sorted(grouped)}"
+        )
+    if len(unassigned) != expected["unassignedLocations"]:
+        raise RuntimeError(
+            f"expected {expected['unassignedLocations']} unassigned locations, found {len(unassigned)}"
+        )
 
     progress = load_json(progress_path)
     anchors = progress.get("anchors")
@@ -168,6 +184,7 @@ def main() -> int:
 
     regions_output: list[dict[str, Any]] = []
     centroids: dict[str, tuple[float, float]] = {}
+
     for region_id in sorted(grouped):
         rows = grouped[region_id]
         points = [row["_point"] for row in rows]
@@ -182,36 +199,37 @@ def main() -> int:
         minimum_y = min(point[1] for point in points)
         maximum_y = max(point[1] for point in points)
 
-        def extreme(key: int, minimum: bool) -> dict[str, Any]:
-            selected = min(rows, key=lambda row: (row["_point"][key], str(row["id"]))) if minimum else max(
-                rows, key=lambda row: (row["_point"][key], str(row["id"]))
-            )
+        def extreme(axis: int, minimum: bool) -> dict[str, Any]:
+            key = lambda item: (item["_point"][axis], str(item["id"]))
+            selected = min(rows, key=key) if minimum else max(rows, key=key)
             return {"locationId": selected["id"], **rounded_point(selected["_point"])}
 
-        regions_output.append({
-            "regionId": region_id,
-            "regionTitle": region_names.get(region_id, region_id),
-            "locationCount": len(rows),
-            "confirmedAnchorCount": anchor_counts.get(region_id, 0),
-            "centroid": rounded_point(centroid),
-            "boundingBox": {
-                "minimumX": round(minimum_x, 8),
-                "maximumX": round(maximum_x, 8),
-                "minimumY": round(minimum_y, 8),
-                "maximumY": round(maximum_y, 8),
-                "width": round(maximum_x - minimum_x, 8),
-                "height": round(maximum_y - minimum_y, 8),
-            },
-            "constructionHull": [rounded_point(point) for point in hull],
-            "constructionHullArea": round(polygon_area(hull), 8),
-            "extremeGuides": {
-                "minimumX": extreme(0, True),
-                "maximumX": extreme(0, False),
-                "minimumY": extreme(1, True),
-                "maximumY": extreme(1, False),
-            },
-            "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary",
-        })
+        regions_output.append(
+            {
+                "regionId": region_id,
+                "regionTitle": region_names.get(region_id, region_id),
+                "locationCount": len(rows),
+                "confirmedAnchorCount": anchor_counts.get(region_id, 0),
+                "centroid": rounded_point(centroid),
+                "boundingBox": {
+                    "minimumX": round(minimum_x, 8),
+                    "maximumX": round(maximum_x, 8),
+                    "minimumY": round(minimum_y, 8),
+                    "maximumY": round(maximum_y, 8),
+                    "width": round(maximum_x - minimum_x, 8),
+                    "height": round(maximum_y - minimum_y, 8),
+                },
+                "constructionHull": [rounded_point(point) for point in hull],
+                "constructionHullArea": round(polygon_area(hull), 8),
+                "extremeGuides": {
+                    "minimumX": extreme(0, True),
+                    "maximumX": extreme(0, False),
+                    "minimumY": extreme(1, True),
+                    "maximumY": extreme(1, False),
+                },
+                "boundaryMeaning": "location-distribution construction envelope only; not a copied or final game boundary",
+            }
+        )
 
     nearest_count = int(expected["nearestRegionNeighbors"])
     edge_keys: set[tuple[str, str]] = set()
@@ -219,7 +237,8 @@ def main() -> int:
         nearest = sorted(
             (
                 (math.hypot(centroid[0] - other[0], centroid[1] - other[1]), other_id)
-                for other_id, other in centroids.items() if other_id != region_id
+                for other_id, other in centroids.items()
+                if other_id != region_id
             ),
             key=lambda item: (item[0], item[1]),
         )[:nearest_count]
@@ -232,15 +251,45 @@ def main() -> int:
             centroids[left][0] - centroids[right][0],
             centroids[left][1] - centroids[right][1],
         )
-        adjacency.append({
-            "fromRegionId": left,
-            "toRegionId": right,
-            "centroidDistance": round(distance, 8),
-            "meaning": "composition-neighbor suggestion only",
-        })
+        adjacency.append(
+            {
+                "fromRegionId": left,
+                "toRegionId": right,
+                "centroidDistance": round(distance, 8),
+                "meaning": "composition-neighbor suggestion only",
+            }
+        )
 
-    global_hull = convex_hull(all_points)
+    unassigned_guides = [
+        {
+            "locationId": row["id"],
+            "title": row.get("title"),
+            "categoryId": row.get("category_id"),
+            **rounded_point(row["_point"]),
+            "meaning": "global construction point pending region classification; excluded from region hulls",
+        }
+        for row in sorted(unassigned, key=lambda item: str(item["id"]))
+    ]
+
+    anchor_covered_regions = sorted(
+        row["regionId"] for row in regions_output if row["confirmedAnchorCount"] > 0
+    )
+    unanchored_regions = sorted(
+        row["regionId"] for row in regions_output if row["confirmedAnchorCount"] == 0
+    )
+    if len(anchor_covered_regions) != expected["confirmedAnchorCoveredRegions"]:
+        raise RuntimeError(
+            f"expected {expected['confirmedAnchorCoveredRegions']} anchor-covered regions, "
+            f"found {len(anchor_covered_regions)}"
+        )
+    if unanchored_regions != sorted(expected["unanchoredRegionIds"]):
+        raise RuntimeError(
+            f"unexpected unanchored regions: expected {sorted(expected['unanchoredRegionIds'])}, "
+            f"found {unanchored_regions}"
+        )
+
     grid_size = int(expected["densityGridSize"])
+    global_hull = convex_hull(all_points)
     skeleton = {
         "schemaVersion": 1,
         "generatedAt": trigger["requestedAt"],
@@ -257,7 +306,10 @@ def main() -> int:
         },
         "counts": {
             "locations": len(locations),
+            "regionAssignedLocations": sum(len(rows) for rows in grouped.values()),
+            "unassignedLocations": len(unassigned_guides),
             "regions": len(regions_output),
+            "confirmedAnchorCoveredRegions": len(anchor_covered_regions),
             "confirmedAnchors": len(anchors),
             "regionAdjacencyEdges": len(adjacency),
             "densityGridSize": grid_size,
@@ -268,6 +320,9 @@ def main() -> int:
             "meaning": "point-distribution guide only; final coastline and silhouette must be authored",
         },
         "regions": regions_output,
+        "anchorCoveredRegionIds": anchor_covered_regions,
+        "unanchoredRegionIds": unanchored_regions,
+        "unassignedLocationGuides": unassigned_guides,
         "compositionAdjacency": adjacency,
         "locationDensityGrid": {
             "size": grid_size,
@@ -278,8 +333,9 @@ def main() -> int:
         "nextArtStage": {
             "status": "ready_for_original_regional_composition",
             "requiredDecisions": [
+                "classify or intentionally retain the five unassigned global locations",
                 "author original outer land silhouette and water negative space",
-                "author nine region masses without tracing third-party map boundaries",
+                "author ten region masses without tracing third-party map boundaries",
                 "define original terrain hierarchy and travel corridors",
                 "approve a repository-owned editable source format before raster export",
             ],
@@ -288,6 +344,7 @@ def main() -> int:
             "thirdPartyMapPixelsRead": False,
             "thirdPartyMapVectorsRead": False,
             "legacyRenderBaseUsedForGeometry": False,
+            "regionsJsonGeometryUsed": False,
             "finalCoastlineClaimed": False,
             "finalRegionBoundariesClaimed": False,
             "pixelCoordinatesInvented": False,
@@ -311,17 +368,27 @@ def main() -> int:
             "status": "spatial_skeleton_ready",
             "skeletonPath": outputs["skeletonPath"],
             "locationCount": len(locations),
+            "regionAssignedLocationCount": sum(len(rows) for rows in grouped.values()),
+            "unassignedLocationCount": len(unassigned_guides),
             "regionCount": len(regions_output),
+            "confirmedAnchorCoveredRegionCount": len(anchor_covered_regions),
             "confirmedAnchorCount": len(anchors),
+            "unanchoredRegionIds": unanchored_regions,
             "nextStage": "original_regional_composition",
         },
     }
     calibration = stage_gates.setdefault("coordinateAndOverlayCalibration", {})
     calibration["status"] = "in_progress"
     calibration["pixelTransformStatus"] = "blocked_pending_original_authored_final_canvas"
-    calibration["blockingReason"] = "pixel calibration begins only after the original authored canvas is approved and frozen"
-    stage_gates["responsiveCompatibilityValidation"] = {"status": "pending_original_authored_final_base"}
-    stage_gates["physicalDeviceVerification"] = {"status": "pending_original_authored_final_base"}
+    calibration["blockingReason"] = (
+        "pixel calibration begins only after the original authored canvas is approved and frozen"
+    )
+    stage_gates["responsiveCompatibilityValidation"] = {
+        "status": "pending_original_authored_final_base"
+    }
+    stage_gates["physicalDeviceVerification"] = {
+        "status": "pending_original_authored_final_base"
+    }
     progress["generatedAt"] = trigger["requestedAt"]
     progress["originalAuthoredBase"] = {
         "strategyStatus": "approved_in_development",
@@ -329,18 +396,28 @@ def main() -> int:
         "strategyPath": trigger["strategyPath"],
         "skeletonPath": outputs["skeletonPath"],
         "legacyPreviewIsNonAuthoritative": True,
-        "nextAction": "author original regional composition from the deterministic skeleton",
+        "realRegionCount": len(regions_output),
+        "unassignedLocationCount": len(unassigned_guides),
+        "nextAction": "author original regional composition and classify five null-region locations",
     }
     write_json(progress_path, progress)
 
-    print(json.dumps({
-        "status": skeleton["status"],
-        "locations": len(locations),
-        "regions": len(regions_output),
-        "anchors": len(anchors),
-        "edges": len(adjacency),
-        "output": outputs["skeletonPath"],
-    }, ensure_ascii=False))
+    print(
+        json.dumps(
+            {
+                "status": skeleton["status"],
+                "locations": len(locations),
+                "regionAssignedLocations": skeleton["counts"]["regionAssignedLocations"],
+                "unassignedLocations": len(unassigned_guides),
+                "regions": len(regions_output),
+                "anchorCoveredRegions": len(anchor_covered_regions),
+                "unanchoredRegions": unanchored_regions,
+                "anchors": len(anchors),
+                "output": outputs["skeletonPath"],
+            },
+            ensure_ascii=False,
+        )
+    )
     return 0
 
 
