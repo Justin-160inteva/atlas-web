@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "requestedAt": "2026-07-23T02:52:00Z",
+  "mode": "extract-and-review-shrine-slots-1-through-14",
+  "source": {
+    "author": "不再犹豫的达达猪",
+    "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
+    "bvid": "BV1aFXaYmEDZ",
+    "authorizationId": "auth-dada-20260718"
+  },
+  "batch": {
+    "startSlot": 1,
+    "endSlot": 14,
+    "targetSlots": 14,
+    "phase1ConfirmedAnchorTarget": 50
+  },
+  "requirements": {
+    "twoModelConsensus": true,
+    "minimumConfidencePerModel": 0.92,
+    "directReadableLocationEvidenceOnly": true,
+    "uniqueLocationAssignments": true,
+    "noImagesOrVideoCommitted": true,
+    "unconfirmedSlotsRemainUnresolved": true
+  }
+}
