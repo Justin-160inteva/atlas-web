@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "stage": "2p5d-sakai-correction-scan",
+  "status": "plan-ready",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "sourceVisualReview": "data/geospatial/geospatial-2p5d-sakai-visual-evidence-review.json",
+  "pilotScopeId": "izumi-settsu-sakai-urban-core-v1",
+  "jobs": [
+    {
+      "id": "p13-full-duration-correction",
+      "sourceJobId": "eleven-p013-v2",
+      "jobPath": "data/analysis-jobs/eleven-p013.json",
+      "resultPath": "data/analysis-results/eleven-p013.json",
+      "strategy": "full-duration-stratified",
+      "frameCount": 96,
+      "contactSheetCount": 6,
+      "selection": {
+        "uniformFullDuration": 64,
+        "sharp": 16,
+        "sceneTransition": 16
+      },
+      "hardGates": {
+        "minimumCoveredDurationFraction": 0.97,
+        "maximumEmptyQuarterCount": 0,
+        "minimumFramesPerDurationQuarter": 16
+      },
+      "purpose": "Correct the first scan, which covered only the opening portion of P13, and determine whether later footage contains Sakai urban or waterfront evidence."
+    },
+    {
+      "id": "p15-urban-dense-candidate",
+      "sourceJobId": "eleven-p015-v2",
+      "jobPath": "data/analysis-jobs/eleven-p015.json",
+      "resultPath": "data/analysis-results/eleven-p015.json",
+      "strategy": "dense-candidate-windows",
+      "frameCount": 192,
+      "contactSheetCount": 12,
+      "candidateWindows": [
+        {
+          "id": "elevated-city-water-panorama",
+          "startSeconds": 880,
+          "endSeconds": 950,
+          "priority": "high"
+        },
+        {
+          "id": "settlement-road-watchtower-water",
+          "startSeconds": 2560,
+          "endSeconds": 2725,
+          "priority": "critical"
+        },
+        {
+          "id": "wooden-commercial-workshop-water-access",
+          "startSeconds": 2725,
+          "endSeconds": 3030,
+          "priority": "critical"
+        },
+        {
+          "id": "elevated-tiled-roof-compound",
+          "startSeconds": 3120,
+          "endSeconds": 3415,
+          "priority": "high"
+        },
+        {
+          "id": "roof-and-compound-connectivity",
+          "startSeconds": 3900,
+          "endSeconds": 4230,
+          "priority": "medium"
+        }
+      ],
+      "contextWindows": [
+        {
+          "id": "early-map-context",
+          "startSeconds": 255,
+          "endSeconds": 310
+        },
+        {
+          "id": "workshop-map-context",
+          "startSeconds": 2940,
+          "endSeconds": 3020
+        },
+        {
+          "id": "late-map-context-a",
+          "startSeconds": 4180,
+          "endSeconds": 4250
+        },
+        {
+          "id": "late-map-context-b",
+          "startSeconds": 4370,
+          "endSeconds": 4432
+        }
+      ],
+      "selection": {
+        "candidateWindowFrames": 160,
+        "contextWindowFrames": 32
+      },
+      "hardGates": {
+        "allCandidateWindowsRepresented": true,
+        "allContextWindowsRepresented": true,
+        "minimumFramesPerCriticalWindow": 32,
+        "minimumFramesPerHighWindow": 20,
+        "minimumFramesPerMediumWindow": 12
+      },
+      "purpose": "Densely inspect the strongest current urban, waterfront, street, workshop and roof candidates and correlate them with nearby map/context transitions."
+    }
+  ],
+  "extraction": {
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "artifactRetentionDays": 1,
+    "jpegQuality": 84,
+    "downloadQuality": 32,
+    "downloadPagePolicy": "explicit page and CID from the authorized job; no multipart defaulting"
+  },
+  "retention": {
+    "repositoryContainsVideo": false,
+    "repositoryContainsFrames": false,
+    "artifactContainsLowResolutionFrames": true,
+    "artifactRetentionDays": 1,
+    "persistOnlyTimestampsAndDerivedEvidence": true
+  },
+  "safety": {
+    "automaticGeometryGeneration": false,
+    "officialMapGeometryExtraction": false,
+    "sourceFramePublication": false,
+    "humanReviewRequired": true
+  },
+  "outputs": {
+    "timestampPlan": "data/geospatial/geospatial-2p5d-sakai-correction-timestamp-plan.json",
+    "artifactManifest": "data/geospatial/geospatial-2p5d-sakai-correction-artifact-manifest.json",
+    "workflowOutcome": "data/batch-analysis/geospatial-2p5d-sakai-correction-scan-workflow.json"
+  }
+}

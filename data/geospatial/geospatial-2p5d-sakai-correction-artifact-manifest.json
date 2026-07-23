@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T20:56:33.251111Z",
+  "status": "correction-artifacts-uploaded-awaiting-visual-review",
+  "stage": "2p5d-sakai-correction-scan",
+  "runId": "30043220095",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "timestampPlanPath": "data/geospatial/geospatial-2p5d-sakai-correction-timestamp-plan.json",
+  "counts": {
+    "jobs": 2,
+    "frames": 288,
+    "contactSheets": 18,
+    "artifacts": 2
+  },
+  "artifacts": [
+    {
+      "scanId": "p13-full-duration-correction",
+      "sourceJobId": "eleven-p013-v2",
+      "name": "atlas-sakai-2p5d-p13-full-duration-correction-30043220095",
+      "frameCount": 96,
+      "contactSheetCount": 6,
+      "retentionDays": 1,
+      "containsOriginalVideo": false,
+      "containsLowResolutionReviewFrames": true
+    },
+    {
+      "scanId": "p15-urban-dense-candidate",
+      "sourceJobId": "eleven-p015-v2",
+      "name": "atlas-sakai-2p5d-p15-urban-dense-candidate-30043220095",
+      "frameCount": 192,
+      "contactSheetCount": 12,
+      "retentionDays": 1,
+      "containsOriginalVideo": false,
+      "containsLowResolutionReviewFrames": true
+    }
+  ],
+  "privacy": {
+    "repositoryContainsPixels": false,
+    "artifactContainsTransientPixels": true,
+    "originalVideoRetained": false,
+    "geometryGenerated": false
+  },
+  "nextAction": "review the P13 full-duration and P15 dense artifacts and record landmark correspondences"
+}
