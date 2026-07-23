@@ -134,10 +134,10 @@ def main() -> int:
         raise RuntimeError("GitHub Models token is unavailable")
     stage = load(STAGE_PATH)
     policy = load(POLICY_PATH)
-    manifest_path = Path(args.manifest)
+    manifest_path = Path(args.manifest).resolve()
     manifest = load(manifest_path)
     evidence_dir = Path(args.evidence_dir).resolve()
-    output_path = Path(args.output)
+    output_path = Path(args.output).resolve()
     candidates = stage["candidateShrines"]
     candidate_by_id = {str(row["locationId"]): row for row in candidates}
     candidate_ids = set(candidate_by_id)
