@@ -31,8 +31,14 @@ def main() -> int:
         raise RuntimeError("unassigned location disposition is not approved")
     if disposition.get("policy") != "retain_as_global_overlay_without_region_inference":
         raise RuntimeError("unexpected unassigned location policy")
-    if not all(disposition.get("safety", {}).values()):
-        raise RuntimeError("unassigned location safety gates failed")
+    expected_safety = {
+        "regionMembershipInferred": False,
+        "coordinatesChanged": False,
+        "locationsRemoved": False,
+        "globalVisibilityPreserved": True,
+    }
+    if disposition.get("safety") != expected_safety:
+        raise RuntimeError(f"unassigned location safety contract mismatch: {disposition.get('safety')!r}")
 
     expected_ids = {str(row["locationId"]) for row in readiness["unassignedLocationGuides"]}
     rows = disposition.get("locations")
