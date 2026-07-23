@@ -35,10 +35,13 @@
     "allFinalAssetsRequireRepositoryOwnedSourceFiles": true
   },
   "scope": {
-    "allLocationRegions": 11,
+    "allLocationRegions": 10,
     "confirmedAnchorCoveredRegions": 9,
-    "currentlyUnanchoredExtensionRegionCount": 2,
-    "unanchoredRegionIdsDerivedBySkeleton": true,
+    "currentlyUnanchoredExtensionRegions": [
+      "region-3304-awaji"
+    ],
+    "unassignedLocationCount": 5,
+    "unassignedLocationsRemainSeparateFromRegionGeometry": true,
     "unanchoredRegionsRemainConstructionOnly": true
   },
   "phases": [
@@ -46,12 +49,12 @@
       "id": "skeleton",
       "status": "in_progress",
       "output": "data/geospatial/geospatial-original-authored-base-skeleton.json",
-      "gate": "3430 locations grouped into all 11 represented regions, with 9 anchor-covered regions and 2 currently unanchored extension regions, using deterministic hulls, density field and adjacency graph"
+      "gate": "3430 locations represented as 10 real regions plus 5 separately tracked unassigned points, with 9 anchor-covered regions and the unanchored AWAJI extension"
     },
     {
       "id": "regional-composition",
       "status": "pending_skeleton",
-      "gate": "original region masses, water gaps and authored travel corridors approved"
+      "gate": "original region masses, water gaps and authored travel corridors approved; five unassigned locations classified or intentionally retained as global points"
     },
     {
       "id": "terrain-art",
@@ -74,5 +77,5 @@
       "gate": "desktop, phone and physical iPad validation pass"
     }
   ],
-  "nextAction": "build deterministic original spatial skeleton from all location data and the 50 confirmed anchors"
+  "nextAction": "rebuild the deterministic original spatial skeleton with null-region locations tracked separately"
 }
