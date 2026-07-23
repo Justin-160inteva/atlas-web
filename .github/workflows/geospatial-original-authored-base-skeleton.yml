@@ -1,0 +1,147 @@
+name: Geospatial Original Authored Base Skeleton
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/geospatial-original-authored-base-skeleton.yml'
+      - 'tools/build_geospatial_original_authored_base_skeleton.py'
+      - 'data/geospatial/geospatial-original-authored-base-plan.json'
+      - 'data/geospatial/geospatial-original-authored-base-trigger.json'
+      - 'data/geospatial/geospatial-progress.json'
+      - 'data/geospatial/geospatial-calibration-control-points.json'
+      - 'data/locations.json'
+      - 'data/regions.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: geospatial-original-authored-base-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile original-base builder
+        run: python -m py_compile tools/build_geospatial_original_authored_base_skeleton.py
+
+      - name: Record protected pixel hashes
+        id: protected
+        run: |
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+          path = Path('assets/world-map-4096.webp')
+          value = hashlib.sha256(path.read_bytes()).hexdigest()
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
+              handle.write(f'legacy_sha256={value}\n')
+          print(value)
+          PY
+
+      - name: Build original authored spatial skeleton
+        run: python tools/build_geospatial_original_authored_base_skeleton.py
+
+      - name: Validate authorship strategy and generated skeleton
+        env:
+          LEGACY_SHA256: ${{ steps.protected.outputs.legacy_sha256 }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          plan = json.loads(Path('data/geospatial/geospatial-original-authored-base-plan.json').read_text(encoding='utf-8'))
+          skeleton = json.loads(Path('data/geospatial/geospatial-original-authored-base-skeleton.json').read_text(encoding='utf-8'))
+          progress = json.loads(Path('data/geospatial/geospatial-progress.json').read_text(encoding='utf-8'))
+
+          assert plan['strategy'] == 'fully-original-authored-visual-base'
+          assert plan['legacyRenderBase']['finalBaseCandidate'] is False
+          assert plan['legacyRenderBase']['calibrationAuthority'] is False
+          assert plan['authorshipContract']['visualArtworkOriginal'] is True
+
+          assert skeleton['status'] == 'original-authored-spatial-skeleton-ready'
+          assert skeleton['counts']['locations'] == 3430
+          assert skeleton['counts']['regions'] == 9
+          assert skeleton['counts']['confirmedAnchors'] == 50
+          assert skeleton['counts']['densityGridSize'] == 32
+          assert len(skeleton['regions']) == 9
+          assert sum(row['locationCount'] for row in skeleton['regions']) == 3430
+          assert sum(row['confirmedAnchorCount'] for row in skeleton['regions']) == 50
+          assert all(len(row['constructionHull']) >= 3 for row in skeleton['regions'])
+          assert len(skeleton['locationDensityGrid']['rows']) == 32
+          assert all(len(row) == 32 for row in skeleton['locationDensityGrid']['rows'])
+          assert sum(sum(row) for row in skeleton['locationDensityGrid']['rows']) == 3430
+          assert all(value is False for value in skeleton['safety'].values())
+
+          final_base = progress['stageGates']['finalOriginalUltraHdBase']
+          assert final_base['strategy'] == 'fully_original_authored_visual_base'
+          assert final_base['legacyRenderBase']['role'] == 'temporary_development_preview_only'
+          assert final_base['legacyRenderBase']['finalBaseCandidate'] is False
+          assert final_base['authoredBase']['status'] == 'spatial_skeleton_ready'
+          assert progress['originalAuthoredBase']['legacyPreviewIsNonAuthoritative'] is True
+          assert progress['stageGates']['coordinateAndOverlayCalibration']['pixelTransformStatus'] == 'blocked_pending_original_authored_final_canvas'
+
+          legacy = Path('assets/world-map-4096.webp')
+          assert hashlib.sha256(legacy.read_bytes()).hexdigest() == os.environ['LEGACY_SHA256']
+          assert not list(Path('data/geospatial').glob('*.png'))
+          assert not list(Path('data/geospatial').glob('*.jpg'))
+          assert not list(Path('data/geospatial').glob('*.webp'))
+
+          print(json.dumps({
+              'status': skeleton['status'],
+              'locations': skeleton['counts']['locations'],
+              'regions': skeleton['counts']['regions'],
+              'anchors': skeleton['counts']['confirmedAnchors'],
+              'adjacencyEdges': skeleton['counts']['regionAdjacencyEdges'],
+              'nextArtStage': skeleton['nextArtStage']['status'],
+          }, ensure_ascii=False))
+          PY
+
+      - name: Stage non-pixel authored-base outputs
+        run: |
+          rm -rf /tmp/original-authored-base-publish
+          mkdir -p /tmp/original-authored-base-publish/data/geospatial
+          cp data/geospatial/geospatial-original-authored-base-skeleton.json /tmp/original-authored-base-publish/data/geospatial/
+          cp data/geospatial/geospatial-progress.json /tmp/original-authored-base-publish/data/geospatial/
+
+      - name: Atomically publish skeleton and progress
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin "$TARGET_BRANCH"
+            git reset --hard "origin/$TARGET_BRANCH"
+            mkdir -p data/geospatial
+            cp /tmp/original-authored-base-publish/data/geospatial/geospatial-original-authored-base-skeleton.json data/geospatial/
+            cp /tmp/original-authored-base-publish/data/geospatial/geospatial-progress.json data/geospatial/
+            git add data/geospatial/geospatial-original-authored-base-skeleton.json data/geospatial/geospatial-progress.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Build original authored spatial skeleton [skip ci]'
+            if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Delete transient staging
+        if: always()
+        run: |
+          rm -rf /tmp/original-authored-base-publish
+          test ! -e /tmp/original-authored-base-publish
