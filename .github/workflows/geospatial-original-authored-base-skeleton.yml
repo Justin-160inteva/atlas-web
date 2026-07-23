@@ -99,25 +99,29 @@ jobs:
           assert plan['legacyRenderBase']['finalBaseCandidate'] is False
           assert plan['legacyRenderBase']['calibrationAuthority'] is False
           assert plan['authorshipContract']['visualArtworkOriginal'] is True
-          assert plan['scope']['allLocationRegions'] == 11
+          assert plan['scope']['allLocationRegions'] == 10
           assert plan['scope']['confirmedAnchorCoveredRegions'] == 9
-          assert plan['scope']['currentlyUnanchoredExtensionRegionCount'] == 2
-          assert plan['scope']['unanchoredRegionIdsDerivedBySkeleton'] is True
+          assert plan['scope']['currentlyUnanchoredExtensionRegions'] == ['region-3304-awaji']
+          assert plan['scope']['unassignedLocationCount'] == 5
+          assert plan['scope']['unassignedLocationsRemainSeparateFromRegionGeometry'] is True
 
           assert skeleton['status'] == 'original-authored-spatial-skeleton-ready'
           assert skeleton['counts']['locations'] == 3430
-          assert skeleton['counts']['regions'] == 11
+          assert skeleton['counts']['regionAssignedLocations'] == 3425
+          assert skeleton['counts']['unassignedLocations'] == 5
+          assert skeleton['counts']['regions'] == 10
+          assert skeleton['counts']['confirmedAnchorCoveredRegions'] == 9
           assert skeleton['counts']['confirmedAnchors'] == 50
           assert skeleton['counts']['densityGridSize'] == 32
-          assert len(skeleton['regions']) == 11
-          assert sum(row['locationCount'] for row in skeleton['regions']) == 3430
+          assert len(skeleton['regions']) == 10
+          assert sum(row['locationCount'] for row in skeleton['regions']) == 3425
+          assert len(skeleton['unassignedLocationGuides']) == 5
+          assert sum(row['locationCount'] for row in skeleton['regions']) + len(skeleton['unassignedLocationGuides']) == 3430
           assert sum(row['confirmedAnchorCount'] for row in skeleton['regions']) == 50
           assert all(len(row['constructionHull']) >= 3 for row in skeleton['regions'])
-          covered = sorted(row['regionId'] for row in skeleton['regions'] if row['confirmedAnchorCount'] > 0)
-          unanchored = sorted(row['regionId'] for row in skeleton['regions'] if row['confirmedAnchorCount'] == 0)
-          assert len(covered) == 9
-          assert len(unanchored) == 2
-          assert 'region-3304-awaji' in unanchored
+          assert len(skeleton['anchorCoveredRegionIds']) == 9
+          assert skeleton['unanchoredRegionIds'] == ['region-3304-awaji']
+          assert all(row['regionId'] != 'None' for row in skeleton['regions'])
           assert len(skeleton['locationDensityGrid']['rows']) == 32
           assert all(len(row) == 32 for row in skeleton['locationDensityGrid']['rows'])
           assert sum(sum(row) for row in skeleton['locationDensityGrid']['rows']) == 3430
@@ -128,7 +132,10 @@ jobs:
           assert final_base['legacyRenderBase']['role'] == 'temporary_development_preview_only'
           assert final_base['legacyRenderBase']['finalBaseCandidate'] is False
           assert final_base['authoredBase']['status'] == 'spatial_skeleton_ready'
-          assert final_base['authoredBase']['regionCount'] == 11
+          assert final_base['authoredBase']['regionCount'] == 10
+          assert final_base['authoredBase']['regionAssignedLocationCount'] == 3425
+          assert final_base['authoredBase']['unassignedLocationCount'] == 5
+          assert final_base['authoredBase']['unanchoredRegionIds'] == ['region-3304-awaji']
           assert progress['originalAuthoredBase']['legacyPreviewIsNonAuthoritative'] is True
           assert progress['stageGates']['coordinateAndOverlayCalibration']['pixelTransformStatus'] == 'blocked_pending_original_authored_final_canvas'
 
@@ -141,9 +148,11 @@ jobs:
           print(json.dumps({
               'status': skeleton['status'],
               'locations': skeleton['counts']['locations'],
+              'regionAssignedLocations': skeleton['counts']['regionAssignedLocations'],
+              'unassignedLocations': skeleton['counts']['unassignedLocations'],
               'regions': skeleton['counts']['regions'],
-              'anchorCoveredRegions': len(covered),
-              'unanchoredRegions': unanchored,
+              'anchorCoveredRegions': skeleton['counts']['confirmedAnchorCoveredRegions'],
+              'unanchoredRegions': skeleton['unanchoredRegionIds'],
               'anchors': skeleton['counts']['confirmedAnchors'],
               'adjacencyEdges': skeleton['counts']['regionAdjacencyEdges'],
               'nextArtStage': skeleton['nextArtStage']['status'],
@@ -169,7 +178,11 @@ jobs:
             mkdir -p data/geospatial
             cp /tmp/original-authored-base-publish/data/geospatial/geospatial-original-authored-base-skeleton.json data/geospatial/
             cp /tmp/original-authored-base-publish/data/geospatial/geospatial-progress.json data/geospatial/
-            git add data/geospatial/geospatial-original-authored-base-skeleton.json data/geospatial/geospatial-progress.json
+            rm -f data/geospatial/geospatial-original-authored-base-diagnostic.json
+            git add -A -- \
+              data/geospatial/geospatial-original-authored-base-skeleton.json \
+              data/geospatial/geospatial-progress.json \
+              data/geospatial/geospatial-original-authored-base-diagnostic.json
             if git diff --cached --quiet; then exit 0; fi
             git commit -m 'Build original authored spatial skeleton [skip ci]'
             if git push origin "HEAD:$TARGET_BRANCH"; then exit 0; fi
