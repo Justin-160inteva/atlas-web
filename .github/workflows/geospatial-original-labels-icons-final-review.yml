@@ -7,6 +7,7 @@ on:
       - '.github/workflows/geospatial-original-labels-icons-final-review.yml'
       - 'tools/build_geospatial_original_labels_icons_final_review.py'
       - 'tools/apply_geospatial_unassigned_location_disposition.py'
+      - 'tools/validate_geospatial_original_labels_icons_final_review.py'
       - 'data/geospatial/geospatial-original-labels-icons-final-review-plan.json'
       - 'data/geospatial/geospatial-original-labels-icons-final-review-trigger.json'
       - 'data/geospatial/geospatial-unassigned-location-disposition.json'
@@ -19,7 +20,7 @@ on:
 permissions:
   contents: write
 
-dconcurrency:
+concurrency:
   group: geospatial-original-labels-icons-final-review-${{ github.ref }}
   cancel-in-progress: true
 
@@ -39,11 +40,12 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Compile labels icon and disposition tools
+      - name: Compile final review tools
         run: |
           python -m py_compile \
             tools/build_geospatial_original_labels_icons_final_review.py \
-            tools/apply_geospatial_unassigned_location_disposition.py
+            tools/apply_geospatial_unassigned_location_disposition.py \
+            tools/validate_geospatial_original_labels_icons_final_review.py
 
       - name: Record protected source hashes
         id: protected
@@ -52,7 +54,6 @@ jobs:
           import hashlib
           import os
           from pathlib import Path
-
           paths = {
               'legacy': Path('assets/world-map-4096.webp'),
               'terrain': Path('assets/original-map/atlas-original-terrain-coastline-v1.svg'),
@@ -60,9 +61,7 @@ jobs:
           }
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
               for key, path in paths.items():
-                  digest = hashlib.sha256(path.read_bytes()).hexdigest()
-                  handle.write(f'{key}_sha256={digest}\n')
-                  print({'path': str(path), 'sha256': digest})
+                  handle.write(f'{key}_sha256={hashlib.sha256(path.read_bytes()).hexdigest()}\n')
           PY
 
       - name: Generate original labels icons and review candidate
@@ -71,166 +70,12 @@ jobs:
       - name: Apply no-inference unassigned location disposition
         run: python tools/apply_geospatial_unassigned_location_disposition.py
 
-      - name: Validate labels icons authorship and freeze readiness
+      - name: Validate authorship and freeze readiness
         env:
           LEGACY_SHA256: ${{ steps.protected.outputs.legacy_sha256 }}
           TERRAIN_SHA256: ${{ steps.protected.outputs.terrain_sha256 }}
           TERRAIN_MANIFEST_SHA256: ${{ steps.protected.outputs.terrain_manifest_sha256 }}
-        run: |
-          python - <<'PY'
-          import hashlib
-          import json
-          import os
-          import re
-          from pathlib import Path
-
-          svg_path = Path('assets/original-map/atlas-original-labels-icons-final-review-v1.svg')
-          manifest_path = Path('data/geospatial/geospatial-original-labels-icons-final-review-v1.json')
-          readiness_path = Path('data/geospatial/geospatial-original-final-canvas-readiness.json')
-          disposition_path = Path('data/geospatial/geospatial-unassigned-location-disposition.json')
-          progress_path = Path('data/geospatial/geospatial-progress.json')
-          legacy_path = Path('assets/world-map-4096.webp')
-          terrain_path = Path('assets/original-map/atlas-original-terrain-coastline-v1.svg')
-          terrain_manifest_path = Path('data/geospatial/geospatial-original-terrain-coastline-v1.json')
-
-          svg = svg_path.read_text(encoding='utf-8')
-          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-          readiness = json.loads(readiness_path.read_text(encoding='utf-8'))
-          disposition = json.loads(disposition_path.read_text(encoding='utf-8'))
-          progress = json.loads(progress_path.read_text(encoding='utf-8'))
-          digest = hashlib.sha256(svg_path.read_bytes()).hexdigest()
-
-          assert svg.startswith('<?xml version="1.0" encoding="UTF-8"?>')
-          assert 'width="4096"' in svg and 'height="4096"' in svg
-          assert 'viewBox="0 0 4096 4096"' in svg
-          assert 'data-atlas-asset="original-labels-icons-final-review-v1"' in svg
-          assert '<image' not in svg.lower()
-          assert 'data:image/' not in svg.lower()
-          assert '@import' not in svg.lower()
-          assert not re.search(r'(?:href|src)\s*=\s*["\'](?:https?:|//)', svg, re.I)
-          assert not re.search(r'url\(\s*["\']?https?://', svg, re.I)
-
-          required_ids = {
-              'authored-labels-icons-final-review',
-              'authored-region-labels',
-              'authored-confirmed-anchor-icons',
-              'authored-icon-legend',
-              'final-canvas-review-stamp',
-              'atlas-icon-location',
-              'atlas-icon-service',
-              'atlas-icon-collectible',
-              'atlas-icon-equipment',
-              'atlas-icon-npc',
-              'atlas-icon-other',
-              'atlas-icon-activity',
-              'atlas-icon-shrine',
-              'atlas-icon-temple',
-          }
-          for identifier in required_ids:
-              assert f'id="{identifier}"' in svg
-
-          assert svg.count('<symbol id="atlas-icon-') == 9
-          assert svg.count('class="atlas-new-region-label"') == 10
-          assert svg.count('class="atlas-authored-anchor-icon"') == 50
-          assert svg.count('class="atlas-icon-legend-entry"') == 9
-          assert '#region-labels, #confirmed-anchor-guides { display:none !important; }' in svg
-
-          assert manifest['status'] == 'original-labels-icons-final-review-candidate-ready'
-          assert manifest['asset']['path'] == str(svg_path)
-          assert manifest['asset']['format'] == 'svg'
-          assert manifest['asset']['width'] == 4096
-          assert manifest['asset']['height'] == 4096
-          assert manifest['asset']['sizeBytes'] == svg_path.stat().st_size
-          assert manifest['asset']['sha256'] == digest
-          assert manifest['asset']['editableSource'] is True
-          assert manifest['asset']['repositoryOwned'] is True
-          assert manifest['counts'] == {
-              'locations': 3430,
-              'regionAssignedLocations': 3425,
-              'unassignedLocations': 5,
-              'regions': 10,
-              'categories': 44,
-              'categoryGroups': 7,
-              'coreSymbols': 9,
-              'confirmedAnchorIcons': 50,
-              'labelOverlaps': 0,
-              'reservedPanelOverlaps': 0,
-          }
-          assert len(manifest['categoryMappings']) == 44
-          assert len({row['categoryId'] for row in manifest['categoryMappings']}) == 44
-          assert len(manifest['regionLabelPlacements']) == 10
-          assert manifest['anchorIconSummary']['shrine'] + manifest['anchorIconSummary']['temple'] == 50
-          assert manifest['unassignedLocationDisposition'] == {
-              'status': 'resolved',
-              'path': str(disposition_path),
-              'policy': 'retain_as_global_overlay_without_region_inference',
-              'locationCount': 5,
-              'regionMembershipInferred': False,
-              'globalVisibilityPreserved': True,
-          }
-          assert manifest['authorship'] == {
-              'strategy': 'fully-original-authored-visual-base',
-              'terrainSvgUsedAsRepositoryOwnedBase': True,
-              'thirdPartyRasterUsed': False,
-              'thirdPartyVectorUsed': False,
-              'externalImages': 0,
-              'externalFonts': 0,
-              'embeddedRasterImages': 0,
-              'proceduralSvgDefinitionsOnly': True,
-          }
-          assert all(value is False for value in manifest['claims'].values())
-
-          assert disposition['status'] == 'approved'
-          assert disposition['policy'] == 'retain_as_global_overlay_without_region_inference'
-          assert len(disposition['locations']) == 5
-          assert all(row['disposition'] == 'retain_global_overlay' and row['regionId'] is None for row in disposition['locations'])
-          assert all(disposition['safety'].values())
-
-          assert readiness['status'] == 'final-canvas-review-candidate-awaiting-human-approval'
-          assert readiness['automatedGateStatus'] == 'passed'
-          assert all(readiness['automatedGates'].values())
-          assert readiness['unassignedLocationDisposition']['status'] == 'resolved'
-          assert readiness['unassignedLocationDisposition']['locationCount'] == 5
-          assert readiness['unassignedLocationDisposition']['regionMembershipInferred'] is False
-          assert readiness['blockerCount'] == 1
-          assert [row['id'] for row in readiness['blockers']] == ['human-visual-review']
-          assert readiness['humanVisualReview']['status'] == 'not_recorded'
-          assert readiness['finalCanvasFreeze']['eligible'] is False
-          assert readiness['finalCanvasFreeze']['frozen'] is False
-          assert readiness['finalCanvasFreeze']['frozenSha256'] is None
-
-          authored = progress['stageGates']['finalOriginalUltraHdBase']['authoredBase']
-          assert authored['status'] == 'labels_icons_final_review_candidate_ready'
-          assert authored['labelsIconsReviewPath'] == str(svg_path)
-          assert authored['labelsIconsReviewManifestPath'] == str(manifest_path)
-          assert authored['finalCanvasReadinessPath'] == str(readiness_path)
-          assert authored['labelsIconsReviewSha256'] == digest
-          assert authored['categoryMappingCount'] == 44
-          assert authored['coreIconCount'] == 9
-          assert authored['regionLabelCount'] == 10
-          assert authored['confirmedAnchorIconCount'] == 50
-          assert authored['labelOverlapCount'] == 0
-          assert authored['unassignedLocationDispositionStatus'] == 'resolved_retained_global_overlay'
-          assert authored['finalCanvasFrozen'] is False
-          assert authored['finalCanvasFreezeStatus'] == 'blocked_pending_human_visual_review'
-          assert authored['nextStage'] == 'human_visual_review_and_final_canvas_freeze'
-          assert progress['stageGates']['coordinateAndOverlayCalibration']['pixelTransformStatus'] == 'blocked_pending_original_authored_final_canvas'
-
-          assert hashlib.sha256(legacy_path.read_bytes()).hexdigest() == os.environ['LEGACY_SHA256']
-          assert hashlib.sha256(terrain_path.read_bytes()).hexdigest() == os.environ['TERRAIN_SHA256']
-          assert hashlib.sha256(terrain_manifest_path.read_bytes()).hexdigest() == os.environ['TERRAIN_MANIFEST_SHA256']
-          assert not list(Path('assets/original-map').glob('*.png'))
-          assert not list(Path('assets/original-map').glob('*.jpg'))
-          assert not list(Path('assets/original-map').glob('*.webp'))
-
-          print(json.dumps({
-              'status': manifest['status'],
-              'asset': manifest['asset'],
-              'counts': manifest['counts'],
-              'automatedGateStatus': readiness['automatedGateStatus'],
-              'remainingBlockers': readiness['blockers'],
-          }, ensure_ascii=False))
-          PY
+        run: python tools/validate_geospatial_original_labels_icons_final_review.py
 
       - name: Install SVG preview renderer
         run: |
