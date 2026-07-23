@@ -2,8 +2,8 @@
 """Build the authoritative geospatial progress ledger.
 
 The ledger counts only confirmed, unique location assignments from registered anchor
-sets. It also reconciles source-level pipeline metadata when every position from one
-specialized source has been geospatially linked. No approximate coordinates are created.
+sets. It also reconciles source-level pipeline metadata for complete or partially
+anchored specialized sources. No approximate coordinates are created.
 """
 from __future__ import annotations
 
@@ -118,17 +118,32 @@ def main() -> int:
 
     timestamp = now()
     temple_index_matches = 0
+    shrine_index_matches = 0
+    shrine_anchor_count = len(registered_sets[1]["rows"])
     for item in analysis_index.get("items", []):
-        if item.get("resultPath") != "data/analysis-results/dada-temples-36.json":
-            continue
+        result_path = item.get("resultPath")
         pipeline = item.setdefault("pipeline", {})
-        pipeline["geospatialAnchoringCompleted"] = True
-        pipeline["geospatialAnchorCount"] = 36
-        pipeline["geospatialAnchorSet"] = "data/geospatial/dada-temples-36-anchors-final.json"
-        pipeline["geospatialAnchoringUpdatedAt"] = timestamp
-        temple_index_matches += 1
+        if result_path == "data/analysis-results/dada-temples-36.json":
+            pipeline["geospatialAnchoringCompleted"] = True
+            pipeline["geospatialAnchorCount"] = 36
+            pipeline["geospatialAnchorTargetCount"] = 36
+            pipeline["geospatialAnchorSet"] = "data/geospatial/dada-temples-36-anchors-final.json"
+            pipeline["geospatialAnchoringUpdatedAt"] = timestamp
+            temple_index_matches += 1
+        elif result_path == "data/analysis-results/dada-02.json":
+            pipeline["geospatialAnchoringCompleted"] = shrine_anchor_count == 27
+            pipeline["geospatialAnchorCount"] = shrine_anchor_count
+            pipeline["geospatialAnchorTargetCount"] = 27
+            pipeline["geospatialAnchorSet"] = (
+                "data/geospatial/dada-shrines-27-anchors-batch01.json"
+                if SHRINE_BATCH_PATH.exists() else None
+            )
+            pipeline["geospatialAnchoringUpdatedAt"] = timestamp
+            shrine_index_matches += 1
     if temple_index_matches != 1:
         raise RuntimeError(f"Expected one temple analysis-index item, found {temple_index_matches}")
+    if shrine_index_matches != 1:
+        raise RuntimeError(f"Expected one shrine analysis-index item, found {shrine_index_matches}")
     analysis_index["updatedAt"] = timestamp
     write(ANALYSIS_INDEX_PATH, analysis_index)
 
@@ -188,6 +203,7 @@ def main() -> int:
         "safety": {
             "uniqueLocationAssignments": len(confirmed) == len({row["locationId"] for row in confirmed}),
             "minimumTempleConfidenceMet": all(row["confidence"] >= 0.9 for row in registered_sets[0]["rows"]),
+            "minimumShrineConfidenceMet": all(row["confidence"] >= 0.92 for row in registered_sets[1]["rows"]),
             "repositoryContainsEvidencePixels": False,
             "approximateCoordinatesInvented": False,
         },
@@ -200,6 +216,7 @@ def main() -> int:
         "phase1Target": target,
         "phase1Percent": payload["phase1"]["progressPercent"],
         "globalLocationCoveragePercent": payload["globalCoverage"]["locationCoveragePercent"],
+        "shrineAnchors": shrine_anchor_count,
     }, ensure_ascii=False))
     return 0
 
