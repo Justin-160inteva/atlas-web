@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T16:40:00Z",
+  "status": "original-regional-composition-draft-ready",
+  "stage": "original-regional-composition",
+  "asset": {
+    "path": "assets/original-map/atlas-original-regional-composition-v1.svg",
+    "format": "svg",
+    "width": 4096,
+    "height": 4096,
+    "sizeBytes": 50920,
+    "sha256": "287f011ea0618ffbbdc854fb7f513519c4c4c615283ed3aa9a6694629425a24b",
+    "editableSource": true,
+    "repositoryOwned": true
+  },
+  "sourceHashes": {
+    "data/geospatial/geospatial-original-regional-composition-plan.json": "554cf51cf9e7d3f3e955398a8ddaceca95b749d20a800172acb516b5db066c2e",
+    "data/geospatial/geospatial-original-authored-base-skeleton.json": "1f23cb4fbdfa8150bf2ccc2156bde0da5b6b136b52ae771277c7a406446b34f4",
+    "data/geospatial/geospatial-progress.json": "a4bbe3b1a1e801588003397427945e7f4de7fbb9b4651b0467191c2d5d168f26"
+  },
+  "counts": {
+    "locations": 3430,
+    "regionAssignedLocations": 3425,
+    "unassignedLocations": 5,
+    "regions": 10,
+    "confirmedAnchors": 50,
+    "adjacencyEdges": 20,
+    "densityBlooms": 72
+  },
+  "authorship": {
+    "strategy": "fully-original-authored-visual-base",
+    "thirdPartyRasterUsed": false,
+    "thirdPartyVectorUsed": false,
+    "regionsJsonGeometryUsed": false,
+    "legacyRenderBaseRead": false,
+    "externalImages": 0,
+    "externalFonts": 0,
+    "embeddedRasterImages": 0,
+    "proceduralSvgDefinitionsOnly": true
+  },
+  "claims": {
+    "finalBaseApproved": false,
+    "finalCanvasFrozen": false,
+    "finalCoastline": false,
+    "finalTerrain": false,
+    "finalRoadNetwork": false,
+    "pixelCalibrationComplete": false
+  },
+  "nextAction": "review original regional composition, classify five unassigned points, then author terrain and coastline detailing"
+}
