@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T13:32:05.876764Z",
+  "status": "current-render-base-audited-final-base-blocked",
+  "stage": "final-original-ultra-hd-base-candidate-audit",
+  "mode": "audit-existing-render-base-only",
+  "candidate": {
+    "path": "assets/world-map-4096.webp",
+    "role": "current-render-base-candidate",
+    "sizeBytes": 1784636,
+    "sha256": "d022cf54293a32375429743e7f6d7c7dc06b5bca2d25d9fd22aa1428daa9f762",
+    "format": "webp",
+    "container": "RIFF/WEBP",
+    "dimensionChunk": "VP8",
+    "width": 4096,
+    "height": 4096,
+    "aspectRatio": 1.0,
+    "isSquare": true,
+    "hasAlpha": false,
+    "animated": false,
+    "chunks": [
+      "VP8 "
+    ]
+  },
+  "rendererContract": {
+    "sourcePath": "app.js",
+    "assetReferenceVerified": true,
+    "declaredWidth": 4096,
+    "declaredHeight": 4096,
+    "dimensionReferenceVerified": true,
+    "coordinateConvention": "atlas normalized coordinates multiplied by declared square-map size"
+  },
+  "authorization": {
+    "status": "repository-existing-asset-unverified-provenance",
+    "sourceUrl": null,
+    "license": null,
+    "approvedBy": null
+  },
+  "crop": {
+    "status": "unfixed",
+    "left": null,
+    "top": null,
+    "width": null,
+    "height": null
+  },
+  "overlayOrigin": {
+    "status": "unfixed",
+    "x": null,
+    "y": null
+  },
+  "gates": {
+    "candidateFileExists": true,
+    "candidateFormatMatches": true,
+    "candidateDimensionsMatchDeclaredCurrentRenderer": true,
+    "frontendReferencesCandidate": true,
+    "frontendContainsDeclaredDimension": true,
+    "sourceAuthorizationFixed": false,
+    "finalCropFixed": false,
+    "overlayOriginFixed": false,
+    "finalBaseApproved": false
+  },
+  "blockingItems": [
+    "final base source authorization and provenance are not approved",
+    "final base crop rectangle is not fixed",
+    "overlay pixel origin is not fixed",
+    "current render asset has not been approved as the final original ultra-HD base"
+  ],
+  "nextAction": "approve and record final source, fix crop rectangle and overlay origin, then measure 24 control pixels",
+  "safety": {
+    "candidatePixelsModified": false,
+    "pixelCoordinatesInvented": false,
+    "cropInvented": false,
+    "transformClaimed": false,
+    "finalBaseClaimed": false
+  }
+}
