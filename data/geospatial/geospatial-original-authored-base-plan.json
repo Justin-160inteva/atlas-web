@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "strategy": "fully-original-authored-visual-base",
+  "status": "approved-in-development",
+  "approvedBy": "Justin-160inteva",
+  "approvedAt": "2026-07-23T13:45:00Z",
+  "purpose": "Create the final Atlas map artwork without using, tracing, compositing, or shipping any third-party map image or vector artwork.",
+  "legacyRenderBase": {
+    "path": "assets/world-map-4096.webp",
+    "role": "temporary-development-preview-only",
+    "finalBaseCandidate": false,
+    "calibrationAuthority": false,
+    "mustBeRemovedOrReplacedBeforeFinalRelease": true
+  },
+  "allowedInputs": [
+    "repository location identifiers and normalized coordinates",
+    "confirmed geospatial anchors and their evidence metadata",
+    "region identifiers and names",
+    "gameplay evidence used only to verify factual relative placement",
+    "new procedural geometry and artwork authored specifically for Atlas"
+  ],
+  "forbiddenInputs": [
+    "third-party map raster images",
+    "third-party map vector paths",
+    "traced coastlines, roads, terrain, labels, textures or decorative elements",
+    "screenshots composited into the final map",
+    "unlicensed icons, fonts or textures",
+    "automatic promotion of the legacy 4096 preview image"
+  ],
+  "authorshipContract": {
+    "visualArtworkOriginal": true,
+    "spatialFactsMayFollowVerifiedGameData": true,
+    "regionEnvelopesAreConstructionGuidesNotCopiedBoundaries": true,
+    "finalTerrainRequiresAuthoredArtDirection": true,
+    "allFinalAssetsRequireRepositoryOwnedSourceFiles": true
+  },
+  "phases": [
+    {
+      "id": "skeleton",
+      "status": "in_progress",
+      "output": "data/geospatial/geospatial-original-authored-base-skeleton.json",
+      "gate": "3430 locations grouped into 9 regions with deterministic hulls, density field and adjacency graph"
+    },
+    {
+      "id": "regional-composition",
+      "status": "pending_skeleton",
+      "gate": "original region masses, water gaps and authored travel corridors approved"
+    },
+    {
+      "id": "terrain-art",
+      "status": "pending_composition",
+      "gate": "original mountains, forests, rivers, roads, paper texture and labels approved"
+    },
+    {
+      "id": "final-canvas-freeze",
+      "status": "pending_art",
+      "gate": "repository-owned source, exported dimensions, crop, origin and SHA-256 frozen"
+    },
+    {
+      "id": "pixel-calibration",
+      "status": "pending_final_canvas",
+      "gate": "24 control points fitted and all 12 independent holdouts pass"
+    },
+    {
+      "id": "device-validation",
+      "status": "pending_calibration",
+      "gate": "desktop, phone and physical iPad validation pass"
+    }
+  ],
+  "nextAction": "build deterministic original spatial skeleton from all location data and the 50 confirmed anchors"
+}
