@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "release": "0.9.4.8",
+  "enabled": true,
+  "provider": "github-models",
+  "endpoint": "https://models.github.ai/inference/chat/completions",
+  "models": [
+    "openai/gpt-4.1",
+    "openai/gpt-4o-mini"
+  ],
+  "request": {
+    "temperature": 0.0,
+    "maximumOutputTokens": 1200,
+    "timeoutSeconds": 150,
+    "delayBetweenRequestsSeconds": 2
+  },
+  "confirmation": {
+    "requireTwoModelConsensus": true,
+    "minimumConfidencePerModel": 0.92,
+    "allowedEvidenceTypes": [
+      "direct_popup_text",
+      "direct_map_label",
+      "unique_highlight_with_readable_text"
+    ],
+    "requireObservedLabel": true,
+    "requireCandidateIdFromStageOne": true,
+    "requireUniqueLocationAssignment": true,
+    "maximumConfirmedSlotsThisBatch": 14
+  },
+  "privacy": {
+    "imagesMayBeSentToAuthorizedModelDuringWorkflow": true,
+    "imagesMayBeCommittedToRepository": false,
+    "originalVideoMayBeCommittedToRepository": false,
+    "deleteAllTransientPixelsBeforeJobExit": true,
+    "persistOnlyTextHashesTimestampsAndCoordinates": true
+  },
+  "safety": {
+    "numericDescriptorsAloneCannotConfirmLocation": true,
+    "modelGuessWithoutReadableEvidenceMustRemainUnresolved": true,
+    "duplicateCandidateAssignmentsMustRemainUnresolved": true,
+    "modelDisagreementMustRemainUnresolved": true
+  }
+}
