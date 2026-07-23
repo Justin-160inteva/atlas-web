@@ -39,6 +39,8 @@ def main() -> int:
     assert 'width="4096"' in svg and 'height="4096"' in svg
     assert 'viewBox="0 0 4096 4096"' in svg
     assert 'data-atlas-asset="original-labels-icons-final-review-v1"' in svg
+    assert 'ORIGINAL MAP · LABELS &amp; ICONS · FINAL REVIEW' in svg
+    assert 'ORIGINAL TERRAIN &amp; COASTLINE · V1' not in svg
     assert '<image' not in svg.lower()
     assert 'data:image/' not in svg.lower()
     assert '@import' not in svg.lower()
@@ -80,6 +82,7 @@ def main() -> int:
         "confirmedAnchorIcons": 50,
         "labelOverlaps": 0,
         "reservedPanelOverlaps": 0,
+        "anchorLabelOverlaps": 0,
     }
     assert manifest["status"] == "original-labels-icons-final-review-candidate-ready"
     assert manifest["asset"] == {
@@ -132,6 +135,7 @@ def main() -> int:
     assert readiness["status"] == "final-canvas-review-candidate-awaiting-human-approval"
     assert readiness["automatedGateStatus"] == "passed"
     assert all(readiness["automatedGates"].values())
+    assert readiness["automatedGates"]["anchorLabelOverlapCountWithinLimit"] is True
     assert readiness["unassignedLocationDisposition"]["status"] == "resolved"
     assert readiness["unassignedLocationDisposition"]["locationCount"] == 5
     assert readiness["unassignedLocationDisposition"]["regionMembershipInferred"] is False
@@ -153,6 +157,7 @@ def main() -> int:
     assert authored["regionLabelCount"] == 10
     assert authored["confirmedAnchorIconCount"] == 50
     assert authored["labelOverlapCount"] == 0
+    assert authored["anchorLabelOverlapCount"] == 0
     assert authored["unassignedLocationDispositionStatus"] == "resolved_retained_global_overlay"
     assert authored["finalCanvasFrozen"] is False
     assert authored["finalCanvasFreezeStatus"] == "blocked_pending_human_visual_review"
