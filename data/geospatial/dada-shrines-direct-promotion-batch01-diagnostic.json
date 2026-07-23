@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T09:44:01.476899Z",
+  "status": "promotion-preflight-failed",
+  "stage": "strict-shrine-anchor-promotion-batch01",
+  "errorType": "RuntimeError",
+  "errorMessage": "promotion safety checks failed: {'reviewComplete': True, 'twoModelsPerAnchor': True, 'minimumConfidenceMet': True, 'candidateStageLocationCoordinatesMatch': True, 'canonicalLocationCoordinatesMatch': True, 'noTempleLocationOverlap': True, 'noTempleCoordinateOverlap': True, 'uniqueShrineLocations': True, 'uniqueShrineCoordinates': True, 'repositoryContainsPixels': False}",
+  "tracebackTail": [
+    "Traceback (most recent call last):",
+    "  File \"/home/runner/work/atlas-web/atlas-web/tools/run_dada_shrine_promotion_with_diagnostic.py\", line 29, in main",
+    "    return promotion.main()",
+    "           ^^^^^^^^^^^^^^^^",
+    "  File \"/home/runner/work/atlas-web/atlas-web/tools/promote_dada_shrine_direct_review_batch01.py\", line 285, in main",
+    "    raise RuntimeError(f\"promotion safety checks failed: {promotion_report['safety']}\")",
+    "RuntimeError: promotion safety checks failed: {'reviewComplete': True, 'twoModelsPerAnchor': True, 'minimumConfidenceMet': True, 'candidateStageLocationCoordinatesMatch': True, 'canonicalLocationCoordinatesMatch': True, 'noTempleLocationOverlap': True, 'noTempleCoordinateOverlap': True, 'uniqueShrineLocations': True, 'uniqueShrineCoordinates': True, 'repositoryContainsPixels': False}"
+  ],
+  "policy": {
+    "promotionBypassed": false,
+    "coordinatesWritten": false,
+    "canonicalAnchorModified": false,
+    "repositoryContainsPixels": false
+  }
+}
