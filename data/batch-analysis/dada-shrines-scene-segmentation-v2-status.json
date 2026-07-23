@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "status": "partial-reviewer-pools",
+  "stage": "scene-aware-high-resolution-event-review-v2",
+  "generatedAt": "2026-07-23T01:52:18.576496Z",
+  "promotionStatus": "not-promoted-to-canonical",
+  "counts": {
+    "segments": 27,
+    "boundaries": 26,
+    "selectedSegments": 14,
+    "confirmedAnchors": 0,
+    "successfulReviewerPools": 0,
+    "failedReviewerPools": 2,
+    "requestedBatchCallsThisRun": 3,
+    "reusedBatchCallsThisRun": 0,
+    "persistedBatchPackets": 0
+  },
+  "minimumSegmentDurationSeconds": 5.067,
+  "maximumSegmentDurationSeconds": 16.533,
+  "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
+  "selectedReviewerModels": {},
+  "errors": [
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1",
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+    }
+  ],
+  "outputs": {
+    "segments": "data/geospatial/dada-shrines-27-scene-segments.json",
+    "manifest": "data/geospatial/dada-shrines-27-scene-evidence-manifest.json",
+    "isolatedAnchors": "data/geospatial/dada-shrines-27-anchors-batch01-v2.json",
+    "canonicalAnchors": "data/geospatial/dada-shrines-27-anchors-batch01.json"
+  },
+  "privacy": {
+    "repositoryContainsPixels": false,
+    "transientPixelsDeletedBeforeJobExit": true
+  }
+}

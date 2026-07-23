@@ -1,0 +1,1269 @@
+{
+  "schemaVersion": 3,
+  "reviewStrategyVersion": 2,
+  "generatedAt": "2026-07-23T01:52:18.471995Z",
+  "stage": "shrine-anchor-batch01-high-resolution-event-batches",
+  "status": "partial-reviewer-pools",
+  "evidenceFingerprint": "5d9f7e61f381d3308f12700678047703c985b0dc43d8dfcbdc341776e254cf48",
+  "source": {
+    "bvid": "BV1aFXaYmEDZ",
+    "title": "〖刺客信条影 新手攻略〗02 神社全收集（27个位置）",
+    "authorizationId": "auth-dada-20260718",
+    "stage1Path": "data/geospatial/dada-shrines-27-stage1.json",
+    "segmentationPath": "data/geospatial/dada-shrines-27-scene-segments.json",
+    "evidenceManifestPath": "data/geospatial/dada-shrines-27-scene-evidence-manifest.json"
+  },
+  "counts": {
+    "reviewedSlots": 14,
+    "confirmed": 0,
+    "unresolved": 14,
+    "candidateShrines": 32,
+    "successfulReviewerPools": 0,
+    "failedReviewerPools": 2,
+    "requestedBatchCallsThisRun": 3,
+    "reusedBatchCallsThisRun": 0,
+    "persistedBatchPackets": 0,
+    "duplicateCandidateIdsRejected": 0
+  },
+  "policy": {
+    "reviewerPools": [
+      {
+        "id": "reasoning-reviewer",
+        "models": [
+          "openai/gpt-4.1",
+          "openai/gpt-4.1-mini"
+        ],
+        "minimumCompleteReviewers": 1
+      },
+      {
+        "id": "vision-reviewer",
+        "models": [
+          "openai/gpt-4o-mini"
+        ],
+        "minimumCompleteReviewers": 1
+      }
+    ],
+    "eventsPerRequest": 4,
+    "framesPerEvent": 3,
+    "minimumConfidencePerReviewerPool": 0.92,
+    "requireTwoIndependentReviewerPools": true,
+    "requireDirectReadableText": true,
+    "rejectPerModelDuplicateAssignments": true,
+    "rejectGlobalDuplicateAssignments": true,
+    "repositoryContainsEvidencePixels": false
+  },
+  "selectedReviewerPools": [],
+  "batchPackets": [],
+  "requestedBatchCallsThisRun": [
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1",
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "reusedBatchCallsThisRun": [],
+  "errors": [
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1",
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+    },
+    {
+      "reviewerPool": "reasoning-reviewer",
+      "model": "openai/gpt-4.1-mini",
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+    },
+    {
+      "reviewerPool": "vision-reviewer",
+      "model": "openai/gpt-4o-mini",
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+    }
+  ],
+  "duplicateCandidateIdsRejected": [],
+  "anchors": [],
+  "unresolved": [
+    {
+      "videoPosition": 1,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 3.917,
+          "sha256": "de50228ab504636bf84eeb244f4f55fa026aae230d2c9006f83d8236ec8f73c2"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 1.417,
+          "sha256": "f8091148d953a27ae523af4780e153c322953d7fc922210ce5127a8751775325"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 2.667,
+          "sha256": "b3c711c6d04b3e11fcc48c758c7230b935f854e932d3eb1d9fcec4539f5fe6e3"
+        }
+      ]
+    },
+    {
+      "videoPosition": 2,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 15.115,
+          "sha256": "50f61b6279690b85b8f53de05ffab0e241941ac1d42586f567c7ba3fffee8fe8"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 12.619,
+          "sha256": "20438d210e31ce3c59c7d5e0c20b1d5950a8d711310e7c5c5be1238aa45b40ee"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 13.867,
+          "sha256": "0adf2bcc6a3e40ce9d57d694eb50464be057067cd46af95f6c4807d646d6c6b9"
+        }
+      ]
+    },
+    {
+      "videoPosition": 3,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 20.183,
+          "sha256": "8b1220b35bdf9b5d356922e24313d72fc45192c621b8592efd2dcc883fa7c69a"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 17.683,
+          "sha256": "5dc7988e6203ae14bd054ebdeac89a77ca73e0190f79d1451e2f722cc6fc694f"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 18.933,
+          "sha256": "2f75caf40ad8add6d45f6b6864988da973afbd35abc3afe433309233d27515d0"
+        }
+      ]
+    },
+    {
+      "videoPosition": 4,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 34.583,
+          "sha256": "a00753cff23ff1730ec9e05bfa67cff14ce1af90b732cfbfef4d96a30e8bd926"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 32.083,
+          "sha256": "7df4d19bba5b789badd2fe43bbadaa6baea71897a653c67d8bb1a9a2af625567"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 33.333,
+          "sha256": "bc8a7871c93f066de9571aec112fd815fcb89d4a988b162d449038fa83780e36"
+        }
+      ]
+    },
+    {
+      "videoPosition": 5,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 45.517,
+          "sha256": "b4dee27e8a7f5ec71362c76e4eea40ad09dfff111b9fcbf265e4558700e9bf7c"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 43.017,
+          "sha256": "38dbfffe3b4ef952d1351f88378f913fc0078f4ca6e9a281869640ee187c2047"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 44.267,
+          "sha256": "eb837fc8a13af72341a51ec4ffe6056b381592c09f3d01f488f95e75e467d4e3"
+        }
+      ]
+    },
+    {
+      "videoPosition": 6,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 57.25,
+          "sha256": "a048a6b7306993077f90a6eca187ca31a80922d422ea18cb3d4c83ce1ed99509"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 54.75,
+          "sha256": "2c669facb80cffc5f5fb07ae8f16cb814cd38b70172d699ac050fb57b51daa93"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 56.0,
+          "sha256": "2643a57c7a936fc7c2a1e43b8b8a9878b74a00ff96571a740ed38af8bab8ec52"
+        }
+      ]
+    },
+    {
+      "videoPosition": 7,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 69.517,
+          "sha256": "7efb9cac664c2d01c01eccd0e4eb9680ece6ac77138fe85eb70f5bb921dea7de"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 67.017,
+          "sha256": "a2347eb56bb2a929450d3e7fbbfa310b98bc139e2599f30984abfd868ac1bf26"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 68.267,
+          "sha256": "138a7f2247d44cfc1b223d2ffad63946fe93ac7a9204523434f3dee5100ddfd0"
+        }
+      ]
+    },
+    {
+      "videoPosition": 8,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 75.117,
+          "sha256": "8d2710a12f029c71d12a4319e267fb3276e1ee4b1acbf4f92bcd34c893762874"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 72.617,
+          "sha256": "1606c9ee626f65e5b80b845ef95d5d3914a824a8ef46c00822325bbe0300e9c2"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 73.867,
+          "sha256": "98a6f4787c98b40d23f5dd0a821f5f5246f9df394393e8a73e51709a48a3cbee"
+        }
+      ]
+    },
+    {
+      "videoPosition": 9,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 85.783,
+          "sha256": "165bfce61f301cf9d643d829c4f788429d703f15453e6bf5e830abc9d8d795ae"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 83.283,
+          "sha256": "1775c480b43b60b349b32a72c48788cdc9fae02073c9178acf48ec89d1208a48"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 84.533,
+          "sha256": "034f5b7c2854b8e32db0db4122edaa8b34a8b168e2554a275fc3a6931b7370fc"
+        }
+      ]
+    },
+    {
+      "videoPosition": 10,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 98.85,
+          "sha256": "887445b22a5c74adcc1fe0fec96e836f87b19d5b650a77ccea2392121295a9a0"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 96.35,
+          "sha256": "96c6fd6be9e769e34aa2a432bc342442be81edc747340c942ee7303c214fc0f0"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 97.6,
+          "sha256": "7773bc90187a17670402f972385c49307f632539d67ca88e76bada6a0abca722"
+        }
+      ]
+    },
+    {
+      "videoPosition": 11,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 103.723,
+          "sha256": "6c34e1a21576911844331987b1dc305492cf7cc4c78a760229b2b2232fc13cdf"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 101.611,
+          "sha256": "4982f6a364dc1b70e9b2413aa165bcbefb1cacd927e2cbc25306b55e87f61089"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 102.667,
+          "sha256": "f2cb3da0f4098fa1a1bb785b47bac4830486a4998fa38e9a317171294c9a9afb"
+        }
+      ]
+    },
+    {
+      "videoPosition": 12,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 110.317,
+          "sha256": "83b9d573dca9ecba604a138971f5617a005bcc8bc5292d3fd9ce37ae73493d05"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 107.817,
+          "sha256": "cd6d0abfc25902d006c71b9f2c501e1d1ecf0d2c7b8e0c5a773e8ec1dfe29731"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 109.067,
+          "sha256": "d87bb19b6dbf30f56e2e7b19066a002b0d697bae3b3f74766c6dd78b97ec232e"
+        }
+      ]
+    },
+    {
+      "videoPosition": 13,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 122.317,
+          "sha256": "bdbdf3f66425b956061acd94d561389cadced724951557e636d0aff6d8f02777"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 119.817,
+          "sha256": "6f41e95734c079f978b0f4dbf3315bb228cf225674c8f31e9ef87d86a6e93133"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 121.067,
+          "sha256": "8ed4d5c0be2419728543b32285e8ab3a5bd83252a6f91c1551265e3db7dfbea5"
+        }
+      ]
+    },
+    {
+      "videoPosition": 14,
+      "status": "unresolved",
+      "reason": "two_pool_high_resolution_consensus_or_direct_evidence_not_met",
+      "reviewerPoolReviews": [],
+      "errors": [
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1 slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "reasoning-reviewer",
+          "model": "openai/gpt-4.1-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=reasoning-reviewer model=openai/gpt-4.1-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        },
+        {
+          "reviewerPool": "vision-reviewer",
+          "model": "openai/gpt-4o-mini",
+          "slots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "error": "event-batch review failed: pool=vision-reviewer model=openai/gpt-4o-mini slots=[1, 2, 3, 4]: HTTP Error 413: Payload Too Large"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "after",
+          "timeSeconds": 135.117,
+          "sha256": "4798a67241570d2858b4b12f677ba3530acf26359da63ead1481ea3511be26e0"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 132.617,
+          "sha256": "9b4f42617c4e5c2de063c6974028381af3511f6e1d623379ad10b769474f315a"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 133.867,
+          "sha256": "96d702ad338a91130bbbda9060d3ff527db72f59ad239775fae191545858ce69"
+        }
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "slot": 1,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 3.917,
+          "sha256": "de50228ab504636bf84eeb244f4f55fa026aae230d2c9006f83d8236ec8f73c2"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 1.417,
+          "sha256": "f8091148d953a27ae523af4780e153c322953d7fc922210ce5127a8751775325"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 2.667,
+          "sha256": "b3c711c6d04b3e11fcc48c758c7230b935f854e932d3eb1d9fcec4539f5fe6e3"
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 15.115,
+          "sha256": "50f61b6279690b85b8f53de05ffab0e241941ac1d42586f567c7ba3fffee8fe8"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 12.619,
+          "sha256": "20438d210e31ce3c59c7d5e0c20b1d5950a8d711310e7c5c5be1238aa45b40ee"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 13.867,
+          "sha256": "0adf2bcc6a3e40ce9d57d694eb50464be057067cd46af95f6c4807d646d6c6b9"
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 20.183,
+          "sha256": "8b1220b35bdf9b5d356922e24313d72fc45192c621b8592efd2dcc883fa7c69a"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 17.683,
+          "sha256": "5dc7988e6203ae14bd054ebdeac89a77ca73e0190f79d1451e2f722cc6fc694f"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 18.933,
+          "sha256": "2f75caf40ad8add6d45f6b6864988da973afbd35abc3afe433309233d27515d0"
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 34.583,
+          "sha256": "a00753cff23ff1730ec9e05bfa67cff14ce1af90b732cfbfef4d96a30e8bd926"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 32.083,
+          "sha256": "7df4d19bba5b789badd2fe43bbadaa6baea71897a653c67d8bb1a9a2af625567"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 33.333,
+          "sha256": "bc8a7871c93f066de9571aec112fd815fcb89d4a988b162d449038fa83780e36"
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 45.517,
+          "sha256": "b4dee27e8a7f5ec71362c76e4eea40ad09dfff111b9fcbf265e4558700e9bf7c"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 43.017,
+          "sha256": "38dbfffe3b4ef952d1351f88378f913fc0078f4ca6e9a281869640ee187c2047"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 44.267,
+          "sha256": "eb837fc8a13af72341a51ec4ffe6056b381592c09f3d01f488f95e75e467d4e3"
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 57.25,
+          "sha256": "a048a6b7306993077f90a6eca187ca31a80922d422ea18cb3d4c83ce1ed99509"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 54.75,
+          "sha256": "2c669facb80cffc5f5fb07ae8f16cb814cd38b70172d699ac050fb57b51daa93"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 56.0,
+          "sha256": "2643a57c7a936fc7c2a1e43b8b8a9878b74a00ff96571a740ed38af8bab8ec52"
+        }
+      ]
+    },
+    {
+      "slot": 7,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 69.517,
+          "sha256": "7efb9cac664c2d01c01eccd0e4eb9680ece6ac77138fe85eb70f5bb921dea7de"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 67.017,
+          "sha256": "a2347eb56bb2a929450d3e7fbbfa310b98bc139e2599f30984abfd868ac1bf26"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 68.267,
+          "sha256": "138a7f2247d44cfc1b223d2ffad63946fe93ac7a9204523434f3dee5100ddfd0"
+        }
+      ]
+    },
+    {
+      "slot": 8,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 75.117,
+          "sha256": "8d2710a12f029c71d12a4319e267fb3276e1ee4b1acbf4f92bcd34c893762874"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 72.617,
+          "sha256": "1606c9ee626f65e5b80b845ef95d5d3914a824a8ef46c00822325bbe0300e9c2"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 73.867,
+          "sha256": "98a6f4787c98b40d23f5dd0a821f5f5246f9df394393e8a73e51709a48a3cbee"
+        }
+      ]
+    },
+    {
+      "slot": 9,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 85.783,
+          "sha256": "165bfce61f301cf9d643d829c4f788429d703f15453e6bf5e830abc9d8d795ae"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 83.283,
+          "sha256": "1775c480b43b60b349b32a72c48788cdc9fae02073c9178acf48ec89d1208a48"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 84.533,
+          "sha256": "034f5b7c2854b8e32db0db4122edaa8b34a8b168e2554a275fc3a6931b7370fc"
+        }
+      ]
+    },
+    {
+      "slot": 10,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 98.85,
+          "sha256": "887445b22a5c74adcc1fe0fec96e836f87b19d5b650a77ccea2392121295a9a0"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 96.35,
+          "sha256": "96c6fd6be9e769e34aa2a432bc342442be81edc747340c942ee7303c214fc0f0"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 97.6,
+          "sha256": "7773bc90187a17670402f972385c49307f632539d67ca88e76bada6a0abca722"
+        }
+      ]
+    },
+    {
+      "slot": 11,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 103.723,
+          "sha256": "6c34e1a21576911844331987b1dc305492cf7cc4c78a760229b2b2232fc13cdf"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 101.611,
+          "sha256": "4982f6a364dc1b70e9b2413aa165bcbefb1cacd927e2cbc25306b55e87f61089"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 102.667,
+          "sha256": "f2cb3da0f4098fa1a1bb785b47bac4830486a4998fa38e9a317171294c9a9afb"
+        }
+      ]
+    },
+    {
+      "slot": 12,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 110.317,
+          "sha256": "83b9d573dca9ecba604a138971f5617a005bcc8bc5292d3fd9ce37ae73493d05"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 107.817,
+          "sha256": "cd6d0abfc25902d006c71b9f2c501e1d1ecf0d2c7b8e0c5a773e8ec1dfe29731"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 109.067,
+          "sha256": "d87bb19b6dbf30f56e2e7b19066a002b0d697bae3b3f74766c6dd78b97ec232e"
+        }
+      ]
+    },
+    {
+      "slot": 13,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 122.317,
+          "sha256": "bdbdf3f66425b956061acd94d561389cadced724951557e636d0aff6d8f02777"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 119.817,
+          "sha256": "6f41e95734c079f978b0f4dbf3315bb228cf225674c8f31e9ef87d86a6e93133"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 121.067,
+          "sha256": "8ed4d5c0be2419728543b32285e8ab3a5bd83252a6f91c1551265e3db7dfbea5"
+        }
+      ]
+    },
+    {
+      "slot": 14,
+      "reviewerPoolReviews": [],
+      "consensusLocationId": null,
+      "consensusPassedBeforeGlobalUniquenessGate": false,
+      "frames": [
+        {
+          "role": "after",
+          "timeSeconds": 135.117,
+          "sha256": "4798a67241570d2858b4b12f677ba3530acf26359da63ead1481ea3511be26e0"
+        },
+        {
+          "role": "before",
+          "timeSeconds": 132.617,
+          "sha256": "9b4f42617c4e5c2de063c6974028381af3511f6e1d623379ad10b769474f315a"
+        },
+        {
+          "role": "representative",
+          "timeSeconds": 133.867,
+          "sha256": "96d702ad338a91130bbbda9060d3ff527db72f59ad239775fae191545858ce69"
+        }
+      ]
+    }
+  ],
+  "privacy": {
+    "repositoryContainsPixels": false,
+    "persistedEvidence": "scene boundaries, frame timestamps and SHA-256 hashes, visible labels, reviewer decisions and existing Atlas coordinates only"
+  }
+}
