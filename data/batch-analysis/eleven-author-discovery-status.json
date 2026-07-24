@@ -6,7 +6,7 @@
   "authorMid": 360046931,
   "authorizationId": "auth-eleven-game-world-20260719",
   "seedBvid": "BV1FdQ9YdEcN",
-  "updatedAt": "2026-07-23T06:17:50.476408Z",
+  "updatedAt": "2026-07-24T06:11:40.639660Z",
   "summary": {
     "accountEnumerationComplete": false,
     "accountVideosDiscovered": 1,
@@ -19,12 +19,12 @@
     "pilotQueued": 3
   },
   "diagnostics": [
-    "space api failed: HTTPError('HTTP Error 412: ')",
-    "space api failed: RuntimeError('code=-352 风控校验失败')",
+    "space api failed: RuntimeError('code=-799 请求过于频繁，请稍后再试')",
+    "space api failed: RuntimeError('code=-403 访问权限不足')",
     "yt-dlp space failed: RuntimeError('ERROR: [BilibiliSpaceVideo] 360046931: Request is blocked by server (412), please wait and try later.\\n')",
     "search failed: 11的游戏世界 刺客信条影: HTTPError('HTTP Error 412: ')",
     "search failed: 11的游戏世界 刺客信条：影: HTTPError('HTTP Error 412: ')",
-    "search failed: 11的游戏世界 AC Shadows: HTTPError('HTTP Error 412: ')"
+    "search completed: 11的游戏世界 AC Shadows"
   ],
   "privacy": "No video media or frame pixels were downloaded during catalog discovery."
 }
