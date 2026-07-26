@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "project": "Atlas - Assassin's Creed Shadows Interactive Map",
+  "version": "0.9.4.8",
+  "date": "2026-07-26",
+  "trigger": "accepted-feature-regression",
+  "result": "fail",
+  "summary": {
+    "blocking": 3,
+    "high": 2,
+    "stageGateComplete": false,
+    "nextScheduledAuditVersion": "0.9.4.11"
+  },
+  "conversationHistoryReview": {
+    "source": "available project conversation context",
+    "acceptedRequirements": [
+      "User requirements take priority over raw test-count targets.",
+      "At most one active scan or download at a time.",
+      "The earliest unresolved queue item must not be bypassed.",
+      "Known transient transport failures may use a bounded override up to five attempts; unknown, identity, authorization and privacy failures remain capped at three.",
+      "Never broaden creator authorization automatically.",
+      "Never retain original video or frame pixels in the public repository.",
+      "Every release reviews watchdog and validation speed while preserving quality floors.",
+      "Reward claims must distinguish official, multi-source, inference and unresolved evidence.",
+      "Ultra-HD original map dependent tasks remain scheduled but inactive until the stage gate is complete.",
+      "Public deployment and physical iPad/desktop verification remain separate from CI."
+    ],
+    "partiallyImplementedOrDeferred": [
+      "3430-location reward pipeline has schema and unresolved index but no verified reward batch or location-detail display.",
+      "Dynamic validation budgets and path-scoped CI are not proven active on main.",
+      "Ultra-HD original map stage remains pending.",
+      "Public GitHub Pages and physical iPad/desktop verification remain incomplete.",
+      "Whole-site frosted UI standardization remains partial."
+    ]
+  },
+  "repositoryEvidence": {
+    "releaseManifest": {
+      "version": "0.9.4.8",
+      "fullAuditFlag": true,
+      "fixed500MatricesStillDeclared": true
+    },
+    "roadmap": {
+      "stageGate": "not complete",
+      "previousBlockingRegression": "P33/P34 strict-order mismatch"
+    },
+    "auditLedger": {
+      "nextScheduledAuditVersion": "0.9.4.11",
+      "stageGate": "pending"
+    },
+    "newRegressions": [
+      {
+        "id": "queue-status-batch-authority-mismatch",
+        "severity": "critical",
+        "evidence": "Queue now contains P20-P22 in 山城 while manifest/status/runtime identify completed P80; durable queue, manifest and status no longer describe the same batch.",
+        "acceptance": "One authoritative batch identity must be shared by manifest, queue, status, runtime and monitor."
+      },
+      {
+        "id": "recovery-safety-policy-regression",
+        "severity": "critical",
+        "evidence": "Manifest allows maxAttemptsPerItem=20, retryTechnicalFailuresUntilResolved=true, blockUnknownOrIdentityFailures=false and neverModifySourceCodeAutomatically=false.",
+        "acceptance": "Known transient failures are bounded; unknown, identity, authorization and privacy failures stop safely; executable source is never modified automatically."
+      },
+      {
+        "id": "queue-scope-regression",
+        "severity": "critical",
+        "evidence": "Manifest maximumQueueItems=1 and processingOrder=strict-p080-only, but referenced queue contains three P20-P22 items.",
+        "acceptance": "Queue scope and manifest limits must match before any work is claimable."
+      }
+    ],
+    "highRiskDebt": [
+      "Release manifest still declares unconditional exact-500 matrices for all gates.",
+      "Previous regression-blocked release has not advanced to a repaired patch version."
+    ]
+  },
+  "completedEvidence": [
+    "Release remains synchronized at Alpha 0.9.4.8.",
+    "Reward evidence foundation files remain declared as release assets.",
+    "Ultra-HD map gate remains explicitly pending instead of being falsely completed.",
+    "Original media and frame-pixel retention remain disabled in the current manifest."
+  ],
+  "incomplete": [
+    "Restore one authoritative batch identity across manifest, queue, status and runtime.",
+    "Restore bounded recovery policy and protected failure categories.",
+    "Restore strict earliest-unresolved queue ownership.",
+    "Land and prove dynamic validation budgets and path-scoped CI.",
+    "Regenerate current scan-system health evidence.",
+    "Import first reviewable reward batch and display evidence in location details.",
+    "Complete deployment and physical-device verification.",
+    "Complete ultra-HD original map stage gate."
+  ],
+  "blocked": [
+    "No new scan batch should be treated as authoritative while queue and manifest/status identities disagree.",
+    "Automatic retries above the accepted bounded policy should be disabled before further production scanning.",
+    "Ultra-HD-map-dependent tasks remain inactive."
+  ],
+  "nextThreeVersionPriorities": {
+    "0.9.4.9": [
+      "Repair batch authority mismatch and restore strict queue order.",
+      "Restore safe bounded recovery limits and protected failure handling.",
+      "Regenerate current health evidence and prove one active task maximum.",
+      "Activate risk-based, path-scoped CI with measured runtime evidence."
+    ],
+    "0.9.4.10": [
+      "Import first verified reward evidence batch.",
+      "Add reward status, confidence, sources and conflicts to location details.",
+      "Establish map and panel performance baselines."
+    ],
+    "0.9.4.11": [
+      "Expand reward coverage in reviewable batches.",
+      "Complete public deployment and physical iPad/desktop verification records.",
+      "Review heartbeat commit noise and validation runtime.",
+      "Run the scheduled full audit if this version is reached."
+    ]
+  },
+  "auditScheduling": {
+    "type": "regression-triggered",
+    "regularAuditCounterAdvanced": false,
+    "nextScheduledAuditVersion": "0.9.4.11"
+  }
+}
