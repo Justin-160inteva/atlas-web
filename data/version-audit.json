@@ -1,9 +1,9 @@
 {
-  "schemaVersion": "2.1",
+  "schemaVersion": "2.2",
   "project": "Atlas - Assassin's Creed Shadows Interactive Map",
   "currentVersion": "0.9.4.8",
   "lastAuditedVersion": "0.9.4.8",
-  "lastAuditDate": "2026-07-22",
+  "lastAuditDate": "2026-07-26",
   "lastAuditTrigger": "accepted-feature-regression",
   "auditEveryPatchReleases": 3,
   "nextScheduledAuditVersion": "0.9.4.11",
@@ -24,10 +24,9 @@
     "status": "regression_blocked",
     "intendedVersion": "0.9.4.8",
     "entryPageVersion": "0.9.4.8",
-    "serviceWorkerCacheVersion": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-canvas-1",
     "publicVerificationRequired": true,
     "physicalDeviceVerificationRequired": true,
-    "blockingRegression": "P34 runtime is active while durable P33 remains failed, violating strict earliest-unresolved order"
+    "blockingRegression": "Manifest/status/runtime identify completed P80 while the referenced durable queue contains P20-P22; recovery safety limits also exceed accepted bounded policy."
   },
   "completedEvidence": [
     {
@@ -37,7 +36,7 @@
     },
     {
       "item": "Heartbeat self-healing and single monitor ownership",
-      "status": "implemented_with_current_regression_in_queue_order",
+      "status": "implemented_with_active_authority_regression",
       "versions": ["0.9.4.5"]
     },
     {
@@ -63,21 +62,24 @@
       ]
     },
     {
-      "item": "Regression-triggered full audit",
+      "item": "2026-07-26 regression-triggered full audit",
       "status": "completed",
       "versions": ["0.9.4.8"],
       "evidence": [
-        "data/audits/full-audit-0948-regression-20260722.json",
-        "PROJECT-ROADMAP.md updated with blocking regression and next-three-version priorities",
-        "nextScheduledAuditVersion restored to 0.9.4.11"
+        "data/audits/full-audit-0948-regression-20260726.json",
+        "PROJECT-ROADMAP.md updated with current blockers and next-three-version priorities",
+        "regular audit schedule retained at 0.9.4.11 because this was not a regular audit"
       ]
     }
   ],
   "incompleteItems": [
-    "Restore strict P33 before P34/P35 durable queue ownership on main",
-    "Reconcile P33 failed attempt state with bounded dictionary recovery policy",
-    "Regenerate current 0.9.4.8 scan-system health and full audit evidence",
-    "Land risk-based validation budgets and path-scoped CI on main",
+    "Restore one authoritative batch identity across manifest, queue, status, runtime and monitor",
+    "Restore strict earliest-unresolved queue ownership",
+    "Restore bounded dictionary recovery policy",
+    "Restore safe blocking for unknown, identity, authorization and privacy failures",
+    "Restore neverModifyExecutableSourceAutomatically=true",
+    "Regenerate current 0.9.4.8 scan-system health evidence",
+    "Land and prove risk-based validation budgets and path-scoped CI on main",
     "Verified reward summaries for all 3430 locations",
     "Stable location-to-reward record generation",
     "First official and multi-source reward batch",
@@ -89,20 +91,32 @@
   ],
   "blockingItems": [
     {
-      "id": "scan-order-regression",
+      "id": "batch-authority-mismatch",
       "severity": "critical",
       "evidence": {
-        "durableQueue": "P33 failed attemptCount=3",
-        "runtime": "P34 running/download",
-        "orchestrator": "main wrapper lacks failed-head preflight and projects only pending/queued items"
+        "manifest": "P80 only, maximumQueueItems=1, strict-p080-only",
+        "queue": "P20-P22 山城, three pending items",
+        "status": "P80 complete",
+        "runtime": "P80 complete"
       },
-      "acceptance": "P33 must be resolved before P34 and P35; maximum one active item"
+      "acceptance": "Manifest, queue, status, runtime and monitor must share one batch identity and scope."
     },
     {
-      "id": "stale-audit-evidence",
-      "severity": "high",
-      "evidence": "data/batch-analysis/scan-system-health.json reports release 0.9.4.7 and dictionary 2026.07.19.5",
-      "acceptance": "health and audit evidence must match the active release and dictionary"
+      "id": "recovery-policy-regression",
+      "severity": "critical",
+      "evidence": {
+        "maxAttemptsPerItem": 20,
+        "retryTechnicalFailuresUntilResolved": true,
+        "blockUnknownOrIdentityFailures": false,
+        "neverModifySourceCodeAutomatically": false
+      },
+      "acceptance": "Known transient failures are bounded; unsafe or unknown failures stop; executable source is never modified automatically."
+    },
+    {
+      "id": "queue-scope-regression",
+      "severity": "critical",
+      "evidence": "Manifest permits one P80 item while referenced queue contains three P20-P22 items.",
+      "acceptance": "Queue length, item identities and manifest scope must match before work is claimable."
     }
   ],
   "rewardPipeline": {
@@ -139,8 +153,10 @@
       "no public media retention",
       "single active scan",
       "earliest unresolved queue ownership",
+      "single authoritative batch identity",
       "durable state authority",
-      "reward evidence provenance"
+      "reward evidence provenance",
+      "no automatic executable-source modification"
     ]
   },
   "auditFindings": {
@@ -152,29 +168,31 @@
     "currentDeletionCandidates": [],
     "openTechnicalDebt": [
       "Reward coverage is still zero confirmed records",
-      "Strict scan ordering regressed on main",
-      "Runtime projection and durable queue disagree",
-      "Scan-system health evidence is stale",
-      "Main CI still contains unconditional exact-500 matrices and full-audit execution for unrelated changes",
-      "Runtime heartbeat commits are very frequent and create repository noise",
+      "Manifest, queue, status and runtime batch identities disagree",
+      "Recovery safety policy exceeds accepted bounded limits",
+      "Main release still declares fixed exact-500 matrices",
+      "Dynamic path-scoped CI is not proven active on main",
+      "Runtime heartbeat commits create repository noise",
       "Public and physical-device verification remain external to CI",
       "Whole-site frosted UI standardisation is incomplete",
       "Ultra-HD map stage gate remains pending"
     ]
   },
   "currentHighPriority": [
-    "Restore strict earliest-unresolved scan ownership and reconcile P33",
-    "Prevent P34/P35 bypass and verify one active task",
+    "Restore one authoritative scan batch identity",
+    "Restore strict earliest-unresolved ownership and one active task",
+    "Restore bounded recovery and protected failure handling",
     "Land dynamic validation budgets and path-scoped CI",
-    "Regenerate current release health/audit evidence",
-    "Research and import the first high-confidence reward batch",
+    "Regenerate current health evidence",
+    "Research and import the first verified reward batch",
     "Add reward summaries and confidence labels to location details",
     "Verify public deployment and iPad behaviour"
   ],
   "nextThreeVersionPriorities": {
     "0.9.4.9": [
-      "scan-order regression repair",
-      "P33 durable reconciliation",
+      "batch authority and queue-scope repair",
+      "strict queue order and single-active proof",
+      "bounded recovery safety restoration",
       "risk-based validation and path-scoped CI",
       "fresh health and audit evidence"
     ],
@@ -187,6 +205,7 @@
       "bounded reward coverage expansion",
       "public and physical-device verification records",
       "workflow noise and heartbeat-frequency review",
+      "scheduled full audit",
       "ultra-HD map gate reassessment without premature completion"
     ]
   },
@@ -210,15 +229,23 @@
       "version": "0.9.4.8",
       "date": "2026-07-20",
       "type": "mandatory-full-audit-and-reward-foundation",
-      "result": "Reward evidence contracts established; full project audit gate added; coverage remains unresolved until evidence batches are reviewed",
+      "result": "Reward evidence contracts established; coverage remains unresolved",
       "nextScheduledAuditVersion": "0.9.4.11"
     },
     {
       "version": "0.9.4.8",
       "date": "2026-07-22",
       "type": "regression-triggered-full-audit",
-      "result": "Critical P33/P34 durable-order regression found; roadmap and audit ledger updated; release marked regression-blocked",
+      "result": "Critical P33/P34 durable-order regression found",
       "report": "data/audits/full-audit-0948-regression-20260722.json",
+      "nextScheduledAuditVersion": "0.9.4.11"
+    },
+    {
+      "version": "0.9.4.8",
+      "date": "2026-07-26",
+      "type": "regression-triggered-full-audit",
+      "result": "Manifest/queue/status/runtime authority mismatch and unsafe recovery-policy regression confirmed",
+      "report": "data/audits/full-audit-0948-regression-20260726.json",
       "nextScheduledAuditVersion": "0.9.4.11"
     }
   ]
