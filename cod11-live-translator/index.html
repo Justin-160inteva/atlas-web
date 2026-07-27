@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="COD11翻译" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>COD11 实时字幕翻译</title>
+  <title>COD11 专用台词识别器</title>
   <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACQ0lEQVR42u3dy43CMBRAUbCyAwkW0MF0OHXQIR2wYUEBsxgJUBKshE+C/c7dzgdhjl6cQMRytdktpL6SJRAcgkNwCA7BITgEh+AQHIJDgkNwCA7BITgEh+AQHIJDcEhwCA7BITgEh+AQHIJDcAgOCQ7BITgEh+AQHIJDcAgOVV8z5YMdzj9W/MV+t8cKJwcZxS1jIoOPOXGQUeiSJjL4cLYiOASH4NCcNTM+9pTXc2w8TQ7BITgEh+AQHIJDcAgOCQ6NqLEErS7n0xN/td7uTY5Ar7dSEBl8wJGbGXzAkTua8AFHbpPIh7OVm4/e+ZE5uej+qPsfqjw3ibghNT/g4AMOPuDgAw4+4OADjnJ9BDk1hWO0DzIeFfct+//rYy0ZA48vvb9WH7LQH/YxM4JOjrF7TFBMDsEhOGTPMfMW1Vv2UpjJ4TM7JofgEByCQzak5XT/DtyQ6+5B9rYmh/sl4RgwA/iAI3d04AOOh7ksBgcZzlaekuG6u8lhZsBBBhxkwEGGDeknKVx3l8NlhDUU9F5ZMwMOkwAOwaFAG1Jfc29yCA7BITikz+PwhfXlLmyq42mQUfBhhY8SFzPV95TIeFfL1WZnxeVsRXAIDsEhOASH4BAcgkNwSHAIDsEhODR533IjtXtYWn3Dx19MDsEhOASH4BAcgkNwqJbctyKTQ3AIDsEhOASH4BAcgkNwSHAIDsEhOASH4BAcgkNwCA4JDsEhOASH4BAcgkNwCA7BIcEhOASH4BAcgkNwCA7BITgEh9TtD2kvjwJpQP5kAAAAAElFTkSuQmCC" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="stylesheet" href="styles.css" />
@@ -20,8 +20,8 @@
       <video id="camera" playsinline muted></video>
       <canvas id="frameCanvas" hidden></canvas>
       <div id="emptyState" class="empty-state">
-        <h1>COD11 实时字幕翻译</h1>
-        <p>手机横屏固定，对准电视底部英文字幕。</p>
+        <h1>COD11 专用台词识别器</h1>
+        <p>识别到半句或关键词，立即定位完整台词和精准中文。</p>
         <button id="startCameraBtn" class="primary">开启后置摄像头</button>
       </div>
 
@@ -41,7 +41,9 @@
       <button id="quickToggleBtn" class="quick-toggle" hidden>开始翻译</button>
 
       <div class="translation-panel">
-        <div id="englishText" class="english">等待英文字幕……</div>
+        <div id="detectedText" class="detected">识别片段：等待字幕……</div>
+        <div class="full-line-label">匹配到的完整英文台词</div>
+        <div id="englishText" class="english">等待完整台词……</div>
         <div id="chineseText" class="chinese">中文翻译会显示在这里</div>
         <div id="matchMeta" class="match-meta"></div>
       </div>
@@ -71,7 +73,7 @@
           </label>
           <label class="checkbox"><input id="autoSpeak" type="checkbox" checked /> 自动朗读中文</label>
           <label class="checkbox"><input id="finishBeforeNext" type="checkbox" checked /> 每句读完再读下一句</label>
-          <label class="checkbox"><input id="cloudFallback" type="checkbox" checked /> 本地字幕库未命中时联网翻译</label>
+          <label class="checkbox"><input id="cloudFallback" type="checkbox" /> 未命中时临时联网翻译（可能不精准）</label>
           <label class="checkbox"><input id="highContrast" type="checkbox" checked /> 字幕增强</label>
           <label class="checkbox"><input id="keepAwake" type="checkbox" checked /> 翻译时保持屏幕常亮</label>
         </div>
@@ -90,12 +92,19 @@
           <label>当前章节
             <select id="chapterSelect"><option value="all">全部章节</option></select>
           </label>
-          <label>匹配灵敏度
-            <input id="matchThreshold" type="range" min="0.45" max="0.95" step="0.01" value="0.69" />
-            <output id="matchThresholdValue">69%</output>
+          <label>完整台词命中置信度
+            <input id="matchThreshold" type="range" min="0.45" max="0.95" step="0.01" value="0.64" />
+            <output id="matchThresholdValue">64%</output>
           </label>
+          <label>最少命中关键词
+            <input id="minKeywords" type="range" min="1" max="4" step="1" value="2" />
+            <output id="minKeywordsValue">2 个</output>
+          </label>
+          <label class="checkbox"><input id="fragmentMode" type="checkbox" checked /> 片段命中完整台词</label>
+          <label class="checkbox"><input id="contextMode" type="checkbox" checked /> 根据前后台词顺序消除歧义</label>
         </div>
-        <p id="libraryInfo" class="hint">内置演示字幕 6 句。可导入你自己的 JSON、CSV、SRT 或 VTT 文件。</p>
+        <p id="libraryInfo" class="hint">内置演示字幕 6 句。完整模式需要导入按章节和顺序整理的 COD11 中英台词库。</p>
+        <p class="hint">推荐 JSON 字段：chapter、order、speaker、en、zh、aliases。aliases 可填写常见 OCR 错字或另一种英文写法。</p>
       </details>
 
       <details>
@@ -126,5 +135,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="app.js"></script>
+  <script src="recognizer-v3.js?v=3"></script>
 </body>
 </html>
