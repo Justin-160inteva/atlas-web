@@ -10,7 +10,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>COD11 专用台词识别器</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACQ0lEQVR42u3dy43CMBRAUbCyAwkW0MF0OHXQIR2wYUEBsxgJUBKshE+C/c7dzgdhjl6cQMRytdktpL6SJRAcgkNwCA7BITgEh+AQHIJDgkNwCA7BITgEh+AQHIJDcEhwCA7BITgEh+AQHIJDcAgOCQ7BITgEh+AQHIJDcAgOVV8z5YMdzj9W/MV+t8cKJwcZxS1jIoOPOXGQUeiSJjL4cLYiOASH4NCcNTM+9pTXc2w8TQ7BITgEh+AQHIJDcAgOCQ6NqLEErS7n0xN/td7uTY5Ar7dSEBl8wJGbGXzAkTua8AFHbpPIh7OVm4/e+ZE5uej+qPsfqjw3ibghNT/g4AMOPuDgAw4+4OADjnJ9BDk1hWO0DzIeFfct+//rYy0ZA48vvb9WH7LQH/YxM4JOjrF7TFBMDsEhOGTPMfMW1Vv2UpjJ4TM7JofgEByCQzak5XT/DtyQ6+5B9rYmh/sl4RgwA/iAI3d04AOOh7ksBgcZzlaekuG6u8lhZsBBBhxkwEGGDeknKVx3l8NlhDUU9F5ZMwMOkwAOwaFAG1Jfc29yCA7BITikz+PwhfXlLmyq42mQUfBhhY8SFzPV95TIeFfL1WZnxeVsRXAIDsEhOASH4BAcgkNwSHAIDsEhODR533IjtXtYWn3Dx19MDsEhOASH4BAcgkNwqJbctyKTQ3AIDsEhOASH4BAcgkNwSHAIDsEhOASH4BAcgkNwCA4JDsEhOASH4BAcgkNwCA7BIcEhOASH4BAcgkNwCA7BITgEh9TtD2kvjwJpQP5kAAAAAElFTkSuQmCC" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -79,7 +79,7 @@
         </div>
       </details>
 
-      <details>
+      <details open>
         <summary>字幕库与章节</summary>
         <div class="library-actions">
           <label class="file-button">导入字幕库
@@ -103,8 +103,8 @@
           <label class="checkbox"><input id="fragmentMode" type="checkbox" checked /> 片段命中完整台词</label>
           <label class="checkbox"><input id="contextMode" type="checkbox" checked /> 根据前后台词顺序消除歧义</label>
         </div>
-        <p id="libraryInfo" class="hint">内置演示字幕 6 句。完整模式需要导入按章节和顺序整理的 COD11 中英台词库。</p>
-        <p class="hint">推荐 JSON 字段：chapter、order、speaker、en、zh、aliases。aliases 可填写常见 OCR 错字或另一种英文写法。</p>
+        <p id="libraryInfo" class="hint">已内置第6关中英台词 39 条。识别到一小段或关键词后，会定位并输出完整原句与完整中文。</p>
+        <p class="hint">每条台词包含章节、场景、顺序、说话人、英文、中文与关键词别名。</p>
       </details>
 
       <details>
@@ -134,7 +134,8 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-  <script src="app.js"></script>
-  <script src="recognizer-v3.js?v=3"></script>
+  <script src="app.js?v=4"></script>
+  <script src="chapter6-library.js?v=1"></script>
+  <script src="recognizer-v3.js?v=4"></script>
 </body>
 </html>
