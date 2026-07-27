@@ -1,8 +1,8 @@
-const CACHE = 'cod11-dialogue-recognizer-v8';
+const CACHE = 'cod11-dialogue-recognizer-v9';
 const CORE = [
   './', './index.html', './styles.css', './app.js', './chapter6-library.js',
   './recognizer-v3.js', './precision-v4.js', './garbage-filter-v6.js', './strict-display-v7.js',
-  './hybrid-v8.js', './manifest.webmanifest', './icon.svg'
+  './hybrid-v8.js', './continuous-v9.js', './manifest.webmanifest', './icon.svg'
 ];
 
 self.addEventListener('install', event => {
