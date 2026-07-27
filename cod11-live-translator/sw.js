@@ -1,6 +1,6 @@
-const CACHE = 'cod11-dialogue-recognizer-v5';
+const CACHE = 'cod11-dialogue-recognizer-v6';
 const FILES = [
-  './', './index.html', './styles.css', './app.js', './chapter6-library.js', './recognizer-v3.js', './precision-v4.js', './manifest.webmanifest',
+  './', './index.html', './styles.css', './app.js', './chapter6-library.js', './recognizer-v3.js', './precision-v4.js', './garbage-filter-v6.js', './manifest.webmanifest',
   './icon.svg'
 ];
 self.addEventListener('install', event => {
