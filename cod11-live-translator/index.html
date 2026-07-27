@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#0b0f14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="COD11翻译" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>COD11 实时字幕翻译</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACQ0lEQVR42u3dy43CMBRAUbCyAwkW0MF0OHXQIR2wYUEBsxgJUBKshE+C/c7dzgdhjl6cQMRytdktpL6SJRAcgkNwCA7BITgEh+AQHIJDgkNwCA7BITgEh+AQHIJDcEhwCA7BITgEh+AQHIJDcAgOCQ7BITgEh+AQHIJDcAgOVV8z5YMdzj9W/MV+t8cKJwcZxS1jIoOPOXGQUeiSJjL4cLYiOASH4NCcNTM+9pTXc2w8TQ7BITgEh+AQHIJDcAgOCQ6NqLEErS7n0xN/td7uTY5Ar7dSEBl8wJGbGXzAkTua8AFHbpPIh7OVm4/e+ZE5uej+qPsfqjw3ibghNT/g4AMOPuDgAw4+4OADjnJ9BDk1hWO0DzIeFfct+//rYy0ZA48vvb9WH7LQH/YxM4JOjrF7TFBMDsEhOGTPMfMW1Vv2UpjJ4TM7JofgEByCQzak5XT/DtyQ6+5B9rYmh/sl4RgwA/iAI3d04AOOh7ksBgcZzlaekuG6u8lhZsBBBhxkwEGGDeknKVx3l8NlhDUU9F5ZMwMOkwAOwaFAG1Jfc29yCA7BITikz+PwhfXlLmyq42mQUfBhhY8SFzPV95TIeFfL1WZnxeVsRXAIDsEhOASH4BAcgkNwSHAIDsEhODR533IjtXtYWn3Dx19MDsEhOASH4BAcgkNwqJbctyKTQ3AIDsEhOASH4BAcgkNwSHAIDsEhOASH4BAcgkNwCA4JDsEhOASH4BAcgkNwCA7BIcEhOASH4BAcgkNwCA7BITgEh9TtD2kvjwJpQP5kAAAAAElFTkSuQmCC" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app">
+    <section class="camera-stage" id="cameraStage">
+      <video id="camera" playsinline muted></video>
+      <canvas id="frameCanvas" hidden></canvas>
+      <div id="emptyState" class="empty-state">
+        <h1>COD11 实时字幕翻译</h1>
+        <p>手机横屏固定，对准电视底部英文字幕。</p>
+        <button id="startCameraBtn" class="primary">开启后置摄像头</button>
+      </div>
+
+      <div id="cropBox" class="crop-box" aria-label="字幕识别区域">
+        <span class="crop-label">只识别框内字幕</span>
+        <i class="handle nw" data-handle="nw"></i>
+        <i class="handle ne" data-handle="ne"></i>
+        <i class="handle sw" data-handle="sw"></i>
+        <i class="handle se" data-handle="se"></i>
+      </div>
+
+      <div class="top-bar">
+        <span id="statusDot" class="status-dot"></span>
+        <span id="statusText">未启动</span>
+        <span id="fpsText" class="muted"></span>
+      </div>
+      <button id="quickToggleBtn" class="quick-toggle" hidden>开始翻译</button>
+
+      <div class="translation-panel">
+        <div id="englishText" class="english">等待英文字幕……</div>
+        <div id="chineseText" class="chinese">中文翻译会显示在这里</div>
+        <div id="matchMeta" class="match-meta"></div>
+      </div>
+    </section>
+
+    <section class="controls">
+      <div class="control-row main-actions">
+        <button id="recognizeBtn" class="primary" disabled>开始实时翻译</button>
+        <button id="pauseBtn" disabled>暂停</button>
+        <button id="speakAgainBtn" disabled>重读中文</button>
+      </div>
+
+      <details open>
+        <summary>速度与朗读</summary>
+        <div class="settings-grid">
+          <label>扫描间隔
+            <select id="scanInterval">
+              <option value="350">0.35 秒（高性能）</option>
+              <option value="500" selected>0.5 秒（推荐）</option>
+              <option value="750">0.75 秒（更稳定）</option>
+              <option value="1000">1 秒（省电）</option>
+            </select>
+          </label>
+          <label>中文语速
+            <input id="speechRate" type="range" min="0.75" max="1.8" step="0.05" value="1.22" />
+            <output id="speechRateValue">1.22×</output>
+          </label>
+          <label class="checkbox"><input id="autoSpeak" type="checkbox" checked /> 自动朗读中文</label>
+          <label class="checkbox"><input id="finishBeforeNext" type="checkbox" checked /> 每句读完再读下一句</label>
+          <label class="checkbox"><input id="cloudFallback" type="checkbox" checked /> 本地字幕库未命中时联网翻译</label>
+          <label class="checkbox"><input id="highContrast" type="checkbox" checked /> 字幕增强</label>
+          <label class="checkbox"><input id="keepAwake" type="checkbox" checked /> 翻译时保持屏幕常亮</label>
+        </div>
+      </details>
+
+      <details>
+        <summary>字幕库与章节</summary>
+        <div class="library-actions">
+          <label class="file-button">导入字幕库
+            <input id="libraryFile" type="file" accept=".json,.csv,.srt,.vtt,text/plain" />
+          </label>
+          <button id="exportBtn">导出当前字幕库</button>
+          <button id="clearLibraryBtn" class="danger">清空字幕库</button>
+        </div>
+        <div class="settings-grid">
+          <label>当前章节
+            <select id="chapterSelect"><option value="all">全部章节</option></select>
+          </label>
+          <label>匹配灵敏度
+            <input id="matchThreshold" type="range" min="0.45" max="0.95" step="0.01" value="0.69" />
+            <output id="matchThresholdValue">69%</output>
+          </label>
+        </div>
+        <p id="libraryInfo" class="hint">内置演示字幕 6 句。可导入你自己的 JSON、CSV、SRT 或 VTT 文件。</p>
+      </details>
+
+      <details>
+        <summary>识别框与画面</summary>
+        <div class="control-row">
+          <button id="resetCropBtn">恢复底部字幕框</button>
+          <button id="switchCameraBtn" disabled>切换摄像头</button>
+          <button id="torchBtn" disabled>手电筒</button>
+        </div>
+        <p class="hint">拖动框体可移动；拖动四角可调整大小。尽量只框住两行英文字幕。</p>
+      </details>
+
+      <details id="installGuide">
+        <summary>安装到 iPhone / iPad 主屏幕</summary>
+        <p class="hint">必须用 Safari 打开本网站，然后点“分享”→“添加到主屏幕”→“添加”。以后从桌面图标启动即可使用独立全屏模式。</p>
+        <p id="installStatus" class="install-status">正在检查安装状态……</p>
+      </details>
+
+      <details>
+        <summary>识别记录</summary>
+        <div class="control-row"><button id="clearHistoryBtn">清空记录</button></div>
+        <ol id="historyList" class="history-list"></ol>
+      </details>
+
+      <div class="privacy-note">视频只在本机浏览器处理，不上传画面。联网翻译开启时，仅识别出的英文文本会发送到翻译服务。</div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
