@@ -1,23 +1,38 @@
-const CACHE = 'cod11-dialogue-recognizer-v6';
-const FILES = [
-  './', './index.html', './styles.css', './app.js', './chapter6-library.js', './recognizer-v3.js', './precision-v4.js', './garbage-filter-v6.js', './manifest.webmanifest',
-  './icon.svg'
+const CACHE = 'cod11-dialogue-recognizer-v7';
+const CORE = [
+  './', './index.html', './styles.css', './app.js', './chapter6-library.js',
+  './recognizer-v3.js', './precision-v4.js', './garbage-filter-v6.js', './strict-display-v7.js',
+  './manifest.webmanifest', './icon.svg'
 ];
+
 self.addEventListener('install', event => {
   self.skipWaiting();
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).catch(() => {}));
 });
+
 self.addEventListener('activate', event => {
   event.waitUntil(Promise.all([
     caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))),
     self.clients.claim()
   ]));
 });
+
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
-  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
-    const copy = response.clone();
-    caches.open(CACHE).then(cache => cache.put(event.request, copy)).catch(() => {});
-    return response;
-  }).catch(() => event.request.mode === 'navigate' ? caches.match('./index.html') : undefined)));
+  const request = event.request;
+  const url = new URL(request.url);
+  const isAppAsset = url.origin === self.location.origin;
+
+  if (request.mode === 'navigate' || isAppAsset) {
+    event.respondWith(
+      fetch(request, { cache: 'no-store' }).then(response => {
+        const copy = response.clone();
+        caches.open(CACHE).then(cache => cache.put(request, copy)).catch(() => {});
+        return response;
+      }).catch(() => caches.match(request).then(cached => cached || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  event.respondWith(fetch(request).catch(() => caches.match(request)));
 });
