@@ -213,6 +213,62 @@
     return { ...best, margin };
   }
 
+  function normalizeDialogueItem(item, index = 0) {
+    const aliases = Array.isArray(item?.aliases)
+      ? item.aliases.filter(Boolean).map(String)
+      : String(item?.aliases || '').split('|').map(value => value.trim()).filter(Boolean);
+    return {
+      chapter: String(item?.chapter || item?.mission || '未分章'),
+      order: Number.isFinite(Number(item?.order)) ? Number(item.order) : index + 1,
+      speaker: String(item?.speaker || ''),
+      en: String(item?.en || item?.english || item?.source || '').trim(),
+      zh: String(item?.zh || item?.chinese || item?.translation || '').trim(),
+      aliases
+    };
+  }
+  function parseDialogueCsv(text) {
+    const rows = text.replace(/\r/g, '').split('\n').filter(Boolean);
+    const output = [];
+    for (let i = 0; i < rows.length; i++) {
+      const columns = rows[i].match(/("(?:[^"]|"")*"|[^,]*)(?:,|$)/g)?.map(value => value.replace(/,$/, '').replace(/^"|"$/g, '').replace(/""/g, '"').trim()) || [];
+      if (i === 0 && /(english|英文|chapter|章节)/i.test(columns.join(','))) continue;
+      let item = null;
+      if (columns.length >= 5) item = normalizeDialogueItem({ chapter: columns[0], order: columns[1], speaker: columns[2], en: columns[3], zh: columns[4], aliases: columns[5] }, i);
+      else if (columns.length >= 3) item = normalizeDialogueItem({ chapter: columns[0], en: columns[1], zh: columns[2] }, i);
+      else if (columns.length >= 2) item = normalizeDialogueItem({ en: columns[0], zh: columns[1] }, i);
+      if (item?.en && item?.zh) output.push(item);
+    }
+    return output;
+  }
+  async function importDialogueLibrary(file) {
+    const text = await file.text();
+    let items = [];
+    try {
+      if (/\.json$/i.test(file.name)) {
+        const parsed = JSON.parse(text);
+        const source = Array.isArray(parsed) ? parsed : (parsed.subtitles || parsed.items || parsed.dialogues || []);
+        items = source.map(normalizeDialogueItem).filter(item => item.en && item.zh);
+      } else if (/\.csv$/i.test(file.name)) {
+        items = parseDialogueCsv(text);
+      } else {
+        items = parseSrtVtt(text).map(normalizeDialogueItem).filter(item => item.en && item.zh);
+      }
+    } catch (error) {
+      alert('台词库解析失败：' + error.message);
+      return;
+    }
+    if (!items.length) {
+      alert('没有找到有效的中英台词。JSON 推荐字段：chapter、order、speaker、en、zh、aliases。');
+      return;
+    }
+    const replace = confirm(`识别到 ${items.length} 句台词。\n\n点“确定”替换当前台词库；点“取消”追加。`);
+    state.library = replace ? items : [...state.library, ...items];
+    saveLibrary();
+    alert(`已导入 ${items.length} 句专用台词。`);
+  }
+
+  importLibrary = importDialogueLibrary;
+
   const originalSaveLibrary = saveLibrary;
   saveLibrary = function patchedSaveLibrary() {
     originalSaveLibrary();
