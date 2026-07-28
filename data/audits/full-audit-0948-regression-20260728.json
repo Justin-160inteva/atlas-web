@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "project": "Atlas - Assassin's Creed Shadows Interactive Map",
+  "release": "0.9.4.8",
+  "generatedAt": "2026-07-28T01:08:01Z",
+  "trigger": "accepted-feature-regression",
+  "regularScheduleAdvanced": false,
+  "nextScheduledAuditVersion": "0.9.4.11",
+  "result": "regression_blocked",
+  "triggerEvidence": {
+    "currentVersionBelowScheduledAudit": true,
+    "newMinorOrMajorRelease": false,
+    "ultraHdOriginalMapFirstCompleted": false,
+    "acceptedFeatureRegressionFound": true
+  },
+  "completedEvidence": [
+    {
+      "item": "Atlas release identity remains Alpha 0.9.4.8",
+      "evidence": [
+        "release-manifest.json version=0.9.4.8",
+        "atlas-bootstrap.js version=0.9.4.8",
+        "index.html displays ALPHA 0.9.4.8"
+      ]
+    },
+    {
+      "item": "Reward evidence generation materially progressed",
+      "evidence": [
+        "3430 reward records are represented",
+        "125 multi-source confirmed",
+        "872 high-confidence inference",
+        "2433 unresolved",
+        "35 bounded record batches",
+        "standard Simplified Chinese proper-name translation rebuilt"
+      ]
+    },
+    {
+      "item": "Atlas entrypoint remains the interactive map",
+      "evidence": [
+        "root index.html still loads Atlas map UI",
+        "COD11 translator work is isolated under cod11-live-translator/"
+      ]
+    }
+  ],
+  "regressions": [
+    {
+      "id": "release-cache-namespace-drift",
+      "severity": "critical",
+      "acceptedRequirement": "release-manifest.json, atlas-bootstrap.js and sw.js must use one release/cache namespace",
+      "evidence": {
+        "releaseManifest": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1",
+        "atlasBootstrap": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1",
+        "serviceWorker": "atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1"
+      },
+      "impact": "The active service worker cache identity no longer matches the declared release owner. Upgrade simulation, cache invalidation and release-conflict verification are not trustworthy until synchronized."
+    },
+    {
+      "id": "batch-authority-mismatch",
+      "severity": "critical",
+      "status": "persisting-known-regression",
+      "evidence": "Manifest remains strict P80-only while the referenced durable queue/status lineage recorded in the previous audit is not one authoritative batch."
+    },
+    {
+      "id": "recovery-policy-regression",
+      "severity": "critical",
+      "status": "persisting-known-regression",
+      "evidence": {
+        "maxAttemptsPerItem": 20,
+        "retryTechnicalFailuresUntilResolved": true,
+        "blockUnknownOrIdentityFailures": false,
+        "neverModifySourceCodeAutomatically": false
+      }
+    }
+  ],
+  "incompleteItems": [
+    "Synchronize release manifest, bootstrap and service-worker cache namespace",
+    "Restore one authoritative scan batch identity",
+    "Restore strict earliest-unresolved ownership and one active task",
+    "Restore bounded dictionary-driven recovery safety",
+    "Land and prove risk-based validation budgets and path-scoped CI on main",
+    "Human review and locking for generated reward records",
+    "Official-source reward confirmations",
+    "Public GitHub Pages verification",
+    "Physical iPad Safari and desktop verification",
+    "Ultra-HD original map stage gate"
+  ],
+  "conversationRequirementsChecked": [
+    "User product requirements take priority over arbitrary test counts",
+    "Every release must optimize watchdog and test rules without lowering safety floors",
+    "Never fabricate rewards or present inference as official",
+    "Use standard Simplified Chinese terminology",
+    "Preserve one active scan and strict earliest-unresolved order",
+    "Keep public deployment and physical-device verification separate from CI",
+    "Do not activate geometry-dependent tasks before the ultra-HD original map is complete"
+  ],
+  "technicalDebt": [
+    "Root Atlas project and COD11 translator now share one repository, increasing CI and ownership noise even though translator files are isolated in a subdirectory",
+    "Release manifest still declares fixed exact-500 gates despite the accepted risk-based validation policy",
+    "Runtime heartbeat commits and stale reports create repository noise",
+    "Reward records are machine-checked but have zero human-reviewed and zero locked records",
+    "Whole-site frosted UI standardisation remains incomplete"
+  ],
+  "nextThreeVersionPriorities": {
+    "0.9.4.9": [
+      "Synchronize release/cache identity across manifest, bootstrap and service worker",
+      "Restore one authoritative scan batch and bounded recovery safety",
+      "Restore strict queue ownership and one-active proof",
+      "Land path-scoped CI and dynamic validation budgets",
+      "Regenerate fresh health and release-sync evidence"
+    ],
+    "0.9.4.10": [
+      "Review and lock the first reward batches",
+      "Add official-source confirmations where evidence exists",
+      "Expose reward confidence, source and conflict summaries in location details",
+      "Add map, panel and iPad performance baselines"
+    ],
+    "0.9.4.11": [
+      "Expand human-reviewed reward coverage in bounded batches",
+      "Complete public and physical-device verification records",
+      "Review workflow noise and repository project separation",
+      "Run the scheduled full audit",
+      "Reassess the ultra-HD original map gate without premature completion"
+    ]
+  },
+  "stageGate": {
+    "id": "ultra-hd-original-map",
+    "status": "pending",
+    "dependentTasksRemainScheduledButInactive": true
+  }
+}
