@@ -1,8 +1,7 @@
-const CACHE = 'cod11-dialogue-recognizer-v10';
+const CACHE = 'cod11-realtime-vision-v11';
 const CORE = [
   './', './index.html', './styles.css', './app.js', './chapter6-library.js',
-  './recognizer-v3.js', './precision-v4.js', './garbage-filter-v6.js', './strict-display-v7.js',
-  './hybrid-v8.js', './continuous-v9.js', './focus-mode-v10.js', './manifest.webmanifest', './icon.svg'
+  './focus-mode-v10.js', './cloud-realtime-v11.js', './manifest.webmanifest', './icon.svg'
 ];
 
 self.addEventListener('install', event => {
