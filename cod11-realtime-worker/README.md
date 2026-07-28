@@ -2,7 +2,25 @@
 
 This Worker creates short-lived OpenAI Realtime WebRTC sessions for the COD11 subtitle webpage. The permanent API key stays in Cloudflare and is never sent to the browser.
 
-## Deploy from a computer
+## Cloudflare Git deployment
+
+Connect the GitHub repository `Justin-160inteva/atlas-web` to the existing Cloudflare Worker `cod11-realtime`.
+
+Use these deployment settings:
+
+- Production branch: `main`
+- Root directory: `cod11-realtime-worker`
+- Build command: `npm install`
+- Deploy command: `npm run deploy`
+
+Keep these two Cloudflare secrets on the Worker:
+
+- `OPENAI_API_KEY`
+- `APP_ACCESS_TOKEN`
+
+After Git integration is enabled, changes under `cod11-realtime-worker/**` can be deployed from GitHub without copying code into the Cloudflare editor.
+
+## Manual deployment from a computer
 
 ```bash
 cd cod11-realtime-worker
@@ -20,7 +38,7 @@ For `APP_ACCESS_TOKEN`, enter a long private phrase of your choice. Paste the sa
 - `OPENAI_API_KEY`: an OpenAI project API key with Realtime API access and billing enabled.
 - `APP_ACCESS_TOKEN`: a private random phrase that prevents other people from using your Worker endpoint.
 
-The Worker also restricts browser access to `https://justin-160inteva.github.io` through `ALLOWED_ORIGIN` in `wrangler.jsonc`.
+The Worker restricts browser access to `https://justin-160inteva.github.io` through `ALLOWED_ORIGIN` in `wrangler.jsonc`.
 
 ## Endpoints
 
