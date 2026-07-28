@@ -1,15 +1,15 @@
 # Atlas Project Roadmap and Version Audit
 
 Updated baseline: **Alpha 0.9.4.8**  
-Latest full audit: **2026-07-26 — regression-triggered**
+Latest full audit: **2026-07-28 — regression-triggered**
 
 ## Operating rules
 
-- User-requested product behaviour has priority over test-count targets.
+- User-requested product behaviour has priority over arbitrary test-count targets.
 - Validation is risk-based:
   - low-risk documentation or isolated rules: about 40–100 targeted checks;
-  - ordinary feature changes: about 80–180 checks;
-  - scheduler, persistence, queue schema, cache, deployment and map-core changes: about 180–300 checks;
+  - ordinary feature changes: about 80–180 relevant checks;
+  - scheduler, persistence, queue schema, cache, deployment and map-core changes: about 180–300 relevant checks;
   - major/minor releases, scheduled full audits and migrations may use complete relevant matrices up to about 500 checks per gate.
 - Every release must review watchdog speed, polling, duplicate scheduling, path-scoped CI, repeated checks and total validation time.
 - Regular full audits occur every three patch releases. Regression-triggered audits do not advance the regular counter; the next scheduled audit remains **Alpha 0.9.4.11**.
@@ -51,25 +51,29 @@ Latest full audit: **2026-07-26 — regression-triggered**
 
 ## Alpha 0.9.4.8 — regression blocked
 
-### 3430 个点位奖励证据管线
+### Reward evidence pipeline
 
 - [x] Four evidence states: official confirmed, multi-source confirmed, high-confidence inference and unresolved.
 - [x] Reward record JSON schema.
 - [x] Standard Simplified Chinese terminology and translation rules.
-- [x] 3430-location unresolved coverage index without fabricated rewards.
-- [x] Reward evidence contract matrix.
-- [ ] Stable mapping from every location ID to one reward record.
-- [ ] First reviewable official and multi-source reward batch.
-- [ ] Duplicate, source-locator, terminology and conflict reports for every batch.
-- [ ] Reward status, confidence and evidence summary in location details.
-- [ ] Gradual verified coverage expansion; unresolved locations remain explicit.
+- [x] 3430-location reward record coverage without fabricated rewards.
+- [x] 35 bounded reward batches generated.
+- [x] 125 multi-source-confirmed records.
+- [x] 872 high-confidence inference records.
+- [x] 2433 unresolved records remain explicit.
+- [x] Standard Simplified Chinese proper-name translation rebuilt across the reward summaries.
+- [ ] Human review and locking for generated records.
+- [ ] Official-source confirmations.
+- [ ] Reward status, confidence, evidence and conflict summary in every location detail.
+- [ ] Gradual verified coverage expansion with no inference presented as official.
 
 ### Audit and verification status
 
 - [x] Dedicated Alpha 0.9.4.8 audit executable.
-- [x] Regression-triggered audit on 2026-07-22.
-- [x] Second regression-triggered audit on 2026-07-26.
-- [x] Audit report: `data/audits/full-audit-0948-regression-20260726.json`.
+- [x] Regression-triggered audits on 2026-07-22 and 2026-07-26.
+- [x] Regression-triggered audit on 2026-07-28.
+- [x] Latest report: `data/audits/full-audit-0948-regression-20260728.json`.
+- [ ] Synchronize release/cache identity across `release-manifest.json`, `atlas-bootstrap.js` and `sw.js`.
 - [ ] Restore one authoritative scan batch identity.
 - [ ] Restore bounded recovery safety policy.
 - [ ] Restore strict earliest-unresolved queue ownership.
@@ -78,15 +82,25 @@ Latest full audit: **2026-07-26 — regression-triggered**
 - [ ] Public GitHub Pages verification.
 - [ ] Physical iPad Safari and desktop verification.
 
-## Critical regressions confirmed on 2026-07-26
+## Critical regressions confirmed on 2026-07-28
 
-### 1. Batch authority mismatch
+### 1. Release and service-worker cache namespace drift
 
-The active manifest identifies **final single episode P80**, with `maximumQueueItems=1` and `strict-p080-only`, while the referenced durable queue contains **P20–P22 in 山城**. Status and runtime report P80 complete. Manifest, queue, status and runtime therefore no longer represent one authoritative batch.
+The declared release owner is split:
 
-### 2. Recovery safety policy regression
+- `release-manifest.json`: `atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1`
+- `atlas-bootstrap.js`: `atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1`
+- `sw.js`: `atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1`
 
-The active manifest currently allows:
+This is a newly confirmed accepted-feature regression. Release synchronisation, service-worker upgrade simulation, cache invalidation and conflict detection cannot be treated as verified until all three owners use one namespace.
+
+### 2. Batch authority mismatch remains unresolved
+
+The active scan manifest still identifies a strict P80-only batch while the durable scan lineage recorded in the previous audit does not represent one authoritative manifest/queue/status/runtime identity.
+
+### 3. Recovery safety regression remains unresolved
+
+The active manifest still allows:
 
 - `maxAttemptsPerItem=20`;
 - `retryTechnicalFailuresUntilResolved=true`;
@@ -95,38 +109,39 @@ The active manifest currently allows:
 
 This contradicts accepted behaviour: known transient failures must remain bounded, unknown/identity/authorization/privacy failures must stop safely, and executable source must never be modified automatically.
 
-### 3. Queue scope mismatch
+## Repository scope observation
 
-The manifest permits one P80 item, but the queue contains three P20–P22 items. No new scan result should be treated as authoritative until scope and identity are reconciled.
+The COD11 live-translator work is currently isolated under `cod11-live-translator/`, and the root `index.html` remains the Atlas interactive map. It is not currently an Atlas runtime regression. However, two products sharing one repository increases CI path-filtering, ownership and release-noise risk and must be reviewed before 0.9.4.11.
 
 ## Next three releases
 
-### Alpha 0.9.4.9 — restore scan authority and validation speed
+### Alpha 0.9.4.9 — restore release and scan authority
 
 Priority S:
 
+- Synchronize cache namespace across release manifest, bootstrap and service worker.
 - Restore one batch identity across manifest, queue, status, runtime and monitor.
 - Restore strict earliest-unresolved ownership and one active task maximum.
 - Restore dictionary-driven bounded retries: safe known transport failures up to 5; unknown, identity, authorization and privacy failures capped at 3 and blocked safely.
 - Restore `neverModifyExecutableSourceAutomatically=true`.
-- Land risk-based test budgets and path-scoped CI; heartbeat-only commits must not run unrelated UI, reward or full-audit matrices.
-- Regenerate current health and audit evidence.
+- Land risk-based test budgets and path-scoped CI; heartbeat-only and `cod11-live-translator/**` commits must not run unrelated Atlas UI, reward or full-audit matrices.
+- Regenerate current health, release-sync and cache-upgrade evidence.
 
-### Alpha 0.9.4.10 — first verified reward batch and interaction evidence
+### Alpha 0.9.4.10 — reviewed rewards and interaction evidence
 
-- Import the first reviewable reward records with source locators.
-- Add reward summaries, confidence labels and conflict states to location details.
-- Report official, multi-source, inferred, unresolved and conflict counts.
-- Add performance baselines for map pan, zoom, marker selection and panel transitions.
-- Continue Apple-inspired frosted UI standardisation only where it does not delay core requirements.
+- Human-review and lock the first bounded reward batches.
+- Add official-source confirmations where verifiable evidence exists.
+- Add reward summaries, confidence labels, source locators and conflict states to location details.
+- Report official, multi-source, inferred, unresolved, reviewed, locked and conflict counts.
+- Add performance baselines for map pan, zoom, marker selection, panel transitions and iPad rendering.
 
 ### Alpha 0.9.4.11 — coverage expansion and scheduled audit
 
-- Expand reward coverage in bounded, reviewable batches.
+- Expand human-reviewed reward coverage in bounded batches.
 - Complete public GitHub Pages verification records.
 - Complete separate physical iPad Safari and desktop verification records.
-- Audit workflow noise, heartbeat commit frequency and report freshness.
-- Run the scheduled full audit if this version is reached.
+- Audit workflow noise, heartbeat commit frequency and repository project separation.
+- Run the scheduled full audit.
 - Reassess the ultra-HD original map gate without marking it complete prematurely.
 
 ## Ultra-high-definition original map stage gate
@@ -148,6 +163,7 @@ Tasks that depend on final geometry remain queued until this gate is complete. T
 - Preserve one active scan/download at a time.
 - Never allow a later queue item to bypass the earliest unresolved item.
 - Keep manifest, queue, status, runtime and monitor on one batch identity.
+- Keep release manifest, bootstrap and service worker on one cache namespace.
 - Never broaden creator authorisation automatically.
 - Never retain original video or frame pixels in the public repository.
 - Never modify executable source automatically from a recovery workflow.
