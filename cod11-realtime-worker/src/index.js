@@ -34,13 +34,8 @@ export default {
     const url = new URL(request.url);
     const origin = allowedOrigin(request, env);
 
-    if (!origin) {
-      return new Response('Origin not allowed', { status: 403 });
-    }
-
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { status: 204, headers: corsHeaders(origin) });
-    }
+    if (!origin) return new Response('Origin not allowed', { status: 403 });
+    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: corsHeaders(origin) });
 
     if (request.method === 'GET' && url.pathname === '/health') {
       return json({ ok: true, service: 'cod11-realtime', model: env.REALTIME_MODEL || 'gpt-realtime' }, 200, origin);
@@ -50,12 +45,8 @@ export default {
       return json({ error: 'Not found' }, 404, origin);
     }
 
-    if (!env.OPENAI_API_KEY) {
-      return json({ error: 'OPENAI_API_KEY is not configured on the Worker.' }, 500, origin);
-    }
-    if (!env.APP_ACCESS_TOKEN) {
-      return json({ error: 'APP_ACCESS_TOKEN is not configured on the Worker.' }, 500, origin);
-    }
+    if (!env.OPENAI_API_KEY) return json({ error: 'OPENAI_API_KEY is not configured on the Worker.' }, 500, origin);
+    if (!env.APP_ACCESS_TOKEN) return json({ error: 'APP_ACCESS_TOKEN is not configured on the Worker.' }, 500, origin);
     if (request.headers.get('X-App-Token') !== env.APP_ACCESS_TOKEN) {
       return json({ error: 'Invalid app access token.' }, 401, origin);
     }
@@ -68,9 +59,7 @@ export default {
     }
 
     const sdp = typeof payload?.sdp === 'string' ? payload.sdp : '';
-    if (!sdp.startsWith('v=0')) {
-      return json({ error: 'Invalid WebRTC SDP offer.' }, 400, origin);
-    }
+    if (!sdp.startsWith('v=0')) return json({ error: 'Invalid WebRTC SDP offer.' }, 400, origin);
 
     const session = {
       type: 'realtime',
@@ -88,9 +77,12 @@ export default {
       ].join(' '),
     };
 
+    // OpenAI expects multipart fields named exactly `sdp` and `session`.
+    // Use plain string fields here; treating `sdp` as a file Blob can be lost
+    // when Cloudflare Workers serializes the multipart request.
     const form = new FormData();
-    form.append('sdp', new Blob([sdp], { type: 'application/sdp' }), 'offer.sdp');
-    form.append('session', new Blob([JSON.stringify(session)], { type: 'application/json' }), 'session.json');
+    form.set('sdp', sdp);
+    form.set('session', JSON.stringify(session));
 
     let upstream;
     try {
@@ -105,7 +97,7 @@ export default {
 
     const body = await upstream.text();
     if (!upstream.ok) {
-      return json({ error: 'Realtime session creation failed.', detail: body.slice(0, 1200) }, upstream.status, origin);
+      return json({ error: 'Realtime session creation failed.', detail: body.slice(0, 1600) }, upstream.status, origin);
     }
 
     return new Response(body, {
