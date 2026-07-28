@@ -1,8 +1,8 @@
-const CACHE = 'cod11-realtime-vision-v12';
+const CACHE = 'cod11-realtime-vision-v12b';
 const CORE = [
   './', './index.html', './styles.css', './app.js', './chapter6-library.js',
-  './focus-mode-v10.js', './cloud-realtime-v11.js', './cloud-access-v11.js',
-  './manifest.webmanifest', './icon.svg'
+  './focus-mode-v10.js', './realtime-audio-sdp-v12.js', './cloud-realtime-v11.js',
+  './cloud-access-v11.js', './manifest.webmanifest', './icon.svg'
 ];
 
 self.addEventListener('install', event => {
