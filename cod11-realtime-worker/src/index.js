@@ -1,10 +1,16 @@
 const OPENAI_REALTIME_URL = 'https://api.openai.com/v1/realtime/calls';
+const APP_SOURCE_BASE = 'https://raw.githubusercontent.com/Justin-160inteva/atlas-web/main/cod11-live-translator/';
 
 function allowedOrigin(request, env) {
   const origin = request.headers.get('Origin') || '';
   const configured = env.ALLOWED_ORIGIN || 'https://justin-160inteva.github.io';
-  if (!origin) return configured;
-  if (origin === configured || /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin)) return origin;
+  const selfOrigin = new URL(request.url).origin;
+  if (!origin) return selfOrigin;
+  if (
+    origin === configured ||
+    origin === selfOrigin ||
+    /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin)
+  ) return origin;
   return null;
 }
 
@@ -29,12 +35,75 @@ function json(data, status, origin) {
   });
 }
 
+function staticContentType(path) {
+  if (path.endsWith('.html')) return 'text/html; charset=utf-8';
+  if (path.endsWith('.js')) return 'text/javascript; charset=utf-8';
+  if (path.endsWith('.css')) return 'text/css; charset=utf-8';
+  if (path.endsWith('.webmanifest')) return 'application/manifest+json; charset=utf-8';
+  if (path.endsWith('.json')) return 'application/json; charset=utf-8';
+  if (path.endsWith('.svg')) return 'image/svg+xml';
+  if (path.endsWith('.png')) return 'image/png';
+  if (path.endsWith('.jpg') || path.endsWith('.jpeg')) return 'image/jpeg';
+  return 'application/octet-stream';
+}
+
+async function serveApp(request, url) {
+  if (url.pathname === '/app') {
+    const target = new URL('/app/', url.origin);
+    target.searchParams.set('endpoint', url.origin);
+    return Response.redirect(target.toString(), 302);
+  }
+
+  if (url.pathname === '/app/' && !url.searchParams.get('endpoint')) {
+    const target = new URL(url.toString());
+    target.searchParams.set('endpoint', url.origin);
+    return Response.redirect(target.toString(), 302);
+  }
+
+  let relative = url.pathname.slice('/app/'.length) || 'index.html';
+  try { relative = decodeURIComponent(relative); } catch (_) {}
+  if (!relative || relative.includes('..') || relative.startsWith('/')) {
+    return new Response('Not found', { status: 404 });
+  }
+
+  const upstreamUrl = `${APP_SOURCE_BASE}${relative}`;
+  let upstream;
+  try {
+    upstream = await fetch(upstreamUrl, {
+      headers: { Accept: '*/*' },
+      cf: { cacheTtl: 0, cacheEverything: false },
+    });
+  } catch (error) {
+    return new Response(`Unable to load app asset: ${error?.message || error}`, { status: 502 });
+  }
+
+  if (!upstream.ok) {
+    return new Response('App asset not found', { status: upstream.status === 404 ? 404 : 502 });
+  }
+
+  return new Response(upstream.body, {
+    status: 200,
+    headers: {
+      'Content-Type': staticContentType(relative),
+      'Cache-Control': 'no-store, no-cache, must-revalidate',
+      Pragma: 'no-cache',
+      Expires: '0',
+      'X-COD11-App-Version': '12.1-worker-hosted',
+    },
+  });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const origin = allowedOrigin(request, env);
 
+    if (request.method === 'GET' && (url.pathname === '/app' || url.pathname.startsWith('/app/'))) {
+      return serveApp(request, url);
+    }
+
+    const origin = allowedOrigin(request, env);
     if (!origin) return new Response('Origin not allowed', { status: 403 });
+
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders(origin) });
     }
@@ -45,7 +114,8 @@ export default {
           ok: true,
           service: 'cod11-realtime',
           model: env.REALTIME_MODEL || 'gpt-realtime',
-          revision: 'multipart-string-fields-v2',
+          revision: 'worker-hosted-app-v12.1',
+          app: `${url.origin}/app/`,
         },
         200,
         origin,
