@@ -10,10 +10,10 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <title>COD11 云端实时视觉翻译器 V11</title>
+  <title>COD11 云端实时视觉翻译器 V12</title>
   <link rel="apple-touch-icon" href="./icon.svg" />
-  <link rel="manifest" href="./manifest.webmanifest?v=11" />
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="manifest" href="./manifest.webmanifest?v=12" />
+  <link rel="stylesheet" href="styles.css?v=12" />
 </head>
 <body>
   <main id="app">
@@ -21,7 +21,7 @@
       <video id="camera" playsinline muted></video>
       <canvas id="frameCanvas" hidden></canvas>
       <div id="emptyState" class="empty-state">
-        <h1>COD11 云端实时视觉翻译器 V11</h1>
+        <h1>COD11 云端实时视觉翻译器 V12</h1>
         <p>绿色框内的视频字幕通过 WebRTC 进入云端视觉，字典只负责确认和纠错。</p>
         <button id="startCameraBtn" class="primary">开启后置摄像头</button>
       </div>
@@ -36,7 +36,7 @@
 
       <div class="top-bar">
         <span id="statusDot" class="status-dot"></span>
-        <span id="statusText">未启动 · V11云端实时视觉</span>
+        <span id="statusText">未启动 · V12云端实时视觉</span>
         <span id="fpsText" class="muted"></span>
       </div>
       <button id="quickToggleBtn" class="quick-toggle" hidden>开始实时翻译</button>
@@ -46,7 +46,7 @@
         <div class="full-line-label">识别到的英文字幕</div>
         <div id="englishText" class="english"></div>
         <div id="chineseText" class="chinese"></div>
-        <div id="matchMeta" class="match-meta">V11：WebRTC实时视觉主识别，本地字典确认</div>
+        <div id="matchMeta" class="match-meta">V12：WebRTC实时视觉主识别，本地字典确认</div>
       </div>
     </section>
 
@@ -131,10 +131,11 @@
     </section>
   </main>
 
-  <script src="app.js?v=11"></script>
-  <script src="chapter6-library.js?v=11"></script>
-  <script src="focus-mode-v10.js?v=11"></script>
-  <script src="cloud-realtime-v11.js?v=11"></script>
-  <script src="cloud-access-v11.js?v=11"></script>
+  <script src="app.js?v=12"></script>
+  <script src="chapter6-library.js?v=12"></script>
+  <script src="focus-mode-v10.js?v=12"></script>
+  <script src="realtime-audio-sdp-v12.js?v=12"></script>
+  <script src="cloud-realtime-v11.js?v=12"></script>
+  <script src="cloud-access-v11.js?v=12"></script>
 </body>
 </html>
