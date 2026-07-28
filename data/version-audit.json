@@ -1,9 +1,9 @@
 {
-  "schemaVersion": "2.2",
+  "schemaVersion": "2.3",
   "project": "Atlas - Assassin's Creed Shadows Interactive Map",
   "currentVersion": "0.9.4.8",
   "lastAuditedVersion": "0.9.4.8",
-  "lastAuditDate": "2026-07-26",
+  "lastAuditDate": "2026-07-28",
   "lastAuditTrigger": "accepted-feature-regression",
   "auditEveryPatchReleases": 3,
   "nextScheduledAuditVersion": "0.9.4.11",
@@ -26,7 +26,7 @@
     "entryPageVersion": "0.9.4.8",
     "publicVerificationRequired": true,
     "physicalDeviceVerificationRequired": true,
-    "blockingRegression": "Manifest/status/runtime identify completed P80 while the referenced durable queue contains P20-P22; recovery safety limits also exceed accepted bounded policy."
+    "blockingRegression": "Release manifest/bootstrap and service-worker cache namespaces disagree; scan batch authority and bounded recovery safety also remain unresolved."
   },
   "completedEvidence": [
     {
@@ -50,40 +50,42 @@
       "versions": ["0.9.4.7"]
     },
     {
-      "item": "Reward evidence foundation",
-      "status": "implemented_foundation_only",
+      "item": "Reward evidence generation",
+      "status": "implemented_machine_checked_not_human_reviewed",
       "versions": ["0.9.4.8"],
       "evidence": [
-        "four evidence levels",
-        "reward record schema",
-        "Simplified Chinese terminology",
-        "3430-location unresolved coverage index",
-        "reward contract matrix"
+        "3430 records represented",
+        "125 multi-source confirmed",
+        "872 high-confidence inference",
+        "2433 unresolved",
+        "35 bounded batches",
+        "standard Simplified Chinese proper-name translation rebuilt",
+        "zero human-reviewed and zero locked records"
       ]
     },
     {
-      "item": "2026-07-26 regression-triggered full audit",
+      "item": "2026-07-28 regression-triggered full audit",
       "status": "completed",
       "versions": ["0.9.4.8"],
       "evidence": [
-        "data/audits/full-audit-0948-regression-20260726.json",
-        "PROJECT-ROADMAP.md updated with current blockers and next-three-version priorities",
+        "data/audits/full-audit-0948-regression-20260728.json",
+        "PROJECT-ROADMAP.md updated",
         "regular audit schedule retained at 0.9.4.11 because this was not a regular audit"
       ]
     }
   ],
   "incompleteItems": [
+    "Synchronize release-manifest.json, atlas-bootstrap.js and sw.js cache namespace",
     "Restore one authoritative batch identity across manifest, queue, status, runtime and monitor",
     "Restore strict earliest-unresolved queue ownership",
     "Restore bounded dictionary recovery policy",
     "Restore safe blocking for unknown, identity, authorization and privacy failures",
     "Restore neverModifyExecutableSourceAutomatically=true",
-    "Regenerate current 0.9.4.8 scan-system health evidence",
+    "Regenerate current scan-system health and release-sync evidence",
     "Land and prove risk-based validation budgets and path-scoped CI on main",
-    "Verified reward summaries for all 3430 locations",
-    "Stable location-to-reward record generation",
-    "First official and multi-source reward batch",
-    "Reward display in location detail sheets",
+    "Human review and locking for generated reward records",
+    "Official-source reward confirmations",
+    "Reward evidence display in location detail sheets",
     "Ultra-HD original map completion and device verification",
     "Public GitHub Pages verification for Alpha 0.9.4.8",
     "Physical iPad and desktop verification record",
@@ -91,19 +93,26 @@
   ],
   "blockingItems": [
     {
-      "id": "batch-authority-mismatch",
+      "id": "release-cache-namespace-drift",
       "severity": "critical",
       "evidence": {
-        "manifest": "P80 only, maximumQueueItems=1, strict-p080-only",
-        "queue": "P20-P22 山城, three pending items",
-        "status": "P80 complete",
-        "runtime": "P80 complete"
+        "releaseManifest": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1",
+        "atlasBootstrap": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1",
+        "serviceWorker": "atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1"
       },
+      "acceptance": "Release manifest, bootstrap owner and service worker must use one cache namespace before release and upgrade evidence is valid."
+    },
+    {
+      "id": "batch-authority-mismatch",
+      "severity": "critical",
+      "status": "persisting",
+      "evidence": "Active scan configuration still does not prove one authoritative manifest/queue/status/runtime batch identity.",
       "acceptance": "Manifest, queue, status, runtime and monitor must share one batch identity and scope."
     },
     {
       "id": "recovery-policy-regression",
       "severity": "critical",
+      "status": "persisting",
       "evidence": {
         "maxAttemptsPerItem": 20,
         "retryTechnicalFailuresUntilResolved": true,
@@ -111,20 +120,17 @@
         "neverModifySourceCodeAutomatically": false
       },
       "acceptance": "Known transient failures are bounded; unsafe or unknown failures stop; executable source is never modified automatically."
-    },
-    {
-      "id": "queue-scope-regression",
-      "severity": "critical",
-      "evidence": "Manifest permits one P80 item while referenced queue contains three P20-P22 items.",
-      "acceptance": "Queue length, item identities and manifest scope must match before work is claimable."
     }
   ],
   "rewardPipeline": {
     "targetLocations": 3430,
     "officialConfirmed": 0,
-    "multiSourceConfirmed": 0,
-    "highConfidenceInference": 0,
-    "unresolved": 3430,
+    "multiSourceConfirmed": 125,
+    "highConfidenceInference": 872,
+    "unresolved": 2433,
+    "humanReviewed": 0,
+    "locked": 0,
+    "openConflicts": 0,
     "policy": "data/rewards/reward-source-policy.json",
     "schema": "data/rewards/reward-record-schema.json",
     "terminology": "data/rewards/reward-terminology-zh-CN.json",
@@ -146,7 +152,8 @@
       "path-scoped CI",
       "repeated checks",
       "total validation time",
-      "stale report evidence"
+      "stale report evidence",
+      "cross-project repository noise"
     ],
     "qualityFloors": [
       "authorization safety",
@@ -155,6 +162,7 @@
       "earliest unresolved queue ownership",
       "single authoritative batch identity",
       "durable state authority",
+      "single release/cache namespace",
       "reward evidence provenance",
       "no automatic executable-source modification"
     ]
@@ -167,44 +175,49 @@
     "deletionPolicy": "Delete only when no runtime owner, no reference, no compatibility role and regression coverage exists.",
     "currentDeletionCandidates": [],
     "openTechnicalDebt": [
-      "Reward coverage is still zero confirmed records",
-      "Manifest, queue, status and runtime batch identities disagree",
+      "Release manifest/bootstrap and service worker cache namespaces disagree",
+      "Manifest, queue, status and runtime batch identities are not proven coherent",
       "Recovery safety policy exceeds accepted bounded limits",
       "Main release still declares fixed exact-500 matrices",
       "Dynamic path-scoped CI is not proven active on main",
       "Runtime heartbeat commits create repository noise",
+      "Atlas and COD11 translator share one repository and require strict path ownership",
+      "Reward records have zero human review and zero locks",
       "Public and physical-device verification remain external to CI",
       "Whole-site frosted UI standardisation is incomplete",
       "Ultra-HD map stage gate remains pending"
     ]
   },
   "currentHighPriority": [
+    "Synchronize release/cache identity",
     "Restore one authoritative scan batch identity",
     "Restore strict earliest-unresolved ownership and one active task",
     "Restore bounded recovery and protected failure handling",
     "Land dynamic validation budgets and path-scoped CI",
-    "Regenerate current health evidence",
-    "Research and import the first verified reward batch",
+    "Regenerate current health and release-sync evidence",
+    "Human-review and lock the first reward batches",
     "Add reward summaries and confidence labels to location details",
     "Verify public deployment and iPad behaviour"
   ],
   "nextThreeVersionPriorities": {
     "0.9.4.9": [
+      "release/cache namespace synchronization",
       "batch authority and queue-scope repair",
       "strict queue order and single-active proof",
       "bounded recovery safety restoration",
       "risk-based validation and path-scoped CI",
-      "fresh health and audit evidence"
+      "fresh health and upgrade evidence"
     ],
     "0.9.4.10": [
-      "first verified reward batch",
+      "first human-reviewed and locked reward batches",
+      "official-source confirmations where available",
       "reward details UI",
-      "map and panel performance baselines"
+      "map, panel and iPad performance baselines"
     ],
     "0.9.4.11": [
-      "bounded reward coverage expansion",
+      "bounded human-reviewed reward coverage expansion",
       "public and physical-device verification records",
-      "workflow noise and heartbeat-frequency review",
+      "workflow noise and repository project-separation review",
       "scheduled full audit",
       "ultra-HD map gate reassessment without premature completion"
     ]
@@ -229,7 +242,7 @@
       "version": "0.9.4.8",
       "date": "2026-07-20",
       "type": "mandatory-full-audit-and-reward-foundation",
-      "result": "Reward evidence contracts established; coverage remains unresolved",
+      "result": "Reward evidence contracts established; coverage remained unresolved",
       "nextScheduledAuditVersion": "0.9.4.11"
     },
     {
@@ -246,6 +259,14 @@
       "type": "regression-triggered-full-audit",
       "result": "Manifest/queue/status/runtime authority mismatch and unsafe recovery-policy regression confirmed",
       "report": "data/audits/full-audit-0948-regression-20260726.json",
+      "nextScheduledAuditVersion": "0.9.4.11"
+    },
+    {
+      "version": "0.9.4.8",
+      "date": "2026-07-28",
+      "type": "regression-triggered-full-audit",
+      "result": "Release/cache namespace drift newly confirmed; prior scan authority and recovery regressions persist; reward generation progress recorded",
+      "report": "data/audits/full-audit-0948-regression-20260728.json",
       "nextScheduledAuditVersion": "0.9.4.11"
     }
   ]
