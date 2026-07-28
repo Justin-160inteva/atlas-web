@@ -2,14 +2,48 @@
 
 (() => {
   const originalFetch = window.fetch.bind(window);
-  window.fetch = function securedFetch(input, init = {}) {
+
+  window.fetch = async function securedFetch(input, init = {}) {
     const url = typeof input === 'string' ? input : input?.url || '';
-    if (/\/api\/realtime\/call(?:\?|$)/i.test(url)) {
+    const isRealtimeCall = /\/api\/realtime\/call(?:\?|$)/i.test(url);
+
+    if (isRealtimeCall) {
       const headers = new Headers(init.headers || (typeof input !== 'string' ? input.headers : undefined));
       headers.set('X-App-Token', localStorage.getItem('cod11-realtime-access-token') || '');
       init = { ...init, headers };
     }
-    return originalFetch(input, init);
+
+    const response = await originalFetch(input, init);
+    if (!isRealtimeCall || response.ok) return response;
+
+    // The Worker returns both a short error and OpenAI's detailed upstream body.
+    // Older UI code only reads the `error` field, so merge the detail into it.
+    try {
+      const raw = await response.clone().text();
+      const data = JSON.parse(raw);
+      let detail = data?.detail;
+
+      if (typeof detail === 'string') {
+        try {
+          const nested = JSON.parse(detail);
+          detail = nested?.error?.message || nested?.message || detail;
+        } catch (_) {}
+      }
+
+      const combined = [data?.error, detail]
+        .filter(Boolean)
+        .map(String)
+        .filter((value, index, all) => all.indexOf(value) === index)
+        .join('：');
+
+      return new Response(JSON.stringify({ ...data, error: combined || `Worker 返回 ${response.status}` }), {
+        status: response.status,
+        statusText: response.statusText,
+        headers: response.headers,
+      });
+    } catch (_) {
+      return response;
+    }
   };
 
   const grid = document.querySelector('#realtimeCloudSettings .settings-grid');
