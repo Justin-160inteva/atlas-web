@@ -10,10 +10,10 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <title>COD11 连续实时翻译器 V9</title>
+  <title>COD11 实时翻译器 V10</title>
   <link rel="apple-touch-icon" href="./icon.svg" />
-  <link rel="manifest" href="./manifest.webmanifest?v=9" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="manifest" href="./manifest.webmanifest?v=10" />
+  <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 <body>
   <main id="app">
@@ -21,8 +21,8 @@
       <video id="camera" playsinline muted></video>
       <canvas id="frameCanvas" hidden></canvas>
       <div id="emptyState" class="empty-state">
-        <h1>COD11 连续实时翻译器 V9</h1>
-        <p>上一帧识别完成后立即处理下一帧，不再按固定时间间隔抽查。</p>
+        <h1>COD11 实时翻译器 V10</h1>
+        <p>支持一键放大，只保留拍摄画面和中文翻译。</p>
         <button id="startCameraBtn" class="primary">开启后置摄像头</button>
       </div>
 
@@ -36,7 +36,7 @@
 
       <div class="top-bar">
         <span id="statusDot" class="status-dot"></span>
-        <span id="statusText">未启动 · V9连续模式</span>
+        <span id="statusText">未启动 · V10</span>
         <span id="fpsText" class="muted"></span>
       </div>
       <button id="quickToggleBtn" class="quick-toggle" hidden>开始翻译</button>
@@ -46,7 +46,7 @@
         <div class="full-line-label">确认后的英文字幕</div>
         <div id="englishText" class="english"></div>
         <div id="chineseText" class="chinese"></div>
-        <div id="matchMeta" class="match-meta">V9连续模式：无固定扫描等待；字典直出，未命中立即翻译</div>
+        <div id="matchMeta" class="match-meta">字典优先确认，未命中时实时翻译</div>
       </div>
     </section>
 
@@ -101,8 +101,8 @@
           <label class="checkbox"><input id="fragmentMode" type="checkbox" checked /> 片段命中完整台词</label>
           <label class="checkbox"><input id="contextMode" type="checkbox" checked /> 根据前后台词顺序消除歧义</label>
         </div>
-        <p id="libraryInfo" class="hint">已内置第6关中英台词 39 条。字典用于快速确认；未命中时直接进入实时翻译。</p>
-        <p class="hint">上方显示“V9连续模式”才是新版本。界面中的“总延迟”表示从取帧到结果出现的实际耗时。</p>
+        <p id="libraryInfo" class="hint">已内置第6关中英台词 39 条。字典用于快速确认；未命中时进入实时翻译。</p>
+        <p class="hint">开启摄像头后点击“放大翻译画面”，界面只保留拍摄画面、中文翻译和退出按钮。</p>
       </details>
 
       <details>
@@ -127,18 +127,19 @@
         <ol id="historyList" class="history-list"></ol>
       </details>
 
-      <div class="privacy-note">视频画面仅在本机浏览器处理。字典未命中时，只发送已经通过英文结构过滤的字幕文本进行翻译。</div>
+      <div class="privacy-note">放大模式只改变显示界面。摄像头画面处理和云端字幕识别的隐私说明会在接入实时视觉后单独列出。</div>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-  <script src="app.js?v=9"></script>
-  <script src="chapter6-library.js?v=9"></script>
-  <script src="recognizer-v3.js?v=9"></script>
-  <script src="precision-v4.js?v=9"></script>
-  <script src="garbage-filter-v6.js?v=9"></script>
-  <script src="strict-display-v7.js?v=9"></script>
-  <script src="hybrid-v8.js?v=9"></script>
-  <script src="continuous-v9.js?v=9"></script>
+  <script src="app.js?v=10"></script>
+  <script src="chapter6-library.js?v=10"></script>
+  <script src="recognizer-v3.js?v=10"></script>
+  <script src="precision-v4.js?v=10"></script>
+  <script src="garbage-filter-v6.js?v=10"></script>
+  <script src="strict-display-v7.js?v=10"></script>
+  <script src="hybrid-v8.js?v=10"></script>
+  <script src="continuous-v9.js?v=10"></script>
+  <script src="focus-mode-v10.js?v=10"></script>
 </body>
 </html>
