@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cod11-realtime",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-01",
+  "workers_dev": true,
+  "vars": {
+    "REALTIME_MODEL": "gpt-realtime"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
