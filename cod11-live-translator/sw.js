@@ -1,4 +1,4 @@
-const CACHE = 'cod11-realtime-vision-v12b';
+const CACHE = 'cod11-realtime-vision-v12-1';
 const CORE = [
   './', './index.html', './styles.css', './app.js', './chapter6-library.js',
   './focus-mode-v10.js', './realtime-audio-sdp-v12.js', './cloud-realtime-v11.js',
