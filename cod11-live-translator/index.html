@@ -10,10 +10,10 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <title>COD11 实时翻译器 V10</title>
+  <title>COD11 云端实时视觉翻译器 V11</title>
   <link rel="apple-touch-icon" href="./icon.svg" />
-  <link rel="manifest" href="./manifest.webmanifest?v=10" />
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="manifest" href="./manifest.webmanifest?v=11" />
+  <link rel="stylesheet" href="styles.css?v=11" />
 </head>
 <body>
   <main id="app">
@@ -21,13 +21,13 @@
       <video id="camera" playsinline muted></video>
       <canvas id="frameCanvas" hidden></canvas>
       <div id="emptyState" class="empty-state">
-        <h1>COD11 实时翻译器 V10</h1>
-        <p>支持一键放大，只保留拍摄画面和中文翻译。</p>
+        <h1>COD11 云端实时视觉翻译器 V11</h1>
+        <p>绿色框内的视频字幕通过 WebRTC 进入云端视觉，字典只负责确认和纠错。</p>
         <button id="startCameraBtn" class="primary">开启后置摄像头</button>
       </div>
 
       <div id="cropBox" class="crop-box" aria-label="字幕识别区域">
-        <span class="crop-label">只识别框内字幕</span>
+        <span class="crop-label">只发送框内字幕</span>
         <i class="handle nw" data-handle="nw"></i>
         <i class="handle ne" data-handle="ne"></i>
         <i class="handle sw" data-handle="sw"></i>
@@ -36,24 +36,24 @@
 
       <div class="top-bar">
         <span id="statusDot" class="status-dot"></span>
-        <span id="statusText">未启动 · V10</span>
+        <span id="statusText">未启动 · V11云端实时视觉</span>
         <span id="fpsText" class="muted"></span>
       </div>
-      <button id="quickToggleBtn" class="quick-toggle" hidden>开始翻译</button>
+      <button id="quickToggleBtn" class="quick-toggle" hidden>开始实时翻译</button>
 
       <div class="translation-panel">
-        <div id="detectedText" class="detected">等待英文字幕进入识别框……</div>
-        <div class="full-line-label">确认后的英文字幕</div>
+        <div id="detectedText" class="detected">等待云端实时视觉连接……</div>
+        <div class="full-line-label">识别到的英文字幕</div>
         <div id="englishText" class="english"></div>
         <div id="chineseText" class="chinese"></div>
-        <div id="matchMeta" class="match-meta">字典优先确认，未命中时实时翻译</div>
+        <div id="matchMeta" class="match-meta">V11：WebRTC实时视觉主识别，本地字典确认</div>
       </div>
     </section>
 
     <section class="controls">
       <div class="control-row main-actions">
-        <button id="recognizeBtn" class="primary" disabled>开始实时翻译</button>
-        <button id="pauseBtn" disabled>暂停</button>
+        <button id="recognizeBtn" class="primary" disabled>连接并开始实时翻译</button>
+        <button id="pauseBtn" disabled>暂停实时翻译</button>
         <button id="speakAgainBtn" disabled>重读中文</button>
       </div>
 
@@ -62,7 +62,7 @@
         <div class="settings-grid">
           <label>识别调度
             <select id="scanInterval" disabled>
-              <option value="0" selected>连续流水线（无额外等待）</option>
+              <option selected>由摄像头真实视频帧驱动</option>
             </select>
           </label>
           <label>中文语速
@@ -71,8 +71,8 @@
           </label>
           <label class="checkbox"><input id="autoSpeak" type="checkbox" checked /> 自动朗读中文</label>
           <label class="checkbox"><input id="finishBeforeNext" type="checkbox" /> 新字幕出现时立即播报，不等待上一句</label>
-          <label class="checkbox"><input id="cloudFallback" type="checkbox" checked /> 字典未命中时立即实时翻译</label>
-          <label class="checkbox"><input id="highContrast" type="checkbox" checked /> 字幕增强</label>
+          <label class="checkbox"><input id="cloudFallback" type="checkbox" checked disabled /> 云端视觉直接识别并翻译，字典用于确认</label>
+          <label class="checkbox"><input id="highContrast" type="checkbox" checked /> 字幕画面增强</label>
           <label class="checkbox"><input id="keepAwake" type="checkbox" checked /> 翻译时保持屏幕常亮</label>
         </div>
       </details>
@@ -101,8 +101,8 @@
           <label class="checkbox"><input id="fragmentMode" type="checkbox" checked /> 片段命中完整台词</label>
           <label class="checkbox"><input id="contextMode" type="checkbox" checked /> 根据前后台词顺序消除歧义</label>
         </div>
-        <p id="libraryInfo" class="hint">已内置第6关中英台词 39 条。字典用于快速确认；未命中时进入实时翻译。</p>
-        <p class="hint">开启摄像头后点击“放大翻译画面”，界面只保留拍摄画面、中文翻译和退出按钮。</p>
+        <p id="libraryInfo" class="hint">字典仅用于确认、补全和专有名词纠错；未收录字幕仍由云端视觉实时翻译。</p>
+        <p class="hint">字典确认会替换模型结果；没有命中字典时保留云端视觉识别和翻译。</p>
       </details>
 
       <details>
@@ -112,12 +112,12 @@
           <button id="switchCameraBtn" disabled>切换摄像头</button>
           <button id="torchBtn" disabled>手电筒</button>
         </div>
-        <p class="hint">绿色框必须只覆盖游戏英文对话字幕，并让字幕尽量占满框的高度。</p>
+        <p class="hint">绿色框必须只覆盖游戏英文对话字幕。云端只会收到框内裁切后的低分辨率字幕画面。</p>
       </details>
 
       <details id="installGuide">
         <summary>安装到 iPhone / iPad 主屏幕</summary>
-        <p class="hint">必须用 Safari 打开本网站，然后点“分享”→“添加到主屏幕”→“添加”。</p>
+        <p class="hint">使用 Safari 打开网站，然后点“分享”→“添加到主屏幕”→“添加”。</p>
         <p id="installStatus" class="install-status">正在检查安装状态……</p>
       </details>
 
@@ -127,19 +127,13 @@
         <ol id="historyList" class="history-list"></ol>
       </details>
 
-      <div class="privacy-note">放大模式只改变显示界面。摄像头画面处理和云端字幕识别的隐私说明会在接入实时视觉后单独列出。</div>
+      <div class="privacy-note">只上传绿色框中的字幕裁切画面，不上传完整摄像头画面。长期 API 密钥仅保存在云端 Worker。</div>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-  <script src="app.js?v=10"></script>
-  <script src="chapter6-library.js?v=10"></script>
-  <script src="recognizer-v3.js?v=10"></script>
-  <script src="precision-v4.js?v=10"></script>
-  <script src="garbage-filter-v6.js?v=10"></script>
-  <script src="strict-display-v7.js?v=10"></script>
-  <script src="hybrid-v8.js?v=10"></script>
-  <script src="continuous-v9.js?v=10"></script>
-  <script src="focus-mode-v10.js?v=10"></script>
+  <script src="app.js?v=11"></script>
+  <script src="chapter6-library.js?v=11"></script>
+  <script src="focus-mode-v10.js?v=11"></script>
+  <script src="cloud-realtime-v11.js?v=11"></script>
 </body>
 </html>
