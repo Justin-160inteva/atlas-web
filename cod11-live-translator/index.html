@@ -10,10 +10,10 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <title>COD11 云端实时视觉翻译器 V12.1</title>
+  <title>COD11 免费本地字幕翻译器 V13.0</title>
   <link rel="apple-touch-icon" href="./icon.svg" />
-  <link rel="manifest" href="./manifest.webmanifest?v=121" />
-  <link rel="stylesheet" href="styles.css?v=121" />
+  <link rel="manifest" href="./manifest.webmanifest?v=130" />
+  <link rel="stylesheet" href="styles.css?v=130" />
 </head>
 <body>
   <main id="app">
@@ -21,13 +21,13 @@
       <video id="camera" playsinline muted></video>
       <canvas id="frameCanvas" hidden></canvas>
       <div id="emptyState" class="empty-state">
-        <h1>COD11 云端实时视觉翻译器 V12.1</h1>
-        <p>绿色框内的视频字幕通过 WebRTC 进入云端视觉，字典只负责确认和纠错。</p>
+        <h1>COD11 免费本地字幕翻译器 V13.0</h1>
+        <p>摄像头画面在设备本地识别，第 6 关字幕字典负责补全和中文朗读，不调用付费 API。</p>
         <button id="startCameraBtn" class="primary">开启后置摄像头</button>
       </div>
 
       <div id="cropBox" class="crop-box" aria-label="字幕识别区域">
-        <span class="crop-label">只发送框内字幕</span>
+        <span class="crop-label">只识别框内字幕</span>
         <i class="handle nw" data-handle="nw"></i>
         <i class="handle ne" data-handle="ne"></i>
         <i class="handle sw" data-handle="sw"></i>
@@ -36,24 +36,24 @@
 
       <div class="top-bar">
         <span id="statusDot" class="status-dot"></span>
-        <span id="statusText">未启动 · V12.1云端实时视觉</span>
+        <span id="statusText">未启动 · V13.0免费本地识别</span>
         <span id="fpsText" class="muted"></span>
       </div>
-      <button id="quickToggleBtn" class="quick-toggle" hidden>开始实时翻译</button>
+      <button id="quickToggleBtn" class="quick-toggle" hidden>开始本地翻译</button>
 
       <div class="translation-panel">
-        <div id="detectedText" class="detected">等待云端实时视觉连接……</div>
+        <div id="detectedText" class="detected">等待开启摄像头……</div>
         <div class="full-line-label">识别到的英文字幕</div>
         <div id="englishText" class="english"></div>
         <div id="chineseText" class="chinese"></div>
-        <div id="matchMeta" class="match-meta">V12.1：WebRTC实时视觉主识别，本地字典确认</div>
+        <div id="matchMeta" class="match-meta">V13.0：本地 OCR + 字幕字典，不产生 API 费用</div>
       </div>
     </section>
 
     <section class="controls">
       <div class="control-row main-actions">
-        <button id="recognizeBtn" class="primary" disabled>连接并开始实时翻译</button>
-        <button id="pauseBtn" disabled>暂停实时翻译</button>
+        <button id="recognizeBtn" class="primary" disabled>开始免费本地翻译</button>
+        <button id="pauseBtn" disabled>暂停本地翻译</button>
         <button id="speakAgainBtn" disabled>重读中文</button>
       </div>
 
@@ -61,8 +61,11 @@
         <summary>速度与朗读</summary>
         <div class="settings-grid">
           <label>识别调度
-            <select id="scanInterval" disabled>
-              <option selected>由摄像头真实视频帧驱动</option>
+            <select id="scanInterval">
+              <option value="350">0.35 秒（最快）</option>
+              <option value="500" selected>0.5 秒（推荐）</option>
+              <option value="750">0.75 秒</option>
+              <option value="1000">1 秒（省电）</option>
             </select>
           </label>
           <label>中文语速
@@ -71,7 +74,7 @@
           </label>
           <label class="checkbox"><input id="autoSpeak" type="checkbox" checked /> 自动朗读中文</label>
           <label class="checkbox"><input id="finishBeforeNext" type="checkbox" /> 新字幕出现时立即播报，不等待上一句</label>
-          <label class="checkbox"><input id="cloudFallback" type="checkbox" checked disabled /> 云端视觉直接识别并翻译，字典用于确认</label>
+          <label class="checkbox"><input id="cloudFallback" type="checkbox" /> 未命中字典时尝试免费联网翻译</label>
           <label class="checkbox"><input id="highContrast" type="checkbox" checked /> 字幕画面增强</label>
           <label class="checkbox"><input id="keepAwake" type="checkbox" checked /> 翻译时保持屏幕常亮</label>
         </div>
@@ -101,8 +104,8 @@
           <label class="checkbox"><input id="fragmentMode" type="checkbox" checked /> 片段命中完整台词</label>
           <label class="checkbox"><input id="contextMode" type="checkbox" checked /> 根据前后台词顺序消除歧义</label>
         </div>
-        <p id="libraryInfo" class="hint">字典仅用于确认、补全和专有名词纠错；未收录字幕仍由云端视觉实时翻译。</p>
-        <p class="hint">字典确认会替换模型结果；没有命中字典时保留云端视觉识别和翻译。</p>
+        <p id="libraryInfo" class="hint">第 6 关字幕库会在本地匹配完整台词和中文，不联网、不收费。</p>
+        <p class="hint">未收录字幕可以开启“免费联网翻译”，但准确度和速度可能低于字典匹配。</p>
       </details>
 
       <details>
@@ -112,7 +115,7 @@
           <button id="switchCameraBtn" disabled>切换摄像头</button>
           <button id="torchBtn" disabled>手电筒</button>
         </div>
-        <p class="hint">绿色框必须只覆盖游戏英文对话字幕。云端只会收到框内裁切后的低分辨率字幕画面。</p>
+        <p class="hint">绿色框必须只覆盖游戏英文对话字幕。本地模式不会上传摄像头画面。</p>
       </details>
 
       <details id="installGuide">
@@ -127,15 +130,17 @@
         <ol id="historyList" class="history-list"></ol>
       </details>
 
-      <div class="privacy-note">只上传绿色框中的字幕裁切画面，不上传完整摄像头画面。长期 API 密钥仅保存在云端 Worker。</div>
+      <div class="privacy-note">免费本地模式只在设备上处理绿色框中的字幕画面；只有主动切换云端增强模式时才会发送裁切画面。</div>
     </section>
   </main>
 
-  <script src="app.js?v=121"></script>
-  <script src="chapter6-library.js?v=121"></script>
-  <script src="focus-mode-v10.js?v=121"></script>
-  <script src="realtime-audio-sdp-v12.js?v=121"></script>
-  <script src="cloud-realtime-v11.js?v=121"></script>
-  <script src="cloud-access-v11.js?v=121"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="app.js?v=130"></script>
+  <script src="chapter6-library.js?v=130"></script>
+  <script src="focus-mode-v10.js?v=130"></script>
+  <script src="realtime-audio-sdp-v12.js?v=130"></script>
+  <script src="cloud-realtime-v11.js?v=130"></script>
+  <script src="cloud-access-v11.js?v=130"></script>
+  <script src="free-local-mode-v13.js?v=130"></script>
 </body>
 </html>
