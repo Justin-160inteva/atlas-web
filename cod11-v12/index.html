@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#0b0f14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="COD11翻译 V12" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <title>COD11 云端实时视觉翻译器 V12.1</title>
+  <link rel="apple-touch-icon" href="../cod11-live-translator/icon.svg?v=1211" />
+  <link rel="manifest" href="../cod11-live-translator/manifest.webmanifest?v=1211" />
+  <link rel="stylesheet" href="../cod11-live-translator/styles.css?v=1211" />
+</head>
+<body>
+  <main id="app">
+    <section class="camera-stage" id="cameraStage">
+      <video id="camera" playsinline muted></video>
+      <canvas id="frameCanvas" hidden></canvas>
+      <div id="emptyState" class="empty-state">
+        <h1>COD11 云端实时视觉翻译器 V12.1</h1>
+        <p>绿色框内的视频字幕通过 WebRTC 进入云端视觉，字典只负责确认和纠错。</p>
+        <button id="startCameraBtn" class="primary">开启后置摄像头</button>
+      </div>
+
+      <div id="cropBox" class="crop-box" aria-label="字幕识别区域">
+        <span class="crop-label">只发送框内字幕</span>
+        <i class="handle nw" data-handle="nw"></i>
+        <i class="handle ne" data-handle="ne"></i>
+        <i class="handle sw" data-handle="sw"></i>
+        <i class="handle se" data-handle="se"></i>
+      </div>
+
+      <div class="top-bar">
+        <span id="statusDot" class="status-dot"></span>
+        <span id="statusText">未启动 · V12.1云端实时视觉</span>
+        <span id="fpsText" class="muted"></span>
+      </div>
+      <button id="quickToggleBtn" class="quick-toggle" hidden>开始实时翻译</button>
+
+      <div class="translation-panel">
+        <div id="detectedText" class="detected">等待云端实时视觉连接……</div>
+        <div class="full-line-label">识别到的英文字幕</div>
+        <div id="englishText" class="english"></div>
+        <div id="chineseText" class="chinese"></div>
+        <div id="matchMeta" class="match-meta">V12.1：WebRTC实时视觉主识别，本地字典确认</div>
+      </div>
+    </section>
+
+    <section class="controls">
+      <div class="control-row main-actions">
+        <button id="recognizeBtn" class="primary" disabled>连接并开始实时翻译</button>
+        <button id="pauseBtn" disabled>暂停实时翻译</button>
+        <button id="speakAgainBtn" disabled>重读中文</button>
+      </div>
+
+      <details open>
+        <summary>速度与朗读</summary>
+        <div class="settings-grid">
+          <label>识别调度
+            <select id="scanInterval" disabled><option selected>由摄像头真实视频帧驱动</option></select>
+          </label>
+          <label>中文语速
+            <input id="speechRate" type="range" min="0.75" max="1.8" step="0.05" value="1.22" />
+            <output id="speechRateValue">1.22×</output>
+          </label>
+          <label class="checkbox"><input id="autoSpeak" type="checkbox" checked /> 自动朗读中文</label>
+          <label class="checkbox"><input id="finishBeforeNext" type="checkbox" /> 新字幕出现时立即播报，不等待上一句</label>
+          <label class="checkbox"><input id="cloudFallback" type="checkbox" checked disabled /> 云端视觉直接识别并翻译，字典用于确认</label>
+          <label class="checkbox"><input id="highContrast" type="checkbox" checked /> 字幕画面增强</label>
+          <label class="checkbox"><input id="keepAwake" type="checkbox" checked /> 翻译时保持屏幕常亮</label>
+        </div>
+      </details>
+
+      <details open>
+        <summary>字幕库与章节</summary>
+        <div class="library-actions">
+          <label class="file-button">导入字幕库<input id="libraryFile" type="file" accept=".json,.csv,.srt,.vtt,text/plain" /></label>
+          <button id="exportBtn">导出当前字幕库</button>
+          <button id="clearLibraryBtn" class="danger">清空字幕库</button>
+        </div>
+        <div class="settings-grid">
+          <label>当前章节<select id="chapterSelect"><option value="all">全部章节</option></select></label>
+          <label>完整台词命中置信度
+            <input id="matchThreshold" type="range" min="0.45" max="0.95" step="0.01" value="0.64" />
+            <output id="matchThresholdValue">64%</output>
+          </label>
+          <label>最少命中关键词
+            <input id="minKeywords" type="range" min="1" max="4" step="1" value="2" />
+            <output id="minKeywordsValue">2 个</output>
+          </label>
+          <label class="checkbox"><input id="fragmentMode" type="checkbox" checked /> 片段命中完整台词</label>
+          <label class="checkbox"><input id="contextMode" type="checkbox" checked /> 根据前后台词顺序消除歧义</label>
+        </div>
+        <p id="libraryInfo" class="hint">字典仅用于确认、补全和专有名词纠错；未收录字幕仍由云端视觉实时翻译。</p>
+        <p class="hint">字典确认会替换模型结果；没有命中字典时保留云端视觉识别和翻译。</p>
+      </details>
+
+      <details>
+        <summary>识别框与画面</summary>
+        <div class="control-row">
+          <button id="resetCropBtn">恢复底部字幕框</button>
+          <button id="switchCameraBtn" disabled>切换摄像头</button>
+          <button id="torchBtn" disabled>手电筒</button>
+        </div>
+        <p class="hint">绿色框必须只覆盖游戏英文对话字幕。云端只会收到框内裁切后的低分辨率字幕画面。</p>
+      </details>
+
+      <details id="installGuide">
+        <summary>安装到 iPhone / iPad 主屏幕</summary>
+        <p class="hint">使用 Safari 打开网站，然后点“分享”→“添加到主屏幕”→“添加”。</p>
+        <p id="installStatus" class="install-status">正在检查安装状态……</p>
+      </details>
+
+      <details>
+        <summary>识别记录</summary>
+        <div class="control-row"><button id="clearHistoryBtn">清空记录</button></div>
+        <ol id="historyList" class="history-list"></ol>
+      </details>
+
+      <div class="privacy-note">只上传绿色框中的字幕裁切画面，不上传完整摄像头画面。长期 API 密钥仅保存在云端 Worker。</div>
+    </section>
+  </main>
+
+  <script>
+    // This path is intentionally outside the legacy /cod11-live-translator/ service-worker scope.
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        registrations.forEach(registration => {
+          if (registration.scope.includes('/cod11-live-translator/')) registration.unregister();
+        });
+      }).catch(() => {});
+    }
+  </script>
+  <script src="../cod11-live-translator/app.js?v=1211"></script>
+  <script src="../cod11-live-translator/chapter6-library.js?v=1211"></script>
+  <script src="../cod11-live-translator/focus-mode-v10.js?v=1211"></script>
+  <script src="../cod11-live-translator/realtime-audio-sdp-v12.js?v=1211"></script>
+  <script src="../cod11-live-translator/cloud-realtime-v11.js?v=1211"></script>
+  <script src="../cod11-live-translator/cloud-access-v11.js?v=1211"></script>
+</body>
+</html>
