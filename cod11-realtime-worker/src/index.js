@@ -47,6 +47,16 @@ function staticContentType(path) {
   return 'application/octet-stream';
 }
 
+function appHeaders(relative) {
+  return {
+    'Content-Type': staticContentType(relative),
+    'Cache-Control': 'no-store, no-cache, must-revalidate',
+    Pragma: 'no-cache',
+    Expires: '0',
+    'X-COD11-App-Version': '12.1-worker-hosted-ui-patch',
+  };
+}
+
 async function serveApp(request, url) {
   if (url.pathname === '/app') {
     const target = new URL('/app/', url.origin);
@@ -81,15 +91,18 @@ async function serveApp(request, url) {
     return new Response('App asset not found', { status: upstream.status === 404 ? 404 : 502 });
   }
 
+  if (relative === 'cloud-realtime-v11.js') {
+    const source = await upstream.text();
+    const patched = source
+      .replaceAll('COD11 云端实时视觉翻译器 V11', 'COD11 云端实时视觉翻译器 V12.1')
+      .replaceAll('未启动 · V11云端实时视觉', '未启动 · V12.1云端实时视觉')
+      .replaceAll('V11：WebRTC实时视觉主识别，本地字典确认', 'V12.1：WebRTC实时视觉主识别，本地字典确认');
+    return new Response(patched, { status: 200, headers: appHeaders(relative) });
+  }
+
   return new Response(upstream.body, {
     status: 200,
-    headers: {
-      'Content-Type': staticContentType(relative),
-      'Cache-Control': 'no-store, no-cache, must-revalidate',
-      Pragma: 'no-cache',
-      Expires: '0',
-      'X-COD11-App-Version': '12.1-worker-hosted',
-    },
+    headers: appHeaders(relative),
   });
 }
 
@@ -114,7 +127,7 @@ export default {
           ok: true,
           service: 'cod11-realtime',
           model: env.REALTIME_MODEL || 'gpt-realtime',
-          revision: 'worker-hosted-app-v12.1',
+          revision: 'worker-hosted-app-v12.1-ui-patch',
           app: `${url.origin}/app/`,
         },
         200,
