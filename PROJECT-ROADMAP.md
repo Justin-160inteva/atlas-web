@@ -6,7 +6,7 @@ Latest full audit: **2026-08-15 — regression-triggered**
 ## Operating rules
 
 - User-requested product behaviour has priority over arbitrary test-count targets.
-- Validation is risk-based: low-risk documentation/rules about 40–100 targeted checks; ordinary feature changes about 80–180 relevant checks; scheduler, persistence, queue schema, cache, deployment and map-core changes about 180–300 relevant checks; major/minor releases, scheduled full audits and migrations may use complete relevant matrices up to about 500 checks per gate.
+- Validation is risk-based and preserves hard floors for relevant matrices: quick changes use at least 200 checks, standard UI/logic/data changes use at least 300, and high-risk scheduler, persistence, queue schema, cache, deployment and map-core changes use 500. Documentation-only changes retain the repository baseline checks without manufacturing repeated scenarios.
 - Every release must review watchdog speed, polling, duplicate scheduling, path-scoped CI, repeated checks and total validation time without weakening quality floors.
 - Regular full audits occur every three patch releases. Regression-triggered audits do not advance the regular counter; the next scheduled audit remains **Alpha 0.9.4.11**.
 - A task is complete only after implementation, automated validation and, where applicable, separate public-deployment and physical-device verification.
@@ -60,44 +60,48 @@ Latest full audit: **2026-08-15 — regression-triggered**
 - [x] Dedicated Alpha 0.9.4.8 audit executable.
 - [x] Regression-triggered audits on 2026-07-22, 2026-07-26, 2026-07-28 and 2026-08-15.
 - [x] Latest report: `data/audits/full-audit-0948-regression-20260815.json`.
-- [ ] Synchronize release/cache identity across `release-manifest.json`, `atlas-bootstrap.js` and `sw.js`.
-- [ ] Restore one authoritative scan batch identity.
-- [ ] Restore bounded recovery safety policy.
-- [ ] Restore strict earliest-unresolved queue ownership.
-- [ ] Regenerate current scan-system health evidence.
-- [ ] Prove dynamic validation budgets and path-scoped CI on `main`.
+- [x] Draft PR #146 synchronizes release/cache identity across `release-manifest.json`, `atlas-bootstrap.js` and `sw.js`.
+- [x] Draft PR #146 restores one terminal P80 batch identity and bounded recovery safety.
+- [x] Draft PR #146 protects the terminal queue from catalog regeneration and projects catalog state from `analysis-index.json`.
+- [x] Draft PR #146 records 35/35 current scan-system health checks.
+- [x] Draft PR #146 implements path-scoped validation with 200/300/500 relevant-matrix floors.
+- [ ] Merge PR #146 into `main`; this requires explicit user authorization after current checks pass.
+- [ ] Prove the merged policy and one complete heartbeat cycle on `main`.
 - [ ] Public GitHub Pages verification.
 - [ ] Physical iPad Safari and desktop verification.
 
-## Critical regressions confirmed on 2026-08-15
+## Main regressions and draft-PR repair status on 2026-08-15
 
-### 1. Release and service-worker cache namespace drift persists
+### 1. Release and service-worker cache namespace drift
 
-- `release-manifest.json`: `atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1`
-- `atlas-bootstrap.js`: `atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1`
-- `sw.js`: `atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1`
+- Draft PR #146 aligns `release-manifest.json`, `atlas-bootstrap.js` and `sw.js` on `atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1`.
+- This remains a branch-only repair until #146 is merged and deployed.
 
-Release synchronisation, service-worker upgrade simulation, cache invalidation and conflict detection cannot be treated as verified until all release owners use one namespace.
+Release synchronisation, service-worker upgrade simulation, cache invalidation and conflict detection cannot be treated as production-verified until the same commit reaches `main` and Pages.
 
-### 2. Batch authority and queue scope are freshly inconsistent
+### 2. Batch authority and queue scope
 
-The active scan manifest still declares batch `eleven-production-p080-v1`, `maximumQueueItems=1` and `processingOrder=strict-p080-only`. The status file also reports P80 complete. However, the durable queue was recreated on **2026-08-14** as `eleven-ac-shadows-pilot-v2` with **P20, P21 and P22 pending** in the 山城 region.
+Draft PR #146 aligns manifest, queue, status, trigger and supervisor on terminal batch `eleven-production-p080-v1`: one P80 item, imported, complete, `maximumQueueItems=1`, and `processingOrder=strict-p080-only`. Catalog regeneration preserves this terminal authority.
 
-This is direct evidence that manifest, queue and status do not represent one authoritative batch identity or scope. The accepted single-authority and strict-order guarantees are therefore not currently proven.
+`main` still runs the pre-fix state and its scheduled heartbeat continues to fail. The accepted single-authority guarantee is therefore implemented on the draft branch but not production-proven.
 
-### 3. Recovery safety regression persists
+### 3. Recovery safety
 
-The active manifest still allows:
-- `maxAttemptsPerItem=20`;
-- `retryTechnicalFailuresUntilResolved=true`;
-- `blockUnknownOrIdentityFailures=false`;
-- `neverModifySourceCodeAutomatically=false`.
+Draft PR #146 enforces:
+- `maxAttemptsPerItem=3`;
+- `retryTechnicalFailuresUntilResolved=false`;
+- `blockUnknownOrIdentityFailures=true`;
+- `neverModifySourceCodeAutomatically=true`.
 
-This contradicts accepted behaviour: known transient failures must remain bounded; unknown/identity/authorization/privacy failures must stop safely; executable source must never be modified automatically by recovery logic.
+These controls pass the branch audit but remain absent from production until #146 is merged.
 
-### 4. Watchdog/test speed policy is documented but not landed on main
+### 4. Risk-budgeted validation
 
-The primary Atlas CI still unconditionally runs multiple fixed 500-scenario matrices, the full project audit and browser/Playwright gates. Path-scoped dynamic test budgets are not proven active on `main`, so unrelated runtime-progress or cross-project changes can still trigger expensive Atlas-wide validation.
+Draft PR #146 selects only relevant matrices while preserving minimum relevant-check floors of 200 for quick, 300 for standard and 500 for high-risk/full changes. High-risk paths select the full tier. Documentation-only changes retain repository baseline checks instead of meaningless repeated scenarios. This is not yet active on `main`.
+
+### 5. Catalog analysis projection
+
+The branch now derives all 80 catalog item states from `data/analysis-index.json` by `externalSourceId`, producing 80 imported, 0 remaining. The scheduled discovery integrity gate verifies the same projection, preventing future discovery runs from resetting the catalog to 0/80. This repair is not yet active on `main`.
 
 ## Conversation-history requirements rechecked
 
@@ -124,9 +128,9 @@ Priority S:
 - Synchronize cache namespace across release manifest, bootstrap and service worker.
 - Restore one batch identity across manifest, queue, status, runtime and monitor.
 - Restore strict earliest-unresolved ownership and one active task maximum.
-- Restore dictionary-driven bounded retries: safe known transport failures up to 5; unknown, identity, authorization and privacy failures capped and blocked safely.
+- Restore dictionary-driven bounded retries: safe known transport failures up to 3; unknown, identity, authorization and privacy failures blocked safely.
 - Restore `neverModifyExecutableSourceAutomatically=true` / equivalent effective policy.
-- Land risk-based test budgets and path-scoped CI; heartbeat-only and `cod11-live-translator/**` commits must not run unrelated Atlas UI, reward or full-audit matrices.
+- Land risk-based 200/300/500 test budgets and path-scoped CI; heartbeat-only and `cod11-live-translator/**` commits must not run unrelated Atlas UI, reward or full-audit matrices.
 - Regenerate current health, release-sync and cache-upgrade evidence.
 
 ### Alpha 0.9.4.10 — reviewed rewards and interaction evidence
@@ -162,6 +166,7 @@ Tasks that depend on final geometry remain queued until this gate is complete. T
 - Preserve one active scan/download at a time.
 - Never allow a later queue item to bypass the earliest unresolved item.
 - Keep manifest, queue, status, runtime and monitor on one batch identity.
+- Project catalog analysis status from `data/analysis-index.json`; discovery must not reset completed imports.
 - Keep release manifest, bootstrap and service worker on one cache namespace.
 - Never broaden creator authorisation automatically.
 - Never retain original video or frame pixels in the public repository.

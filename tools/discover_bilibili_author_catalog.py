@@ -20,6 +20,17 @@ def protected_queue(path):
     if not path.is_file(): return False
     current=load(path); authority=current.get("authority") or {}
     return bool(authority.get("protectFromCatalogRegeneration") and authority.get("terminal"))
+def project_analysis(items):
+    index=load(ROOT/"data/analysis-index.json")
+    indexed={item.get("externalSourceId"):item for item in index.get("items",[]) if item.get("externalSourceId")}
+    imported=failed=0
+    for item in items:
+        entry=indexed.get(item["id"]) or {}
+        status=entry.get("status") if entry.get("status") in {"imported","failed"} else "pending"
+        item["analysisStatus"]=status
+        if entry.get("resultPath"): item["analysisResultPath"]=entry["resultPath"]
+        imported+=status=="imported"; failed+=status=="failed"
+    return {"imported":imported,"failed":failed,"remaining":len(items)-imported,"updatedAt":index.get("updatedAt")}
 def clean(value): return re.sub(r"\s+"," ",re.sub(r"<[^>]+>","",html.unescape(str(value or "")))).strip()
 def norm(value): return re.sub(r"[^0-9a-z\u3400-\u9fff]+","",clean(value).lower())
 def get(url):
@@ -134,9 +145,10 @@ def main():
                 items.append(item_record(f"bili-eleven-acshadows-{seed['bvid']}-p{page['page']:03d}",sequence,title,seed["name"],seed["bvid"],f"https://www.bilibili.com/video/{seed['bvid']}/?p={page['page']}",page["durationSeconds"],seed["publishedAtUnix"],manifest["authorizationId"],page["page"],page["cid"],seed["title"])); sequence+=1
         else:
             items.append(item_record(f"bili-eleven-acshadows-{source['bvid']}",sequence,source["title"],seed["name"],source["bvid"],source["url"],source["durationSeconds"],source["publishedAtUnix"],manifest["authorizationId"])); sequence+=1
+    analysis=project_analysis(items)
     ordered=sorted(items,key=lambda x:(-x["priority"],-x["durationSeconds"],x["sequence"])); pilot=ordered[:max(1,int(manifest.get("pilotCount",5)))]; timestamp=now(); account_complete=api_complete or ytdlp_complete
     seed_public={key:value for key,value in seed.items() if key!="pages"}|{"pageCount":len(seed["pages"])}
-    catalog={"schemaVersion":2,"version":"1.1.0","updatedAt":timestamp,"author":seed["name"],"authorMid":seed["mid"],"platform":"哔哩哔哩","game":"刺客信条：影","authorizationId":manifest["authorizationId"],"seedVideo":seed_public,"catalogStatus":{"discoveryComplete":account_complete,"discoveryPartial":not account_complete,"accountEnumerationComplete":account_complete,"discoveredAccountVideos":len(account),"matchedGameContainers":len(matched),"multipartEpisodesDiscovered":len(seed["pages"]),"matchedScanItems":len(items),"analysisImported":0,"analysisRemaining":len(items),"analysisComplete":len(items)==0,"discoveredAt":timestamp},"futureInclusionRule":{"enabled":True,"authorMustEqual":seed["name"],"titleMustContainAny":needles,"authorizationAutomaticallyInherited":True,"catalogEntryStillRequiresTitleAndUrlVerification":True},"recommendedScanOrder":[x["id"] for x in ordered],"items":items}
+    catalog={"schemaVersion":2,"version":"1.1.0","updatedAt":timestamp,"author":seed["name"],"authorMid":seed["mid"],"platform":"哔哩哔哩","game":"刺客信条：影","authorizationId":manifest["authorizationId"],"seedVideo":seed_public,"catalogStatus":{"discoveryComplete":account_complete,"discoveryPartial":not account_complete,"accountEnumerationComplete":account_complete,"discoveredAccountVideos":len(account),"matchedGameContainers":len(matched),"multipartEpisodesDiscovered":len(seed["pages"]),"matchedScanItems":len(items),"analysisImported":analysis["imported"],"analysisFailed":analysis["failed"],"analysisRemaining":analysis["remaining"],"analysisComplete":analysis["remaining"]==0,"analysisUpdatedAt":analysis["updatedAt"],"discoveredAt":timestamp},"futureInclusionRule":{"enabled":True,"authorMustEqual":seed["name"],"titleMustContainAny":needles,"authorizationAutomaticallyInherited":True,"catalogEntryStillRequiresTitleAndUrlVerification":True},"recommendedScanOrder":[x["id"] for x in ordered],"items":items}
     queue={"schemaVersion":2,"queueId":"eleven-ac-shadows-pilot-v1","author":seed["name"],"authorizationId":manifest["authorizationId"],"createdAt":timestamp,"status":"ready" if pilot else "empty","strategy":"Start with route-heavy high-value multipart episodes before account-wide batch analysis.","items":[{"externalSourceId":x["id"],"sequence":x["sequence"],"title":x["title"],"bvid":x["bvid"],"page":x.get("page"),"cid":x.get("cid"),"url":x["url"],"scanClass":x["scanClass"],"mapUtility":x["mapUtility"],"priority":x["priority"],"durationSeconds":x["durationSeconds"],"state":"pending"} for x in pilot]}
     status={"schemaVersion":2,"runId":manifest.get("id","eleven-author-discovery-v1"),"status":"success" if items else "failed","author":seed["name"],"authorMid":seed["mid"],"authorizationId":manifest["authorizationId"],"seedBvid":seed["bvid"],"updatedAt":timestamp,"summary":{"accountEnumerationComplete":account_complete,"accountVideosDiscovered":len(account),"gameContainersMatched":len(matched),"multipartEpisodesDiscovered":len(seed["pages"]),"scanItemsMatched":len(items),"scanClassA":sum(x["scanClass"]=="A" for x in items),"scanClassB":sum(x["scanClass"]=="B" for x in items),"scanClassC":sum(x["scanClass"]=="C" for x in items),"pilotQueued":len(pilot)},"diagnostics":diagnostics[-20:],"privacy":"No video media or frame pixels were downloaded during catalog discovery."}
     queue_path=ROOT/manifest["pilotQueueOutput"]

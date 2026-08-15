@@ -1,10 +1,10 @@
 {
   "schemaVersion": 10,
-  "generatedAt": "2026-08-15T17:06:11.629447Z",
+  "generatedAt": "2026-08-15T20:16:08.511142Z",
   "status": "pass",
   "summary": {
-    "total": 31,
-    "passed": 31,
+    "total": 35,
+    "passed": 35,
     "failed": 0
   },
   "release": "0.9.4.8",
@@ -38,7 +38,7 @@
     "disposition": "documented-regression-not-retroactively-rewritten"
   },
   "validationPolicy": {
-    "revision": "2026.08.15.1",
+    "revision": "2026.08.15.2",
     "nextFullAudit": "0.9.4.11"
   },
   "checks": [
@@ -66,6 +66,21 @@
       "name": "validation_budget_order",
       "passed": true,
       "detail": "risk budgets increase monotonically"
+    },
+    {
+      "name": "validation_quick_floor",
+      "passed": true,
+      "detail": "quick relevant matrices preserve the 200-check floor"
+    },
+    {
+      "name": "validation_standard_floor",
+      "passed": true,
+      "detail": "standard relevant matrices preserve the 300-check floor"
+    },
+    {
+      "name": "validation_high_risk_full",
+      "passed": true,
+      "detail": "high-risk changes select the 500-check full tier without enabling unrelated matrices"
     },
     {
       "name": "validation_cycle",
@@ -171,6 +186,11 @@
       "name": "catalog_guard_workflow",
       "passed": true,
       "detail": "scheduled catalog job verifies authority"
+    },
+    {
+      "name": "catalog_analysis_projection",
+      "passed": true,
+      "detail": "catalog analysis state is projected from analysis-index.json"
     },
     {
       "name": "p33_p35_analyzed",

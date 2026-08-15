@@ -1,20 +1,22 @@
 {
   "schemaVersion": 1,
-  "revision": "2026.08.15.1",
+  "revision": "2026.08.15.2",
   "purpose": "Choose the smallest deterministic validation set that still covers the risk introduced by each release.",
   "principles": {
     "userRequirementsFirst": true,
     "qualityCoverageBeforeRawCheckCount": true,
     "skipUnrelatedMatrices": true,
     "recordSelectedTierEveryRelease": true,
+    "minimumRelevantChecksPreserved": true,
     "preserveAuthorizationPrivacyAndSerialSafety": true,
     "fullAuditEveryThreePatchVersions": true
   },
+  "minimumRelevantChecks": {"quick": 200, "standard": 300, "full": 500},
   "parameterizedMatrices": ["heartbeat", "serialQueue", "queueSchema"],
   "tiers": {
-    "quick": {"heartbeatChecks": 96, "serialQueueChecks": 96, "queueSchemaChecks": 80, "browserChecks": 0, "monitorAuthorityChecks": 0, "dataCenterChecks": 500, "rewardEvidenceChecks": 500, "fullAudit": false},
-    "standard": {"heartbeatChecks": 128, "serialQueueChecks": 128, "queueSchemaChecks": 96, "browserChecks": 500, "monitorAuthorityChecks": 500, "dataCenterChecks": 500, "rewardEvidenceChecks": 500, "fullAudit": false},
-    "full": {"heartbeatChecks": 500, "serialQueueChecks": 500, "queueSchemaChecks": 500, "browserChecks": 500, "monitorAuthorityChecks": 500, "dataCenterChecks": 500, "rewardEvidenceChecks": 500, "fullAudit": true}
+    "quick": {"heartbeatChecks": 200, "serialQueueChecks": 200, "queueSchemaChecks": 200, "browserChecks": 200, "monitorAuthorityChecks": 200, "dataCenterChecks": 500, "rewardEvidenceChecks": 500},
+    "standard": {"heartbeatChecks": 300, "serialQueueChecks": 300, "queueSchemaChecks": 300, "browserChecks": 500, "monitorAuthorityChecks": 500, "dataCenterChecks": 500, "rewardEvidenceChecks": 500},
+    "full": {"heartbeatChecks": 500, "serialQueueChecks": 500, "queueSchemaChecks": 500, "browserChecks": 500, "monitorAuthorityChecks": 500, "dataCenterChecks": 500, "rewardEvidenceChecks": 500}
   },
   "pathGroups": {
     "validationFramework": [".github/workflows/atlas-conflict-reasoner.yml", "tools/select_release_validation.py", "data/quality/release-validation-policy.json", "release-manifest.json"],

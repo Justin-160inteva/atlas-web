@@ -58,20 +58,21 @@ def main():
         selected["validationFramework"] = ["workflow-dispatch-or-empty-diff"]
     forced_full = os.environ.get("ATLAS_FORCE_FULL_VALIDATION", "").lower() in {"1", "true", "yes"}
     scheduled_full = release.get("version") == policy["scheduledFullAudit"].get("nextRequiredVersion")
-    full = forced_full or scheduled_full
     high_risk = bool(selected["highRisk"])
+    full_audit = forced_full or scheduled_full
+    full_tier = full_audit or high_risk
     standard = high_risk or any(selected[name] for name in ("scanCore", "monitor", "ui"))
-    tier = "full" if full else "standard" if standard else "quick"
+    tier = "full" if full_tier else "standard" if standard else "quick"
     budget = policy["tiers"][tier]
     run = {
-        "data_center": full or bool(selected["dataCenter"]),
-        "reward": full or bool(selected["rewards"]),
-        "heartbeat": full or bool(selected["scanCore"]) or bool(selected["validationFramework"]),
-        "serial": full or bool(selected["scanCore"]) or bool(selected["validationFramework"]),
-        "queue_schema": full or bool(selected["scanCore"]) or bool(selected["validationFramework"]),
-        "browser": full or bool(selected["ui"]),
-        "monitor": full or bool(selected["monitor"]),
-        "full_audit": full,
+        "data_center": full_audit or bool(selected["dataCenter"]),
+        "reward": full_audit or bool(selected["rewards"]),
+        "heartbeat": full_audit or bool(selected["scanCore"]) or bool(selected["validationFramework"]),
+        "serial": full_audit or bool(selected["scanCore"]) or bool(selected["validationFramework"]),
+        "queue_schema": full_audit or bool(selected["scanCore"]) or bool(selected["validationFramework"]),
+        "browser": full_audit or bool(selected["ui"]),
+        "monitor": full_audit or bool(selected["monitor"]),
+        "full_audit": full_audit,
     }
     run["playwright"] = run["browser"] or run["monitor"]
     outputs = {
@@ -85,6 +86,7 @@ def main():
     report = {
         "schemaVersion": 1, "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "release": release.get("version"), "policyRevision": policy.get("revision"), "tier": tier,
+        "minimumRelevantChecks": policy["minimumRelevantChecks"][tier],
         "forcedFull": forced_full, "scheduledFull": scheduled_full, "changedFiles": files,
         "matchedGroups": selected, "run": run, "budget": budget,
         "safety": {"authorizationChecksPreserved": True, "privacyChecksPreserved": True, "singleDownloadChecksPreserved": True, "unrelatedMatricesSkipped": True},

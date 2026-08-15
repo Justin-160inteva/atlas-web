@@ -77,13 +77,15 @@ for (const [profileIndex, profile] of profiles.entries()) {
       const curves=operations.filter(item=>item[0]==='curve');
       const lastCurve=curves.at(-1);
       const first=state.markers.find(cluster=>cluster.items?.[0])?.items?.[0]||null;
-      let mid=1,final=1,shrinking=1,end=1;
+      let mid=1,final=1,shrinking=1,end=1,midActive=0,shrinkingActive=0,midElapsed=0,shrinkingElapsed=0;
       if(first){
+        let startedAt=performance.now();
         state.selected=first;scheduleDraw();
-        await wait(72);mid=api.scaleFor(first.id);
+        await wait(72);mid=api.scaleFor(first.id);midActive=api.activeMotionCount();midElapsed=performance.now()-startedAt;
         await wait(160);final=api.scaleFor(first.id);
+        startedAt=performance.now();
         state.selected=null;scheduleDraw();
-        await wait(72);shrinking=api.scaleFor(first.id);
+        await wait(72);shrinking=api.scaleFor(first.id);shrinkingActive=api.activeMotionCount();shrinkingElapsed=performance.now()-startedAt;
         await wait(160);end=api.scaleFor(first.id);
       }
       const source=await fetch(`atlas-ui-fix-0931.js?v=${encodeURIComponent(version)}`,{cache:'no-store'}).then(response=>response.text());
@@ -91,7 +93,7 @@ for (const [profileIndex, profile] of profiles.entries()) {
       return {
         api:{version:api?.version,selectedScale:api?.selectedScale,duration:api?.selectionDuration,hardLimit:api?.selectionHardLimit,scaleOnly:api?.selectionUsesScaleOnly,decorations:api?.selectionDecorationLayers,tipStable:api?.tipAnchorStable,geometry:api?.geometry},
         path:{curves:curves.length,arcs:operations.filter(item=>item[0]==='arc').length,start:firstMove?.slice(-2),end:lastCurve?.slice(-2)},
-        motion:{hasMarker:Boolean(first),mid,final,shrinking,end},
+        motion:{hasMarker:Boolean(first),mid,final,shrinking,end,midActive,shrinkingActive,midElapsed,shrinkingElapsed},
         source:{noEllipse:!source.includes('ctx.ellipse('),noLegacyOuterPin:!source.includes('radius+4.2'),noLegacySelectedStroke:!source.includes("selected?'rgba(255,252,242,.92)'")},
         settings:{circles:settings?.querySelectorAll('circle').length||0,paths:settings?.querySelectorAll('path').length||0,pathLength:[...(settings?.querySelectorAll('path')||[])].reduce((sum,node)=>sum+(node.getAttribute('d')||'').length,0)}
       };
@@ -99,7 +101,7 @@ for (const [profileIndex, profile] of profiles.entries()) {
     const markerCore=markerState.api.version===manifest.version&&markerState.api.scaleOnly===true&&markerState.api.decorations===0&&markerState.api.tipStable===true&&markerState.motion.hasMarker;
     const selectedTerminal=Math.abs(markerState.motion.final-manifest.invariants.markerSelectedScale)<.025;
     const deselectedTerminal=Math.abs(markerState.motion.end-1)<.025;
-    const desktopTransition=markerState.motion.mid>1&&markerState.motion.mid<manifest.invariants.markerSelectedScale&&markerState.motion.shrinking>1&&markerState.motion.shrinking<markerState.motion.final;
+    const desktopTransition=(markerState.motion.mid>1&&markerState.motion.mid<manifest.invariants.markerSelectedScale||markerState.motion.mid===1&&markerState.motion.midActive>0||markerState.motion.midElapsed>=markerState.api.duration&&Math.abs(markerState.motion.mid-manifest.invariants.markerSelectedScale)<.025)&&(markerState.motion.shrinking>1&&markerState.motion.shrinking<markerState.motion.final||markerState.motion.shrinking===markerState.motion.final&&markerState.motion.shrinkingActive>0||markerState.motion.shrinkingElapsed>=markerState.api.duration&&Math.abs(markerState.motion.shrinking-1)<.025);
     const touchTransition=markerState.motion.mid>=1&&markerState.motion.mid<=manifest.invariants.markerSelectedScale&&markerState.motion.shrinking>=1&&markerState.motion.shrinking<=markerState.motion.final&&markerState.api.hardLimit<=222;
     const markerMotion=selectedTerminal&&deselectedTerminal&&(profile.hasTouch?touchTransition:desktopTransition);
     const markerPath=markerState.path.curves===4&&markerState.path.arcs===0&&markerState.path.start?.[0]===100&&markerState.path.start?.[1]===200&&markerState.path.end?.[0]===100&&markerState.path.end?.[1]===200&&markerState.api.geometry?.centerOffsetRadius>=.55;

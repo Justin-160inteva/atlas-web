@@ -38,6 +38,8 @@ def main():
     repair_report = read_json("data/batch-analysis/scan-autonomous-repair-report.json")
     autonomy = read_json("data/scan-autonomy-policy.json")
     validation = read_json("data/quality/release-validation-policy.json")
+    analysis_index = read_json("data/analysis-index.json")
+    eleven_catalog = read_json("data/eleven-game-world-ac-shadows-catalog.json")
     bugs = read_json("data/scan-bug-dictionary.json")
     bootstrap = read_text("atlas-bootstrap.js")
     worker = read_text("sw.js")
@@ -54,6 +56,9 @@ def main():
     check("validation_policy_owner", release.get("runtimeOwners", {}).get("releaseValidationPolicy") == "data/quality/release-validation-policy.json", "release declares validation policy")
     check("validation_tiers", set(validation.get("tiers", {})) == {"quick", "standard", "full"}, "quick, standard and full tiers exist")
     check("validation_budget_order", validation["tiers"]["quick"]["heartbeatChecks"] < validation["tiers"]["standard"]["heartbeatChecks"] < validation["tiers"]["full"]["heartbeatChecks"], "risk budgets increase monotonically")
+    check("validation_quick_floor", all(validation["tiers"]["quick"][key] >= 200 for key in ("heartbeatChecks", "serialQueueChecks", "queueSchemaChecks", "browserChecks", "monitorAuthorityChecks")), "quick relevant matrices preserve the 200-check floor")
+    check("validation_standard_floor", all(validation["tiers"]["standard"][key] >= 300 for key in ("heartbeatChecks", "serialQueueChecks", "queueSchemaChecks", "browserChecks", "monitorAuthorityChecks")), "standard relevant matrices preserve the 300-check floor")
+    check("validation_high_risk_full", "full_tier = full_audit or high_risk" in read_text("tools/select_release_validation.py"), "high-risk changes select the 500-check full tier without enabling unrelated matrices")
     check("validation_cycle", validation["scheduledFullAudit"]["lastCompletedVersion"] == release["version"] and validation["scheduledFullAudit"]["nextRequiredVersion"] == "0.9.4.11", "0.9.4.8 full audit recorded; next at 0.9.4.11")
     check("workflow_selects_risk", "select_release_validation.py" in conflict_workflow and "run_full_audit" in conflict_workflow and "run_playwright" in conflict_workflow, "CI selects matrices by changed risk")
 
@@ -86,6 +91,10 @@ def main():
 
     check("catalog_guard_code", "protected_queue" in discovery and "preserved-terminal-authority" in discovery and "protected_queue" in refiner and "preserved-terminal-authority" in refiner, "both catalog generators preserve protected terminal queues")
     check("catalog_guard_workflow", "protectFromCatalogRegeneration" in discovery_workflow and "queue['queueId']==manifest['id']==scan_status['batchId']" in discovery_workflow, "scheduled catalog job verifies authority")
+    indexed = {item.get("externalSourceId"): item for item in analysis_index.get("items", [])}
+    catalog_items = eleven_catalog.get("items", [])
+    imported = sum((indexed.get(item.get("id")) or {}).get("status") == "imported" for item in catalog_items)
+    check("catalog_analysis_projection", all(item.get("analysisStatus") == ((indexed.get(item.get("id")) or {}).get("status") if (indexed.get(item.get("id")) or {}).get("status") in {"imported", "failed"} else "pending") for item in catalog_items) and eleven_catalog["catalogStatus"]["analysisImported"] == imported and eleven_catalog["catalogStatus"]["analysisRemaining"] == len(catalog_items) - imported, "catalog analysis state is projected from analysis-index.json")
 
     triad = []
     for page in (33, 34, 35):
