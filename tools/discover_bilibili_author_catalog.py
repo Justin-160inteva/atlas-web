@@ -16,6 +16,10 @@ def load(path): return json.loads(path.read_text(encoding="utf-8"))
 def write(path,value):
     path.parent.mkdir(parents=True,exist_ok=True); tmp=path.with_suffix(path.suffix+".tmp")
     tmp.write_text(json.dumps(value,ensure_ascii=False,indent=2),encoding="utf-8"); tmp.replace(path)
+def protected_queue(path):
+    if not path.is_file(): return False
+    current=load(path); authority=current.get("authority") or {}
+    return bool(authority.get("protectFromCatalogRegeneration") and authority.get("terminal"))
 def clean(value): return re.sub(r"\s+"," ",re.sub(r"<[^>]+>","",html.unescape(str(value or "")))).strip()
 def norm(value): return re.sub(r"[^0-9a-z\u3400-\u9fff]+","",clean(value).lower())
 def get(url):
@@ -135,5 +139,11 @@ def main():
     catalog={"schemaVersion":2,"version":"1.1.0","updatedAt":timestamp,"author":seed["name"],"authorMid":seed["mid"],"platform":"哔哩哔哩","game":"刺客信条：影","authorizationId":manifest["authorizationId"],"seedVideo":seed_public,"catalogStatus":{"discoveryComplete":account_complete,"discoveryPartial":not account_complete,"accountEnumerationComplete":account_complete,"discoveredAccountVideos":len(account),"matchedGameContainers":len(matched),"multipartEpisodesDiscovered":len(seed["pages"]),"matchedScanItems":len(items),"analysisImported":0,"analysisRemaining":len(items),"analysisComplete":len(items)==0,"discoveredAt":timestamp},"futureInclusionRule":{"enabled":True,"authorMustEqual":seed["name"],"titleMustContainAny":needles,"authorizationAutomaticallyInherited":True,"catalogEntryStillRequiresTitleAndUrlVerification":True},"recommendedScanOrder":[x["id"] for x in ordered],"items":items}
     queue={"schemaVersion":2,"queueId":"eleven-ac-shadows-pilot-v1","author":seed["name"],"authorizationId":manifest["authorizationId"],"createdAt":timestamp,"status":"ready" if pilot else "empty","strategy":"Start with route-heavy high-value multipart episodes before account-wide batch analysis.","items":[{"externalSourceId":x["id"],"sequence":x["sequence"],"title":x["title"],"bvid":x["bvid"],"page":x.get("page"),"cid":x.get("cid"),"url":x["url"],"scanClass":x["scanClass"],"mapUtility":x["mapUtility"],"priority":x["priority"],"durationSeconds":x["durationSeconds"],"state":"pending"} for x in pilot]}
     status={"schemaVersion":2,"runId":manifest.get("id","eleven-author-discovery-v1"),"status":"success" if items else "failed","author":seed["name"],"authorMid":seed["mid"],"authorizationId":manifest["authorizationId"],"seedBvid":seed["bvid"],"updatedAt":timestamp,"summary":{"accountEnumerationComplete":account_complete,"accountVideosDiscovered":len(account),"gameContainersMatched":len(matched),"multipartEpisodesDiscovered":len(seed["pages"]),"scanItemsMatched":len(items),"scanClassA":sum(x["scanClass"]=="A" for x in items),"scanClassB":sum(x["scanClass"]=="B" for x in items),"scanClassC":sum(x["scanClass"]=="C" for x in items),"pilotQueued":len(pilot)},"diagnostics":diagnostics[-20:],"privacy":"No video media or frame pixels were downloaded during catalog discovery."}
-    write(ROOT/manifest["catalogOutput"],catalog); write(ROOT/manifest["pilotQueueOutput"],queue); write(ROOT/manifest["statusOutput"],status); print(json.dumps(status["summary"],ensure_ascii=False)); return 0
+    queue_path=ROOT/manifest["pilotQueueOutput"]
+    queue_protected=protected_queue(queue_path)
+    write(ROOT/manifest["catalogOutput"],catalog)
+    if not queue_protected: write(queue_path,queue)
+    status["queueDecision"]="preserved-terminal-authority" if queue_protected else "generated-discovery-pilot"
+    write(ROOT/manifest["statusOutput"],status)
+    print(json.dumps(status["summary"]|{"queueDecision":status["queueDecision"]},ensure_ascii=False)); return 0
 if __name__=="__main__": raise SystemExit(main())

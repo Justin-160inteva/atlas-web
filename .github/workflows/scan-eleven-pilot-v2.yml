@@ -10,7 +10,6 @@ permissions:
   contents: write
   actions: write
   issues: write
-  models: read
 
 concurrency:
   group: scan-eleven-regional-batch
@@ -38,7 +37,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg curl
 
-      - name: Compile active scan, recovery, and autonomous repair stack
+      - name: Compile active scan and bounded deterministic recovery stack
         run: |
           python - <<'PY'
           import json
@@ -55,10 +54,7 @@ jobs:
               'tools/p33_chunked_tail_smoke.py',
               'tools/scan_catalog_queue_v2.py',
               'tools/diagnose_and_recover_scan_v2.py',
-              'tools/scan_autonomous_repair.py',
-              'tools/autonomous_scan_repair_smoke.py',
               'tools/run_scan_with_auto_recovery.py',
-              'tools/run_scan_with_auto_recovery_v2.py',
               'tools/update_analysis_index.py',
               manifest['analyzer'],
           ]
@@ -68,7 +64,6 @@ jobs:
               py_compile.compile(str(path), doraise=True)
           print(f"compiled active analyzer {manifest['analyzer']}")
           PY
-          python tools/autonomous_scan_repair_smoke.py
 
       - name: Run source transport gates
         run: |
@@ -146,6 +141,9 @@ jobs:
           assert manifest['retention']['framePixels'] is False
           assert len({entry['id'] for entry in bugs['entries']})==len(bugs['entries'])
           assert autonomy['enabled'] is True
+          assert autonomy['execution']['allowAiSourcePatch'] is False
+          assert autonomy['execution']['retryUntilResolvedForTechnicalFailures'] is False
+          assert autonomy['mandatorySafety']['neverModifyExecutableSourceAutomatically'] is True
           assert autonomy['authorization']['confirmationRequired'] is False
           assert autonomy['mandatorySafety']['neverBroadenAuthorization'] is True
           assert autonomy['mandatorySafety']['neverRetainOriginalMedia'] is True
@@ -166,14 +164,13 @@ jobs:
           print(f'imported={imported}')
           PY
 
-      - name: Scan exactly one item with deterministic recovery and AI repair
+      - name: Scan exactly one item with bounded deterministic recovery
         id: scan
         env:
           PYTHONUNBUFFERED: '1'
           ATLAS_FORCE_HTTP11: '1'
           ATLAS_PARALLEL_RANGE_WORKERS: '4'
           PYTHONPATH: ${{ github.workspace }}/tools/p33_v14_hook
-          ATLAS_AI_REPAIR_TOKEN: ${{ github.token }}
           GITHUB_TOKEN: ${{ github.token }}
           ATLAS_PROGRESS_TOKEN: ${{ github.token }}
           ATLAS_PROGRESS_REPOSITORY: ${{ github.repository }}
@@ -184,7 +181,7 @@ jobs:
           ATLAS_PROGRESS_CONFLICT_RETRIES: '5'
         run: |
           set +e
-          python tools/run_scan_with_auto_recovery_v2.py data/batch-analysis/eleven-pilot-scan-manifest.json
+          python tools/run_scan_with_auto_recovery.py data/batch-analysis/eleven-pilot-scan-manifest.json
           code=$?
           echo "code=$code" >> "$GITHUB_OUTPUT"
           exit 0
@@ -310,15 +307,15 @@ jobs:
           print('400/400 dynamic serial integrity, autonomy safety, privacy, and cache checks passed')
           PY
 
-      - name: Persist durable state and passing autonomous source repair
+      - name: Persist durable data state
         if: always()
         id: persist
         run: |
           echo "persisted=false" >> "$GITHUB_OUTPUT"
           git rm -r --cached --ignore-unmatch tools/__pycache__ tools/p33_v14_hook/__pycache__ || true
-          TRACKED='data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/scan-autonomous-repair-report.json data/batch-analysis/eleven-pilot-scan-manifest.json data/scan-bug-dictionary.json data/scan-autonomy-policy.json tools'
+          TRACKED='data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/scan-autonomous-repair-report.json'
           git add -u -- $TRACKED
-          git add -- data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/scan-autonomous-repair-report.json data/batch-analysis/eleven-pilot-scan-manifest.json data/scan-bug-dictionary.json data/scan-autonomy-policy.json tools/*.py tools/p33_v14_hook/sitecustomize.py
+          git add -- data/analysis-results data/analysis-jobs data/analysis-index.json data/eleven-game-world-ac-shadows-catalog.json data/batch-analysis/eleven-pilot-scan-queue.json data/batch-analysis/eleven-pilot-scan-status.json data/batch-analysis/eleven-pilot-recovery-report.json data/batch-analysis/eleven-pilot-orchestration-report.json data/batch-analysis/scan-autonomous-repair-report.json
           if git diff --cached --quiet; then
             if [ "${{ steps.decision.outputs.progressed }}" = "true" ]; then
               echo 'current run reported durable progress but no tracked durable state changed' >&2

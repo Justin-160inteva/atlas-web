@@ -98,7 +98,7 @@ report = {
     "schemaVersion": 2,
     "validationTier": VALIDATION_TIER,
     "requestedChecks": REQUESTED_CHECKS,
-    "queueItems": 11,
+    "catalogFixtures": len(source_items),
     "maximumConcurrentItems": 1,
     "coverageFamilies": ["title", "identity", "analysis", "idempotent", "unknown-id-stop"],
     "totalChecks": len(results),

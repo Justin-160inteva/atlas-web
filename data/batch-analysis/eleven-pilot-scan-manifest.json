@@ -23,7 +23,7 @@
   "refreshSourceMetadata": true,
   "downloadBackoffSeconds": 20,
   "forceTranscodeFallback": true,
-  "maxAttemptsPerItem": 20,
+  "maxAttemptsPerItem": 3,
   "staleRunningAfterSeconds": 7200,
   "runtimeHeartbeat": {
     "enabled": true,
@@ -93,14 +93,14 @@
   },
   "recoveryPolicy": {
     "enabled": true,
-    "maxAttemptsPerItem": 20,
+    "maxAttemptsPerItem": 3,
     "automaticallyRetryKnownTransientFailures": true,
-    "retryTechnicalFailuresUntilResolved": true,
-    "fastCooldownCapSeconds": 60,
+    "retryTechnicalFailuresUntilResolved": false,
+    "fastCooldownCapSeconds": 360,
     "minimumSafeCooldownSeconds": 5,
-    "blockUnknownOrIdentityFailures": false,
+    "blockUnknownOrIdentityFailures": true,
     "protectedFailureCategories": ["authorization","identity","privacy","queue-scope","retention"],
-    "neverModifySourceCodeAutomatically": false,
+    "neverModifySourceCodeAutomatically": true,
     "neverBroadenAuthorization": true,
     "neverRetainOriginalMedia": true
   },

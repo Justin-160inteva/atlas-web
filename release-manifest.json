@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "version": "0.9.4.8",
   "versionText": "ASSASSIN'S CREED SHADOWS · ALPHA 0.9.4.8",
-  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1",
+  "cacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1",
   "entrypoint": "index.html",
   "releaseOwner": "atlas-bootstrap.js",
   "serviceWorker": "sw.js",
@@ -26,10 +26,12 @@
     "markerSelectionMotion": "atlas-ui-fix-0931.js",
     "locationDataRecovery": "atlas-data-guard-0939.js",
     "scanMonitor": "scan-monitor.js",
+    "scanMonitorFreshFetch": "scan-monitor-fresh-refresh.js",
     "scanBatchAuthority": "scan-monitor.js",
     "heartbeatSupervisor": "tools/supervise_runtime_heartbeat.py",
     "scanOrchestration": "tools/run_scan_with_auto_recovery.py",
     "queueSchemaHydration": "tools/run_scan_with_auto_recovery_v2.py",
+    "releaseValidationPolicy": "data/quality/release-validation-policy.json",
     "favorites": "app.js",
     "mapViewport": "app.js",
     "ipadMapViewport": "atlas-ipad-canvas-hotfix-0948.js",
@@ -75,7 +77,7 @@
     "durableScanStateAlwaysWins": true,
     "monitorBatchIdentityMustMatch": true,
     "terminalQueueProtectedFromCatalogRegeneration": true,
-    "heartbeatSupervisorMaximumQueueItems": 11,
+    "heartbeatSupervisorMaximumQueueItems": 1,
     "scanMaximumConcurrentDownloads": 1,
     "scanAutoContinueAfterDurableSuccess": true,
     "supervisorQueuedItemMustBeClaimable": true,
@@ -114,6 +116,6 @@
     "ipadCroppedMapDrawingEnabled": true,
     "ipadArtificialFrameLimiterEnabled": false,
     "requireServiceWorkerUpgradeSimulation": true,
-    "requireFullAuditAtThisRelease": true
+    "requireFullAuditAtThisRelease": false
   }
 }

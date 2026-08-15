@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run a risk-budgeted heartbeat supervision matrix for an eleven-item serial queue."""
+"""Run a risk-budgeted heartbeat matrix against a synthetic multi-item queue."""
 from __future__ import annotations
 
 import json
@@ -123,7 +123,8 @@ output = {
     "generatedAt": NOW.isoformat().replace("+00:00", "Z"),
     "validationTier": VALIDATION_TIER,
     "requestedChecks": REQUESTED_CHECKS,
-    "queueItems": 11,
+    "syntheticQueueItems": len(PAGES),
+    "activeQueueItems": manifest["maximumQueueItems"],
     "maximumConcurrentItems": 1,
     "coverageFamilies": ["fresh", "soft-stale", "hard-stale", "terminal-projection", "resume-deduplication"],
     "totalChecks": len(results),
@@ -133,4 +134,4 @@ output = {
 out = ROOT / "data/conflict-reports/heartbeat-matrix.json"
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print(f"Heartbeat eleven-item serial supervision matrix: {len(results)}/{REQUESTED_CHECKS} checks passed ({VALIDATION_TIER})")
+print(f"Heartbeat synthetic serial supervision matrix: {len(results)}/{REQUESTED_CHECKS} checks passed ({VALIDATION_TIER})")

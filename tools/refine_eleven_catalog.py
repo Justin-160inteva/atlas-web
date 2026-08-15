@@ -12,6 +12,10 @@ LOW=["BOSS","boss","结局","片尾","过场","配装","武器","流派","秒杀
 def now(): return datetime.now(timezone.utc).isoformat().replace("+00:00","Z")
 def load(path): return json.loads(path.read_text(encoding="utf-8"))
 def write(path,value): path.write_text(json.dumps(value,ensure_ascii=False,indent=2),encoding="utf-8")
+def protected_queue(path):
+    if not path.is_file(): return False
+    current=load(path); authority=current.get("authority") or {}
+    return bool(authority.get("protectFromCatalogRegeneration") and authority.get("terminal"))
 def part_title(title):
     match=re.search(r"·\s*P\d+\s+(.*)$",title)
     return match.group(1).strip() if match else title
@@ -52,6 +56,9 @@ def main():
     catalog["catalogStatus"]["pilotRegion"]=pilot_region
     catalog["updatedAt"]=now()
     queue={"schemaVersion":3,"queueId":"eleven-ac-shadows-pilot-v2","author":catalog["author"],"authorizationId":catalog["authorizationId"],"createdAt":now(),"status":"ready" if pilot else "empty","pilotRegion":pilot_region,"strategy":"Scan a coherent group of collection-heavy episodes from one region before account-wide processing.","items":[{"externalSourceId":item["id"],"sequence":item["sequence"],"title":item["title"],"partTitle":item["partTitle"],"regionGuess":item.get("regionGuess"),"bvid":item["bvid"],"page":item.get("page"),"cid":item.get("cid"),"url":item["url"],"scanClass":item["scanClass"],"mapUtility":item["mapUtility"],"priority":item["priority"],"durationSeconds":item["durationSeconds"],"state":"pending"} for item in pilot]}
-    write(catalog_path,catalog); write(queue_path,queue)
-    print(json.dumps({"A":catalog["catalogStatus"]["scanClassA"],"B":catalog["catalogStatus"]["scanClassB"],"C":catalog["catalogStatus"]["scanClassC"],"pilotRegion":pilot_region,"pilot":len(pilot)},ensure_ascii=False)); return 0
+    queue_protected=protected_queue(queue_path)
+    write(catalog_path,catalog)
+    if not queue_protected: write(queue_path,queue)
+    decision="preserved-terminal-authority" if queue_protected else "generated-regional-pilot"
+    print(json.dumps({"A":catalog["catalogStatus"]["scanClassA"],"B":catalog["catalogStatus"]["scanClassB"],"C":catalog["catalogStatus"]["scanClassC"],"pilotRegion":pilot_region,"pilot":len(pilot),"queueDecision":decision},ensure_ascii=False)); return 0
 if __name__=="__main__": raise SystemExit(main())

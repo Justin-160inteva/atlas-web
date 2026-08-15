@@ -111,7 +111,7 @@ output = {
     "schemaVersion": 3,
     "validationTier": VALIDATION_TIER,
     "requestedChecks": REQUESTED_CHECKS,
-    "queueItems": 11,
+    "syntheticQueueItems": len(PAGES),
     "maximumConcurrentItems": 1,
     "coverageFamilies": ["queued-prefix", "active-block", "pending-first", "idempotent", "no-queued"],
     "totalChecks": len(results),
