@@ -32,7 +32,6 @@ jobs:
           regional=queue.get('pilotRegion')=='山城' and 1<=len(queue.get('items',[]))<=3
           should_run=regional and not (authority.get('terminal') and authority.get('protectFromCatalogRegeneration'))
           print(f"should_run={'true' if should_run else 'false'}")
-          print(f"legacy regional pilot {'enabled' if should_run else 'skipped'} for queue {queue.get('queueId')}")
           PY
 
   scan:
