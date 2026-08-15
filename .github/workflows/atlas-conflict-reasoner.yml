@@ -23,7 +23,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: atlas-conflict-${{ github.ref }}
@@ -163,8 +163,24 @@ jobs:
             data/batch-analysis/scan-system-health.json
           if-no-files-found: warn
 
+  persist-reports:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: reason-and-test
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download validated reports
+        uses: actions/download-artifact@v4
+        with:
+          name: atlas-conflict-reports-${{ github.sha }}
+          path: .
+
       - name: Persist reports on main
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-15T21:20:01.008468Z",
+  "generatedAt": "2026-08-15T21:50:07.221525Z",
   "release": "0.9.4.8",
   "policyRevision": "2026.08.15.2",
   "tier": "full",
@@ -80,11 +80,13 @@
     "rewards": [],
     "ui": [
       "atlas-bootstrap.js",
+      "atlas-ipad-canvas-hotfix-0948.js",
       "atlas-ui-fix-0931.js",
       "index.html",
       "tools/browser_conflict_smoke.mjs"
     ],
     "highRisk": [
+      "atlas-ipad-canvas-hotfix-0948.js",
       "atlas-ui-fix-0931.js",
       "data/batch-analysis/eleven-pilot-scan-queue.json"
     ]

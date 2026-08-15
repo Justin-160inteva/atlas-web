@@ -1,10 +1,10 @@
 {
   "schemaVersion": 10,
-  "generatedAt": "2026-08-15T20:41:26.344723Z",
+  "generatedAt": "2026-08-15T21:50:07.303536Z",
   "status": "pass",
   "summary": {
-    "total": 35,
-    "passed": 35,
+    "total": 39,
+    "passed": 39,
     "failed": 0
   },
   "release": "0.9.4.8",
@@ -83,6 +83,11 @@
       "detail": "high-risk changes select the 500-check full tier without enabling unrelated matrices"
     },
     {
+      "name": "validation_ipad_coverage",
+      "passed": true,
+      "detail": "iPad canvas and gesture changes always select browser validation at the full tier"
+    },
+    {
       "name": "validation_cycle",
       "passed": true,
       "detail": "0.9.4.8 full audit recorded; next at 0.9.4.11"
@@ -91,6 +96,21 @@
       "name": "workflow_selects_risk",
       "passed": true,
       "detail": "CI selects matrices by changed risk"
+    },
+    {
+      "name": "write_workflows_main_only",
+      "passed": true,
+      "detail": "catalog, scan and supervisor write jobs cannot run from feature branches"
+    },
+    {
+      "name": "pr_validation_read_only",
+      "passed": true,
+      "detail": "PR conflict validation is read-only and report persistence is isolated to main pushes"
+    },
+    {
+      "name": "scan_validation_read_only",
+      "passed": true,
+      "detail": "feature-branch scan validation is read-only and health persistence is isolated to main pushes"
     },
     {
       "name": "single_authority",

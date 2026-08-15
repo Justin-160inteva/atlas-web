@@ -24,8 +24,8 @@
     "monitor": ["scan-monitor.js", "tools/monitor_batch_authority_smoke.mjs"],
     "dataCenter": ["atlas-settings.js", "atlas-evidence-studio.js", "tools/data_center_contract_smoke.mjs"],
     "rewards": ["data/rewards/**", "tools/reward_evidence_contract_smoke.mjs"],
-    "ui": ["index.html", "app.js", "sw.js", "atlas-bootstrap.js", "atlas-liquid-nav-0934.js", "atlas-liquid-nav-0934.css", "atlas-controls-0938.js", "atlas-ipad-nav-0940.js", "atlas-ui-fix-0931.js", "atlas-data-guard-0939.js", "atlas-080.js", "styles.css", "tools/browser_conflict_smoke.mjs"],
-    "highRisk": ["sw.js", "app.js", "atlas-liquid-nav-0934.js", "atlas-ui-fix-0931.js", "atlas-data-guard-0939.js", "tools/run_scan_with_auto_recovery.py", "tools/run_scan_with_auto_recovery_v2.py", "tools/supervise_runtime_heartbeat.py", "data/batch-analysis/eleven-pilot-scan-queue.json"]
+    "ui": ["index.html", "app.js", "sw.js", "atlas-bootstrap.js", "atlas-liquid-nav-0934.js", "atlas-liquid-nav-0934.css", "atlas-controls-0938.js", "atlas-ipad-nav-0940.js", "atlas-ipad-canvas-hotfix-0948.js", "atlas-ipad-canvas-hotfix-0948.css", "atlas-ipad-gesture-hotfix-0948.js", "atlas-ui-fix-0931.js", "atlas-data-guard-0939.js", "atlas-080.js", "styles.css", "tools/browser_conflict_smoke.mjs"],
+    "highRisk": ["sw.js", "app.js", "atlas-liquid-nav-0934.js", "atlas-ipad-canvas-hotfix-0948.js", "atlas-ipad-gesture-hotfix-0948.js", "atlas-ui-fix-0931.js", "atlas-data-guard-0939.js", "tools/run_scan_with_auto_recovery.py", "tools/run_scan_with_auto_recovery_v2.py", "tools/supervise_runtime_heartbeat.py", "data/batch-analysis/eleven-pilot-scan-queue.json"]
   },
   "scheduledFullAudit": {"lastCompletedVersion": "0.9.4.8", "nextRequiredVersion": "0.9.4.11"}
 }

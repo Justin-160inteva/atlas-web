@@ -49,6 +49,7 @@ def main():
     discovery = read_text("tools/discover_bilibili_author_catalog.py")
     refiner = read_text("tools/refine_eleven_catalog.py")
     conflict_workflow = read_text(".github/workflows/atlas-conflict-reasoner.yml")
+    validation_workflow = read_text(".github/workflows/validate-scan-system.yml")
 
     cache = release["cacheNamespace"]
     check("cache_namespace", cache in bootstrap and cache in worker, "release, bootstrap and service worker share one cache namespace")
@@ -59,8 +60,13 @@ def main():
     check("validation_quick_floor", all(validation["tiers"]["quick"][key] >= 200 for key in ("heartbeatChecks", "serialQueueChecks", "queueSchemaChecks", "browserChecks", "monitorAuthorityChecks")), "quick relevant matrices preserve the 200-check floor")
     check("validation_standard_floor", all(validation["tiers"]["standard"][key] >= 300 for key in ("heartbeatChecks", "serialQueueChecks", "queueSchemaChecks", "browserChecks", "monitorAuthorityChecks")), "standard relevant matrices preserve the 300-check floor")
     check("validation_high_risk_full", "full_tier = full_audit or high_risk" in read_text("tools/select_release_validation.py"), "high-risk changes select the 500-check full tier without enabling unrelated matrices")
+    check("validation_ipad_coverage", all(path in validation["pathGroups"]["ui"] for path in ("atlas-ipad-canvas-hotfix-0948.js", "atlas-ipad-canvas-hotfix-0948.css", "atlas-ipad-gesture-hotfix-0948.js")) and all(path in validation["pathGroups"]["highRisk"] for path in ("atlas-ipad-canvas-hotfix-0948.js", "atlas-ipad-gesture-hotfix-0948.js")), "iPad canvas and gesture changes always select browser validation at the full tier")
     check("validation_cycle", validation["scheduledFullAudit"]["lastCompletedVersion"] == release["version"] and validation["scheduledFullAudit"]["nextRequiredVersion"] == "0.9.4.11", "0.9.4.8 full audit recorded; next at 0.9.4.11")
     check("workflow_selects_risk", "select_release_validation.py" in conflict_workflow and "run_full_audit" in conflict_workflow and "run_playwright" in conflict_workflow, "CI selects matrices by changed risk")
+    main_only_workflows = (scan_workflow, supervisor_workflow, discovery_workflow)
+    check("write_workflows_main_only", all("if: github.ref == 'refs/heads/main'" in workflow for workflow in main_only_workflows), "catalog, scan and supervisor write jobs cannot run from feature branches")
+    check("pr_validation_read_only", "permissions:\n  contents: read" in conflict_workflow and "persist-reports:" in conflict_workflow and "if: github.event_name == 'push' && github.ref == 'refs/heads/main'" in conflict_workflow, "PR conflict validation is read-only and report persistence is isolated to main pushes")
+    check("scan_validation_read_only", "permissions:\n  contents: read" in validation_workflow and "persist-health-report:" in validation_workflow and "if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'" in validation_workflow, "feature-branch scan validation is read-only and health persistence is isolated to main pushes")
 
     items = queue.get("items", [])
     status_items = status.get("items", [])
