@@ -3,7 +3,7 @@ name: Supervise 11 game world runtime heartbeat
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/15 * * * *'
   push:
     paths:
       - 'data/batch-analysis/eleven-heartbeat-supervisor.json'
@@ -22,6 +22,7 @@ concurrency:
 
 jobs:
   supervise:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -37,7 +38,7 @@ jobs:
 
       - name: Validate dynamic supervisor and serial queue policy
         run: |
-          python -m py_compile tools/supervise_runtime_heartbeat.py tools/supervise_runtime_heartbeat_v2.py
+          python -m py_compile tools/supervise_runtime_heartbeat.py
           python - <<'PY'
           import json
           config=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor.json',encoding='utf-8'))
@@ -51,15 +52,16 @@ jobs:
           assert config['schemaVersion']>=6
           assert config['staleAfterSeconds']==90
           assert config['hardStaleAfterSeconds']==180
-          assert config['resumeCooldownSeconds']<=60
+          assert config['resumeCooldownSeconds']>=360
           assert len(items)==config['maximumQueueItems']==manifest['maximumQueueItems']==queue['maximumQueueItems']
           assert manifest['maxItemsPerRun']==1
           assert manifest['maximumConcurrentDownloads']==queue['maximumConcurrentItems']==1
           assert policy['oneItemPerRun']
           assert policy['maximumConcurrentDownloads']==1
           assert policy['automaticContinuationAfterDurableSuccess']
-          assert policy['automaticRedispatchAfterTechnicalFailure']
-          assert policy['retryTechnicalFailuresUntilResolved']
+          assert policy['automaticRedispatchAfterTechnicalFailure'] is False
+          assert policy['retryTechnicalFailuresUntilResolved'] is False
+          assert policy['maximumAttemptsPerItem']<=3
           assert policy['maximumAttemptsPerItem']==manifest['recoveryPolicy']['maxAttemptsPerItem']==manifest['maxAttemptsPerItem']
           assert policy['durableStateAlwaysWins']
           assert policy['terminalProjectionRequired']
@@ -79,7 +81,7 @@ jobs:
       - name: Inspect heartbeat and apply durable-state repair
         id: supervisor
         run: |
-          python tools/supervise_runtime_heartbeat_v2.py data/batch-analysis/eleven-heartbeat-supervisor.json
+          python tools/supervise_runtime_heartbeat.py data/batch-analysis/eleven-heartbeat-supervisor.json
           python - <<'PY' >> "$GITHUB_OUTPUT"
           import json
           report=json.load(open('data/batch-analysis/eleven-heartbeat-supervisor-state.json',encoding='utf-8'))
@@ -110,7 +112,7 @@ jobs:
           assert sum(item.get('state') in {'running','recovery'} for item in items)<=1
           assert report['schemaVersion']>=2
           assert report['dictionaryEntryId'] in ids or report['dictionaryEntryId'] in {'heartbeat-healthy','heartbeat-complete'}
-          assert report['resumeCooldownSeconds']<=60
+          assert report['resumeCooldownSeconds']>=360
           assert report['safety']['sourceCodeModified'] is False
           assert report['safety']['authorizationBroadened'] is False
           assert report['safety']['queueScopeExpanded'] is False

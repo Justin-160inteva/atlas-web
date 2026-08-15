@@ -25,7 +25,6 @@
   const shell = document.querySelector('.app-shell');
   const viewportMeta = document.querySelector('meta[name="viewport"]');
   const originalBuildMarkers = buildMarkers;
-  const originalDrawMarker = drawMarker;
   const originalDrawRoute = drawRoute;
   const legacyResize = typeof resize === 'function' ? resize : null;
   const interactionProxy = window.AtlasMobilePerf || { interacting: false };
@@ -227,10 +226,10 @@
       sourceTop,
       sourceWidth,
       sourceHeight,
-      Math.round(destinationX),
-      Math.round(destinationY),
-      Math.ceil(sourceWidth * scale),
-      Math.ceil(sourceHeight * scale)
+      destinationX,
+      destinationY,
+      sourceWidth * scale,
+      sourceHeight * scale
     );
     ctx.restore();
   }
@@ -243,8 +242,11 @@
   }
 
   function drawScaledMarker(marker, scale) {
+    // The marker visuals patch is loaded dynamically after this iPad hotfix can
+    // initialize. Resolve the global renderer at draw time so late-installed
+    // selection motion remains active on large touch devices.
     if (scale >= 0.999) {
-      originalDrawMarker(marker, 1);
+      drawMarker(marker, 1);
       return;
     }
 
@@ -252,7 +254,7 @@
     ctx.translate(marker.x, marker.y);
     ctx.scale(scale, scale);
     ctx.translate(-marker.x, -marker.y);
-    originalDrawMarker(marker, 1);
+    drawMarker(marker, 1);
     ctx.restore();
   }
 
@@ -346,7 +348,7 @@
       availableMarkers: perf.availableMarkers,
       renderedMarkers: perf.renderedMarkers,
       physicalClears: perf.physicalClears,
-      markerRenderer: 'app.js-original-adaptive-screen-scale',
+      markerRenderer: 'runtime-current-adaptive-screen-scale',
       markerAggregation: false,
       markerScale: perf.markerScale,
       viewportCulling: true,

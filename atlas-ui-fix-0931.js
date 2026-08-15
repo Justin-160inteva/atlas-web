@@ -173,6 +173,21 @@
     keepSelectionAnimationAlive();
   }
 
+  const selectedDescriptor=Object.getOwnPropertyDescriptor(state,'selected');
+  if(!selectedDescriptor||('value' in selectedDescriptor&&selectedDescriptor.configurable)){
+    let selectedValue=state.selected;
+    Object.defineProperty(state,'selected',{
+      configurable:true,
+      enumerable:selectedDescriptor?.enumerable??true,
+      get:()=>selectedValue,
+      set:value=>{
+        if(value===selectedValue)return;
+        selectedValue=value;
+        syncSelectionMotion();
+      }
+    });
+  }
+
   function interactionActive(){
     return Boolean(
       root.classList.contains('atlas-button-zooming')||

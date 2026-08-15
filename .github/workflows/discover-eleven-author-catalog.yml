@@ -17,6 +17,7 @@ concurrency:
 
 jobs:
   discover:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -80,9 +81,11 @@ jobs:
           import json, pathlib
           auth=json.load(open('data/authorizations.json',encoding='utf-8'))
           catalog=json.load(open('data/eleven-game-world-ac-shadows-catalog.json',encoding='utf-8'))
+          analysis=json.load(open('data/analysis-index.json',encoding='utf-8'))
           status=json.load(open('data/batch-analysis/eleven-author-discovery-status.json',encoding='utf-8'))
           queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
           record=next(item for item in auth['records'] if item['id']==catalog['authorizationId'])
+          indexed={item['externalSourceId']:item for item in analysis['items'] if item.get('externalSourceId')}
           for _ in range(400):
               items=catalog['items']
               state=catalog['catalogStatus']
@@ -98,8 +101,23 @@ jobs:
               assert all(item['url'].startswith(f"https://www.bilibili.com/video/{item['bvid']}/") for item in items)
               assert all(item['scanClass'] in {'A','B','C'} for item in items)
               assert all(item.get('partTitle') for item in items)
-              assert len(queue['items'])<=5
-              assert queue.get('pilotRegion')
+              expected={item['id']:(indexed.get(item['id']) or {}).get('status','pending') for item in items}
+              expected={key:value if value in {'imported','failed'} else 'pending' for key,value in expected.items()}
+              assert all(item['analysisStatus']==expected[item['id']] for item in items)
+              assert state['analysisImported']==sum(value=='imported' for value in expected.values())
+              assert state['analysisRemaining']==len(items)-state['analysisImported']
+              assert state['analysisComplete']==(state['analysisRemaining']==0)
+              authority=queue.get('authority') or {}
+              if authority.get('protectFromCatalogRegeneration'):
+                  manifest=json.load(open('data/batch-analysis/eleven-pilot-scan-manifest.json',encoding='utf-8'))
+                  scan_status=json.load(open('data/batch-analysis/eleven-pilot-scan-status.json',encoding='utf-8'))
+                  assert authority.get('terminal') is True
+                  assert queue['queueId']==manifest['id']==scan_status['batchId']==authority['batchId']
+                  assert queue['status']=='complete' and scan_status['complete'] is True
+                  assert len(queue['items'])==queue['maximumQueueItems']==manifest['maximumQueueItems']==scan_status['summary']['total']
+              else:
+                  assert len(queue['items'])<=5
+                  assert queue.get('pilotRegion')
               assert all(item['externalSourceId'] in {entry['id'] for entry in items} for item in queue['items'])
               assert not list(pathlib.Path('.').rglob('*.mp4'))
               assert not list(pathlib.Path('.').rglob('*.m4a'))

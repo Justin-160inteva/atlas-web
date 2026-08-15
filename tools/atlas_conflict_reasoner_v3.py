@@ -19,6 +19,7 @@ from typing import Iterable
 ROOT = Path(__file__).resolve().parents[1]
 TEXT_SUFFIXES = {'.html', '.js', '.css', '.json', '.webmanifest'}
 SKIP_DIRS = {'.git', 'node_modules', '.venv', '__pycache__'}
+SKIP_TOP_LEVEL_DIRS = {'cod11-live-translator', 'cod11-realtime-worker', 'cod11-v12'}
 HTML_ASSET_RE = re.compile(r'<(?:script|link)\b[^>]*(?:src|href)=["\']([^"\']+)', re.I)
 JS_ASSET_RE = re.compile(r'\.(?:src|href)\s*=\s*[`"\']([^`"\']+)', re.I)
 CSS_IMPORT_RE = re.compile(r'@import\s+(?:url\()?\s*["\']([^"\']+)', re.I)
@@ -54,8 +55,11 @@ class Reasoner:
                 continue
             if any(part in SKIP_DIRS for part in path.parts):
                 continue
+            relative = path.relative_to(self.root)
+            if relative.parts and relative.parts[0] in SKIP_TOP_LEVEL_DIRS:
+                continue
             try:
-                result[path.relative_to(self.root).as_posix()] = path.read_text(encoding='utf-8')
+                result[relative.as_posix()] = path.read_text(encoding='utf-8')
             except UnicodeDecodeError:
                 continue
         return result
@@ -126,9 +130,12 @@ class Reasoner:
 
     def check_ownership(self) -> None:
         fetch_writers = sorted(name for name, text in self.files.items() if name.endswith('.js') and FETCH_OVERRIDE_RE.search(text))
-        allowed_fetch = self.manifest['runtimeOwners']['locationDataRecovery']
-        if fetch_writers != [allowed_fetch]:
-            self.add('critical', 'FETCH_OWNER_CONFLICT', f'Expected only {allowed_fetch} to override window.fetch, found {fetch_writers}', fetch_writers or [allowed_fetch])
+        allowed_fetch = sorted({
+            self.manifest['runtimeOwners']['locationDataRecovery'],
+            self.manifest['runtimeOwners']['scanMonitorFreshFetch'],
+        })
+        if fetch_writers != allowed_fetch:
+            self.add('critical', 'FETCH_OWNER_CONFLICT', f'Expected page-scoped fetch owners {allowed_fetch}, found {fetch_writers}', fetch_writers or allowed_fetch)
 
         sw_writers = sorted(name for name, text in self.files.items() if name.endswith('.js') and SW_REGISTER_RE.search(text))
         sw_owner = self.manifest['runtimeOwners']['serviceWorkerRegistration']

@@ -21,12 +21,12 @@
     ]
   },
   "releaseState": {
-    "status": "regression_blocked",
+    "status": "draft_pr_repair_candidate",
     "intendedVersion": "0.9.4.8",
     "entryPageVersion": "0.9.4.8",
     "publicVerificationRequired": true,
     "physicalDeviceVerificationRequired": true,
-    "blockingRegression": "Release/cache namespace drift persists; the P80-only scan manifest/status now conflicts with a durable queue recreated on 2026-08-14 containing P20-P22; bounded recovery safety and dynamic path-scoped validation are still not restored."
+    "blockingRegression": "Draft PR #146 restores release/cache identity, terminal P80 authority, bounded recovery, catalog analysis projection and 200/300/500 validation floors, but remains unmerged; main heartbeat, Pages and physical-device verification are still outstanding."
   },
   "completedEvidence": [
     {
@@ -73,17 +73,25 @@
         "fresh 2026-08-14 durable queue mismatch recorded",
         "regular audit schedule retained at 0.9.4.11 because this was not a regular audit"
       ]
+    },
+    {
+      "item": "Draft PR #146 release and scan authority repair",
+      "status": "implemented_on_draft_pr_not_main",
+      "versions": ["0.9.4.8"],
+      "evidence": [
+        "one terminal eleven-production-p080-v1 authority with P80 imported",
+        "bounded three-attempt recovery and protected-failure stop",
+        "80/80 catalog analysis states projected from data/analysis-index.json",
+        "quick/standard/full relevant-matrix floors of 200/300/500",
+        "35/35 scan-system audit checks"
+      ]
     }
   ],
   "incompleteItems": [
-    "Synchronize release-manifest.json, atlas-bootstrap.js and sw.js cache namespace",
-    "Restore one authoritative batch identity across manifest, queue, status, runtime and monitor",
-    "Restore strict earliest-unresolved queue ownership",
-    "Restore bounded dictionary recovery policy",
-    "Restore safe blocking for unknown, identity, authorization and privacy failures",
-    "Restore neverModifyExecutableSourceAutomatically=true or an equivalent enforced policy",
-    "Regenerate current scan-system health and release-sync evidence",
-    "Land and prove risk-based validation budgets and path-scoped CI on main",
+    "Complete current checks for draft PR #146 and obtain explicit user authorization before merge",
+    "Land and prove the P80 authority, catalog projection and 200/300/500 validation policy on main",
+    "Observe one successful post-merge main heartbeat without terminal-state regression",
+    "Deploy the target main SHA to GitHub Pages and verify the public site",
     "Human review and locking for generated reward records",
     "Official-source reward confirmations",
     "Reward evidence display in location detail sheets",
@@ -96,10 +104,10 @@
     {
       "id": "release-cache-namespace-drift",
       "severity": "critical",
-      "status": "persisting",
+      "status": "resolved_on_draft_pr_not_main",
       "evidence": {
-        "releaseManifest": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1",
-        "atlasBootstrap": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1",
+        "releaseManifest": "atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1",
+        "atlasBootstrap": "atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1",
         "serviceWorker": "atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1"
       },
       "acceptance": "Release manifest, bootstrap owner and service worker must use one cache namespace before release and upgrade evidence is valid."
@@ -107,7 +115,7 @@
     {
       "id": "batch-authority-mismatch",
       "severity": "critical",
-      "status": "freshly-reconfirmed-2026-08-15",
+      "status": "resolved_on_draft_pr_not_main",
       "evidence": {
         "manifestBatchId": "eleven-production-p080-v1",
         "manifestMaximumQueueItems": 1,
@@ -115,30 +123,31 @@
         "statusBatchId": "eleven-production-p080-v1",
         "statusPage": 80,
         "statusPhase": "complete",
-        "durableQueueId": "eleven-ac-shadows-pilot-v2",
-        "durableQueueCreatedAt": "2026-08-14T05:18:08.075660Z",
-        "durableQueuePages": [20, 21, 22],
-        "durableQueueRegion": "山城"
+        "durableQueueId": "eleven-production-p080-v1",
+        "durableQueueCreatedAt": "2026-07-23T02:30:00Z",
+        "durableQueuePages": [80],
+        "durableQueueStatus": "complete",
+        "protectFromCatalogRegeneration": true
       },
       "acceptance": "Manifest, queue, status, runtime and monitor must share one batch identity and scope; later or unrelated work cannot replace the durable authoritative queue silently."
     },
     {
       "id": "recovery-policy-regression",
       "severity": "critical",
-      "status": "persisting",
+      "status": "resolved_on_draft_pr_not_main",
       "evidence": {
-        "maxAttemptsPerItem": 20,
-        "retryTechnicalFailuresUntilResolved": true,
-        "blockUnknownOrIdentityFailures": false,
-        "neverModifySourceCodeAutomatically": false
+        "maxAttemptsPerItem": 3,
+        "retryTechnicalFailuresUntilResolved": false,
+        "blockUnknownOrIdentityFailures": true,
+        "neverModifySourceCodeAutomatically": true
       },
       "acceptance": "Known transient failures are bounded; unknown, identity, authorization and privacy failures stop safely; executable source is never modified automatically."
     },
     {
       "id": "dynamic-validation-not-landed",
       "severity": "high",
-      "status": "persisting",
-      "evidence": "Main Atlas conflict workflow still runs multiple fixed 500-scenario matrices, the full audit and browser gates unconditionally.",
+      "status": "resolved_on_draft_pr_not_main",
+      "evidence": "Draft PR #146 selects path-scoped relevant matrices, enforces quick/standard/full floors of 200/300/500 and sends high-risk changes to the full tier.",
       "acceptance": "Each release chooses a risk tier, runs only relevant checks, records skipped unrelated gates and runtime, and preserves mandatory safety floors."
     }
   ],
@@ -161,10 +170,10 @@
     "mode": "risk-based",
     "releaseReviewRequired": true,
     "tiers": {
-      "low": "40-100 targeted checks",
-      "standard": "80-180 relevant checks",
-      "core": "180-300 relevant checks",
-      "full": "complete relevant matrices up to approximately 500 checks per gate"
+      "low": "at least 200 relevant checks",
+      "standard": "at least 300 relevant checks",
+      "core": "500 relevant checks",
+      "full": "500 checks per relevant matrix plus the full audit"
     },
     "mandatoryReviewTopics": [
       "watchdog polling frequency",
@@ -195,11 +204,9 @@
     "deletionPolicy": "Delete only when no runtime owner, no reference, no compatibility role and regression coverage exists.",
     "currentDeletionCandidates": [],
     "openTechnicalDebt": [
-      "Release manifest/bootstrap and service worker cache namespaces disagree",
-      "P80-only manifest/status conflicts with a 2026-08-14 P20-P22 durable queue",
-      "Recovery safety policy exceeds accepted bounded limits",
-      "Main release still declares fixed exact-500 matrices",
-      "Dynamic path-scoped CI is not proven active on main",
+      "Draft PR #146 repairs release identity, P80 authority, bounded recovery, catalog projection and validation floors but is not merged",
+      "Main heartbeat remains red until the repair is merged and observed for a complete cycle",
+      "GitHub Pages still serves a SHA older than current main",
       "Runtime heartbeat commits create repository noise",
       "Atlas and COD11 translator share one repository and require strict path ownership",
       "Reward records have zero human review and zero locks",
@@ -209,12 +216,10 @@
     ]
   },
   "currentHighPriority": [
-    "Synchronize release/cache identity",
-    "Restore one authoritative scan batch identity",
-    "Restore strict earliest-unresolved ownership and one active task",
-    "Restore bounded recovery and protected failure handling",
-    "Land dynamic validation budgets and path-scoped CI",
-    "Regenerate current health and release-sync evidence",
+    "Complete draft PR #146 checks without weakening gates",
+    "Keep PR #146 draft and obtain explicit merge authorization",
+    "After merge, verify one successful main heartbeat cycle",
+    "Deploy and verify the exact target main SHA on GitHub Pages",
     "Human-review and lock the first reward batches",
     "Add reward summaries and confidence labels to location details",
     "Verify public deployment and iPad behaviour"

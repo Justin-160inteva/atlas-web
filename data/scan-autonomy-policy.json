@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "revision": "2026.07.22.2",
+  "revision": "2026.08.15.1",
   "enabled": true,
   "authorization": {
     "confirmationRequired": false,
@@ -23,23 +23,18 @@
   },
   "execution": {
     "deterministicRecoveryFirst": true,
-    "allowAiSourcePatch": true,
-    "retrySameQueueItemAfterRepair": true,
-    "commitPassingRepairAutomatically": true,
-    "dispatchScanAfterRepair": true,
-    "retryUntilResolvedForTechnicalFailures": true,
-    "maximumAiRepairPassesPerItem": 20,
+    "allowAiSourcePatch": false,
+    "retrySameQueueItemAfterRepair": false,
+    "commitPassingRepairAutomatically": false,
+    "dispatchScanAfterRepair": false,
+    "retryUntilResolvedForTechnicalFailures": false,
+    "maximumAiRepairPassesPerItem": 0,
     "maximumChangedFiles": 3,
     "maximumChangedLines": 240,
     "minimumRetryDelaySeconds": 5,
     "maximumRetryDelaySeconds": 60
   },
-  "allowedPathPatterns": [
-    "tools/*.py",
-    "tools/p33_v14_hook/*.py",
-    "data/scan-bug-dictionary.json",
-    "data/batch-analysis/*scan-manifest.json"
-  ],
+  "allowedPathPatterns": [],
   "blockedPathPatterns": [
     "data/authorizations.json",
     "data/analysis-results/**",
@@ -60,7 +55,8 @@
     "strictSerialOrder": true,
     "maximumConcurrentDownloads": 1,
     "rollbackOnValidationFailure": true,
-    "protectedFailuresStopAutomaticSourceChanges": true
+    "protectedFailuresStopAutomaticSourceChanges": true,
+    "neverModifyExecutableSourceAutomatically": true
   },
   "validation": {
     "quickChecksPerMatrix": 24,
@@ -77,6 +73,6 @@
     "leaveQueueFailureVisible": true,
     "openIssueWithoutRequestingConfirmation": true,
     "continueOnlyAfterPassingRepair": true,
-    "automaticRedispatchForTechnicalFailures": true
+    "automaticRedispatchForTechnicalFailures": false
   }
 }

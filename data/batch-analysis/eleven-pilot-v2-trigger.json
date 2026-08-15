@@ -8,15 +8,15 @@
   "queue": "data/batch-analysis/eleven-pilot-scan-queue.json",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "productionOrderPolicy": "data/batch-analysis/eleven-production-order-policy.json",
-  "mode": "strict-serial-persistent-deterministic-then-ai-repair",
+  "mode": "strict-serial-bounded-deterministic-recovery",
   "queuePages": [80],
   "earliestUnresolvedPage": 80,
   "requiredAnalyzer": "tools/analyze_authorized_video_v14.py",
   "automaticRecovery": true,
-  "autonomousAiRepair": true,
-  "retryTechnicalFailuresUntilResolved": true,
-  "maximumTechnicalAttemptsBeforeEscalatingDiagnostics": 20,
-  "automaticRedispatchAfterFailure": true,
+  "autonomousAiRepair": false,
+  "retryTechnicalFailuresUntilResolved": false,
+  "maximumTechnicalAttemptsBeforeEscalatingDiagnostics": 3,
+  "automaticRedispatchAfterFailure": false,
   "confirmationRequired": false,
   "heartbeatSupervisor": true,
   "runtimeHeartbeat": {
@@ -32,7 +32,8 @@
     "segmentProgress": true,
     "etaSeconds": true
   },
-  "humanReviewOnUnknownFailure": false,
-  "protectedBoundaryPolicy": "Only authorization, identity, privacy, queue-scope or retention violations may stop automatic repair and redispatch.",
-  "recoveryReason": "P69-P79 completed; start the final authorized P80 episode with unattended deterministic recovery, persistent AI repair and heartbeat redispatch."
+  "humanReviewOnUnknownFailure": true,
+  "terminal": true,
+  "protectedBoundaryPolicy": "Authorization, identity, privacy, queue-scope, retention and unknown failures stop automatic redispatch; executable source is never modified automatically.",
+  "recoveryReason": "P80 is durably imported. The trigger remains as terminal audit evidence and must not redispatch the completed batch."
 }

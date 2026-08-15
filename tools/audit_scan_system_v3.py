@@ -1,216 +1,150 @@
 #!/usr/bin/env python3
-"""Audit the Atlas scan, monitor, heartbeat, data center, and P25-P35 serial execution stack."""
+"""Audit scan authority, recovery safety, validation policy, and P33-P35 evidence."""
 from __future__ import annotations
 
-import importlib.util
 import json
 import pathlib
+import sys
 import urllib.error
 from datetime import datetime, timezone
-from typing import Any
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data/batch-analysis/scan-system-health.json"
-EXPECTED_PAGES = list(range(25, 36))
-EXPECTED_BATCH = "eleven-production-p025-p035-v1"
+sys.path.insert(0, str(ROOT / "tools"))
 
 
-def read_json(path: str) -> Any:
+def read_json(path):
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
 
-def read_text(path: str) -> str:
+def read_text(path):
     return (ROOT / path).read_text(encoding="utf-8")
 
 
-def load_module(path: str, name: str) -> Any:
-    spec = importlib.util.spec_from_file_location(name, ROOT / path)
-    if spec is None or spec.loader is None:
-        raise RuntimeError(path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+def main():
+    checks = []
 
-
-def main() -> int:
-    checks: list[dict[str, Any]] = []
-
-    def check(name: str, passed: Any, detail: str) -> None:
+    def check(name, passed, detail):
         checks.append({"name": name, "passed": bool(passed), "detail": detail})
 
-    bugs = read_json("data/scan-bug-dictionary.json")
-    manifest = read_json("data/batch-analysis/eleven-pilot-scan-manifest.json")
     release = read_json("release-manifest.json")
     queue = read_json("data/batch-analysis/eleven-pilot-scan-queue.json")
+    manifest = read_json("data/batch-analysis/eleven-pilot-scan-manifest.json")
     status = read_json("data/batch-analysis/eleven-pilot-scan-status.json")
-    catalog = read_json("data/eleven-game-world-ac-shadows-catalog.json")
-    monitor = read_text("scan-monitor.js")
-    monitor_html = read_text("scan-monitor.html")
+    trigger = read_json("data/batch-analysis/eleven-pilot-v2-trigger.json")
+    supervisor = read_json("data/batch-analysis/eleven-heartbeat-supervisor.json")
+    supervisor_state = read_json("data/batch-analysis/eleven-heartbeat-supervisor-state.json")
+    recovery_report = read_json("data/batch-analysis/eleven-pilot-recovery-report.json")
+    repair_report = read_json("data/batch-analysis/scan-autonomous-repair-report.json")
+    autonomy = read_json("data/scan-autonomy-policy.json")
+    validation = read_json("data/quality/release-validation-policy.json")
+    analysis_index = read_json("data/analysis-index.json")
+    eleven_catalog = read_json("data/eleven-game-world-ac-shadows-catalog.json")
+    bugs = read_json("data/scan-bug-dictionary.json")
+    bootstrap = read_text("atlas-bootstrap.js")
     worker = read_text("sw.js")
-    workflow = read_text(".github/workflows/scan-eleven-pilot-v2.yml")
+    scan_workflow = read_text(".github/workflows/scan-eleven-pilot-v2.yml")
     supervisor_workflow = read_text(".github/workflows/supervise-eleven-heartbeat.yml")
-    supervisor_config = read_json("data/batch-analysis/eleven-heartbeat-supervisor.json")
-    supervisor_source = read_text("tools/supervise_runtime_heartbeat.py")
-    publisher = read_text("tools/publish_runtime_progress.py")
-    publisher_v2 = read_text("tools/publish_runtime_progress_v2.py")
-    analyzer_v11 = read_text("tools/analyze_authorized_video_v11.py")
-    analyzer_v12 = read_text("tools/analyze_authorized_video_v12.py")
-    orchestrator = read_text("tools/run_scan_with_auto_recovery.py")
-    orchestrator_v2 = read_text("tools/run_scan_with_auto_recovery_v2.py")
-    marker_runtime = read_text("atlas-ui-fix-0931.js")
-    controls_runtime = read_text("atlas-controls-0938.js")
-    settings_runtime = read_text("atlas-settings.js")
-    settings_css = read_text("atlas-settings.css")
-    evidence_css = read_text("evidence-studio.css")
-    data_center_matrix = read_text("tools/data_center_contract_smoke.mjs")
+    discovery_workflow = read_text(".github/workflows/discover-eleven-author-catalog.yml")
+    discovery = read_text("tools/discover_bilibili_author_catalog.py")
+    refiner = read_text("tools/refine_eleven_catalog.py")
+    conflict_workflow = read_text(".github/workflows/atlas-conflict-reasoner.yml")
+    validation_workflow = read_text(".github/workflows/validate-scan-system.yml")
 
-    entries = bugs.get("entries", [])
-    ids = [entry.get("id") for entry in entries]
-    required_layers = {"source-download", "source-metadata", "identity", "http-client", "network", "media", "analysis", "runner", "progress-publish", "orchestration", "heartbeat", "safety"}
-    check("dictionary_size", len(entries) >= 25, f"{len(entries)} entries")
-    check("dictionary_unique", len(ids) == len(set(ids)), "unique IDs")
-    check("dictionary_complete", all(entry.get("patterns") and entry.get("autoAction") for entry in entries), "patterns and actions present")
-    check("dictionary_layers", required_layers <= {entry.get("layer") for entry in entries}, "required layers present")
-    check("cooldowns_bounded", next(entry for entry in entries if entry["id"] == "bilibili-http-412")["cooldownSeconds"] <= 45 and next(entry for entry in entries if entry["id"] == "bilibili-http-429")["cooldownSeconds"] <= 120, "network cooldowns bounded")
-
-    invariants = release.get("invariants", {})
-    check("release_version", release.get("version") == "0.9.4.7", "Alpha 0.9.4.7")
-    check("release_audit_cycle", invariants.get("requireFullAuditAtThisRelease") is False, "next mandatory full audit remains Alpha 0.9.4.8")
-    check("release_matrices", all(invariants.get(key) == 500 for key in ("requiredHeartbeatMatrixChecks", "requiredBrowserMatrixChecks", "requiredDataCenterMatrixChecks", "requiredSerialQueueOrderChecks", "requiredMonitorBatchAuthorityChecks", "requiredQueueSchemaChecks")), "six exact 500-check gates")
-    check("release_monitor_contract", invariants.get("singleMonitorController") is True and invariants.get("durableScanStateAlwaysWins") is True and invariants.get("monitorBatchIdentityMustMatch") is True, "single batch-authoritative monitor")
-    check("release_serial11_contract", invariants.get("heartbeatSupervisorMaximumQueueItems") == 11 and invariants.get("scanMaximumConcurrentDownloads") == 1 and invariants.get("scanAutoContinueAfterDurableSuccess") is True, "eleven queued, one active, auto continue")
-    check("release_marker_contract", invariants.get("markerSelectionUsesScaleOnly") is True and invariants.get("markerSelectionDecorationLayers") == 0 and invariants.get("markerSelectedScale") == 1.28 and invariants.get("markerSelectionDurationMs") == 190 and invariants.get("markerTipAnchorStable") is True, "anchored scale-only marker selection")
-    check("release_marker_runtime", all(token in marker_runtime for token in ("selectionUsesScaleOnly:true", "selectionDecorationLayers:0", "tipAnchorStable:true", "SELECTION_DURATION=190", "SELECTED_SCALE=1.28")) and "ctx.ellipse(" not in marker_runtime and "radius+4.2" not in marker_runtime, "no legacy selection rings or ornaments")
-    check("release_settings_icon", invariants.get("settingsIconDesign") == "radial-eight" and "dataset.iconDesign='radial-eight'" in controls_runtime, "simplified radial settings icon")
-    check("release_data_center_owner", release.get("runtimeOwners", {}).get("dataEvidenceCenter") == "atlas-settings.js" and release.get("runtimeOwners", {}).get("evidenceDataEngine") == "atlas-evidence-studio.js", "one shell owner and one evidence data engine")
-    check("release_data_center_contract", invariants.get("singleDataEvidenceCenter") is True and invariants.get("dataEvidenceCenterViews") == 2 and invariants.get("legacyEvidencePanelStandalone") is False, "one data and evidence center with two views")
-    check("release_data_center_runtime", all(token in settings_runtime for token in ('id="settingsPanel"', 'data-center-tab="database"', 'data-center-tab="evidence"', 'id="settingsEvidenceHost"', "host.appendChild(panel)", "legacyClose.hidden=true", "MONITOR_VERSION='0.6.1'")) and 'id="openEvidenceLab"' not in settings_runtime, "legacy evidence workspace is embedded under one controller")
-    check("release_data_center_css", all(token in settings_css for token in (".atlas-data-center", ".data-center-tabs", ".data-center-metrics", ".atlas-quality-performance .settings-panel")) and all(token in evidence_css for token in (".settings-evidence-host .evidence-panel", ".settings-evidence-host .evidence-panel>header{display:none}", ".settings-evidence-host .evidence-panel.open{display:block")), "responsive frosted center and embedded evidence workspace")
-    check("release_data_center_matrix", "Expected exactly 500 data center checks" in data_center_matrix and "staticValues.length!==50" in data_center_matrix and "totalChecks!==500" in data_center_matrix, "dedicated exact-500 data center matrix")
+    cache = release["cacheNamespace"]
+    check("cache_namespace", cache in bootstrap and cache in worker, "release, bootstrap and service worker share one cache namespace")
+    check("release_assets", all((ROOT / path).exists() for path in release.get("releaseAssets", [])), "all declared release assets exist")
+    check("validation_policy_owner", release.get("runtimeOwners", {}).get("releaseValidationPolicy") == "data/quality/release-validation-policy.json", "release declares validation policy")
+    check("validation_tiers", set(validation.get("tiers", {})) == {"quick", "standard", "full"}, "quick, standard and full tiers exist")
+    check("validation_budget_order", validation["tiers"]["quick"]["heartbeatChecks"] < validation["tiers"]["standard"]["heartbeatChecks"] < validation["tiers"]["full"]["heartbeatChecks"], "risk budgets increase monotonically")
+    check("validation_quick_floor", all(validation["tiers"]["quick"][key] >= 200 for key in ("heartbeatChecks", "serialQueueChecks", "queueSchemaChecks", "browserChecks", "monitorAuthorityChecks")), "quick relevant matrices preserve the 200-check floor")
+    check("validation_standard_floor", all(validation["tiers"]["standard"][key] >= 300 for key in ("heartbeatChecks", "serialQueueChecks", "queueSchemaChecks", "browserChecks", "monitorAuthorityChecks")), "standard relevant matrices preserve the 300-check floor")
+    check("validation_high_risk_full", "full_tier = full_audit or high_risk" in read_text("tools/select_release_validation.py"), "high-risk changes select the 500-check full tier without enabling unrelated matrices")
+    check("validation_ipad_coverage", all(path in validation["pathGroups"]["ui"] for path in ("atlas-ipad-canvas-hotfix-0948.js", "atlas-ipad-canvas-hotfix-0948.css", "atlas-ipad-gesture-hotfix-0948.js")) and all(path in validation["pathGroups"]["highRisk"] for path in ("atlas-ipad-canvas-hotfix-0948.js", "atlas-ipad-gesture-hotfix-0948.js")), "iPad canvas and gesture changes always select browser validation at the full tier")
+    check("validation_cycle", validation["scheduledFullAudit"]["lastCompletedVersion"] == release["version"] and validation["scheduledFullAudit"]["nextRequiredVersion"] == "0.9.4.11", "0.9.4.8 full audit recorded; next at 0.9.4.11")
+    check("workflow_selects_risk", "select_release_validation.py" in conflict_workflow and "run_full_audit" in conflict_workflow and "run_playwright" in conflict_workflow, "CI selects matrices by changed risk")
+    main_only_workflows = (scan_workflow, supervisor_workflow, discovery_workflow)
+    check("write_workflows_main_only", all("if: github.ref == 'refs/heads/main'" in workflow for workflow in main_only_workflows), "catalog, scan and supervisor write jobs cannot run from feature branches")
+    check("pr_validation_read_only", "permissions:\n  contents: read" in conflict_workflow and "persist-reports:" in conflict_workflow and "if: github.event_name == 'push' && github.ref == 'refs/heads/main'" in conflict_workflow, "PR conflict validation is read-only and report persistence is isolated to main pushes")
+    check("scan_validation_read_only", "permissions:\n  contents: read" in validation_workflow and "persist-health-report:" in validation_workflow and "if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'" in validation_workflow, "feature-branch scan validation is read-only and health persistence is isolated to main pushes")
 
     items = queue.get("items", [])
-    sequences = [item.get("sequence") for item in items]
-    status_items = {item.get("externalSourceId"): item for item in status.get("items", [])}
-    catalog_by_id = {item["id"]: item for item in catalog.get("items", [])}
-    queue_id = queue.get("queueId")
-    status_id = status.get("batchId")
-    terminal_status = status.get("complete") is True and status.get("summary", {}).get("imported") == status.get("summary", {}).get("total") == 11
+    status_items = status.get("items", [])
+    authority = queue.get("authority") or {}
+    summary = status.get("summary") or {}
+    check("single_authority", queue.get("queueId") == manifest.get("id") == status.get("batchId") == authority.get("batchId"), "queue, manifest, status and authority use one batch id")
+    check("terminal_authority", authority.get("terminal") is True and authority.get("protectFromCatalogRegeneration") is True and queue.get("status") == "complete" and status.get("complete") is True, "completed P80 batch is protected")
+    check("queue_capacity", len(items) == queue.get("maximumQueueItems") == manifest.get("maximumQueueItems") == supervisor.get("maximumQueueItems") == summary.get("total") == 1, "one authoritative queue item")
+    check("queue_identity", [item.get("page") for item in items] == [80] and trigger.get("queuePages") == [80], "P80 is the only active batch page")
+    check("queue_complete", all(item.get("state") == "imported" for item in items) and all(item.get("state") == "imported" for item in status_items), "P80 result is durably imported")
+    check("single_download", queue.get("maximumConcurrentItems") == manifest.get("maximumConcurrentDownloads") == manifest.get("maxItemsPerRun") == 1, "at most one download")
+    check("retention", manifest["retention"]["originalVideo"] is False and manifest["retention"]["framePixels"] is False, "source media and frame pixels are not retained")
 
-    check("queue_exact_eleven", len(items) == queue.get("maximumQueueItems") == manifest.get("maximumQueueItems") == 11, "exactly eleven bounded items")
-    check("queue_unique", len({item.get("externalSourceId") for item in items}) == 11, "eleven unique sources")
-    check("queue_chronological", sequences == EXPECTED_PAGES, f"sequence={sequences}")
-    check("queue_no_skips", queue.get("skippedAlreadyImportedPages") == [], "P25-P35 all included")
-    check("queue_region", all(item.get("regionGuess") == queue.get("pilotRegion") for item in items), "bounded batch label")
-    check("queue_serial", queue.get("maximumConcurrentItems") == 1 and sum(item.get("state") in {"running", "recovery"} for item in items) <= 1, "maximum one active item")
-    check("queue_auto_continue", queue.get("autoContinueAfterDurableSuccess") is True, "durable-success continuation")
-    check("queue_status_batch_identity", queue_id == status_id == EXPECTED_BATCH, f"queue={queue_id}, status={status_id}")
-    check("queue_authority", queue.get("authority", {}).get("protectFromCatalogRegeneration") is True and queue.get("authority", {}).get("batchId") == EXPECTED_BATCH and queue.get("authority", {}).get("terminal") is terminal_status, "active/terminal authority stays coherent")
-    check("status_coherent", status.get("summary", {}).get("total") == len(items) and status.get("authorizationId") == queue.get("authorizationId") and len(status_items) == 11, "status matches queue")
+    recovery = manifest["recoveryPolicy"]
+    policy = supervisor["policy"]
+    execution = autonomy["execution"]
+    check("bounded_attempts", manifest["maxAttemptsPerItem"] == recovery["maxAttemptsPerItem"] == policy["maximumAttemptsPerItem"] == 3, "technical recovery is capped at three attempts")
+    check("unknown_stops", recovery["blockUnknownOrIdentityFailures"] is True and trigger["humanReviewOnUnknownFailure"] is True, "unknown or identity failures stop")
+    check("no_persistent_retry", recovery["retryTechnicalFailuresUntilResolved"] is False and policy["retryTechnicalFailuresUntilResolved"] is False and execution["retryUntilResolvedForTechnicalFailures"] is False, "retry-until-resolved disabled")
+    check("no_source_patch", recovery["neverModifySourceCodeAutomatically"] is True and execution["allowAiSourcePatch"] is False and autonomy["mandatorySafety"]["neverModifyExecutableSourceAutomatically"] is True, "automation cannot modify executable source")
+    check("workflow_no_model", "models: read" not in scan_workflow and "ATLAS_AI_REPAIR_TOKEN" not in scan_workflow and "run_scan_with_auto_recovery_v2.py data/" not in scan_workflow, "scan workflow has no model/source-repair path")
+    persist_block = scan_workflow.split("Persist durable data state", 1)[-1].split("Continue with exactly one", 1)[0]
+    check("workflow_data_only", "tools/*.py" not in persist_block and "data/scan-autonomy-policy.json" not in persist_block, "scan persistence excludes source and policy files")
+    check("bounded_supervisor", "supervise_runtime_heartbeat.py data/" in supervisor_workflow and "supervise_runtime_heartbeat_v2.py data/" not in supervisor_workflow and supervisor["resumeCooldownSeconds"] >= 360, "supervisor uses bounded evaluator with cooldown")
+    check("supervisor_terminal_state", supervisor_state["decision"] == "complete" and supervisor_state["resumeWorkflow"] is False and supervisor_state["durable"]["total"] == supervisor_state["durable"]["imported"] == 1, "current supervisor state is terminal P80")
+    check("recovery_report_current", recovery_report["activeExternalSourceId"].endswith("p080") and recovery_report["maxAttempts"] == 3 and recovery_report["retryScheduled"] is False, "recovery report matches bounded terminal authority")
+    check("repair_report_current", repair_report["outcome"] == "disabled-terminal" and repair_report["queueState"] == "complete" and repair_report["changedFiles"] == [], "autonomous source repair report is disabled and terminal")
 
-    catalog_coherent = True
-    catalog_lagged: list[str] = []
-    for item in items:
-        external_id = item.get("externalSourceId")
-        entry = catalog_by_id.get(external_id, {})
-        catalog_state = entry.get("analysisStatus")
-        status_state = status_items.get(external_id, {}).get("state")
-        if item.get("state") == "imported":
-            durable_imported = status_state == "imported" and terminal_status
-            catalog_coherent = catalog_coherent and (catalog_state == "imported" or durable_imported)
-            if catalog_state != "imported" and durable_imported:
-                catalog_lagged.append(str(external_id))
-        else:
-            catalog_coherent = catalog_coherent and catalog_state != "imported"
-    check("queue_catalog_state", catalog_coherent, f"durable status wins; catalog lagged={len(catalog_lagged)}")
-    check("catalog_lag_is_bounded", len(catalog_lagged) <= 11, f"lagged projections={len(catalog_lagged)}")
+    check("catalog_guard_code", "protected_queue" in discovery and "preserved-terminal-authority" in discovery and "protected_queue" in refiner and "preserved-terminal-authority" in refiner, "both catalog generators preserve protected terminal queues")
+    check("catalog_guard_workflow", "protectFromCatalogRegeneration" in discovery_workflow and "queue['queueId']==manifest['id']==scan_status['batchId']" in discovery_workflow, "scheduled catalog job verifies authority")
+    indexed = {item.get("externalSourceId"): item for item in analysis_index.get("items", [])}
+    catalog_items = eleven_catalog.get("items", [])
+    imported = sum((indexed.get(item.get("id")) or {}).get("status") == "imported" for item in catalog_items)
+    check("catalog_analysis_projection", all(item.get("analysisStatus") == ((indexed.get(item.get("id")) or {}).get("status") if (indexed.get(item.get("id")) or {}).get("status") in {"imported", "failed"} else "pending") for item in catalog_items) and eleven_catalog["catalogStatus"]["analysisImported"] == imported and eleven_catalog["catalogStatus"]["analysisRemaining"] == len(catalog_items) - imported, "catalog analysis state is projected from analysis-index.json")
 
-    check("manifest_batch", manifest.get("id") == EXPECTED_BATCH and manifest.get("pilotRegion") == queue.get("pilotRegion"), "manifest targets P25-P35")
-    check("manifest_serial", manifest.get("maxItemsPerRun") == 1 and manifest.get("maximumConcurrentDownloads") == 1, "one item per run")
-    check("manifest_auto_continue", manifest.get("autoContinueAfterDurableSuccess") is True, "auto continuation enabled")
-    check("heartbeat_telemetry", manifest.get("runtimeHeartbeat", {}).get("minimumIntervalSeconds") == 30 and manifest.get("downloadTelemetry", {}).get("intervalSeconds") == 30, "30-second heartbeat and telemetry")
-    check("v12_adapter", manifest.get("analyzer", "").endswith("analyze_authorized_video_v12.py") and "analyze_authorized_video_v11" in analyzer_v12, "v12 analyzer selected")
-    check("adaptive_ranges", "ThreadPoolExecutor" in analyzer_v11 and manifest.get("downloadOptimization", {}).get("adaptiveParallelRanges") is True, "bounded range transfer")
-    check("download_policy", manifest.get("downloadOptimization", {}).get("noArtificialRateLimit") is True and 2 <= int(manifest.get("downloadOptimization", {}).get("maxRangeWorkers", 0)) <= 4, "no artificial cap, bounded workers")
-    check("retention", manifest.get("retention", {}).get("originalVideo") is False and manifest.get("retention", {}).get("framePixels") is False, "no retained media pixels")
+    triad = []
+    for page in (33, 34, 35):
+        result = read_json(f"data/analysis-results/eleven-p{page:03d}.json")
+        triad.append({"page": page, "status": result.get("status"), "generatedAt": result.get("generatedAt"), "sampled": result.get("scan", {}).get("sampled"), "kept": result.get("scan", {}).get("kept")})
+    check("p33_p35_analyzed", all(item["status"] == "analyzed" and item["sampled"] for item in triad), "P33, P34 and P35 all have analysis results")
+    timestamps = {item["page"]: item["generatedAt"] for item in triad}
+    historical_strict_order = timestamps[33] < timestamps[34] < timestamps[35]
+    regression_audit = read_text("data/audits/full-audit-0948-regression-20260722.json")
+    check("historical_order_disclosed", not historical_strict_order and "scan-order-regression" in regression_audit and "P34 is running while durable P33 remains failed" in regression_audit, "historical P34-before-P33 regression remains explicit")
 
-    check("workflow_capacity", "len(items)==queue['maximumQueueItems']==manifest['maximumQueueItems']==11" in workflow, "eleven-item workflow gate")
-    check("workflow_serial", "Scan exactly one item" in workflow and "maximumConcurrentDownloads" in workflow, "one active scan")
-    check("workflow_catalog_state", "if item.get('state')=='imported'" in workflow and "catalog_state=='imported'" in workflow, "catalog state remains coherent after each run")
-    check("workflow_400_gate", "400/400 eleven-item serial integrity and privacy checks passed" in workflow, "400-round scan gate")
-    check("workflow_auto_continue", "Continue with exactly one next item after durable success" in workflow and "steps.decision.outputs.progressed == 'true'" in workflow, "next run only after durable success")
+    entries = bugs.get("entries", [])
+    check("bug_dictionary", len(entries) >= 25 and len({entry.get("id") for entry in entries}) == len(entries), "bug dictionary is nontrivial and unique")
+    media = [path for pattern in ("*.mp4", "*.m4a", "*.webm", "*.flv") for path in ROOT.rglob(pattern)]
+    check("repository_media_clean", not media, f"media files={len(media)}")
 
-    check("monitor_poll", all(token in monitor for token in ("RAW_POLL_MS", "API_POLL_MS", "APPLY_TICK_MS")) and all(value in monitor for value in ("5000", "180000", "1000")), "5s raw, 180s API, 1s UI")
-    check("monitor_thresholds", all(token in monitor for token in ("HEARTBEAT_EXPECTED", "HEARTBEAT_WARN", "HEARTBEAT_FAIL")) and all(value in monitor for value in ("30", "75", "150")), "heartbeat thresholds")
-    check("monitor_version", "VERSION = '0.6.1'" in monitor and "scan-monitor.js?v=0.6.1" in monitor_html, "monitor v0.6.1")
-    check("monitor_single_controller", "scan-monitor-live-bridge" not in monitor_html and not (ROOT / "scan-monitor-live-bridge.js").exists(), "one monitor controller")
-    check("monitor_durable_priority", "durable.state !== 'imported'" in monitor and "批次权威状态优先" in monitor_html, "durable state wins")
-    check("monitor_batch_authority", all(token in monitor for token in ("chooseDurableBatch", "completedStatus", "batchKey", "批次冲突已自动隔离")), "mismatched legacy queues are isolated")
-    check("monitor_cache", "monitor-v11" in worker and "scan-monitor-live-bridge" not in worker, "single-monitor cache")
-
-    policy = supervisor_config.get("policy", {})
-    check("supervisor_capacity", supervisor_config.get("maximumQueueItems") == 11 and "len(queue['items'])==11" in supervisor_workflow, "eleven-item supervisor gate")
-    check("supervisor_serial", policy.get("oneItemPerRun") is True and policy.get("maximumConcurrentDownloads") == 1, "one-item supervisor policy")
-    check("supervisor_auto_continue", policy.get("automaticContinuationAfterDurableSuccess") is True, "supervisor continuation policy")
-    check("supervisor_thresholds", supervisor_config.get("staleAfterSeconds") == 90 and supervisor_config.get("hardStaleAfterSeconds") == 180, "90/180-second thresholds")
-    check("supervisor_dedup", supervisor_config.get("resumeCooldownSeconds") == 360 and policy.get("deduplicateResumeRequests") is True and "resume_permitted" in supervisor_source, "resume deduplication")
-    check("supervisor_durable", policy.get("durableStateAlwaysWins") is True and "stale_terminal_heartbeat" in supervisor_source, "durable reconciliation")
-    check("supervisor_safety", all(token in supervisor_source for token in ("sourceCodeModified", "authorizationBroadened", "queueScopeExpanded", "mediaRetentionChanged")), "bounded repair safety")
-
-    check("publisher_conflict", "error.code not in {409, 422}" in publisher and "ATLAS_PROGRESS_CONFLICT_RETRIES" in publisher, "fresh-SHA conflict retry")
-    check("telemetry_preservation", "PRESERVE_STAGES" in publisher_v2 and "telemetryMeasuredAt" in publisher_v2, "same-item telemetry preserved")
-    check("same_job_recovery", "diagnose_and_recover_scan_v2.py" in orchestrator and "analyze_authorized_video_v12.py" in orchestrator_v2, "same-job bounded recovery")
-    check("success_projection", "publish_durable_projection(queue)" in orchestrator and "clear_stale_recovery(queue)" in orchestrator, "success projects next item")
-
-    recovery = load_module("tools/diagnose_and_recover_scan_v2.py", "atlas_recovery_p25_p35_test")
-    examples = {
-        "HTTP Error 412: Precondition Failed": "bilibili-http-412",
-        "curl: (18) end of response with bytes missing": "curl-transport",
-        "range request was not honored": "range-not-supported",
-        "content-length mismatch after resumed transfer": "download-truncated",
-        "409 Conflict sha does not match": "github-contents-conflict",
-        "CID mismatch": "multipart-page-identity",
-        "OpenCV could not open the downloaded video": "opencv-open-failure",
-    }
-    for message, expected in examples.items():
-        matched, _ = recovery.match_entry(message, bugs)
-        check(f"match_{expected}", matched and matched.get("id") == expected, message)
-
-    base_publisher = load_module("tools/publish_runtime_progress.py", "atlas_publisher_p25_p35_test")
+    import publish_runtime_progress as publisher
     calls = {"put": 0}
-    base_publisher._current_sha = lambda *_args, **_kwargs: "sha"
-    base_publisher.time.sleep = lambda _seconds: None
-    base_publisher.random.uniform = lambda _a, _b: 0.0
-    base_publisher.os.getenv = lambda key, default="": {"ATLAS_PROGRESS_TOKEN": "audit", "ATLAS_PROGRESS_REPOSITORY": "owner/repo", "ATLAS_PROGRESS_BRANCH": "main", "ATLAS_PROGRESS_PATH": "progress.json", "ATLAS_PROGRESS_CONFLICT_RETRIES": "5"}.get(key, default)
-
-    def fake_request(url: str, credential: str, *, method: str = "GET", body: dict[str, Any] | None = None) -> dict[str, Any]:
+    publisher._current_sha = lambda *_args, **_kwargs: "sha"
+    publisher.time.sleep = lambda _seconds: None
+    publisher.random.uniform = lambda _a, _b: 0.0
+    publisher.os.getenv = lambda key, default="": {"ATLAS_PROGRESS_TOKEN": "audit", "ATLAS_PROGRESS_REPOSITORY": "owner/repo", "ATLAS_PROGRESS_BRANCH": "main", "ATLAS_PROGRESS_PATH": "progress.json", "ATLAS_PROGRESS_CONFLICT_RETRIES": "5"}.get(key, default)
+    def fake_request(url, credential, *, method="GET", body=None):
         if method == "PUT":
             calls["put"] += 1
             if calls["put"] == 1:
                 raise urllib.error.HTTPError(url, 409, "Conflict", hdrs=None, fp=None)
         return {}
-
-    base_publisher._github_request = fake_request
-    check("publisher_409_simulation", base_publisher._publish_github({"stage": "audit", "progressPercent": 1}) is True and calls["put"] == 2, "first conflict recovered")
-    media = [path for pattern in ("*.mp4", "*.m4a", "*.webm", "*.flv") for path in ROOT.rglob(pattern)]
-    check("repository_media_clean", not media, f"media files={len(media)}")
-    check("release_assets_exist", all((ROOT / path).exists() for path in release.get("releaseAssets", [])), "all release assets exist")
+    publisher._github_request = fake_request
+    check("publisher_conflict_retry", publisher._publish_github({"stage": "audit", "progressPercent": 1}) is True and calls["put"] == 2, "fresh-SHA retry recovers one conflict")
 
     passed = sum(item["passed"] for item in checks)
     report = {
-        "schemaVersion": 9,
+        "schemaVersion": 10,
         "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "status": "pass" if passed == len(checks) else "fail",
         "summary": {"total": len(checks), "passed": passed, "failed": len(checks) - passed},
-        "dictionaryVersion": bugs.get("version"),
-        "release": release.get("version"),
-        "queueItems": len(items),
-        "maximumConcurrentItems": queue.get("maximumConcurrentItems"),
-        "batchId": queue_id,
-        "catalogProjectionLag": catalog_lagged,
+        "release": release["version"], "batchId": queue.get("queueId"), "queueItems": len(items),
+        "historicalTriad": {"strictOrderPassed": historical_strict_order, "results": triad, "disposition": "documented-regression-not-retroactively-rewritten"},
+        "validationPolicy": {"revision": validation["revision"], "nextFullAudit": validation["scheduledFullAudit"]["nextRequiredVersion"]},
         "checks": checks,
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    OUTPUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report["summary"], ensure_ascii=False))
     return 0 if report["status"] == "pass" else 1
 
