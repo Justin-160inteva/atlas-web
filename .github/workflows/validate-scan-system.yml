@@ -40,7 +40,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -71,7 +70,7 @@ jobs:
         run: python tools/audit_scan_system_v3.py
 
       - name: Publish health report even when checks fail
-        if: always()
+        if: always() && github.ref == 'refs/heads/main'
         run: |
           REPORT='data/batch-analysis/scan-system-health.json'
           test -f "$REPORT"
