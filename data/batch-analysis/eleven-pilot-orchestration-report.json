@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-07-22T23:39:10.723384Z",
+  "generatedAt": "2026-08-15T22:18:01.107456Z",
   "manifest": "data/batch-analysis/eleven-pilot-scan-manifest.json",
   "dictionary": "data/scan-bug-dictionary.json",
   "autonomyPolicy": "data/scan-autonomy-policy.json",
@@ -8,8 +8,8 @@
   "cycles": [
     {
       "cycle": 1,
-      "startedAt": "2026-07-22T23:36:39.407026Z",
-      "finishedAt": "2026-07-22T23:39:09.730427Z",
+      "startedAt": "2026-08-15T22:17:59.687847Z",
+      "finishedAt": "2026-08-15T22:17:59.957268Z",
       "preflightState": "none",
       "preflightDictionaryEntryId": null,
       "preflightAutonomousOutcome": null,
@@ -27,7 +27,7 @@
     "deterministicRecoveryFirst": true
   },
   "safety": {
-    "maximumCycles": 5,
+    "maximumCycles": 3,
     "strictEarliestUnresolvedOrder": true,
     "sourceCodeModifiedAutomatically": false,
     "authorizationBroadened": false,
