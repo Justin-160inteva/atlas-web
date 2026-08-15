@@ -226,10 +226,10 @@
       sourceTop,
       sourceWidth,
       sourceHeight,
-      Math.round(destinationX),
-      Math.round(destinationY),
-      Math.ceil(sourceWidth * scale),
-      Math.ceil(sourceHeight * scale)
+      destinationX,
+      destinationY,
+      sourceWidth * scale,
+      sourceHeight * scale
     );
     ctx.restore();
   }
