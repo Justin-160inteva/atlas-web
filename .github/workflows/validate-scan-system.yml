@@ -22,6 +22,7 @@ on:
       - 'scan-monitor-live-bridge.js'
       - 'sw.js'
       - '.github/workflows/scan-eleven-pilot-v2.yml'
+      - '.github/workflows/scan-eleven-pilot.yml'
       - '.github/workflows/validate-scan-monitor.yml'
       - '.github/workflows/validate-scan-system.yml'
   workflow_dispatch:
@@ -84,7 +85,7 @@ jobs:
           report=json.load(open('data/batch-analysis/scan-system-health.json',encoding='utf-8'))
           required={
               'validation_quick_floor','validation_standard_floor','validation_high_risk_full','validation_ipad_coverage',
-              'write_workflows_main_only','pr_validation_read_only','scan_validation_read_only',
+              'write_workflows_main_only','legacy_pilot_terminal_guard','report_persistence_single_owner','report_persistence_retries','pr_validation_read_only','scan_validation_read_only',
               'terminal_authority','queue_complete','single_download','retention',
               'bounded_attempts','no_persistent_retry','no_source_patch','workflow_data_only',
               'bounded_supervisor','supervisor_terminal_state','catalog_guard_code',
