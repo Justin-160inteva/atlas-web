@@ -61,7 +61,6 @@ jobs:
         run: |
           node --check atlas-settings.js
           node --check scan-monitor.js
-          node --check scan-monitor-live-bridge.js
           node --check sw.js
 
       - name: Run executable systemic audit and simulated recovery cases
@@ -96,11 +95,12 @@ jobs:
           import json
           report=json.load(open('data/batch-analysis/scan-system-health.json',encoding='utf-8'))
           required={
-              'monitor_poll','monitor_thresholds','monitor_projection','monitor_recovery_retention',
-              'publisher_409_simulation','same_job_recovery','live_recovery',
-              'repository_media_clean','action_412','action_range_fallback',
-              'action_media','action_timeout','v12_adapter','adaptive_ranges',
-              'no_rate_limit','balanced_sampling','telemetry_preservation','bounded_queue'
+              'validation_quick_floor','validation_standard_floor','validation_high_risk_full',
+              'terminal_authority','queue_complete','single_download','retention',
+              'bounded_attempts','no_persistent_retry','no_source_patch','workflow_data_only',
+              'bounded_supervisor','supervisor_terminal_state','catalog_guard_code',
+              'catalog_guard_workflow','catalog_analysis_projection',
+              'repository_media_clean','publisher_conflict_retry'
           }
           checks={item['name']:item for item in report['checks']}
           assert report['summary']['total']>=35, report['summary']
