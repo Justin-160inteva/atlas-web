@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "project": "Atlas - Assassin's Creed Shadows Interactive Map",
+  "release": "0.9.4.8",
+  "auditDate": "2026-08-15",
+  "trigger": "accepted-feature-regression",
+  "result": "regression_blocked",
+  "triggerAssessment": {
+    "scheduledVersionReached": false,
+    "nextScheduledAuditVersion": "0.9.4.11",
+    "newMinorOrMajor": false,
+    "ultraHdOriginalMapGateFirstCompleted": false,
+    "acceptedFeatureRegression": true
+  },
+  "conversationAuditScope": {
+    "source": "accessible project conversation history in this ChatGPT run",
+    "requirementsChecked": [
+      "one active scan/download at a time",
+      "earliest unresolved queue item cannot be bypassed",
+      "known transport failures use bounded retries",
+      "unknown, identity, authorization and privacy failures stop safely",
+      "recovery must never modify executable source automatically",
+      "every release reviews watchdog and test speed without lowering quality floors",
+      "risk-based/path-scoped validation replaces unrelated fixed full matrices",
+      "reward inference is never presented as official confirmation",
+      "ultra-HD original map dependent work remains queued until the stage gate completes",
+      "iPad and public deployment verification are distinct from CI evidence"
+    ]
+  },
+  "repositoryEvidence": {
+    "releaseManifestVersion": "0.9.4.8",
+    "releaseManifestCacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1",
+    "bootstrapCacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v11-ipad-adaptive-markers-1",
+    "serviceWorkerCacheNamespace": "atlas-alpha-0948-pages-v1-monitor-v12-ipad-adaptive-markers-1-sheet-drag-1-reward-summary-1-ai-repair-1",
+    "scanManifestBatchId": "eleven-production-p080-v1",
+    "scanManifestMaximumQueueItems": 1,
+    "scanManifestProcessingOrder": "strict-p080-only",
+    "durableQueueId": "eleven-ac-shadows-pilot-v2",
+    "durableQueueCreatedAt": "2026-08-14T05:18:08.075660Z",
+    "durableQueuePages": [20, 21, 22],
+    "durableQueueRegion": "山城",
+    "statusBatchId": "eleven-production-p080-v1",
+    "statusPhase": "complete",
+    "statusPage": 80,
+    "recoveryPolicy": {
+      "maxAttemptsPerItem": 20,
+      "retryTechnicalFailuresUntilResolved": true,
+      "blockUnknownOrIdentityFailures": false,
+      "neverModifySourceCodeAutomatically": false
+    },
+    "validationWorkflow": {
+      "fixed500ScenarioMatricesStillUnconditional": true,
+      "pathScopedDynamicBudgetProvenOnMain": false
+    },
+    "rewardCoverage": {
+      "target": 3430,
+      "officialConfirmed": 0,
+      "multiSourceConfirmed": 125,
+      "highConfidenceInference": 872,
+      "unresolved": 2433,
+      "humanReviewed": 0,
+      "locked": 0
+    }
+  },
+  "confirmedRegressions": [
+    {
+      "id": "release-cache-namespace-drift",
+      "severity": "critical",
+      "status": "persisting",
+      "reason": "release-manifest/bootstrap and service worker still declare different cache namespaces"
+    },
+    {
+      "id": "batch-authority-and-queue-scope-mismatch",
+      "severity": "critical",
+      "status": "freshly-reconfirmed-2026-08-15",
+      "reason": "the scan manifest and status declare strict P80-only scope while the durable queue was recreated on 2026-08-14 with P20-P22 pending items"
+    },
+    {
+      "id": "recovery-policy-regression",
+      "severity": "critical",
+      "status": "persisting",
+      "reason": "20 attempts, unlimited technical retry intent, unsafe unknown/identity handling and executable-source modification permission remain configured"
+    },
+    {
+      "id": "validation-speed-policy-not-landed",
+      "severity": "high",
+      "status": "persisting",
+      "reason": "main CI still runs unrelated fixed 500-scenario matrices and full browser/audit gates unconditionally"
+    }
+  ],
+  "completedEvidence": [
+    "release remains 0.9.4.8",
+    "reward evidence index still conserves 3430 records with inference separated from official confirmation",
+    "ultra-HD original map gate remains explicitly pending",
+    "public media retention remains prohibited by project policy"
+  ],
+  "incompleteItems": [
+    "unify release/cache namespace",
+    "restore one authoritative manifest/queue/status/runtime batch identity",
+    "restore strict earliest-unresolved ownership and one-active-task proof",
+    "restore bounded safe recovery policy",
+    "land risk-based validation budgets and path-scoped CI on main",
+    "regenerate current scan-system health and cache-upgrade evidence",
+    "human review and locking of reward records",
+    "official-source reward confirmations",
+    "reward evidence UI in every location detail",
+    "public GitHub Pages verification",
+    "physical iPad Safari and desktop verification",
+    "ultra-HD original map stage-gate completion",
+    "end-to-end completeness audit against all accepted product requirements"
+  ],
+  "blockingItems": [
+    "release/cache namespace drift",
+    "P80 manifest/status versus P20-P22 durable queue mismatch",
+    "unsafe recovery policy",
+    "dynamic/path-scoped CI not proven on main"
+  ],
+  "nextThreeVersionPriorities": {
+    "0.9.4.9": [
+      "unify release/cache namespace",
+      "restore one authoritative scan batch and queue scope",
+      "restore earliest-unresolved and single-active invariants",
+      "restore bounded failure handling and never-modify-executable-source rule",
+      "land and prove risk-based/path-scoped CI",
+      "generate fresh health and upgrade evidence"
+    ],
+    "0.9.4.10": [
+      "human-review and lock first reward batches",
+      "add official confirmations where evidence exists",
+      "ship reward confidence/source/conflict detail UI",
+      "establish map/panel/iPad performance baselines"
+    ],
+    "0.9.4.11": [
+      "expand bounded reviewed reward coverage",
+      "complete public and physical-device verification records",
+      "review workflow noise and Atlas/COD11 repository separation",
+      "run scheduled full audit",
+      "reassess ultra-HD original map gate without premature completion"
+    ]
+  },
+  "scheduleDecision": {
+    "regularAuditCounterAdvanced": false,
+    "reason": "this audit is regression-triggered, not a regular scheduled audit",
+    "nextScheduledAuditVersion": "0.9.4.11"
+  }
+}
