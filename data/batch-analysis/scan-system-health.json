@@ -1,10 +1,10 @@
 {
   "schemaVersion": 10,
-  "generatedAt": "2026-08-15T22:17:23.264691Z",
+  "generatedAt": "2026-08-15T22:25:49.559316Z",
   "status": "pass",
   "summary": {
-    "total": 39,
-    "passed": 39,
+    "total": 42,
+    "passed": 42,
     "failed": 0
   },
   "release": "0.9.4.8",
@@ -38,7 +38,7 @@
     "disposition": "documented-regression-not-retroactively-rewritten"
   },
   "validationPolicy": {
-    "revision": "2026.08.15.2",
+    "revision": "2026.08.15.3",
     "nextFullAudit": "0.9.4.11"
   },
   "checks": [
@@ -101,6 +101,21 @@
       "name": "write_workflows_main_only",
       "passed": true,
       "detail": "catalog, scan and supervisor write jobs cannot run from feature branches"
+    },
+    {
+      "name": "legacy_pilot_terminal_guard",
+      "passed": true,
+      "detail": "legacy regional pilot is read-only unless preflight finds its nonterminal regional queue"
+    },
+    {
+      "name": "report_persistence_single_owner",
+      "passed": true,
+      "detail": "scan health is persisted only by its owning workflow"
+    },
+    {
+      "name": "report_persistence_retries",
+      "passed": true,
+      "detail": "report persistence rebases when another main writer wins the race"
     },
     {
       "name": "pr_validation_read_only",

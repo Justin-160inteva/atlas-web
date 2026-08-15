@@ -44,6 +44,7 @@ def main():
     bootstrap = read_text("atlas-bootstrap.js")
     worker = read_text("sw.js")
     scan_workflow = read_text(".github/workflows/scan-eleven-pilot-v2.yml")
+    legacy_scan_workflow = read_text(".github/workflows/scan-eleven-pilot.yml")
     supervisor_workflow = read_text(".github/workflows/supervise-eleven-heartbeat.yml")
     discovery_workflow = read_text(".github/workflows/discover-eleven-author-catalog.yml")
     discovery = read_text("tools/discover_bilibili_author_catalog.py")
@@ -65,6 +66,10 @@ def main():
     check("workflow_selects_risk", "select_release_validation.py" in conflict_workflow and "run_full_audit" in conflict_workflow and "run_playwright" in conflict_workflow, "CI selects matrices by changed risk")
     main_only_workflows = (scan_workflow, supervisor_workflow, discovery_workflow)
     check("write_workflows_main_only", all("if: github.ref == 'refs/heads/main'" in workflow for workflow in main_only_workflows), "catalog, scan and supervisor write jobs cannot run from feature branches")
+    check("legacy_pilot_terminal_guard", "preflight:" in legacy_scan_workflow and "needs: preflight" in legacy_scan_workflow and "authority.get('terminal')" in legacy_scan_workflow and "contents: read" in legacy_scan_workflow, "legacy regional pilot is read-only unless preflight finds its nonterminal regional queue")
+    conflict_persist = conflict_workflow.split("- name: Persist reports on main", 1)[-1]
+    check("report_persistence_single_owner", "scan-system-health.json" not in conflict_persist, "scan health is persisted only by its owning workflow")
+    check("report_persistence_retries", "git pull --rebase origin main && git push origin HEAD:main" in conflict_workflow, "report persistence rebases when another main writer wins the race")
     check("pr_validation_read_only", "permissions:\n  contents: read" in conflict_workflow and "persist-reports:" in conflict_workflow and "if: github.event_name == 'push' && github.ref == 'refs/heads/main'" in conflict_workflow, "PR conflict validation is read-only and report persistence is isolated to main pushes")
     check("scan_validation_read_only", "permissions:\n  contents: read" in validation_workflow and "persist-health-report:" in validation_workflow and "if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'" in validation_workflow, "feature-branch scan validation is read-only and health persistence is isolated to main pushes")
 

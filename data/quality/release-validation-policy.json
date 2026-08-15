@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "2026.08.15.2",
+  "revision": "2026.08.15.3",
   "purpose": "Choose the smallest deterministic validation set that still covers the risk introduced by each release.",
   "principles": {
     "userRequirementsFirst": true,
@@ -20,7 +20,7 @@
   },
   "pathGroups": {
     "validationFramework": [".github/workflows/atlas-conflict-reasoner.yml", "tools/select_release_validation.py", "data/quality/release-validation-policy.json", "release-manifest.json"],
-    "scanCore": ["tools/supervise_runtime_heartbeat.py", "tools/run_scan_with_auto_recovery.py", "tools/run_scan_with_auto_recovery_v2.py", "tools/scan_catalog_queue_v2.py", "tools/diagnose_and_recover_scan_v2.py", "tools/discover_bilibili_author_catalog.py", "tools/refine_eleven_catalog.py", "tools/heartbeat_system_smoke.py", "tools/serial_queue_order_smoke.py", "tools/queue_schema_smoke.py", "data/scan-autonomy-policy.json", "data/batch-analysis/eleven-*.json", ".github/workflows/scan-eleven-pilot-v2.yml", ".github/workflows/supervise-eleven-heartbeat.yml", ".github/workflows/discover-eleven-author-catalog.yml"],
+    "scanCore": ["tools/supervise_runtime_heartbeat.py", "tools/run_scan_with_auto_recovery.py", "tools/run_scan_with_auto_recovery_v2.py", "tools/scan_catalog_queue_v2.py", "tools/diagnose_and_recover_scan_v2.py", "tools/discover_bilibili_author_catalog.py", "tools/refine_eleven_catalog.py", "tools/heartbeat_system_smoke.py", "tools/serial_queue_order_smoke.py", "tools/queue_schema_smoke.py", "data/scan-autonomy-policy.json", "data/batch-analysis/eleven-*.json", ".github/workflows/scan-eleven-pilot.yml", ".github/workflows/scan-eleven-pilot-v2.yml", ".github/workflows/supervise-eleven-heartbeat.yml", ".github/workflows/discover-eleven-author-catalog.yml"],
     "monitor": ["scan-monitor.js", "tools/monitor_batch_authority_smoke.mjs"],
     "dataCenter": ["atlas-settings.js", "atlas-evidence-studio.js", "tools/data_center_contract_smoke.mjs"],
     "rewards": ["data/rewards/**", "tools/reward_evidence_contract_smoke.mjs"],

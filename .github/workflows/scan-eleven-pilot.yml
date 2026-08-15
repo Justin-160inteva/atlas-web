@@ -4,18 +4,42 @@ on:
   push:
     paths:
       - 'data/batch-analysis/eleven-pilot-scan-manifest.json'
+      - '.github/workflows/scan-eleven-pilot.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
-  actions: write
+  contents: read
 
 concurrency:
   group: scan-eleven-regional-pilot
   cancel-in-progress: false
 
 jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.queue.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check whether the legacy regional pilot owns the active queue
+        id: queue
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          queue=json.load(open('data/batch-analysis/eleven-pilot-scan-queue.json',encoding='utf-8'))
+          authority=queue.get('authority') or {}
+          regional=queue.get('pilotRegion')=='山城' and 1<=len(queue.get('items',[]))<=3
+          should_run=regional and not (authority.get('terminal') and authority.get('protectFromCatalogRegeneration'))
+          print(f"should_run={'true' if should_run else 'false'}")
+          PY
+
   scan:
+    needs: preflight
+    if: needs.preflight.outputs.should_run == 'true' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      actions: write
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
