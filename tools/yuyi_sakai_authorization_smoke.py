@@ -121,7 +121,7 @@ def main() -> int:
     checks["cross-workflow downloads serialized"] = shared_group in workflow and shared_group in p006_workflow
     checks["running scan not cancelled"] = "cancel-in-progress: false" in workflow and "cancel-in-progress: false" in p006_workflow
     generic_workflow = (ROOT / ".github/workflows/analyze-authorized-video.yml").read_text(encoding="utf-8")
-    checks["no duplicate generic scan"] = generic_workflow.count("!data/analysis-jobs/yuyi-sakai-*.json") == 2
+    checks["no duplicate generic scan"] = generic_workflow.count("!data/analysis-jobs/yuyi-*.json") == 2
 
     failures = [name for name, passed in checks.items() if not passed]
     print(json.dumps({"passed": len(checks) - len(failures), "total": len(checks), "failures": failures}, ensure_ascii=False))
