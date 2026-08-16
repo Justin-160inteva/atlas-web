@@ -10,7 +10,7 @@ jobs:
   verify-completed:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Verify sequence 06 remains complete
         run: |
           python - <<'PY'

@@ -22,12 +22,12 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Check out requested revision
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -130,7 +130,7 @@ jobs:
       - name: Upload exact-resolution and replacement evidence
         id: evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: dada-sequence-14-end-to-end-${{ github.sha }}
           path: |
