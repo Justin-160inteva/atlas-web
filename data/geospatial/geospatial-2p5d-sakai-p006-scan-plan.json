@@ -11,6 +11,17 @@
     "resolution": "Review P06 before declaring the existing authorized catalog exhausted or requesting another creator authorization."
   },
   "pilotScope": {
+    "id": "izumi-settsu-grid-05-03-v1",
+    "title": "IZUMI SETTSU 16x16 pilot tile",
+    "normalizedBounds": {
+      "minX": 0.3125,
+      "minY": 0.1875,
+      "maxX": 0.375,
+      "maxY": 0.25
+    },
+    "locationTarget": 61
+  },
+  "evidenceScope": {
     "id": "izumi-settsu-sakai-urban-core-v1",
     "title": "Sakai urban and waterfront core",
     "normalizedBounds": {
@@ -19,7 +30,8 @@
       "maxX": 0.3425,
       "maxY": 0.2425
     },
-    "locationTarget": 61
+    "locationTarget": 28,
+    "relationshipToPilot": "The 28-location Sakai core is a strict subset of the 61-location parent tile; the parent also contains Gansenji, Mount Kongo, Izumi Coast and other adjacent evidence targets."
   },
   "source": {
     "scanId": "p006-full-duration-sakai-context",
@@ -46,6 +58,45 @@
     "jpegQuality": 84,
     "artifactRetentionDays": 1
   },
+  "denseSampling": {
+    "strategy": "human-reviewed-candidate-windows",
+    "windows": [
+      {
+        "id": "pre-perfect-gift-sakai-traversal",
+        "startSeconds": 843.0,
+        "endSeconds": 1208.0,
+        "stepSeconds": 2.0,
+        "purpose": "street, market, dock, ship and waterfront continuity before The Perfect Gift"
+      },
+      {
+        "id": "perfect-gift-named-context",
+        "startSeconds": 1228.0,
+        "endSeconds": 1240.0,
+        "stepSeconds": 0.5,
+        "purpose": "mission-panel identity and transition into Sakai street traversal"
+      },
+      {
+        "id": "perfect-gift-market-route",
+        "startSeconds": 1240.0,
+        "endSeconds": 1405.0,
+        "stepSeconds": 2.0,
+        "purpose": "continuous market and residential route during The Perfect Gift"
+      },
+      {
+        "id": "sakai-roof-and-compound-route",
+        "startSeconds": 1680.0,
+        "endSeconds": 1745.0,
+        "stepSeconds": 1.5,
+        "purpose": "roof block, lane and compound views before the long indoor sequence"
+      }
+    ],
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "jpegQuality": 84,
+    "artifactRetentionDays": 1
+  },
   "hardGates": {
     "minimumCoveredDurationFraction": 0.99,
     "minimumFramesPerQuarter": 64,
@@ -63,7 +114,7 @@
   "modelingDecision": {
     "automaticGeometryGeneration": false,
     "geometryAllowedBeforeHumanReview": false,
-    "eligibleOutcome": "build a 61-location low-detail 2.5D tile only after every hard gate passes",
+    "eligibleOutcome": "build an evidence-backed 28-location Sakai urban-core layer inside the 61-location parent tile only after every hard gate passes; keep the adjacent 33 locations two-dimensional until their own evidence is accepted",
     "blockedOutcome": "use Issue 145 authorization outreach only after P06 is proven insufficient"
   },
   "retention": {
@@ -75,6 +126,8 @@
   },
   "outputs": {
     "timestampPlan": "data/geospatial/geospatial-2p5d-sakai-p006-timestamps.json",
-    "transientArtifactDirectory": "/tmp/atlas-sakai-p006-evidence"
+    "denseTimestampPlan": "data/geospatial/geospatial-2p5d-sakai-p006-dense-timestamps.json",
+    "visualReview": "data/geospatial/geospatial-2p5d-sakai-p006-visual-review.json",
+    "transientArtifactDirectory": "/tmp/atlas-sakai-p006-dense-evidence"
   }
 }

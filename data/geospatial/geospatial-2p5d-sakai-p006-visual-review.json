@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-08-16T05:55:00Z",
+  "status": "full-duration-review-complete-dense-scan-required",
+  "stage": "2p5d-sakai-p006-authorized-evidence-review",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "source": {
+    "workflowRunId": "31928939331",
+    "artifactName": "atlas-sakai-p006-private-review-31928939331",
+    "reviewedFrames": 352,
+    "reviewedContactSheets": 22,
+    "frameResolution": "640x360",
+    "pixelsPersistedToRepository": false
+  },
+  "scopeCorrection": {
+    "parentPilotTile": {
+      "id": "izumi-settsu-grid-05-03-v1",
+      "normalizedBounds": {
+        "minX": 0.3125,
+        "minY": 0.1875,
+        "maxX": 0.375,
+        "maxY": 0.25
+      },
+      "locationCount": 61,
+      "note": "This historical 16x16 grid tile includes Sakai plus adjacent Gansenji, Mount Kongo, Izumi Coast and other locations."
+    },
+    "sakaiUrbanCore": {
+      "id": "izumi-settsu-sakai-urban-core-v1",
+      "normalizedBounds": {
+        "minX": 0.315,
+        "minY": 0.218,
+        "maxX": 0.3425,
+        "maxY": 0.2425
+      },
+      "locationCount": 28,
+      "note": "P06 can support only this urban-core evidence subset; it cannot establish geometry for the other 33 parent-tile locations."
+    }
+  },
+  "acceptedIdentityEvidence": [
+    {
+      "id": "p006-perfect-gift-named-context",
+      "timeSeconds": 1234.233,
+      "frameIndex": 196,
+      "visibleMissionTitle": "完美礼物",
+      "localCoordinateRecord": {
+        "locationId": "location-mapgenie-434550",
+        "title": "The Perfect Gift",
+        "atlasX": 0.3335866774466736,
+        "atlasY": 0.24066726231543864,
+        "previousQuestLocationId": "location-mapgenie-434541",
+        "previousQuestTitle": "Searching Sakai"
+      },
+      "conclusion": "The mission screen and local quest-chain record establish named Sakai context for the surrounding traversal.",
+      "confidence": "high-for-city-identity-contextual-only-for-metric-position"
+    }
+  ],
+  "candidateWindows": [
+    {
+      "id": "p006-pre-perfect-gift-urban-waterfront",
+      "timeRangeSeconds": {
+        "start": 843.0,
+        "end": 1208.0
+      },
+      "observations": [
+        "dense commercial streets and market canopies",
+        "coastal settlement, docks, large ships and navigable water",
+        "continuous movement between street and waterfront scenes"
+      ],
+      "identityStatus": "probable-Sakai-from-immediate-story-sequence",
+      "correspondenceStatus": "not-yet-accepted",
+      "nextAction": "densely sample adjacent frames and match unique structures across camera directions"
+    },
+    {
+      "id": "p006-perfect-gift-market-route",
+      "timeRangeSeconds": {
+        "start": 1228.0,
+        "end": 1405.0
+      },
+      "observations": [
+        "named The Perfect Gift mission context",
+        "continuous market, residential lane and merchant route",
+        "several roof, wall, canopy and street-junction candidates"
+      ],
+      "identityStatus": "confirmed-Sakai-mission-context",
+      "correspondenceStatus": "not-yet-accepted",
+      "nextAction": "densely sample the route and build a non-pixel street-junction correspondence graph"
+    },
+    {
+      "id": "p006-sakai-roof-and-compound-route",
+      "timeRangeSeconds": {
+        "start": 1680.0,
+        "end": 1745.0
+      },
+      "observations": [
+        "roof traversal above narrow residential lanes",
+        "repeated tiled roofs, plaster walls and enclosed compounds",
+        "potential elevated views of the preceding district"
+      ],
+      "identityStatus": "probable-Sakai-from-continuous-mission-sequence",
+      "correspondenceStatus": "not-yet-accepted",
+      "nextAction": "test whether roof-level structures match street-level views from the earlier route"
+    }
+  ],
+  "hardGates": {
+    "namedSakaiContext": "passed",
+    "coordinateClusterLink": "partial-contextual-link-only",
+    "minimumTwoIndependentViewsPerModeledFeature": "not-yet-passed",
+    "streetAndWaterfrontContinuity": "candidate-not-yet-proven",
+    "geometryEligible": false
+  },
+  "safety": {
+    "sourceFramesCommitted": false,
+    "officialMapGeometryExtracted": false,
+    "buildingFootprintsGenerated": false,
+    "roadGeometryGenerated": false,
+    "waterGeometryGenerated": false,
+    "unsupportedSceneIdentityAssumed": false
+  },
+  "nextAction": "run the authorized targeted dense scan, review all dense contact sheets, and accept only repeated Sakai structures with at least two independent views before creating geometry"
+}

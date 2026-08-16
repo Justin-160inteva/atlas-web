@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -24,6 +25,17 @@ def add(rows: list[dict[str, Any]], used: set[float], value: float, duration: fl
     return True
 
 
+def count_locations(rows: list[dict[str, Any]], scope: dict[str, Any]) -> int:
+    bounds = scope["normalizedBounds"]
+    return sum(
+        1 for row in rows
+        if isinstance(row.get("atlas_x"), (int, float))
+        and isinstance(row.get("atlas_y"), (int, float))
+        and bounds["minX"] <= row["atlas_x"] <= bounds["maxX"]
+        and bounds["minY"] <= row["atlas_y"] <= bounds["maxY"]
+    )
+
+
 def main() -> int:
     plan = load(PLAN_PATH)
     source = plan["source"]
@@ -31,6 +43,7 @@ def main() -> int:
     gates = plan["hardGates"]
     job = load(ROOT / source["jobPath"])
     result = load(ROOT / source["resultPath"])
+    locations = load(ROOT / "data/locations.json")
     authorizations = load(ROOT / "data/authorizations.json")
     authorization = next(row for row in authorizations["records"] if row["id"] == plan["authorizationId"])
 
@@ -52,6 +65,12 @@ def main() -> int:
     duration = float(result["media"]["durationSeconds"])
     if abs(duration - float(source["expectedDurationSeconds"])) > 0.01:
         raise RuntimeError("P06 duration drifted")
+    pilot_count = count_locations(locations, plan["pilotScope"])
+    evidence_count = count_locations(locations, plan["evidenceScope"])
+    if pilot_count != int(plan["pilotScope"]["locationTarget"]):
+        raise RuntimeError(f"P06 parent-tile location count drifted: {pilot_count}")
+    if evidence_count != int(plan["evidenceScope"]["locationTarget"]):
+        raise RuntimeError(f"P06 Sakai-core location count drifted: {evidence_count}")
 
     selected: list[dict[str, Any]] = []
     used: set[float] = set()
@@ -110,13 +129,67 @@ def main() -> int:
             "firstSecond": selected[0]["time"], "lastSecond": selected[-1]["time"],
             "coveredDurationFraction": round(covered_fraction, 6), "checks": checks,
         },
+        "extraction": {
+            key: sampling[key] for key in (
+                "frameWidth", "frameHeight", "contactSheetColumns", "contactSheetRows",
+                "contactSheetCount", "jpegQuality", "artifactRetentionDays",
+            )
+        },
         "timestamps": selected,
         "safety": {"pixelsRead": False, "pixelsGenerated": False, "geometryGenerated": False, "existingCoordinatesModified": False},
         "nextAction": "extract a one-day private review artifact, then record only non-pixel multi-view landmark correspondences",
     }
     output = ROOT / plan["outputs"]["timestampPlan"]
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"status": payload["status"], "counts": payload["counts"], "coverage": payload["coverage"]}, ensure_ascii=False))
+
+    dense_sampling = plan["denseSampling"]
+    dense_rows: list[dict[str, Any]] = []
+    dense_used: set[float] = set()
+    for window in dense_sampling["windows"]:
+        start = float(window["startSeconds"])
+        end = float(window["endSeconds"])
+        step = float(window["stepSeconds"])
+        sample_count = math.floor((end - start) / step) + 1
+        for index in range(sample_count):
+            add(
+                dense_rows, dense_used, start + index * step, duration, "denseWindow",
+                windowId=window["id"], purpose=window["purpose"],
+            )
+    dense_rows.sort(key=lambda row: row["time"])
+    per_sheet = int(dense_sampling["contactSheetColumns"]) * int(dense_sampling["contactSheetRows"])
+    dense_sheet_count = math.ceil(len(dense_rows) / per_sheet)
+    dense_payload = {
+        "schemaVersion": 1,
+        "status": "p006-authorized-dense-timestamp-plan-ready",
+        "stage": "2p5d-sakai-p006-authorized-dense-evidence",
+        "authorizationId": plan["authorizationId"],
+        "source": payload["source"],
+        "scopeCounts": {"parentPilotTile": pilot_count, "sakaiUrbanCore": evidence_count},
+        "counts": {
+            "frames": len(dense_rows),
+            "contactSheets": dense_sheet_count,
+            "windows": dict(sorted(Counter(row["windowId"] for row in dense_rows).items())),
+        },
+        "extraction": {
+            "frameWidth": dense_sampling["frameWidth"],
+            "frameHeight": dense_sampling["frameHeight"],
+            "contactSheetColumns": dense_sampling["contactSheetColumns"],
+            "contactSheetRows": dense_sampling["contactSheetRows"],
+            "contactSheetCount": dense_sheet_count,
+            "jpegQuality": dense_sampling["jpegQuality"],
+            "artifactRetentionDays": dense_sampling["artifactRetentionDays"],
+        },
+        "timestamps": dense_rows,
+        "safety": payload["safety"],
+        "nextAction": "review repeated Sakai structures and record a non-pixel correspondence graph before geometry",
+    }
+    dense_output = ROOT / plan["outputs"]["denseTimestampPlan"]
+    dense_output.write_text(json.dumps(dense_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({
+        "status": payload["status"], "counts": payload["counts"], "coverage": payload["coverage"],
+        "denseStatus": dense_payload["status"], "denseCounts": dense_payload["counts"],
+        "scopeCounts": dense_payload["scopeCounts"],
+    }, ensure_ascii=False))
     return 0
 
 

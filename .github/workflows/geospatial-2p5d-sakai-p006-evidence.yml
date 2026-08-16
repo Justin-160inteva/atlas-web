@@ -11,6 +11,8 @@ on:
       - 'tools/extract_geospatial_2p5d_sakai_p006.py'
       - 'data/geospatial/geospatial-2p5d-sakai-p006-scan-plan.json'
       - 'data/geospatial/geospatial-2p5d-sakai-p006-timestamps.json'
+      - 'data/geospatial/geospatial-2p5d-sakai-p006-dense-timestamps.json'
+      - 'data/geospatial/geospatial-2p5d-sakai-p006-visual-review.json'
       - 'data/analysis-jobs/eleven-p006.json'
       - 'data/analysis-results/eleven-p006.json'
       - 'data/authorizations.json'
@@ -49,7 +51,9 @@ jobs:
             tools/download_authorized_bilibili_page_by_cid.py \
             tools/extract_geospatial_2p5d_sakai_p006.py
           python tools/plan_geospatial_2p5d_sakai_p006.py
-          git diff --exit-code -- data/geospatial/geospatial-2p5d-sakai-p006-timestamps.json
+          git diff --exit-code -- \
+            data/geospatial/geospatial-2p5d-sakai-p006-timestamps.json \
+            data/geospatial/geospatial-2p5d-sakai-p006-dense-timestamps.json
 
       - name: Run exact 500-check authorization and sampling gate
         run: python tools/sakai_p006_evidence_smoke.py
@@ -66,28 +70,30 @@ jobs:
 
       - name: Download explicit authorized P06 page transiently
         run: |
-          mkdir -p /tmp/atlas-sakai-p006-video /tmp/atlas-sakai-p006-evidence
+          mkdir -p /tmp/atlas-sakai-p006-video /tmp/atlas-sakai-p006-dense-evidence
           python tools/download_authorized_bilibili_page_by_cid.py \
             --job data/analysis-jobs/eleven-p006.json \
             --authorization-registry data/authorizations.json \
             --output-dir /tmp/atlas-sakai-p006-video \
             --quality 32
 
-      - name: Extract private low-resolution review evidence
+      - name: Extract private low-resolution dense review evidence
         run: |
           python tools/extract_geospatial_2p5d_sakai_p006.py \
             --video /tmp/atlas-sakai-p006-video/eleven-p006-v2.mp4 \
-            --output-dir /tmp/atlas-sakai-p006-evidence \
+            --output-dir /tmp/atlas-sakai-p006-dense-evidence \
+            --timestamp-plan data/geospatial/geospatial-2p5d-sakai-p006-dense-timestamps.json \
             --run-id '${{ github.run_id }}'
           python - <<'PY'
           import json
           from pathlib import Path
-          root = Path('/tmp/atlas-sakai-p006-evidence')
+          root = Path('/tmp/atlas-sakai-p006-dense-evidence')
           manifest = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
-          assert manifest['status'] == 'p006-private-review-artifact-ready'
+          timestamps = json.loads(Path('data/geospatial/geospatial-2p5d-sakai-p006-dense-timestamps.json').read_text(encoding='utf-8'))
+          assert manifest['status'] == 'p006-private-dense-review-artifact-ready'
           assert manifest['authorizationId'] == 'auth-eleven-game-world-20260719'
-          assert len(manifest['extraction']['frames']) == 352
-          assert len(manifest['extraction']['contactSheets']) == 22
+          assert len(manifest['extraction']['frames']) == timestamps['counts']['frames']
+          assert len(manifest['extraction']['contactSheets']) == timestamps['counts']['contactSheets']
           assert manifest['privacy']['artifactRetentionDays'] == 1
           assert manifest['modeling']['geometryGenerated'] is False
           assert all((root / row['filename']).is_file() for row in manifest['extraction']['frames'])
@@ -97,11 +103,11 @@ jobs:
           assert not list(Path('data').rglob('*.png'))
           PY
 
-      - name: Upload one-day private P06 review artifact
+      - name: Upload one-day private P06 dense review artifact
         uses: actions/upload-artifact@v6
         with:
-          name: atlas-sakai-p006-private-review-${{ github.run_id }}
-          path: /tmp/atlas-sakai-p006-evidence
+          name: atlas-sakai-p006-private-dense-review-${{ github.run_id }}
+          path: /tmp/atlas-sakai-p006-dense-evidence
           retention-days: 1
           compression-level: 6
           if-no-files-found: error
@@ -109,6 +115,6 @@ jobs:
       - name: Delete transient media and pixels
         if: always()
         run: |
-          rm -rf /tmp/atlas-sakai-p006-video /tmp/atlas-sakai-p006-evidence
+          rm -rf /tmp/atlas-sakai-p006-video /tmp/atlas-sakai-p006-dense-evidence
           test ! -e /tmp/atlas-sakai-p006-video
-          test ! -e /tmp/atlas-sakai-p006-evidence
+          test ! -e /tmp/atlas-sakai-p006-dense-evidence

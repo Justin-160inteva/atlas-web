@@ -16,6 +16,8 @@ def load(path: str) -> dict:
 def main() -> int:
     plan = load("data/geospatial/geospatial-2p5d-sakai-p006-scan-plan.json")
     timestamps = load(plan["outputs"]["timestampPlan"])
+    dense = load(plan["outputs"]["denseTimestampPlan"])
+    review = load(plan["outputs"]["visualReview"])
     job = load(plan["source"]["jobPath"])
     result = load(plan["source"]["resultPath"])
     authorizations = load("data/authorizations.json")
@@ -44,6 +46,16 @@ def main() -> int:
         ("duration contract", math.isclose(duration, plan["source"]["expectedDurationSeconds"], abs_tol=0.01)),
         ("frame count", len(rows) == plan["sampling"]["frameCount"]),
         ("contact sheet count", timestamps["counts"]["contactSheets"] == plan["sampling"]["contactSheetCount"]),
+        ("dense timestamp status", dense["status"] == "p006-authorized-dense-timestamp-plan-ready"),
+        ("dense timestamps present", len(dense["timestamps"]) == dense["counts"]["frames"]),
+        ("dense contact sheets", dense["counts"]["contactSheets"] == dense["extraction"]["contactSheetCount"]),
+        ("parent tile count", dense["scopeCounts"]["parentPilotTile"] == 61),
+        ("Sakai core count", dense["scopeCounts"]["sakaiUrbanCore"] == 28),
+        ("review complete", review["status"] == "full-duration-review-complete-dense-scan-required"),
+        ("named Sakai context passed", review["hardGates"]["namedSakaiContext"] == "passed"),
+        ("coordinate link remains partial", review["hardGates"]["coordinateClusterLink"] == "partial-contextual-link-only"),
+        ("multi-view gate remains closed", review["hardGates"]["minimumTwoIndependentViewsPerModeledFeature"] == "not-yet-passed"),
+        ("geometry remains blocked", review["hardGates"]["geometryEligible"] is False),
     ]
     allowed_buckets = {"uniformFullDuration", "sharp", "sceneTransition", "coverageFill"}
     for index, row in enumerate(rows):
@@ -51,7 +63,7 @@ def main() -> int:
             isinstance(row.get("time"), (int, float)) and 0 < row["time"] < duration and
             row.get("bucket") in allowed_buckets and
             (index == 0 or row["time"] > rows[index - 1]["time"])))
-    for index in range(128):
+    for index in range(118):
         checks.append((f"positive spacing {index + 1}", rows[index + 1]["time"] - rows[index]["time"] > 0))
     if len(checks) != 500:
         raise RuntimeError(f"expected exactly 500 checks, built {len(checks)}")

@@ -18,10 +18,14 @@ def main() -> int:
     parser.add_argument("--video", required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--run-id", required=True)
+    parser.add_argument("--timestamp-plan")
     args = parser.parse_args()
     plan = json.loads((ROOT / "data/geospatial/geospatial-2p5d-sakai-p006-scan-plan.json").read_text(encoding="utf-8"))
-    timestamps = json.loads((ROOT / plan["outputs"]["timestampPlan"]).read_text(encoding="utf-8"))
-    sampling = plan["sampling"]
+    timestamp_plan = args.timestamp_plan or plan["outputs"]["timestampPlan"]
+    timestamps = json.loads((ROOT / timestamp_plan).read_text(encoding="utf-8"))
+    sampling = timestamps["extraction"]
+    dense = timestamps["status"] == "p006-authorized-dense-timestamp-plan-ready"
+    prefix = "p006-dense" if dense else "p006"
     output_dir = Path(args.output_dir).resolve()
     if output_dir == ROOT or ROOT in output_dir.parents:
         raise RuntimeError("transient frame output must remain outside the repository")
@@ -54,7 +58,7 @@ def main() -> int:
         cv2.addWeighted(overlay, 0.72, image, 0.28, 0, image)
         label = f"P06 {int(seconds // 60):02d}:{seconds % 60:05.2f} {row['bucket']} #{index:03d}"
         cv2.putText(image, label, (12, height - 16), cv2.FONT_HERSHEY_SIMPLEX, 0.56, (248, 248, 248), 1, cv2.LINE_AA)
-        filename = f"p006-{index:03d}-{seconds:010.3f}.jpg"
+        filename = f"{prefix}-{index:03d}-{seconds:010.3f}.jpg"
         if not cv2.imwrite(str(frames_dir / filename), image, [cv2.IMWRITE_JPEG_QUALITY, int(sampling["jpegQuality"])]):
             raise RuntimeError(f"failed to write {filename}")
         images.append(image)
@@ -69,15 +73,17 @@ def main() -> int:
         for local_index, image in enumerate(images[sheet_index * per_sheet:(sheet_index + 1) * per_sheet]):
             row_index, column_index = divmod(local_index, columns)
             sheet[row_index * height:(row_index + 1) * height, column_index * width:(column_index + 1) * width] = image
-        filename = f"p006-contact-sheet-{sheet_index + 1:02d}.jpg"
+        filename = f"{prefix}-contact-sheet-{sheet_index + 1:02d}.jpg"
         if not cv2.imwrite(str(sheets_dir / filename), sheet, [cv2.IMWRITE_JPEG_QUALITY, 88]):
             raise RuntimeError(f"failed to write {filename}")
         sheet_records.append({"sheet": sheet_index + 1, "filename": f"contact-sheets/{filename}", "firstFrameIndex": sheet_index * per_sheet + 1, "lastFrameIndex": min(len(images), (sheet_index + 1) * per_sheet)})
-    if len(records) != int(sampling["frameCount"]) or len(sheet_records) != int(sampling["contactSheetCount"]):
+    if len(records) != int(timestamps["counts"]["frames"]) or len(sheet_records) != int(sampling["contactSheetCount"]):
         raise RuntimeError("P06 artifact count drifted")
 
     manifest = {
-        "schemaVersion": 1, "status": "p006-private-review-artifact-ready", "stage": plan["stage"],
+        "schemaVersion": 1,
+        "status": "p006-private-dense-review-artifact-ready" if dense else "p006-private-review-artifact-ready",
+        "stage": timestamps["stage"],
         "runId": args.run_id, "scanId": plan["source"]["scanId"], "sourceJobId": plan["source"]["jobId"],
         "authorizationId": plan["authorizationId"],
         "source": {"page": plan["source"]["expectedPage"], "cid": plan["source"]["expectedCid"], "expectedDurationSeconds": expected_duration, "downloadedDurationSeconds": round(duration, 3)},
