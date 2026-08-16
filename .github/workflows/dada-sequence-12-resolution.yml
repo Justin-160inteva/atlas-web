@@ -1,17 +1,6 @@
 name: Resolve and reprocess Dada sequence 12
 
 on:
-  pull_request:
-    paths:
-      - 'tools/resolve_dada_sequence12.py'
-      - 'data/reprocess/dada-seq12.json'
-      - '.github/workflows/dada-sequence-12-resolution.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'tools/resolve_dada_sequence12.py'
-      - 'data/reprocess/dada-seq12.json'
-      - '.github/workflows/dada-sequence-12-resolution.yml'
   workflow_dispatch:
 
 permissions:

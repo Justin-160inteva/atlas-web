@@ -1,12 +1,6 @@
 name: Repair and reprocess Dada sequence 20
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'tools/resolve_dada_sequence20.py'
-      - 'tools/verify_dada_sequence20.py'
-      - '.github/workflows/dada-sequence-20-resolution.yml'
   workflow_dispatch:
 
 permissions:
@@ -18,6 +12,7 @@ concurrency:
 
 jobs:
   repair-and-reprocess:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
