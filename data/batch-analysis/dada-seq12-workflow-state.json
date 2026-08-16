@@ -2,24 +2,24 @@
   "schemaVersion": 1,
   "sequence": 12,
   "workflow": "dada-sequence-12-resolution.yml",
-  "runId": "29683433376",
+  "runId": "31925252833",
   "runAttempt": "1",
-  "triggerSha": "8ce65d93e0fc5f770adc2ae7905ae3aecaa1ad33",
+  "triggerSha": "68402617cdc28d682bb37a5190a6953cd82561cb",
   "event": "push",
-  "status": "success",
-  "failedStage": null,
+  "status": "failure",
+  "failedStage": "resolve",
   "steps": {
     "compile": "success",
-    "resolve": "success",
-    "resolutionGate": "success",
-    "preflight": "success",
-    "installDependencies": "success",
-    "downloadAndAnalyze": "success",
+    "resolve": "failure",
+    "resolutionGate": "skipped",
+    "preflight": "skipped",
+    "installDependencies": "skipped",
+    "downloadAndAnalyze": "skipped",
     "cleanup": "success",
-    "audit": "success",
-    "transitionGate": "success",
+    "audit": "skipped",
+    "transitionGate": "skipped",
     "uploadEvidence": "success",
-    "persistReplacement": "success"
+    "persistReplacement": "skipped"
   },
-  "recordedAt": "2026-07-19T10:33:59.033190Z"
+  "recordedAt": "2026-08-16T03:52:00.728892Z"
 }
