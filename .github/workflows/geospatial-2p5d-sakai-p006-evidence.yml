@@ -21,7 +21,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: geospatial-sakai-transient-${{ github.event.pull_request.number || github.ref }}
+  group: geospatial-sakai-transient-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: false
 
 jobs:

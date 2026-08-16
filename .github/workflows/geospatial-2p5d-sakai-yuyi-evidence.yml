@@ -18,6 +18,7 @@ on:
       - 'data/analysis-jobs/yuyi-sakai-005.json'
       - 'data/analysis-jobs/yuyi-sakai-006.json'
       - 'data/geospatial/geospatial-2p5d-sakai-yuyi-visual-review.json'
+      - 'data/geospatial/geospatial-2p5d-sakai-yuyi-boundary-visual-review.json'
       - 'data/geospatial/geospatial-2p5d-sakai-video-authorization-candidates.json'
       - 'data/authorizations.json'
 
@@ -25,7 +26,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: geospatial-sakai-transient-${{ github.event.pull_request.number || github.ref }}
+  group: geospatial-sakai-transient-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: false
 
 jobs:

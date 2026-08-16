@@ -21,6 +21,7 @@ def main() -> int:
     candidates = load("data/geospatial/geospatial-2p5d-sakai-video-authorization-candidates.json")
     candidate = next(row for row in candidates["candidates"] if row["author"] == "侑依")
     review = load("data/geospatial/geospatial-2p5d-sakai-yuyi-visual-review.json")
+    boundary_review = load("data/geospatial/geospatial-2p5d-sakai-yuyi-boundary-visual-review.json")
     manifest = load("data/batch-analysis/yuyi-author-discovery.json")
     catalog = load("data/yuyi-ac-shadows-existing-20260816-catalog.json")
     queue = load("data/batch-analysis/yuyi-pilot-scan-queue.json")
@@ -52,7 +53,7 @@ def main() -> int:
         "season entry corrected": candidate["seasonDiscoveryBvid"] == "BV1pQdvYnEkq" and "episode 29" in candidate["identityCorrection"],
         "candidate authorized": candidate["authorizationId"] == auth["id"] and candidate["futureVideosIncluded"] is False,
         "candidate catalog count recorded": candidate["existingPublicVideoCount"] == 60 and candidate["ugcSeasonId"] == 5060305,
-        "candidate review status current": candidate["analysisStatus"] == "targeted-dense-review-complete-adjacent-boundary-scan-queued" and candidates["stage"] == "2p5d-sakai-adjacent-boundary-evidence",
+        "candidate review status current": candidate["analysisStatus"] == "adjacent-boundary-review-complete-atlas-registration-blocked" and candidates["stage"] == "2p5d-sakai-adjacent-boundary-review-complete",
         "candidate has two independent BVIDs": {row["bvid"] for row in candidate["relevantParts"]} == {row[1][0] for row in expected.items()},
         "catalog identity": catalog["catalogId"] == manifest["catalogId"] and catalog["authorizationId"] == auth["id"] and catalog["authorMid"] == 4442785,
         "catalog frozen existing only": manifest["catalogFrozenAt"] == "2026-08-16" and manifest["includeFutureVideos"] is False and catalog["futureInclusionRule"]["enabled"] is False and catalog["futureInclusionRule"]["authorizationAutomaticallyInherited"] is False,
@@ -64,7 +65,7 @@ def main() -> int:
         "catalog episode 6 exact": any(row["bvid"] == expected["yuyi-sakai-006"][0] and row["cid"] == expected["yuyi-sakai-006"][1] and row["durationSeconds"] == expected["yuyi-sakai-006"][2] for row in catalog["items"]),
         "catalog scan queue held": queue["status"] == "empty" and queue["items"] == [] and manifest["pilotCount"] == 0,
         "contact queue corrected": "侑依" not in candidates["recommendedContactOrder"],
-        "Atlas registration required": candidates["minimumAuthorizationSetToResumePilot"]["evidenceGate"] == "targeted-dense-review-passed-atlas-registration-blocked" and candidates["minimumAuthorizationSetToResumePilot"]["geometryStillBlockedUntilAtlasRegistration"] is True,
+        "Atlas registration required": candidates["minimumAuthorizationSetToResumePilot"]["evidenceGate"] == "adjacent-boundary-review-complete-atlas-registration-blocked" and candidates["minimumAuthorizationSetToResumePilot"]["geometryStillBlockedUntilAtlasRegistration"] is True,
     }
     for job_id, (bvid, cid, duration, samples) in expected.items():
         job = load(f"data/analysis-jobs/{job_id}.json")
@@ -108,6 +109,28 @@ def main() -> int:
     checks["geometry remains blocked"] = review["targetedDenseScan"]["geometryGenerated"] is False
     checks["dense review completed"] = review["targetedDenseScan"]["completed"] is True and review["targetedDenseScan"]["actualFrames"] == 375
     checks["unvalidated transform rejected"] = review["atlasRegistrationAssessment"]["transformComputed"] is False and review["hardGates"]["geometryEligible"] is False
+    boundary_by_job = {row["jobId"]: row for row in boundary_review["reviewCoverage"]}
+    checks["boundary review completed"] = boundary_review["status"] == "adjacent-boundary-review-complete-atlas-registration-blocked"
+    checks["boundary coverage exact"] = boundary_review["totals"] == {
+        "framesReviewed": 800,
+        "contactSheetsReviewed": 50,
+        "mapFramesObserved": 9,
+        "acceptedNamedCorrespondences": 1,
+    }
+    checks["boundary artifacts exact"] = all(
+        boundary_by_job[job_id]["framesReviewed"] == 400
+        and boundary_by_job[job_id]["contactSheetsReviewed"] == 25
+        and boundary_by_job[job_id]["artifactRetentionDays"] == 1
+        and boundary_by_job[job_id]["sourceMediaRetained"] is False
+        for job_id in boundary_expected
+    )
+    registration = boundary_review["atlasRegistrationAssessment"]
+    checks["single name match not promoted"] = (
+        registration["namedSourceMapPointsMatchedToAtlasLocationIds"] == 1
+        and registration["threeNonCollinearControlPointsPassed"] is False
+        and registration["independentFourthValidationPointPassed"] is False
+    )
+    checks["boundary transform rejected"] = registration["transformComputed"] is False and registration["geometryEligible"] is False
 
     workflow = (ROOT / ".github/workflows/geospatial-2p5d-sakai-yuyi-evidence.yml").read_text(encoding="utf-8")
     checks["workflow read-only"] = "permissions:\n  contents: read" in workflow
@@ -117,7 +140,7 @@ def main() -> int:
     checks["all Yuyi jobs scanned"] = all(f"job_file: data/analysis-jobs/{job_id}.json" in workflow for job_id in expected | boundary_expected)
     checks["sampling modes explicit"] = workflow.count("sampling_key: targetedDenseSampling") == 2 and workflow.count("sampling_key: reviewSampling") == 2
     p006_workflow = (ROOT / ".github/workflows/geospatial-2p5d-sakai-p006-evidence.yml").read_text(encoding="utf-8")
-    shared_group = "group: geospatial-sakai-transient-${{ github.event.pull_request.number || github.ref }}"
+    shared_group = "group: geospatial-sakai-transient-${{ github.head_ref || github.ref_name }}"
     checks["cross-workflow downloads serialized"] = shared_group in workflow and shared_group in p006_workflow
     checks["running scan not cancelled"] = "cancel-in-progress: false" in workflow and "cancel-in-progress: false" in p006_workflow
     generic_workflow = (ROOT / ".github/workflows/analyze-authorized-video.yml").read_text(encoding="utf-8")

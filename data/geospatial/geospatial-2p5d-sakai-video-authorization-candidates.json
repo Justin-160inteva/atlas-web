@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T19:23:28Z",
-  "status": "targeted-dense-review-complete-adjacent-boundary-scan-queued",
-  "stage": "2p5d-sakai-adjacent-boundary-evidence",
+  "generatedAt": "2026-08-16T19:45:29Z",
+  "status": "adjacent-boundary-review-complete-atlas-registration-blocked",
+  "stage": "2p5d-sakai-adjacent-boundary-review-complete",
   "pilotScope": {
     "id": "izumi-settsu-sakai-urban-core-v1",
     "title": "Sakai urban and waterfront core",
@@ -13,14 +13,14 @@
       "maxY": 0.2425
     }
   },
-  "reason": "The authorized P13/P15 and Yuyi episode 5/6 dense reviews produced no accepted Atlas correspondence set. Yuyi episodes 4 and 7 are the nearest story-boundary candidates for wider named map views around Tennoji, Sakai and Osaka; geometry remains blocked while they are reviewed.",
+  "reason": "The authorized P13/P15, Yuyi episode 5/6 dense reviews and the 800-frame episode 4/7 boundary review still do not provide three named non-collinear Atlas control points plus an independent fourth validation point. One Katano Tenshu name match is retained as evidence, but geometry remains blocked.",
   "existingAuthorizedSourceAudit": {
     "authorizationsChecked": [
       "auth-eleven-game-world-20260719",
       "auth-dada-20260718",
       "auth-yuyi-20260816"
     ],
-    "result": "Yuyi episodes 5 and 6 completed one-day private low-resolution uniform and targeted dense review. No valid named Atlas registration set was found, so only the adjacent episode 4 entry boundary and episode 7 exit boundary are queued for review.",
+    "result": "Yuyi episodes 5 and 6 completed one-day private low-resolution uniform and targeted dense review. Adjacent episodes 4 and 7 then completed an 800-frame boundary review. The single readable Katano Tenshu name match is insufficient for an Atlas transform.",
     "geometryEligibleFromExistingSources": false
   },
   "evidenceTargets": [
@@ -134,7 +134,7 @@
       ],
       "authorizationId": "auth-yuyi-20260816",
       "authorizationStatus": "authorized-existing-public-videos",
-      "analysisStatus": "targeted-dense-review-complete-adjacent-boundary-scan-queued",
+      "analysisStatus": "adjacent-boundary-review-complete-atlas-registration-blocked",
       "futureVideosIncluded": false
     },
     {
@@ -287,7 +287,7 @@
     "preferred": "one long continuous Sakai source plus one independent high-quality or focused Sakai source",
     "minimum": "at least one explicitly authorized source that shows a named Sakai route and two independent views of the same street, building block or dock",
     "authorizationGate": "passed-by-auth-yuyi-20260816",
-    "evidenceGate": "targeted-dense-review-passed-atlas-registration-blocked",
+    "evidenceGate": "adjacent-boundary-review-complete-atlas-registration-blocked",
     "geometryStillBlockedUntilAtlasRegistration": true
   },
   "safety": {
@@ -302,5 +302,5 @@
     "buildingFootprintsGenerated": false,
     "unsupportedSakaiIdentityAssumed": false
   },
-  "nextAction": "acquire at least three named non-collinear source-map point correspondences plus one independent named validation point, then compute and validate the Atlas transform before any located geometry"
+  "nextAction": "Select any further authorized episode only from explicit Sakai or named-map evidence; do not blind-scan the remaining catalog. Acquire at least three named non-collinear source-map point correspondences plus one independent named validation point before any transform or located geometry."
 }
