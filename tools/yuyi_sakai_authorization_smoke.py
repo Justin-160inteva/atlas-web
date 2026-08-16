@@ -28,6 +28,10 @@ def main() -> int:
         "yuyi-sakai-005": ("BV1ECZNYwEyH", 29083961886, 2536, 240),
         "yuyi-sakai-006": ("BV1nFZjYcEFs", 29102571716, 4537, 320),
     }
+    boundary_expected = {
+        "yuyi-boundary-004": ("BV1AdX8YaEfH", 29025569701, 3347),
+        "yuyi-boundary-007": ("BV18PooYdEEQ", 29121056185, 4185),
+    }
     catalog_bvid_digest = hashlib.sha256(
         ("\n".join(sorted(row["bvid"] for row in catalog["items"])) + "\n").encode()
     ).hexdigest()
@@ -48,6 +52,7 @@ def main() -> int:
         "season entry corrected": candidate["seasonDiscoveryBvid"] == "BV1pQdvYnEkq" and "episode 29" in candidate["identityCorrection"],
         "candidate authorized": candidate["authorizationId"] == auth["id"] and candidate["futureVideosIncluded"] is False,
         "candidate catalog count recorded": candidate["existingPublicVideoCount"] == 60 and candidate["ugcSeasonId"] == 5060305,
+        "candidate review status current": candidate["analysisStatus"] == "targeted-dense-review-complete-adjacent-boundary-scan-queued" and candidates["stage"] == "2p5d-sakai-adjacent-boundary-evidence",
         "candidate has two independent BVIDs": {row["bvid"] for row in candidate["relevantParts"]} == {row[1][0] for row in expected.items()},
         "catalog identity": catalog["catalogId"] == manifest["catalogId"] and catalog["authorizationId"] == auth["id"] and catalog["authorMid"] == 4442785,
         "catalog frozen existing only": manifest["catalogFrozenAt"] == "2026-08-16" and manifest["includeFutureVideos"] is False and catalog["futureInclusionRule"]["enabled"] is False and catalog["futureInclusionRule"]["authorizationAutomaticallyInherited"] is False,
@@ -86,6 +91,17 @@ def main() -> int:
         checks[f"{job_id} dense one-day artifact"] = dense["artifactRetentionDays"] == 1
         checks[f"{job_id} no retained source pixels"] = job["retention"] == {"originalVideo": False, "framePixels": False, "numericDescriptorsOnly": True}
 
+    catalog_by_bvid = {row["bvid"]: row for row in catalog["items"]}
+    boundary_rows = {row["jobId"]: row for row in candidate["adjacentBoundaryReviewCandidates"]}
+    for job_id, (bvid, cid, duration) in boundary_expected.items():
+        job = load(f"data/analysis-jobs/{job_id}.json")
+        checks[f"{job_id} catalog identity"] = job["externalSourceId"] == catalog_by_bvid[bvid]["id"] and job["authorizationId"] == auth["id"]
+        checks[f"{job_id} source identity"] = bvid in job["url"] and job["batch"]["cid"] == cid == boundary_rows[job_id]["cid"]
+        checks[f"{job_id} duration"] = job["batch"]["durationSeconds"] == duration == boundary_rows[job_id]["durationSeconds"]
+        checks[f"{job_id} bounded review"] = job["reviewSampling"]["samples"] == 400 and (job["reviewSampling"]["frameWidth"], job["reviewSampling"]["frameHeight"]) == (640, 360)
+        checks[f"{job_id} one-day artifact"] = job["reviewSampling"]["artifactRetentionDays"] == 1
+        checks[f"{job_id} no retained source pixels"] = job["retention"] == {"originalVideo": False, "framePixels": False, "numericDescriptorsOnly": True}
+
     checks["exact dense frame total"] = sum(
         load(f"data/analysis-jobs/{job_id}.json")["targetedDenseSampling"]["samples"] for job_id in expected
     ) == review["targetedDenseScan"]["estimatedFrames"] == 375
@@ -98,7 +114,8 @@ def main() -> int:
     checks["artifact one-day"] = "retention-days: 1" in workflow
     checks["cleanup always"] = "if: always()" in workflow
     checks["single concurrent download"] = "max-parallel: 1" in workflow
-    checks["both jobs scanned"] = all(f"job_file: data/analysis-jobs/{job_id}.json" in workflow for job_id in expected)
+    checks["all Yuyi jobs scanned"] = all(f"job_file: data/analysis-jobs/{job_id}.json" in workflow for job_id in expected | boundary_expected)
+    checks["sampling modes explicit"] = workflow.count("sampling_key: targetedDenseSampling") == 2 and workflow.count("sampling_key: reviewSampling") == 2
     p006_workflow = (ROOT / ".github/workflows/geospatial-2p5d-sakai-p006-evidence.yml").read_text(encoding="utf-8")
     shared_group = "group: geospatial-sakai-transient-${{ github.event.pull_request.number || github.ref }}"
     checks["cross-workflow downloads serialized"] = shared_group in workflow and shared_group in p006_workflow

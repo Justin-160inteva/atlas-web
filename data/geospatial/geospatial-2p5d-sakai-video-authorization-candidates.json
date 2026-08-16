@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T17:28:34Z",
-  "status": "uniform-private-review-complete-targeted-dense-scan-required",
-  "stage": "2p5d-sakai-targeted-dense-evidence",
+  "generatedAt": "2026-08-16T19:23:28Z",
+  "status": "targeted-dense-review-complete-adjacent-boundary-scan-queued",
+  "stage": "2p5d-sakai-adjacent-boundary-evidence",
   "pilotScope": {
     "id": "izumi-settsu-sakai-urban-core-v1",
     "title": "Sakai urban and waterfront core",
@@ -13,14 +13,14 @@
       "maxY": 0.2425
     }
   },
-  "reason": "The authorized P13/P15 dense review produced no accepted Sakai landmark correspondence. P15 waterfront workshop evidence was explicitly tied to Amagasaki, while P13 retained only unanchored Sakai candidates. Sakai-specific continuous traversal evidence is required before any footprint is modeled.",
+  "reason": "The authorized P13/P15 and Yuyi episode 5/6 dense reviews produced no accepted Atlas correspondence set. Yuyi episodes 4 and 7 are the nearest story-boundary candidates for wider named map views around Tennoji, Sakai and Osaka; geometry remains blocked while they are reviewed.",
   "existingAuthorizedSourceAudit": {
     "authorizationsChecked": [
       "auth-eleven-game-world-20260719",
       "auth-dada-20260718",
       "auth-yuyi-20260816"
     ],
-    "result": "Yuyi episodes 5 and 6 completed one-day private low-resolution uniform review. Cross-episode Sakai map views and port-route evidence justify targeted dense scanning, but Atlas-normalized registration remains unresolved and geometry is still blocked.",
+    "result": "Yuyi episodes 5 and 6 completed one-day private low-resolution uniform and targeted dense review. No valid named Atlas registration set was found, so only the adjacent episode 4 entry boundary and episode 7 exit boundary are queued for review.",
     "geometryEligibleFromExistingSources": false
   },
   "evidenceTargets": [
@@ -106,6 +106,24 @@
           "url": "https://www.bilibili.com/video/BV1nFZjYcEFs/"
         }
       ],
+      "adjacentBoundaryReviewCandidates": [
+        {
+          "jobId": "yuyi-boundary-004",
+          "title": "刺客信条：影 （4） 天王寺",
+          "bvid": "BV1AdX8YaEfH",
+          "cid": 29025569701,
+          "durationSeconds": 3347,
+          "basis": "immediately precedes the two Sakai episodes and may show a wider Tennoji-to-Sakai map transition"
+        },
+        {
+          "jobId": "yuyi-boundary-007",
+          "title": "刺客信条：影 （7） 大阪",
+          "bvid": "BV18PooYdEEQ",
+          "cid": 29121056185,
+          "durationSeconds": 4185,
+          "basis": "immediately follows the two Sakai episodes and may show a wider Sakai-to-Osaka map transition"
+        }
+      ],
       "totalRelevantDuration": "1:57:53",
       "priorityReason": "two long Sakai-specific parts are the strongest current candidate for continuous street traversal, repeated buildings and broad city coverage",
       "expectedEvidence": [
@@ -116,7 +134,7 @@
       ],
       "authorizationId": "auth-yuyi-20260816",
       "authorizationStatus": "authorized-existing-public-videos",
-      "analysisStatus": "uniform-private-review-complete-targeted-dense-scan-required",
+      "analysisStatus": "targeted-dense-review-complete-adjacent-boundary-scan-queued",
       "futureVideosIncluded": false
     },
     {

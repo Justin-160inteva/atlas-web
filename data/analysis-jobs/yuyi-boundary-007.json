@@ -1,0 +1,37 @@
+{
+  "id": "yuyi-boundary-007",
+  "externalSourceId": "bili-yuyi-acshadows-BV18PooYdEEQ",
+  "authorizationId": "auth-yuyi-20260816",
+  "author": "侑依",
+  "platform": "哔哩哔哩",
+  "title": "刺客信条：影 （7） 大阪",
+  "url": "https://www.bilibili.com/video/BV18PooYdEEQ/",
+  "intervalSeconds": 10.463,
+  "maxSamples": 400,
+  "minimumSharpness": 18,
+  "duplicateHashDistance": 0.11,
+  "duplicateColorDistance": 0.055,
+  "output": "data/analysis-results/yuyi-boundary-007.json",
+  "retention": {
+    "originalVideo": false,
+    "framePixels": false,
+    "numericDescriptorsOnly": true
+  },
+  "reviewSampling": {
+    "samples": 400,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "jpegQuality": 72,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "artifactRetentionDays": 1
+  },
+  "batch": {
+    "catalog": "data/yuyi-ac-shadows-existing-20260816-catalog.json",
+    "page": 1,
+    "cid": 29121056185,
+    "durationSeconds": 4185,
+    "regionGuess": "堺城至大阪出城边界",
+    "sourceKey": "BV18PooYdEEQ:p1"
+  }
+}
