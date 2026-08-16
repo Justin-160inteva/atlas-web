@@ -51,10 +51,12 @@ def main() -> int:
         ("dense contact sheets", dense["counts"]["contactSheets"] == dense["extraction"]["contactSheetCount"]),
         ("parent tile count", dense["scopeCounts"]["parentPilotTile"] == 61),
         ("Sakai core count", dense["scopeCounts"]["sakaiUrbanCore"] == 28),
-        ("review complete", review["status"] == "full-duration-review-complete-dense-scan-required"),
+        ("dense review complete", review["status"] == "dense-review-complete-correspondences-accepted-anchor-blocked"),
         ("named Sakai context passed", review["hardGates"]["namedSakaiContext"] == "passed"),
         ("coordinate link remains partial", review["hardGates"]["coordinateClusterLink"] == "partial-contextual-link-only"),
-        ("multi-view gate remains closed", review["hardGates"]["minimumTwoIndependentViewsPerModeledFeature"] == "not-yet-passed"),
+        ("two multi-view correspondence groups accepted",
+            len(review["acceptedCorrespondences"]) == 2 and
+            all(len(row["independentViews"]) >= 2 for row in review["acceptedCorrespondences"])),
         ("geometry remains blocked", review["hardGates"]["geometryEligible"] is False),
     ]
     allowed_buckets = {"uniformFullDuration", "sharp", "sceneTransition", "coverageFill"}
