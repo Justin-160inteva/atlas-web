@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from extract_authorized_review_frames import build_timestamps
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -17,6 +19,7 @@ def main() -> int:
     auth = next(row for row in registry["records"] if row["id"] == "auth-yuyi-20260816")
     candidates = load("data/geospatial/geospatial-2p5d-sakai-video-authorization-candidates.json")
     candidate = next(row for row in candidates["candidates"] if row["author"] == "侑依")
+    review = load("data/geospatial/geospatial-2p5d-sakai-yuyi-visual-review.json")
     expected = {
         "yuyi-sakai-005": ("BV1ECZNYwEyH", 29083961886, 2536, 240),
         "yuyi-sakai-006": ("BV1nFZjYcEFs", 29102571716, 4537, 320),
@@ -38,7 +41,7 @@ def main() -> int:
         "candidate authorized": candidate["authorizationId"] == auth["id"] and candidate["futureVideosIncluded"] is False,
         "candidate has two independent BVIDs": {row["bvid"] for row in candidate["relevantParts"]} == {row[1][0] for row in expected.items()},
         "contact queue corrected": "侑依" not in candidates["recommendedContactOrder"],
-        "geometry evidence gate pending": candidates["minimumAuthorizationSetToResumePilot"]["evidenceGate"] == "pending-private-review" and candidates["minimumAuthorizationSetToResumePilot"]["geometryStillBlockedUntilEvidenceReview"] is True,
+        "targeted dense evidence required": candidates["minimumAuthorizationSetToResumePilot"]["evidenceGate"] == "uniform-review-passed-targeted-dense-scan-required" and candidates["minimumAuthorizationSetToResumePilot"]["geometryStillBlockedUntilEvidenceReview"] is True,
     }
     for job_id, (bvid, cid, duration, samples) in expected.items():
         job = load(f"data/analysis-jobs/{job_id}.json")
@@ -50,7 +53,25 @@ def main() -> int:
         checks[f"{job_id} low resolution"] = job["reviewSampling"]["frameWidth"] <= 640 and job["reviewSampling"]["frameHeight"] <= 360
         checks[f"{job_id} review samples"] = job["reviewSampling"]["samples"] == samples <= 400
         checks[f"{job_id} one-day artifact"] = job["reviewSampling"]["artifactRetentionDays"] == 1
+        dense = job["targetedDenseSampling"]
+        expected_windows = [
+            row for row in review["targetedDenseScan"]["windows"] if row["jobId"] == job_id
+        ]
+        configured_windows = [
+            {key: value for key, value in row.items() if key != "id"} for row in dense["windows"]
+        ]
+        checks[f"{job_id} dense windows match review"] = configured_windows == [
+            {key: value for key, value in row.items() if key != "jobId"} for row in expected_windows
+        ]
+        checks[f"{job_id} dense sample count"] = len(build_timestamps(dense, duration)) == dense["samples"]
+        checks[f"{job_id} dense low resolution"] = (dense["frameWidth"], dense["frameHeight"]) == (640, 360)
+        checks[f"{job_id} dense one-day artifact"] = dense["artifactRetentionDays"] == 1
         checks[f"{job_id} no retained source pixels"] = job["retention"] == {"originalVideo": False, "framePixels": False, "numericDescriptorsOnly": True}
+
+    checks["exact dense frame total"] = sum(
+        load(f"data/analysis-jobs/{job_id}.json")["targetedDenseSampling"]["samples"] for job_id in expected
+    ) == review["targetedDenseScan"]["estimatedFrames"] == 375
+    checks["geometry remains blocked"] = review["targetedDenseScan"]["geometryGenerated"] is False
 
     workflow = (ROOT / ".github/workflows/geospatial-2p5d-sakai-yuyi-evidence.yml").read_text(encoding="utf-8")
     checks["workflow read-only"] = "permissions:\n  contents: read" in workflow

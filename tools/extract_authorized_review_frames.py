@@ -8,22 +8,46 @@ import math
 import re
 from pathlib import Path
 
-import cv2
-import numpy as np
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def build_timestamps(sampling: dict, duration: float) -> list[tuple[str | None, float]]:
+    windows = sampling.get("windows")
+    if not windows:
+        count = int(sampling["samples"])
+        return [(None, duration * (index + 0.5) / count) for index in range(count)]
+
+    timestamps = []
+    for window in windows:
+        start = int(window["startSeconds"])
+        end = int(window["endSeconds"])
+        interval = int(window["intervalSeconds"])
+        if start < 0 or end < start or end > duration or interval <= 0:
+            raise RuntimeError(f"invalid targeted review window: {window['id']}")
+        timestamps.extend((window["id"], float(seconds)) for seconds in range(start, end + 1, interval))
+    if len(timestamps) != int(sampling["samples"]):
+        raise RuntimeError("targeted review sample count does not match its closed windows")
+    return timestamps
+
+
 def main() -> int:
+    import cv2
+    import numpy as np
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--job", required=True)
     parser.add_argument("--video", required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--run-id", required=True)
+    parser.add_argument(
+        "--sampling-key",
+        choices=("reviewSampling", "targetedDenseSampling"),
+        default="reviewSampling",
+    )
     args = parser.parse_args()
 
     job = json.loads(Path(args.job).read_text(encoding="utf-8"))
-    sampling = job["reviewSampling"]
+    sampling = job[args.sampling_key]
     output_dir = Path(args.output_dir).resolve()
     if output_dir == ROOT or ROOT in output_dir.parents:
         raise RuntimeError("private review output must remain outside the repository")
@@ -55,8 +79,8 @@ def main() -> int:
     per_sheet = columns * rows
     images: list[np.ndarray] = []
     records = []
-    timestamps = [expected_duration * (index + 0.5) / sample_count for index in range(sample_count)]
-    for index, seconds in enumerate(timestamps, 1):
+    timestamps = build_timestamps(sampling, expected_duration)
+    for index, (window_id, seconds) in enumerate(timestamps, 1):
         capture.set(cv2.CAP_PROP_POS_MSEC, seconds * 1000)
         ok, frame = capture.read()
         if not ok or frame is None:
@@ -71,7 +95,12 @@ def main() -> int:
         if not cv2.imwrite(str(frames_dir / filename), image, [cv2.IMWRITE_JPEG_QUALITY, jpeg_quality]):
             raise RuntimeError(f"failed to write {filename}")
         images.append(image)
-        records.append({"index": index, "time": round(seconds, 3), "filename": f"frames/{filename}"})
+        records.append({
+            "index": index,
+            "windowId": window_id,
+            "time": round(seconds, 3),
+            "filename": f"frames/{filename}",
+        })
     capture.release()
 
     sheet_records = []
@@ -108,8 +137,10 @@ def main() -> int:
             "downloadedDurationSeconds": round(duration, 3),
         },
         "extraction": {
+            "samplingKey": args.sampling_key,
             "frameWidth": width,
             "frameHeight": height,
+            "windows": sampling.get("windows", []),
             "frames": records,
             "contactSheets": sheet_records,
         },

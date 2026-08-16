@@ -26,6 +26,38 @@
     "contactSheetRows": 4,
     "artifactRetentionDays": 1
   },
+  "targetedDenseSampling": {
+    "samples": 284,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "jpegQuality": 72,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "artifactRetentionDays": 1,
+    "windows": [
+      {
+        "id": "southwest-city-map-route-continuity-006",
+        "startSeconds": 225,
+        "endSeconds": 285,
+        "intervalSeconds": 1,
+        "purpose": "Bind the cross-episode southwest-city map marker to the following street route."
+      },
+      {
+        "id": "western-waterfront-market-route",
+        "startSeconds": 2920,
+        "endSeconds": 3230,
+        "intervalSeconds": 4,
+        "purpose": "Capture the canal, market, white facades and waterfront route with enough overlap for repeated-structure review."
+      },
+      {
+        "id": "port-ship-harbor-sequence",
+        "startSeconds": 3450,
+        "endSeconds": 4170,
+        "intervalSeconds": 5,
+        "purpose": "Bind city-map frames to the port, long pier, ship, elevated harbor panorama and return dock."
+      }
+    ]
+  },
   "batch": {
     "catalog": "data/geospatial/geospatial-2p5d-sakai-video-authorization-candidates.json",
     "page": 1,
