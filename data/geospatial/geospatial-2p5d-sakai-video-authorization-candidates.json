@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T16:57:44Z",
-  "status": "authorized-source-ready-for-transient-scan",
-  "stage": "2p5d-sakai-authorized-source-scan",
+  "generatedAt": "2026-08-16T17:28:34Z",
+  "status": "uniform-private-review-complete-targeted-dense-scan-required",
+  "stage": "2p5d-sakai-targeted-dense-evidence",
   "pilotScope": {
     "id": "izumi-settsu-sakai-urban-core-v1",
     "title": "Sakai urban and waterfront core",
@@ -20,7 +20,7 @@
       "auth-dada-20260718",
       "auth-yuyi-20260816"
     ],
-    "result": "Yuyi episodes 5 and 6 are now explicitly authorized existing-public-video sources and are queued for transient review; no geometry may be inferred until the review gates pass",
+    "result": "Yuyi episodes 5 and 6 completed one-day private low-resolution uniform review. Cross-episode Sakai map views and port-route evidence justify targeted dense scanning, but Atlas-normalized registration remains unresolved and geometry is still blocked.",
     "geometryEligibleFromExistingSources": false
   },
   "evidenceTargets": [
@@ -112,7 +112,7 @@
       ],
       "authorizationId": "auth-yuyi-20260816",
       "authorizationStatus": "authorized-existing-public-videos",
-      "analysisStatus": "queued-for-private-transient-scan",
+      "analysisStatus": "uniform-private-review-complete-targeted-dense-scan-required",
       "futureVideosIncluded": false
     },
     {
@@ -265,16 +265,20 @@
     "preferred": "one long continuous Sakai source plus one independent high-quality or focused Sakai source",
     "minimum": "at least one explicitly authorized source that shows a named Sakai route and two independent views of the same street, building block or dock",
     "authorizationGate": "passed-by-auth-yuyi-20260816",
-    "evidenceGate": "pending-private-review",
+    "evidenceGate": "uniform-review-passed-targeted-dense-scan-required",
     "geometryStillBlockedUntilEvidenceReview": true
   },
   "safety": {
-    "candidateVideosDownloaded": false,
-    "candidateFramesExtracted": false,
+    "candidateVideosDownloaded": true,
+    "candidateVideosDownloadedTransiently": true,
+    "sourceMediaRetained": false,
+    "candidateFramesExtracted": true,
+    "candidateFramesStoredOnlyInOneDayPrivateArtifacts": true,
+    "framePixelsCommitted": false,
     "unapprovedComputerVisionRun": false,
     "officialMapGeometryExtracted": false,
     "buildingFootprintsGenerated": false,
     "unsupportedSakaiIdentityAssumed": false
   },
-  "nextAction": "run the two authorized Yuyi Sakai sources through the one-day private low-resolution review workflow, then require named-context, repeated-structure and coordinate-anchor gates before modeling"
+  "nextAction": "run only the four accepted dense windows recorded in geospatial-2p5d-sakai-yuyi-visual-review.json, register map-marker frames to Atlas normalized coordinates, and keep geometry blocked until that transform is independently checked"
 }

@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-08-16T17:28:34Z",
+  "status": "uniform-review-complete-targeted-dense-scan-required",
+  "stage": "2p5d-sakai-yuyi-private-uniform-review",
+  "authorizationId": "auth-yuyi-20260816",
+  "workflowRun": {
+    "id": 31960486196,
+    "url": "https://github.com/Justin-160inteva/atlas-web/actions/runs/31960486196",
+    "conclusion": "success"
+  },
+  "reviewCoverage": [
+    {
+      "jobId": "yuyi-sakai-005",
+      "bvid": "BV1ECZNYwEyH",
+      "cid": 29083961886,
+      "durationSeconds": 2536,
+      "artifact": "atlas-yuyi-sakai-005-private-review-31960486196",
+      "framesReviewed": 240,
+      "contactSheetsReviewed": 15,
+      "artifactRetentionDays": 1,
+      "sourceMediaRetained": false
+    },
+    {
+      "jobId": "yuyi-sakai-006",
+      "bvid": "BV1nFZjYcEFs",
+      "cid": 29102571716,
+      "durationSeconds": 4537,
+      "artifact": "atlas-yuyi-sakai-006-private-review-31960486196",
+      "framesReviewed": 320,
+      "contactSheetsReviewed": 20,
+      "artifactRetentionDays": 1,
+      "sourceMediaRetained": false
+    }
+  ],
+  "hardGates": {
+    "namedSakaiContext": "passed-by-exact-video-titles-and-city-map-views",
+    "mapVisibleCoordinateAnchor": "passed-source-relative-only",
+    "multiViewRouteEvidence": "passed-for-targeted-windows",
+    "atlasNormalizedRegistration": "pending-dense-map-marker-registration",
+    "geometryEligible": false
+  },
+  "acceptedCorrespondenceCandidates": [
+    {
+      "id": "sakai-southwest-city-map-route-continuity",
+      "status": "accepted-for-targeted-dense-scan-not-geometry",
+      "evidence": [
+        {
+          "jobId": "yuyi-sakai-005",
+          "frameIndex": 220,
+          "timeSeconds": 2319.383,
+          "observation": "Full Sakai city map with the player marker in the southwest urban blocks; adjacent uniform samples are the immediately preceding interior/alley and following street route."
+        },
+        {
+          "jobId": "yuyi-sakai-006",
+          "frameIndex": 19,
+          "timeSeconds": 262.295,
+          "observation": "Second full Sakai city map view in the following episode with the player marker again in the southwest urban blocks; street footage appears immediately before and after."
+        }
+      ],
+      "whyNotGeometry": "The cross-episode map occurrence is repeatable, but 10.6-14.2 second uniform spacing is too coarse to register the exact doorway or street segment to the map marker."
+    },
+    {
+      "id": "sakai-western-waterfront-market-route",
+      "status": "accepted-for-targeted-dense-scan-not-geometry",
+      "evidence": [
+        {
+          "jobId": "yuyi-sakai-006",
+          "startSeconds": 2956.14,
+          "endSeconds": 3211.22,
+          "observation": "Continuous route through narrow houses, a drainage canal, covered market frontage, white storehouse-like facades and waterfront-facing streets."
+        }
+      ],
+      "whyNotGeometry": "Multiple route views are present, but no dense transition currently binds individual facades to a stable source-map point."
+    },
+    {
+      "id": "sakai-port-ship-harbor-sequence",
+      "status": "accepted-for-targeted-dense-scan-not-geometry",
+      "evidence": [
+        {
+          "jobId": "yuyi-sakai-006",
+          "startSeconds": 3466.55,
+          "endSeconds": 4161.28,
+          "observation": "Repeated city-map views lead into the west port, long pier, large ship, ship deck, return dock and waterfront buildings."
+        },
+        {
+          "jobId": "yuyi-sakai-006",
+          "frameIndex": 275,
+          "timeSeconds": 3891.895,
+          "observation": "Elevated harbor panorama shows the ship, enclosed water basin, opposing shoreline blocks and multiple piers in one view."
+        }
+      ],
+      "whyNotGeometry": "The harbor relationship is visually strong, but source-map marker pixels and the elevated panorama still need dense temporal binding and Atlas-coordinate registration."
+    }
+  ],
+  "rejectedClaims": [
+    "No building footprint is accepted from visual similarity alone.",
+    "No source-map roads, shorelines or official geometry are extracted or traced.",
+    "The low-resolution uniform frames do not justify facade dimensions, roof heights or precise street widths.",
+    "P06 correspondence groups are not assumed to match the Yuyi structures until a direct feature-level cross-check exists."
+  ],
+  "targetedDenseScan": {
+    "required": true,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "artifactRetentionDays": 1,
+    "windows": [
+      {
+        "jobId": "yuyi-sakai-005",
+        "startSeconds": 2280,
+        "endSeconds": 2370,
+        "intervalSeconds": 1,
+        "purpose": "Bind the first southwest-city map marker to the immediately adjacent interior, alley and street sequence."
+      },
+      {
+        "jobId": "yuyi-sakai-006",
+        "startSeconds": 225,
+        "endSeconds": 285,
+        "intervalSeconds": 1,
+        "purpose": "Bind the cross-episode southwest-city map marker to the following street route."
+      },
+      {
+        "jobId": "yuyi-sakai-006",
+        "startSeconds": 2920,
+        "endSeconds": 3230,
+        "intervalSeconds": 4,
+        "purpose": "Capture the canal, market, white facades and waterfront route with enough overlap for repeated-structure review."
+      },
+      {
+        "jobId": "yuyi-sakai-006",
+        "startSeconds": 3450,
+        "endSeconds": 4170,
+        "intervalSeconds": 5,
+        "purpose": "Bind city-map frames to the port, long pier, ship, elevated harbor panorama and return dock."
+      }
+    ],
+    "estimatedFrames": 375,
+    "geometryGenerated": false
+  },
+  "privacy": {
+    "repositoryContainsSourcePixels": false,
+    "authorizationScreenshotCommitted": false,
+    "fullVideoRedistributed": false,
+    "reviewRecordsContainNumericTimestampsAndTextOnly": true
+  }
+}
