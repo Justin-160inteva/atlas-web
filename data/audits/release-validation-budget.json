@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T04:21:06.109613Z",
+  "generatedAt": "2026-08-16T04:44:11.985653Z",
   "release": "0.9.4.8",
   "policyRevision": "2026.08.15.3",
   "tier": "quick",
@@ -8,27 +8,25 @@
   "forcedFull": false,
   "scheduledFull": false,
   "changedFiles": [
-    ".github/workflows/dada-sequence-06-resolution.yml",
-    ".github/workflows/dada-sequence-08-resolution.yml",
-    ".github/workflows/dada-sequence-12-resolution.yml",
-    ".github/workflows/dada-sequence-14-resolution.yml",
-    ".github/workflows/dada-sequence-20-resolution.yml",
-    ".github/workflows/reprocess-dada-seq08.yml",
-    "data/batch-analysis/scan-system-health.json",
-    "tools/audit_scan_system_v3.py"
+    ".github/workflows/reward-quest-evidence-import.yml",
+    "tools/apply_legendary_chest_reward_parser_patch.py",
+    "tools/report_quest_reward_import_validation.py",
+    "tools/reward_evidence_contract_smoke.mjs"
   ],
   "matchedGroups": {
     "validationFramework": [],
     "scanCore": [],
     "monitor": [],
     "dataCenter": [],
-    "rewards": [],
+    "rewards": [
+      "tools/reward_evidence_contract_smoke.mjs"
+    ],
     "ui": [],
     "highRisk": []
   },
   "run": {
     "data_center": false,
-    "reward": false,
+    "reward": true,
     "heartbeat": false,
     "serial": false,
     "queue_schema": false,
