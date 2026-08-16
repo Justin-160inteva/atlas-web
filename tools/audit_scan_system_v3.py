@@ -47,6 +47,7 @@ def main():
     legacy_scan_workflow = read_text(".github/workflows/scan-eleven-pilot.yml")
     supervisor_workflow = read_text(".github/workflows/supervise-eleven-heartbeat.yml")
     discovery_workflow = read_text(".github/workflows/discover-eleven-author-catalog.yml")
+    extras_workflow = read_text(".github/workflows/discover-eleven-account-extras.yml")
     discovery = read_text("tools/discover_bilibili_author_catalog.py")
     refiner = read_text("tools/refine_eleven_catalog.py")
     conflict_workflow = read_text(".github/workflows/atlas-conflict-reasoner.yml")
@@ -65,7 +66,8 @@ def main():
     check("validation_cycle", validation["scheduledFullAudit"]["lastCompletedVersion"] == release["version"] and validation["scheduledFullAudit"]["nextRequiredVersion"] == "0.9.4.11", "0.9.4.8 full audit recorded; next at 0.9.4.11")
     check("workflow_selects_risk", "select_release_validation.py" in conflict_workflow and "run_full_audit" in conflict_workflow and "run_playwright" in conflict_workflow, "CI selects matrices by changed risk")
     main_only_workflows = (scan_workflow, supervisor_workflow, discovery_workflow)
-    check("write_workflows_main_only", all("if: github.ref == 'refs/heads/main'" in workflow for workflow in main_only_workflows), "catalog, scan and supervisor write jobs cannot run from feature branches")
+    extras_write_guard = "branches: [main]" in extras_workflow and "if: github.event_name == 'push' && github.ref == 'refs/heads/main'" in extras_workflow and "TARGET_BRANCH: main" in extras_workflow
+    check("write_workflows_main_only", all("if: github.ref == 'refs/heads/main'" in workflow for workflow in main_only_workflows) and extras_write_guard, "catalog, scan, supervisor and account extras writes cannot run from feature branches")
     check("legacy_pilot_terminal_guard", "preflight:" in legacy_scan_workflow and "needs: preflight" in legacy_scan_workflow and "authority.get('terminal')" in legacy_scan_workflow and "contents: read" in legacy_scan_workflow, "legacy regional pilot is read-only unless preflight finds its nonterminal regional queue")
     conflict_persist = conflict_workflow.split("- name: Persist reports on main", 1)[-1]
     check("report_persistence_single_owner", "scan-system-health.json" not in conflict_persist, "scan health is persisted only by its owning workflow")
