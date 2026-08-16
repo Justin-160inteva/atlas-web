@@ -245,8 +245,16 @@ jobs:
             exit 0
           fi
           git commit -m 'Resolve and reprocess Dada sequence 12 [skip ci]'
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt ${attempt} collided with a concurrent update; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 5))
+          done
+          echo 'Unable to publish Dada sequence 12 replacement after six attempts.' >&2
+          exit 1
 
   persist-outcome:
     if: always() && github.ref == 'refs/heads/main'
@@ -293,5 +301,13 @@ jobs:
             exit 0
           fi
           git commit -m 'Record Dada sequence 12 workflow outcome [skip ci]'
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt ${attempt} collided with a concurrent update; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 5))
+          done
+          echo 'Unable to publish Dada sequence 12 workflow outcome after six attempts.' >&2
+          exit 1
