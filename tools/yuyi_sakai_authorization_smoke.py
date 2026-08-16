@@ -41,7 +41,7 @@ def main() -> int:
         "candidate authorized": candidate["authorizationId"] == auth["id"] and candidate["futureVideosIncluded"] is False,
         "candidate has two independent BVIDs": {row["bvid"] for row in candidate["relevantParts"]} == {row[1][0] for row in expected.items()},
         "contact queue corrected": "侑依" not in candidates["recommendedContactOrder"],
-        "targeted dense evidence required": candidates["minimumAuthorizationSetToResumePilot"]["evidenceGate"] == "uniform-review-passed-targeted-dense-scan-required" and candidates["minimumAuthorizationSetToResumePilot"]["geometryStillBlockedUntilEvidenceReview"] is True,
+        "Atlas registration required": candidates["minimumAuthorizationSetToResumePilot"]["evidenceGate"] == "targeted-dense-review-passed-atlas-registration-blocked" and candidates["minimumAuthorizationSetToResumePilot"]["geometryStillBlockedUntilAtlasRegistration"] is True,
     }
     for job_id, (bvid, cid, duration, samples) in expected.items():
         job = load(f"data/analysis-jobs/{job_id}.json")
@@ -72,6 +72,8 @@ def main() -> int:
         load(f"data/analysis-jobs/{job_id}.json")["targetedDenseSampling"]["samples"] for job_id in expected
     ) == review["targetedDenseScan"]["estimatedFrames"] == 375
     checks["geometry remains blocked"] = review["targetedDenseScan"]["geometryGenerated"] is False
+    checks["dense review completed"] = review["targetedDenseScan"]["completed"] is True and review["targetedDenseScan"]["actualFrames"] == 375
+    checks["unvalidated transform rejected"] = review["atlasRegistrationAssessment"]["transformComputed"] is False and review["hardGates"]["geometryEligible"] is False
 
     workflow = (ROOT / ".github/workflows/geospatial-2p5d-sakai-yuyi-evidence.yml").read_text(encoding="utf-8")
     checks["workflow read-only"] = "permissions:\n  contents: read" in workflow

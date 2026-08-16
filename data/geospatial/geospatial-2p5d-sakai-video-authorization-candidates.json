@@ -265,8 +265,8 @@
     "preferred": "one long continuous Sakai source plus one independent high-quality or focused Sakai source",
     "minimum": "at least one explicitly authorized source that shows a named Sakai route and two independent views of the same street, building block or dock",
     "authorizationGate": "passed-by-auth-yuyi-20260816",
-    "evidenceGate": "uniform-review-passed-targeted-dense-scan-required",
-    "geometryStillBlockedUntilEvidenceReview": true
+    "evidenceGate": "targeted-dense-review-passed-atlas-registration-blocked",
+    "geometryStillBlockedUntilAtlasRegistration": true
   },
   "safety": {
     "candidateVideosDownloaded": true,
@@ -280,5 +280,5 @@
     "buildingFootprintsGenerated": false,
     "unsupportedSakaiIdentityAssumed": false
   },
-  "nextAction": "run only the four accepted dense windows recorded in geospatial-2p5d-sakai-yuyi-visual-review.json, register map-marker frames to Atlas normalized coordinates, and keep geometry blocked until that transform is independently checked"
+  "nextAction": "acquire at least three named non-collinear source-map point correspondences plus one independent named validation point, then compute and validate the Atlas transform before any located geometry"
 }
