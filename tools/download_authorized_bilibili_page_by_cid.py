@@ -71,6 +71,12 @@ def main() -> int:
         raise RuntimeError("job must contain explicit BVID, page and CID")
     bvid = match.group(1)
     view = api_get(f"https://api.bilibili.com/x/web-interface/view?bvid={bvid}")
+    owner = view.get("owner") or {}
+    if owner.get("name") != job["author"] or owner.get("name") != auth["matchingRule"]["authorMustEqual"]:
+        raise RuntimeError(f"Bilibili owner verification failed for {bvid}")
+    expected_mid = auth["matchingRule"].get("authorMidMustEqual")
+    if expected_mid is not None and int(owner.get("mid") or 0) != int(expected_mid):
+        raise RuntimeError(f"Bilibili owner MID verification failed for {bvid}")
     matches = [row for row in view.get("pages") or [] if int(row.get("page") or 0) == page and int(row.get("cid") or 0) == cid]
     if len(matches) != 1:
         raise RuntimeError(f"page/CID verification failed for {bvid}: page={page} cid={cid}")

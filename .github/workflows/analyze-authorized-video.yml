@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - 'data/analysis-jobs/*.json'
+      - '!data/analysis-jobs/yuyi-sakai-*.json'
   pull_request:
     paths:
       - 'data/analysis-jobs/*.json'
+      - '!data/analysis-jobs/yuyi-sakai-*.json'
   workflow_dispatch:
     inputs:
       job_file:

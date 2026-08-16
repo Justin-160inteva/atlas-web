@@ -1,0 +1,121 @@
+name: Geospatial Sakai Yuyi authorized evidence
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/geospatial-2p5d-sakai-yuyi-evidence.yml'
+      - 'tools/download_authorized_bilibili_page_by_cid.py'
+      - 'tools/extract_authorized_review_frames.py'
+      - 'tools/yuyi_sakai_authorization_smoke.py'
+      - 'data/analysis-jobs/yuyi-sakai-005.json'
+      - 'data/analysis-jobs/yuyi-sakai-006.json'
+      - 'data/geospatial/geospatial-2p5d-sakai-video-authorization-candidates.json'
+      - 'data/authorizations.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: geospatial-sakai-transient-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    name: scan-${{ matrix.id }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - id: yuyi-sakai-005
+            job_file: data/analysis-jobs/yuyi-sakai-005.json
+          - id: yuyi-sakai-006
+            job_file: data/analysis-jobs/yuyi-sakai-006.json
+    steps:
+      - name: Check out reviewed revision
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install transient dependencies
+        run: |
+          python -m pip install --disable-pip-version-check numpy opencv-python-headless curl-cffi
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg curl
+
+      - name: Validate authorization and source contracts
+        run: |
+          python -m py_compile \
+            tools/download_authorized_bilibili_page_by_cid.py \
+            tools/extract_authorized_review_frames.py \
+            tools/yuyi_sakai_authorization_smoke.py
+          python tools/yuyi_sakai_authorization_smoke.py
+
+      - name: Prove media cannot be written into the repository
+        run: |
+          if python tools/download_authorized_bilibili_page_by_cid.py \
+            --job '${{ matrix.job_file }}' \
+            --authorization-registry data/authorizations.json \
+            --output-dir data/forbidden-media-output; then
+            exit 1
+          fi
+          test ! -e data/forbidden-media-output
+
+      - name: Download exact authorized source transiently
+        run: |
+          mkdir -p '/tmp/atlas-${{ matrix.id }}-video' '/tmp/atlas-${{ matrix.id }}-review'
+          python tools/download_authorized_bilibili_page_by_cid.py \
+            --job '${{ matrix.job_file }}' \
+            --authorization-registry data/authorizations.json \
+            --output-dir '/tmp/atlas-${{ matrix.id }}-video' \
+            --quality 32
+
+      - name: Extract private low-resolution review artifact
+        run: |
+          python tools/extract_authorized_review_frames.py \
+            --job '${{ matrix.job_file }}' \
+            --video '/tmp/atlas-${{ matrix.id }}-video/${{ matrix.id }}.mp4' \
+            --output-dir '/tmp/atlas-${{ matrix.id }}-review' \
+            --run-id '${{ github.run_id }}'
+          JOB_FILE='${{ matrix.job_file }}' REVIEW_DIR='/tmp/atlas-${{ matrix.id }}-review' python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          job = json.loads(Path(os.environ['JOB_FILE']).read_text(encoding='utf-8'))
+          root = Path(os.environ['REVIEW_DIR'])
+          manifest = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
+          assert manifest['status'] == 'private-low-resolution-review-artifact-ready'
+          assert manifest['authorizationId'] == 'auth-yuyi-20260816'
+          assert manifest['sourceJobId'] == job['id']
+          assert len(manifest['extraction']['frames']) == job['reviewSampling']['samples']
+          assert manifest['privacy']['artifactRetentionDays'] == 1
+          assert manifest['privacy']['originalVideoIncludedInArtifact'] is False
+          assert manifest['modeling']['geometryGenerated'] is False
+          assert all((root / row['filename']).is_file() for row in manifest['extraction']['frames'])
+          assert all((root / row['filename']).is_file() for row in manifest['extraction']['contactSheets'])
+          assert not list(Path('.').rglob('*.mp4'))
+          assert not list(Path('data').rglob('*.jpg'))
+          assert not list(Path('data').rglob('*.png'))
+          PY
+
+      - name: Upload one-day private review artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: atlas-${{ matrix.id }}-private-review-${{ github.run_id }}
+          path: '/tmp/atlas-${{ matrix.id }}-review'
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
+
+      - name: Delete transient media and pixels
+        if: always()
+        run: |
+          rm -rf '/tmp/atlas-${{ matrix.id }}-video' '/tmp/atlas-${{ matrix.id }}-review'
+          test ! -e '/tmp/atlas-${{ matrix.id }}-video'
+          test ! -e '/tmp/atlas-${{ matrix.id }}-review'
