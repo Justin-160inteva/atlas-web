@@ -3,173 +3,250 @@
   "sequence": 12,
   "workflow": "dada-sequence-12-resolution.yml",
   "workflowName": "Resolve and reprocess Dada sequence 12",
-  "runId": 31918322814,
-  "runNumber": 9,
+  "runId": 31925045300,
+  "runNumber": 11,
   "runAttempt": 1,
-  "headSha": "2c6dd7220d764fb1c8bd55b181c91150a69fe7df",
-  "event": "pull_request",
+  "headSha": "e7154036faf158581870201c0215afebba06d340",
+  "event": "push",
   "status": "completed",
   "conclusion": "failure",
   "failedStage": "Resolve and stage sequence 12 without media download",
-  "runUrl": "https://github.com/Justin-160inteva/atlas-web/actions/runs/31918322814",
-  "createdAt": "2026-08-16T00:54:05Z",
-  "updatedAt": "2026-08-16T00:54:18Z",
-  "recordedAt": "2026-08-16T00:54:25.977720Z",
+  "runUrl": "https://github.com/Justin-160inteva/atlas-web/actions/runs/31925045300",
+  "createdAt": "2026-08-16T03:46:29Z",
+  "updatedAt": "2026-08-16T03:46:57Z",
+  "recordedAt": "2026-08-16T03:47:07.718452Z",
   "jobs": [
     {
-      "id": 95093858705,
+      "id": 95111173358,
       "name": "resolve-and-reprocess",
       "status": "completed",
       "conclusion": "failure",
-      "startedAt": "2026-08-16T00:54:07Z",
-      "completedAt": "2026-08-16T00:54:17Z",
-      "runnerName": "GitHub Actions 1000015109",
+      "startedAt": "2026-08-16T03:46:31Z",
+      "completedAt": "2026-08-16T03:46:44Z",
+      "runnerName": "GitHub Actions 1000015181",
       "steps": [
         {
           "number": 1,
           "name": "Set up job",
           "status": "completed",
           "conclusion": "success",
-          "startedAt": "2026-08-16T00:54:08Z",
-          "completedAt": "2026-08-16T00:54:09Z"
+          "startedAt": "2026-08-16T03:46:32Z",
+          "completedAt": "2026-08-16T03:46:34Z"
         },
         {
           "number": 2,
           "name": "Check out requested revision",
           "status": "completed",
           "conclusion": "success",
-          "startedAt": "2026-08-16T00:54:09Z",
-          "completedAt": "2026-08-16T00:54:12Z"
+          "startedAt": "2026-08-16T03:46:34Z",
+          "completedAt": "2026-08-16T03:46:37Z"
         },
         {
           "number": 3,
           "name": "Set up Python",
           "status": "completed",
           "conclusion": "success",
-          "startedAt": "2026-08-16T00:54:12Z",
-          "completedAt": "2026-08-16T00:54:12Z"
+          "startedAt": "2026-08-16T03:46:37Z",
+          "completedAt": "2026-08-16T03:46:37Z"
         },
         {
           "number": 4,
           "name": "Compile isolated resolver and reusable reprocessor",
           "status": "completed",
           "conclusion": "success",
-          "startedAt": "2026-08-16T00:54:12Z",
-          "completedAt": "2026-08-16T00:54:12Z"
+          "startedAt": "2026-08-16T03:46:37Z",
+          "completedAt": "2026-08-16T03:46:38Z"
         },
         {
           "number": 5,
           "name": "Resolve and stage sequence 12 without media download",
           "status": "completed",
           "conclusion": "failure",
-          "startedAt": "2026-08-16T00:54:12Z",
-          "completedAt": "2026-08-16T00:54:13Z"
+          "startedAt": "2026-08-16T03:46:38Z",
+          "completedAt": "2026-08-16T03:46:39Z"
         },
         {
           "number": 6,
           "name": "Run 400-round exact-resolution gate",
           "status": "completed",
           "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:13Z",
-          "completedAt": "2026-08-16T00:54:13Z"
+          "startedAt": "2026-08-16T03:46:39Z",
+          "completedAt": "2026-08-16T03:46:39Z"
         },
         {
           "number": 7,
           "name": "Run 400-round reprocess preflight",
           "status": "completed",
           "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:13Z",
-          "completedAt": "2026-08-16T00:54:13Z"
+          "startedAt": "2026-08-16T03:46:39Z",
+          "completedAt": "2026-08-16T03:46:39Z"
         },
         {
           "number": 8,
           "name": "Install transient analysis dependencies",
           "status": "completed",
           "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:13Z",
-          "completedAt": "2026-08-16T00:54:13Z"
+          "startedAt": "2026-08-16T03:46:39Z",
+          "completedAt": "2026-08-16T03:46:39Z"
         },
         {
           "number": 9,
           "name": "Download and analyze only verified sequence 12",
           "status": "completed",
           "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:13Z",
-          "completedAt": "2026-08-16T00:54:13Z"
+          "startedAt": "2026-08-16T03:46:39Z",
+          "completedAt": "2026-08-16T03:46:39Z"
         },
         {
           "number": 10,
           "name": "Remove all transient media",
           "status": "completed",
-          "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:13Z",
-          "completedAt": "2026-08-16T00:54:13Z"
+          "conclusion": "success",
+          "startedAt": "2026-08-16T03:46:39Z",
+          "completedAt": "2026-08-16T03:46:39Z"
         },
         {
           "number": 11,
           "name": "Rebuild Dada quality report and remaining queue",
           "status": "completed",
           "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:13Z",
-          "completedAt": "2026-08-16T00:54:13Z"
+          "startedAt": "2026-08-16T03:46:39Z",
+          "completedAt": "2026-08-16T03:46:39Z"
         },
         {
           "number": 12,
           "name": "Run 400-round post-audit transition gate",
           "status": "completed",
           "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:13Z",
-          "completedAt": "2026-08-16T00:54:13Z"
+          "startedAt": "2026-08-16T03:46:39Z",
+          "completedAt": "2026-08-16T03:46:39Z"
         },
         {
           "number": 13,
           "name": "Upload exact-resolution and replacement evidence",
           "status": "completed",
           "conclusion": "success",
-          "startedAt": "2026-08-16T00:54:13Z",
-          "completedAt": "2026-08-16T00:54:14Z"
+          "startedAt": "2026-08-16T03:46:39Z",
+          "completedAt": "2026-08-16T03:46:40Z"
         },
         {
           "number": 14,
-          "name": "Persist verified sequence 12 replacement",
+          "name": "Generate observable workflow outcome",
           "status": "completed",
-          "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:14Z",
-          "completedAt": "2026-08-16T00:54:14Z"
+          "conclusion": "success",
+          "startedAt": "2026-08-16T03:46:40Z",
+          "completedAt": "2026-08-16T03:46:40Z"
         },
         {
           "number": 15,
-          "name": "Persist observable workflow outcome",
+          "name": "Upload observable workflow outcome",
           "status": "completed",
-          "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:14Z",
-          "completedAt": "2026-08-16T00:54:14Z"
+          "conclusion": "success",
+          "startedAt": "2026-08-16T03:46:40Z",
+          "completedAt": "2026-08-16T03:46:41Z"
         },
         {
           "number": 29,
           "name": "Post Set up Python",
           "status": "completed",
           "conclusion": "skipped",
-          "startedAt": "2026-08-16T00:54:14Z",
-          "completedAt": "2026-08-16T00:54:14Z"
+          "startedAt": "2026-08-16T03:46:41Z",
+          "completedAt": "2026-08-16T03:46:41Z"
         },
         {
           "number": 30,
           "name": "Post Check out requested revision",
           "status": "completed",
           "conclusion": "success",
-          "startedAt": "2026-08-16T00:54:14Z",
-          "completedAt": "2026-08-16T00:54:15Z"
+          "startedAt": "2026-08-16T03:46:41Z",
+          "completedAt": "2026-08-16T03:46:41Z"
         },
         {
           "number": 31,
           "name": "Complete job",
           "status": "completed",
           "conclusion": "success",
-          "startedAt": "2026-08-16T00:54:15Z",
-          "completedAt": "2026-08-16T00:54:15Z"
+          "startedAt": "2026-08-16T03:46:41Z",
+          "completedAt": "2026-08-16T03:46:41Z"
         }
       ]
+    },
+    {
+      "id": 95111197987,
+      "name": "persist-outcome",
+      "status": "completed",
+      "conclusion": "failure",
+      "startedAt": "2026-08-16T03:46:46Z",
+      "completedAt": "2026-08-16T03:46:56Z",
+      "runnerName": "GitHub Actions 1000015198",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-08-16T03:46:47Z",
+          "completedAt": "2026-08-16T03:46:48Z"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-08-16T03:46:48Z",
+          "completedAt": "2026-08-16T03:46:51Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/download-artifact@v7",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-08-16T03:46:51Z",
+          "completedAt": "2026-08-16T03:46:52Z"
+        },
+        {
+          "number": 4,
+          "name": "Record replacement persistence outcome",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-08-16T03:46:52Z",
+          "completedAt": "2026-08-16T03:46:52Z"
+        },
+        {
+          "number": 5,
+          "name": "Persist observable workflow outcome",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-08-16T03:46:52Z",
+          "completedAt": "2026-08-16T03:46:54Z"
+        },
+        {
+          "number": 10,
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-08-16T03:46:54Z",
+          "completedAt": "2026-08-16T03:46:54Z"
+        },
+        {
+          "number": 11,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-08-16T03:46:54Z",
+          "completedAt": "2026-08-16T03:46:54Z"
+        }
+      ]
+    },
+    {
+      "id": 95111198042,
+      "name": "persist-replacement",
+      "status": "completed",
+      "conclusion": "skipped",
+      "startedAt": "2026-08-16T03:46:44Z",
+      "completedAt": "2026-08-16T03:46:44Z",
+      "runnerName": null,
+      "steps": []
     }
   ]
 }
