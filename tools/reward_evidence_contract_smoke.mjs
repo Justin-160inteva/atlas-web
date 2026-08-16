@@ -1,8 +1,9 @@
 import fs from 'node:fs/promises';
 
 const readJson=async path=>JSON.parse(await fs.readFile(new URL(`../${path}`,import.meta.url),'utf8'));
-const [manifest,policy,schema,terms,index]=await Promise.all([
+const [manifest,validationPolicy,policy,schema,terms,index]=await Promise.all([
   readJson('release-manifest.json'),
+  readJson('data/quality/release-validation-policy.json'),
   readJson('data/rewards/reward-source-policy.json'),
   readJson('data/rewards/reward-record-schema.json'),
   readJson('data/rewards/reward-terminology-zh-CN.json'),
@@ -17,7 +18,7 @@ const profiles=[
 const forbidden=policy.forbiddenBehaviors||[];
 const contracts={
   release:manifest.version==='0.9.4.8',
-  fullAudit:manifest.invariants?.requireFullAuditAtThisRelease===true,
+  fullAudit:manifest.invariants?.requireFullAuditAtThisRelease===(manifest.version===validationPolicy.scheduledFullAudit?.nextRequiredVersion),
   rewardOwner:manifest.runtimeOwners?.rewardEvidenceIndex==='data/rewards/reward-evidence-index.json',
   rewardMatrix:manifest.invariants?.requiredRewardEvidenceChecks===500,
   targetCount:index.targetLocationCount===3430,

@@ -153,9 +153,14 @@ LATIN = re.compile(r"[A-Za-z]")
         str(location.get("category_id") or ""),
     )
 '''
+    integrated_call = '''    description_reward_lines = extract_reward_lines(
+        str(location.get("description") or ""),
+        str(location.get("category_id") or ""),
+    )
+'''
     if original_call in text:
         text = replace_once(text, original_call, upgraded_call, 'pass category into reward extractor')
-    elif upgraded_call not in text:
+    elif upgraded_call not in text and integrated_call not in text:
         raise RuntimeError('build_record reward extractor call was neither original nor upgraded')
 
     bo_keyword = '''    ("legendary bo", "weapon"),
