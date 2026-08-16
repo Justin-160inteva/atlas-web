@@ -2,6 +2,7 @@ name: Scan Dada authorized author catalog
 
 on:
   push:
+    branches: [main]
     paths:
       - 'data/batch-analysis/dada-author-catalog.json'
   workflow_dispatch:

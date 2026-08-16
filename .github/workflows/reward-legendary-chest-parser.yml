@@ -121,32 +121,18 @@ jobs:
       - name: Validate and write compact report
         run: python tools/report_legendary_chest_validation.py --validate
 
-      - name: Publish failed validation report only
+      - name: Upload failed validation report
         if: failure() && github.event_name == 'pull_request'
-        env:
-          TARGET_BRANCH: ${{ github.head_ref }}
-        run: |
-          report='data/rewards/reward-legendary-chest-validation-report.json'
-          if [ ! -f "$report" ]; then
-            echo 'No validation report was produced.'
-            exit 0
-          fi
-          cp "$report" /tmp/reward-legendary-chest-validation-report.json
-          git reset --hard HEAD
-          git clean -fd
-          mkdir -p data/rewards
-          cp /tmp/reward-legendary-chest-validation-report.json "$report"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "$report"
-          git commit -m 'Record legendary chest validation diagnostics [skip ci]'
-          git pull --rebase origin "$TARGET_BRANCH"
-          git push origin "HEAD:$TARGET_BRANCH"
+        uses: actions/upload-artifact@v6
+        with:
+          name: reward-legendary-chest-validation-${{ github.run_id }}
+          path: data/rewards/reward-legendary-chest-validation-report.json
+          if-no-files-found: warn
 
       - name: Commit parser, translations and regenerated catalog
-        if: success()
+        if: success() && github.event_name != 'pull_request'
         env:
-          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+          TARGET_BRANCH: main
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

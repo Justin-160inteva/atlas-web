@@ -4,6 +4,7 @@ on:
   workflow_run:
     workflows:
       - Repair and reprocess Dada sequence 20
+    branches: [main]
     types: [completed]
 
 permissions:

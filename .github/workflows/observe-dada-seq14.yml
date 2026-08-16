@@ -4,6 +4,7 @@ on:
   workflow_run:
     workflows:
       - Resolve and reprocess Dada sequence 14
+    branches: [main]
     types:
       - completed
 

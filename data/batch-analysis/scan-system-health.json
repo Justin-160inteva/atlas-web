@@ -1,10 +1,10 @@
 {
   "schemaVersion": 10,
-  "generatedAt": "2026-08-16T01:02:05.405113Z",
+  "generatedAt": "2026-08-16T02:07:36.609858Z",
   "status": "pass",
   "summary": {
-    "total": 42,
-    "passed": 42,
+    "total": 44,
+    "passed": 44,
     "failed": 0
   },
   "release": "0.9.4.8",
@@ -101,6 +101,16 @@
       "name": "write_workflows_main_only",
       "passed": true,
       "detail": "catalog, scan, supervisor and account extras writes cannot run from feature branches"
+    },
+    {
+      "name": "workflow_run_writes_main_only",
+      "passed": true,
+      "detail": "workflow-run observers cannot persist pull-request or feature-branch outcomes to main"
+    },
+    {
+      "name": "pull_request_persistence_read_only",
+      "passed": true,
+      "detail": "pull-request workflows expose diagnostics as artifacts but cannot push commits"
     },
     {
       "name": "legacy_pilot_terminal_guard",

@@ -175,42 +175,24 @@ jobs:
           )
           PY
 
-      - name: Publish failed non-pixel diagnostics to PR branch
+      - name: Upload failed non-pixel diagnostics
         if: failure() && github.event_name == 'pull_request'
-        env:
-          TARGET_BRANCH: ${{ github.head_ref }}
-        run: |
-          mkdir -p /tmp/geospatial-diagnostics/data/geospatial /tmp/geospatial-diagnostics/data/analysis-jobs /tmp/geospatial-diagnostics/data/batch-analysis
-          for file in \
-            data/geospatial/dada-shrines-27-stage1.json \
-            data/geospatial/dada-shrines-27-batch01-evidence-manifest.json \
-            data/geospatial/dada-shrines-27-anchors-batch01.json \
-            data/geospatial/geospatial-reconcile-diagnostic.json \
-            data/analysis-jobs/dada-shrines-27-geospatial.json \
-            data/batch-analysis/dada-shrines-27-geospatial-status.json; do
-            if [ -f "$file" ]; then
-              mkdir -p "/tmp/geospatial-diagnostics/$(dirname "$file")"
-              cp "$file" "/tmp/geospatial-diagnostics/$file"
-            fi
-          done
-          git reset --hard HEAD
-          git clean -fd
-          cp -a /tmp/geospatial-diagnostics/. .
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/geospatial data/analysis-jobs/dada-shrines-27-geospatial.json data/batch-analysis/dada-shrines-27-geospatial-status.json
-          if git diff --cached --quiet; then
-            echo 'No non-pixel failure diagnostics to publish.'
-            exit 0
-          fi
-          git commit -m 'Record shrine anchor reconcile diagnostics [skip ci]'
-          git pull --rebase origin "$TARGET_BRANCH"
-          git push origin "HEAD:$TARGET_BRANCH"
+        uses: actions/upload-artifact@v6
+        with:
+          name: dada-shrines-anchor-batch01-diagnostics-${{ github.run_id }}
+          path: |
+            data/geospatial/dada-shrines-27-stage1.json
+            data/geospatial/dada-shrines-27-batch01-evidence-manifest.json
+            data/geospatial/dada-shrines-27-anchors-batch01.json
+            data/geospatial/geospatial-reconcile-diagnostic.json
+            data/analysis-jobs/dada-shrines-27-geospatial.json
+            data/batch-analysis/dada-shrines-27-geospatial-status.json
+          if-no-files-found: warn
 
       - name: Commit non-pixel shrine anchor results
-        if: success()
+        if: success() && github.event_name != 'pull_request'
         env:
-          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+          TARGET_BRANCH: main
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

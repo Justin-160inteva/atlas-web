@@ -146,8 +146,9 @@ jobs:
           retention-days: 7
 
       - name: Commit generated reward evidence
+        if: github.event_name != 'pull_request'
         env:
-          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+          TARGET_BRANCH: main
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
