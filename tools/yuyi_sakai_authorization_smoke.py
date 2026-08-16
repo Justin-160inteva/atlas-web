@@ -2,6 +2,7 @@
 """Validate the Yuyi authorization, corrected source identities, and scan boundary."""
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -20,16 +21,23 @@ def main() -> int:
     candidates = load("data/geospatial/geospatial-2p5d-sakai-video-authorization-candidates.json")
     candidate = next(row for row in candidates["candidates"] if row["author"] == "侑依")
     review = load("data/geospatial/geospatial-2p5d-sakai-yuyi-visual-review.json")
+    manifest = load("data/batch-analysis/yuyi-author-discovery.json")
+    catalog = load("data/yuyi-ac-shadows-existing-20260816-catalog.json")
+    queue = load("data/batch-analysis/yuyi-pilot-scan-queue.json")
     expected = {
         "yuyi-sakai-005": ("BV1ECZNYwEyH", 29083961886, 2536, 240),
         "yuyi-sakai-006": ("BV1nFZjYcEFs", 29102571716, 4537, 320),
     }
+    catalog_bvid_digest = hashlib.sha256(
+        ("\n".join(sorted(row["bvid"] for row in catalog["items"])) + "\n").encode()
+    ).hexdigest()
     checks = {
         "authorization active": auth["status"] == "active",
         "exact grant recorded": auth["grantText"] == "我同意Atlas项目按上述范围使用我目前已公开的全部《刺客信条：影》视频。",
         "existing videos included": auth["matchingRule"]["appliesToExisting"] is True,
         "future videos excluded": auth["matchingRule"]["appliesToFuture"] is False,
         "future inheritance excluded": auth["scope"]["futureVideosAutomaticallyIncluded"] is False,
+        "frozen catalog registered": auth["catalogIds"] == ["yuyi-ac-shadows-existing-20260816"],
         "author MID pinned": auth["matchingRule"]["authorMidMustEqual"] == 4442785,
         "proof remains private": auth["proof"]["storage"] == "private-user-held" and auth["proof"]["publicScreenshot"] is False,
         "proof digest": auth["proof"]["fileSha256"] == "08b8f49dd8ef52c24ae961e91a19275fc9408240a29f77c04e9e298e61f08551",
@@ -39,7 +47,17 @@ def main() -> int:
         "commercial use excluded": auth["scope"]["nonCommercial"] is True and auth["scope"]["noAdvertising"] is True,
         "season entry corrected": candidate["seasonDiscoveryBvid"] == "BV1pQdvYnEkq" and "episode 29" in candidate["identityCorrection"],
         "candidate authorized": candidate["authorizationId"] == auth["id"] and candidate["futureVideosIncluded"] is False,
+        "candidate catalog count recorded": candidate["existingPublicVideoCount"] == 60 and candidate["ugcSeasonId"] == 5060305,
         "candidate has two independent BVIDs": {row["bvid"] for row in candidate["relevantParts"]} == {row[1][0] for row in expected.items()},
+        "catalog identity": catalog["catalogId"] == manifest["catalogId"] and catalog["authorizationId"] == auth["id"] and catalog["authorMid"] == 4442785,
+        "catalog frozen existing only": manifest["catalogFrozenAt"] == "2026-08-16" and manifest["includeFutureVideos"] is False and catalog["futureInclusionRule"]["enabled"] is False and catalog["futureInclusionRule"]["authorizationAutomaticallyInherited"] is False,
+        "catalog exactly 60 unique videos": len(catalog["items"]) == len({row["bvid"] for row in catalog["items"]}) == manifest["expectedPublicVideoCount"] == 60,
+        "catalog BVID snapshot exact": catalog_bvid_digest == manifest["expectedBvidSha256"] == "3ffaf758837e80bc26ef73e016217e8593ba0ff8d18327eab9ddb793e9edf3cd",
+        "catalog has no unsupported scan ranking": manifest["catalogOnly"] is True and catalog["recommendedScanOrder"] == [] and all(row["mapRelevance"] == "unassessed" and "scanClass" not in row for row in catalog["items"]),
+        "catalog season exact": catalog["seedVideo"]["seasonId"] == manifest["ugcSeasonId"] == 5060305 and catalog["seedVideo"]["seasonEpisodeCount"] == 60,
+        "catalog episode 5 exact": any(row["bvid"] == expected["yuyi-sakai-005"][0] and row["cid"] == expected["yuyi-sakai-005"][1] and row["durationSeconds"] == expected["yuyi-sakai-005"][2] for row in catalog["items"]),
+        "catalog episode 6 exact": any(row["bvid"] == expected["yuyi-sakai-006"][0] and row["cid"] == expected["yuyi-sakai-006"][1] and row["durationSeconds"] == expected["yuyi-sakai-006"][2] for row in catalog["items"]),
+        "catalog scan queue held": queue["status"] == "empty" and queue["items"] == [] and manifest["pilotCount"] == 0,
         "contact queue corrected": "侑依" not in candidates["recommendedContactOrder"],
         "Atlas registration required": candidates["minimumAuthorizationSetToResumePilot"]["evidenceGate"] == "targeted-dense-review-passed-atlas-registration-blocked" and candidates["minimumAuthorizationSetToResumePilot"]["geometryStillBlockedUntilAtlasRegistration"] is True,
     }

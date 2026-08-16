@@ -7,7 +7,12 @@ on:
       - '.github/workflows/geospatial-2p5d-sakai-yuyi-evidence.yml'
       - 'tools/download_authorized_bilibili_page_by_cid.py'
       - 'tools/extract_authorized_review_frames.py'
+      - 'tools/discover_bilibili_author_catalog.py'
       - 'tools/yuyi_sakai_authorization_smoke.py'
+      - 'data/batch-analysis/yuyi-author-discovery.json'
+      - 'data/batch-analysis/yuyi-author-discovery-status.json'
+      - 'data/batch-analysis/yuyi-pilot-scan-queue.json'
+      - 'data/yuyi-ac-shadows-existing-20260816-catalog.json'
       - 'data/analysis-jobs/yuyi-sakai-005.json'
       - 'data/analysis-jobs/yuyi-sakai-006.json'
       - 'data/geospatial/geospatial-2p5d-sakai-yuyi-visual-review.json'
@@ -54,6 +59,7 @@ jobs:
         run: |
           python -m py_compile \
             tools/download_authorized_bilibili_page_by_cid.py \
+            tools/discover_bilibili_author_catalog.py \
             tools/extract_authorized_review_frames.py \
             tools/yuyi_sakai_authorization_smoke.py
           python tools/yuyi_sakai_authorization_smoke.py
