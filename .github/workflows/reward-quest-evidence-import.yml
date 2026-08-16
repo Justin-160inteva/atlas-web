@@ -60,6 +60,7 @@ jobs:
               'unresolved': audit['statusCounts']['unresolved'],
               'inferred': audit['statusCounts']['high_confidence_inference'],
               'multi': audit['statusCounts']['multi_source_confirmed'],
+              'pointOverrideLocations': audit.get('pointOverrideLocations', 0),
           }), encoding='utf-8')
           print(f"Baseline unresolved: {audit['statusCounts']['unresolved']}")
           PY

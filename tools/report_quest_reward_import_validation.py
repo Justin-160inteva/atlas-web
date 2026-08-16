@@ -41,7 +41,8 @@ def main() -> int:
         errors.append("catalog_count_failed")
     if audit.get("pointOverrideLocations") != count:
         errors.append("point_override_count_mismatch")
-    expected_unresolved = int(baseline.get("unresolved", 0)) - count
+    baseline_override_count = int(baseline.get("pointOverrideLocations", 0))
+    expected_unresolved = int(baseline.get("unresolved", 0)) - (count - baseline_override_count)
     actual_unresolved = int(audit.get("statusCounts", {}).get("unresolved", 0))
     if actual_unresolved != expected_unresolved:
         errors.append("unresolved_delta_mismatch")
