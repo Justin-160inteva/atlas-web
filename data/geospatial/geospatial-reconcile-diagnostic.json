@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-16T00:55:37.976020Z",
+  "locationsCount": 3430,
+  "analysisIndexItemCount": 103,
+  "temple": {
+    "status": "complete",
+    "confirmed": 36,
+    "minimumConfidence": 0.94
+  },
+  "shrine": {
+    "status": "complete",
+    "counts": {
+      "reviewedSlots": 14,
+      "confirmed": 0,
+      "unresolved": 14,
+      "candidateShrines": 32,
+      "successfulModels": 0,
+      "failedModels": 2
+    },
+    "confirmed": 0,
+    "minimumConfidence": null,
+    "modelErrors": [
+      {
+        "model": "openai/gpt-4.1",
+        "error": "bulk model review failed with openai/gpt-4.1: HTTP Error 410: Gone"
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "error": "bulk model review failed with openai/gpt-4o-mini: HTTP Error 410: Gone"
+      }
+    ]
+  },
+  "combined": {
+    "confirmed": 36,
+    "uniqueLocationIds": 36,
+    "duplicateLocationIds": [],
+    "unknownLocationIds": []
+  },
+  "analysisIndexMatches": {
+    "templeByExternalSourceId": [
+      {
+        "position": 96,
+        "id": "analysis-dada-temples-36-v1",
+        "jobId": "dada-temples-36-v1",
+        "externalSourceId": "bili-dada-acshadows-03",
+        "resultPath": "data/analysis-results/dada-temples-36.json",
+        "status": "imported"
+      }
+    ],
+    "templeByResultPath": [
+      {
+        "position": 96,
+        "id": "analysis-dada-temples-36-v1",
+        "jobId": "dada-temples-36-v1",
+        "externalSourceId": "bili-dada-acshadows-03",
+        "resultPath": "data/analysis-results/dada-temples-36.json",
+        "status": "imported"
+      }
+    ],
+    "shrineByExternalSourceId": [
+      {
+        "position": 95,
+        "id": "analysis-dada-02-v1",
+        "jobId": "dada-02-v1",
+        "externalSourceId": "bili-dada-acshadows-02",
+        "resultPath": "data/analysis-results/dada-02.json",
+        "status": "imported"
+      }
+    ],
+    "shrineByResultPath": [
+      {
+        "position": 95,
+        "id": "analysis-dada-02-v1",
+        "jobId": "dada-02-v1",
+        "externalSourceId": "bili-dada-acshadows-02",
+        "resultPath": "data/analysis-results/dada-02.json",
+        "status": "imported"
+      }
+    ]
+  },
+  "preflight": {
+    "templeComplete": true,
+    "templeHas36Confirmed": true,
+    "shrineReviewComplete": true,
+    "locationsCount3430": true,
+    "noDuplicateAssignments": true,
+    "allLocationsKnown": true,
+    "templeIndexFound": true,
+    "shrineIndexFound": true
+  }
+}
