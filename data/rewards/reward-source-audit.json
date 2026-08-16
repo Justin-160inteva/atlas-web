@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "release": "0.9.4.8",
-  "generatedAt": "2026-07-22T23:14:37.012389Z",
+  "generatedAt": "2026-08-16T04:44:15.793711Z",
   "targetLocationCount": 3430,
   "recordCount": 3430,
   "rewardSectionLocations": 997,
-  "externalMatchLocations": 125,
+  "externalMatchLocations": 80,
   "pointOverrideLocations": 9,
   "pointOverrideSource": "data/rewards/reward-point-evidence-overrides.json",
   "provisionalTranslationCount": 13,
@@ -13,8 +13,8 @@
   "lockedRecordCount": 0,
   "openConflictCount": 0,
   "statusCounts": {
-    "high_confidence_inference": 872,
-    "multi_source_confirmed": 125,
+    "high_confidence_inference": 917,
+    "multi_source_confirmed": 80,
     "unresolved": 2433
   },
   "reviewCounts": {
@@ -27,57 +27,57 @@
       "sourceId": "powerpyx-legendary-chests",
       "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-legendary-chest-locations/",
       "fetched": true,
-      "normalizedCharacterCount": 8350,
+      "normalizedCharacterCount": 8224,
       "error": null
     },
     {
       "sourceId": "powerpyx-castle-locations",
       "locator": "https://www.powerpyx.com/assassins-creed-shadows-all-castle-locations/",
       "fetched": true,
-      "normalizedCharacterCount": 6994,
+      "normalizedCharacterCount": 6868,
       "error": null
     },
     {
       "sourceId": "pushsquare-legendary-armor",
       "locator": "https://www.pushsquare.com/guides/assassins-creed-shadows-all-legendary-armor-sets-and-where-to-find-them",
       "fetched": true,
-      "normalizedCharacterCount": 26915,
+      "normalizedCharacterCount": 26916,
       "error": null
     },
     {
       "sourceId": "game8-castle-rewards-rendered",
       "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504651",
-      "fetched": true,
-      "normalizedCharacterCount": 20189,
-      "error": null
+      "fetched": false,
+      "normalizedCharacterCount": 0,
+      "error": "HTTPError: HTTP Error 403: Forbidden"
     },
     {
       "sourceId": "game8-legendary-weapons-rendered",
       "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504654",
-      "fetched": true,
-      "normalizedCharacterCount": 89880,
-      "error": null
+      "fetched": false,
+      "normalizedCharacterCount": 0,
+      "error": "HTTPError: HTTP Error 403: Forbidden"
     },
     {
       "sourceId": "game8-legendary-trinkets-rendered",
       "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505080",
-      "fetched": true,
-      "normalizedCharacterCount": 23618,
-      "error": null
+      "fetched": false,
+      "normalizedCharacterCount": 0,
+      "error": "HTTPError: HTTP Error 403: Forbidden"
     },
     {
       "sourceId": "game8-legendary-headgear-rendered",
       "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/505069",
-      "fetched": true,
-      "normalizedCharacterCount": 70479,
-      "error": null
+      "fetched": false,
+      "normalizedCharacterCount": 0,
+      "error": "HTTPError: HTTP Error 403: Forbidden"
     },
     {
       "sourceId": "game8-legendary-armor-rendered",
       "locator": "https://r.jina.ai/http://game8.co/games/Assassins-Creed-Shadows/archives/504708",
-      "fetched": true,
-      "normalizedCharacterCount": 71203,
-      "error": null
+      "fetched": false,
+      "normalizedCharacterCount": 0,
+      "error": "HTTPError: HTTP Error 403: Forbidden"
     },
     {
       "sourceId": "game8-legendary-weapons",
@@ -104,21 +104,21 @@
       "sourceId": "polygon-armor-locations",
       "locator": "https://www.polygon.com/assassins-creed-shadows-guides/541239/armor-sets-all-list-locations-how-to-get",
       "fetched": true,
-      "normalizedCharacterCount": 46092,
+      "normalizedCharacterCount": 46265,
       "error": null
     },
     {
       "sourceId": "polygon-kofun-rewards",
       "locator": "https://www.polygon.com/assassins-creed-shadows-guides/548683/kofun-locations-rewards-all-where-to-find",
       "fetched": true,
-      "normalizedCharacterCount": 15862,
+      "normalizedCharacterCount": 16035,
       "error": null
     },
     {
       "sourceId": "vulkk-legendary-trinkets",
       "locator": "https://vulkk.com/2025/03/24/all-legendary-amulets-and-trinkets-in-assassins-creed-shadows/",
       "fetched": true,
-      "normalizedCharacterCount": 24206,
+      "normalizedCharacterCount": 24219,
       "error": null
     }
   ],
