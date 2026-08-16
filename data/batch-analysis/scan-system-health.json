@@ -1,6 +1,6 @@
 {
   "schemaVersion": 10,
-  "generatedAt": "2026-08-15T23:02:01.474658Z",
+  "generatedAt": "2026-08-16T01:02:05.405113Z",
   "status": "pass",
   "summary": {
     "total": 42,
@@ -100,7 +100,7 @@
     {
       "name": "write_workflows_main_only",
       "passed": true,
-      "detail": "catalog, scan and supervisor write jobs cannot run from feature branches"
+      "detail": "catalog, scan, supervisor and account extras writes cannot run from feature branches"
     },
     {
       "name": "legacy_pilot_terminal_guard",
