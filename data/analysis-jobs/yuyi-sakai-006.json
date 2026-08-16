@@ -58,6 +58,64 @@
       }
     ]
   },
+  "targetedMapCropSampling": {
+    "samples": 144,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "minimumSourceWidth": 1280,
+    "minimumSourceHeight": 720,
+    "jpegQuality": 75,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "artifactRetentionDays": 1,
+    "windows": [
+      {
+        "id": "mid-episode-world-map-full",
+        "startSeconds": 2748,
+        "endSeconds": 2770,
+        "intervalSeconds": 1,
+        "purpose": "Preserve world-map context before the mid-episode mission-board transition."
+      },
+      {
+        "id": "mid-episode-world-map-label-crop",
+        "startSeconds": 2748,
+        "endSeconds": 2770,
+        "intervalSeconds": 1,
+        "cropNormalized": [0.3, 0.2, 0.9, 0.8],
+        "purpose": "Enlarge the selected map marker and popup without retaining a high-resolution frame."
+      },
+      {
+        "id": "dress-for-success-world-map-full",
+        "startSeconds": 3520,
+        "endSeconds": 3550,
+        "intervalSeconds": 1,
+        "purpose": "Preserve the full source-map position of the selected Dress for Success quest."
+      },
+      {
+        "id": "dress-for-success-world-map-label-crop",
+        "startSeconds": 3520,
+        "endSeconds": 3550,
+        "intervalSeconds": 1,
+        "cropNormalized": [0.24, 0.18, 0.84, 0.78],
+        "purpose": "Enlarge the Dress for Success title panel and selected marker in a low-resolution crop."
+      },
+      {
+        "id": "port-map-validation-full",
+        "startSeconds": 3685,
+        "endSeconds": 3702,
+        "intervalSeconds": 1,
+        "purpose": "Preserve full map context for the independent port-side validation candidate."
+      },
+      {
+        "id": "port-map-validation-label-crop",
+        "startSeconds": 3685,
+        "endSeconds": 3702,
+        "intervalSeconds": 1,
+        "cropNormalized": [0.2, 0.18, 0.8, 0.78],
+        "purpose": "Test whether the port-side popup contains a unique Atlas-matchable name."
+      }
+    ]
+  },
   "batch": {
     "catalog": "data/geospatial/geospatial-2p5d-sakai-video-authorization-candidates.json",
     "page": 1,

@@ -41,7 +41,7 @@ def main() -> int:
     parser.add_argument("--run-id", required=True)
     parser.add_argument(
         "--sampling-key",
-        choices=("reviewSampling", "targetedDenseSampling"),
+        choices=("reviewSampling", "targetedDenseSampling", "targetedMapCropSampling"),
         default="reviewSampling",
     )
     args = parser.parse_args()
@@ -65,10 +65,19 @@ def main() -> int:
         raise RuntimeError("OpenCV could not open transient video")
     fps = float(capture.get(cv2.CAP_PROP_FPS) or 0)
     frame_count = int(capture.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
+    source_width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH) or 0)
+    source_height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT) or 0)
     duration = frame_count / fps if fps > 0 else 0.0
     expected_duration = float(job["batch"]["durationSeconds"])
     if abs(duration - expected_duration) > max(8.0, expected_duration * 0.015):
         raise RuntimeError(f"downloaded duration mismatch: {duration:.3f} vs {expected_duration:.3f}")
+    minimum_source_width = int(sampling.get("minimumSourceWidth", 0))
+    minimum_source_height = int(sampling.get("minimumSourceHeight", 0))
+    if source_width < minimum_source_width or source_height < minimum_source_height:
+        raise RuntimeError(
+            f"source resolution {source_width}x{source_height} is below "
+            f"{minimum_source_width}x{minimum_source_height}"
+        )
 
     frames_dir = output_dir / "frames"
     sheets_dir = output_dir / "contact-sheets"
@@ -80,11 +89,22 @@ def main() -> int:
     images: list[np.ndarray] = []
     records = []
     timestamps = build_timestamps(sampling, expected_duration)
+    windows_by_id = {window["id"]: window for window in sampling.get("windows", [])}
     for index, (window_id, seconds) in enumerate(timestamps, 1):
         capture.set(cv2.CAP_PROP_POS_MSEC, seconds * 1000)
         ok, frame = capture.read()
         if not ok or frame is None:
             raise RuntimeError(f"failed to read frame at {seconds:.3f}s")
+        crop = windows_by_id.get(window_id, {}).get("cropNormalized")
+        if crop is not None:
+            min_x, min_y, max_x, max_y = map(float, crop)
+            if not (0 <= min_x < max_x <= 1 and 0 <= min_y < max_y <= 1):
+                raise RuntimeError(f"invalid normalized crop for {window_id}")
+            left, top = round(min_x * source_width), round(min_y * source_height)
+            right, bottom = round(max_x * source_width), round(max_y * source_height)
+            frame = frame[top:bottom, left:right]
+            if frame.size == 0:
+                raise RuntimeError(f"empty crop for {window_id}")
         image = cv2.resize(frame, (width, height), interpolation=cv2.INTER_AREA)
         overlay = image.copy()
         cv2.rectangle(overlay, (0, height - 34), (width, height), (0, 0, 0), -1)
@@ -100,6 +120,7 @@ def main() -> int:
             "windowId": window_id,
             "time": round(seconds, 3),
             "filename": f"frames/{filename}",
+            "cropNormalized": crop,
         })
     capture.release()
 
@@ -135,6 +156,8 @@ def main() -> int:
             "cid": job["batch"]["cid"],
             "expectedDurationSeconds": expected_duration,
             "downloadedDurationSeconds": round(duration, 3),
+            "sourceFrameWidth": source_width,
+            "sourceFrameHeight": source_height,
         },
         "extraction": {
             "samplingKey": args.sampling_key,

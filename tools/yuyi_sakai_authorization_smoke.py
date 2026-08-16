@@ -90,6 +90,39 @@ def main() -> int:
         checks[f"{job_id} dense sample count"] = len(build_timestamps(dense, duration)) == dense["samples"]
         checks[f"{job_id} dense low resolution"] = (dense["frameWidth"], dense["frameHeight"]) == (640, 360)
         checks[f"{job_id} dense one-day artifact"] = dense["artifactRetentionDays"] == 1
+        map_crops = job["targetedMapCropSampling"]
+        expected_map_crop_samples = 58 if job_id == "yuyi-sakai-005" else 144
+        expected_map_crop_windows = 2 if job_id == "yuyi-sakai-005" else 6
+        checks[f"{job_id} map crop sample count"] = (
+            len(build_timestamps(map_crops, duration))
+            == map_crops["samples"]
+            == expected_map_crop_samples
+        )
+        checks[f"{job_id} map crop windows"] = len(map_crops["windows"]) == expected_map_crop_windows
+        checks[f"{job_id} map crop source floor"] = (map_crops["minimumSourceWidth"], map_crops["minimumSourceHeight"]) == (1280, 720)
+        checks[f"{job_id} map crop low resolution"] = (map_crops["frameWidth"], map_crops["frameHeight"]) == (640, 360)
+        checks[f"{job_id} map crop bounds"] = all(
+            len(window["cropNormalized"]) == 4
+            and 0 <= window["cropNormalized"][0] < window["cropNormalized"][2] <= 1
+            and 0 <= window["cropNormalized"][1] < window["cropNormalized"][3] <= 1
+            for window in map_crops["windows"]
+            if "cropNormalized" in window
+        )
+        full_ranges = {
+            (window["startSeconds"], window["endSeconds"], window["intervalSeconds"])
+            for window in map_crops["windows"]
+            if "cropNormalized" not in window
+        }
+        crop_ranges = {
+            (window["startSeconds"], window["endSeconds"], window["intervalSeconds"])
+            for window in map_crops["windows"]
+            if "cropNormalized" in window
+        }
+        checks[f"{job_id} map crop paired views"] = (
+            full_ranges == crop_ranges
+            and len(full_ranges) * 2 == len(map_crops["windows"])
+        )
+        checks[f"{job_id} map crop one-day artifact"] = map_crops["artifactRetentionDays"] == 1
         checks[f"{job_id} no retained source pixels"] = job["retention"] == {"originalVideo": False, "framePixels": False, "numericDescriptorsOnly": True}
 
     catalog_by_bvid = {row["bvid"]: row for row in catalog["items"]}
@@ -138,7 +171,12 @@ def main() -> int:
     checks["cleanup always"] = "if: always()" in workflow
     checks["single concurrent download"] = "max-parallel: 1" in workflow
     checks["all Yuyi jobs scanned"] = all(f"job_file: data/analysis-jobs/{job_id}.json" in workflow for job_id in expected | boundary_expected)
-    checks["sampling modes explicit"] = workflow.count("sampling_key: targetedDenseSampling") == 2 and workflow.count("sampling_key: reviewSampling") == 2
+    checks["sampling modes explicit"] = (
+        workflow.count("sampling_key: targetedDenseSampling") == 2
+        and workflow.count("sampling_key: reviewSampling") == 2
+        and workflow.count("sampling_key: targetedMapCropSampling") == 2
+    )
+    checks["map crop source quality requested"] = workflow.count("quality: 80") == 2 and workflow.count("quality: 32") == 4
     p006_workflow = (ROOT / ".github/workflows/geospatial-2p5d-sakai-p006-evidence.yml").read_text(encoding="utf-8")
     shared_group = "group: geospatial-sakai-transient-${{ github.head_ref || github.ref_name }}"
     checks["cross-workflow downloads serialized"] = shared_group in workflow and shared_group in p006_workflow

@@ -44,6 +44,34 @@
       }
     ]
   },
+  "targetedMapCropSampling": {
+    "samples": 58,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "minimumSourceWidth": 1280,
+    "minimumSourceHeight": 720,
+    "jpegQuality": 75,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "artifactRetentionDays": 1,
+    "windows": [
+      {
+        "id": "searching-sakai-world-map-full",
+        "startSeconds": 1148,
+        "endSeconds": 1176,
+        "intervalSeconds": 1,
+        "purpose": "Preserve the full world-map coordinate context around the selected Sakai quest candidate."
+      },
+      {
+        "id": "searching-sakai-world-map-label-crop",
+        "startSeconds": 1148,
+        "endSeconds": 1176,
+        "intervalSeconds": 1,
+        "cropNormalized": [0.18, 0.2, 0.78, 0.8],
+        "purpose": "Enlarge the selected marker and title panel while retaining only a 640x360 private crop."
+      }
+    ]
+  },
   "batch": {
     "catalog": "data/geospatial/geospatial-2p5d-sakai-video-authorization-candidates.json",
     "page": 1,

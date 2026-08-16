@@ -42,15 +42,33 @@ jobs:
           - id: yuyi-boundary-004
             job_file: data/analysis-jobs/yuyi-boundary-004.json
             sampling_key: reviewSampling
+            video_id: yuyi-boundary-004
+            quality: 32
           - id: yuyi-sakai-005
             job_file: data/analysis-jobs/yuyi-sakai-005.json
             sampling_key: targetedDenseSampling
+            video_id: yuyi-sakai-005
+            quality: 32
           - id: yuyi-sakai-006
             job_file: data/analysis-jobs/yuyi-sakai-006.json
             sampling_key: targetedDenseSampling
+            video_id: yuyi-sakai-006
+            quality: 32
           - id: yuyi-boundary-007
             job_file: data/analysis-jobs/yuyi-boundary-007.json
             sampling_key: reviewSampling
+            video_id: yuyi-boundary-007
+            quality: 32
+          - id: yuyi-sakai-005-map-crops
+            job_file: data/analysis-jobs/yuyi-sakai-005.json
+            sampling_key: targetedMapCropSampling
+            video_id: yuyi-sakai-005
+            quality: 80
+          - id: yuyi-sakai-006-map-crops
+            job_file: data/analysis-jobs/yuyi-sakai-006.json
+            sampling_key: targetedMapCropSampling
+            video_id: yuyi-sakai-006
+            quality: 80
     steps:
       - name: Check out reviewed revision
         uses: actions/checkout@v5
@@ -92,13 +110,13 @@ jobs:
             --job '${{ matrix.job_file }}' \
             --authorization-registry data/authorizations.json \
             --output-dir '/tmp/atlas-${{ matrix.id }}-video' \
-            --quality 32
+            --quality '${{ matrix.quality }}'
 
       - name: Extract private low-resolution review artifact
         run: |
           python tools/extract_authorized_review_frames.py \
             --job '${{ matrix.job_file }}' \
-            --video '/tmp/atlas-${{ matrix.id }}-video/${{ matrix.id }}.mp4' \
+            --video '/tmp/atlas-${{ matrix.id }}-video/${{ matrix.video_id }}.mp4' \
             --output-dir '/tmp/atlas-${{ matrix.id }}-review' \
             --run-id '${{ github.run_id }}' \
             --sampling-key '${{ matrix.sampling_key }}'
@@ -116,6 +134,8 @@ jobs:
           assert manifest['extraction']['samplingKey'] == os.environ['SAMPLING_KEY']
           assert manifest['extraction']['windows'] == sampling.get('windows', [])
           assert len(manifest['extraction']['frames']) == sampling['samples']
+          assert manifest['source']['sourceFrameWidth'] >= sampling.get('minimumSourceWidth', 0)
+          assert manifest['source']['sourceFrameHeight'] >= sampling.get('minimumSourceHeight', 0)
           assert manifest['privacy']['artifactRetentionDays'] == 1
           assert manifest['privacy']['originalVideoIncludedInArtifact'] is False
           assert manifest['modeling']['geometryGenerated'] is False
