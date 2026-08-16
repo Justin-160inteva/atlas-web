@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: dada-sequence-12-end-to-end
@@ -138,7 +138,9 @@ jobs:
           path: |
             data/reprocess/dada-seq12.json
             data/batch-analysis/dada-sequence-12-resolution.json
+            data/analysis-jobs/dada-12.json
             data/analysis-results/dada-12.json
+            data/analysis-index.json
             data/batch-analysis/dada-seq12-reprocess-status.json
             data/dada-ac-shadows-catalog.json
             data/batch-analysis/dada-author-catalog-status.json
@@ -146,9 +148,85 @@ jobs:
             data/analysis-jobs/dada-quality-reprocess.json
           if-no-files-found: warn
 
+      - name: Generate observable workflow outcome
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
+          RESOLVE_OUTCOME: ${{ steps.resolve.outcome }}
+          RESOLUTION_GATE_OUTCOME: ${{ steps.resolution_gate.outcome }}
+          PREFLIGHT_OUTCOME: ${{ steps.preflight.outcome }}
+          INSTALL_OUTCOME: ${{ steps.install_deps.outcome }}
+          ANALYZE_OUTCOME: ${{ steps.analyze.outcome }}
+          CLEANUP_OUTCOME: ${{ steps.cleanup.outcome }}
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+          TRANSITION_OUTCOME: ${{ steps.transition.outcome }}
+          EVIDENCE_OUTCOME: ${{ steps.evidence.outcome }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          steps = {
+              'compile': os.environ.get('COMPILE_OUTCOME') or 'not-run',
+              'resolve': os.environ.get('RESOLVE_OUTCOME') or 'not-run',
+              'resolutionGate': os.environ.get('RESOLUTION_GATE_OUTCOME') or 'not-run',
+              'preflight': os.environ.get('PREFLIGHT_OUTCOME') or 'not-run',
+              'installDependencies': os.environ.get('INSTALL_OUTCOME') or 'not-run',
+              'downloadAndAnalyze': os.environ.get('ANALYZE_OUTCOME') or 'not-run',
+              'cleanup': os.environ.get('CLEANUP_OUTCOME') or 'not-run',
+              'audit': os.environ.get('AUDIT_OUTCOME') or 'not-run',
+              'transitionGate': os.environ.get('TRANSITION_OUTCOME') or 'not-run',
+              'uploadEvidence': os.environ.get('EVIDENCE_OUTCOME') or 'not-run',
+              'persistReplacement': 'not-run',
+          }
+          failed = next((name for name, outcome in steps.items() if outcome == 'failure'), None)
+          payload = {
+              'schemaVersion': 1,
+              'sequence': 12,
+              'workflow': 'dada-sequence-12-resolution.yml',
+              'runId': os.environ.get('GITHUB_RUN_ID'),
+              'runAttempt': os.environ.get('GITHUB_RUN_ATTEMPT'),
+              'triggerSha': os.environ.get('GITHUB_SHA'),
+              'event': os.environ.get('GITHUB_EVENT_NAME'),
+              'status': os.environ.get('JOB_STATUS') or 'unknown',
+              'failedStage': failed,
+              'steps': steps,
+              'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+          }
+          path = Path('data/batch-analysis/dada-seq12-workflow-state.json')
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Upload observable workflow outcome
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: dada-sequence-12-workflow-state-${{ github.sha }}
+          path: data/batch-analysis/dada-seq12-workflow-state.json
+          if-no-files-found: error
+
+  persist-replacement:
+    if: github.ref == 'refs/heads/main'
+    needs: resolve-and-reprocess
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: dada-sequence-12-end-to-end-${{ github.sha }}
+          path: data
+
       - name: Persist verified sequence 12 replacement
-        id: persist
-        if: github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -170,59 +248,44 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
 
-      - name: Persist observable workflow outcome
-        if: always() && github.event_name != 'pull_request'
+  persist-outcome:
+    if: always() && github.ref == 'refs/heads/main'
+    needs: [resolve-and-reprocess, persist-replacement]
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: dada-sequence-12-workflow-state-${{ github.sha }}
+          path: data/batch-analysis
+
+      - name: Record replacement persistence outcome
         env:
-          JOB_STATUS: ${{ job.status }}
-          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
-          RESOLVE_OUTCOME: ${{ steps.resolve.outcome }}
-          RESOLUTION_GATE_OUTCOME: ${{ steps.resolution_gate.outcome }}
-          PREFLIGHT_OUTCOME: ${{ steps.preflight.outcome }}
-          INSTALL_OUTCOME: ${{ steps.install_deps.outcome }}
-          ANALYZE_OUTCOME: ${{ steps.analyze.outcome }}
-          CLEANUP_OUTCOME: ${{ steps.cleanup.outcome }}
-          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
-          TRANSITION_OUTCOME: ${{ steps.transition.outcome }}
-          EVIDENCE_OUTCOME: ${{ steps.evidence.outcome }}
-          PERSIST_OUTCOME: ${{ steps.persist.outcome }}
+          PERSIST_REPLACEMENT_RESULT: ${{ needs['persist-replacement'].result }}
         run: |
           python - <<'PY'
           import json
           import os
-          from datetime import datetime, timezone
           from pathlib import Path
 
-          steps = {
-              'compile': os.environ.get('COMPILE_OUTCOME') or 'not-run',
-              'resolve': os.environ.get('RESOLVE_OUTCOME') or 'not-run',
-              'resolutionGate': os.environ.get('RESOLUTION_GATE_OUTCOME') or 'not-run',
-              'preflight': os.environ.get('PREFLIGHT_OUTCOME') or 'not-run',
-              'installDependencies': os.environ.get('INSTALL_OUTCOME') or 'not-run',
-              'downloadAndAnalyze': os.environ.get('ANALYZE_OUTCOME') or 'not-run',
-              'cleanup': os.environ.get('CLEANUP_OUTCOME') or 'not-run',
-              'audit': os.environ.get('AUDIT_OUTCOME') or 'not-run',
-              'transitionGate': os.environ.get('TRANSITION_OUTCOME') or 'not-run',
-              'uploadEvidence': os.environ.get('EVIDENCE_OUTCOME') or 'not-run',
-              'persistReplacement': os.environ.get('PERSIST_OUTCOME') or 'not-run',
-          }
-          failed = next((name for name, outcome in steps.items() if outcome == 'failure'), None)
-          payload = {
-              'schemaVersion': 1,
-              'sequence': 12,
-              'workflow': 'dada-sequence-12-resolution.yml',
-              'runId': os.environ.get('GITHUB_RUN_ID'),
-              'runAttempt': os.environ.get('GITHUB_RUN_ATTEMPT'),
-              'triggerSha': os.environ.get('GITHUB_SHA'),
-              'event': os.environ.get('GITHUB_EVENT_NAME'),
-              'status': os.environ.get('JOB_STATUS') or 'unknown',
-              'failedStage': failed,
-              'steps': steps,
-              'recordedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
-          }
           path = Path('data/batch-analysis/dada-seq12-workflow-state.json')
-          path.parent.mkdir(parents=True, exist_ok=True)
+          payload = json.loads(path.read_text(encoding='utf-8'))
+          result = os.environ.get('PERSIST_REPLACEMENT_RESULT') or 'not-run'
+          payload['steps']['persistReplacement'] = result
+          if result in {'failure', 'cancelled'}:
+              payload['status'] = 'failure'
+              payload['failedStage'] = payload.get('failedStage') or 'persistReplacement'
           path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
+
+      - name: Persist observable workflow outcome
+        run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/batch-analysis/dada-seq12-workflow-state.json
@@ -230,5 +293,5 @@ jobs:
             exit 0
           fi
           git commit -m 'Record Dada sequence 12 workflow outcome [skip ci]'
-          git pull --rebase --autostash origin main
+          git pull --rebase origin main
           git push origin HEAD:main

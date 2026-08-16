@@ -21,7 +21,7 @@ on:
     - cron: '17 3 * * *'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: dada-catalog-quality-${{ github.ref }}
@@ -76,16 +76,6 @@ jobs:
             data/batch-analysis/dada-catalog-quality-audit.json
             data/analysis-jobs/dada-quality-reprocess.json
 
-      - name: Persist audit report and queue
-        if: github.event_name != 'pull_request'
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/batch-analysis/dada-catalog-quality-audit.json data/analysis-jobs/dada-quality-reprocess.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Update Dada catalog quality audit [skip ci]'
-          git push
-
       - name: Report unresolved catalog quality
         run: |
           python - <<'PY'
@@ -97,3 +87,29 @@ jobs:
           else:
               print('Dada catalog remains unresolved; safe queue generated without downloading media.')
           PY
+
+  persist:
+    if: github.ref == 'refs/heads/main'
+    needs: audit
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: dada-catalog-quality-${{ github.sha }}
+          path: data
+
+      - name: Persist audit report and queue
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/batch-analysis/dada-catalog-quality-audit.json data/analysis-jobs/dada-quality-reprocess.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Update Dada catalog quality audit [skip ci]'
+          git push

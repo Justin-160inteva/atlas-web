@@ -27,7 +27,7 @@ on:
       - 'data/rewards/reward-quest-evidence-trigger.json'
 
 permissions:
-  contents: write
+  contents: read
   models: read
 
 concurrency:
@@ -165,8 +165,43 @@ jobs:
           path: data/rewards/reward-quest-evidence-validation-report.json
           if-no-files-found: warn
 
+      - name: Upload quest evidence results
+        if: success()
+        uses: actions/upload-artifact@v6
+        with:
+          name: reward-quest-evidence-results-${{ github.sha }}
+          path: |
+            tools/build_reward_summary_catalog.py
+            data/rewards/reward-point-evidence-overrides.json
+            data/rewards/reward-quest-evidence-validation-report.json
+            data/rewards/reward-translation-lexicon-zh-CN.json
+            data/rewards/reward-translation-evidence.json
+            data/rewards/reward-translation-research-state.json
+            data/rewards/reward-summary-catalog.json
+            data/rewards/reward-source-audit.json
+            data/rewards/reward-research-queue.json
+            data/rewards/reward-evidence-index.json
+            data/rewards/records
+            data/conflict-reports/reward-evidence-matrix.json
+
+  persist:
+    if: github.ref == 'refs/heads/main'
+    needs: import-validate-publish
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: reward-quest-evidence-results-${{ github.sha }}
+          path: .
+
       - name: Commit quest overrides and rebuilt catalog
-        if: success() && github.event_name != 'pull_request'
         env:
           TARGET_BRANCH: main
         run: |

@@ -23,7 +23,7 @@ on:
       - 'data/rewards/reward-legendary-chest-parser-trigger.json'
 
 permissions:
-  contents: write
+  contents: read
   models: read
 
 concurrency:
@@ -129,8 +129,42 @@ jobs:
           path: data/rewards/reward-legendary-chest-validation-report.json
           if-no-files-found: warn
 
+      - name: Upload parser and reward results
+        if: success()
+        uses: actions/upload-artifact@v6
+        with:
+          name: reward-legendary-chest-results-${{ github.sha }}
+          path: |
+            tools/build_reward_summary_catalog.py
+            data/rewards/reward-translation-lexicon-zh-CN.json
+            data/rewards/reward-translation-evidence.json
+            data/rewards/reward-translation-research-state.json
+            data/rewards/reward-summary-catalog.json
+            data/rewards/reward-source-audit.json
+            data/rewards/reward-research-queue.json
+            data/rewards/reward-evidence-index.json
+            data/rewards/reward-legendary-chest-validation-report.json
+            data/rewards/records
+            data/conflict-reports/reward-evidence-matrix.json
+
+  persist:
+    if: github.ref == 'refs/heads/main'
+    needs: patch-build-validate
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: reward-legendary-chest-results-${{ github.sha }}
+          path: .
+
       - name: Commit parser, translations and regenerated catalog
-        if: success() && github.event_name != 'pull_request'
         env:
           TARGET_BRANCH: main
         run: |

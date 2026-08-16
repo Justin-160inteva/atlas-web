@@ -15,7 +15,7 @@ on:
       - 'data/batch-analysis/eleven-account-extra-audit.json'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: discover-eleven-account-extras-${{ github.event_name }}-${{ github.ref }}
@@ -79,8 +79,30 @@ jobs:
           print(report['conclusionZhCN'])
           PY
 
+      - name: Upload account extras report
+        uses: actions/upload-artifact@v6
+        with:
+          name: eleven-account-extras-${{ github.sha }}
+          path: data/batch-analysis/eleven-account-extra-video-report.json
+
+  persist:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: audit
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: eleven-account-extras-${{ github.sha }}
+          path: data/batch-analysis
+
       - name: Commit account extras report
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           TARGET_BRANCH: main
         run: |

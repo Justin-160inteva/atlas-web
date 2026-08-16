@@ -21,7 +21,7 @@ on:
       - 'data/rewards/reward-research-sources.json'
 
 permissions:
-  contents: write
+  contents: read
   models: read
 
 concurrency:
@@ -30,6 +30,8 @@ concurrency:
 
 jobs:
   translate-and-rebuild:
+    outputs:
+      accepted: ${{ steps.research.outputs.accepted }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -148,8 +150,40 @@ jobs:
           print(f"Validated 3430 records; translated {state['acceptedThisRun']} names; {state['remainingCandidateNames']} translatable names remain.")
           PY
 
+      - name: Upload translated reward results
+        if: steps.research.outputs.accepted != '0'
+        uses: actions/upload-artifact@v6
+        with:
+          name: reward-translation-results-${{ github.sha }}
+          path: |
+            data/rewards/reward-translation-lexicon-zh-CN.json
+            data/rewards/reward-translation-evidence.json
+            data/rewards/reward-translation-research-state.json
+            data/rewards/reward-summary-catalog.json
+            data/rewards/reward-source-audit.json
+            data/rewards/reward-research-queue.json
+            data/rewards/reward-evidence-index.json
+            data/rewards/records
+            data/conflict-reports/reward-evidence-matrix.json
+
+  persist:
+    if: github.ref == 'refs/heads/main' && needs['translate-and-rebuild'].outputs.accepted != '0'
+    needs: translate-and-rebuild
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: reward-translation-results-${{ github.sha }}
+          path: data
+
       - name: Commit translated names and rebuilt reward catalog
-        if: steps.research.outputs.accepted != '0' && github.event_name != 'pull_request'
         env:
           TARGET_BRANCH: main
         run: |
