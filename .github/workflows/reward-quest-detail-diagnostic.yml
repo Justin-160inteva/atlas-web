@@ -17,7 +17,7 @@ on:
       - 'data/rewards/reward-quest-detail-trigger.json'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: reward-quest-detail-diagnostic-${{ github.event_name }}-${{ github.ref }}
@@ -61,8 +61,30 @@ jobs:
           )
           PY
 
+      - name: Upload quest detail diagnostic
+        uses: actions/upload-artifact@v6
+        with:
+          name: reward-quest-detail-${{ github.sha }}
+          path: data/rewards/reward-quest-detail-diagnostic.json
+
+  persist:
+    if: github.ref == 'refs/heads/main'
+    needs: inspect-details
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: reward-quest-detail-${{ github.sha }}
+          path: data/rewards
+
       - name: Commit quest detail diagnostic
-        if: github.event_name != 'pull_request'
         env:
           TARGET_BRANCH: main
         run: |

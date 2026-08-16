@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: reprocess-dada-seq08
@@ -90,8 +90,40 @@ jobs:
           assert set(queue['sequences']) == {12, 14, 20}
           PY
 
-      - name: Commit verified replacement analysis
+      - name: Upload verified replacement analysis
         if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v6
+        with:
+          name: dada-seq08-verified-reprocess-${{ github.sha }}
+          path: |
+            data/analysis-jobs/dada-08.json
+            data/analysis-results/dada-08.json
+            data/analysis-index.json
+            data/dada-ac-shadows-catalog.json
+            data/batch-analysis/dada-author-catalog-status.json
+            data/batch-analysis/dada-seq08-reprocess-status.json
+            data/batch-analysis/dada-catalog-quality-audit.json
+            data/analysis-jobs/dada-quality-reprocess.json
+          if-no-files-found: error
+
+  persist:
+    if: github.ref == 'refs/heads/main'
+    needs: reprocess
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: dada-seq08-verified-reprocess-${{ github.sha }}
+          path: data
+
+      - name: Commit verified replacement analysis
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

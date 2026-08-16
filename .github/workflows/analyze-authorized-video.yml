@@ -15,7 +15,7 @@ on:
         default: 'data/analysis-jobs/dada-temples-36.json'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: authorized-video-analysis-${{ github.event.pull_request.number || github.ref }}
@@ -82,8 +82,40 @@ jobs:
           find /tmp -maxdepth 1 -type d -name 'atlas-authorized-*' -exec rm -rf {} + || true
           find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' \) -delete
 
+      - name: Upload analysis result and import index
+        uses: actions/upload-artifact@v6
+        with:
+          name: authorized-video-analysis-${{ github.sha }}
+          path: |
+            ${{ steps.job.outputs.output_file }}
+            data/analysis-index.json
+          if-no-files-found: error
+
+      - name: Validate analysis result
+        shell: bash
+        run: |
+          STATUS=$(python -c "import json; print(json.load(open('${{ steps.job.outputs.output_file }}', encoding='utf-8')).get('status', 'missing'))")
+          echo "Analysis status: $STATUS"
+          test "$STATUS" = 'analyzed'
+
+  persist:
+    if: github.event_name != 'pull_request'
+    needs: analyze
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: authorized-video-analysis-${{ github.sha }}
+          path: data
+
       - name: Commit analysis result and import index
-        if: github.event_name != 'pull_request'
         shell: bash
         run: |
           if [ -z "$(git status --porcelain -- data/analysis-results data/analysis-index.json)" ]; then
@@ -93,13 +125,5 @@ jobs:
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add data/analysis-results data/analysis-index.json
             git commit -m 'Import authorized video analysis result'
-            TARGET_BRANCH='${{ github.ref_name }}'
-            git push origin "HEAD:${TARGET_BRANCH}"
+            git push origin "HEAD:${{ github.ref_name }}"
           fi
-
-      - name: Validate analysis result
-        shell: bash
-        run: |
-          STATUS=$(python -c "import json; print(json.load(open('${{ steps.job.outputs.output_file }}', encoding='utf-8')).get('status', 'missing'))")
-          echo "Analysis status: $STATUS"
-          test "$STATUS" = 'analyzed'

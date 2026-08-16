@@ -21,7 +21,7 @@ on:
 
 permissions:
   actions: read
-  contents: write
+  contents: read
 
 concurrency:
   group: reward-summary-production-${{ github.event_name }}-${{ github.ref }}
@@ -145,8 +145,24 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
 
+  persist:
+    if: github.ref == 'refs/heads/main'
+    needs: build-reward-summaries
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: reward-summary-production-${{ github.run_id }}
+          path: data
+
       - name: Commit generated reward evidence
-        if: github.event_name != 'pull_request'
         env:
           TARGET_BRANCH: main
         run: |

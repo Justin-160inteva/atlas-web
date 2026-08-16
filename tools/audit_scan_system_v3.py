@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 import sys
 import urllib.error
 from datetime import datetime, timezone
@@ -21,18 +22,21 @@ def read_text(path):
     return (ROOT / path).read_text(encoding="utf-8")
 
 
-def pull_request_pushes_are_guarded(workflow):
-    for step in workflow.split("\n      - "):
-        if "git push" not in step:
+def pull_request_write_permissions_are_isolated(workflow):
+    header, jobs = workflow.split("\njobs:\n", 1)
+    if "\npermissions:\n" not in header or "\n  contents: read\n" not in header or "contents: write" in header or "github.head_ref" in workflow:
+        return False
+    starts = [match.start() for match in re.finditer(r"(?m)^  [A-Za-z0-9_-]+:\s*$", jobs)]
+    job_blocks = (jobs[start:end] for start, end in zip(starts, starts[1:] + [len(jobs)]))
+    for job in job_blocks:
+        has_write_permission = "permissions:\n      contents: write" in job
+        if "git push" in job and not has_write_permission:
+            return False
+        if not has_write_permission:
             continue
-        metadata = step.split("\n        run:", 1)[0]
-        if not any(
-            guard in metadata
-            for guard in (
-                "github.event_name != 'pull_request'",
-                "github.event_name == 'push' && github.ref == 'refs/heads/main'",
-            )
-        ):
+        metadata = job.split("\n    steps:", 1)[0]
+        guarded = "github.ref == 'refs/heads/main'" in metadata or "github.event_name != 'pull_request'" in metadata
+        if not guarded or "uses: actions/download-artifact@" not in job:
             return False
     return True
 
@@ -114,7 +118,7 @@ def main():
     dada_scan_guard = "push:\n    branches: [main]" in dada_scan_workflow
     check("write_workflows_main_only", all("if: github.ref == 'refs/heads/main'" in workflow for workflow in main_only_workflows) and extras_write_guard and dada_scan_guard, "catalog, scan, supervisor and account extras writes cannot run from feature branches")
     check("workflow_run_writes_main_only", all("branches: [main]" in workflow for workflow in observer_workflows), "workflow-run observers cannot persist pull-request or feature-branch outcomes to main")
-    check("pull_request_persistence_read_only", all(pull_request_pushes_are_guarded(workflow) and "github.head_ref" not in workflow for workflow in pull_request_write_workflows), "pull-request workflows expose diagnostics as artifacts but cannot push commits")
+    check("pull_request_persistence_read_only", all(pull_request_write_permissions_are_isolated(workflow) for workflow in pull_request_write_workflows), "pull-request jobs receive read-only contents permission; artifact-backed write jobs cannot run on pull requests")
     check("legacy_pilot_terminal_guard", "preflight:" in legacy_scan_workflow and "needs: preflight" in legacy_scan_workflow and "authority.get('terminal')" in legacy_scan_workflow and "contents: read" in legacy_scan_workflow, "legacy regional pilot is read-only unless preflight finds its nonterminal regional queue")
     conflict_persist = conflict_workflow.split("- name: Persist reports on main", 1)[-1]
     check("report_persistence_single_owner", "scan-system-health.json" not in conflict_persist, "scan health is persisted only by its owning workflow")

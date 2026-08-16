@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: dada-sequence-06-resolution-${{ github.ref }}
@@ -86,8 +86,24 @@ jobs:
             data/batch-analysis/dada-author-catalog-status.json
             data/analysis-jobs/dada-quality-reprocess.json
 
+  persist:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: resolve
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: dada-sequence-06-resolution-${{ github.sha }}
+          path: data
+
       - name: Persist verified resolution on main
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

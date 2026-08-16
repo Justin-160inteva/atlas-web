@@ -25,7 +25,7 @@ on:
       - 'data/geospatial/dada-shrines-anchor-batch01-trigger.json'
 
 permissions:
-  contents: write
+  contents: read
   models: read
 
 concurrency:
@@ -189,8 +189,48 @@ jobs:
             data/batch-analysis/dada-shrines-27-geospatial-status.json
           if-no-files-found: warn
 
+      - name: Upload non-pixel shrine anchor results
+        if: success()
+        uses: actions/upload-artifact@v6
+        with:
+          name: dada-shrines-anchor-batch01-results-${{ github.sha }}
+          path: |
+            data/analysis-index.json
+            data/analysis-jobs/dada-temples-36-geospatial.json
+            data/analysis-jobs/dada-shrines-27-geospatial.json
+            data/geospatial/dada-shrines-27-stage1.json
+            data/geospatial/dada-shrines-27-batch01-evidence-manifest.json
+            data/geospatial/dada-shrines-27-anchors-batch01.json
+            data/geospatial/geospatial-reconcile-diagnostic.json
+            data/geospatial/geospatial-progress.json
+            data/batch-analysis/dada-shrines-27-geospatial-status.json
+
+      - name: Delete all transient video and frame pixels
+        if: always()
+        run: |
+          rm -rf /tmp/dada-shrines-batch01-video /tmp/dada-shrines-batch01-evidence
+          test ! -e /tmp/dada-shrines-batch01-video
+          test ! -e /tmp/dada-shrines-batch01-evidence
+          find . -type f \( -name '*.mp4' -o -name '*.webm' -o -name '*.flv' -o -name '*.jpg' \) -not -path './assets/*' -delete
+
+  persist:
+    if: github.ref == 'refs/heads/main'
+    needs: extract-review-publish
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: dada-shrines-anchor-batch01-results-${{ github.sha }}
+          path: data
+
       - name: Commit non-pixel shrine anchor results
-        if: success() && github.event_name != 'pull_request'
         env:
           TARGET_BRANCH: main
         run: |
@@ -219,11 +259,3 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
-
-      - name: Delete all transient video and frame pixels
-        if: always()
-        run: |
-          rm -rf /tmp/dada-shrines-batch01-video /tmp/dada-shrines-batch01-evidence
-          test ! -e /tmp/dada-shrines-batch01-video
-          test ! -e /tmp/dada-shrines-batch01-evidence
-          find . -type f \( -name '*.mp4' -o -name '*.webm' -o -name '*.flv' -o -name '*.jpg' \) -not -path './assets/*' -delete

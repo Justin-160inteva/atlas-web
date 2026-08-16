@@ -20,7 +20,7 @@ on:
         default: ''
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: reprocess-dada-verified
@@ -28,6 +28,9 @@ concurrency:
 
 jobs:
   reprocess:
+    outputs:
+      padded: ${{ steps.select.outputs.padded }}
+      should_run: ${{ steps.select.outputs.should_run }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -142,16 +145,36 @@ jobs:
           name: dada-seq${{ steps.select.outputs.padded }}-verified-reprocess-${{ github.sha }}
           path: |
             data/reprocess/dada-seq${{ steps.select.outputs.padded }}.json
+            data/analysis-jobs/dada-${{ steps.select.outputs.padded }}.json
             data/analysis-results/dada-${{ steps.select.outputs.padded }}.json
+            data/analysis-index.json
+            data/dada-ac-shadows-catalog.json
+            data/batch-analysis/dada-author-catalog-status.json
             data/batch-analysis/dada-seq${{ steps.select.outputs.padded }}-reprocess-status.json
             data/batch-analysis/dada-catalog-quality-audit.json
             data/analysis-jobs/dada-quality-reprocess.json
           if-no-files-found: error
 
+  persist:
+    if: github.ref == 'refs/heads/main' && needs.reprocess.outputs.should_run == 'true'
+    needs: reprocess
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: dada-seq${{ needs.reprocess.outputs.padded }}-verified-reprocess-${{ github.sha }}
+          path: data
+
       - name: Commit verified replacement analysis
-        if: steps.select.outputs.should_run == 'true' && github.event_name != 'pull_request'
         run: |
-          PADDED='${{ steps.select.outputs.padded }}'
+          PADDED='${{ needs.reprocess.outputs.padded }}'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
