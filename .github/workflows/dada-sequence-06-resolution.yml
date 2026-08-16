@@ -1,18 +1,6 @@
 name: Dada sequence 06 exact resolution
 
 on:
-  pull_request:
-    paths:
-      - 'tools/resolve_dada_sequence06.py'
-      - '.github/workflows/dada-sequence-06-resolution.yml'
-      - 'data/dada-ac-shadows-catalog.json'
-      - 'data/batch-analysis/dada-author-catalog-status.json'
-      - 'data/analysis-jobs/dada-quality-reprocess.json'
-  push:
-    branches: [main]
-    paths:
-      - 'tools/resolve_dada_sequence06.py'
-      - '.github/workflows/dada-sequence-06-resolution.yml'
   workflow_dispatch:
 
 permissions:

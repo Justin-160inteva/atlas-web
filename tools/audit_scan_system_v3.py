@@ -77,17 +77,24 @@ def main():
             ".github/workflows/observe-dada-seq20.yml",
         )
     )
+    terminal_dada_workflows = tuple(
+        read_text(path)
+        for path in (
+            ".github/workflows/dada-sequence-06-resolution.yml",
+            ".github/workflows/dada-sequence-08-resolution.yml",
+            ".github/workflows/dada-sequence-12-resolution.yml",
+            ".github/workflows/dada-sequence-14-resolution.yml",
+            ".github/workflows/dada-sequence-20-resolution.yml",
+            ".github/workflows/reprocess-dada-seq08.yml",
+        )
+    )
     pull_request_write_workflows = tuple(
         read_text(path)
         for path in (
             ".github/workflows/analyze-authorized-video.yml",
             ".github/workflows/dada-catalog-quality-audit.yml",
-            ".github/workflows/dada-sequence-06-resolution.yml",
-            ".github/workflows/dada-sequence-08-resolution.yml",
-            ".github/workflows/dada-sequence-12-resolution.yml",
             ".github/workflows/dada-shrines-anchor-batch01.yml",
             ".github/workflows/discover-eleven-account-extras.yml",
-            ".github/workflows/reprocess-dada-seq08.yml",
             ".github/workflows/reprocess-dada-verified.yml",
             ".github/workflows/reward-legendary-chest-parser.yml",
             ".github/workflows/reward-quest-detail-diagnostic.yml",
@@ -118,6 +125,7 @@ def main():
     dada_scan_guard = "push:\n    branches: [main]" in dada_scan_workflow
     check("write_workflows_main_only", all("if: github.ref == 'refs/heads/main'" in workflow for workflow in main_only_workflows) and extras_write_guard and dada_scan_guard, "catalog, scan, supervisor and account extras writes cannot run from feature branches")
     check("workflow_run_writes_main_only", all("branches: [main]" in workflow for workflow in observer_workflows), "workflow-run observers cannot persist pull-request or feature-branch outcomes to main")
+    check("terminal_dada_workflows_manual_only", all("on:\n  workflow_dispatch:\n" in workflow and "\n  pull_request:" not in workflow and "\n  push:" not in workflow for workflow in terminal_dada_workflows) and all("if: github.ref == 'refs/heads/main'" in workflow for workflow in terminal_dada_workflows[3:5]), "completed Dada sequence migrations run only through explicit manual recovery; legacy write jobs require main")
     check("pull_request_persistence_read_only", all(pull_request_write_permissions_are_isolated(workflow) for workflow in pull_request_write_workflows), "pull-request jobs receive read-only contents permission; artifact-backed write jobs cannot run on pull requests")
     check("legacy_pilot_terminal_guard", "preflight:" in legacy_scan_workflow and "needs: preflight" in legacy_scan_workflow and "authority.get('terminal')" in legacy_scan_workflow and "contents: read" in legacy_scan_workflow, "legacy regional pilot is read-only unless preflight finds its nonterminal regional queue")
     conflict_persist = conflict_workflow.split("- name: Persist reports on main", 1)[-1]
