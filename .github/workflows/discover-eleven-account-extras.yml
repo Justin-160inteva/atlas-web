@@ -3,6 +3,7 @@ name: Discover 11 game world account extras
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - '.github/workflows/discover-eleven-account-extras.yml'
       - 'tools/discover_eleven_account_extras.py'
@@ -79,8 +80,9 @@ jobs:
           PY
 
       - name: Commit account extras report
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
-          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+          TARGET_BRANCH: main
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
