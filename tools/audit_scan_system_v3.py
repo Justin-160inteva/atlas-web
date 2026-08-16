@@ -21,6 +21,22 @@ def read_text(path):
     return (ROOT / path).read_text(encoding="utf-8")
 
 
+def pull_request_pushes_are_guarded(workflow):
+    for step in workflow.split("\n      - "):
+        if "git push" not in step:
+            continue
+        metadata = step.split("\n        run:", 1)[0]
+        if not any(
+            guard in metadata
+            for guard in (
+                "github.event_name != 'pull_request'",
+                "github.event_name == 'push' && github.ref == 'refs/heads/main'",
+            )
+        ):
+            return False
+    return True
+
+
 def main():
     checks = []
 
@@ -48,6 +64,34 @@ def main():
     supervisor_workflow = read_text(".github/workflows/supervise-eleven-heartbeat.yml")
     discovery_workflow = read_text(".github/workflows/discover-eleven-author-catalog.yml")
     extras_workflow = read_text(".github/workflows/discover-eleven-account-extras.yml")
+    dada_scan_workflow = read_text(".github/workflows/scan-dada-author-catalog.yml")
+    observer_workflows = tuple(
+        read_text(path)
+        for path in (
+            ".github/workflows/observe-dada-seq12.yml",
+            ".github/workflows/observe-dada-seq14.yml",
+            ".github/workflows/observe-dada-seq20.yml",
+        )
+    )
+    pull_request_write_workflows = tuple(
+        read_text(path)
+        for path in (
+            ".github/workflows/analyze-authorized-video.yml",
+            ".github/workflows/dada-catalog-quality-audit.yml",
+            ".github/workflows/dada-sequence-06-resolution.yml",
+            ".github/workflows/dada-sequence-08-resolution.yml",
+            ".github/workflows/dada-sequence-12-resolution.yml",
+            ".github/workflows/dada-shrines-anchor-batch01.yml",
+            ".github/workflows/discover-eleven-account-extras.yml",
+            ".github/workflows/reprocess-dada-seq08.yml",
+            ".github/workflows/reprocess-dada-verified.yml",
+            ".github/workflows/reward-legendary-chest-parser.yml",
+            ".github/workflows/reward-quest-detail-diagnostic.yml",
+            ".github/workflows/reward-quest-evidence-import.yml",
+            ".github/workflows/reward-summary-production.yml",
+            ".github/workflows/reward-translation-research.yml",
+        )
+    )
     discovery = read_text("tools/discover_bilibili_author_catalog.py")
     refiner = read_text("tools/refine_eleven_catalog.py")
     conflict_workflow = read_text(".github/workflows/atlas-conflict-reasoner.yml")
@@ -67,7 +111,10 @@ def main():
     check("workflow_selects_risk", "select_release_validation.py" in conflict_workflow and "run_full_audit" in conflict_workflow and "run_playwright" in conflict_workflow, "CI selects matrices by changed risk")
     main_only_workflows = (scan_workflow, supervisor_workflow, discovery_workflow)
     extras_write_guard = "branches: [main]" in extras_workflow and "if: github.event_name == 'push' && github.ref == 'refs/heads/main'" in extras_workflow and "TARGET_BRANCH: main" in extras_workflow
-    check("write_workflows_main_only", all("if: github.ref == 'refs/heads/main'" in workflow for workflow in main_only_workflows) and extras_write_guard, "catalog, scan, supervisor and account extras writes cannot run from feature branches")
+    dada_scan_guard = "push:\n    branches: [main]" in dada_scan_workflow
+    check("write_workflows_main_only", all("if: github.ref == 'refs/heads/main'" in workflow for workflow in main_only_workflows) and extras_write_guard and dada_scan_guard, "catalog, scan, supervisor and account extras writes cannot run from feature branches")
+    check("workflow_run_writes_main_only", all("branches: [main]" in workflow for workflow in observer_workflows), "workflow-run observers cannot persist pull-request or feature-branch outcomes to main")
+    check("pull_request_persistence_read_only", all(pull_request_pushes_are_guarded(workflow) and "github.head_ref" not in workflow for workflow in pull_request_write_workflows), "pull-request workflows expose diagnostics as artifacts but cannot push commits")
     check("legacy_pilot_terminal_guard", "preflight:" in legacy_scan_workflow and "needs: preflight" in legacy_scan_workflow and "authority.get('terminal')" in legacy_scan_workflow and "contents: read" in legacy_scan_workflow, "legacy regional pilot is read-only unless preflight finds its nonterminal regional queue")
     conflict_persist = conflict_workflow.split("- name: Persist reports on main", 1)[-1]
     check("report_persistence_single_owner", "scan-system-health.json" not in conflict_persist, "scan health is persisted only by its owning workflow")

@@ -83,6 +83,7 @@ jobs:
           find . -type f \( -name '*.mp4' -o -name '*.m4a' -o -name '*.webm' \) -delete
 
       - name: Commit analysis result and import index
+        if: github.event_name != 'pull_request'
         shell: bash
         run: |
           if [ -z "$(git status --porcelain -- data/analysis-results data/analysis-index.json)" ]; then
@@ -92,7 +93,7 @@ jobs:
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add data/analysis-results data/analysis-index.json
             git commit -m 'Import authorized video analysis result'
-            TARGET_BRANCH='${{ github.event.pull_request.head.ref || github.ref_name }}'
+            TARGET_BRANCH='${{ github.ref_name }}'
             git push origin "HEAD:${TARGET_BRANCH}"
           fi
 
