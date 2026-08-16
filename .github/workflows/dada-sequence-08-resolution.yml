@@ -114,4 +114,13 @@ jobs:
           git add data/batch-analysis/dada-sequence-08-resolution.json data/dada-ac-shadows-catalog.json data/batch-analysis/dada-author-catalog-status.json data/analysis-jobs/dada-quality-reprocess.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Verify Dada sequence 08 exact source [skip ci]'
-          git push
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt ${attempt} collided with a concurrent update; retrying."
+            git rebase --abort || true
+            sleep $((attempt * 5))
+          done
+          echo 'Unable to publish Dada sequence 08 resolution after six attempts.' >&2
+          exit 1
