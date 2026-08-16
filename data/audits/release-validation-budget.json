@@ -1,29 +1,19 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-15T23:02:05.660843Z",
+  "generatedAt": "2026-08-16T00:31:41.630976Z",
   "release": "0.9.4.8",
   "policyRevision": "2026.08.15.3",
-  "tier": "standard",
-  "minimumRelevantChecks": 300,
+  "tier": "quick",
+  "minimumRelevantChecks": 200,
   "forcedFull": false,
   "scheduledFull": false,
   "changedFiles": [
-    ".github/workflows/atlas-conflict-reasoner.yml",
-    ".github/workflows/scan-eleven-pilot.yml",
-    ".github/workflows/validate-scan-system.yml",
-    "data/audits/release-validation-budget.json",
-    "data/batch-analysis/scan-system-health.json",
-    "data/quality/release-validation-policy.json",
-    "tools/audit_scan_system_v3.py"
+    ".github/workflows/deploy-pages.yml",
+    ".github/workflows/pages.yml"
   ],
   "matchedGroups": {
-    "validationFramework": [
-      ".github/workflows/atlas-conflict-reasoner.yml",
-      "data/quality/release-validation-policy.json"
-    ],
-    "scanCore": [
-      ".github/workflows/scan-eleven-pilot.yml"
-    ],
+    "validationFramework": [],
+    "scanCore": [],
     "monitor": [],
     "dataCenter": [],
     "rewards": [],
@@ -33,20 +23,20 @@
   "run": {
     "data_center": false,
     "reward": false,
-    "heartbeat": true,
-    "serial": true,
-    "queue_schema": true,
+    "heartbeat": false,
+    "serial": false,
+    "queue_schema": false,
     "browser": false,
     "monitor": false,
     "full_audit": false,
     "playwright": false
   },
   "budget": {
-    "heartbeatChecks": 300,
-    "serialQueueChecks": 300,
-    "queueSchemaChecks": 300,
-    "browserChecks": 500,
-    "monitorAuthorityChecks": 500,
+    "heartbeatChecks": 200,
+    "serialQueueChecks": 200,
+    "queueSchemaChecks": 200,
+    "browserChecks": 200,
+    "monitorAuthorityChecks": 200,
     "dataCenterChecks": 500,
     "rewardEvidenceChecks": 500
   },
