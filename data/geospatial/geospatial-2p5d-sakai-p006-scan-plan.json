@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "stage": "2p5d-sakai-p006-authorized-evidence",
+  "status": "plan-ready",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "historicalGap": {
+    "selectedSourceRecord": "geospatial-shrine-scene-segmentation-v1@036af0b3:data/geospatial/geospatial-2p5d-sakai-video-source-priority.json",
+    "subsequentArtifactRecord": "geospatial-shrine-scene-segmentation-v1@23a5f31f:data/geospatial/geospatial-2p5d-sakai-dense-evidence-manifest.json",
+    "selectedSource": "eleven-p006-v2",
+    "problem": "P06 was selected for a Sakai-specific full-duration scan, but the later correction and dense artifacts reviewed only P13 and P15.",
+    "resolution": "Review P06 before declaring the existing authorized catalog exhausted or requesting another creator authorization."
+  },
+  "pilotScope": {
+    "id": "izumi-settsu-sakai-urban-core-v1",
+    "title": "Sakai urban and waterfront core",
+    "normalizedBounds": {
+      "minX": 0.315,
+      "minY": 0.218,
+      "maxX": 0.3425,
+      "maxY": 0.2425
+    },
+    "locationTarget": 61
+  },
+  "source": {
+    "scanId": "p006-full-duration-sakai-context",
+    "jobId": "eleven-p006-v2",
+    "jobPath": "data/analysis-jobs/eleven-p006.json",
+    "resultPath": "data/analysis-results/eleven-p006.json",
+    "expectedBvid": "BV1FdQ9YdEcN",
+    "expectedPage": 6,
+    "expectedCid": 28948103844,
+    "expectedDurationSeconds": 3106.066
+  },
+  "sampling": {
+    "strategy": "full-duration-stratified",
+    "frameCount": 352,
+    "uniformFullDuration": 256,
+    "sharp": 32,
+    "sceneTransition": 32,
+    "coverageFill": 32,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "contactSheetCount": 22,
+    "jpegQuality": 84,
+    "artifactRetentionDays": 1
+  },
+  "hardGates": {
+    "minimumCoveredDurationFraction": 0.99,
+    "minimumFramesPerQuarter": 64,
+    "minimumFramesPerEighth": 32,
+    "requireNamedSakaiContextBeforeGeometry": true,
+    "minimumIndependentViewsPerModeledFeature": 2,
+    "requireCoordinateClusterLinkBeforeGeometry": true
+  },
+  "evidenceTargets": [
+    "named Sakai mission, codex, map, district or location context",
+    "the same gate, street, roof block, compound or dock from at least two camera directions",
+    "street and waterfront continuity between named or coordinate-linked landmarks",
+    "building, road, terrain and water relationships suitable for a non-pixel correspondence graph"
+  ],
+  "modelingDecision": {
+    "automaticGeometryGeneration": false,
+    "geometryAllowedBeforeHumanReview": false,
+    "eligibleOutcome": "build a 61-location low-detail 2.5D tile only after every hard gate passes",
+    "blockedOutcome": "use Issue 145 authorization outreach only after P06 is proven insufficient"
+  },
+  "retention": {
+    "repositoryContainsVideo": false,
+    "repositoryContainsFrames": false,
+    "artifactContainsPrivateLowResolutionFrames": true,
+    "artifactRetentionDays": 1,
+    "persistOnlyNonPixelEvidence": true
+  },
+  "outputs": {
+    "timestampPlan": "data/geospatial/geospatial-2p5d-sakai-p006-timestamps.json",
+    "transientArtifactDirectory": "/tmp/atlas-sakai-p006-evidence"
+  }
+}
