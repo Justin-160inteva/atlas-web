@@ -1,0 +1,2145 @@
+{
+  "schemaVersion": 1,
+  "status": "p006-authorized-timestamp-plan-ready",
+  "stage": "2p5d-sakai-p006-authorized-evidence",
+  "authorizationId": "auth-eleven-game-world-20260719",
+  "source": {
+    "scanId": "p006-full-duration-sakai-context",
+    "jobId": "eleven-p006-v2",
+    "jobPath": "data/analysis-jobs/eleven-p006.json",
+    "resultPath": "data/analysis-results/eleven-p006.json",
+    "page": 6,
+    "cid": 28948103844,
+    "durationSeconds": 3106.066
+  },
+  "counts": {
+    "frames": 352,
+    "contactSheets": 22,
+    "quarters": {
+      "1": 139,
+      "2": 85,
+      "3": 64,
+      "4": 64
+    },
+    "eighths": {
+      "1": 91,
+      "2": 48,
+      "3": 49,
+      "4": 36,
+      "5": 32,
+      "6": 32,
+      "7": 32,
+      "8": 32
+    },
+    "buckets": {
+      "coverageFill": 34,
+      "sceneTransition": 32,
+      "sharp": 30,
+      "uniformFullDuration": 256
+    }
+  },
+  "coverage": {
+    "firstSecond": 0.5,
+    "lastSecond": 3099.999,
+    "coveredDurationFraction": 0.997886,
+    "checks": {
+      "coveredDurationFraction": true,
+      "minimumFramesPerQuarter": true,
+      "minimumFramesPerEighth": true
+    }
+  },
+  "extraction": {
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "contactSheetCount": 22,
+    "jpegQuality": 84,
+    "artifactRetentionDays": 1
+  },
+  "timestamps": [
+    {
+      "time": 0.5,
+      "bucket": "sceneTransition",
+      "difference": 1.0,
+      "sharpness": 277.6399,
+      "edgeDensity": 0.003976
+    },
+    {
+      "time": 0.552,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 1.655,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 2.758,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 3.861,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 4.964,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 6.067,
+      "bucket": "uniformFullDuration",
+      "sequence": 1,
+      "sequenceCount": 256
+    },
+    {
+      "time": 7.17,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 8.273,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 8.631,
+      "bucket": "sceneTransition",
+      "difference": 0.675,
+      "sharpness": 338.3231,
+      "edgeDensity": 0.025625
+    },
+    {
+      "time": 9.376,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 10.479,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 11.582,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 12.685,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 13.788,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 14.891,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 15.994,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 17.097,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 18.2,
+      "bucket": "uniformFullDuration",
+      "sequence": 2,
+      "sequenceCount": 256
+    },
+    {
+      "time": 19.303,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 20.406,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 21.509,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 22.612,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 23.715,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 24.818,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 25.893,
+      "bucket": "sceneTransition",
+      "difference": 0.547665,
+      "sharpness": 345.5977,
+      "edgeDensity": 0.01309
+    },
+    {
+      "time": 25.921,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 27.024,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 28.127,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 29.23,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 30.333,
+      "bucket": "uniformFullDuration",
+      "sequence": 3,
+      "sequenceCount": 256
+    },
+    {
+      "time": 31.436,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 32.539,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 33.642,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 34.524,
+      "bucket": "sceneTransition",
+      "difference": 0.65133,
+      "sharpness": 375.1082,
+      "edgeDensity": 0.021302
+    },
+    {
+      "time": 34.745,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 35.848,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 36.951,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 38.054,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 39.157,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 40.26,
+      "bucket": "coverageFill"
+    },
+    {
+      "time": 42.466,
+      "bucket": "uniformFullDuration",
+      "sequence": 4,
+      "sequenceCount": 256
+    },
+    {
+      "time": 43.155,
+      "bucket": "sceneTransition",
+      "difference": 0.68593,
+      "sharpness": 294.5511,
+      "edgeDensity": 0.009896
+    },
+    {
+      "time": 54.599,
+      "bucket": "uniformFullDuration",
+      "sequence": 5,
+      "sequenceCount": 256
+    },
+    {
+      "time": 66.732,
+      "bucket": "uniformFullDuration",
+      "sequence": 6,
+      "sequenceCount": 256
+    },
+    {
+      "time": 69.048,
+      "bucket": "sceneTransition",
+      "difference": 0.75625,
+      "sharpness": 416.9131,
+      "edgeDensity": 0.011406
+    },
+    {
+      "time": 78.865,
+      "bucket": "uniformFullDuration",
+      "sequence": 7,
+      "sequenceCount": 256
+    },
+    {
+      "time": 86.31,
+      "bucket": "sceneTransition",
+      "difference": 0.8375,
+      "sharpness": 599.69,
+      "edgeDensity": 0.020069
+    },
+    {
+      "time": 90.998,
+      "bucket": "uniformFullDuration",
+      "sequence": 8,
+      "sequenceCount": 256
+    },
+    {
+      "time": 103.131,
+      "bucket": "uniformFullDuration",
+      "sequence": 9,
+      "sequenceCount": 256
+    },
+    {
+      "time": 115.264,
+      "bucket": "uniformFullDuration",
+      "sequence": 10,
+      "sequenceCount": 256
+    },
+    {
+      "time": 120.834,
+      "bucket": "sceneTransition",
+      "difference": 0.580141,
+      "sharpness": 438.2032,
+      "edgeDensity": 0.016372
+    },
+    {
+      "time": 127.397,
+      "bucket": "uniformFullDuration",
+      "sequence": 11,
+      "sequenceCount": 256
+    },
+    {
+      "time": 138.096,
+      "bucket": "sceneTransition",
+      "difference": 0.577873,
+      "sharpness": 511.9323,
+      "edgeDensity": 0.032014
+    },
+    {
+      "time": 139.53,
+      "bucket": "uniformFullDuration",
+      "sequence": 12,
+      "sequenceCount": 256
+    },
+    {
+      "time": 146.727,
+      "bucket": "sceneTransition",
+      "difference": 0.644531,
+      "sharpness": 666.976,
+      "edgeDensity": 0.054271
+    },
+    {
+      "time": 151.663,
+      "bucket": "uniformFullDuration",
+      "sequence": 13,
+      "sequenceCount": 256
+    },
+    {
+      "time": 155.358,
+      "bucket": "sceneTransition",
+      "difference": 0.558093,
+      "sharpness": 593.3912,
+      "edgeDensity": 0.050816
+    },
+    {
+      "time": 163.796,
+      "bucket": "uniformFullDuration",
+      "sequence": 14,
+      "sequenceCount": 256
+    },
+    {
+      "time": 175.93,
+      "bucket": "uniformFullDuration",
+      "sequence": 15,
+      "sequenceCount": 256
+    },
+    {
+      "time": 181.251,
+      "bucket": "sceneTransition",
+      "difference": 0.629958,
+      "sharpness": 740.1524,
+      "edgeDensity": 0.032882
+    },
+    {
+      "time": 188.063,
+      "bucket": "uniformFullDuration",
+      "sequence": 16,
+      "sequenceCount": 256
+    },
+    {
+      "time": 200.196,
+      "bucket": "uniformFullDuration",
+      "sequence": 17,
+      "sequenceCount": 256
+    },
+    {
+      "time": 207.144,
+      "bucket": "sceneTransition",
+      "difference": 0.553125,
+      "sharpness": 844.4151,
+      "edgeDensity": 0.050625
+    },
+    {
+      "time": 212.329,
+      "bucket": "uniformFullDuration",
+      "sequence": 18,
+      "sequenceCount": 256
+    },
+    {
+      "time": 215.775,
+      "bucket": "sceneTransition",
+      "difference": 0.736136,
+      "sharpness": 604.2849,
+      "edgeDensity": 0.047465
+    },
+    {
+      "time": 224.462,
+      "bucket": "uniformFullDuration",
+      "sequence": 19,
+      "sequenceCount": 256
+    },
+    {
+      "time": 233.037,
+      "bucket": "sceneTransition",
+      "difference": 0.624219,
+      "sharpness": 469.6434,
+      "edgeDensity": 0.050503
+    },
+    {
+      "time": 236.595,
+      "bucket": "uniformFullDuration",
+      "sequence": 20,
+      "sequenceCount": 256
+    },
+    {
+      "time": 248.728,
+      "bucket": "uniformFullDuration",
+      "sequence": 21,
+      "sequenceCount": 256
+    },
+    {
+      "time": 258.93,
+      "bucket": "sceneTransition",
+      "difference": 0.725781,
+      "sharpness": 886.6199,
+      "edgeDensity": 0.080365
+    },
+    {
+      "time": 260.861,
+      "bucket": "uniformFullDuration",
+      "sequence": 22,
+      "sequenceCount": 256
+    },
+    {
+      "time": 267.561,
+      "bucket": "sceneTransition",
+      "difference": 0.725781,
+      "sharpness": 990.4219,
+      "edgeDensity": 0.115347
+    },
+    {
+      "time": 272.994,
+      "bucket": "uniformFullDuration",
+      "sequence": 23,
+      "sequenceCount": 256
+    },
+    {
+      "time": 276.192,
+      "bucket": "sceneTransition",
+      "difference": 0.605347,
+      "sharpness": 915.0724,
+      "edgeDensity": 0.06033
+    },
+    {
+      "time": 284.823,
+      "bucket": "sceneTransition",
+      "difference": 0.691755,
+      "sharpness": 358.277,
+      "edgeDensity": 0.024618
+    },
+    {
+      "time": 285.127,
+      "bucket": "uniformFullDuration",
+      "sequence": 24,
+      "sequenceCount": 256
+    },
+    {
+      "time": 293.454,
+      "bucket": "sharp",
+      "sharpness": 1417.8621,
+      "edgeDensity": 0.125295
+    },
+    {
+      "time": 297.26,
+      "bucket": "uniformFullDuration",
+      "sequence": 25,
+      "sequenceCount": 256
+    },
+    {
+      "time": 309.393,
+      "bucket": "uniformFullDuration",
+      "sequence": 26,
+      "sequenceCount": 256
+    },
+    {
+      "time": 310.716,
+      "bucket": "sharp",
+      "sharpness": 1174.5377,
+      "edgeDensity": 0.101007
+    },
+    {
+      "time": 321.526,
+      "bucket": "uniformFullDuration",
+      "sequence": 27,
+      "sequenceCount": 256
+    },
+    {
+      "time": 327.978,
+      "bucket": "sharp",
+      "sharpness": 1165.6413,
+      "edgeDensity": 0.098281
+    },
+    {
+      "time": 333.659,
+      "bucket": "uniformFullDuration",
+      "sequence": 28,
+      "sequenceCount": 256
+    },
+    {
+      "time": 345.24,
+      "bucket": "sharp",
+      "sharpness": 1322.2206,
+      "edgeDensity": 0.12625
+    },
+    {
+      "time": 345.793,
+      "bucket": "uniformFullDuration",
+      "sequence": 29,
+      "sequenceCount": 256
+    },
+    {
+      "time": 353.871,
+      "bucket": "sharp",
+      "sharpness": 1337.6866,
+      "edgeDensity": 0.135712
+    },
+    {
+      "time": 357.926,
+      "bucket": "uniformFullDuration",
+      "sequence": 30,
+      "sequenceCount": 256
+    },
+    {
+      "time": 362.502,
+      "bucket": "sceneTransition",
+      "difference": 0.670558,
+      "sharpness": 589.8318,
+      "edgeDensity": 0.068056
+    },
+    {
+      "time": 370.059,
+      "bucket": "uniformFullDuration",
+      "sequence": 31,
+      "sequenceCount": 256
+    },
+    {
+      "time": 382.192,
+      "bucket": "uniformFullDuration",
+      "sequence": 32,
+      "sequenceCount": 256
+    },
+    {
+      "time": 394.325,
+      "bucket": "uniformFullDuration",
+      "sequence": 33,
+      "sequenceCount": 256
+    },
+    {
+      "time": 406.458,
+      "bucket": "uniformFullDuration",
+      "sequence": 34,
+      "sequenceCount": 256
+    },
+    {
+      "time": 418.591,
+      "bucket": "uniformFullDuration",
+      "sequence": 35,
+      "sequenceCount": 256
+    },
+    {
+      "time": 422.919,
+      "bucket": "sceneTransition",
+      "difference": 0.677106,
+      "sharpness": 774.4507,
+      "edgeDensity": 0.088958
+    },
+    {
+      "time": 430.724,
+      "bucket": "uniformFullDuration",
+      "sequence": 36,
+      "sequenceCount": 256
+    },
+    {
+      "time": 442.857,
+      "bucket": "uniformFullDuration",
+      "sequence": 37,
+      "sequenceCount": 256
+    },
+    {
+      "time": 454.99,
+      "bucket": "uniformFullDuration",
+      "sequence": 38,
+      "sequenceCount": 256
+    },
+    {
+      "time": 466.074,
+      "bucket": "sharp",
+      "sharpness": 1223.1915,
+      "edgeDensity": 0.101476
+    },
+    {
+      "time": 467.123,
+      "bucket": "uniformFullDuration",
+      "sequence": 39,
+      "sequenceCount": 256
+    },
+    {
+      "time": 479.256,
+      "bucket": "uniformFullDuration",
+      "sequence": 40,
+      "sequenceCount": 256
+    },
+    {
+      "time": 491.389,
+      "bucket": "uniformFullDuration",
+      "sequence": 41,
+      "sequenceCount": 256
+    },
+    {
+      "time": 503.522,
+      "bucket": "uniformFullDuration",
+      "sequence": 42,
+      "sequenceCount": 256
+    },
+    {
+      "time": 509.229,
+      "bucket": "sceneTransition",
+      "difference": 0.580279,
+      "sharpness": 396.494,
+      "edgeDensity": 0.051476
+    },
+    {
+      "time": 515.655,
+      "bucket": "uniformFullDuration",
+      "sequence": 43,
+      "sequenceCount": 256
+    },
+    {
+      "time": 527.789,
+      "bucket": "uniformFullDuration",
+      "sequence": 44,
+      "sequenceCount": 256
+    },
+    {
+      "time": 539.922,
+      "bucket": "uniformFullDuration",
+      "sequence": 45,
+      "sequenceCount": 256
+    },
+    {
+      "time": 552.055,
+      "bucket": "uniformFullDuration",
+      "sequence": 46,
+      "sequenceCount": 256
+    },
+    {
+      "time": 564.188,
+      "bucket": "uniformFullDuration",
+      "sequence": 47,
+      "sequenceCount": 256
+    },
+    {
+      "time": 576.321,
+      "bucket": "uniformFullDuration",
+      "sequence": 48,
+      "sequenceCount": 256
+    },
+    {
+      "time": 588.454,
+      "bucket": "uniformFullDuration",
+      "sequence": 49,
+      "sequenceCount": 256
+    },
+    {
+      "time": 600.587,
+      "bucket": "uniformFullDuration",
+      "sequence": 50,
+      "sequenceCount": 256
+    },
+    {
+      "time": 612.72,
+      "bucket": "uniformFullDuration",
+      "sequence": 51,
+      "sequenceCount": 256
+    },
+    {
+      "time": 621.432,
+      "bucket": "sceneTransition",
+      "difference": 0.614062,
+      "sharpness": 497.2212,
+      "edgeDensity": 0.073038
+    },
+    {
+      "time": 624.853,
+      "bucket": "uniformFullDuration",
+      "sequence": 52,
+      "sequenceCount": 256
+    },
+    {
+      "time": 630.063,
+      "bucket": "sharp",
+      "sharpness": 1429.1639,
+      "edgeDensity": 0.123056
+    },
+    {
+      "time": 636.986,
+      "bucket": "uniformFullDuration",
+      "sequence": 53,
+      "sequenceCount": 256
+    },
+    {
+      "time": 638.694,
+      "bucket": "sharp",
+      "sharpness": 1220.4022,
+      "edgeDensity": 0.111753
+    },
+    {
+      "time": 647.325,
+      "bucket": "sharp",
+      "sharpness": 1144.6219,
+      "edgeDensity": 0.117135
+    },
+    {
+      "time": 649.119,
+      "bucket": "uniformFullDuration",
+      "sequence": 54,
+      "sequenceCount": 256
+    },
+    {
+      "time": 661.252,
+      "bucket": "uniformFullDuration",
+      "sequence": 55,
+      "sequenceCount": 256
+    },
+    {
+      "time": 673.218,
+      "bucket": "sharp",
+      "sharpness": 1217.0914,
+      "edgeDensity": 0.126042
+    },
+    {
+      "time": 673.385,
+      "bucket": "uniformFullDuration",
+      "sequence": 56,
+      "sequenceCount": 256
+    },
+    {
+      "time": 681.849,
+      "bucket": "sharp",
+      "sharpness": 1348.4943,
+      "edgeDensity": 0.096354
+    },
+    {
+      "time": 685.518,
+      "bucket": "uniformFullDuration",
+      "sequence": 57,
+      "sequenceCount": 256
+    },
+    {
+      "time": 690.48,
+      "bucket": "sharp",
+      "sharpness": 1452.1122,
+      "edgeDensity": 0.097708
+    },
+    {
+      "time": 697.652,
+      "bucket": "uniformFullDuration",
+      "sequence": 58,
+      "sequenceCount": 256
+    },
+    {
+      "time": 699.111,
+      "bucket": "sharp",
+      "sharpness": 1793.4114,
+      "edgeDensity": 0.11875
+    },
+    {
+      "time": 707.742,
+      "bucket": "sharp",
+      "sharpness": 1874.9172,
+      "edgeDensity": 0.123316
+    },
+    {
+      "time": 709.785,
+      "bucket": "uniformFullDuration",
+      "sequence": 59,
+      "sequenceCount": 256
+    },
+    {
+      "time": 716.373,
+      "bucket": "sharp",
+      "sharpness": 1281.9846,
+      "edgeDensity": 0.12283
+    },
+    {
+      "time": 721.918,
+      "bucket": "uniformFullDuration",
+      "sequence": 60,
+      "sequenceCount": 256
+    },
+    {
+      "time": 725.004,
+      "bucket": "sharp",
+      "sharpness": 1993.7655,
+      "edgeDensity": 0.125365
+    },
+    {
+      "time": 734.051,
+      "bucket": "uniformFullDuration",
+      "sequence": 61,
+      "sequenceCount": 256
+    },
+    {
+      "time": 742.266,
+      "bucket": "sharp",
+      "sharpness": 1252.1332,
+      "edgeDensity": 0.06651
+    },
+    {
+      "time": 746.184,
+      "bucket": "uniformFullDuration",
+      "sequence": 62,
+      "sequenceCount": 256
+    },
+    {
+      "time": 758.317,
+      "bucket": "uniformFullDuration",
+      "sequence": 63,
+      "sequenceCount": 256
+    },
+    {
+      "time": 759.528,
+      "bucket": "sceneTransition",
+      "difference": 0.601425,
+      "sharpness": 407.0401,
+      "edgeDensity": 0.02125
+    },
+    {
+      "time": 770.45,
+      "bucket": "uniformFullDuration",
+      "sequence": 64,
+      "sequenceCount": 256
+    },
+    {
+      "time": 782.583,
+      "bucket": "uniformFullDuration",
+      "sequence": 65,
+      "sequenceCount": 256
+    },
+    {
+      "time": 794.716,
+      "bucket": "uniformFullDuration",
+      "sequence": 66,
+      "sequenceCount": 256
+    },
+    {
+      "time": 806.849,
+      "bucket": "uniformFullDuration",
+      "sequence": 67,
+      "sequenceCount": 256
+    },
+    {
+      "time": 818.982,
+      "bucket": "uniformFullDuration",
+      "sequence": 68,
+      "sequenceCount": 256
+    },
+    {
+      "time": 828.576,
+      "bucket": "sharp",
+      "sharpness": 1785.4476,
+      "edgeDensity": 0.060104
+    },
+    {
+      "time": 831.115,
+      "bucket": "uniformFullDuration",
+      "sequence": 69,
+      "sequenceCount": 256
+    },
+    {
+      "time": 843.248,
+      "bucket": "uniformFullDuration",
+      "sequence": 70,
+      "sequenceCount": 256
+    },
+    {
+      "time": 855.381,
+      "bucket": "uniformFullDuration",
+      "sequence": 71,
+      "sequenceCount": 256
+    },
+    {
+      "time": 863.1,
+      "bucket": "sharp",
+      "sharpness": 1243.8989,
+      "edgeDensity": 0.108854
+    },
+    {
+      "time": 867.515,
+      "bucket": "uniformFullDuration",
+      "sequence": 72,
+      "sequenceCount": 256
+    },
+    {
+      "time": 871.731,
+      "bucket": "sharp",
+      "sharpness": 2228.7144,
+      "edgeDensity": 0.182552
+    },
+    {
+      "time": 879.648,
+      "bucket": "uniformFullDuration",
+      "sequence": 73,
+      "sequenceCount": 256
+    },
+    {
+      "time": 880.362,
+      "bucket": "sceneTransition",
+      "difference": 0.614062,
+      "sharpness": 601.0877,
+      "edgeDensity": 0.028872
+    },
+    {
+      "time": 891.781,
+      "bucket": "uniformFullDuration",
+      "sequence": 74,
+      "sequenceCount": 256
+    },
+    {
+      "time": 897.624,
+      "bucket": "sceneTransition",
+      "difference": 0.583594,
+      "sharpness": 272.4236,
+      "edgeDensity": 0.003906
+    },
+    {
+      "time": 903.914,
+      "bucket": "uniformFullDuration",
+      "sequence": 75,
+      "sequenceCount": 256
+    },
+    {
+      "time": 906.255,
+      "bucket": "sharp",
+      "sharpness": 1863.4044,
+      "edgeDensity": 0.117882
+    },
+    {
+      "time": 914.886,
+      "bucket": "sharp",
+      "sharpness": 1393.0659,
+      "edgeDensity": 0.11316
+    },
+    {
+      "time": 916.047,
+      "bucket": "uniformFullDuration",
+      "sequence": 76,
+      "sequenceCount": 256
+    },
+    {
+      "time": 923.517,
+      "bucket": "sharp",
+      "sharpness": 1595.0028,
+      "edgeDensity": 0.09467
+    },
+    {
+      "time": 928.18,
+      "bucket": "uniformFullDuration",
+      "sequence": 77,
+      "sequenceCount": 256
+    },
+    {
+      "time": 932.148,
+      "bucket": "sharp",
+      "sharpness": 1743.6803,
+      "edgeDensity": 0.069497
+    },
+    {
+      "time": 940.313,
+      "bucket": "uniformFullDuration",
+      "sequence": 78,
+      "sequenceCount": 256
+    },
+    {
+      "time": 940.779,
+      "bucket": "sharp",
+      "sharpness": 2408.5679,
+      "edgeDensity": 0.186649
+    },
+    {
+      "time": 949.41,
+      "bucket": "sceneTransition",
+      "difference": 0.548855,
+      "sharpness": 1027.1392,
+      "edgeDensity": 0.107639
+    },
+    {
+      "time": 952.446,
+      "bucket": "uniformFullDuration",
+      "sequence": 79,
+      "sequenceCount": 256
+    },
+    {
+      "time": 958.041,
+      "bucket": "sceneTransition",
+      "difference": 0.603906,
+      "sharpness": 275.5857,
+      "edgeDensity": 0.003924
+    },
+    {
+      "time": 964.579,
+      "bucket": "uniformFullDuration",
+      "sequence": 80,
+      "sequenceCount": 256
+    },
+    {
+      "time": 966.672,
+      "bucket": "sharp",
+      "sharpness": 1287.9215,
+      "edgeDensity": 0.102813
+    },
+    {
+      "time": 976.712,
+      "bucket": "uniformFullDuration",
+      "sequence": 81,
+      "sequenceCount": 256
+    },
+    {
+      "time": 988.845,
+      "bucket": "uniformFullDuration",
+      "sequence": 82,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1000.978,
+      "bucket": "uniformFullDuration",
+      "sequence": 83,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1001.196,
+      "bucket": "sceneTransition",
+      "difference": 0.634375,
+      "sharpness": 375.7006,
+      "edgeDensity": 0.03342
+    },
+    {
+      "time": 1009.827,
+      "bucket": "sceneTransition",
+      "difference": 0.561115,
+      "sharpness": 339.6371,
+      "edgeDensity": 0.072413
+    },
+    {
+      "time": 1013.111,
+      "bucket": "uniformFullDuration",
+      "sequence": 84,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1025.244,
+      "bucket": "uniformFullDuration",
+      "sequence": 85,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1037.378,
+      "bucket": "uniformFullDuration",
+      "sequence": 86,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1049.511,
+      "bucket": "uniformFullDuration",
+      "sequence": 87,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1061.644,
+      "bucket": "uniformFullDuration",
+      "sequence": 88,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1073.777,
+      "bucket": "uniformFullDuration",
+      "sequence": 89,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1078.875,
+      "bucket": "sharp",
+      "sharpness": 1365.4896,
+      "edgeDensity": 0.085955
+    },
+    {
+      "time": 1085.91,
+      "bucket": "uniformFullDuration",
+      "sequence": 90,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1098.043,
+      "bucket": "uniformFullDuration",
+      "sequence": 91,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1110.176,
+      "bucket": "uniformFullDuration",
+      "sequence": 92,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1122.03,
+      "bucket": "sceneTransition",
+      "difference": 0.553125,
+      "sharpness": 426.9438,
+      "edgeDensity": 0.021858
+    },
+    {
+      "time": 1122.309,
+      "bucket": "uniformFullDuration",
+      "sequence": 93,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1134.442,
+      "bucket": "uniformFullDuration",
+      "sequence": 94,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1146.575,
+      "bucket": "uniformFullDuration",
+      "sequence": 95,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1158.708,
+      "bucket": "uniformFullDuration",
+      "sequence": 96,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1170.841,
+      "bucket": "uniformFullDuration",
+      "sequence": 97,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1182.974,
+      "bucket": "uniformFullDuration",
+      "sequence": 98,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1195.107,
+      "bucket": "uniformFullDuration",
+      "sequence": 99,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1207.24,
+      "bucket": "uniformFullDuration",
+      "sequence": 100,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1219.374,
+      "bucket": "uniformFullDuration",
+      "sequence": 101,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1225.602,
+      "bucket": "sceneTransition",
+      "difference": 0.603906,
+      "sharpness": 472.7437,
+      "edgeDensity": 0.046997
+    },
+    {
+      "time": 1231.507,
+      "bucket": "uniformFullDuration",
+      "sequence": 102,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1234.233,
+      "bucket": "sharp",
+      "sharpness": 1149.2189,
+      "edgeDensity": 0.054983
+    },
+    {
+      "time": 1243.64,
+      "bucket": "uniformFullDuration",
+      "sequence": 103,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1255.773,
+      "bucket": "uniformFullDuration",
+      "sequence": 104,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1260.126,
+      "bucket": "sharp",
+      "sharpness": 1154.0875,
+      "edgeDensity": 0.123212
+    },
+    {
+      "time": 1267.906,
+      "bucket": "uniformFullDuration",
+      "sequence": 105,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1268.757,
+      "bucket": "sharp",
+      "sharpness": 1596.9967,
+      "edgeDensity": 0.166563
+    },
+    {
+      "time": 1280.039,
+      "bucket": "uniformFullDuration",
+      "sequence": 106,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1292.172,
+      "bucket": "uniformFullDuration",
+      "sequence": 107,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1304.305,
+      "bucket": "uniformFullDuration",
+      "sequence": 108,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1316.438,
+      "bucket": "uniformFullDuration",
+      "sequence": 109,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1328.571,
+      "bucket": "uniformFullDuration",
+      "sequence": 110,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1340.704,
+      "bucket": "uniformFullDuration",
+      "sequence": 111,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1352.837,
+      "bucket": "uniformFullDuration",
+      "sequence": 112,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1364.97,
+      "bucket": "uniformFullDuration",
+      "sequence": 113,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1377.103,
+      "bucket": "uniformFullDuration",
+      "sequence": 114,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1389.237,
+      "bucket": "uniformFullDuration",
+      "sequence": 115,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1401.37,
+      "bucket": "uniformFullDuration",
+      "sequence": 116,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1413.503,
+      "bucket": "uniformFullDuration",
+      "sequence": 117,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1425.636,
+      "bucket": "uniformFullDuration",
+      "sequence": 118,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1437.769,
+      "bucket": "uniformFullDuration",
+      "sequence": 119,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1449.902,
+      "bucket": "uniformFullDuration",
+      "sequence": 120,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1462.035,
+      "bucket": "uniformFullDuration",
+      "sequence": 121,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1474.168,
+      "bucket": "uniformFullDuration",
+      "sequence": 122,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1486.301,
+      "bucket": "uniformFullDuration",
+      "sequence": 123,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1498.434,
+      "bucket": "uniformFullDuration",
+      "sequence": 124,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1510.567,
+      "bucket": "uniformFullDuration",
+      "sequence": 125,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1522.7,
+      "bucket": "uniformFullDuration",
+      "sequence": 126,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1534.833,
+      "bucket": "uniformFullDuration",
+      "sequence": 127,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1546.966,
+      "bucket": "uniformFullDuration",
+      "sequence": 128,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1559.1,
+      "bucket": "uniformFullDuration",
+      "sequence": 129,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1571.233,
+      "bucket": "uniformFullDuration",
+      "sequence": 130,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1583.366,
+      "bucket": "uniformFullDuration",
+      "sequence": 131,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1595.499,
+      "bucket": "uniformFullDuration",
+      "sequence": 132,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1607.632,
+      "bucket": "uniformFullDuration",
+      "sequence": 133,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1619.765,
+      "bucket": "uniformFullDuration",
+      "sequence": 134,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1631.898,
+      "bucket": "uniformFullDuration",
+      "sequence": 135,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1644.031,
+      "bucket": "uniformFullDuration",
+      "sequence": 136,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1656.164,
+      "bucket": "uniformFullDuration",
+      "sequence": 137,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1668.297,
+      "bucket": "uniformFullDuration",
+      "sequence": 138,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1680.43,
+      "bucket": "uniformFullDuration",
+      "sequence": 139,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1692.563,
+      "bucket": "uniformFullDuration",
+      "sequence": 140,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1704.696,
+      "bucket": "uniformFullDuration",
+      "sequence": 141,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1716.829,
+      "bucket": "uniformFullDuration",
+      "sequence": 142,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1728.963,
+      "bucket": "uniformFullDuration",
+      "sequence": 143,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1741.096,
+      "bucket": "uniformFullDuration",
+      "sequence": 144,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1753.229,
+      "bucket": "uniformFullDuration",
+      "sequence": 145,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1765.362,
+      "bucket": "uniformFullDuration",
+      "sequence": 146,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1777.495,
+      "bucket": "uniformFullDuration",
+      "sequence": 147,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1789.628,
+      "bucket": "uniformFullDuration",
+      "sequence": 148,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1801.761,
+      "bucket": "uniformFullDuration",
+      "sequence": 149,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1813.894,
+      "bucket": "uniformFullDuration",
+      "sequence": 150,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1826.027,
+      "bucket": "uniformFullDuration",
+      "sequence": 151,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1838.16,
+      "bucket": "uniformFullDuration",
+      "sequence": 152,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1850.293,
+      "bucket": "uniformFullDuration",
+      "sequence": 153,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1862.426,
+      "bucket": "uniformFullDuration",
+      "sequence": 154,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1874.559,
+      "bucket": "uniformFullDuration",
+      "sequence": 155,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1886.692,
+      "bucket": "uniformFullDuration",
+      "sequence": 156,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1898.826,
+      "bucket": "uniformFullDuration",
+      "sequence": 157,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1910.959,
+      "bucket": "uniformFullDuration",
+      "sequence": 158,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1923.092,
+      "bucket": "uniformFullDuration",
+      "sequence": 159,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1935.225,
+      "bucket": "uniformFullDuration",
+      "sequence": 160,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1947.358,
+      "bucket": "uniformFullDuration",
+      "sequence": 161,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1959.491,
+      "bucket": "uniformFullDuration",
+      "sequence": 162,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1971.624,
+      "bucket": "uniformFullDuration",
+      "sequence": 163,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1983.757,
+      "bucket": "uniformFullDuration",
+      "sequence": 164,
+      "sequenceCount": 256
+    },
+    {
+      "time": 1995.89,
+      "bucket": "uniformFullDuration",
+      "sequence": 165,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2008.023,
+      "bucket": "uniformFullDuration",
+      "sequence": 166,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2020.156,
+      "bucket": "uniformFullDuration",
+      "sequence": 167,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2032.289,
+      "bucket": "uniformFullDuration",
+      "sequence": 168,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2044.422,
+      "bucket": "uniformFullDuration",
+      "sequence": 169,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2056.555,
+      "bucket": "uniformFullDuration",
+      "sequence": 170,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2068.688,
+      "bucket": "uniformFullDuration",
+      "sequence": 171,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2080.822,
+      "bucket": "uniformFullDuration",
+      "sequence": 172,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2092.955,
+      "bucket": "uniformFullDuration",
+      "sequence": 173,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2105.088,
+      "bucket": "uniformFullDuration",
+      "sequence": 174,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2117.221,
+      "bucket": "uniformFullDuration",
+      "sequence": 175,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2129.354,
+      "bucket": "uniformFullDuration",
+      "sequence": 176,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2141.487,
+      "bucket": "uniformFullDuration",
+      "sequence": 177,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2153.62,
+      "bucket": "uniformFullDuration",
+      "sequence": 178,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2165.753,
+      "bucket": "uniformFullDuration",
+      "sequence": 179,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2177.886,
+      "bucket": "uniformFullDuration",
+      "sequence": 180,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2190.019,
+      "bucket": "uniformFullDuration",
+      "sequence": 181,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2202.152,
+      "bucket": "uniformFullDuration",
+      "sequence": 182,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2214.285,
+      "bucket": "uniformFullDuration",
+      "sequence": 183,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2226.418,
+      "bucket": "uniformFullDuration",
+      "sequence": 184,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2238.551,
+      "bucket": "uniformFullDuration",
+      "sequence": 185,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2250.685,
+      "bucket": "uniformFullDuration",
+      "sequence": 186,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2262.818,
+      "bucket": "uniformFullDuration",
+      "sequence": 187,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2274.951,
+      "bucket": "uniformFullDuration",
+      "sequence": 188,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2287.084,
+      "bucket": "uniformFullDuration",
+      "sequence": 189,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2299.217,
+      "bucket": "uniformFullDuration",
+      "sequence": 190,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2311.35,
+      "bucket": "uniformFullDuration",
+      "sequence": 191,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2323.483,
+      "bucket": "uniformFullDuration",
+      "sequence": 192,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2335.616,
+      "bucket": "uniformFullDuration",
+      "sequence": 193,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2347.749,
+      "bucket": "uniformFullDuration",
+      "sequence": 194,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2359.882,
+      "bucket": "uniformFullDuration",
+      "sequence": 195,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2372.015,
+      "bucket": "uniformFullDuration",
+      "sequence": 196,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2384.148,
+      "bucket": "uniformFullDuration",
+      "sequence": 197,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2396.281,
+      "bucket": "uniformFullDuration",
+      "sequence": 198,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2408.414,
+      "bucket": "uniformFullDuration",
+      "sequence": 199,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2420.548,
+      "bucket": "uniformFullDuration",
+      "sequence": 200,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2432.681,
+      "bucket": "uniformFullDuration",
+      "sequence": 201,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2444.814,
+      "bucket": "uniformFullDuration",
+      "sequence": 202,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2456.947,
+      "bucket": "uniformFullDuration",
+      "sequence": 203,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2469.08,
+      "bucket": "uniformFullDuration",
+      "sequence": 204,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2481.213,
+      "bucket": "uniformFullDuration",
+      "sequence": 205,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2493.346,
+      "bucket": "uniformFullDuration",
+      "sequence": 206,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2505.479,
+      "bucket": "uniformFullDuration",
+      "sequence": 207,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2517.612,
+      "bucket": "uniformFullDuration",
+      "sequence": 208,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2529.745,
+      "bucket": "uniformFullDuration",
+      "sequence": 209,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2541.878,
+      "bucket": "uniformFullDuration",
+      "sequence": 210,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2554.011,
+      "bucket": "uniformFullDuration",
+      "sequence": 211,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2566.144,
+      "bucket": "uniformFullDuration",
+      "sequence": 212,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2578.277,
+      "bucket": "uniformFullDuration",
+      "sequence": 213,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2590.411,
+      "bucket": "uniformFullDuration",
+      "sequence": 214,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2602.544,
+      "bucket": "uniformFullDuration",
+      "sequence": 215,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2614.677,
+      "bucket": "uniformFullDuration",
+      "sequence": 216,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2626.81,
+      "bucket": "uniformFullDuration",
+      "sequence": 217,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2638.943,
+      "bucket": "uniformFullDuration",
+      "sequence": 218,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2651.076,
+      "bucket": "uniformFullDuration",
+      "sequence": 219,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2663.209,
+      "bucket": "uniformFullDuration",
+      "sequence": 220,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2675.342,
+      "bucket": "uniformFullDuration",
+      "sequence": 221,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2687.475,
+      "bucket": "uniformFullDuration",
+      "sequence": 222,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2699.608,
+      "bucket": "uniformFullDuration",
+      "sequence": 223,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2711.741,
+      "bucket": "uniformFullDuration",
+      "sequence": 224,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2723.874,
+      "bucket": "uniformFullDuration",
+      "sequence": 225,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2736.007,
+      "bucket": "uniformFullDuration",
+      "sequence": 226,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2748.14,
+      "bucket": "uniformFullDuration",
+      "sequence": 227,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2760.273,
+      "bucket": "uniformFullDuration",
+      "sequence": 228,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2772.407,
+      "bucket": "uniformFullDuration",
+      "sequence": 229,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2784.54,
+      "bucket": "uniformFullDuration",
+      "sequence": 230,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2796.673,
+      "bucket": "uniformFullDuration",
+      "sequence": 231,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2808.806,
+      "bucket": "uniformFullDuration",
+      "sequence": 232,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2820.939,
+      "bucket": "uniformFullDuration",
+      "sequence": 233,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2833.072,
+      "bucket": "uniformFullDuration",
+      "sequence": 234,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2845.205,
+      "bucket": "uniformFullDuration",
+      "sequence": 235,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2857.338,
+      "bucket": "uniformFullDuration",
+      "sequence": 236,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2869.471,
+      "bucket": "uniformFullDuration",
+      "sequence": 237,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2881.604,
+      "bucket": "uniformFullDuration",
+      "sequence": 238,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2893.737,
+      "bucket": "uniformFullDuration",
+      "sequence": 239,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2905.87,
+      "bucket": "uniformFullDuration",
+      "sequence": 240,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2918.003,
+      "bucket": "uniformFullDuration",
+      "sequence": 241,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2930.136,
+      "bucket": "uniformFullDuration",
+      "sequence": 242,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2942.27,
+      "bucket": "uniformFullDuration",
+      "sequence": 243,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2954.403,
+      "bucket": "uniformFullDuration",
+      "sequence": 244,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2966.536,
+      "bucket": "uniformFullDuration",
+      "sequence": 245,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2978.669,
+      "bucket": "uniformFullDuration",
+      "sequence": 246,
+      "sequenceCount": 256
+    },
+    {
+      "time": 2990.802,
+      "bucket": "uniformFullDuration",
+      "sequence": 247,
+      "sequenceCount": 256
+    },
+    {
+      "time": 3002.935,
+      "bucket": "uniformFullDuration",
+      "sequence": 248,
+      "sequenceCount": 256
+    },
+    {
+      "time": 3015.068,
+      "bucket": "uniformFullDuration",
+      "sequence": 249,
+      "sequenceCount": 256
+    },
+    {
+      "time": 3027.201,
+      "bucket": "uniformFullDuration",
+      "sequence": 250,
+      "sequenceCount": 256
+    },
+    {
+      "time": 3039.334,
+      "bucket": "uniformFullDuration",
+      "sequence": 251,
+      "sequenceCount": 256
+    },
+    {
+      "time": 3051.467,
+      "bucket": "uniformFullDuration",
+      "sequence": 252,
+      "sequenceCount": 256
+    },
+    {
+      "time": 3063.6,
+      "bucket": "uniformFullDuration",
+      "sequence": 253,
+      "sequenceCount": 256
+    },
+    {
+      "time": 3075.733,
+      "bucket": "uniformFullDuration",
+      "sequence": 254,
+      "sequenceCount": 256
+    },
+    {
+      "time": 3087.866,
+      "bucket": "uniformFullDuration",
+      "sequence": 255,
+      "sequenceCount": 256
+    },
+    {
+      "time": 3099.999,
+      "bucket": "uniformFullDuration",
+      "sequence": 256,
+      "sequenceCount": 256
+    }
+  ],
+  "safety": {
+    "pixelsRead": false,
+    "pixelsGenerated": false,
+    "geometryGenerated": false,
+    "existingCoordinatesModified": false
+  },
+  "nextAction": "extract a one-day private review artifact, then record only non-pixel multi-view landmark correspondences"
+}

@@ -1,6 +1,6 @@
 {
-  "version": "0.9.4.3",
-  "updatedAt": "2026-07-19",
+  "version": "0.9.4.4",
+  "updatedAt": "2026-08-16",
   "privacy": "授权聊天截图不存放在公开仓库；仓库仅保存授权文字、范围、凭证文件校验摘要和项目方提供的范围确认。",
   "records": [
     {
@@ -136,6 +136,84 @@
         }
       ],
       "notes": "当前授权足以启动完整目录发现、公开视频下载、本地扫描、非公开关键帧审核和原创地图重建。商业化、广告、收费和对第三方转授权均未获授权。"
+    },
+    {
+      "id": "auth-yuyi-20260816",
+      "status": "active",
+      "authorizationType": "author_level_existing_public_video_scope",
+      "author": "侑依",
+      "authorMid": 4442785,
+      "platform": "哔哩哔哩",
+      "game": "刺客信条：影",
+      "grantText": "我同意Atlas项目按上述范围使用我目前已公开的全部《刺客信条：影》视频。",
+      "scopeConfirmation": "此前逐项说明的范围包括：从公开视频页面临时下载用于项目分析；计算机视觉分析；仅非公开留存低分辨率关键帧；原创二维或低模三维重建房屋、道路、地形和水域关系；公开衍生互动地图及不含原始像素的结构数据；标注作者、视频标题和原链接。完整视频转载、原始画面公开、版权转让、第三方转授权及商业、广告或收费使用均不在本次授权内。",
+      "recordedAt": "2026-08-16",
+      "authorLevel": true,
+      "projectLevel": true,
+      "accountScope": true,
+      "nonExclusive": true,
+      "matchingRule": {
+        "authorMustEqual": "侑依",
+        "authorMidMustEqual": 4442785,
+        "platformMustEqual": "哔哩哔哩",
+        "titleMustContainAny": ["刺客信条影", "刺客信条：影", "AC Shadows"],
+        "publicationStateMustEqual": "public",
+        "appliesToExisting": true,
+        "appliesToFuture": false
+      },
+      "sourceIds": [
+        "bili-yuyi-acshadows-BV1ECZNYwEyH",
+        "bili-yuyi-acshadows-BV1nFZjYcEFs"
+      ],
+      "catalogIds": ["yuyi-ac-shadows-existing-20260816"],
+      "scope": {
+        "localDownloadAndAnalysis": true,
+        "downloadFromPublicVideoPage": true,
+        "computerVisionAnalysis": true,
+        "privateLowResolutionKeyframes": true,
+        "original2DVectorReconstruction": true,
+        "original3DReconstruction": true,
+        "original3DReconstructionLimitedToLowDetail": true,
+        "roadReconstruction": true,
+        "terrainReconstruction": true,
+        "waterAndBoundaryReconstruction": true,
+        "geospatialAnchoring": true,
+        "publicDerivedMapPublication": true,
+        "publicDerivedDataPublication": true,
+        "publicFullVideoRedistribution": false,
+        "publicOriginalVideoDownload": false,
+        "publicExtractedFrames": false,
+        "copyrightTransfer": false,
+        "thirdPartySublicensing": false,
+        "attributionRequired": true,
+        "nonCommercial": true,
+        "noAdvertising": true,
+        "commercialUseRequiresSeparateWrittenConsent": true,
+        "allExistingVideosIncluded": true,
+        "futureVideosAutomaticallyIncluded": false
+      },
+      "attribution": {
+        "authorName": "侑依",
+        "includeVideoTitle": true,
+        "includeOriginalUrl": true
+      },
+      "proof": {
+        "storage": "private-user-held",
+        "publicScreenshot": false,
+        "fileSha256": "08b8f49dd8ef52c24ae961e91a19275fc9408240a29f77c04e9e298e61f08551",
+        "imageWidth": 1344,
+        "imageHeight": 2912,
+        "receivedByProjectAt": "2026-08-16"
+      },
+      "proofHistory": [
+        {
+          "fileSha256": "08b8f49dd8ef52c24ae961e91a19275fc9408240a29f77c04e9e298e61f08551",
+          "imageWidth": 1344,
+          "imageHeight": 2912,
+          "purpose": "作者级现有公开视频授权及逐项分析、低清审阅和原创低模重建范围确认"
+        }
+      ],
+      "notes": "仅覆盖作者在2026-08-16授权时已经公开的《刺客信条：影》视频；未来视频不会自动继承授权。三维衍生仅限原创低模重建。授权截图由项目方私下持有，不上传仓库。"
     }
   ]
 }

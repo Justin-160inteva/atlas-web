@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-08-16T18:24:15Z",
+  "status": "targeted-dense-review-complete-atlas-registration-blocked",
+  "stage": "2p5d-sakai-yuyi-private-targeted-dense-review",
+  "authorizationId": "auth-yuyi-20260816",
+  "workflowRun": {
+    "id": 31960486196,
+    "url": "https://github.com/Justin-160inteva/atlas-web/actions/runs/31960486196",
+    "conclusion": "success"
+  },
+  "denseWorkflowRun": {
+    "id": 31962160638,
+    "url": "https://github.com/Justin-160inteva/atlas-web/actions/runs/31962160638",
+    "conclusion": "success"
+  },
+  "reviewCoverage": [
+    {
+      "jobId": "yuyi-sakai-005",
+      "bvid": "BV1ECZNYwEyH",
+      "cid": 29083961886,
+      "durationSeconds": 2536,
+      "artifact": "atlas-yuyi-sakai-005-private-review-31960486196",
+      "framesReviewed": 240,
+      "contactSheetsReviewed": 15,
+      "artifactRetentionDays": 1,
+      "sourceMediaRetained": false
+    },
+    {
+      "jobId": "yuyi-sakai-006",
+      "bvid": "BV1nFZjYcEFs",
+      "cid": 29102571716,
+      "durationSeconds": 4537,
+      "artifact": "atlas-yuyi-sakai-006-private-review-31960486196",
+      "framesReviewed": 320,
+      "contactSheetsReviewed": 20,
+      "artifactRetentionDays": 1,
+      "sourceMediaRetained": false
+    }
+  ],
+  "denseReviewCoverage": [
+    {
+      "jobId": "yuyi-sakai-005",
+      "artifact": "atlas-yuyi-sakai-005-private-dense-review-31962160638",
+      "framesReviewed": 91,
+      "contactSheetsReviewed": 6,
+      "artifactRetentionDays": 1,
+      "sourceMediaRetained": false
+    },
+    {
+      "jobId": "yuyi-sakai-006",
+      "artifact": "atlas-yuyi-sakai-006-private-dense-review-31962160638",
+      "framesReviewed": 284,
+      "contactSheetsReviewed": 18,
+      "artifactRetentionDays": 1,
+      "sourceMediaRetained": false
+    }
+  ],
+  "hardGates": {
+    "namedSakaiContext": "passed-by-exact-video-titles-and-city-map-views",
+    "mapVisibleCoordinateAnchor": "passed-source-relative-only",
+    "multiViewRouteEvidence": "passed-for-targeted-windows",
+    "atlasNormalizedRegistration": "blocked-insufficient-named-non-collinear-source-map-anchors",
+    "geometryEligible": false
+  },
+  "acceptedCorrespondenceCandidates": [
+    {
+      "id": "sakai-southwest-city-map-route-continuity",
+      "status": "accepted-source-relative-route-topology-not-geometry",
+      "evidence": [
+        {
+          "jobId": "yuyi-sakai-005",
+          "frameIndex": 220,
+          "timeSeconds": 2319.383,
+          "observation": "Full Sakai city map with the player marker in the southwest urban blocks; adjacent uniform samples are the immediately preceding interior/alley and following street route."
+        },
+        {
+          "jobId": "yuyi-sakai-006",
+          "frameIndex": 19,
+          "timeSeconds": 262.295,
+          "observation": "Second full Sakai city map view in the following episode with the player marker again in the southwest urban blocks; street footage appears immediately before and after."
+        },
+        {
+          "jobId": "yuyi-sakai-005",
+          "timeRangeSeconds": {"start": 2317, "end": 2322},
+          "observation": "Dense one-second samples show the city map continuously, followed by the same compound lane at 2323 seconds and the outward street route from 2324 seconds."
+        },
+        {
+          "jobId": "yuyi-sakai-006",
+          "timeRangeSeconds": {"start": 258, "end": 268},
+          "observation": "Dense one-second samples show the cross-episode city map continuously, followed by the same residential route at 269 seconds."
+        }
+      ],
+      "whyNotGeometry": "The temporal binding now passes, but the visible player markers are source-relative only and do not supply enough named points for an Atlas transform."
+    },
+    {
+      "id": "sakai-western-waterfront-market-route",
+      "status": "accepted-source-relative-route-topology-not-geometry",
+      "evidence": [
+        {
+          "jobId": "yuyi-sakai-006",
+          "startSeconds": 2956.14,
+          "endSeconds": 3211.22,
+          "observation": "Continuous route through narrow houses, a drainage canal, covered market frontage, white storehouse-like facades and waterfront-facing streets."
+        },
+        {
+          "jobId": "yuyi-sakai-006",
+          "mapTimesSeconds": [3016, 3060],
+          "routeRangeSeconds": {"start": 2920, "end": 3228},
+          "observation": "Four-second samples bind two intervening map views to the market conversation, repeated white storehouses and west-facing waterfront streets."
+        }
+      ],
+      "whyNotGeometry": "The street-to-waterfront order is accepted, but no visible map selection names an existing Atlas location ID at those transitions."
+    },
+    {
+      "id": "sakai-port-ship-harbor-sequence",
+      "status": "accepted-source-relative-route-topology-not-geometry",
+      "evidence": [
+        {
+          "jobId": "yuyi-sakai-006",
+          "startSeconds": 3466.55,
+          "endSeconds": 4161.28,
+          "observation": "Repeated city-map views lead into the west port, long pier, large ship, ship deck, return dock and waterfront buildings."
+        },
+        {
+          "jobId": "yuyi-sakai-006",
+          "frameIndex": 275,
+          "timeSeconds": 3891.895,
+          "observation": "Elevated harbor panorama shows the ship, enclosed water basin, opposing shoreline blocks and multiple piers in one view."
+        },
+        {
+          "jobId": "yuyi-sakai-006",
+          "mapTimesSeconds": [3515, 3530, 3580, 3690, 3695],
+          "routeRangesSeconds": [
+            {"start": 3700, "end": 3825, "observation": "west port storehouses, shore, swim and long pier"},
+            {"start": 3830, "end": 3930, "observation": "large ship boarding, mast climb and elevated harbor panorama"},
+            {"start": 4135, "end": 4160, "observation": "small-boat return to the waterfront"}
+          ],
+          "observation": "Five-second samples bind repeated map interactions to the complete port-ship-return sequence."
+        }
+      ],
+      "whyNotGeometry": "Dense temporal binding now passes, but the selected stop is labeled only as a generic fast-travel point and cannot be matched uniquely to an Atlas location ID."
+    }
+  ],
+  "rejectedClaims": [
+    "No building footprint is accepted from visual similarity alone.",
+    "No source-map roads, shorelines or official geometry are extracted or traced.",
+    "The low-resolution uniform frames do not justify facade dimensions, roof heights or precise street widths.",
+    "P06 correspondence groups are not assumed to match the Yuyi structures until a direct feature-level cross-check exists."
+  ],
+  "targetedDenseScan": {
+    "required": false,
+    "completed": true,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "artifactRetentionDays": 1,
+    "windows": [
+      {
+        "jobId": "yuyi-sakai-005",
+        "startSeconds": 2280,
+        "endSeconds": 2370,
+        "intervalSeconds": 1,
+        "purpose": "Bind the first southwest-city map marker to the immediately adjacent interior, alley and street sequence."
+      },
+      {
+        "jobId": "yuyi-sakai-006",
+        "startSeconds": 225,
+        "endSeconds": 285,
+        "intervalSeconds": 1,
+        "purpose": "Bind the cross-episode southwest-city map marker to the following street route."
+      },
+      {
+        "jobId": "yuyi-sakai-006",
+        "startSeconds": 2920,
+        "endSeconds": 3230,
+        "intervalSeconds": 4,
+        "purpose": "Capture the canal, market, white facades and waterfront route with enough overlap for repeated-structure review."
+      },
+      {
+        "jobId": "yuyi-sakai-006",
+        "startSeconds": 3450,
+        "endSeconds": 4170,
+        "intervalSeconds": 5,
+        "purpose": "Bind city-map frames to the port, long pier, ship, elevated harbor panorama and return dock."
+      }
+    ],
+    "estimatedFrames": 375,
+    "actualFrames": 375,
+    "actualContactSheets": 24,
+    "geometryGenerated": false
+  },
+  "atlasRegistrationAssessment": {
+    "status": "blocked",
+    "minimumRequired": "three named non-collinear source-map points for a transform plus at least one independent named validation point",
+    "namedSourceMapPointsMatchedToAtlasLocationIds": 0,
+    "observedButInsufficient": [
+      "player markers in southwest Sakai blocks without a visible unique place name",
+      "quest search areas that cover regions rather than exact points",
+      "a selected stop labeled only as a generic fast-travel point",
+      "P06 Atlas coordinates that are contextual records rather than the same visible source-map points"
+    ],
+    "transformComputed": false,
+    "independentValidationPerformed": false,
+    "decision": "Do not infer an affine transform from coastlines, roads or visual similarity. Acquire named point correspondences before located geometry."
+  },
+  "privacy": {
+    "repositoryContainsSourcePixels": false,
+    "authorizationScreenshotCommitted": false,
+    "fullVideoRedistributed": false,
+    "reviewRecordsContainNumericTimestampsAndTextOnly": true
+  }
+}
