@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-08-16T19:45:29Z",
+  "status": "adjacent-boundary-review-complete-atlas-registration-blocked",
+  "stage": "2p5d-sakai-yuyi-adjacent-boundary-review",
+  "authorizationId": "auth-yuyi-20260816",
+  "workflowRun": {
+    "id": 31967582635,
+    "url": "https://github.com/Justin-160inteva/atlas-web/actions/runs/31967582635",
+    "headSha": "12060796137b77bc38a16f4a7c91109651b03a8c",
+    "conclusion": "success"
+  },
+  "reviewCoverage": [
+    {
+      "jobId": "yuyi-boundary-004",
+      "bvid": "BV1AdX8YaEfH",
+      "cid": 29025569701,
+      "durationSeconds": 3347,
+      "artifact": "atlas-yuyi-boundary-004-private-review-31967582635",
+      "framesReviewed": 400,
+      "contactSheetsReviewed": 25,
+      "mapFramesObserved": [
+        {"frameIndex": 1, "timeSeconds": 4.184},
+        {"frameIndex": 2, "timeSeconds": 12.551},
+        {"frameIndex": 10, "timeSeconds": 79.491},
+        {"frameIndex": 29, "timeSeconds": 238.474},
+        {"frameIndex": 30, "timeSeconds": 246.841}
+      ],
+      "artifactRetentionDays": 1,
+      "sourceMediaRetained": false
+    },
+    {
+      "jobId": "yuyi-boundary-007",
+      "bvid": "BV18PooYdEEQ",
+      "cid": 29121056185,
+      "durationSeconds": 4185,
+      "artifact": "atlas-yuyi-boundary-007-private-review-31967582635",
+      "framesReviewed": 400,
+      "contactSheetsReviewed": 25,
+      "mapFramesObserved": [
+        {"frameIndex": 135, "timeSeconds": 1407.206},
+        {"frameIndex": 397, "timeSeconds": 4148.381},
+        {"frameIndex": 398, "timeSeconds": 4158.844},
+        {"frameIndex": 399, "timeSeconds": 4169.306}
+      ],
+      "artifactRetentionDays": 1,
+      "sourceMediaRetained": false
+    }
+  ],
+  "totals": {
+    "framesReviewed": 800,
+    "contactSheetsReviewed": 50,
+    "mapFramesObserved": 9,
+    "acceptedNamedCorrespondences": 1
+  },
+  "acceptedNamedCorrespondences": [
+    {
+      "jobId": "yuyi-boundary-004",
+      "frameIndex": 1,
+      "timeSeconds": 4.184,
+      "sourceMapLabelZh": "交野天守",
+      "atlasLocationId": "location-mapgenie-434379",
+      "atlasTitle": "Katano Tenshu",
+      "status": "accepted-name-match-only-not-transform-control",
+      "reason": "The selected source-map label is readable and matches the Atlas location name, but a single named point cannot define or validate a transform."
+    }
+  ],
+  "rejectedPointCandidates": [
+    {
+      "jobId": "yuyi-boundary-004",
+      "frameIndices": [2, 10, 29, 30],
+      "reason": "The remaining map samples expose generic activity markers, unselected labels or text that is not reliable enough to bind to unique Atlas location IDs."
+    },
+    {
+      "jobId": "yuyi-boundary-007",
+      "frameIndices": [135, 397, 399],
+      "reason": "The visible selection is an undiscovered-location prompt or an unselected regional map, not a unique named Atlas point."
+    },
+    {
+      "jobId": "yuyi-boundary-007",
+      "frameIndices": [398],
+      "reason": "The Osaka Castle activity or reward marker is contextual but is not the same uniquely defined point as an Atlas castle centroid or a named Atlas sub-location."
+    }
+  ],
+  "atlasRegistrationAssessment": {
+    "status": "blocked",
+    "minimumRequired": "three named non-collinear source-map points for a transform plus at least one independent named validation point",
+    "namedSourceMapPointsMatchedToAtlasLocationIds": 1,
+    "threeNonCollinearControlPointsPassed": false,
+    "independentFourthValidationPointPassed": false,
+    "transformComputed": false,
+    "independentValidationPerformed": false,
+    "geometryEligible": false,
+    "decision": "Do not compute a transform or generate located 2.5D geometry from the boundary scans. One readable name match is evidence, not a registration solution."
+  },
+  "privacy": {
+    "repositoryContainsSourcePixels": false,
+    "authorizationScreenshotCommitted": false,
+    "fullVideoRedistributed": false,
+    "reviewRecordsContainNumericTimestampsAndTextOnly": true
+  }
+}

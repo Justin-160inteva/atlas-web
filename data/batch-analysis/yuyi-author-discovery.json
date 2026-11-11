@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "yuyi-existing-author-discovery-v1",
+  "author": "侑依",
+  "platform": "哔哩哔哩",
+  "game": "刺客信条：影",
+  "authorizationId": "auth-yuyi-20260816",
+  "seedBvid": "BV1ECZNYwEyH",
+  "ugcSeasonId": 5060305,
+  "enumerationMode": "seed-ugc-season",
+  "expectedPublicVideoCount": 60,
+  "expectedBvidSha256": "3ffaf758837e80bc26ef73e016217e8593ba0ff8d18327eab9ddb793e9edf3cd",
+  "catalogFrozenAt": "2026-08-16",
+  "catalogOnly": true,
+  "includeFutureVideos": false,
+  "titleMustContainAny": ["刺客信条影", "刺客信条：影", "AC Shadows"],
+  "catalogId": "yuyi-ac-shadows-existing-20260816",
+  "sourceIdPrefix": "bili-yuyi-acshadows",
+  "catalogOutput": "data/yuyi-ac-shadows-existing-20260816-catalog.json",
+  "statusOutput": "data/batch-analysis/yuyi-author-discovery-status.json",
+  "pilotQueueOutput": "data/batch-analysis/yuyi-pilot-scan-queue.json",
+  "queueId": "yuyi-ac-shadows-catalog-hold-v1",
+  "queueStrategy": "Metadata-only frozen catalog. Queue targeted scans only after Sakai relevance is justified.",
+  "pilotCount": 0,
+  "mediaPolicy": {
+    "downloadVideoDuringDiscovery": false,
+    "retainVideo": false,
+    "retainFramePixels": false
+  }
+}

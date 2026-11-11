@@ -1,0 +1,37 @@
+{
+  "id": "yuyi-boundary-004",
+  "externalSourceId": "bili-yuyi-acshadows-BV1AdX8YaEfH",
+  "authorizationId": "auth-yuyi-20260816",
+  "author": "侑依",
+  "platform": "哔哩哔哩",
+  "title": "刺客信条：影 （4） 天王寺",
+  "url": "https://www.bilibili.com/video/BV1AdX8YaEfH/",
+  "intervalSeconds": 8.368,
+  "maxSamples": 400,
+  "minimumSharpness": 18,
+  "duplicateHashDistance": 0.11,
+  "duplicateColorDistance": 0.055,
+  "output": "data/analysis-results/yuyi-boundary-004.json",
+  "retention": {
+    "originalVideo": false,
+    "framePixels": false,
+    "numericDescriptorsOnly": true
+  },
+  "reviewSampling": {
+    "samples": 400,
+    "frameWidth": 640,
+    "frameHeight": 360,
+    "jpegQuality": 72,
+    "contactSheetColumns": 4,
+    "contactSheetRows": 4,
+    "artifactRetentionDays": 1
+  },
+  "batch": {
+    "catalog": "data/yuyi-ac-shadows-existing-20260816-catalog.json",
+    "page": 1,
+    "cid": 29025569701,
+    "durationSeconds": 3347,
+    "regionGuess": "天王寺至堺城入城边界",
+    "sourceKey": "BV1AdX8YaEfH:p1"
+  }
+}
